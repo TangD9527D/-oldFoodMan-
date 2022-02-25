@@ -22,17 +22,17 @@ public class PageController_32 {
 	@Autowired
 	private OfmService serviceOfm;
 
-	@GetMapping("/")
-	public String Home() {
-		
-		return "index";
-		
-	}
-	@GetMapping("/about")
-	public String aboutPage() {
-		
-		return "/messages/about";
-	}
+//	@GetMapping("/")
+//	public String Home() {
+//		
+//		return "index";
+//		
+//	}
+//	@GetMapping("/about")
+//	public String aboutPage() {
+//		
+//		return "/messages/about";
+//	}
 	
 	
 //	@GetMapping("/addMessage")
@@ -52,9 +52,9 @@ public class PageController_32 {
 	public ModelAndView addFoodVisPage(ModelAndView mav) {
 		mav.setViewName("vis_group_jsp/addFoodVis");
 		OldFoodManBean ofmb=new OldFoodManBean();
-		OldFoodManBean lastest=serviceOfm.getLastest();
+//		OldFoodManBean lastest=serviceOfm.getLastest();
 		mav.getModel().put("ofm", ofmb);
-		mav.getModel().put("lastestFoodVis", lastest);
+//		mav.getModel().put("lastestFoodVis", lastest);
 		return mav;
 	}
 	

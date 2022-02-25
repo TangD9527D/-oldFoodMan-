@@ -121,20 +121,20 @@
 		
 		function insertdata() {
 
-			var inputName = document.getElementById('vis_name').value;
+// 			var inputName = document.getElementById('vis_name').value;
 			var inputResName = document.getElementById('vis_res_name').value;
 			var inputDate = document.getElementById('vis_date').value;
-			var inputEmail = document.getElementById('vis_email').value;
+// 			var inputEmail = document.getElementById('vis_email').value;
 			var inputTime = document.getElementById('vis_time').value;
 			var inputLocation = document.getElementById('vis_location').value;
 			var inputNum = document.getElementById('vis_num').value;
 			var inputCondition = document.getElementById('vis_condition').value;
 
 			var dtoObject = {
-				"vis_name" : inputName,
+// 				"vis_name" : inputName,
 				"vis_res_name" : inputResName,
 				"vis_date" : inputDate,
-				"vis_email" : inputEmail,
+// 				"vis_email" : inputEmail,
 				"vis_time" : inputTime,
 				"vis_location" : inputLocation,
 				"vis_num" : inputNum,
@@ -142,7 +142,7 @@
 			}
 			var dtoJsonString = JSON.stringify(dtoObject);
 			
-			if(inputName=="" || inputEmail=="" || inputDate==""|| inputTime==""|| inputResName==""){
+			if(inputDate==""|| inputTime==""|| inputResName==""){
 // 				$("#vis_name").addClass("is-invalid")
 // 				$("#vis_date").addClass("is-invalid")
 // 				$("#vis_time").addClass("is-invalid")
@@ -214,17 +214,17 @@
 					</div>
 					<div class="modal-body">
 						<form>
-							<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="inputEmail4">發起人</label> <input id="vis_name"
-					type="text" class="form-control " required>
-			</div>
-			<div class="form-group col-md-6">
-				<label for="inputEmail4">Email</label> <input id="vis_email"
-					type="text" class="form-control" required>
+<!-- 							<div class="form-row"> -->
+<!-- 			<div class="form-group col-md-6"> -->
+<!-- 				<label for="inputEmail4">發起人</label> <input id="vis_name" -->
+<!-- 					type="text" class="form-control " required> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group col-md-6"> -->
+<!-- 				<label for="inputEmail4">Email</label> <input id="vis_email" -->
+<!-- 					type="text" class="form-control" required> -->
 
-			</div>
-		</div>
+<!-- 			</div> -->
+<!-- 		</div> -->
 							<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="inputEmail4">日期</label> <input type="date" id="vis_date"
@@ -279,8 +279,8 @@
 		<table id="table_id" class="table ">
 			<thead class="thead-dark">
 				<tr>
-					<th>發起人</th>
-					<th>E-mail</th>
+<!-- 					<th>發起人</th> -->
+<!-- 					<th>E-mail</th> -->
 					<th>日期</th>
 					<th>時間</th>
 					<th>店名</th>
@@ -293,8 +293,8 @@
 			<c:forEach var="viewallvis" items="${page.content}">
 				<tbody>
 					<tr>
-						<td class="table-light">${viewallvis.vis_name}</td>
-						<td class="table-light">${viewallvis.vis_email}</td>
+<%-- 						<td class="table-light">${viewallvis.vis_name}</td> --%>
+<%-- 						<td class="table-light">${viewallvis.vis_email}</td> --%>
 						<td class="table-light">${viewallvis.vis_date}</td>
 						<td class="table-light">${viewallvis.vis_time}</td>
 						<td class="table-light">${viewallvis.vis_res_name}</td>
