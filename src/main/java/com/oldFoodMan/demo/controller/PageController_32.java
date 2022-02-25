@@ -50,7 +50,7 @@ public class PageController_32 {
 	
 	@GetMapping("/addFoodVis")
 	public ModelAndView addFoodVisPage(ModelAndView mav) {
-		mav.setViewName("messages/addFoodVis");
+		mav.setViewName("vis_group_jsp/addFoodVis");
 		OldFoodManBean ofmb=new OldFoodManBean();
 		OldFoodManBean lastest=serviceOfm.getLastest();
 		mav.getModel().put("ofm", ofmb);
@@ -60,7 +60,7 @@ public class PageController_32 {
 	
 	@GetMapping("/ajaxFoodVis")
 	public ModelAndView viewVisPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber) {
-		mav.setViewName("messages/ajaxFoodVis");
+		mav.setViewName("vis_group_jsp/ajaxFoodVis");
 		
 		Page<OldFoodManBean> page =serviceOfm.findByPage(pageNumber);
 		mav.getModel().put("page", page);
@@ -70,7 +70,7 @@ public class PageController_32 {
 	
 	@GetMapping("/viewAllVis")
 	public ModelAndView viewAllVisPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber) {
-		mav.setViewName("messages/viewAllVis");
+		mav.setViewName("vis_group_jsp/viewAllVis");
 		
 		Page<OldFoodManBean> page =serviceOfm.findByPage(pageNumber);
 		mav.getModel().put("page", page);
