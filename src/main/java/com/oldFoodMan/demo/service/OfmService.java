@@ -53,9 +53,9 @@ public class OfmService {
 		return dao.findAll(pgb);
 	}
 
-	public OldFoodManBean getLastest() {
-
-		return dao.findFirstByOrderByAddedDesc();
-	}
+//	public OldFoodManBean getLastest() {
+//
+//		return dao.findFirstByOrderByAddedDesc();
+//	}
 
 }

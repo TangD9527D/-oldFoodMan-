@@ -39,19 +39,19 @@ public class FoodVisController_32 {
 			
 		}
 		
-		OldFoodManBean lastest=ofmservice.getLastest();
+//		OldFoodManBean lastest=ofmservice.getLastest();
 		mav.setViewName("redirect:/viewAllVis");
 		
-		mav.getModel().put("lastestFoodVis", lastest);
+//		mav.getModel().put("lastestFoodVis", lastest);
 		return mav;
 	}
 	
-	@ResponseBody
-	@GetMapping(value="messages/lastest")
-	public OldFoodManBean getLastest() {
-		
-		return ofmservice.getLastest();
-	}
+//	@ResponseBody
+//	@GetMapping(value="messages/lastest")
+//	public OldFoodManBean getLastest() {
+//		
+//		return ofmservice.getLastest();
+//	}
 
 	@GetMapping(value="editFoodVis")
 	public ModelAndView editFoodVis(ModelAndView mav,@RequestParam(name="id") Integer id) {
@@ -95,10 +95,10 @@ public class FoodVisController_32 {
 	public List<OldFoodManBean> postFoodVis(@RequestBody FoodVisDto dto){
 		
 		
-		String vis_name=dto.getVis_name();
+//		String vis_name=dto.getVis_name();
 		String vis_res_name=dto.getVis_res_name();
 		Date vis_date=dto.getVis_date();
-		String vis_email=dto.getVis_email();
+//		String vis_email=dto.getVis_email();
 		String vis_time=dto.getVis_time();
 		String vis_location=dto.getVis_location();
 		String vis_num=dto.getVis_num();
@@ -108,10 +108,10 @@ public class FoodVisController_32 {
 		
 		
 		OldFoodManBean ofmVis=new OldFoodManBean();
-		ofmVis.setVis_name(vis_name);
+//		ofmVis.setVis_name(vis_name);
 		ofmVis.setVis_res_name(vis_res_name);
 		ofmVis.setVis_date(vis_date);
-		ofmVis.setVis_email(vis_email);
+//		ofmVis.setVis_email(vis_email);
 		ofmVis.setVis_time(vis_time);
 		ofmVis.setVis_location(vis_location);
 		ofmVis.setVis_num(vis_num);
