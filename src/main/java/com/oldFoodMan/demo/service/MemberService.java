@@ -29,8 +29,8 @@ public class MemberService {
 	}
 	
 	
-	public void delete(Integer id) {
-		dao.deleteById(id);
-	}
+//	public void delete(Integer id) {
+//		dao.deleteById(id);
+//	}
 	
 }
