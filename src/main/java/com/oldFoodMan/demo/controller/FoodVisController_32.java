@@ -57,7 +57,7 @@ public class FoodVisController_32 {
 	public ModelAndView editFoodVis(ModelAndView mav,@RequestParam(name="id") Integer id) {
 		OldFoodManBean ofm=ofmservice.findById(id);
 		mav.getModel().put("ofm", ofm);
-		mav.setViewName("messages/editFoodVis");
+		mav.setViewName("vis_group_jsp/editFoodVis");
 		
 		return mav;
 		
@@ -68,12 +68,12 @@ public class FoodVisController_32 {
 	@PostMapping("/editFoodVis")
 	public ModelAndView editFoodVis(ModelAndView mav, @Valid @ModelAttribute(name="ofm") OldFoodManBean ofm, BindingResult result) {
 		
-		mav.setViewName("messages/editFoodVis");
+		mav.setViewName("vis_group_jsp/editFoodVis");
 		
 		if(!result.hasErrors()) {
 			// https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.entity-persistence.saving-entites
 			ofmservice.insert(ofm);
-			 mav.setViewName("redirect:messages/ajaxFoodVis");
+			 mav.setViewName("redirect:vis_group_jsp/ajaxFoodVis");
 		}
 		
 		return mav;
@@ -128,15 +128,7 @@ public class FoodVisController_32 {
 	@ResponseBody
 	@GetMapping("/api/getFoodVis")
 	public List<OldFoodManBean> getFoodVis(ModelAndView mav){
-		
-		
-//		String vis_name=dto.getVis_name();
-//		String vis_res_name=dto.getVis_res_name();
-//		Date vis_date=dto.getVis_date();
-//		OldFoodManBean ofmVis=new OldFoodManBean();
-		
-
-		
+	
 		List<OldFoodManBean> listall =ofmservice.findAll();
 //		List<OldFoodManBean> list=page.getContent();
 		
@@ -149,7 +141,7 @@ public class FoodVisController_32 {
 		
 		OldFoodManBean ofm=ofmservice.findById(id);
 		mav.getModel().put("ofm", ofm);
-		mav.setViewName("messages/findOneVis");
+		mav.setViewName("vis_group_jsp/findOneVis");
 		
 		return mav;
 
