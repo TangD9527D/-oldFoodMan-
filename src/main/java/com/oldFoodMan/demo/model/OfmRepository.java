@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OfmRepository extends JpaRepository<OldFoodManBean, Integer> {
 	
-	public OldFoodManBean findFirstByOrderByAddedDesc();
+//	public OldFoodManBean findFirstByOrderByAddedDesc();
 
 	
 	

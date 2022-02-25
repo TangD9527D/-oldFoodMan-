@@ -27,11 +27,11 @@ public class OldFoodManBean implements Serializable{
 	@Column(name = "vis_id")
 	private Integer vis_id;
 	
-	@Column(name = "vis_name")
-	private String vis_name;
-	
-	@Column(name = "vis_email")
-	private String vis_email;
+//	@Column(name = "vis_name")
+//	private String vis_name;
+//	
+//	@Column(name = "vis_email")
+//	private String vis_email;
 	
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss",timezone = "GMT+8")
@@ -58,6 +58,7 @@ public class OldFoodManBean implements Serializable{
 	@Column(name = "vis_condition")
 	private String vis_condition;
 	
+	private Integer member_id;
 	
 	public OldFoodManBean() {
 		
@@ -90,25 +91,25 @@ public class OldFoodManBean implements Serializable{
 	public void setAdded(Date added) {
 		this.added = added;
 	}
-
-	public String getVis_name() {
-		return vis_name;
-	}
-
-
-	public void setVis_name(String vis_name) {
-		this.vis_name = vis_name;
-	}
-
-
-	public String getVis_email() {
-		return vis_email;
-	}
-
-
-	public void setVis_email(String vis_email) {
-		this.vis_email = vis_email;
-	}
+//
+//	public String getVis_name() {
+//		return vis_name;
+//	}
+//
+//
+//	public void setVis_name(String vis_name) {
+//		this.vis_name = vis_name;
+//	}
+//
+//
+//	public String getVis_email() {
+//		return vis_email;
+//	}
+//
+//
+//	public void setVis_email(String vis_email) {
+//		this.vis_email = vis_email;
+//	}
 
 
 	public Date getVis_date() {
@@ -176,10 +177,6 @@ public class OldFoodManBean implements Serializable{
 		StringBuilder builder = new StringBuilder();
 		builder.append("OldFoodManBean [vis_id=");
 		builder.append(vis_id);
-		builder.append(", vis_name=");
-		builder.append(vis_name);
-		builder.append(", vis_email=");
-		builder.append(vis_email);
 		builder.append(", added=");
 		builder.append(added);
 		builder.append(", vis_date=");
@@ -194,6 +191,8 @@ public class OldFoodManBean implements Serializable{
 		builder.append(vis_num);
 		builder.append(", vis_condition=");
 		builder.append(vis_condition);
+		builder.append(", member_id=");
+		builder.append(member_id);
 		builder.append("]");
 		return builder.toString();
 	}

@@ -81,18 +81,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row justify-content-center">
-			<div class="col-9">
-				<div class="card">
-					<div class="card-header text-white bg-dark ">最新揪團
-					<span><fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE" value="${lastestFoodVis.added}"/></span></div>
-					<div class="card-body">
-					<c:out value="${lastestFoodVis.vis_res_name}"></c:out>
-					</div>
-				</div>
-			</div>
-
-		</div>
+		
 	</div>
 
 </body>
