@@ -25,20 +25,20 @@
 							modelAttribute="ofm" method="post">
 							<form:input type="hidden" path="vis_id"/>
 							<form:input type="hidden" path="added"/>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="inputEmail4">發起人</label>
-									<form:input type="text" path="vis_name" class="form-control" />
+<!-- 							<div class="form-row"> -->
+<!-- 								<div class="form-group col-md-6"> -->
+<!-- 									<label for="inputEmail4">發起人</label> -->
+<%-- 									<form:input type="text" path="vis_name" class="form-control" /> --%>
 
-								</div>
-								<div class="form-group col-md-6">
-									<label for="inputEmail4">Email</label>
-									<form:input type="text" path="vis_email" class="form-control" />
+<!-- 								</div> -->
+<!-- 								<div class="form-group col-md-6"> -->
+<!-- 									<label for="inputEmail4">Email</label> -->
+<%-- 									<form:input type="text" path="vis_email" class="form-control" /> --%>
 
-								</div>
+<!-- 								</div> -->
 								
 
-							</div>
+<!-- 							</div> -->
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">日期</label>

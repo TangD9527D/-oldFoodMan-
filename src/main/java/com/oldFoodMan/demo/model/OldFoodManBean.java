@@ -58,6 +58,7 @@ public class OldFoodManBean implements Serializable{
 	@Column(name = "vis_condition")
 	private String vis_condition;
 	
+	@Column(name = "member_id")
 	private Integer member_id;
 	
 	public OldFoodManBean() {
@@ -171,6 +172,15 @@ public class OldFoodManBean implements Serializable{
 		this.vis_condition = vis_condition;
 	}
 
+	
+
+	public Integer getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(Integer member_id) {
+		this.member_id = member_id;
+	}
 
 	@Override
 	public String toString() {
