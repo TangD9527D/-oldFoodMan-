@@ -73,7 +73,7 @@ public class FoodVisController_32 {
 		if(!result.hasErrors()) {
 			// https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.entity-persistence.saving-entites
 			ofmservice.insert(ofm);
-			 mav.setViewName("redirect:vis_group_jsp/ajaxFoodVis");
+			 mav.setViewName("redirect:/ajaxFoodVis");
 		}
 		
 		return mav;
@@ -103,7 +103,7 @@ public class FoodVisController_32 {
 		String vis_location=dto.getVis_location();
 		String vis_num=dto.getVis_num();
 		String vis_condition=dto.getVis_condition();
-		
+		Integer member_id=dto.getMember_id();
 		
 		
 		
@@ -116,7 +116,7 @@ public class FoodVisController_32 {
 		ofmVis.setVis_location(vis_location);
 		ofmVis.setVis_num(vis_num);
 		ofmVis.setVis_condition(vis_condition);
-		
+		ofmVis.setMember_id(member_id);
 		ofmservice.insert(ofmVis);
 		
 		Page<OldFoodManBean> page =ofmservice.findByPage(1);

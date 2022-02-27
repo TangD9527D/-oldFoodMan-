@@ -37,8 +37,8 @@
 		<table id="table_id" class="table table-hover" >
         <thead class="thead-dark">
             <tr>
-                <th>發起人</th>
-                <th>E-mail</th>
+<!--                 <th>發起人</th> -->
+<!--                 <th>E-mail</th> -->
                 <th>日期</th>
                 <th>時間</th>
                 <th>店名</th>
@@ -51,8 +51,8 @@
         <c:forEach var="viewallvis" items="${page.content}">
         <tbody>
             <tr>
-                <td class="table-light">${viewallvis.vis_name}</td>
-                    <td class="table-light">${viewallvis.vis_email}</td>
+<%--                 <td class="table-light">${viewallvis.vis_name}</td> --%>
+<%--                     <td class="table-light">${viewallvis.vis_email}</td> --%>
                     <td class="table-light">${viewallvis.vis_date}</td>
                     <td class="table-light">${viewallvis.vis_time}</td>
                     <td class="table-light">${viewallvis.vis_res_name}</td>

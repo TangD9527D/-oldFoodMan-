@@ -73,7 +73,7 @@
 											events : function(start, end,
 													timezone, callback) {
 												$.ajax({
-													url : 'http://localhost:8080/my-app/api/getFoodVis',
+													url : 'http://localhost:8080/oldFoodMan/api/getFoodVis',
 															contentType : 'application/json; charset=UTF-8',
 															dataType : 'json',
 															method : 'get',
@@ -88,7 +88,7 @@
 																	var idt = value.vis_id
 																	console.log("id:"+ idt)
 																	var date = moment(newDate).format('YYYY-MM-DD')
-																	var visurl = "http://localhost:8080/my-app/findOneVis?id="+ value.vis_id
+																	var visurl = "http://localhost:8080/oldFoodMan/findOneVis?id="+ value.vis_id
 
 																		console.log(visurl)
 																		events.push({
@@ -110,14 +110,14 @@
 					});
 
 
-		$("#vis_name").addEventListener("blur", check);
+// 		$("#vis_name").addEventListener("blur", check);
 		
-		function check(){
-			var check=$("#vis_name").val;
-			if (check == null){
-				$("#vis_name").addClass("is-invalid")
-			}
-		}
+// 		function check(){
+// 			var check=$("#vis_name").val;
+// 			if (check == null){
+// 				$("#vis_name").addClass("is-invalid")
+// 			}
+// 		}
 		
 		function insertdata() {
 
@@ -129,7 +129,7 @@
 			var inputLocation = document.getElementById('vis_location').value;
 			var inputNum = document.getElementById('vis_num').value;
 			var inputCondition = document.getElementById('vis_condition').value;
-
+			var Member_id=document.getElementById('member_id').value;
 			var dtoObject = {
 // 				"vis_name" : inputName,
 				"vis_res_name" : inputResName,
@@ -138,7 +138,8 @@
 				"vis_time" : inputTime,
 				"vis_location" : inputLocation,
 				"vis_num" : inputNum,
-				"vis_condition" : inputCondition
+				"vis_condition" : inputCondition,
+				"member_id": Member_id
 			}
 			var dtoJsonString = JSON.stringify(dtoObject);
 			
@@ -156,7 +157,7 @@
 			}else {
 				
 			$.ajax({
-				url : 'http://localhost:8080/my-app/api/postFoodVis',
+				url : 'http://localhost:8080/oldFoodMan/api/postFoodVis',
 				contentType : 'application/json; charset=UTF-8',
 				dataType : 'json',
 				method : 'post',
@@ -254,14 +255,18 @@
 			</div>
 			<div class="form-group col-md-6">
 				<label for="inputPassword4">備註</label> <input type="text"
-					id="vis_condition" class="form-control" required>
+					id="vis_condition" class="form-control" >
+			</div>
+			<div class="form-group col-md-6">
+				<label for="inputPassword4">memberid</label> <input type="text"
+					id="member_id" class="form-control" required>
 			</div>
 		</div>
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn btn-info" onclick="confirm('確定送出？'); return insertdata();">確定新增</button>
-						<button class="btn btn-primary" type="submit">Submit form</button>
+						
 					</div>	
 							
 							

@@ -7,14 +7,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class FoodVisDto implements Serializable {
 	
-	@JsonProperty(value = "vis_name")
-	private String vis_name;
+//	@JsonProperty(value = "vis_name")
+//	private String vis_name;
 	@JsonProperty(value = "vis_res_name")
 	private String vis_res_name;
 	@JsonProperty(value = "vis_date")
 	private Date vis_date;
-	@JsonProperty(value = "vis_email")
-	private String vis_email;
+//	@JsonProperty(value = "vis_email")
+//	private String vis_email;
 	@JsonProperty(value = "vis_time")
 	private String vis_time;
 	@JsonProperty(value = "vis_location")
@@ -23,17 +23,19 @@ public class FoodVisDto implements Serializable {
 	private String vis_condition;
 	@JsonProperty(value = "vis_num")
 	private String vis_num;
+	@JsonProperty(value = "member_id")
+	private Integer member_id;
 	
 	public FoodVisDto() {
 	}
 
-	public String getVis_name() {
-		return vis_name;
-	}
-
-	public void setVis_name(String vis_name) {
-		this.vis_name = vis_name;
-	}
+//	public String getVis_name() {
+//		return vis_name;
+//	}
+//
+//	public void setVis_name(String vis_name) {
+//		this.vis_name = vis_name;
+//	}
 
 	public String getVis_res_name() {
 		return vis_res_name;
@@ -51,13 +53,13 @@ public class FoodVisDto implements Serializable {
 		this.vis_date = vis_date;
 	}
 
-	public String getVis_email() {
-		return vis_email;
-	}
-
-	public void setVis_email(String vis_email) {
-		this.vis_email = vis_email;
-	}
+//	public String getVis_email() {
+//		return vis_email;
+//	}
+//
+//	public void setVis_email(String vis_email) {
+//		this.vis_email = vis_email;
+//	}
 
 	public String getVis_time() {
 		return vis_time;
@@ -89,6 +91,14 @@ public class FoodVisDto implements Serializable {
 
 	public void setVis_num(String vis_num) {
 		this.vis_num = vis_num;
+	}
+
+	public Integer getMember_id() {
+		return member_id;
+	}
+
+	public void setMemeber_id(Integer member_id) {
+		this.member_id = member_id;
 	}
 
 	
