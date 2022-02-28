@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.oldFoodMan.demo.dao.AppRoleDao;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.MemberRepository;
+import com.oldFoodMan.demo.model.RoleRepository;
 
 @Repository
 public class MemberServiceImpl implements UserDetailsService {
@@ -25,6 +26,9 @@ public class MemberServiceImpl implements UserDetailsService {
 	
 	@Autowired
     private AppRoleDao appRoleDAO;
+	
+	@Autowired
+	RoleRepository roleDao;
 	
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
