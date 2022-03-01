@@ -1,5 +1,7 @@
 package com.oldFoodMan.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -63,6 +65,7 @@ public class PageController_32 {
 		mav.setViewName("vis_group_jsp/ajaxFoodVis");	
 		
 		Page<OldFoodManBean> page =serviceOfm.findByPage(pageNumber);
+		
 		mav.getModel().put("page", page);
 		
 		return mav;
