@@ -53,7 +53,7 @@ public class OldFoodManServiceTest {
 	
 	public Page<OldFoodManTest> findByPage(Integer pageNumber){
 		
-		Pageable pgb =PageRequest.of(pageNumber-1, 3, Sort.Direction.DESC,"added");
+		Pageable pgb =PageRequest.of(pageNumber-1, 6, Sort.Direction.DESC,"title");
 		
 		return dao.findAll(pgb);
 		
