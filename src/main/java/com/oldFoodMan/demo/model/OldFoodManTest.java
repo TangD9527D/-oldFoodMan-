@@ -41,8 +41,18 @@ public class OldFoodManTest implements Serializable{
 	@Column(name="content")
 	private String content ;
 	
+	private String coverImage;
 	
 	
+	
+
+	public String getCoverImage() {
+		return coverImage;
+	}
+
+	public void setCoverImage(String coverImage) {
+		this.coverImage = coverImage;
+	}
 
 	public Integer getId() {
 		return id;
@@ -71,16 +81,19 @@ public class OldFoodManTest implements Serializable{
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("WorkMessages [id=");
+		builder.append("OldFoodManTest [id=");
 		builder.append(id);
 		builder.append(", title=");
 		builder.append(title);
 		builder.append(", content=");
 		builder.append(content);
+		builder.append(", coverImage=");
+		builder.append(coverImage);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
+
 	
 	
 	
