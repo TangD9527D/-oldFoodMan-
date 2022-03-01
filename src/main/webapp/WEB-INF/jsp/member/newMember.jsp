@@ -9,28 +9,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${contextRoot}/css/account.css">
 </head>
-<body>
-<div class="container">
-		<p />
-		<div class="row justify-content-center">
-			<div class="col-9">
-				<div class="card text-center">
-					<div class="card-header">123</div>
-					<div class="card-body">
-						<h5 class="card-title">讓我看看</h5>
-						<form:form class="form" modelAttribute="memberDto"
-							method="post">
-							<form:input path="memberName"/>
-							<form:input path="account"/>
-							<form:input path="memberPwd"/>
-							<br>
-							<input type="submit" name="submit" />
-						</form:form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<body class="body_13">
+    <div class="out_side_13">
+        <fieldset class="field_13">
+            <legend>
+                <h1>新增帳號</h1>
+            </legend>
+            <form:form class="form" action="${contextRoot}/newMember" modelAttribute="member" method="post">
+                <div class="newPwd_13">
+                    <form:label class="la1" path="memberName">姓名:&nbsp;</form:label>
+                    <form:input type="text" id="names" class="inPut" name="names" path="memberName"/>
+                </div>
+                <div class="newAccount_13">
+                    <form:label class="la1" path="account">帳號(email):&nbsp;</form:label>
+                    <form:input type="text" id="account" class="inPut" name="account" path="account"/>
+                </div>
+                <div class="newPwd_13">
+                    <form:label class="la1" path="memberPwd">密碼:&nbsp;</form:label>
+                    <form:input type="password" id="pwd" class="inPut" name="pwd" path="memberPwd"/>
+                </div>
+                <div class="sub">
+                    <input name="submit" type="submit" value="送出" class="inPut">
+                </div>
+            </form:form>
+        </fieldset>
+        <!-- </div> -->
+    </div>
+
 </body>
 </html>
