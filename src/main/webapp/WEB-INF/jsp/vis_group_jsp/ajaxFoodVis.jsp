@@ -122,18 +122,54 @@ var tdate=new Date();
 											}
 										});
 
-					});
+					}
+					
+					
+			
+			
+			
+			);
+	
+// 	//ajax使用分頁show data
+// 	$(document)
+// 	.ready(function viewdata(){
+// 		$.ajax({
+// 			url: 'http://localhost:8080/oldFoodMan/api/getFoodVisByPage',
+// 			contentType: 'application/json; charset=UTF-8',
+// 			dataType: 'json',
+// 			method: 'get',
+// 			success: function (result) {
+// 			console.log("result " + result)
+// 				var msg_data = '';
+// 				$.each(result, function (index, value) {
+// 					msg_data += '<tr>'
+// 					msg_data += '<td class="table-light">' + value.vis_date + '</td>'
+// 					msg_data += '<td class="table-light">' + value.vis_time + '</td>'
+// 					msg_data += '<td class="table-light">' + value.vis_res_name + '</td>'
+// 					msg_data += '<td class="table-light">' + value.vis_location + '</td>'
+// 					msg_data += '<td class="table-light">' + value.vis_num + '</td>'
+// 					msg_data += '<td class="table-light">' + value.vis_condition + '</td>'
+// 						msg_data += '<tr>'
 
+// 				})
 
-// 		$("#vis_name").addEventListener("blur", check);
-		
-// 		function check(){
-// 			var check=$("#vis_name").val;
-// 			if (check == null){
-// 				$("#vis_name").addClass("is-invalid")
+// 				$('#trid1').append(msg_data)
+
+// 			},
+// 			error: function (err) {
+// 				console.log(err)
+// 				alert('發生錯誤')
 // 			}
-// 		}
+
+// 		})
 		
+		
+		
+// 	}
+// 	);
+	
+			
+					
 		function insertdata() {
 
 // 			var inputName = document.getElementById('vis_name').value;
@@ -307,21 +343,20 @@ var tdate=new Date();
 					<th>店名</th>
 					<th>地址</th>
 					<th>人數</th>
-					<th>備註</th>
+					
 
 				</tr>
 			</thead>
 			<c:forEach var="viewallvis" items="${page.content}">
 				<tbody>
-					<tr>
-<%-- 						<td class="table-light">${viewallvis.vis_name}</td> --%>
-<%-- 						<td class="table-light">${viewallvis.vis_email}</td> --%>
+					<tr id="trid1">
+						
 						<td class="table-light">${viewallvis.vis_date}</td>
 						<td class="table-light">${viewallvis.vis_time}</td>
 						<td class="table-light">${viewallvis.vis_res_name}</td>
 						<td class="table-light">${viewallvis.vis_location}</td>
 						<td class="table-light">${viewallvis.vis_num}</td>
-						<td class="table-light">${viewallvis.vis_condition}</td>
+						
 
 
 					</tr>

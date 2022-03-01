@@ -135,6 +135,17 @@ public class FoodVisController_32 {
 		return listall;
 		
 	}
+	//ajax使用分頁
+	@ResponseBody
+	@GetMapping("/api/getFoodVisByPage")
+	public List<OldFoodManBean> getFoodVisByPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber){
+	
+		Page<OldFoodManBean> page =ofmservice.findByPage(pageNumber);
+		List<OldFoodManBean> list=page.getContent();
+		mav.getModel().put("page", page);
+		return list;
+		
+	}
 	
 	@GetMapping("/findOneVis")
 	public ModelAndView findById(ModelAndView mav, @RequestParam(name="id") Integer id) {
