@@ -60,7 +60,7 @@ public class PageController_32 {
 	
 	@GetMapping("/ajaxFoodVis")
 	public ModelAndView viewVisPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber) {
-		mav.setViewName("vis_group_jsp/ajaxFoodVis");
+		mav.setViewName("vis_group_jsp/ajaxFoodVis");	
 		
 		Page<OldFoodManBean> page =serviceOfm.findByPage(pageNumber);
 		mav.getModel().put("page", page);
