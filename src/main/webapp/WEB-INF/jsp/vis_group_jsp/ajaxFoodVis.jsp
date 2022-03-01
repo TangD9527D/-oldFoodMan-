@@ -32,6 +32,36 @@ margin:10px auto;
 
 }
 
+.fc-unthemed th,
+.fc-unthemed td,
+.fc-unthemed thead,
+.fc-unthemed tbody,
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-row,
+.fc-unthemed .fc-content, /* for gutter border */
+.fc-unthemed .fc-popover,
+.fc-unthemed .fc-list-view,
+.fc-unthemed .fc-list-heading td {
+	border-color: rgb(102, 94, 94);
+}
+
+.fc-event{
+font-size:20px;
+border:2px solid #8F4586;
+background:#8F4586;
+}
+.fc-unthemed td.fc-sat{
+background :#EBD6D6;
+color:#B87070; 
+}
+.fc-unthemed td.fc-sun{
+background :#EBD6D6;
+color:#B87070; 
+}
+.fc-unthemed td.fc-today {
+background: #e2c94e;
+}
+
 </style>
 
 
@@ -79,10 +109,14 @@ var tdate=new Date();
 							center : "title", // 中間放置標題
 							right : "month,basicWeek,basicDay" // 右邊放置月、周、天
 							},
-											
+							monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],				
+							//dayNames: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+							dayNamesShort: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+
 							defaultDate : tdate, // 起始日期
 							weekends : true, // 顯示星期六跟星期日
 							editable : true, // 啟動拖曳調整日期
+							
 							events : function(start, end,timezone, callback) {
 								$.ajax({
 										url : 'http://localhost:8080/oldFoodMan/api/getFoodVis',
@@ -104,7 +138,9 @@ var tdate=new Date();
 											events.push({
 											title : value.vis_res_name,
 											start : date,
-											url : visurl
+											url : visurl,
+											backgroundColor:"#8080C0",
+											borderColor:"#8080C0"
 													});
 
 												});
