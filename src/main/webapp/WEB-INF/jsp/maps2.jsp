@@ -157,18 +157,17 @@ html, body {
 }
 
 #range {
-	/* 	justify-content: center; */
+	justify-content: space-around;
+	display: flex;
 	border: 0.5px solid transparent;
 	text-align: justify;
 }
 
-/* #p { */
-/* 	overflow: hidden; */
-/*  	white-space: nowrap;  */
-/*  	text-overflow: ellipsis; */
-/* } */
-
-
+#p1 {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
 </style>
 
 
@@ -194,8 +193,112 @@ html, body {
 				value="HideMark" />
 		</div>
 
-		<div id="range" class=""></div>
-</div>	
+
+		<!-------------------區塊一------------------------------------------------------------------->
+
+		<div id="range">
+			<!--控制排版區域 -->
+			<div class="card" style="width: 7cm;">
+				<img src="/images_02/alien4.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title" id="food1"></h5>
+					<p class="card-text" id="p1"></p>
+					<a href="#" class="btn btn-secondary">繼續閱讀...</a>
+				</div>
+			</div>
+
+			<div class="card" style="width: 7cm;">
+				<img src="/images_02/alien4.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title" id="food2">Card title</h5>
+					<p class="card-text" id="p2">Some quick example text to build
+						on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-secondary">繼續閱讀...</a>
+				</div>
+			</div>
+
+			<div class="card" style="width: 7cm;">
+				<img src="/images_02/alien4.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title" id="food3">Card title</h5>
+					<p class="card-text" id="p3">Some quick example text to build
+						on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-secondary">繼續閱讀...</a>
+				</div>
+			</div>
+		</div>
+
+		<!-------------------區塊二----------------------------------------------------------------->
+		<div id="range">
+			<!--控制排版區域 -->
+			<div class="card" style="width: 7cm;">
+				<img src="/images_02/alien2.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title" id="food4">Card title</h5>
+					<p class="card-text" id="p4">Some quick example text to build
+						on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-secondary">繼續閱讀...</a>
+				</div>
+			</div>
+
+			<div class="card" style="width: 7cm;">
+				<img src="/images_02/alien2.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title" id="food5">Card title</h5>
+					<p class="card-text" id="p5">Some quick example text to build
+						on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-secondary">繼續閱讀...</a>
+				</div>
+			</div>
+
+			<div class="card" style="width: 7cm;">
+				<img src="/images_02/alien2.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title" id="food6">Card title</h5>
+					<p class="card-text" id="p6">Some quick example text to build
+						on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-secondary">繼續閱讀...</a>
+				</div>
+			</div>
+		</div>
+
+		<!-------------------區塊三---------------------------------------------------------------->
+		<div id="range">
+			<!--控制排版區域 -->
+			<div class="card" style="width: 7cm;">
+				<!--食記框框寬度 -->
+				<img src="/images_02/alien3.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title" id="food7">Card title</h5>
+					<p class="card-text" id="p7">Some quick example text to build
+						on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-secondary">繼續閱讀...</a>
+				</div>
+			</div>
+
+			<div class="card" style="width: 7cm;">
+				<img src="/images_02/alien3.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title" id="food8">Card title</h5>
+					<!--抓資料庫標題 -->
+					<p class="card-text" id="p8">Some quick example text to build
+						on the card title and make up the bulk of the card's content.</p>
+					<!--抓資料庫食記內容 -->
+					<a href="#" class="btn btn-secondary">繼續閱讀...</a>
+				</div>
+			</div>
+
+			<div class="card" style="width: 7cm;">
+				<img src="/images_02/alien3.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title" id="food9">Card title</h5>
+					<p class="card-text" id="p9">Some quick example text to build
+						on the card title and make up the bulk of the card's content.</p>
+					<a href="#" class="btn btn-secondary">繼續閱讀...</a>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 
 	<!--放置google 金鑰 -->
@@ -349,21 +452,16 @@ html, body {
 						console.log("rs: "+result)
 						var msg_data='';
 						$.each(result,function(index,value){
-						
-							msg_data+= '<div class="card" id="p1" style="width: 8cm;">'
-							msg_data+= '<img src="..." class="card-img-top" alt="...">'
-							msg_data+= '<div class="card-body">'
-							msg_data+= '<h5 class="card-title" >'+value.title+'</h5>'
-							msg_data+= '<p class="card-text" >'+value.content+'</p>'
-							msg_data+= '<a href="#" class="btn btn-secondary"><c:out value="繼續閱讀..."/></a>'
-							msg_data+= '</div>'
-							msg_data+= '</div>'
-							msg_data+= '<span>'
-						
-// 							$('#food1').append(value.title)
-// 							$('#p1').append(value.content)
+
+// 							msg_data+= '<tr>'
+// 							msg_data+= '<td>' +value.title+'</td>'
+// 							msg_data+= '<td>' +value.context+'</td>'
+// 							msg_data+= '<tr>'
+							
+							$('#food1').append(value.title)
+							$('#p1').append(value.content)
 						})
-						$('#range').append(msg_data)
+// 						$('#list_table_json').append(msg_data)
 					},
 					error : function(err) {
 						console.log(err)
@@ -395,15 +493,6 @@ html, body {
                         
         // });
 </script>
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

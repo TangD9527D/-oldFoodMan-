@@ -15,10 +15,22 @@
 
 
 <style>
-.div04_32 {
-	max-width: 50rem;
-	margin: 0 auto;
+.allpage{
+width:90%;
+margin:10px auto;
+
 }
+.div04_32 {
+	max-width: 42rem;
+	float:right;
+}
+
+#table_id{
+	max-width: 36rem;
+
+
+}
+
 </style>
 
 
@@ -54,6 +66,7 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
 <script>
+var tdate=new Date();
 
 	$(document)
 			.ready(
@@ -61,13 +74,15 @@
 						$("#example")
 								.fullCalendar(
 										{
+											
 											// 參數設定[註1]
 											header : { // 頂部排版
 												left : "prev,next today", // 左邊放置上一頁、下一頁和今天
 												center : "title", // 中間放置標題
 												right : "month,basicWeek,basicDay" // 右邊放置月、周、天
 											},
-											defaultDate : "2022-02-01", // 起始日期
+											
+											defaultDate : tdate, // 起始日期
 											weekends : true, // 顯示星期六跟星期日
 											editable : true, // 啟動拖曳調整日期
 											events : function(start, end,
@@ -107,18 +122,54 @@
 											}
 										});
 
-					});
+					}
+					
+					
+			
+			
+			
+			);
+	
+// 	//ajax使用分頁show data
+// 	$(document)
+// 	.ready(function viewdata(){
+// 		$.ajax({
+// 			url: 'http://localhost:8080/oldFoodMan/api/getFoodVisByPage',
+// 			contentType: 'application/json; charset=UTF-8',
+// 			dataType: 'json',
+// 			method: 'get',
+// 			success: function (result) {
+// 			console.log("result " + result)
+// 				var msg_data = '';
+// 				$.each(result, function (index, value) {
+// 					msg_data += '<tr>'
+// 					msg_data += '<td class="table-light">' + value.vis_date + '</td>'
+// 					msg_data += '<td class="table-light">' + value.vis_time + '</td>'
+// 					msg_data += '<td class="table-light">' + value.vis_res_name + '</td>'
+// 					msg_data += '<td class="table-light">' + value.vis_location + '</td>'
+// 					msg_data += '<td class="table-light">' + value.vis_num + '</td>'
+// 					msg_data += '<td class="table-light">' + value.vis_condition + '</td>'
+// 						msg_data += '<tr>'
 
+// 				})
 
-// 		$("#vis_name").addEventListener("blur", check);
-		
-// 		function check(){
-// 			var check=$("#vis_name").val;
-// 			if (check == null){
-// 				$("#vis_name").addClass("is-invalid")
+// 				$('#trid1').append(msg_data)
+
+// 			},
+// 			error: function (err) {
+// 				console.log(err)
+// 				alert('發生錯誤')
 // 			}
-// 		}
+
+// 		})
 		
+		
+		
+// 	}
+// 	);
+	
+			
+					
 		function insertdata() {
 
 // 			var inputName = document.getElementById('vis_name').value;
@@ -189,18 +240,19 @@
 <body>
 	
 
-
-	<p />
-	<div class="container">
+<div class="allpage">
+	
+	
 
 		<div id="example" class="div04_32"></div>
-	</div>
+	
 
-	<div class="container">
+<!-- 	<div class="container"> -->
 		<p />
-
+		
+<!-- dialog視窗 -->
 <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
-		<div class="card">
+		<div >
 		<div class="modal fade" id="exampleModal" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -280,7 +332,7 @@
 
 
 
-		<h1>所有揪團eat</h1>
+		<h1>最新揪團eat</h1>
 		<table id="table_id" class="table ">
 			<thead class="thead-dark">
 				<tr>
@@ -291,21 +343,20 @@
 					<th>店名</th>
 					<th>地址</th>
 					<th>人數</th>
-					<th>備註</th>
+					
 
 				</tr>
 			</thead>
 			<c:forEach var="viewallvis" items="${page.content}">
 				<tbody>
-					<tr>
-<%-- 						<td class="table-light">${viewallvis.vis_name}</td> --%>
-<%-- 						<td class="table-light">${viewallvis.vis_email}</td> --%>
+					<tr id="trid1">
+						
 						<td class="table-light">${viewallvis.vis_date}</td>
 						<td class="table-light">${viewallvis.vis_time}</td>
 						<td class="table-light">${viewallvis.vis_res_name}</td>
 						<td class="table-light">${viewallvis.vis_location}</td>
 						<td class="table-light">${viewallvis.vis_num}</td>
-						<td class="table-light">${viewallvis.vis_condition}</td>
+						
 
 
 					</tr>
@@ -314,23 +365,24 @@
 		</table>
 
 		<div class="row justify-content-center">
-			<div class="col-9">
+			<div class="pagination">
 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
 
 					<c:choose>
+
 						<c:when test="${page.number != pageNumber -1}">
 
-							<a href="${contextRoot}/ajaxFoodVis?p=${pageNumber}"><c:out
-									value="${pageNumber} "></c:out></a>
+							 <li class="page-item"><a class="page-link" href="${contextRoot}/ajaxFoodVis?p=${pageNumber}"><c:out
+									value="${pageNumber} "></c:out></a></li>
 
 						</c:when>
 						<c:otherwise>
-							<c:out value="${pageNumber} " />
+							 <li class="page-item active" aria-current="page"><span class="page-link"><c:out value="${pageNumber} " /></span></li>
 						</c:otherwise>
 
 					</c:choose>
 					<c:if test="${pageNumber != page.totalPages}">
-			|
+			
 			</c:if>
 				</c:forEach>
 
@@ -348,7 +400,7 @@
 
 
 
-
+<!-- </div> -->
 </body>
 
 </html>

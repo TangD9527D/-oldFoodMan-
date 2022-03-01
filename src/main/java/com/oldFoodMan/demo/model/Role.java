@@ -11,7 +11,7 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "APP_ROLE")
+@Table(name = "app_role")
 public class Role implements Serializable {
 	
 	@Id
