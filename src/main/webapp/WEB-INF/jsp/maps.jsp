@@ -344,6 +344,7 @@ html, body {
              animation: google.maps.Animation.BOUNCE, //設定圖示顯示樣式為跳躍
              title: "Hello World!",
              icon: "<c:url value="/images/snow.png"/>",
+             label:'定位',
          });
 
          markers.push(marker);
@@ -390,9 +391,9 @@ html, body {
 						console.log("rs: "+result)
 						var msg_data='';
 						$.each(result,function(index,value){
-						
+						console.log("image: "+value.coverImage)
 							msg_data+= '<div class="card" id="p1" style="width: 8cm;">'
-							msg_data+= '<img src="..." class="card-img-top" alt="...">'
+							msg_data+= '<img src="' +value.coverImage +'" class="card-img-top" alt="...">'
 							msg_data+= '<div class="card-body">'
 							msg_data+= '<h5 class="card-title" >'+value.title+'</h5>'
 							msg_data+= '<p class="card-text" >'+value.content+'</p>'
