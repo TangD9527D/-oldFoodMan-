@@ -17,7 +17,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@IdClass(UserRole.class)
 @Table(name="member")
 public class Member implements Serializable {
 	

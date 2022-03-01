@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
-import com.oldFoodMan.demo.dao.AppRoleDao;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.MemberRepository;
 import com.oldFoodMan.demo.model.RoleRepository;
@@ -23,9 +22,6 @@ public class MemberServiceImpl implements UserDetailsService {
 
 	@Autowired
 	MemberRepository memberDao;
-	
-	@Autowired
-    private AppRoleDao appRoleDAO;
 	
 	@Autowired
 	RoleRepository roleDao;
@@ -43,8 +39,9 @@ public class MemberServiceImpl implements UserDetailsService {
 		System.out.println("找到帳號: " + option.get().getAccount());
 		
 		// [ROLE_USER, ROLE_ADMIN,..]
-        List<String> roleNames = this.appRoleDAO.getRoleNames(option.get().getId());
-
+        List<String> roleNames = roleDao.getRoleNames(option.get().getId());
+        System.out.println(roleNames);
+        
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
         
         if (roleNames != null) {
@@ -60,5 +57,22 @@ public class MemberServiceImpl implements UserDetailsService {
 		
 		return userDetails;
 	}
-
+	
+	public void insert(Member member) {
+		memberDao.save(member);
+	}
+	
+	public Member findById(Integer id) {
+		Optional<Member> op = memberDao.findById(id);
+		
+		if(op.isPresent()) {
+			return op.get();
+		}
+		
+		return null;
+	}
+		
+	public void delete(Integer id) {
+		memberDao.deleteById(id);
+	}
 }
