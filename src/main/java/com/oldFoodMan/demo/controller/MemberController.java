@@ -7,10 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oldFoodMan.demo.dto.MemberDto;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
+import com.oldFoodMan.demo.utils.EncrytedPasswordUtils;
 
 @Controller
 public class MemberController {
@@ -18,16 +22,28 @@ public class MemberController {
 	@Autowired
 	private MemberServiceImpl service;
 	
-	@PostMapping("/newMember")
-	public ModelAndView newMember(ModelAndView mav,@Valid @ModelAttribute Member member, BindingResult rs) {
+	@PostMapping("/newAccount")
+	public ModelAndView newMember(ModelAndView mav,@Valid @ModelAttribute MemberDto memberDto, BindingResult rs) {
 		
 		if(!rs.hasErrors()) {
-			service.insert(member);
-			Member newMember = new Member();
-			mav.getModel().put("member", newMember);
+			
+			String memberName = memberDto.getMemberName();
+			String memberaccount = memberDto.getAccount();
+			String memberPwd = memberDto.getMemberPwd();
+			
+			String pwd = EncrytedPasswordUtils.encrytePassword(memberPwd);
+			
+			Member mb = new Member();
+			mb.setMemberName(memberName);
+			mb.setAccount(memberaccount);
+			mb.setMemberPwd(pwd);
+			
+			service.insert(mb);
+			
+			mav.getModel().put("member", mb);
 		}
 		
-		mav.setViewName("member/newMember");
+		mav.setViewName("redierct:/");
 		
 		return mav;
 	}

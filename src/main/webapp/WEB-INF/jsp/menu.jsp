@@ -38,7 +38,7 @@ body {
 					<li class="nav-item"><a class="nav-link"
 						href="${contextRoot}/admin">Admin</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="${contextRoot}/123">test</a></li>
+						href="${contextRoot}/newAccount">新增</a></li>
 				</ul>
 			</div>
 			<ul class="nav justify-content-end">
