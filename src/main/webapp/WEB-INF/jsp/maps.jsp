@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="vis_group_jsp/layout/navbar.jsp" />
@@ -12,11 +13,24 @@
 <title>FoodSearch</title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <!-- <link rel="stylesheet" type="text/css" href="./style.css" /> -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<font></font>
+<font></font>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<font></font>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script
+	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
@@ -167,8 +181,11 @@ html, body {
 /*  	white-space: nowrap;  */
 /*  	text-overflow: ellipsis; */
 /* } */
-
-
+#p1 {
+	float: left;
+	margin: 10px 25px;
+	justify-content: space-between;
+}
 </style>
 
 
@@ -195,7 +212,30 @@ html, body {
 		</div>
 
 		<div id="range" class=""></div>
-</div>	
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-8">
+			<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
+
+				<c:choose>
+					<c:when test="${page.number != pageNumber -1}">
+
+						<a href="${contextRoot}/searchMaps?p=${pageNumber}"><c:out
+								value="${pageNumber} "></c:out></a>
+
+					</c:when>
+					<c:otherwise>
+						<c:out value="${pageNumber} " />
+					</c:otherwise>
+
+				</c:choose>
+				<c:if test="${pageNumber != page.totalPages}">
+					|
+					</c:if>
+			</c:forEach>
+
+		</div>
+	</div>
 	<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 
 	<!--放置google 金鑰 -->
@@ -338,10 +378,11 @@ html, body {
        
     </script>
 
-	<script>   //網頁接值
+	<script>  
+	//網頁接值
 		$(document).ready(function() {	
 			$.ajax({
-					url : 'http://localhost:8080/oldFoodMan/api/searchMaps',
+					url : 'http://localhost:8080/oldFoodMan/api/searchMaps2',
 					contentType : 'application/json ; charset=UTF-8',
 					dataType : 'json',
 					method : 'get',
@@ -358,7 +399,8 @@ html, body {
 							msg_data+= '<a href="#" class="btn btn-secondary"><c:out value="繼續閱讀..."/></a>'
 							msg_data+= '</div>'
 							msg_data+= '</div>'
-							msg_data+= '<span>'
+
+							
 						
 // 							$('#food1').append(value.title)
 // 							$('#p1').append(value.content)
@@ -368,15 +410,15 @@ html, body {
 					error : function(err) {
 						console.log(err)
 						alert('發生錯誤')
-					}
-
-				})
-
+					}		
+			
+				});
+			
 			})
+			
 
-		
 	</script>
-
+	
 	<script>
         //maybe地圖搞事
          //offset() ：讀取指定元素在頁面(文件)上的相對坐標，
