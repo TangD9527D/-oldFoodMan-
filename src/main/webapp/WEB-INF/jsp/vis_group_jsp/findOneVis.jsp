@@ -74,12 +74,93 @@
 							
 							
 						</form:form>
+						<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">加入</button>
 					</div>
 				</div>
 			</div>
 
 		</div>
-		</div>
+		
+		
+		<!-- dialog視窗 -->
 
+		<div >
+		<div class="modal fade" id="exampleModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<div class="card-header text-white bg-dark " id="exampleModalLabel">揪團資訊</div>
+						
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form>
+<!-- 							<div class="form-row"> -->
+<!-- 			<div class="form-group col-md-6"> -->
+<!-- 				<label for="inputEmail4">發起人</label> <input id="vis_name" -->
+<!-- 					type="text" class="form-control " required> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group col-md-6"> -->
+<!-- 				<label for="inputEmail4">Email</label> <input id="vis_email" -->
+<!-- 					type="text" class="form-control" required> -->
+
+<!-- 			</div> -->
+<!-- 		</div> -->
+							<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="inputEmail4">日期</label> <input type="date" id="vis_date"
+					class="form-control" required>
+
+			</div>
+			<div class="form-group col-md-6">
+				<label for="inputEmail4">時間</label> <input type="time" id="vis_time"
+					class="form-control" required>
+
+			</div>
+
+
+		</div>
+		<div class="form-group">
+			<label for="inputAddress2">店名</label> <input type="text"
+				id="vis_res_name" class="form-control" required>
+		</div>
+		<div class="form-group">
+			<label for="inputAddress2">地址</label> <input type="text"
+				id="vis_location" class="form-control" required>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="inputEmail4">人數上限</label> <input type="number"
+					id="vis_num" class="form-control" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="inputPassword4">備註</label> <input type="text"
+					id="vis_condition" class="form-control" >
+			</div>
+			<div class="form-group col-md-6">
+				<label for="inputPassword4">memberid</label> <input type="text"
+					id="member_id" class="form-control" required>
+			</div>
+		</div>
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn btn-info" onclick="confirm('確定送出？'); return insertdata();">確定新增</button>
+						
+					</div>	
+							
+							
+						</form>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+</div>
+</div>
 </body>
 </html>

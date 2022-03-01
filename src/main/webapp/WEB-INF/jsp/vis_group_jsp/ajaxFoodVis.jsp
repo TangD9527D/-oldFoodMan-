@@ -16,17 +16,17 @@
 
 <style>
 .allpage{
-width:90%;
+width:85%;
 margin:10px auto;
 
 }
 .div04_32 {
-	max-width: 42rem;
+	width:50%;
 	float:right;
 }
 
 #table_id{
-	max-width: 36rem;
+	width:48%;
 
 
 }
@@ -333,7 +333,7 @@ var tdate=new Date();
 
 
 		<h1>最新揪團eat</h1>
-		<table id="table_id" class="table ">
+		<table id="table_id" class="table">
 			<thead class="thead-dark">
 				<tr>
 <!-- 					<th>發起人</th> -->
@@ -342,7 +342,7 @@ var tdate=new Date();
 					<th>時間</th>
 					<th>店名</th>
 					<th>地址</th>
-					<th>人數</th>
+					<th>加入</th>
 					
 
 				</tr>
@@ -355,7 +355,9 @@ var tdate=new Date();
 						<td class="table-light">${viewallvis.vis_time}</td>
 						<td class="table-light">${viewallvis.vis_res_name}</td>
 						<td class="table-light">${viewallvis.vis_location}</td>
-						<td class="table-light">${viewallvis.vis_num}</td>
+						<td class="table-light"><a
+							href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}"><input
+								type="submit" value="加入" class="btn btn-secondary"></a></td>
 						
 
 
