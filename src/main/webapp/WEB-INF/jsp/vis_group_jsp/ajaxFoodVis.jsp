@@ -26,7 +26,7 @@ margin:10px auto;
 }
 
 #table_id{
-	width:48%;
+	width:50%;
 
 
 }
@@ -68,67 +68,57 @@ margin:10px auto;
 <script>
 var tdate=new Date();
 
-	$(document)
-			.ready(
-					function fullcalendar(){
-						$("#example")
-								.fullCalendar(
-										{
+	$(document).ready(function fullcalendar(){
+		$("#example").fullCalendar(
+							{// 參數設定[註1]
 											
-											// 參數設定[註1]
-											header : { // 頂部排版
-												left : "prev,next today", // 左邊放置上一頁、下一頁和今天
-												center : "title", // 中間放置標題
-												right : "month,basicWeek,basicDay" // 右邊放置月、周、天
-											},
+							header : { // 頂部排版
+												
+							left : "prev,next today", // 左邊放置上一頁、下一頁和今天
+							center : "title", // 中間放置標題
+							right : "month,basicWeek,basicDay" // 右邊放置月、周、天
+							},
 											
-											defaultDate : tdate, // 起始日期
-											weekends : true, // 顯示星期六跟星期日
-											editable : true, // 啟動拖曳調整日期
-											events : function(start, end,
-													timezone, callback) {
-												$.ajax({
-													url : 'http://localhost:8080/oldFoodMan/api/getFoodVis',
-															contentType : 'application/json; charset=UTF-8',
-															dataType : 'json',
-															method : 'get',
-															//data: dtoJsonString,
-															success : function(result) {
+							defaultDate : tdate, // 起始日期
+							weekends : true, // 顯示星期六跟星期日
+							editable : true, // 啟動拖曳調整日期
+							events : function(start, end,timezone, callback) {
+								$.ajax({
+										url : 'http://localhost:8080/oldFoodMan/api/getFoodVis',
+										contentType : 'application/json; charset=UTF-8',
+										dataType : 'json',
+										method : 'get',
+										success : function(result) {
+										console.log("2:"+ result)
 
-																console.log("2:"+ result)
+										var events = [];
+										$.each(result,function(index,value) {
+											var newDate = new Date(Date.parse(value.vis_date))
+											var idt = value.vis_id
+											console.log("id:"+ idt)
+											var date = moment(newDate).format('YYYY-MM-DD')
+											var visurl = "http://localhost:8080/oldFoodMan/findOneVis?id="+ value.vis_id
 
-																var events = [];
-																$.each(result,function(index,value) {
-																	var newDate = new Date(Date.parse(value.vis_date))
-																	var idt = value.vis_id
-																	console.log("id:"+ idt)
-																	var date = moment(newDate).format('YYYY-MM-DD')
-																	var visurl = "http://localhost:8080/oldFoodMan/findOneVis?id="+ value.vis_id
-
-																		console.log(visurl)
-																		events.push({
-																					title : value.vis_res_name,
-																					start : date,
-																					url : visurl
-																				});
-
-																				});
-
-																callback(events);
-
-													}
+											console.log(visurl)
+											events.push({
+											title : value.vis_res_name,
+											start : date,
+											url : visurl
+													});
 
 												});
-											}
-										});
 
+											callback(events);
+
+								}
+
+						});
 					}
+				});
+
+			}
 					
-					
-			
-			
-			
-			);
+		);
 	
 // 	//ajax使用分頁show data
 // 	$(document)
@@ -169,9 +159,8 @@ var tdate=new Date();
 // 	);
 	
 			
-					
+// 		新增揪團窗格			
 		function insertdata() {
-
 // 			var inputName = document.getElementById('vis_name').value;
 			var inputResName = document.getElementById('vis_res_name').value;
 			var inputDate = document.getElementById('vis_date').value;
@@ -223,21 +212,17 @@ var tdate=new Date();
 				}
 
 			})
-			}
-			
-			
 		}
 		
+	}
 
-		
-	
-	
 </script>
 
 
 </head>
 
 <body>
+	
 	
 
 <div class="allpage">
@@ -329,44 +314,29 @@ var tdate=new Date();
 			</div>
 		</div>
 </div>
-
-
-
+<div>
 		<h1>最新揪團eat</h1>
-		<table id="table_id" class="table">
-			<thead class="thead-dark">
-				<tr>
-<!-- 					<th>發起人</th> -->
-<!-- 					<th>E-mail</th> -->
-					<th>日期</th>
-					<th>時間</th>
-					<th>店名</th>
-					<th>地址</th>
-					<th>加入</th>
-					
+		
+		<c:forEach var="viewallvis" items="${page.content}">
+		<div id="table_id" class="card text-center">
+  		<h4 class="card-header">
+    		${viewallvis.vis_res_name}
+  		</h4>
+  		<div class="card-body">
+   		<h5 class="card-title">日期：${viewallvis.vis_date} 時間：${viewallvis.vis_time}</h5>
+    	<p class="card-text">${viewallvis.vis_location}</p>
+    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}" class="btn btn-primary">加入</a>
+  		</div>
+  		<div class="card-footer text-muted">
+    		2 days ago
+  </div>
+</div>
+</c:forEach>
+		
+		
 
-				</tr>
-			</thead>
-			<c:forEach var="viewallvis" items="${page.content}">
-				<tbody>
-					<tr id="trid1">
-						
-						<td class="table-light">${viewallvis.vis_date}</td>
-						<td class="table-light">${viewallvis.vis_time}</td>
-						<td class="table-light">${viewallvis.vis_res_name}</td>
-						<td class="table-light">${viewallvis.vis_location}</td>
-						<td class="table-light"><a
-							href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}"><input
-								type="submit" value="加入" class="btn btn-secondary"></a></td>
-						
-
-
-					</tr>
-				</tbody>
-			</c:forEach>
-		</table>
-
-		<div class="row justify-content-center">
+<!-- 分頁頁碼 -->
+		<div >
 			<div class="pagination">
 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
 
@@ -390,7 +360,7 @@ var tdate=new Date();
 
 			</div>
 		</div>
-
+</div>
 	</div>
 
 
