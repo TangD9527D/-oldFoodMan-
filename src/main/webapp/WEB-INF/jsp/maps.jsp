@@ -307,7 +307,7 @@ html, body {
                  }
 
                  const icon = {
-                     url: "/images_02/snow.png", //搜尋後所標記的圖片                        
+                     url: "<c:url value="/images/snow.png"/>", //搜尋後所標記的圖片                        
                      size: new google.maps.Size(71, 71),
                      anchor: new google.maps.Point(20, 34),  //標記點的偏移度
                      scaledSize: new google.maps.Size(60, 60),//圖片大小
@@ -343,7 +343,7 @@ html, body {
              map,
              animation: google.maps.Animation.BOUNCE, //設定圖示顯示樣式為跳躍
              title: "Hello World!",
-             icon: "/images/snow.png",
+             icon: "<c:url value="/images/snow.png"/>",
          });
 
          markers.push(marker);
@@ -399,9 +399,6 @@ html, body {
 							msg_data+= '<a href="#" class="btn btn-secondary"><c:out value="繼續閱讀..."/></a>'
 							msg_data+= '</div>'
 							msg_data+= '</div>'
-
-							
-						
 // 							$('#food1').append(value.title)
 // 							$('#p1').append(value.content)
 						})
@@ -437,15 +434,5 @@ html, body {
                         
         // });
 </script>
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
