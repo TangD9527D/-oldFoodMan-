@@ -37,7 +37,7 @@ public class OldFoodManServiceTest {
 		return null ;
 	}
 	
-	public void delete(int id) {
+	public void delete(Integer id) {
 		
 		dao.deleteById(id);
 		
