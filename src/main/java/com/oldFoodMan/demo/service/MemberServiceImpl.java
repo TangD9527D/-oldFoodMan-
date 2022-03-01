@@ -40,7 +40,7 @@ public class MemberServiceImpl implements UserDetailsService {
 		
 		// [ROLE_USER, ROLE_ADMIN,..]
         List<String> roleNames = roleDao.getRoleNames(option.get().getId());
-        System.out.println(roleNames + "777");
+        System.out.println(roleNames);
         
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
         
