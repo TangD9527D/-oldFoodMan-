@@ -11,8 +11,8 @@ public class PageController {
 		return "index";
 	}
 	
-	@GetMapping("/1234")
-	public String home4() {
-		return "index4";
-	}
+//	@GetMapping("/newAccount")
+//	public String newAccount() {
+//		return "member/newMember";
+//	}
 }
