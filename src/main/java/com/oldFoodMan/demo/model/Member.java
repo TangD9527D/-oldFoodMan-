@@ -31,7 +31,7 @@ public class Member implements Serializable {
 	@Column(name = "phone")
 	private String phone; 
 	
-	@Email(message = "帳號必須為電子信箱格式")
+//	@Email(message = "帳號必須為電子信箱格式")
 	@NotBlank(message = "帳號不可為空")
 	@Column(name = "account")
 	private String account;
