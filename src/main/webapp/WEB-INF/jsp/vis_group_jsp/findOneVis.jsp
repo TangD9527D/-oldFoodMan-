@@ -68,7 +68,8 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputPassword4">備註</label> 
-									<input type="text" value="${ofm.vis_condition}" disabled class="form-control" />
+									<input type="text" value
+									="${ofm.vis_condition}" disabled class="form-control" />
 								</div>
 							</div>
 							
