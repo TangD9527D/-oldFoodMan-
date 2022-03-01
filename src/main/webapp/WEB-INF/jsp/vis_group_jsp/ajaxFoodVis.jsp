@@ -26,7 +26,8 @@ margin:10px auto;
 }
 
 #table_id{
-	width:50%;
+	width:30%;
+	margin-bottom:10px;
 
 
 }
@@ -315,23 +316,25 @@ var tdate=new Date();
 		</div>
 </div>
 <div>
-		<h1>最新揪團eat</h1>
+		<h3>最新揪團eat</h3>
 		
 		<c:forEach var="viewallvis" items="${page.content}">
 		<div id="table_id" class="card text-center">
-  		<h4 class="card-header">
+  		<h4 class="card-header text-white bg-dark">
     		${viewallvis.vis_res_name}
   		</h4>
   		<div class="card-body">
    		<h5 class="card-title">日期：${viewallvis.vis_date} 時間：${viewallvis.vis_time}</h5>
     	<p class="card-text">${viewallvis.vis_location}</p>
-    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}" class="btn btn-primary">加入</a>
+    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}" class="btn btn-secondary">加入</a>
   		</div>
   		<div class="card-footer text-muted">
-    		2 days ago
+    		新增時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
+								value="${viewallvis.added}" />
   </div>
 </div>
 </c:forEach>
+<p>
 		
 		
 
