@@ -26,7 +26,7 @@ public class PageController_foodRecord {
 	@Autowired
 	private RecordMessageService msgService;
 	
-	@GetMapping("/")
+	@GetMapping("/fr")
 	public String FoodRecord_MainPage() {
 		return "FoodRecord_Main";
 	}
