@@ -96,8 +96,8 @@ public class PageController_02 {
 
 	}
 	
-	@GetMapping("/getPicture/{id}")
-	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer id) {
+	@GetMapping("/getPicture1/{id}")
+	public ResponseEntity<byte[]> getPicture1(HttpServletResponse resp, @PathVariable Integer id) {
 		String filePath = "/images/snow.png";
 
 		byte[] media = null;
