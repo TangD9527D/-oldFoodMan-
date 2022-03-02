@@ -23,7 +23,7 @@ public class MemberController {
 	public ModelAndView newMember(ModelAndView mav,@Valid @ModelAttribute Member member, BindingResult rs) {
 		System.out.println("123");
 		
-		if(!rs.hasErrors()) {//httpsession
+		if(!rs.hasErrors()) {
 			String memberPwd = member.getMemberPwd();
 			
 			System.out.println("456");

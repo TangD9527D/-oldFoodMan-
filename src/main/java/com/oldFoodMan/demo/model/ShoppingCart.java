@@ -24,11 +24,13 @@ public class ShoppingCart {
 	@JoinColumn(name = "id")
 	private Member member;
 	
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinColumn(name = "product_id", insertable=false, updatable=false)
+	private Product product;
+	
 	public ShoppingCart() {
 		
 	}
-	
-	
 	
 	
 	public Member getMember() {

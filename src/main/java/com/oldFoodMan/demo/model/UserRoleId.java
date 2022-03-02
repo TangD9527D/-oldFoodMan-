@@ -5,25 +5,25 @@ import java.util.Objects;
 
 public class UserRoleId implements Serializable {
 
-	private Integer id;
+	private Integer userId;
 	
 	private Integer role_id;
 	
 	public UserRoleId() {
 	}
 
-	public UserRoleId(Integer id, Integer role_id) {
+	public UserRoleId(Integer user_id, Integer role_id) {
 		super();
-		this.id = id;
+		this.userId = user_id;
 		this.role_id = role_id;
 	}
 
 	public Integer getId() {
-		return id;
+		return userId;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.userId = id;
 	}
 
 	public Integer getRole_id() {
@@ -36,7 +36,7 @@ public class UserRoleId implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, role_id);
+		return Objects.hash(userId, role_id);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class UserRoleId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		UserRoleId other = (UserRoleId) obj;
-		return Objects.equals(id, other.id) && Objects.equals(role_id, other.role_id);
+		return Objects.equals(userId, other.userId) && Objects.equals(role_id, other.role_id);
 	}
 
 	

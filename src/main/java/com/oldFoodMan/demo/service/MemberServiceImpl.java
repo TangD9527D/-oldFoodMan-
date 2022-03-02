@@ -37,7 +37,6 @@ public class MemberServiceImpl implements UserDetailsService {
 		Optional<Member> option = memberDao.findByName(account);
 		
 		Integer memberId = option.get().getId();
-		System.out.println(memberId);
 		
 		hs.setAttribute("id", memberId);
 		

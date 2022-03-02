@@ -12,13 +12,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -32,6 +30,9 @@ public class Member implements Serializable {
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
 	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
+	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
 	
 	
 	@Column(name = "memberName")
@@ -66,9 +67,13 @@ public class Member implements Serializable {
 	@Column(name = "createDate")
 	private Date createDate; 
 	
+
 	
 	
-	
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
+	private Set<UserRole> userRole = new LinkedHashSet<UserRole>();
+
 	
 	public Member() {
 	}
@@ -157,6 +162,14 @@ public class Member implements Serializable {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
+	
+	public Set<UserRole> getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(Set<UserRole> userRole) {
+		this.userRole = userRole;
+	}
 
 	@Override
 	public String toString() {
@@ -189,6 +202,14 @@ public class Member implements Serializable {
 
 	public void setShoppingCart(Set<ShoppingCart> shoppingCart) {
 		this.shoppingCart = shoppingCart;
+	}
+
+	public Set<FoodRecord> getFoodRecord() {
+		return foodRecord;
+	}
+
+	public void setFoodRecord(Set<FoodRecord> foodRecord) {
+		this.foodRecord = foodRecord;
 	}
 	
 	
