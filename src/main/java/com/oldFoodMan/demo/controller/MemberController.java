@@ -22,19 +22,8 @@ public class MemberController {
 	@PostMapping("/newMember")
 	public ModelAndView newMember(ModelAndView mav,@Valid @ModelAttribute Member member, BindingResult rs) {
 		System.out.println("123");
-		if(!rs.hasErrors()) {
-			
-//			String memberName = memberDto.getMemberName();
-//			String memberaccount = memberDto.getAccount();
-//			String memberPwd = memberDto.getMemberPwd();
-//			
-//			String pwd = EncrytedPasswordUtils.encrytePassword(memberPwd);
-//			
-//			Member mb = new Member();
-//			mb.setMemberName(memberName);
-//			mb.setAccount(memberaccount);
-//			mb.setMemberPwd(pwd);
-			
+		
+		if(!rs.hasErrors()) {//httpsession
 			String memberPwd = member.getMemberPwd();
 			System.out.println("456");
 			
@@ -42,7 +31,6 @@ public class MemberController {
 			
 			member.setMemberPwd(pwd);
 
-			
 			service.insert(member);
 			
 			mav.getModel().put("member", member);

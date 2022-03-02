@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.utils.WebUtils;
 
 @Controller
@@ -26,19 +28,23 @@ public class MainController {
     }
 
 	@GetMapping(value = "/admin")
-    public String adminPage(Model model, Principal principal) {
+    public String adminPage(Model model, Principal principal,HttpSession hs) {
         
         User loginedUser = (User)((Authentication) principal).getPrincipal();
-
+        
         String userInfo = WebUtils.toString(loginedUser);
         model.addAttribute("userInfo", userInfo);
         model.addAttribute("title", "admin");
+        
+         Object id = hs.getAttribute("id");
+        
+        System.out.println("oooooo" + id);
+        
         return "adminPage";
     }
 
 	@GetMapping(value = "/login")
     public String loginPage(Model model) {
-
         return "loginPage";
     }
 
