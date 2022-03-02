@@ -67,8 +67,13 @@ public class Member implements Serializable {
 	@Column(name = "createDate")
 	private Date createDate; 
 	
+
+	
+	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
 	private Set<UserRole> userRole = new LinkedHashSet<UserRole>();
+
 	
 	public Member() {
 	}
