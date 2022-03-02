@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,13 +13,13 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.MemberRepository;
 import com.oldFoodMan.demo.model.RoleRepository;
 
-@Repository
+@Service
 public class MemberServiceImpl implements UserDetailsService {
 
 	@Autowired
@@ -26,10 +28,18 @@ public class MemberServiceImpl implements UserDetailsService {
 	@Autowired
 	RoleRepository roleDao;
 	
+	@Autowired
+	HttpSession hs;
+	
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
 		
 		Optional<Member> option = memberDao.findByName(account);
+		
+		Integer memberId = option.get().getId();
+		System.out.println(memberId);
+		
+		hs.setAttribute("id", memberId);
 		
 		if(option.isEmpty()) {
 			System.out.println("無此帳號" + account);
