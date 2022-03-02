@@ -31,6 +31,9 @@ public class Member implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
 	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
+	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
+	
 	
 	@Column(name = "memberName")
 	private String memberName;
@@ -194,6 +197,14 @@ public class Member implements Serializable {
 
 	public void setShoppingCart(Set<ShoppingCart> shoppingCart) {
 		this.shoppingCart = shoppingCart;
+	}
+
+	public Set<FoodRecord> getFoodRecord() {
+		return foodRecord;
+	}
+
+	public void setFoodRecord(Set<FoodRecord> foodRecord) {
+		this.foodRecord = foodRecord;
 	}
 	
 	

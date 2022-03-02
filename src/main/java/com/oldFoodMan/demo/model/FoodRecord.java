@@ -3,11 +3,16 @@ package com.oldFoodMan.demo.model;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,6 +39,13 @@ public class FoodRecord implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_at")
 	private Date added;
+	
+	
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinColumn(name = "id")
+	private Member member_id;
+	
+
 	
 	public FoodRecord() {
 	}
@@ -65,7 +77,7 @@ public class FoodRecord implements Serializable {
 	private int gender;
 	private int gender1;
 	private int gender2;
-	private Integer member_id;
+	
 	
 	
 	@Transient
