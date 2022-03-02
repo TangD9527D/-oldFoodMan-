@@ -2,13 +2,18 @@ package com.oldFoodMan.demo.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,6 +29,10 @@ public class Member implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
+	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
+	
 	
 	@Column(name = "memberName")
 	private String memberName;
@@ -170,5 +179,14 @@ public class Member implements Serializable {
 		return builder.toString();
 	}
 
+	public Set<ShoppingCart> getShoppingCart() {
+		return shoppingCart;
+	}
+
+	public void setShoppingCart(Set<ShoppingCart> shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
+	
+	
 	
 }
