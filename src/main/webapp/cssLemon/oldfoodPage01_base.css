@@ -1,0 +1,39 @@
+li{
+    list-style: inherit;
+}
+
+ol, ul{
+    list-style: none;
+}
+
+img{
+    vertical-align: bottom;
+}
+
+div,p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+section{
+    display: block;
+}
+
+h1,h2,strong,em{
+    font-size: normal;
+    font-weight: bold;
+}
+
+dt,span,dl,li,a,span,ul,div,h2,p,section{
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    background:transparent;
+}
+
+html{
+    font-size: 80%;
+}
