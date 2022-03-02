@@ -2,9 +2,13 @@ package com.oldFoodMan.demo.model;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @IdClass(ShoppingCartBoth.class)
@@ -15,11 +19,30 @@ public class ShoppingCart {
 	
 	@Id
 	private String member_id;
-
+	
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinColumn(name = "id")
+	private Member member;
+	
 	public ShoppingCart() {
 		
 	}
 	
+	
+	
+	
+	public Member getMember() {
+		return member;
+	}
+
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+
+
+
 	public ShoppingCart(String product_id, String member_id) {
 		super();
 		this.product_id = product_id;
