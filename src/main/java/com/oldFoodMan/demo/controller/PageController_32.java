@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OldFoodManBean;
 
 import com.oldFoodMan.demo.service.OfmService;
@@ -54,23 +55,31 @@ public class PageController_32 {
 	
 	@GetMapping("/addFoodVis")
 	public ModelAndView addFoodVisPage(ModelAndView mav,HttpSession hs) {
-		Object id=hs.getAttribute("id");
+		
+		Object mid=hs.getAttribute("id");
+		
 		mav.setViewName("vis_group_jsp/addFoodVis");
 		OldFoodManBean ofmb=new OldFoodManBean();
+		
 //		OldFoodManBean lastest=serviceOfm.getLastest();
 		mav.getModel().put("ofm", ofmb);
-		System.out.println("id: "+id);
+		mav.getModel().put("ofmid", mid);
+		System.out.println("id: "+mav);
 //		mav.getModel().put("lastestFoodVis", lastest);
 		return mav;
 	}
 	
 	@GetMapping("/ajaxFoodVis")
-	public ModelAndView viewVisPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber) {
+	public ModelAndView viewVisPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber,HttpSession hs) {
+		Object mid=hs.getAttribute("id");
+
 		mav.setViewName("vis_group_jsp/ajaxFoodVis");	
 		
 		Page<OldFoodManBean> page =serviceOfm.findByPage(pageNumber);
 		
 		mav.getModel().put("page", page);
+		mav.getModel().put("ofmid", mid);
+		System.out.println("id: "+mav);
 		
 		return mav;
 	}
