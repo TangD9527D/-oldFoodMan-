@@ -28,7 +28,7 @@
 						限時優惠!!${allProducts.product_remark}!!<br>
 						</p>
 						
-						<input type="button" value='加入購物車'/>
+						<button type="button" value="${allProducts.product_id}" id="addCart">加入購物車</button>
 						
 					</div>
 				</div>
@@ -36,9 +36,29 @@
 			</c:forEach>
 		</div>
 	</div>
-
-
-
+	
+	<script>
+		$('#addCart').click(function(){  //商品加入購物車
+			var product_id = $('#addCart').val();
+			
+			$.ajax({                                         
+                url:'http://localhost:8080/oldFoodMan/addCart/' + product_id,
+                contentType: 'application/json;charset=UTF-8',
+                dataType: 'json',
+                async:false,
+                method: 'post',
+                success:function(result){
+                	console.log('已成功加入購物車!!')
+           
+                },
+                error:function(err){
+                    console.log(err);
+                    alert('發生錯誤!請重新加入購物車');
+                }
+            })
+		})
+	
+	</script>
 
 	<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
 	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
