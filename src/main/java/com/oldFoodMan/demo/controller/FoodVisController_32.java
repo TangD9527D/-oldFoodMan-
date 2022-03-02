@@ -31,14 +31,16 @@ public class FoodVisController_32 {
 	private OfmService ofmservice;
 	
 	@PostMapping(value="/addFoodVis")
-	public ModelAndView postNewMessage(ModelAndView mav,@Valid @ModelAttribute(name = "ofm") OldFoodManBean msg ,HttpSession hs,BindingResult rs) {
+	public ModelAndView postNewMessage(ModelAndView mav,@Valid @ModelAttribute(name = "ofm") OldFoodManBean msg ,Member member,HttpSession hs,BindingResult rs) {
 		Object id=hs.getAttribute("id");
+		System.out.println("id: "+id);
 		if(!rs.hasErrors()) {
 			ofmservice.insert(msg);
 			OldFoodManBean newMsg=new OldFoodManBean();
 			mav.getModel().put("ofm", newMsg);
 			
 		}
+		
 		mav.getModel().put("ofm", id);
 //		OldFoodManBean lastest=ofmservice.getLastest();
 		mav.setViewName("redirect:/viewAllVis");
@@ -46,6 +48,8 @@ public class FoodVisController_32 {
 //		mav.getModel().put("lastestFoodVis", lastest);
 		return mav;
 	}
+	
+	
 	
 //	@ResponseBody
 //	@GetMapping(value="messages/lastest")
@@ -107,7 +111,7 @@ public class FoodVisController_32 {
 		String vis_condition=dto.getVis_condition();
 		Integer member_id=dto.getMember_id();
 		
-		
+		System.out.println("id:" + id);
 		
 		OldFoodManBean ofmVis=new OldFoodManBean();
 //		ofmVis.setVis_name(vis_name);
@@ -130,7 +134,7 @@ public class FoodVisController_32 {
 	@ResponseBody
 	@GetMapping("/api/getFoodVis")
 	public List<OldFoodManBean> getFoodVis(ModelAndView mav){
-	
+		
 		List<OldFoodManBean> listall =ofmservice.findAll();
 //		List<OldFoodManBean> list=page.getContent();
 		
@@ -140,22 +144,24 @@ public class FoodVisController_32 {
 	//ajax使用分頁
 	@ResponseBody
 	@GetMapping("/api/getFoodVisByPage")
-	public List<OldFoodManBean> getFoodVisByPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber){
-	
+	public List<OldFoodManBean> getFoodVisByPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber,HttpSession hs){
+		Object id=hs.getAttribute("id");
 		Page<OldFoodManBean> page =ofmservice.findByPage(pageNumber);
 		List<OldFoodManBean> list=page.getContent();
 		mav.getModel().put("page", page);
+		System.out.println("id: "+id);
+		
 		return list;
 		
 	}
 	
 	@GetMapping("/findOneVis")
-	public ModelAndView findById(ModelAndView mav, @RequestParam(name="id") Integer id) {
-		
+	public ModelAndView findById(ModelAndView mav, @RequestParam(name="id") Integer id,HttpSession hs) {
+		Object ids=hs.getAttribute("id");
 		OldFoodManBean ofm=ofmservice.findById(id);
 		mav.getModel().put("ofm", ofm);
 		mav.setViewName("vis_group_jsp/findOneVis");
-		
+		System.out.println("id: "+ids);
 		return mav;
 
 
