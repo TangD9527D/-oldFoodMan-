@@ -145,6 +145,7 @@ public class FoodVisController_32 {
 		return listall;
 		
 	}
+	
 	//ajax使用分頁
 	@ResponseBody
 	@GetMapping("/api/getFoodVisByPage")
