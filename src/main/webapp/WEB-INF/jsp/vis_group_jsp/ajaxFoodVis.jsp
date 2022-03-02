@@ -331,10 +331,13 @@ var tdate=new Date();
 				<label for="inputPassword4">備註</label> <input type="text"
 					id="vis_condition" class="form-control" >
 			</div>
+			<form:form class="form" action="${contextRoot}/ajaxFoodVis"
+							modelAttribute="ofmid" method="post">
 			<div class="form-group col-md-6">
-				<label for="inputPassword4">memberid</label> <input type="text"
-					id="member_id" class="form-control" required>
+				<input type="hidden"
+					id="member_id" value="${ofmid}" class="form-control" required>
 			</div>
+			</form:form>
 		</div>
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"

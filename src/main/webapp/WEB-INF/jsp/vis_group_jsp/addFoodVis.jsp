@@ -24,11 +24,13 @@
 						<form:form class="form" action="${contextRoot}/addFoodVis"
 							modelAttribute="ofm" method="post">
 							<div class="form-row">
+							
 								<div class="form-group col-md-6">
-									<label for="inputEmail4">發起人</label>
-									<form:input type="text" path="member_id" class="form-control" />
+<!-- 									<label for="inputEmail4">發起人</label> -->
+									<form:input  type="hidden" path="member_id" class="form-control" value="${ofmid}" />
 
 								</div>
+								
 <!-- 								<div class="form-group col-md-6"> -->
 <!-- 									<label for="inputEmail4">Email</label> -->
 <%-- 									<form:input type="text" path="vis_email" class="form-control" /> --%>
