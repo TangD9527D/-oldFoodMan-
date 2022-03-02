@@ -74,8 +74,8 @@ public class OldFoodManBean implements Serializable{
 	
 	
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "my_food_vis_id",cascade = CascadeType.ALL)
-	private Set<JoinVis> joinvis = new LinkedHashSet<JoinVis>();
+//	@OneToMany(fetch = FetchType.LAZY,mappedBy = "my_food_vis_id",cascade = CascadeType.ALL)
+//	private Set<JoinVis> joinvis = new LinkedHashSet<JoinVis>();
 	
 	
 	public OldFoodManBean() {
@@ -199,13 +199,13 @@ public class OldFoodManBean implements Serializable{
 		this.member_id = member_id;
 	}
 
-	public Set<JoinVis> getJoinvis() {
-		return joinvis;
-	}
-
-	public void setJoinvis(Set<JoinVis> joinvis) {
-		this.joinvis = joinvis;
-	}
+//	public Set<JoinVis> getJoinvis() {
+//		return joinvis;
+//	}
+//
+//	public void setJoinvis(Set<JoinVis> joinvis) {
+//		this.joinvis = joinvis;
+//	}
 
 	@Override
 	public String toString() {

@@ -17,20 +17,46 @@
 <style>
 .allpage{
 width:85%;
+
 margin:10px auto;
 
 }
+
+
 .div04_32 {
+background-color: white;
 	width:50%;
+	float:left;
+	margin: 50px auto;
+    padding: 30px;
+    box-shadow: 5px 5px 5px gray;
+	border-radius: 20px;
+    border:2px outset gray;
+	
+}
+
+.viewtable{
+	width:38%;
 	float:right;
+
 }
 
+.header1{
+color:#5A5AAD;
+width:100%;
+
+margin-bottom:5px;
+/* border:2px outset gray; */
+text-align:center;
+}
 #table_id{
-	width:30%;
-	margin-bottom:10px;
-
+	
+	margin-bottom:15px;
+	box-shadow: 2px 2px 10px gray;
 
 }
+
+
 
 .fc-unthemed th,
 .fc-unthemed td,
@@ -51,15 +77,16 @@ border:2px solid #8F4586;
 background:#8F4586;
 }
 .fc-unthemed td.fc-sat{
-background :#EBD6D6;
+/* background :#EBD6D6; */
 color:#B87070; 
 }
 .fc-unthemed td.fc-sun{
-background :#EBD6D6;
+/* background :#EBD6D6; */
 color:#B87070; 
 }
 .fc-unthemed td.fc-today {
-background: #e2c94e;
+background: #EBD6D6;
+color:#B87070;
 }
 
 </style>
@@ -86,7 +113,7 @@ background: #e2c94e;
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.1/fullcalendar.print.css"
 	rel="stylesheet" media="print">
-
+<link rel="stylesheet" href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.1/fullcalendar.min.js"></script>
 
@@ -264,16 +291,16 @@ var tdate=new Date();
 
 <div class="allpage">
 	
-	
-
+	<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
+	<div>
 		<div id="example" class="div04_32"></div>
-	
+	</div>
 
 <!-- 	<div class="container"> -->
 		<p />
 		
 <!-- dialog視窗 -->
-<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
+
 		<div >
 		<div class="modal fade" id="exampleModal" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -354,8 +381,8 @@ var tdate=new Date();
 			</div>
 		</div>
 </div>
-<div>
-		<h3>最新揪團eat</h3>
+<div class="viewtable">
+		<div class="header1"><i style="font-size:50px" class="fa-solid fa-utensils"></i><span style="font-size:40px">揪團Eat</span></div>
 		
 		<c:forEach var="viewallvis" items="${page.content}">
 		<div id="table_id" class="card text-center">
@@ -363,9 +390,10 @@ var tdate=new Date();
     		${viewallvis.vis_res_name}
   		</h4>
   		<div class="card-body">
-   		<h5 class="card-title">日期：${viewallvis.vis_date} 時間：${viewallvis.vis_time}</h5>
-    	<p class="card-text">${viewallvis.vis_location}</p>
-    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}" class="btn btn-secondary">加入</a>
+   		<h5 class="card-title"><i class="fa-regular fa-clock">${viewallvis.vis_date}&nbsp;&nbsp; ${viewallvis.vis_time}</i></h5>
+   		
+    	<p class="card-text"><i class="fa-solid fa-location-dot">${viewallvis.vis_location}</i></p>
+    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}" id="joinvis" class="btn btn-secondary">加入</a>
   		</div>
   		<div class="card-footer text-muted">
     		新增時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
