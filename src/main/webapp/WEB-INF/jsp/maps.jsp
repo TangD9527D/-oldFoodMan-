@@ -234,7 +234,7 @@ margin:10px auto;
 		<div  class="card" id="p1" style="width: 8cm;">
             <img src="<c:url value='/getPicture/${maps.id}'/>" style=width:250px;height:220px class="card-img-top" alt="...">
             <div id="box" class="card-body">
-              <h3 class="card-title">${maps.title}</h3>
+              <h3 class="card-title" style="background-color:#5e5e5e;text-align:center" >${maps.title}</h3>
               <h5 id="p"  class="card-text">${maps.content}</h5>
               <a href="#" class="btn btn-secondary" style="position:absolute;bottom:15px">繼續閱讀</a>
             </div>
