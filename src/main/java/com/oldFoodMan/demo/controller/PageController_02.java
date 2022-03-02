@@ -1,5 +1,6 @@
 package com.oldFoodMan.demo.controller;
 
+import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -43,11 +44,11 @@ public class PageController_02 {
 		this.servletContext = servletContext;
 	}
 
-	@GetMapping("searchMaps")
-	public String map11() {
-
-		return "maps";
-	}
+//	@GetMapping("searchMaps")
+//	public String map11() {
+//
+//		return "maps";
+//	}
 
 	@GetMapping("/ajaxMessages")
 	public ModelAndView ajaxPage(ModelAndView mav) {
@@ -67,12 +68,12 @@ public class PageController_02 {
 
 	}
 
-	@ResponseBody
-	@GetMapping("api/searchMaps")
+	
+	@GetMapping("searchMaps")
 	public ModelAndView mapsAjaxPage(ModelAndView mav,
 			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber) {
 
-		mav.setViewName("searchMaps");
+		mav.setViewName("maps");
 
 		Page<FoodRecord> page = service.findByPage(pageNumber);
 
@@ -98,7 +99,8 @@ public class PageController_02 {
 	
 	@GetMapping("/getPicture1/{id}")
 	public ResponseEntity<byte[]> getPicture1(HttpServletResponse resp, @PathVariable Integer id) {
-		String filePath = "/images/snow.png";
+		String filePath = "/images/snow.png"; 
+       
 
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();

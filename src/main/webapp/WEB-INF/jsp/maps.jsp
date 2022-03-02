@@ -211,8 +211,36 @@ html, body {
 				value="HideMark" />
 		</div>
 
-		<div id="range" class=""></div>
+		<div id="range" class="">
+		
+		
+		<c:forEach var="maps" items="${page.content}">
+		<div  class="card" style="width: 7cm;">
+            <img src="<c:url value='/getPicture/${maps.id}'/> " class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">${maps.title}</h5>
+              <p class="card-text">${maps.content}</p>
+              <a href="#" class="btn btn-secondary">繼續閱讀</a>
+            </div>
+          </div>    
+		</c:forEach>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		</div>
 	</div>
+	
+	
+	
+	
+	
+	
 	<div class="row justify-content-center">
 		<div class="col-8">
 			<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
@@ -380,39 +408,41 @@ html, body {
     </script>
 
 	<script>  
-	//網頁接值
-		$(document).ready(function() {	
-			$.ajax({
-					url : 'http://localhost:8080/oldFoodMan/api/searchMaps2',
-					contentType : 'application/json ; charset=UTF-8',
-					dataType : 'json',
-					method : 'get',
-					success : function(result) {
-						console.log("rs: "+result)
-						var msg_data='';
-						$.each(result,function(index,value){
-						console.log("image: "+value.coverImage)
-							msg_data+= '<div class="card" id="p1" style="width: 8cm;">'
-							msg_data+= '<img src="<c:url value="/getPicture/100" />" class="card-img-top" alt="...">'
-							msg_data+= '<div class="card-body">'
-							msg_data+= '<h5 class="card-title" >'+value.title+'</h5>'
-							msg_data+= '<p class="card-text" >'+value.content+'</p>'
-							msg_data+= '<a href="#" class="btn btn-secondary"><c:out value="繼續閱讀..."/></a>'
-							msg_data+= '</div>'
-							msg_data+= '</div>'
+// 	網頁接值
+// 		$(document).ready(function() {	
+// 			$.ajax({
+// 					url : 'http://localhost:8080/oldFoodMan/api/searchMaps2',
+// 					contentType : 'application/json ; charset=UTF-8',
+// 					dataType : 'json',
+// 					method : 'get',
+// 					success : function(result){
+// 						console.log("rs: "+result)
+// 						var msg_data='';
+// 						$.each(result,function(index,value){
+//  						console.log("image: "+value.coverImage)
+// 							msg_data+= '<div class="card" id="p1" style="width: 8cm;">'
+// 							msg_data+= '<img id="img" src="" class="card-img-top" alt="...">'
+// 							msg_data+= '<div class="card-body">'
+// 							msg_data+= '<h5 class="card-title" >'+value.title+'</h5>'
+// 							msg_data+= '<p class="card-text" >'+value.content+'</p>'
+// 							msg_data+= '<a href="#" class="btn btn-secondary"><c:out value="繼續閱讀..."/></a>'
+// 							msg_data+= '</div>'
+// 							msg_data+= '</div>'
 // 							$('#food1').append(value.title)
-// 							$('#p1').append(value.content)
-						})
-						$('#range').append(msg_data)
-					},
-					error : function(err) {
-						console.log(err)
-						alert('發生錯誤')
-					}		
+//  							$('#p1').append(value.content)
+// 						})
+// 						$('#range').append(msg_data)
+// 						$("#img").attr('src','/getPicture1/100').serialize();
+						
+// 					},
+// 					error : function(err) {
+// 						console.log(err)
+// 						alert('發生錯誤')
+// 					}		
 			
-				});
+// 				});
 			
-			})
+// 			})
 			
 
 	</script>
