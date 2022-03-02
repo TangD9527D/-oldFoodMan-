@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="WebItems/navbar.jsp"/>
+<jsp:include page="menu.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -165,7 +165,7 @@
 		$(document).ready( function () {
 			var table = $('#tableAjax').DataTable({
 		    	"ajax": {
-		    	     "url": "http://localhost:8080/foodMan/productsBackStagePage",
+		    	     "url": "http://localhost:8080/oldFoodMan/productsBackStagePage",
 		    	      "type": "POST",
 		    	      "dataSrc":""   //不加會報錯
 		    	},
@@ -233,7 +233,7 @@
 			dtRow = $(this).closest('tr');
 			$.ajax({
 				type : "post",
-				url : "http://localhost:8080/foodMan/deleteProduct/" + id,
+				url : "http://localhost:8080/oldFoodMan/deleteProduct/" + id,
 				success : function(result) {
 					$("#tableAjax").DataTable().row(dtRow).remove().draw(false);
 					console.log('ok')
@@ -246,7 +246,7 @@
 		function updateDialog(id){
 			$.ajax({
 				method:'post',
-				url:'http://localhost:8080/foodMan/updateDiolog/' + id,
+				url:'http://localhost:8080/oldFoodMan/updateDiolog/' + id,
 				success:function(result){
 					$('#Uproduct_number').val(result.product_number);
 					$('#Uproduct_name').val(result.product_name);
@@ -269,7 +269,7 @@
 			$.ajax({
 				method:"post",
 				async:false,
-				url:"http://localhost:8080/foodMan/InsertProductPhoto",
+				url:"http://localhost:8080/oldFoodMan/InsertProductPhoto",
 				processData:false,
 				contentType:false,
 				data:formData,
@@ -295,7 +295,7 @@
             upRow = $(this).closest('tr');
             
             $.ajax({                                         //更新表格資料
-                url:'http://localhost:8080/foodMan/updateProduct/' + id,
+                url:'http://localhost:8080/oldFoodMan/updateProduct/' + id,
                 contentType: 'application/json;charset=UTF-8',
                 dataType: 'json',
                 async:false,
@@ -319,7 +319,7 @@
 			$.ajax({
 				method:"post",
 				async:false,
-				url:"http://localhost:8080/foodMan/InsertProductPhoto",
+				url:"http://localhost:8080/oldFoodMan/InsertProductPhoto",
 				processData:false,
 				contentType:false,
 				data:formData,
@@ -341,7 +341,7 @@
             var dtoJsonString = JSON.stringify(dtoObject);
 
             $.ajax({                                         //新增表格資料
-                url:'http://localhost:8080/foodMan/InsertProductData',
+                url:'http://localhost:8080/oldFoodMan/InsertProductData',
                 contentType: 'application/json;charset=UTF-8',
                 dataType: 'json',
                 async:false,

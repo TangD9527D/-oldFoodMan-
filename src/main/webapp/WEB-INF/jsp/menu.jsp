@@ -15,9 +15,7 @@
 	padding: 0px;
 }
 
-body {
-	background-image: url("${contextRoot}/images/44737597.jpg");
-}
+
 </style>
 </head>
 
@@ -39,6 +37,9 @@ body {
 						href="${contextRoot}/admin">Admin</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${contextRoot}/newAccount">新增</a></li>
+					<li class="nav-item"><a class="nav-link" href="${contextRoot}/productsPage">餐券商城</a></li>
+					<li class="nav-item"><a class="nav-link" href="${contextRoot}/productsBackStagePage">商城後台</a></li>
+						
 				</ul>
 			</div>
 			<ul class="nav justify-content-end">
