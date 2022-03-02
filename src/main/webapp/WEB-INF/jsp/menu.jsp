@@ -39,6 +39,8 @@ body {
 						href="${contextRoot}/admin">Admin</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${contextRoot}/newAccount">新增</a></li>
+						<li class="nav-item"><a class="nav-link"
+						href="${contextRoot}/createData">食記</a></li>
 				</ul>
 			</div>
 			<ul class="nav justify-content-end">
