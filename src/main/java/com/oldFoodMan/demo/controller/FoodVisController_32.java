@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.dto.FoodVisDto;
-
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OldFoodManBean;
 
 import com.oldFoodMan.demo.service.OfmService;
@@ -30,15 +30,15 @@ public class FoodVisController_32 {
 	private OfmService ofmservice;
 	
 	@PostMapping(value="/addFoodVis")
-	public ModelAndView postNewMessage(ModelAndView mav,@Valid @ModelAttribute(name = "ofm") OldFoodManBean msg ,BindingResult rs) {
-		
+	public ModelAndView postNewMessage(ModelAndView mav,@Valid @ModelAttribute(name = "ofm") OldFoodManBean msg ,Member member,BindingResult rs) {
+		String ofm=member.getAccount();
 		if(!rs.hasErrors()) {
 			ofmservice.insert(msg);
 			OldFoodManBean newMsg=new OldFoodManBean();
 			mav.getModel().put("ofm", newMsg);
 			
 		}
-		
+		mav.getModel().put("ofm", ofm);
 //		OldFoodManBean lastest=ofmservice.getLastest();
 		mav.setViewName("redirect:/viewAllVis");
 		

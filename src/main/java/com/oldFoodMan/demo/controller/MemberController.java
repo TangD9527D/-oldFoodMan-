@@ -36,6 +36,7 @@ public class MemberController {
 //			mb.setMemberPwd(pwd);
 			
 			String memberPwd = member.getMemberPwd();
+			
 			System.out.println("456");
 			
 			String pwd = EncrytedPasswordUtils.encrytePassword(memberPwd);
