@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.utils.WebUtils;
 
 @Controller
@@ -35,10 +36,11 @@ public class MainController {
         model.addAttribute("userInfo", userInfo);
         model.addAttribute("title", "admin");
         
-         Object id = hs.getAttribute("id");
-        
-        System.out.println("oooooo" + id);
-        
+         Member member = (Member)hs.getAttribute("member");
+         
+         System.out.println("拿到httpSession!!" + member.getId());
+         
+         
         return "adminPage";
     }
 

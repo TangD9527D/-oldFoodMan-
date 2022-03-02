@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -24,13 +23,14 @@ public class UserRole implements Serializable {
 	private Member userId;
 	
 	@Id
-	@Column(name = "ROLE_ID")
-	private Integer role_id;
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinColumn(name = "ROLE_ID")
+	private Role role_id;
 
 	public UserRole() {
 	}
 
-	public UserRole(Member userId, Integer role_id) {
+	public UserRole(Member userId, Role role_id) {
 		super();
 		this.userId = userId;
 		this.role_id = role_id;
@@ -45,11 +45,11 @@ public class UserRole implements Serializable {
 		this.userId = userId;
 	}
 
-	public Integer getRole_id() {
+	public Role getRole_id() {
 		return role_id;
 	}
 
-	public void setRole_id(Integer role_id) {
+	public void setRole_id(Role role_id) {
 		this.role_id = role_id;
 	}
 

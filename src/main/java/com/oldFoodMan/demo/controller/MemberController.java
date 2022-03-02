@@ -21,17 +21,14 @@ public class MemberController {
 		
 	@PostMapping("/newMember")
 	public ModelAndView newMember(ModelAndView mav,@Valid @ModelAttribute Member member, BindingResult rs) {
-		System.out.println("123");
 		
 		if(!rs.hasErrors()) {
 			String memberPwd = member.getMemberPwd();
 			
-			System.out.println("456");
-			
 			String pwd = EncrytedPasswordUtils.encrytePassword(memberPwd);
 			
 			member.setMemberPwd(pwd);
-
+			
 			service.insert(member);
 			
 			mav.getModel().put("member", member);

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.MemberRepository;
 import com.oldFoodMan.demo.model.RoleRepository;
+import com.oldFoodMan.demo.model.UserRoleRepository;
 
 @Service
 public class MemberServiceImpl implements UserDetailsService {
@@ -29,6 +30,9 @@ public class MemberServiceImpl implements UserDetailsService {
 	RoleRepository roleDao;
 	
 	@Autowired
+	UserRoleRepository userDao;
+	
+	@Autowired
 	HttpSession hs;
 	
 	@Override
@@ -36,9 +40,9 @@ public class MemberServiceImpl implements UserDetailsService {
 		
 		Optional<Member> option = memberDao.findByName(account);
 		
-		Integer memberId = option.get().getId();
+		Member mb = option.get();
 		
-		hs.setAttribute("id", memberId);
+		hs.setAttribute("member", mb);
 		
 		if(option.isEmpty()) {
 			System.out.println("無此帳號" + account);
