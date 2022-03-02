@@ -28,6 +28,10 @@ public class Member implements Serializable {
 	@Column(name="id")
 	private Integer id;
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
+	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
+	
+	
 	@Column(name = "memberName")
 	private String memberName;
 	
@@ -184,5 +188,14 @@ public class Member implements Serializable {
 		return builder.toString();
 	}
 
+	public Set<ShoppingCart> getShoppingCart() {
+		return shoppingCart;
+	}
+
+	public void setShoppingCart(Set<ShoppingCart> shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
+	
+	
 	
 }

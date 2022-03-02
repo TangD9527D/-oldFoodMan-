@@ -1,6 +1,7 @@
 package com.oldFoodMan.demo.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,14 +32,14 @@ public class OldFoodManTest implements Serializable{
 	private String content ;
 	
 	@Column(name="coverImage")
-	private String coverImage;	
+	private Blob coverImage;	
 	
 
-	public String getCoverImage() {
+	public Blob getCoverImage() {
 		return coverImage;
 	}
 
-	public void setCoverImage(String coverImage) {
+	public void setCoverImage(Blob coverImage) {
 		this.coverImage = coverImage;
 	}
 

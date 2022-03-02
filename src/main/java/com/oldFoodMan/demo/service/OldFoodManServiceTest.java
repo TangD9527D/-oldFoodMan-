@@ -10,25 +10,25 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.oldFoodMan.demo.model.OldFoodManRepositoryTest;
-import com.oldFoodMan.demo.model.OldFoodManTest;
+import com.oldFoodMan.demo.model.FoodRecord;
+import com.oldFoodMan.demo.model.FoodRecordRepository;
 
 
 @Service
 public class OldFoodManServiceTest {
 	
 	@Autowired
-	private OldFoodManRepositoryTest dao ;
+	private FoodRecordRepository dao ;
 	
-	public void insert(OldFoodManTest title ){
+	public void insert(FoodRecord title ){
 		
 		dao.save(title);
 		
 	}
 	
-	public OldFoodManTest findById(Integer id) {
+	public FoodRecord findById(Integer id) {
 		
-		Optional<OldFoodManTest> op=dao.findById(id);
+		Optional<FoodRecord> op=dao.findById(id);
 		
 		if(op.isPresent()) {
 			
@@ -43,21 +43,22 @@ public class OldFoodManServiceTest {
 		
 	}
 	
-	public List<OldFoodManTest> findAll(){
+	public List<FoodRecord> findAll(){
 		
-		List<OldFoodManTest> title =dao.findAll();
+		List<FoodRecord> title =dao.findAll();
 		
 		return title ;
 		
 	}
 	
-	public Page<OldFoodManTest> findByPage(Integer pageNumber){
+	public Page<FoodRecord> findByPage(Integer pageNumber){
 		
 		Pageable pgb =PageRequest.of(pageNumber-1, 9, Sort.Direction.DESC,"title");
 		
 		return dao.findAll(pgb);
 		
 	}
+	
 	
 	
 

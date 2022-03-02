@@ -14,22 +14,12 @@ import com.oldFoodMan.demo.model.FoodRecord;
 import com.oldFoodMan.demo.model.FoodRecordRepository;
 
 
-
 @Service
 public class FoodRecordService {
 
 	@Autowired
 	private FoodRecordRepository frDao;
 
-	
-//	//分頁
-//	public Page<FoodRecord> findByPage(Integer pageNumber) {
-//		Pageable pgb= PageRequest.of(pageNumber-1, 10, Sort.Direction.DESC, "added");
-//		return frDao.findAll(pgb);
-//		
-//	}
-
-	
 	
 	//新增
 	public void insertRF(FoodRecord rf) {   
@@ -77,7 +67,7 @@ public class FoodRecordService {
 	
 	//分頁
 	public Page<FoodRecord> findByPage(Integer pageNumber) {
-		Pageable pgb= PageRequest.of(pageNumber-1, 10, Sort.Direction.DESC, "added");
+		Pageable pgb= PageRequest.of(pageNumber-1, 5, Sort.Direction.DESC, "added");
 		return frDao.findAll(pgb);
 		
 	}

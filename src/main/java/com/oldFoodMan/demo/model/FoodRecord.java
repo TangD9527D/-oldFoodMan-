@@ -3,7 +3,6 @@ package com.oldFoodMan.demo.model;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,8 +12,10 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -44,7 +45,6 @@ public class FoodRecord implements Serializable {
 		}
 	}
 	
-	
 	private String title;
 	private String content;
 	private String shopName;
@@ -55,73 +55,29 @@ public class FoodRecord implements Serializable {
 	private String town;
 	private String shopAddress;
 	private String tel;
-	
-	@Column(name="businessHours")
 	private String businessHours;
 	private String tag;
-	
-	@Column(name="coverImage")
 	private Blob   coverImage;	
 	private String uploadPicture;
 	private String tasty;
 	private String atmosphere;
 	private String cp;
-	private String gender;
-	private String gender1;
-	private String gender2;
-
+	private int gender;
+	private int gender1;
+	private int gender2;
+	private Integer member_id;
 	
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("FoodRecord [id=");
-		builder.append(id);
-		builder.append(", added=");
-		builder.append(added);
-		builder.append(", title=");
-		builder.append(title);
-		builder.append(", content=");
-		builder.append(content);
-		builder.append(", shopName=");
-		builder.append(shopName);
-		builder.append(", shopType=");
-		builder.append(shopType);
-		builder.append(", audience=");
-		builder.append(audience);
-		builder.append(", priceScope=");
-		builder.append(priceScope);
-		builder.append(", city=");
-		builder.append(city);
-		builder.append(", town=");
-		builder.append(town);
-		builder.append(", shopAddress=");
-		builder.append(shopAddress);
-		builder.append(", tel=");
-		builder.append(tel);
-		builder.append(", businessHours=");
-		builder.append(businessHours);
-		builder.append(", tag=");
-		builder.append(tag);
-		builder.append(", coverImage=");
-		builder.append(coverImage);
-		builder.append(", uploadPicture=");
-		builder.append(uploadPicture);
-		builder.append(", tasty=");
-		builder.append(tasty);
-		builder.append(", atmosphere=");
-		builder.append(atmosphere);
-		builder.append(", cp=");
-		builder.append(cp);
-		builder.append(", gender=");
-		builder.append(gender);
-		builder.append(", gender1=");
-		builder.append(gender1);
-		builder.append(", gender2=");
-		builder.append(gender2);
-		builder.append("]");
-		return builder.toString();
+	
+	@Transient
+	private MultipartFile  productImage;
+
+	public MultipartFile getProductImage() {
+	    return productImage;
 	}
 
+	public void setProductImage(MultipartFile productImage) {
+	    this.productImage = productImage;
+	}
 
 	public Integer getId() {
 		return id;
@@ -275,28 +231,113 @@ public class FoodRecord implements Serializable {
 		this.cp = cp;
 	}
 
-	public String getGender() {
+	public int getGender() {
 		return gender;
 	}
 
-	public void setGender(String gender) {
+	public void setGender(int gender) {
 		this.gender = gender;
 	}
 
-	public String getGender1() {
+	public int getGender1() {
 		return gender1;
 	}
 
-	public void setGender1(String gender1) {
+	public void setGender1(int gender1) {
 		this.gender1 = gender1;
 	}
 
-	public String getGender2() {
+	public int getGender2() {
 		return gender2;
 	}
 
-	public void setGender2(String gender2) {
+	public void setGender2(int gender2) {
 		this.gender2 = gender2;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("FoodRecord [id=");
+		builder.append(id);
+		builder.append(", added=");
+		builder.append(added);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", content=");
+		builder.append(content);
+		builder.append(", shopName=");
+		builder.append(shopName);
+		builder.append(", shopType=");
+		builder.append(shopType);
+		builder.append(", audience=");
+		builder.append(audience);
+		builder.append(", priceScope=");
+		builder.append(priceScope);
+		builder.append(", city=");
+		builder.append(city);
+		builder.append(", town=");
+		builder.append(town);
+		builder.append(", shopAddress=");
+		builder.append(shopAddress);
+		builder.append(", tel=");
+		builder.append(tel);
+		builder.append(", businessHours=");
+		builder.append(businessHours);
+		builder.append(", tag=");
+		builder.append(tag);
+		builder.append(", coverImage=");
+		builder.append(coverImage);
+		builder.append(", uploadPicture=");
+		builder.append(uploadPicture);
+		builder.append(", tasty=");
+		builder.append(tasty);
+		builder.append(", atmosphere=");
+		builder.append(atmosphere);
+		builder.append(", cp=");
+		builder.append(cp);
+		builder.append(", gender=");
+		builder.append(gender);
+		builder.append(", gender1=");
+		builder.append(gender1);
+		builder.append(", gender2=");
+		builder.append(gender2);
+		builder.append(", productImage=");
+		builder.append(productImage);
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public FoodRecord(Integer id, Date added, String title, String content, String shopName, String shopType,
+			String audience, String priceScope, String city, String town, String shopAddress, String tel,
+			String businessHours, String tag, Blob coverImage, String uploadPicture, String tasty, String atmosphere,
+			String cp, int gender, int gender1, int gender2, MultipartFile productImage) {
+		super();
+		this.id = id;
+		this.added = added;
+		this.title = title;
+		this.content = content;
+		this.shopName = shopName;
+		this.shopType = shopType;
+		this.audience = audience;
+		this.priceScope = priceScope;
+		this.city = city;
+		this.town = town;
+		this.shopAddress = shopAddress;
+		this.tel = tel;
+		this.businessHours = businessHours;
+		this.tag = tag;
+		this.coverImage = coverImage;
+		this.uploadPicture = uploadPicture;
+		this.tasty = tasty;
+		this.atmosphere = atmosphere;
+		this.cp = cp;
+		this.gender = gender;
+		this.gender1 = gender1;
+		this.gender2 = gender2;
+		this.productImage = productImage;
+	}
+	
+	
 	
 }
