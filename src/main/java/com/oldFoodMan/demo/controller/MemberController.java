@@ -25,6 +25,7 @@ public class MemberController {
 		
 		if(!rs.hasErrors()) {//httpsession
 			String memberPwd = member.getMemberPwd();
+			
 			System.out.println("456");
 			
 			String pwd = EncrytedPasswordUtils.encrytePassword(memberPwd);

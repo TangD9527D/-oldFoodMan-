@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.dto.FoodVisDto;
-
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OldFoodManBean;
 
 import com.oldFoodMan.demo.service.OfmService;
@@ -30,15 +31,15 @@ public class FoodVisController_32 {
 	private OfmService ofmservice;
 	
 	@PostMapping(value="/addFoodVis")
-	public ModelAndView postNewMessage(ModelAndView mav,@Valid @ModelAttribute(name = "ofm") OldFoodManBean msg ,BindingResult rs) {
-		
+	public ModelAndView postNewMessage(ModelAndView mav,@Valid @ModelAttribute(name = "ofm") OldFoodManBean msg ,HttpSession hs,BindingResult rs) {
+		Object id=hs.getAttribute("id");
 		if(!rs.hasErrors()) {
 			ofmservice.insert(msg);
 			OldFoodManBean newMsg=new OldFoodManBean();
 			mav.getModel().put("ofm", newMsg);
 			
 		}
-		
+		mav.getModel().put("ofm", id);
 //		OldFoodManBean lastest=ofmservice.getLastest();
 		mav.setViewName("redirect:/viewAllVis");
 		
@@ -92,8 +93,9 @@ public class FoodVisController_32 {
 	
 	@ResponseBody
 	@PostMapping("/api/postFoodVis")
-	public List<OldFoodManBean> postFoodVis(@RequestBody FoodVisDto dto){
+	public List<OldFoodManBean> postFoodVis(@RequestBody FoodVisDto dto,HttpSession hs){
 		
+		Object id=hs.getAttribute("id");
 		
 //		String vis_name=dto.getVis_name();
 		String vis_res_name=dto.getVis_res_name();
