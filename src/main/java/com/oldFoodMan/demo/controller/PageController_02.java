@@ -39,11 +39,12 @@ public class PageController_02 {
 	ServletContext servletContext;
 	
 	
+	
 	public PageController_02(ServletContext servletContext) {
 		super();
 		this.servletContext = servletContext;
 	}
-
+//
 //	@GetMapping("searchMaps")
 //	public String map11() {
 //

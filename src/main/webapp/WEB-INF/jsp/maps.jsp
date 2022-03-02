@@ -13,13 +13,8 @@
 <title>FoodSearch</title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <!-- <link rel="stylesheet" type="text/css" href="./style.css" /> -->
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-<font></font>
-<font></font>
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-<font></font>
+
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -31,9 +26,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
+
 
 <link rel="shortcut icon" href="/images/favicon.png" />
 <!-- 改為老食人小圖 -->
@@ -174,18 +167,41 @@ html, body {
 	/* 	justify-content: center; */
 	border: 0.5px solid transparent;
 	text-align: justify;
+	width:100%;
 }
 
-/* #p { */
-/* 	overflow: hidden; */
-/*  	white-space: nowrap;  */
-/*  	text-overflow: ellipsis; */
-/* } */
 #p1 {
 	float: left;
-	margin: 10px 25px;
+	margin: 15px 15px;
 	justify-content: space-between;
+	width:100%;
+
 }
+img{
+
+display:block;
+margin:25px auto;
+
+}
+#box{
+width: 100%;
+padding: 10px;
+height:200px;
+margin:10px auto;
+}
+#p{
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2; /*行數*/
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+
+
+
+
 </style>
 
 
@@ -215,24 +231,15 @@ html, body {
 		
 		
 		<c:forEach var="maps" items="${page.content}">
-		<div  class="card" style="width: 7cm;">
-            <img src="<c:url value='/getPicture/${maps.id}'/> " class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">${maps.title}</h5>
-              <p class="card-text">${maps.content}</p>
-              <a href="#" class="btn btn-secondary">繼續閱讀</a>
+		<div  class="card" id="p1" style="width: 8cm;">
+            <img src="<c:url value='/getPicture/${maps.id}'/>" style=width:250px;height:220px class="card-img-top" alt="...">
+            <div id="box" class="card-body">
+              <h3 class="card-title">${maps.title}</h3>
+              <h5 id="p"  class="card-text">${maps.content}</h5>
+              <a href="#" class="btn btn-secondary" style="position:absolute;bottom:15px">繼續閱讀</a>
             </div>
           </div>    
-		</c:forEach>
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		</c:forEach>		
 		</div>
 	</div>
 	
@@ -408,7 +415,7 @@ html, body {
     </script>
 
 	<script>  
-// 	網頁接值
+	//網頁接值
 // 		$(document).ready(function() {	
 // 			$.ajax({
 // 					url : 'http://localhost:8080/oldFoodMan/api/searchMaps2',
@@ -419,8 +426,7 @@ html, body {
 // 						console.log("rs: "+result)
 // 						var msg_data='';
 // 						$.each(result,function(index,value){
-//  						console.log("image: "+value.coverImage)
-// 							msg_data+= '<div class="card" id="p1" style="width: 8cm;">'
+//  							msg_data+= '<div class="card" id="p1" style="width: 8cm;">'
 // 							msg_data+= '<img id="img" src="" class="card-img-top" alt="...">'
 // 							msg_data+= '<div class="card-body">'
 // 							msg_data+= '<h5 class="card-title" >'+value.title+'</h5>'
@@ -428,11 +434,9 @@ html, body {
 // 							msg_data+= '<a href="#" class="btn btn-secondary"><c:out value="繼續閱讀..."/></a>'
 // 							msg_data+= '</div>'
 // 							msg_data+= '</div>'
-// 							$('#food1').append(value.title)
-//  							$('#p1').append(value.content)
 // 						})
 // 						$('#range').append(msg_data)
-// 						$("#img").attr('src','/getPicture1/100').serialize();
+
 						
 // 					},
 // 					error : function(err) {
