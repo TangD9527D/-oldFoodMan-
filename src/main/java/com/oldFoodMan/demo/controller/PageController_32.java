@@ -2,6 +2,8 @@ package com.oldFoodMan.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -51,11 +53,13 @@ public class PageController_32 {
 //	}
 	
 	@GetMapping("/addFoodVis")
-	public ModelAndView addFoodVisPage(ModelAndView mav) {
+	public ModelAndView addFoodVisPage(ModelAndView mav,HttpSession hs) {
+		Object id=hs.getAttribute("id");
 		mav.setViewName("vis_group_jsp/addFoodVis");
 		OldFoodManBean ofmb=new OldFoodManBean();
 //		OldFoodManBean lastest=serviceOfm.getLastest();
 		mav.getModel().put("ofm", ofmb);
+		System.out.println("id: "+id);
 //		mav.getModel().put("lastestFoodVis", lastest);
 		return mav;
 	}
