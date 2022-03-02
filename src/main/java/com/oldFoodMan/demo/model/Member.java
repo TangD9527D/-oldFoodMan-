@@ -66,6 +66,10 @@ public class Member implements Serializable {
 	@Column(name = "createDate")
 	private Date createDate; 
 	
+	
+	
+	
+	
 	public Member() {
 	}
 

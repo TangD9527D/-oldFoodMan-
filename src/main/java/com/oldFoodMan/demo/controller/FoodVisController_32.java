@@ -23,12 +23,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oldFoodMan.demo.dto.FoodVisDto;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OldFoodManBean;
-
+import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.service.OfmService;
 @Controller
 public class FoodVisController_32 {
 	@Autowired
 	private OfmService ofmservice;
+	private MemberServiceImpl memservice;
 	
 	@PostMapping(value="/addFoodVis")
 	public ModelAndView postNewMessage(ModelAndView mav,@Valid @ModelAttribute(name = "ofm") OldFoodManBean msg ,Member member,HttpSession hs,BindingResult rs) {
@@ -114,6 +115,7 @@ public class FoodVisController_32 {
 		System.out.println("id:" + id);
 		
 		OldFoodManBean ofmVis=new OldFoodManBean();
+		Member mvis=new Member();
 //		ofmVis.setVis_name(vis_name);
 		ofmVis.setVis_res_name(vis_res_name);
 		ofmVis.setVis_date(vis_date);
@@ -123,7 +125,9 @@ public class FoodVisController_32 {
 		ofmVis.setVis_num(vis_num);
 		ofmVis.setVis_condition(vis_condition);
 		ofmVis.setMember_id(member_id);
+		
 		ofmservice.insert(ofmVis);
+//		memservice.insert(mvis);
 		
 		Page<OldFoodManBean> page =ofmservice.findByPage(1);
 		List<OldFoodManBean> list=page.getContent();
