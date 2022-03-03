@@ -79,7 +79,7 @@ public class Member implements Serializable {
 	
 	
 	@ManyToMany(mappedBy = "membervis")
-	private Set<OldFoodManBean> ofm = new HashSet<OldFoodManBean>();
+	private Set<OldFoodManBean> ofm = new LinkedHashSet<OldFoodManBean>();
 	
 	public Member() {
 	}
