@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -65,8 +66,9 @@ public class OldFoodManBean implements Serializable{
 	private String vis_condition;
 	
 	
-
-	private Integer member_id;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "member_id")
+	private Member member_id;
 	
 	
 	
@@ -196,14 +198,24 @@ public class OldFoodManBean implements Serializable{
 
 	
 
-	public Integer getMember_id() {
+	
+	
+	public Member getMember_id() {
 		return member_id;
 	}
 
-	public void setMember_id(Integer member_id) {
+	public void setMember_id(Member member_id) {
 		this.member_id = member_id;
 	}
-	
+
+	public Set<Member> getMembervis() {
+		return membervis;
+	}
+
+	public void setMembervis(Set<Member> membervis) {
+		this.membervis = membervis;
+	}
+
 	public Set<Member> getMember() {
 		return membervis;
 	}
@@ -212,13 +224,7 @@ public class OldFoodManBean implements Serializable{
 		this.membervis = membervis;
 	}
 
-//	public Set<JoinVis> getJoinvis() {
-//		return joinvis;
-//	}
-//
-//	public void setJoinvis(Set<JoinVis> joinvis) {
-//		this.joinvis = joinvis;
-//	}
+
 
 	@Override
 	public String toString() {
@@ -241,6 +247,8 @@ public class OldFoodManBean implements Serializable{
 		builder.append(vis_condition);
 		builder.append(", member_id=");
 		builder.append(member_id);
+		builder.append(", membervis=");
+		builder.append(membervis);
 		builder.append("]");
 		return builder.toString();
 	}

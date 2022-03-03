@@ -84,6 +84,9 @@ public class Member implements Serializable {
 	private Set<OldFoodManBean> ofm = new LinkedHashSet<OldFoodManBean>();
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
+	private Set<OldFoodManBean> ofmid = new LinkedHashSet<OldFoodManBean>();
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
 	
 	public Member() {

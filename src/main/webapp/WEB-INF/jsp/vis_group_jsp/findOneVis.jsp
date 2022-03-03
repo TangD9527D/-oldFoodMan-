@@ -82,42 +82,33 @@
 			
 		</div>
 		
-<!-- 				<div class="row justify-content-center"> -->
+<!--  				<div class="row justify-content-center">  -->
 
-<!-- 			<div class="col-6"> -->
-<!-- 				<div class="card"> -->
-<!-- 					<div class="card-header text-white bg-dark ">加入</div> -->
-<!-- 					<div class="card-body"> -->
+<!--  			<div class="col-6">  -->
+<!--  				<div class="card">  -->
+<!--  					<div class="card-header text-white bg-dark ">加入</div>  -->
+<!--  					<div class="card-body">  -->
 						
-<<<<<<< HEAD
+ 							
+
 <%-- 							<form:form class="form" action="${contextRoot}/addjoinvis/${ofm.vis_id} " --%>
-<%-- 							modelAttribute="ofm" method="post"> --%>
+<%-- 							modelAttribute="ofmvis" method="post"> --%>
 
 							
 <!-- 							<input  type="hidden"  class="form-control" value="" /> -->
 <!-- 							<div class="form-group"> -->
 <!-- 								<label for="inputAddress2">加入原因</label>  -->
-<!-- 								<input type="text"   class="form-control" /> -->
+<!-- 								<input type="text" name="add_condition"  class="form-control" /> -->
 <!-- 							</div> -->
-=======
-							<form:form class="form" action="${contextRoot}/addjoinvis/${ofm.vis_id} "
-							modelAttribute="ofmvis" method="post">
 
-							
-							<input  type="hidden"  class="form-control" value="" />
-							<div class="form-group">
-								<label for="inputAddress2">加入原因</label> 
-								<input type="text" name="add_condition"  class="form-control" />
-							</div>
->>>>>>> 923cec5648c11774fb8c8f301df1ca7504e57756
 
-<!-- 						<button type="submit" class="btn btn-outline-dark" >加入</button> -->
-<%-- 						</form:form> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+<!-- 						<button type="submit" class="btn btn-outline-dark" >加入</button> --> -->
+<%-- 						</form:form>  --%>
+<!-- 				</div>  -->
+<!-- 			</div>  -->
+<!-- 			</div>  -->
 			
-<!-- 		</div> -->
+<!-- 		</div>  -->
 		
 
 		</div>
