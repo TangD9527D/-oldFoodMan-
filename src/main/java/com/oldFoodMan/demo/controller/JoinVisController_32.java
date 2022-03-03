@@ -53,13 +53,11 @@ public class JoinVisController_32 {
 
 		JoinVis jv=new JoinVis();
 		jv.setAdd_condition(joinvis);
-		
 		jv.setMember_id(member);
 		jv.setMy_food_vis_id(ofmvis);
 		
 		jvservice.addJoinVis(jv); 
-		
-		
+
 		mav.getModel().put("ofm", jv);
 		
 		return mav;
