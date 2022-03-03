@@ -90,13 +90,13 @@
 					<div class="card-body">
 						
 							<form:form class="form" action="${contextRoot}/addjoinvis/${ofm.vis_id} "
-							modelAttribute="ofm" method="post">
+							modelAttribute="ofmvis" method="post">
 
 							
 							<input  type="hidden"  class="form-control" value="" />
 							<div class="form-group">
 								<label for="inputAddress2">加入原因</label> 
-								<input type="text"   class="form-control" />
+								<input type="text" name="add_condition"  class="form-control" />
 							</div>
 
 						<button type="submit" class="btn btn-outline-dark" >加入</button>
