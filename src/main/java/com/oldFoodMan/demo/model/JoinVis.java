@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "add_food_group")
 @IdClass(JoinVisBoth.class)
 public class JoinVis implements Serializable{
 

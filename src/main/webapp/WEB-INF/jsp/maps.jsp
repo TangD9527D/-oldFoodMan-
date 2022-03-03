@@ -27,6 +27,7 @@
 <script
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link rel="shortcut icon" href="/images/favicon.png" />
 <!-- 改為老食人小圖 -->
@@ -217,7 +218,7 @@ img {
 }
 
 #location1 {
-	border: 1px solid black;	
+	
 	float: right;
 	width: 100%;
 	height: 80%;
@@ -236,7 +237,7 @@ img {
 		<div id="location1"></div>
 		
 				<input type="hidden"
-					id="member_id" value="${member_id}" class="form-control" required>
+					id="member_id" value="${member.id}" class="form-control" required>
 			
 	</div>
 
@@ -258,8 +259,10 @@ img {
 				class="btn btn-outline-dark btn-sm" type="button" value="HideMark" />
 
 			<button id="star"
-				onclick="confirm('確定送出？'); return insertlocation();"
+				onclick=""
 				class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
+
+<!-- confirm('確定送出？'); return insertlocation() -->
 
 		</div>
 
@@ -269,7 +272,7 @@ img {
 					<img src="<c:url value='/getPicture/${maps.id}'/>"
 						style="width: 250px; height: 220px" class="card-img-top" alt="...">
 					<div id="box" class="card-body">
-						<h3 class="card-title"
+						<h3 id="p" class="card-title"
 							style="background-color: #ADADAD; text-align: center">${maps.title}</h3>
 						<h5 id="p" class="card-text">${maps.content}</h5>
 						<a href="#" class="btn btn-secondary"
@@ -447,8 +450,7 @@ img {
 				data : dtoJsonString,
 				
 				success : function(data) {
-					$('#location1').append(data.likelocations)		
-
+					$('#location1').append(data.likelocations)
 				},
 				error : function(err) {
 				console.log(err)
@@ -458,6 +460,46 @@ img {
 			})
 		}
  
+
+</script>
+<script>
+
+document.getElementById("star").addEventListener("click",function(){
+	  swal("Good job!", "已經收藏此地點!", "success").then(insertlocation());
+	});
+	
+
+
+</script>
+<script>
+
+// //網頁接值
+		$(document).ready(function() {	
+			$.ajax({
+					url : 'http://localhost:8080/oldFoodMan/likeloc',
+					contentType : 'application/json ; charset=UTF-8',
+					dataType : 'json',
+					method : 'get',
+					success : function(result){
+						console.log("rs: "+result)
+						var msg_data='';
+						$.each(result,function(index,value){
+			
+							msg_data+= '<h5>'+value.likelocations +'</h5>'
+				
+						})
+						$('#location1').append(msg_data.likelocations)
+
+					
+					},
+					error : function(err) {
+						console.log(err)
+						alert('發生錯誤')
+					}		
+		
+				});
+		
+			})
 
 </script>
 

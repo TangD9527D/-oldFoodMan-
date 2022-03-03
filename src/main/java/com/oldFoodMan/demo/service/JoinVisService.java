@@ -20,9 +20,11 @@ import com.oldFoodMan.demo.model.Product;
 
 @Service
 public class JoinVisService {
+	
 	@Autowired
 	private JoinVisRepository joinDao;
 	
+	@Autowired
 	private OfmRepository visDao;
 	
 
@@ -33,10 +35,18 @@ public class JoinVisService {
 	}
 	
 	
-	public void addJoinVis(JoinVis jv) {
+	public void addJoinVis(JoinVis joincon) {
 
+		Member memberid=joincon.getMember_id();
+		OldFoodManBean vis_id=joincon.getMy_food_vis_id();
+		String condition=joincon.getAdd_condition();
+		JoinVis jovis = new JoinVis();
 		
-		joinDao.save(jv);
+		jovis.setMember_id(memberid);
+		jovis.setMy_food_vis_id(vis_id);
+		jovis.setAdd_condition(condition);
+		System.out.println("service: "+joincon);
+		joinDao.save(jovis);
 		
 	}
 	
