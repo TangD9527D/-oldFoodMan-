@@ -40,9 +40,9 @@ public class FoodRecord implements Serializable {
 	@Column(name="create_at")
 	private Date added;
 	
-	@Transient
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-	@JoinColumn(name = "id")
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "member_id")
 	private Member member_id;
 	
 
