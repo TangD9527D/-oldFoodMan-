@@ -5,7 +5,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="vis_group_jsp/layout/navbar.jsp" />
+<jsp:include page="menu.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +35,7 @@
 #allpage {
 	width: 70%;
 	height: 70%;
-	margin: 20px auto;
+	margin: 10px auto;
 	/* float: left; */
 }
 
@@ -202,21 +202,51 @@ img {
 	float: right;
 }
 
+#right {
+	position: absolute;
+	bottom: 53px;
+}
+
+#location {
+	border: 5px solid pink;
+	float: right;
+	width: 14%;
+	height: 50%;
+	margin: 50px auto;
+	border-radius: 15px;
+}
+
+#location1 {
+	border: 1px solid black;	
+	float: right;
+	width: 100%;
+	height: 80%;
+	margin: 5px auto;
+	border-radius: 15px;
+}
 </style>
 
 
 </head>
 <body>
-
+	<div id="location">
+		<h4 style="text-align: center; padding-top: 20px">收藏的地點🌟</h4>
+		<hr style="color: pink; border: 5px solid pink">
+		<div id="location1"></div>
+		
+				<input type="hidden"
+					id="member_id" value="${member_id}" class="form-control" required>
+			
+	</div>
 
 	<div id="allpage">
 		<!--整個頁面的65%-->
 		<div id="inputdiv">
 			<!--allpage的65%-->
 			<input id="input" class="" type="search" placeholder="Search Box"
-				value="" />
+				 />
 		</div>
-		
+
 		<div id="map"></div>
 
 		<div id="inputdivv">
@@ -224,11 +254,12 @@ img {
 				type="button" value="DeleteMark" /> <input id="show-markers"
 				class="btn btn-outline-secondary btn-sm" type="button"
 				value="ShowMark" /> <input id="hide-markers"
-				class="btn btn-outline-dark btn-sm" type="button"
-				value="HideMark" />
-				
-			<button id="star" onclick="" class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
-		
+				class="btn btn-outline-dark btn-sm" type="button" value="HideMark" />
+
+			<button id="star"
+				onclick="confirm('確定送出？'); return insertlocation();"
+				class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
+
 		</div>
 
 		<div id="range" class="">
@@ -238,17 +269,23 @@ img {
 						style="width: 250px; height: 220px" class="card-img-top" alt="...">
 					<div id="box" class="card-body">
 						<h3 class="card-title"
-							style="background-color: #5e5e5e; text-align: center">${maps.title}</h3>
+							style="background-color: #ADADAD; text-align: center">${maps.title}</h3>
 						<h5 id="p" class="card-text">${maps.content}</h5>
 						<a href="#" class="btn btn-secondary"
 							style="position: absolute; bottom: 15px">繼續閱讀</a>
+						<div id="right">
+							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
+								value="${maps.added}" />
+						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
 	</div>
 
-	
+
+
+
 	<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 
 	<!--放置google 金鑰 -->
@@ -386,12 +423,42 @@ img {
          hideMarkers();
          markers = [];
      }     
-	
-	
-
-       
+	       
     </script>
+	<script>
 
+ 		function insertlocation() {
+
+			var inputResName = document.getElementById('input').value;
+			var Member_id=document.getElementById('member_id').value;
+			console.log(Member_id);
+			var dtoObject = {
+				"likelocations" : inputResName,
+				"member_id":Member_id,
+				}
+			var dtoJsonString = JSON.stringify(dtoObject);	
+				console.log(dtoJsonString);
+			$.ajax({
+				url : 'http://localhost:8080/oldFoodMan/locations',
+				contentType : 'application/json; charset=UTF-8',
+				dataType : 'json',
+				method : 'post',
+				data : dtoJsonString,
+				
+				success : function(data) {
+					$('#location1').append(data.likelocations)		
+
+				},
+				error : function(err) {
+				console.log(err)
+				alert('發生錯誤')
+				}
+
+			})
+		}
+ 
+
+</script>
 
 </body>
 </html>

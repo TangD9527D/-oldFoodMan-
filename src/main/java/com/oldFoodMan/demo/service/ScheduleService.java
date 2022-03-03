@@ -56,7 +56,7 @@ public class ScheduleService {
 	public Page<ScheduleBean> findByPage(Integer pageNumber){
 		
 		
-		Pageable pgb=PageRequest.of(pageNumber-1, 8,Sort.Direction.DESC,"added");
+		Pageable pgb=PageRequest.of(pageNumber-1, 8,Sort.Direction.DESC,"location");
 		
 		return sbdao.findAll(pgb);
 		
