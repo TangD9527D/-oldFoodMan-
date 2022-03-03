@@ -50,7 +50,7 @@
                 },
                 error:function(err){
                     console.log(err);
-                    alert('發生錯誤!請重新加入購物車');
+                    alert('購物車已有此商品!!');
                 }
             })
 		} 
