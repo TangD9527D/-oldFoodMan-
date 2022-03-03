@@ -2,6 +2,7 @@ package com.oldFoodMan.demo.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -76,6 +78,9 @@ public class Member implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
 	private Set<UserRole> userRole = new LinkedHashSet<UserRole>();
 
+	
+	@ManyToMany(mappedBy = "membervis")
+	private Set<OldFoodManBean> ofm = new HashSet<OldFoodManBean>();
 	
 	public Member() {
 	}
@@ -171,6 +176,18 @@ public class Member implements Serializable {
 
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
+	}
+
+	
+	
+	
+	
+	public Set<OldFoodManBean> getOfm() {
+		return ofm;
+	}
+
+	public void setOfm(Set<OldFoodManBean> ofm) {
+		this.ofm = ofm;
 	}
 
 	@Override

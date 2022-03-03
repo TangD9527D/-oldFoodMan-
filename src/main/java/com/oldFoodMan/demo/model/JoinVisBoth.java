@@ -14,12 +14,12 @@ public class JoinVisBoth implements Serializable {
 
 	private String member_id;
 
-    private String my_food_vis_id;
+    private Integer my_food_vis_id;
 
     public JoinVisBoth() {
 	}
 
-	public JoinVisBoth(String member_id, String my_food_vis_id) {
+	public JoinVisBoth(String member_id, Integer my_food_vis_id) {
 		super();
 		this.member_id = member_id;
 		this.my_food_vis_id = my_food_vis_id;
@@ -33,11 +33,11 @@ public class JoinVisBoth implements Serializable {
 		this.member_id = member_id;
 	}
 
-	public String getMy_food_vis_id() {
+	public Integer getMy_food_vis_id() {
 		return my_food_vis_id;
 	}
 
-	public void setMy_food_vis_id(String my_food_vis_id) {
+	public void setMy_food_vis_id(Integer my_food_vis_id) {
 		this.my_food_vis_id = my_food_vis_id;
 	}
 
