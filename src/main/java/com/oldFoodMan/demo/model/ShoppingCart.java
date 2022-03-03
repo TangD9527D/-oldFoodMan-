@@ -17,15 +17,16 @@ import javax.persistence.Table;
 public class ShoppingCart {
 
 	@Id
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "product_id")
 	private Product product_id;
 	
 	@Id
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "member_id")
 	private Member member_id;
 
+	private Integer product_amount;
 	
 	
 	public ShoppingCart() {
@@ -55,13 +56,30 @@ public class ShoppingCart {
 		this.member_id = member_id;
 	}
 
+	
+
+	public Integer getProduct_amount() {
+		return product_amount;
+	}
 
 
-	public ShoppingCart(Product product_id, Member member_id) {
+
+	public void setProduct_amount(Integer product_amount) {
+		this.product_amount = product_amount;
+	}
+
+
+
+	public ShoppingCart(Product product_id, Member member_id, Integer product_amount) {
 		super();
 		this.product_id = product_id;
 		this.member_id = member_id;
+		this.product_amount = product_amount;
 	}
+
+
+
+	
 	
 	
 	
