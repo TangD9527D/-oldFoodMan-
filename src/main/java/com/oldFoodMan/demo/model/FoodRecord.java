@@ -48,7 +48,7 @@ public class FoodRecord implements Serializable {
 	@JoinColumn(name = "member_id")
 	private Member member_id;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "id",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "id")
 	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
 	
 	
