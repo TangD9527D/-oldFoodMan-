@@ -23,15 +23,17 @@ import javax.validation.constraints.NotBlank;
 @Table(name="member")
 public class Member implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
 	
 	

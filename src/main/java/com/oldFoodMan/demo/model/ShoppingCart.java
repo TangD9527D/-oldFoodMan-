@@ -1,6 +1,6 @@
 package com.oldFoodMan.demo.model;
 
-import java.util.Objects;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,8 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "shoppingcart")
 @IdClass(ShoppingCartBoth.class)
 public class ShoppingCart {
 
@@ -21,7 +23,7 @@ public class ShoppingCart {
 	
 	@Id
 	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "member_id")
 	private Member member_id;
 
 	
