@@ -46,6 +46,10 @@
 				</ul>
 			</div>
 			<ul class="nav justify-content-end">
+				<c:if test="${pageContext.request.userPrincipal != null}">
+					<li class="nav-item"><a class="nav-link"
+						href="${contextRoot}/userPage/${pageContext.request.userPrincipal.name}">${pageContext.request.userPrincipal.name}</a></li>
+				</c:if>
 				<c:if test="${pageContext.request.userPrincipal == null}">
 					<li class="nav-item"><a class="nav-link"
 						href="${contextRoot}/login">Login</a></li>

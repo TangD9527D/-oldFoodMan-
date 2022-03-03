@@ -19,6 +19,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 @Table(name="member")
 public class Member implements Serializable {
@@ -27,14 +29,7 @@ public class Member implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
-	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
-	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
-	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
-	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
-	
-	
+
 	@Column(name = "memberName")
 	private String memberName;
 	
@@ -67,13 +62,17 @@ public class Member implements Serializable {
 	@Column(name = "createDate")
 	private Date createDate; 
 	
-
+//	private MultipartFile MemberImage;
 	
-	
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
 	private Set<UserRole> userRole = new LinkedHashSet<UserRole>();
-
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
+	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
+	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
+	
 	
 	public Member() {
 	}
@@ -163,6 +162,14 @@ public class Member implements Serializable {
 		this.createDate = createDate;
 	}
 	
+//	public MultipartFile getMemberImage() {
+//		return MemberImage;
+//	}
+//
+//	public void setMemberImage(MultipartFile memberImage) {
+//		MemberImage = memberImage;
+//	}
+
 	public Set<UserRole> getUserRole() {
 		return userRole;
 	}

@@ -12,11 +12,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>老食名人</title>
-    <link rel="stylesheet" href="${contextRoot}/css/oldfoodPage01_header.css">
-    <link rel="stylesheet" href="${contextRoot}/css/oldfoodPage01_navi.css">
-    <link rel="stylesheet" href="${contextRoot}/css/oldfoodPage01_contents_left.css">
-    <link rel="stylesheet" href="${contextRoot}/css/oldfoodPage01_contents_right.css">
-    <link rel="stylesheet" href="${contextRoot}/css/oldfoodPage01_base">
+    <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_header.css">
+    <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_navi.css">
+    <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_left.css">
+    <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_right.css">
+    <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base">
     <style>
         li{
             list-style: inherit;

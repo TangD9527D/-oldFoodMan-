@@ -5,8 +5,10 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.Member;
@@ -35,6 +37,33 @@ public class MemberController {
 		}
 		
 		mav.setViewName("welcomePage");
+		
+		return mav;
+	}
+	
+	@GetMapping("/editMember")
+	public ModelAndView editMember(ModelAndView mav, @RequestParam(value = "id") Integer id) {
+		
+		Member mb = service.findById(id);
+		
+		mav.getModel().put("member", mb);
+		mav.setViewName("member/editMember");
+		
+		return mav;
+	}
+	
+	@PostMapping("/editMember")
+	public ModelAndView viewMember(ModelAndView mav, @Valid @ModelAttribute(name = "member") Member mb, BindingResult rs) {
+		
+		mav.setViewName("member/editMember");
+		
+		if(!rs.hasErrors()) {
+			
+			service.insert(mb);
+			
+			mav.setViewName("redirect:/viewMember");
+		}
+		
 		
 		return mav;
 	}
