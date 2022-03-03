@@ -8,12 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 
 @Entity
 @IdClass(JoinVisBoth.class)
 public class JoinVis implements Serializable{
+
 	
 	@Id
 	private Member member_id;
