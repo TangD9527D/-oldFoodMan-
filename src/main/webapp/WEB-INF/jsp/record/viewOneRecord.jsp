@@ -122,24 +122,27 @@ figure {
 	<div id="main">
 		<div id="topTitleLL">
 			<div id="mainTitleLL">
-				<h1>
-					<c:out value="${lastestFoodRecord.title}" />
+				<h1 id="h1">
+					<c:out value="${foodrecordById.title}" />
 				</h1>
-
+		<div id="mainTitleLL">
 				<c:out value="${foodrecordById.gender}" />
 				<c:out value="${foodrecordById.gender1}" />
 				<c:out value="${foodrecordById.gender2}" />
 			</div>
-
 			<div id="arthurLL">
 				<h5>作者 蘋果馬丁尼 @croissantoffee</h5>
 			</div>
 			<div id="shareLL">
-				<img id="icon" src="images/LINE_icon.png"> <img id="icon"
-					src="images/instagram.png"> <img id="icon"
-					src="images/facebook.png">
-			</div>
-		</div>
+			<div class="line-it-button" data-lang="zh_Hant" data-type="share-b" data-env="REAL" data-url="http://localhost:8080/my-project/viewById?id=1" data-color="default" data-size="small" data-count="true" data-ver="3" style="display: none;"></div>
+<script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+			
+			
+				<a href=""><img id="icon" title="LINE分享" src="images/LINE_icon.png"></a>
+				<img
+					id="icon" title="Instagram分享" src="images/instagram.png"> <img
+					id="icon" title="Facebook分享" src="images/facebook.png">
+			</div>		</div>
 		<figure>
 			<img src="imgLL/02.jpg">
 		</figure>
