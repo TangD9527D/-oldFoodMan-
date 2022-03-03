@@ -1,5 +1,6 @@
 package com.oldFoodMan.demo.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ public class PageController {
 
 	@GetMapping("/userPage/{user}")
 	public ModelAndView userPage(ModelAndView mav) {
-		
+
 		mav.setViewName("lemon/reviewerMainPage");
 
 		Member mb = new Member();
@@ -36,14 +37,16 @@ public class PageController {
 
 		return mav;
 	}
-	
+
 	@GetMapping("/viewMember")
-	public ModelAndView viewMember(ModelAndView mav ,@Valid @ModelAttribute Member member, BindingResult rs) {
-		
-		mav.setViewName("member/vieMember");
-		
-		mav.getModel().put("member", member);
-		
+	public ModelAndView viewMember(ModelAndView mav, HttpSession hs, BindingResult rs) {
+
+		Member mb = (Member) hs.getAttribute("member");
+
+		mav.setViewName("member/viewMember");
+
+		mav.getModel().put("member", mb);
+
 		return mav;
 	}
 }

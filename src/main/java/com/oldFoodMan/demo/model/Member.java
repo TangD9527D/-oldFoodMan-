@@ -19,6 +19,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -66,7 +67,8 @@ public class Member implements Serializable {
 	@Column(name = "createDate")
 	private Date createDate; 
 	
-//	private MultipartFile MemberImage;
+	@Transient
+	private MultipartFile MemberImage;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
 	private Set<UserRole> userRole = new LinkedHashSet<UserRole>();
@@ -80,6 +82,9 @@ public class Member implements Serializable {
 	
 	@ManyToMany(mappedBy = "membervis")
 	private Set<OldFoodManBean> ofm = new LinkedHashSet<OldFoodManBean>();
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
+	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
 	
 	public Member() {
 	}
@@ -169,13 +174,13 @@ public class Member implements Serializable {
 		this.createDate = createDate;
 	}
 	
-//	public MultipartFile getMemberImage() {
-//		return MemberImage;
-//	}
-//
-//	public void setMemberImage(MultipartFile memberImage) {
-//		MemberImage = memberImage;
-//	}
+	public MultipartFile getMemberImage() {
+		return MemberImage;
+	}
+
+	public void setMemberImage(MultipartFile memberImage) {
+		MemberImage = memberImage;
+	}
 
 	public Set<UserRole> getUserRole() {
 		return userRole;
@@ -184,10 +189,6 @@ public class Member implements Serializable {
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
 	}
-
-	
-	
-	
 	
 	public Set<OldFoodManBean> getOfm() {
 		return ofm;
@@ -195,6 +196,30 @@ public class Member implements Serializable {
 
 	public void setOfm(Set<OldFoodManBean> ofm) {
 		this.ofm = ofm;
+	}
+
+	public Set<ShoppingCart> getShoppingCart() {
+		return shoppingCart;
+	}
+
+	public void setShoppingCart(Set<ShoppingCart> shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
+
+	public Set<FoodRecord> getFoodRecord() {
+		return foodRecord;
+	}
+
+	public void setFoodRecord(Set<FoodRecord> foodRecord) {
+		this.foodRecord = foodRecord;
+	}
+
+	public Set<RecordMessages> getRecordMessages() {
+		return recordMessages;
+	}
+
+	public void setRecordMessages(Set<RecordMessages> recordMessages) {
+		this.recordMessages = recordMessages;
 	}
 
 	@Override
@@ -220,30 +245,6 @@ public class Member implements Serializable {
 		builder.append(createDate);
 		builder.append("]");
 		return builder.toString();
-	}
-
-	public Set<ShoppingCart> getShoppingCart() {
-		return shoppingCart;
-	}
-
-	public void setShoppingCart(Set<ShoppingCart> shoppingCart) {
-		this.shoppingCart = shoppingCart;
-	}
-
-	public Set<FoodRecord> getFoodRecord() {
-		return foodRecord;
-	}
-
-	public void setFoodRecord(Set<FoodRecord> foodRecord) {
-		this.foodRecord = foodRecord;
-	}
-
-	public Set<RecordMessages> getRecordMessages() {
-		return recordMessages;
-	}
-
-	public void setRecordMessages(Set<RecordMessages> recordMessages) {
-		this.recordMessages = recordMessages;
 	}
 	
 	

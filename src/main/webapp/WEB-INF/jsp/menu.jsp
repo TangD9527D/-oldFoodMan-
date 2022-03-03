@@ -32,7 +32,7 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link"
-						href="${contextRoot}/userInfo">User Info</a></li>
+						href="${contextRoot}/viewMember">User Info</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${contextRoot}/admin">Admin</a></li>
 					<li class="nav-item"><a class="nav-link"
