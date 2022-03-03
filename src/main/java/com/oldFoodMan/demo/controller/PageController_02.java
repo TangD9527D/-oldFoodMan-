@@ -45,11 +45,11 @@ public class PageController_02 {
 		this.servletContext = servletContext;
 	}
 
-	@GetMapping("searchMaps")
-	public String map11() {
-
-		return "maps";
-	}
+//	@GetMapping("searchMaps")
+//	public String map11() {
+//
+//		return "maps";
+//	}
 
 	@GetMapping("/ajaxMessages")
 	public ModelAndView ajaxPage(ModelAndView mav) {
@@ -70,7 +70,7 @@ public class PageController_02 {
 	}
 
 	
-	@GetMapping("22searchMaps")
+	@GetMapping("searchMaps")
 	public ModelAndView mapsAjaxPage(ModelAndView mav,
 			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber) {
 
