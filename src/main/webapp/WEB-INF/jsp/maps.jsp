@@ -232,8 +232,6 @@ img {
 		</div>
 
 		<div id="range" class="">
-
-
 			<c:forEach var="maps" items="${page.content}">
 				<div class="card" id="p1" style="width: 8cm;">
 					<img src="<c:url value='/getPicture/${maps.id}'/>"
@@ -251,33 +249,6 @@ img {
 	</div>
 
 	
-
-
-
-
-	<div class="row justify-content-center">
-		<div class="col-8">
-			<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
-
-				<c:choose>
-					<c:when test="${page.number != pageNumber -1}">
-
-						<a href="${contextRoot}/searchMaps?p=${pageNumber}"><c:out
-								value="${pageNumber} "></c:out></a>
-
-					</c:when>
-					<c:otherwise>
-						<c:out value="${pageNumber} " />
-					</c:otherwise>
-
-				</c:choose>
-				<c:if test="${pageNumber != page.totalPages}">
-					|
-					</c:if>
-			</c:forEach>
-
-		</div>
-	</div>
 	<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 
 	<!--放置google 金鑰 -->
@@ -416,7 +387,7 @@ img {
          markers = [];
      }     
 	
-
+	
 
        
     </script>
