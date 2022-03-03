@@ -164,7 +164,7 @@ html, body {
 }
 
 #range {
-	/* 	justify-content: center; */
+
 	border: 0.5px solid transparent;
 	text-align: justify;
 	width: 100%;
@@ -221,8 +221,9 @@ img {
 	float: right;
 	width: 100%;
 	height: 80%;
-	margin: 5px auto;
+	margin: 0.1px auto;
 	border-radius: 15px;
+	text-align: justify;
 }
 </style>
 
