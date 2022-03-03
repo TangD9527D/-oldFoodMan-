@@ -23,13 +23,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oldFoodMan.demo.dto.FoodVisDto;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OldFoodManBean;
-import com.oldFoodMan.demo.service.MemberServiceImpl;
+
 import com.oldFoodMan.demo.service.OfmService;
 @Controller
 public class FoodVisController_32 {
 	@Autowired
 	private OfmService ofmservice;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 98b04bb97f677531639d3cf13b9d7df06db58632
 	
 	@PostMapping(value="/addFoodVis")
 	public ModelAndView postNewMessage(ModelAndView mav,@Valid @ModelAttribute(name = "ofm") OldFoodManBean msg ,Member member,HttpSession hs,BindingResult rs) {
@@ -100,8 +104,8 @@ public class FoodVisController_32 {
 	@PostMapping("/api/postFoodVis")
 	public List<OldFoodManBean> postFoodVis(@RequestBody FoodVisDto dto,HttpSession hs){
 		
-		Object id=hs.getAttribute("id");
-		
+		Member mid = (Member)hs.getAttribute("member");
+		Integer id=mid.getId();
 //		String vis_name=dto.getVis_name();
 		String vis_res_name=dto.getVis_res_name();
 		Date vis_date=dto.getVis_date();
@@ -110,12 +114,16 @@ public class FoodVisController_32 {
 		String vis_location=dto.getVis_location();
 		String vis_num=dto.getVis_num();
 		String vis_condition=dto.getVis_condition();
-		Integer member_id=dto.getMember_id();
+		
 		
 		System.out.println("id:" + id);
 		
 		OldFoodManBean ofmVis=new OldFoodManBean();
+<<<<<<< HEAD
 	
+=======
+//		Member mvis=new Member();
+>>>>>>> 98b04bb97f677531639d3cf13b9d7df06db58632
 //		ofmVis.setVis_name(vis_name);
 		ofmVis.setVis_res_name(vis_res_name);
 		ofmVis.setVis_date(vis_date);
@@ -124,7 +132,7 @@ public class FoodVisController_32 {
 		ofmVis.setVis_location(vis_location);
 		ofmVis.setVis_num(vis_num);
 		ofmVis.setVis_condition(vis_condition);
-		ofmVis.setMember_id(member_id);
+		ofmVis.setMember_id(id);
 		
 		ofmservice.insert(ofmVis);
 //		memservice.insert(mvis);
@@ -135,6 +143,7 @@ public class FoodVisController_32 {
 		return list;
 		
 	}
+	
 	@ResponseBody
 	@GetMapping("/api/getFoodVis")
 	public List<OldFoodManBean> getFoodVis(ModelAndView mav){
@@ -150,11 +159,11 @@ public class FoodVisController_32 {
 	@ResponseBody
 	@GetMapping("/api/getFoodVisByPage")
 	public List<OldFoodManBean> getFoodVisByPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber,HttpSession hs){
-		Object id=hs.getAttribute("id");
+		Member mid = (Member)hs.getAttribute("member");
 		Page<OldFoodManBean> page =ofmservice.findByPage(pageNumber);
 		List<OldFoodManBean> list=page.getContent();
 		mav.getModel().put("page", page);
-		System.out.println("id: "+id);
+		System.out.println("id: "+mid);
 		
 		return list;
 		
@@ -162,16 +171,21 @@ public class FoodVisController_32 {
 	
 	@GetMapping("/findOneVis")
 	public ModelAndView findById(ModelAndView mav, @RequestParam(name="id") Integer id,HttpSession hs) {
-		Object ids=hs.getAttribute("id");
+		Member mid = (Member)hs.getAttribute("member");
+		Integer memberid=mid.getId();
 		OldFoodManBean ofm=ofmservice.findById(id);
 		mav.getModel().put("ofm", ofm);
+		
 		mav.setViewName("vis_group_jsp/findOneVis");
-		System.out.println("id: "+ids);
+		System.out.println("id: "+memberid);
 		return mav;
 
 
 		
 	}
+	
+	
+	
 	
 	
 	

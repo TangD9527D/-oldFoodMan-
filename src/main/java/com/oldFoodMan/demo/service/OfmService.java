@@ -24,7 +24,7 @@ public class OfmService {
 		dao.save(ofm);
 
 	}
-
+	
 	public OldFoodManBean findById(Integer id) {
 		Optional<OldFoodManBean> op = dao.findById(id);
 

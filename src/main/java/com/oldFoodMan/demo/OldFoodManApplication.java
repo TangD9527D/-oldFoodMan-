@@ -11,6 +11,8 @@ public class OldFoodManApplication {
 		System.out.println("gogogo!!");
 		System.out.println("O_O");
 		System.out.println("溫生蠔跟你問聲早");
+		System.out.println("咕嚕咕嚕～");
+		
 	}
 
 }

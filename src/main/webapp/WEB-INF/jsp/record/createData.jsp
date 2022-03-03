@@ -115,14 +115,17 @@ legend {
 </head>
 
 <body>
-
+  
 	<form:form class="form" action="${contextRoot}/uploadData" modelAttribute="foodRecord" method="post" enctype="multipart/form-data">
 		<!-- 	modelAttribute寫的是Bean -->
 		<form class="sform2">
 			<br>
 			<div class="container">
 				<form class="sform1">
-
+					
+					<div class="st1">
+					<button id="fastInput" type="button">快速輸入</button>
+					</div>
 					<div class="st1">
 						<label class="lab">上傳圖片:</label>
 						<form:input path="productImage" type='file' />
@@ -136,11 +139,11 @@ legend {
 
 					<div class="st1">
 						<label class="lab">標題:</label>
-						<form:input path="title" type="text"></form:input>
+						<form:input id="title" path="title" type="text"></form:input>
 					</div>
 					<div class="st1">
 						<label class="lab">內文:</label>
-						<form:textarea path="content" cols="800" rows="4" id="inputID" />
+						<form:textarea class="content" path="content" cols="800" rows="4" id="inputID" />
 
 					</div>
 
@@ -152,7 +155,7 @@ legend {
 					<legend>店家資訊</legend>
 			<div class="st1">
 				<label class="lab">店名:</label>
-				<form:input path="shopName" type="text"></form:input>
+				<form:input id="shopName" path="shopName" type="text"></form:input>
 			</div>
 			<div class="st1">
 				<label class="lab">類型:</label>
@@ -168,7 +171,7 @@ legend {
 			</div>
 			<div class="st1">
 				<label class="lab">適合:</label>
-				<form:input path="audience" type="text"></form:input>
+				<form:input id="audience" path="audience" type="text"></form:input>
 			</div>
 
 			<div class="st1">
@@ -189,32 +192,32 @@ legend {
 
 			<div class="st1">
 				<label class="lab">地址:</label>
-				<form:input path="shopAddress" type="text"></form:input>
+				<form:input id="shopAddress" path="shopAddress" type="text"></form:input>
 				<br>
 			</div>
 			<div class="st1">
 				<label class="lab">電話:</label>
-				<form:input path="tel" type="text"></form:input>
+				<form:input id="tel" path="tel" type="text"></form:input>
 				<br>
 			</div>
 			<div class="st1">
 				<label class="lab">營業時間:</label>
 				<form:select path="businessHours" id="day" onchange="selectDay()">
 					<option value="">請選擇</option>
-					<option value="Mon">星期一</option>
-					<option value="Tue">星期二</option>
-					<option value="Wed">星期三</option>
-					<option value="Thu">星期四</option>
-					<option value="Fri">星期五</option>
-					<option value="Sat">星期六</option>
-					<option value="Sun">星期日</option>
+					<option value="星期一">星期一</option>
+					<option value="星期二">星期二</option>
+					<option value="星期三">星期三</option>
+					<option value="星期四">星期四</option>
+					<option value="星期五">星期五</option>
+					<option value="星期六">星期六</option>
+					<option value="星期日">星期日</option>
 				</form:select>
 			</div>
 					
 					
 				<div class="st1">
 					<label class="lab">標籤:</label>
-					<form:input path="tag" type="text"></form:input>
+					<form:input id="tag" path="tag" type="text"></form:input>
 					<br>
 				</div>
 
@@ -225,8 +228,8 @@ legend {
 
 				<div class="st2">
 					<label class="lab">美味:</label>
-					<form:input path="tasty" type="text" id="inputID"></form:input>
-					<input class="inputBtn" type="radio" name="gender" value="5">5
+					<form:input class="tasty" path="tasty" type="text" id="inputID"></form:input>
+					<input class="inputBtn" type="radio" name="gender" value="5" checked="checked">5
 					<input class="inputBtn" type="radio" name="gender" value="4">4
 					<input class="inputBtn" type="radio" name="gender" value="3">3
 					<input class="inputBtn" type="radio" name="gender" value="2">2
@@ -235,8 +238,8 @@ legend {
 				<br>
 				<div class="st2">
 					<label class="lab">氣氛:</label>
-					<form:input path="atmosphere" type="text" id="inputID"></form:input>
-					<input class="inputBtn" type="radio" name="gender1" value="5">5
+					<form:input class="atmosphere" path="atmosphere" type="text" id="inputID"></form:input>
+					<input class="inputBtn" type="radio" name="gender1" value="5" checked="checked">5
 					<input class="inputBtn" type="radio" name="gender1" value="4">4
 					<input class="inputBtn" type="radio" name="gender1" value="3">3
 					<input class="inputBtn" type="radio" name="gender1" value="2">2
@@ -245,12 +248,12 @@ legend {
 				<br>
 				<div class="st2">
 					<label class="lab">西批值:</label>
-					<form:input path="cp" type="text" id="inputID"></form:input>
-					<input class="inputBtn" type="radio" name="gender2" value="5">5
-					<input class="inputBtn" type="radio" name="gender2" value="4">4
-					<input class="inputBtn" type="radio" name="gender2" value="3">3
-					<input class="inputBtn" type="radio" name="gender2" value="2">2
-					<input class="inputBtn" type="radio" name="gender2" value="1">1
+					<form:input class="cp" path="cp" type="text" id="inputID"></form:input>
+					<input class="inputBtn" id="gender2" type="radio" name="gender2" value="5" checked="checked">5
+					<input class="inputBtn" id="gender2" type="radio" name="gender2" value="4">4
+					<input class="inputBtn" id="gender2" type="radio" name="gender2" value="3">3
+					<input class="inputBtn" id="gender2" type="radio" name="gender2" value="2">2
+					<input class="inputBtn" id="gender2" type="radio" name="gender2" value="1">1
 				</div>
 				<br>
 
@@ -264,6 +267,30 @@ legend {
 
 	<script>
 
+	
+	//快速輸入
+	$("#fastInput").click(function(){  
+        $("#title").val("[食記] 台北 教父牛排 Danny's Steakhouse");
+        $("#inputID").val("久聞牛排教父鄧有葵的大名已久，可一直也沒什麼心思想吃，其實我很少會上牛排館吃牛排，因為我總認為牛排這種食物，只要食材本身好，廚師的手藝倒是其次。而且台灣中上價位的牛排館所使用的無非也是美國牛，美國牛去美福或Costco都能買到，回家後用平底鍋煎一下或烤箱烤一下，佐點海鹽沾著吃，一點也不輸外面一客一兩千的牛排。尤其吃過日本近江牛的美味後，美國牛的味道已經滿足不了我了。不過既然朋友想嘗試看看牛排教父的牛排，那便約來一試，嘗嘗也好。");
+        $("#shopName").val("教父牛排 Danny's Steakhouse");
+        $("#type").val("晚餐");
+        $("#audience").val("朋友/家人");
+        console.log($("#audience")); 
+        $("#price").val("$$$   1001-3000元");
+//         $("select[name='city']").val("台北市");
+//         console.log($("div > select[name]='city'")); 
+//         $("#twzipcode[name='town']").val("中山區");
+        $("#shopAddress").val("樂群三路58號");
+        $("#tel").val("02-8501-1838");
+        $("#day").val("星期三");
+        $("#tag").val("#牛排#朋友#好吃#小貴#高品質");
+        $(".tasty").val("細緻滑嫩，入口即化");
+        $(".atmosphere").val("高貴華麗，香氣四溢，非常乾淨");
+        $(".cp").val("價格較高，不能常常來");
+
+    });
+	
+	
     tinymce.init({
       selector: 'textarea',
       plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
