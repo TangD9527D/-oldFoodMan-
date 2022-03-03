@@ -2,7 +2,6 @@ package com.oldFoodMan.demo.controller;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -13,17 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.oldFoodMan.demo.dto.FoodVisDto;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OldFoodManBean;
-
 import com.oldFoodMan.demo.service.OfmService;
 @Controller
 public class FoodVisController_32 {
@@ -137,6 +135,7 @@ public class FoodVisController_32 {
 		
 	}
 	
+	@JsonBackReference
 	@ResponseBody
 	@GetMapping("/api/getFoodVis")
 	public List<OldFoodManBean> getFoodVis(ModelAndView mav){

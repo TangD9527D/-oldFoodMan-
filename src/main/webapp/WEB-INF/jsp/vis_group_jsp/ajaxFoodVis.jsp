@@ -146,7 +146,7 @@ var tdate=new Date();
 							
 							events : function(start, end,timezone, callback) {
 								$.ajax({
-										url : 'http://localhost:8080/oldFoodMan/api/getFoodVis',
+										url : 'http://localhost:8080/oldFoodMan/api/getFoodVisByPage',
 										contentType : 'application/json; charset=UTF-8',
 										dataType : 'json',
 										method : 'get',
@@ -159,13 +159,13 @@ var tdate=new Date();
 											var idt = value.vis_id
 											console.log("id:"+ idt)
 											var date = moment(newDate).format('YYYY-MM-DD')
-											var visurl = "http://localhost:8080/oldFoodMan/findOneVis?id="+ value.vis_id
+// 											var visurl = "http://localhost:8080/oldFoodMan/findOneVis?id="+ value.vis_id
 
 											console.log(visurl)
 											events.push({
 											title : value.vis_res_name,
 											start : date,
-											url : visurl,
+// 											url : visurl,
 											backgroundColor:"#8080C0",
 											borderColor:"#8080C0"
 													});
