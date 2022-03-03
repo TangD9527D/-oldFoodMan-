@@ -40,7 +40,7 @@ public class FoodRecord implements Serializable {
 	@Column(name="create_at")
 	private Date added;
 	
-	
+	@Transient
 	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "id")
 	private Member member_id;
@@ -80,6 +80,17 @@ public class FoodRecord implements Serializable {
 	
 	
 	
+	
+	
+	
+	public Member getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(Member member_id) {
+		this.member_id = member_id;
+	}
+
 	@Transient
 	private MultipartFile  productImage;
 

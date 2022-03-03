@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.validation.Valid;
 
@@ -37,6 +38,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.FoodRecord;
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.service.FoodRecordService;
 
 import org.springframework.util.StringUtils;
@@ -150,7 +152,10 @@ public class FoodRecordController {
 	
 	//新增資料&檔案上傳
 	@PostMapping(value = "/uploadData")
-	public String postNewData(@ModelAttribute(name="foodRecord")FoodRecord fr,BindingResult result) {
+	public String postNewData(@ModelAttribute(name="foodRecord")FoodRecord fr,BindingResult result, HttpSession session) {
+		Member member = (Member)session.getAttribute("member");   //session.getAttribute("member")是個物件，所以轉型別為Member的型別
+		Integer memberID = member.getId();
+		System.out.println(memberID);
 		String[] suppressedFields = result.getSuppressedFields();   //SuppressedFields: 不允許的欄位
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("嘗試傳入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
@@ -170,7 +175,7 @@ public class FoodRecordController {
 					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 				}
 			}
-			
+			fr.setMember_id(member);
 			service.insertRF(fr);
 			
 			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
