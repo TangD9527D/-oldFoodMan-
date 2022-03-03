@@ -1,6 +1,6 @@
 package com.oldFoodMan.demo.controller;
 
-import java.awt.Image;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -44,12 +44,12 @@ public class PageController_02 {
 		super();
 		this.servletContext = servletContext;
 	}
-//
-//	@GetMapping("searchMaps")
-//	public String map11() {
-//
-//		return "maps";
-//	}
+
+	@GetMapping("searchMaps")
+	public String map11() {
+
+		return "maps";
+	}
 
 	@GetMapping("/ajaxMessages")
 	public ModelAndView ajaxPage(ModelAndView mav) {
@@ -70,7 +70,7 @@ public class PageController_02 {
 	}
 
 	
-	@GetMapping("searchMaps")
+	@GetMapping("22searchMaps")
 	public ModelAndView mapsAjaxPage(ModelAndView mav,
 			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber) {
 

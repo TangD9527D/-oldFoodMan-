@@ -167,40 +167,40 @@ html, body {
 	/* 	justify-content: center; */
 	border: 0.5px solid transparent;
 	text-align: justify;
-	width:100%;
+	width: 100%;
 }
 
 #p1 {
 	float: left;
 	margin: 15px 15px;
 	justify-content: space-between;
-	width:100%;
-
-}
-img{
-
-display:block;
-margin:25px auto;
-
-}
-#box{
-width: 100%;
-padding: 10px;
-height:200px;
-margin:10px auto;
-}
-#p{
-  overflow: hidden;
-  display: -webkit-box;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2; /*行數*/
-  -webkit-box-orient: vertical;
-  white-space: normal;
+	width: 100%;
 }
 
+img {
+	display: block;
+	margin: 25px auto;
+}
 
+#box {
+	width: 100%;
+	padding: 10px;
+	height: 200px;
+	margin: 10px auto;
+}
 
+#p {
+	overflow: hidden;
+	display: -webkit-box;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2; /*行數*/
+	-webkit-box-orient: vertical;
+	white-space: normal;
+}
 
+#star {
+	float: right;
+}
 
 </style>
 
@@ -213,9 +213,10 @@ margin:10px auto;
 		<!--整個頁面的65%-->
 		<div id="inputdiv">
 			<!--allpage的65%-->
-			<input id="input" class="" type="search" placeholder="Search Box" />
+			<input id="input" class="" type="search" placeholder="Search Box"
+				value="" />
 		</div>
-
+		
 		<div id="map"></div>
 
 		<div id="inputdivv">
@@ -223,31 +224,37 @@ margin:10px auto;
 				type="button" value="DeleteMark" /> <input id="show-markers"
 				class="btn btn-outline-secondary btn-sm" type="button"
 				value="ShowMark" /> <input id="hide-markers"
-				class="btn btn-outline-secondary btn-sm" type="button"
+				class="btn btn-outline-dark btn-sm" type="button"
 				value="HideMark" />
+				
+			<button id="star" onclick="" class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
+		
 		</div>
 
 		<div id="range" class="">
-		
-		
-		<c:forEach var="maps" items="${page.content}">
-		<div  class="card" id="p1" style="width: 8cm;">
-            <img src="<c:url value='/getPicture/${maps.id}'/>" style=width:250px;height:220px class="card-img-top" alt="...">
-            <div id="box" class="card-body">
-              <h3 class="card-title" style="background-color:#5e5e5e;text-align:center" >${maps.title}</h3>
-              <h5 id="p"  class="card-text">${maps.content}</h5>
-              <a href="#" class="btn btn-secondary" style="position:absolute;bottom:15px">繼續閱讀</a>
-            </div>
-          </div>    
-		</c:forEach>		
+
+
+			<c:forEach var="maps" items="${page.content}">
+				<div class="card" id="p1" style="width: 8cm;">
+					<img src="<c:url value='/getPicture/${maps.id}'/>"
+						style="width: 250px; height: 220px" class="card-img-top" alt="...">
+					<div id="box" class="card-body">
+						<h3 class="card-title"
+							style="background-color: #5e5e5e; text-align: center">${maps.title}</h3>
+						<h5 id="p" class="card-text">${maps.content}</h5>
+						<a href="#" class="btn btn-secondary"
+							style="position: absolute; bottom: 15px">繼續閱讀</a>
+					</div>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
+
 	
-	
-	
-	
-	
-	
+
+
+
+
 	<div class="row justify-content-center">
 		<div class="col-8">
 			<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
@@ -414,60 +421,6 @@ margin:10px auto;
        
     </script>
 
-	<script>  
-	//網頁接值
-// 		$(document).ready(function() {	
-// 			$.ajax({
-// 					url : 'http://localhost:8080/oldFoodMan/api/searchMaps2',
-// 					contentType : 'application/json ; charset=UTF-8',
-// 					dataType : 'json',
-// 					method : 'get',
-// 					success : function(result){
-// 						console.log("rs: "+result)
-// 						var msg_data='';
-// 						$.each(result,function(index,value){
-//  							msg_data+= '<div class="card" id="p1" style="width: 8cm;">'
-// 							msg_data+= '<img id="img" src="" class="card-img-top" alt="...">'
-// 							msg_data+= '<div class="card-body">'
-// 							msg_data+= '<h5 class="card-title" >'+value.title+'</h5>'
-// 							msg_data+= '<p class="card-text" >'+value.content+'</p>'
-// 							msg_data+= '<a href="#" class="btn btn-secondary"><c:out value="繼續閱讀..."/></a>'
-// 							msg_data+= '</div>'
-// 							msg_data+= '</div>'
-// 						})
-// 						$('#range').append(msg_data)
 
-						
-// 					},
-// 					error : function(err) {
-// 						console.log(err)
-// 						alert('發生錯誤')
-// 					}		
-			
-// 				});
-			
-// 			})
-			
-
-	</script>
-	
-	<script>
-        //maybe地圖搞事
-         //offset() ：讀取指定元素在頁面(文件)上的相對坐標，
-         //回傳含有top及left屬性的物件  
-        //  let navPosition=$("#navbar").offset().top
-        //  console.log(navPosition)
-        
-        // $(window).scroll(function(){
-          
-        //   let scrollTop = $(this).scrollTop()
-    
-        //   if(scrollTop>navPosition)
-        //   $("#navbar").addClass("fixed_nav")
-        //   else
-        //   $("#navbar").removeClass("fixed_nav")
-                        
-        // });
-</script>
 </body>
 </html>

@@ -10,6 +10,7 @@ public class OldFoodManApplication {
 		SpringApplication.run(OldFoodManApplication.class, args);
 		System.out.println("gogogo!!");
 		System.out.println("O_O");
+		System.out.println("溫生蠔跟你問聲早");
 	}
 
 }
