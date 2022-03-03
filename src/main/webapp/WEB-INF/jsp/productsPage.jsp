@@ -42,8 +42,7 @@
 			$.ajax({                                         
                 url:'http://localhost:8080/oldFoodMan/addCart/' + id,
                 contentType: 'application/json;charset=UTF-8',
-                dataType: 'json',
-                async:false,
+                //dataType: 'json',
                 method: 'post',
                 success:function(result){
                 	alert('已成功加入購物車!!')
