@@ -135,12 +135,13 @@ public class FoodVisController_32 {
 		
 	}
 	
-	@JsonBackReference
+
 	@ResponseBody
 	@GetMapping("/api/getFoodVis")
-	public List<OldFoodManBean> getFoodVis(ModelAndView mav){
+	public List<OldFoodManBean> getFoodVis(ModelAndView mav,OldFoodManBean ofm){
 		
-		List<OldFoodManBean> listall =ofmservice.findAll();
+		List<OldFoodManBean> listall =ofmservice.findAllNoMemberID();
+		System.out.println(ofm.getVis_id());
 //		List<OldFoodManBean> list=page.getContent();
 		
 		return listall;

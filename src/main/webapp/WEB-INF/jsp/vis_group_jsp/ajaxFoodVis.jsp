@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="../menu.jsp" />
+<jsp:include page="layout/navbar.jsp" />
 
 <!DOCTYPE html>
 <html>
@@ -146,7 +146,7 @@ var tdate=new Date();
 							
 							events : function(start, end,timezone, callback) {
 								$.ajax({
-										url : 'http://localhost:8080/oldFoodMan/api/getFoodVisByPage',
+										url : 'http://localhost:8080/oldFoodMan/api/getFoodVis',
 										contentType : 'application/json; charset=UTF-8',
 										dataType : 'json',
 										method : 'get',
@@ -159,13 +159,13 @@ var tdate=new Date();
 											var idt = value.vis_id
 											console.log("id:"+ idt)
 											var date = moment(newDate).format('YYYY-MM-DD')
-// 											var visurl = "http://localhost:8080/oldFoodMan/findOneVis?id="+ value.vis_id
+											var visurl = "http://localhost:8080/oldFoodMan/findOneVis?id="+ value.vis_id
 
 											console.log(visurl)
 											events.push({
 											title : value.vis_res_name,
 											start : date,
-// 											url : visurl,
+											url : visurl,
 											backgroundColor:"#8080C0",
 											borderColor:"#8080C0"
 													});
@@ -361,8 +361,8 @@ var tdate=new Date();
 			<form:form class="form" action="${contextRoot}/ajaxFoodVis"
 							modelAttribute="ofmid" method="post">
 			<div class="form-group col-md-6">
-				<input type="text"
-					id="member_id" value="${ofmid.id}" class="form-control" required>
+				<input type="hidden"
+					id="member_id" value="${ofmid}" class="form-control" required>
 			</div>
 			</form:form>
 		</div>
