@@ -19,13 +19,6 @@ import com.oldFoodMan.demo.utils.WebUtils;
 
 @Controller
 public class MainController {
-	
-	@GetMapping(value = { "/", "/welcome" })
-    public String welcomePage(Model model) {
-        model.addAttribute("title", "Welcome");
-        model.addAttribute("message", "This is welcome page!");
-        return "welcomePage";
-    }
 
 	@GetMapping(value = "/admin")
     public String adminPage(Model model, Principal principal,HttpSession hs) {
