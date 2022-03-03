@@ -100,8 +100,8 @@ public class FoodVisController_32 {
 	@PostMapping("/api/postFoodVis")
 	public List<OldFoodManBean> postFoodVis(@RequestBody FoodVisDto dto,HttpSession hs){
 		
-		Object id=hs.getAttribute("id");
-		
+		Member mid = (Member)hs.getAttribute("member");
+		Integer id=mid.getId();
 //		String vis_name=dto.getVis_name();
 		String vis_res_name=dto.getVis_res_name();
 		Date vis_date=dto.getVis_date();
@@ -110,12 +110,12 @@ public class FoodVisController_32 {
 		String vis_location=dto.getVis_location();
 		String vis_num=dto.getVis_num();
 		String vis_condition=dto.getVis_condition();
-		Integer member_id=dto.getMember_id();
+		
 		
 		System.out.println("id:" + id);
 		
 		OldFoodManBean ofmVis=new OldFoodManBean();
-		Member mvis=new Member();
+//		Member mvis=new Member();
 //		ofmVis.setVis_name(vis_name);
 		ofmVis.setVis_res_name(vis_res_name);
 		ofmVis.setVis_date(vis_date);
@@ -124,7 +124,7 @@ public class FoodVisController_32 {
 		ofmVis.setVis_location(vis_location);
 		ofmVis.setVis_num(vis_num);
 		ofmVis.setVis_condition(vis_condition);
-		ofmVis.setMember_id(member_id);
+		ofmVis.setMember_id(id);
 		
 		ofmservice.insert(ofmVis);
 //		memservice.insert(mvis);
