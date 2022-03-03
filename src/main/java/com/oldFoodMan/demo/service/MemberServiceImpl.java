@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.MemberRepository;
 import com.oldFoodMan.demo.model.RoleRepository;
+import com.oldFoodMan.demo.model.UserRole;
 import com.oldFoodMan.demo.model.UserRoleRepository;
 
 @Service
@@ -72,7 +73,13 @@ public class MemberServiceImpl implements UserDetailsService {
 	}
 	
 	public void insert(Member member) {
-		memberDao.save(member);
+		
+		
+		UserRole user = new UserRole();
+		user.setUser_id(member);
+		
+		userDao.save(user);
+		
 	}
 	
 	public Member findById(Integer id) {
