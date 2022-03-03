@@ -2,7 +2,6 @@ package com.oldFoodMan.demo.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -23,6 +22,9 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="member")
@@ -79,12 +81,12 @@ public class Member implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
 	
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "membervis")
 	private Set<OldFoodManBean> ofm = new LinkedHashSet<OldFoodManBean>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
-	private Set<OldFoodManBean> ofmid = new LinkedHashSet<OldFoodManBean>();
+//	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
+//	private Set<OldFoodManBean> ofmid = new LinkedHashSet<OldFoodManBean>();
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();

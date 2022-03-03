@@ -123,7 +123,7 @@ public class FoodVisController_32 {
 		ofmVis.setVis_location(vis_location);
 		ofmVis.setVis_num(vis_num);
 		ofmVis.setVis_condition(vis_condition);
-		ofmVis.setMember_id(mid);
+		ofmVis.setMember_id(id);
 		
 		ofmservice.insert(ofmVis);
 //		memservice.insert(mvis);
@@ -135,13 +135,13 @@ public class FoodVisController_32 {
 		
 	}
 	
-	@JsonBackReference
+
 	@ResponseBody
 	@GetMapping("/api/getFoodVis")
-	public List<OldFoodManBean> getFoodVis(ModelAndView mav){
+	public List<OldFoodManBean> getFoodVis(ModelAndView mav,OldFoodManBean ofm){
 		
 		List<OldFoodManBean> listall =ofmservice.findAllNoMemberID();
-		
+		System.out.println(ofm.getVis_id());
 //		List<OldFoodManBean> list=page.getContent();
 		
 		return listall;
