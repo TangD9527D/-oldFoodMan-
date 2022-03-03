@@ -50,8 +50,7 @@ public class JoinVisController_32 {
 		
 		OldFoodManBean ofmvis=ofmservice.findById(vis_id);
 
-		
-		
+
 		JoinVis jv=new JoinVis();
 		jv.setAdd_condition(joinvis);
 		
