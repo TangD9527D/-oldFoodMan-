@@ -2,6 +2,7 @@ package com.oldFoodMan.demo.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -25,6 +27,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Table(name="member")
 public class Member implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
@@ -67,12 +71,15 @@ public class Member implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
 	private Set<UserRole> userRole = new LinkedHashSet<UserRole>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
 	
+	
+	@ManyToMany(mappedBy = "membervis")
+	private Set<OldFoodManBean> ofm = new HashSet<OldFoodManBean>();
 	
 	public Member() {
 	}
@@ -178,6 +185,18 @@ public class Member implements Serializable {
 		this.userRole = userRole;
 	}
 
+	
+	
+	
+	
+	public Set<OldFoodManBean> getOfm() {
+		return ofm;
+	}
+
+	public void setOfm(Set<OldFoodManBean> ofm) {
+		this.ofm = ofm;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -218,6 +237,15 @@ public class Member implements Serializable {
 	public void setFoodRecord(Set<FoodRecord> foodRecord) {
 		this.foodRecord = foodRecord;
 	}
+
+	public Set<RecordMessages> getRecordMessages() {
+		return recordMessages;
+	}
+
+	public void setRecordMessages(Set<RecordMessages> recordMessages) {
+		this.recordMessages = recordMessages;
+	}
+	
 	
 	
 	

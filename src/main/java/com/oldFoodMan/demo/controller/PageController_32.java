@@ -56,7 +56,8 @@ public class PageController_32 {
 	@GetMapping("/addFoodVis")
 	public ModelAndView addFoodVisPage(ModelAndView mav,HttpSession hs) {
 		
-		Object mid=hs.getAttribute("id");
+		
+		Member mid = (Member)hs.getAttribute("member");
 		
 		mav.setViewName("vis_group_jsp/addFoodVis");
 		OldFoodManBean ofmb=new OldFoodManBean();
@@ -64,14 +65,14 @@ public class PageController_32 {
 //		OldFoodManBean lastest=serviceOfm.getLastest();
 		mav.getModel().put("ofm", ofmb);
 		mav.getModel().put("ofmid", mid);
-		System.out.println("id: "+mav);
+		System.out.println("id= "+ mid);
 //		mav.getModel().put("lastestFoodVis", lastest);
 		return mav;
 	}
 	
 	@GetMapping("/ajaxFoodVis")
 	public ModelAndView viewVisPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber,HttpSession hs) {
-		Object mid=hs.getAttribute("id");
+		Member mid = (Member)hs.getAttribute("member");
 
 		mav.setViewName("vis_group_jsp/ajaxFoodVis");	
 		

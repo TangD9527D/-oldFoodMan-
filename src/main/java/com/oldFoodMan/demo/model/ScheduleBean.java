@@ -1,11 +1,16 @@
 package com.oldFoodMan.demo.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="schedule")
 public class ScheduleBean {
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,8 +18,8 @@ public class ScheduleBean {
 	private Integer id ;
 	
 	
-	@Column(name="location")
-	private String location ;
+	@Column(name="like_locations")
+	private String likelocations ;
 	
 	
 	@Column(name="member_id")
@@ -29,12 +34,14 @@ public class ScheduleBean {
 		this.id = id;
 	}
 
-	public String getLocation() {
-		return location;
+
+
+	public String getLikelocations() {
+		return likelocations;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLikelocations(String likelocations) {
+		this.likelocations = likelocations;
 	}
 
 	public Integer getMember_id() {
@@ -50,8 +57,8 @@ public class ScheduleBean {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ScheduleBean [id=");
 		builder.append(id);
-		builder.append(", location=");
-		builder.append(location);
+		builder.append(", likeocations=");
+		builder.append(likelocations);
 		builder.append(", member_id=");
 		builder.append(member_id);
 		builder.append("]");

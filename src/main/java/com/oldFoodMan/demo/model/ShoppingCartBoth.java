@@ -14,40 +14,42 @@ public class ShoppingCartBoth implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	
-	private String product_id;
+	private Integer product_id;
 	
 	
-	private String member_id;
+	private Integer member_id;
 	
 	public ShoppingCartBoth() {
 		
 	}
 	
-	public String getProduct_id() {
+
+	public Integer getProduct_id() {
 		return product_id;
 	}
 
 
-	public void setProduct_id(String product_id) {
+
+
+	public void setProduct_id(Integer product_id) {
 		this.product_id = product_id;
 	}
 
 
-	public String getMember_id() {
+
+
+	public Integer getMember_id() {
 		return member_id;
 	}
 
 
-	public void setMember_id(String member_id) {
+
+
+	public void setMember_id(Integer member_id) {
 		this.member_id = member_id;
 	}
 
 
-	public ShoppingCartBoth(String product_id, String member_id) {
-		super();
-		this.product_id = product_id;
-		this.member_id = member_id;
-	}
 
 
 	@Override

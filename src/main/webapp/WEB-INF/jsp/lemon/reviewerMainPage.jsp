@@ -92,7 +92,7 @@
                 <div class="person-reviewer-cover-image">
                     <div class="oldcrop-frame" style="overflow: hidden; position: relative; width: 980px; height: 340px;">
                         <img class="crop-img js-crop-img oldcrop-image" data-width:="980" data-top="-108" data-left="0" style="position:absolute; width:980px; left:0px; top:-108px; opacity: 0.1;" alt="reviewer's cover image"
-                        src="${contextRoot}/img/無留手02.jpg">
+                        src="${contextRoot}/imgLemon/無留手02.jpg">
                         <!-- image size=1470*981 -->
                     </div>
                 </div>
@@ -131,7 +131,7 @@
                 <div class="header-contents__img header-contents__img--l">
                     <div id="reviewer-image" class="reviewer-image-box reviewer-image-box--1 js-reviewer-image js-upload-icon-image">
                         <a href="">
-                            <img alt src="${contextRoot}/img/半路04.jpg" width="120" height="120">
+                            <img alt src="${contextRoot}/imgLemon/半路04.jpg" width="120" height="120">
                         </a>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                         "出生於花蓮,三歲開始在七星潭..."
                     </span>
                     <span class="comment-prof__more">
-                        <a class="c-link-arrow" href="">
+                        <a class="c-link-arrow" href="${contextRoot}/reviewerPageIntro">
                             "read more"
                         </a>
                     </span>
@@ -225,7 +225,7 @@
         <div class="reviewer-navi reviewer-navi--l">
             <ul class="reviewer-navi__list">
                 <li class="reviewer-navi__item reviewer-navi__item--log is-selected">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerMainPage">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__menu reviewer-navi__menu--top">トップ</span>
                         </span>
@@ -450,7 +450,7 @@
         <div id="column-side" class="layout1-side">
             <p class="tra-banner-mypage u-mb">
                 <a href="#" class="tra-banner-mypage__target">
-                    <img width="300" height="120" alt="面對食物總是老實" src="${contextRoot}/img/sidebanner.jpg">
+                    <img width="300" height="120" alt="面對食物總是老實" src="${contextRoot}/imgLemon/sidebanner.jpg">
                 </a>
             </p>
             <div id="column-side-inner">

@@ -3,6 +3,8 @@ package com.oldFoodMan.demo.model;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -41,11 +44,13 @@ public class FoodRecord implements Serializable {
 	private Date added;
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-	@JoinColumn(name = "id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "member_id")
 	private Member member_id;
 	
-
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "id",cascade = CascadeType.ALL)
+	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
+	
 	
 	public FoodRecord() {
 	}
@@ -80,6 +85,17 @@ public class FoodRecord implements Serializable {
 	
 	
 	
+	
+	
+	
+	public Member getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(Member member_id) {
+		this.member_id = member_id;
+	}
+
 	@Transient
 	private MultipartFile  productImage;
 

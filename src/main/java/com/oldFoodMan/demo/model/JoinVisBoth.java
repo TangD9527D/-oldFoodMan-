@@ -12,32 +12,32 @@ import java.util.Objects;
 public class JoinVisBoth implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private String member_id;
+	private Integer member_id;
 
-    private String my_food_vis_id;
+    private Integer my_food_vis_id;
 
     public JoinVisBoth() {
 	}
 
-	public JoinVisBoth(String member_id, String my_food_vis_id) {
+	public JoinVisBoth(Integer member_id, Integer my_food_vis_id) {
 		super();
 		this.member_id = member_id;
 		this.my_food_vis_id = my_food_vis_id;
 	}
 
-	public String getMember_id() {
+	public Integer getMember_id() {
 		return member_id;
 	}
 
-	public void setMember_id(String member_id) {
+	public void setMember_id(Integer member_id) {
 		this.member_id = member_id;
 	}
 
-	public String getMy_food_vis_id() {
+	public Integer getMy_food_vis_id() {
 		return my_food_vis_id;
 	}
 
-	public void setMy_food_vis_id(String my_food_vis_id) {
+	public void setMy_food_vis_id(Integer my_food_vis_id) {
 		this.my_food_vis_id = my_food_vis_id;
 	}
 
