@@ -30,6 +30,14 @@
 	text-align: center;
 }
 
+#h1{
+	position: static;
+	width: 800px;
+	margin: auto;
+	text-align: center;
+
+}
+
 figure {
 	/* border: thin #c0c0c0 solid; */
 	display: flex;
@@ -128,11 +136,11 @@ width:500px;
 	<br>
 	<div id="main">
 		<div id="topTitleLL">
-			<div id="mainTitleLL">
-				<h1>
+			
+				<h1 id="h1">
 					<c:out value="${foodrecordById.title}" />
 				</h1>
-
+		<div id="mainTitleLL">
 				<c:out value="${foodrecordById.gender}" />
 				<c:out value="${foodrecordById.gender1}" />
 				<c:out value="${foodrecordById.gender2}" />
@@ -141,14 +149,11 @@ width:500px;
 				<h5>作者 蘋果馬丁尼 @croissantoffee</h5>
 			</div>
 			<div id="shareLL">
-			<div class="line-it-button" data-lang="zh_Hant" data-type="share-b" data-env="REAL" data-url="http://localhost:8080/my-project/viewById?id=1" data-color="default" data-size="small" data-count="true" data-ver="3" style="display: none;"></div>
+			<div class="line-it-button" data-lang="zh_Hant" data-type="share-b" data-env="REAL" data-url="http://localhost:8080/my-project/viewById?id=${foodrecordById.id}" data-color="default" data-size="small" data-count="true" data-ver="3" style="display: none;"></div>
 <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
 			
-			
-				<a href=""><img id="icon" title="LINE分享" src="images/LINE_icon.png"></a>
-				<img
-					id="icon" title="Instagram分享" src="images/instagram.png"> <img
-					id="icon" title="Facebook分享" src="images/facebook.png">
+<!-- 				<a href=""><img id="icon" title="LINE分享" src="images/LINE_icon.png"></a> -->
+				<img id="icon" title="Facebook分享" src="images/facebook.png">
 			</div>
 		</div>
 		<div id="topTitleLL" style="width: 450px; height: 300px;display: flex;justify-content: center; align-items: center;" >
@@ -313,18 +318,21 @@ width:500px;
 			$('#submitBtn').click(function() { //監聽submitBtn這個按鈕，當Click的時候進行CallBack Function
 
 				var inputText = document.getElementById('myMessage').value; //先抓到Input內的資料， 並給他一個變數
+								console.log("inputText = "+inputText);
 				var dtoObject = {"message" : inputText} //將inputText放到一個物件內 {"Dto的Key": 值(就是前面的inputText)}，這時還是一個物件
+								console.log("dtoObject = "+dtoObject);
 				var dtoJsonString = JSON.stringify(dtoObject); //將物件轉成JSON。用stringify才能將物件轉成JSON的字串
+								console.log("dtoJsonString = "+dtoJsonString);
 
 				$.ajax({
-					url : 'http://localhost:8080/my-project/api/postMessage',
+					url : 'http://localhost:8080/oldFoodMan/api/postMessage',
 					contentType : 'application/json; charset=UTF-8', // 送過去的格式
 					dataType : 'json', // 傳回來的
 					method : 'post',
 					data : dtoJsonString, //送過去的東新
 					success : function(result) { //成功送過去後
 // 						$('#list_table_json tr td').remove()
-						console.log(result)
+						console.log(result);
 <!-- ---------以下為將table表格用each的方式印出----------------------------------------------------------------------------------------- -->						
 // 						var msg_data = ''; //msg_data先設為空的，待會才能放資料進去
 // 						$.each(result, function(index, value) {
