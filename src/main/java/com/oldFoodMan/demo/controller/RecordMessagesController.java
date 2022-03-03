@@ -71,17 +71,19 @@ public class RecordMessagesController {
 		@PostMapping("/api/postMessage")	
 		public List<RecordMessages> postMessageApi(@RequestBody RecordMessageDto dto,HttpSession session){  //@RequestBody RecordMessageDto 請求的本體(送進來的) ；List<RecordMessages>回傳回去的
 			String text = dto.getMsg();     //從dto拿到值，這是一個String的text
-			
 			RecordMessages foodMsg = new RecordMessages();   //因為是新增資料，所以需要new
 			foodMsg.setText(text);    //然後把text送給foodMsg
 			Member member = (Member)session.getAttribute("member");
-			FoodRecord fr = (FoodRecord)session.getAttribute("foodRecord");
+			FoodRecord fr = (FoodRecord)session.getAttribute("fr_ID");
+			System.out.println("MSG取fr的id = "+ fr);
+			
 			Integer member_id = member.getId();
+			Integer fr_id = fr.getId();
+			
 			System.out.println("會員ID = "+ member_id);
-//			Integer fr_id = fr.getId();
-//			System.out.println("食記ID = "+ fr_id);
-//			foodMsg.setId(fr_id);
+			System.out.println("食記ID = "+ fr_id);
 			foodMsg.setMember_id(member);
+			foodMsg.setId(fr_id);
 			msgService.insertMessage(foodMsg);   //將資料存進去
 			
 			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件
