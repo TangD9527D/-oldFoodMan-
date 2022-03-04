@@ -482,19 +482,17 @@ var tdate=new Date();
 		
 		<div class="form-row">
 			
-			<form:form class="form" action="${contextRoot}/ajaxFoodVis"
-							modelAttribute="ofmid" method="post">
 			<div class="form-group col-md-6">
 				<input type="text"
 					id="member_id" value="${ofmid.id}" class="form-control" required>
 					${viewallvis.vis_res_name}
 			</div>
-			</form:form>
+			
 		</div>
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn btn-info" onclick="confirm('確定加入？');return addjoin()">加入</button>
+						<button type="button" class="btn btn btn-info" onclick="confirm('確定加入？');return addjoin()">加入</button>
 						
 					</div>	
 							
