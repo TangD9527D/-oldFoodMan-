@@ -27,6 +27,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -52,10 +53,12 @@ public class RecordMessages implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "member_id")
+	@JsonIgnore
 	private Member member_id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "record_id")
+	@JsonIgnore
 	private FoodRecord record_id;
 
 	
@@ -71,6 +74,15 @@ public class RecordMessages implements Serializable {
 	}
 
 	
+	
+	public FoodRecord getRecord_id() {
+		return record_id;
+	}
+
+	public void setRecord_id(FoodRecord record_id) {
+		this.record_id = record_id;
+	}
+
 	public Member getMember_id() {
 		return member_id;
 	}
