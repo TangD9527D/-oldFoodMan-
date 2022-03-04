@@ -252,9 +252,12 @@ width:500px;
 					<div class="card">
 						<div class="card-header">
 							回覆時間
+							<c:out value="${msg.added}" />
 						
 						</div>
 						<div class="card-body">
+						食記ID:<c:out value="${msg.record_id.id}" /><br>
+						會員ID:<c:out value="${msg.member_id.id}" /><br>
 					    <c:out value="${msg.text}" />
 						</div>
 						<div align="right">
@@ -266,6 +269,26 @@ width:500px;
 				</div>
 			</div>
 			</c:forEach>
+			
+		<div class="row justify-content-center">
+			<div class="col-9">
+				<c:forEach var="pageNumber" begin="1" end="${msg.totalPages}">
+
+					<c:choose>
+						<c:when test="${pageNumber-1 != msg.number}">
+							<a href="${contextRoot}/totalRecord?p=${pageNumber}"><c:out value="${pageNumber}" /> </a>
+						</c:when>
+
+						<c:otherwise>
+							<c:out value="${pageNumber}"></c:out>
+						</c:otherwise>
+					</c:choose>
+
+					<c:if test="${pageNumber != msg.totalPages}">|</c:if>
+
+				</c:forEach>
+			</div>
+		</div>
 	
 
 
