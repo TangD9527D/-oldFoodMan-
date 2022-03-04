@@ -73,8 +73,6 @@ public class RecordMessages implements Serializable {
 		}
 	}
 
-	
-	
 	public FoodRecord getRecord_id() {
 		return record_id;
 	}

@@ -78,13 +78,10 @@ public class PageController_foodRecord {
 			FoodRecord fr = new FoodRecord();
 			FoodRecord frById = service.findById(id);
 			mav.getModel().put("foodRecord", fr);
+
+			session.setAttribute("fr_ID", frById);  //將食記的ID存到session "fr_ID" 內
 			mav.getModel().put("foodrecordById", frById);
-			session.setAttribute("sessionRecordId", frById);
-			Page<RecordMessages> msg_page = msgService.findByPage(pageNumberMsg);  //回傳一個Page泛型的物件
-			mav.getModel().put("msg_page", msg_page);   //再將這個Page傳回去  →"msg_page"是JSP會拿到的名字，JSP要讀這個page的物件
-	
-			
-			System.out.println("here");
+      
 			return mav;
 		}	
 	
