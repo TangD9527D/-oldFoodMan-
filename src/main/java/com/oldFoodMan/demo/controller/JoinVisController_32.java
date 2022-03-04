@@ -44,11 +44,11 @@ public class JoinVisController_32 {
 	
 	@ResponseBody
 	@PostMapping("/addjoinvis/{vis_id}")
-	public ModelAndView addVis(ModelAndView mav,@ModelAttribute(name = "ofm") @PathVariable Integer vis_id,@RequestBody JoinVisDto dto, HttpSession session){
+	public ModelAndView addVis(ModelAndView mav,@ModelAttribute(name = "ofm") @PathVariable Integer vis_id,@RequestBody JoinVisDto dto,JoinVis joinvis, HttpSession session){
 		Member member = (Member)session.getAttribute("member");
 		
 		String condition=dto.getAdd_condition();
-		Integer visid=dto.getVis_id();
+		
 		System.out.println("idvis: "+vis_id);
 
 		
@@ -58,12 +58,12 @@ public class JoinVisController_32 {
 		
 		JoinVis joinvisadd=new JoinVis();
 		
-		joinvisadd.setMember_id(member.getId());
-		joinvisadd.setMy_food_vis_id(visid);
+		joinvisadd.setMember_id(member);
+		joinvisadd.setMy_food_vis_id(ofmvis);
 		joinvisadd.setAdd_condition(condition);
 		
 		System.out.println("第二個 條件:"+condition);
-		System.out.println("第三個 visid:"+visid);
+		System.out.println("第三個 visid:"+vis_id);
 		
 		jvservice.addJoinVis(joinvisadd); 
 		

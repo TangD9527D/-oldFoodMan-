@@ -49,18 +49,17 @@ public class JoinVisService {
 		
 	}
 	
-	public JoinVis findJoinVisByMemberID(Integer member) {
+	public List<JoinVis> findJoinVisByMemberID(Integer member) {
 		
 		
 		
+		List<JoinVis> joinvis=joinDao.findByMemberId(member);
 		
-		Optional<JoinVis> op = joinDao.findById(member);
 		
-		if (op.isPresent()) {
-			return op.get();
-		}
-
-		return null;
+		return joinvis;
+		
+		
+		
 	}
 	
 	public OldFoodManBean findJoinVisByVisID(Integer vis_id) {
@@ -77,7 +76,7 @@ public class JoinVisService {
 		return joinDao.findAll();
 	}
 	
-	public void deleteJoinVis(Integer add_id) {
-		joinDao.deleteById(add_id);
+	public void deleteJoinVis(Integer member) {
+//		return joinDao.deleteById(member);
 	}
 }
