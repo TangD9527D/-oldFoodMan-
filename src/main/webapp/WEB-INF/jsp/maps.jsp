@@ -133,12 +133,13 @@ html, body {
 	font-size: 30px;
 	font-family: fantasy;
 	line-height: 30px;
-	width: 100%;
+	width: 94%;
 	font-weight: 300px;
 	color: black;
 	border-radius: 10px;
-	background: pink;
+	background: gray;
 	text-align: center;
+	
 }
 
 #inputdiv {
@@ -236,8 +237,7 @@ img {
 		<hr style="color: pink; border: 5px solid pink">
 		<div id="location1"></div>
 		
-				<input type="hidden"
-					id="member_id" value="${member.id}" class="form-control" required>
+				
 			
 	</div>
 
@@ -245,8 +245,9 @@ img {
 		<!--整個頁面的65%-->
 		<div id="inputdiv">
 			<!--allpage的65%-->
-			<input id="input" class="" type="search" placeholder="Search Box"
+			<input id="input" class="btn btn-secondary" type="search" placeholder="Search Food & record"
 				 />
+				 <button id="food" class="btn btn-outline-secondary btn-lg" >食記</button>
 		</div>
 
 		<div id="map"></div>
