@@ -11,8 +11,6 @@
 <title>我的購物車</title>
 	<c:set var='contextRoot' value='${pageContext.request.contextPath}'/>
 	<link rel='stylesheet' href='${contextRoot}/css/bootstrap.min.css'/>
-	<!-- dialog -->
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	
 	<!-- CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
@@ -23,173 +21,83 @@
 	<p>
 	<div class="container">
 	<p>
-	<!-- 新增對話框 -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增產品</button>
-		
-		<div class="modal fade" id="exampleModal" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">產品資訊</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<p>
-						<button type="button" class="btn btn-primary" id="autoInsert">一鍵輸入</button>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								<label for="recipient-name" class="col-form-label">編號:</label> 
-								<input type="text" class="form-control" id="product_number" name="product_number">
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">品名:</label>
-								<input type="text" class="form-control" name="product_name" id="product_name"/>
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">類型:</label> 
-								<select id="product_category">
-									<option>燒烤</option>
-									<option>火鍋</option>
-									<option>小吃</option>
-									<option>異國</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">庫存:</label>
-								<input type="text" class="form-control" name="product_stock" id="product_stock"/>
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">折扣:</label> 
-								<input type="text" class="form-control" name="product_discount" id="product_discount">
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">原價:</label> 
-								<input type="text" class="form-control" name="product_price" id="product_price">
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">圖片:</label> 
-								<input type="file" class="form-control" name="product_image" id="product_image">
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">備註:</label> 
-								<input type="text" class="form-control" name="product_remark" id="product_remark">
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" id="Btn_add" data-dismiss="modal">確定新增</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		
-		<!-- 修改對話框 -->
-		<div class="modal fade" id="UpdateModal" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">修改資料</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form>
-							<div class="form-group">
-								<label for="recipient-name" class="col-form-label">編號:</label> 
-								<input type="text" class="form-control" id="Uproduct_number" name="Uproduct_number">
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">品名:</label>
-								<input type="text" class="form-control" name="Uproduct_name" id="Uproduct_name"/>
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">類型:</label> 
-								<select id="Uproduct_category">
-									<option>燒烤</option>
-									<option>火鍋</option>
-									<option>小吃</option>
-									<option>異國</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">庫存:</label>
-								<input type="text" class="form-control" name="Uproduct_stock" id="Uproduct_stock"/>
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">折扣:</label> 
-								<input type="text" class="form-control" name="Uproduct_discount" id="Uproduct_discount">
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">原價:</label> 
-								<input type="text" class="form-control" name="Uproduct_price" id="Uproduct_price">
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">圖片:</label> 
-								<input type="file" class="form-control" name="Uproduct_image" id="Uproduct_image">
-							</div>
-							<div class="form-group">
-								<label for="message-text" class="col-form-label">備註:</label> 
-								<input type="text" class="form-control" name="Uproduct_remark" id="Uproduct_remark">
-							</div>
-							<div class="form-group">
-								
-								<input type="hidden" id="Uproduct_id" value=""/>
-							</div>
-							
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" id="Btn_update" data-dismiss="modal">確定修改</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		
+	
 		<!-- dataTable -->
-		<table id="tableAjax" class="table table-striped table-bordered" style="width:100%"></table>
-		<img src=""/>
+		<table id="tableAjax2" class="table table-striped table-bordered" style="width:100%">
+		<tfoot>
+            <tr>
+                <th colspan="5" style="text-align:right">此頁總價:</th>
+                <th></th>
+            </tr>
+        </tfoot>
+		</table>
+		
 	</div>
 	
 	<script>
 		$(document).ready( function () {
-			var table = $('#tableAjax').DataTable({
+			$('#tableAjax2').DataTable({
 		    	"ajax": {
 		    	     "url": "http://localhost:8080/oldFoodMan/shoppingCart",
-		    	      "type": "POST",
-		    	      "dataSrc":""   //不加會報錯
+		    	     "type": "post",
+		    	     "dataSrc":""   //不加會報錯
 		    	},
 		    	
 		        "columns": [	                                      
-			        { data: '',title: "品名" },
-			        { data: '',title: "類型"},
-			        { data: '',title: "圖片",
-			          "render": function (data) {
-	                                return '<img src="' + data + '" width="100px" />';
-	                            }
+			        { data: 'productId.product_name',title: "商品名稱" },
+			        { data: 'productId.product_image',title: "圖片",
+				          "render": function (data) {
+		                                return '<img src="' + data + '" width="50px" />';
+		                            },
+				    },
+				    { data: 'productId.product_price',title: "原價"},
+				    { data: 'productPay',title: "折價後"},
+			        { data: null,title: "數量",
+				    	render: function (data, type, row) {
+				              return  '<button type="button" class="btn btn-warning btn-sm"  onclick="increaseOne(' + data.productId.product_id + ')">增加</button> ' +
+				                      '<input type="text" value="'+ data.productAmount + '" size="1" onchange="personAuto('+ data.productId.product_id +')"></input>&nbsp' + 
+				                      '<button type="button" class="btn btn-danger btn-sm" id="deleteOne"  value="' + data.productId.product_id + '" >減少</button>'
+				                      
+				              }
 			        },
-			        { data: '',title: "售價" },
-			        { data: null ,title: "操作功能",  // 這邊是欄位
-			            render: function (data, type, row) {
-			              return '<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#UpdateModal" onclick="updateDialog(' + data.product_id + ')">編輯</button> ' +
-			                      '<button type="button" class="btn btn-danger btn-sm" id="deleteOne"  value="' + data.product_id + '" >刪除</button>'
-			                      
-			              }
-			        }
+			        
+			        { data: 'productNewPay',title: "總價"},
 		        ],
 		        "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]],
+		        "footerCallback": function ( row, data, start, end, display ) {
+		            var api = this.api();
+		 
+		            // Remove the formatting to get integer data for summation
+		            var intVal = function ( i ) {
+		                return typeof i === 'string' ?
+		                    i.replace(/[\$,]/g, '')*1 :
+		                    typeof i === 'number' ?
+		                        i : 0;
+		            };
+		 
+		            // Total over all pages
+		            total = api
+		                .column( 5 )
+		                .data()
+		                .reduce( function (a, b) {
+		                    return intVal(a) + intVal(b);
+		                }, 0 );
+		 
+		            // Total over this page
+		            pageTotal = api
+		                .column( 5, { page: 'current'} )
+		                .data()
+		                .reduce( function (a, b) {
+		                    return intVal(a) + intVal(b);
+		                }, 0 );
+		 
+		            // Update footer
+		            $( api.column( 5 ).footer() ).html(
+		                '$'+pageTotal +'( 總金額 : $'+ total +')'
+		            );
+		        },
+		        
+		        
 		        "language": {
 		            "lengthMenu": "顯示 _MENU_ 筆資料",
 		            "sProcessing": "處理中...",
@@ -219,7 +127,33 @@
 			
 		})
 		
+		//加商品數量
+		function increaseOne(id){
+			
+			$.ajax({
+				method:"post",
+				url:"http://localhost:8080/oldFoodMan/cart/increaseOne/" + id,
+				success:function(data){
+					
+				}
+			})
+		}
 		
+		$(document).on('click', '#deleteOne', function(){  //用一般的.click會有氣泡事件問題
+			var id = $(this).attr("value");
+			
+			$.ajax({
+				type : "post",
+				url : "http://localhost:8080/oldFoodMan/cart/decreaseOne/" + id,
+				success : function(data) {
+					
+				},
+			});
+		})
+		
+		function personAuto(id){
+			console.log("ok!!")
+		}
 		
 		
 	</script>
