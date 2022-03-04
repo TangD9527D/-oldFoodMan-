@@ -21,6 +21,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -57,7 +58,7 @@ public class Member implements Serializable {
 	@Column(name = "nickName")
 	private String nickName;
 	
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd") //給爪哇看
 	@Temporal(TemporalType.DATE)  //對應資料庫
 	@Column(name = "birth")
 	private Date birth;

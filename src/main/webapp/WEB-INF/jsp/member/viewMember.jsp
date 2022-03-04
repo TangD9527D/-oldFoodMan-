@@ -18,16 +18,14 @@
                 <h1>新增帳號</h1>
             </legend>
             <form>
+            	<div style="width: 320px; height: 340px">
+            		<img width='200' height='200'
+							src="<c:url value='/getPicture/${member.id}' />" />
+            	</div>
                 <div class="newPwd_13">
                     <label for="names" class="la1">姓名:&nbsp;</label>
                     <input type="text" id="names" class="inPut" name="names" value="${member.account}" >
                     <p class="txtP">&nbsp;${member.memberName}</p>
-                </div>
-                <div class="gender_13">
-                    <label class="la1">性別:&nbsp;</label>
-                    <label class="labGnd"><input type="radio" name="gender" id="gender" value="male">男</label>
-                    <label class="labGnd"><input type="radio" name="gender" id="gender" value="female">女</label>
-                    <p class="txtP">&nbsp;</p>
                 </div>
                 <div class="phone_13">
                     <label for="phone" class="la1">電話:&nbsp;</label>
