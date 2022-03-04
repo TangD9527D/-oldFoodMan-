@@ -222,7 +222,41 @@ var tdate=new Date();
 // 	}
 // 	);
 	
+		function addjoin(Vis_id) {	
+			var btn=$('#get').attr();
+			console.log("btn: "+btn)
+			var Vis_id=document.getElementById('get').value;
+			var inputCondition = document.getElementById('add_condition').value;
+			var Member_id=document.getElementById('member_id').value;
 			
+			var dtoObject = {
+
+				"add_condition" : inputCondition,
+				"member_id": Member_id,
+				"vis_id": Vis_id
+			}
+			var dtoJsonString = JSON.stringify(dtoObject);
+		
+			$.ajax({
+				url : 'http://localhost:8080/oldFoodMan/addjoinvis/'+Vis_id ,
+				contentType : 'application/json; charset=UTF-8',
+				dataType : 'json',
+				method : 'post',
+				data : dtoJsonString,
+				success : function(data) {
+					alert('已成功加入!')				
+					
+				},
+				error : function(err) {
+					console.log(err)
+					alert('發生錯誤')
+				}
+
+			})
+		}
+		
+	
+	
 // 		新增揪團窗格			
 		function insertdata() {
 // 			var inputName = document.getElementById('vis_name').value;
@@ -279,6 +313,12 @@ var tdate=new Date();
 		}
 		
 	}
+	
+	
+	
+		
+	
+	
 
 </script>
 
@@ -362,7 +402,7 @@ var tdate=new Date();
 							modelAttribute="ofmid" method="post">
 			<div class="form-group col-md-6">
 				<input type="hidden"
-					id="member_id" value="${ofmid}" class="form-control" required>
+					id="member_id" value="${ofmid.id}" class="form-control" required>
 			</div>
 			</form:form>
 		</div>
@@ -381,6 +421,7 @@ var tdate=new Date();
 			</div>
 		</div>
 </div>
+
 <div class="viewtable">
 		<div class="header1"><i style="font-size:50px" class="fa-solid fa-utensils"></i><span style="font-size:40px">揪團Eat</span></div>
 		
@@ -393,19 +434,80 @@ var tdate=new Date();
    		<h5 class="card-title"><i class="fa-regular fa-clock">${viewallvis.vis_date}&nbsp;&nbsp; ${viewallvis.vis_time}</i></h5>
    		
     	<p class="card-text"><i class="fa-solid fa-location-dot">${viewallvis.vis_location}</i></p>
-    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}" id="joinvis" class="btn btn-secondary">加入</a>
+    	
+<%--     	<a href="${contextRoot}/addjoinvis/${viewallvis.vis_id}" id="joinvis"  --%>
+<!--     	class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo" id="insertData"></a> -->
+    	<button class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo" id="get" value="${viewallvis.vis_id}">加入</button>
+    	
+    	
   		</div>
   		<div class="card-footer text-muted">
     		新增時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
 								value="${viewallvis.added}" />
   </div>
 </div>
-</c:forEach>
-<p>
-		
-		
 
-<!-- 分頁頁碼 -->
+<p>
+	
+
+
+		
+		<!-- dialog視窗 -->
+
+		
+<%-- 		<c:forEach var="viewallvis" items="${page.content}"> --%>
+		<div class="modal fade" id="exampleModal1" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<div class="card-header text-white bg-dark " id="exampleModalLabel">加入揪團</div>
+						
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						
+
+			<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="inputEmail4">加入原因</label> <input type="text" id="add_condition" name="add_condition"
+					class="form-control" required>
+
+			</div>
+			
+		</div>
+		
+		<div class="form-row">
+			
+			<div class="form-group col-md-6">
+				<input type="text"
+					id="member_id" value="${ofmid.id}" class="form-control" required>
+					${viewallvis.vis_res_name}
+			</div>
+			
+		</div>
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn btn-info" onclick="confirm('確定加入？');return addjoin()">加入</button>
+						
+					</div>	
+							
+							
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		</c:forEach>
+		
+		
+		<!-- 分頁頁碼 -->
 		<div >
 			<div class="pagination">
 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
@@ -430,19 +532,26 @@ var tdate=new Date();
 
 			</div>
 		</div>
+		
+		
+		
 </div>
-	</div>
+
+	
+		
+		
+		
+		
+</div>
+
+	
+	
+	
+	
+	
+	
 
 
-
-
-
-
-
-
-
-
-<!-- </div> -->
 </body>
 
 </html>

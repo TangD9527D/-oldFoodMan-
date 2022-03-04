@@ -20,6 +20,7 @@ import com.oldFoodMan.demo.model.MemberRepository;
 import com.oldFoodMan.demo.model.Role;
 import com.oldFoodMan.demo.model.RoleRepository;
 import com.oldFoodMan.demo.model.UserRole;
+import com.oldFoodMan.demo.model.UserRoleId;
 import com.oldFoodMan.demo.model.UserRoleRepository;
 
 @Service
@@ -74,7 +75,6 @@ public class MemberServiceImpl implements UserDetailsService {
 	}
 	
 	public void insert(Member member) {
-		
 
 		Role role = roleDao.getById(1);
 		
@@ -85,6 +85,12 @@ public class MemberServiceImpl implements UserDetailsService {
 		System.out.println(role.getRole_id());
 		
 		userDao.save(user);
+		
+	}
+	
+	public void update(Member member) {
+		
+		memberDao.save(member);
 		
 	}
 	

@@ -20,51 +20,53 @@ public class MemberController {
 
 	@Autowired
 	private MemberServiceImpl service;
-		
+
 	@PostMapping("/newMember")
-	public ModelAndView newMember(ModelAndView mav,@Valid @ModelAttribute Member member, BindingResult rs) {
-		
-		if(!rs.hasErrors()) {
+	public ModelAndView newMember(ModelAndView mav, @Valid @ModelAttribute Member member, BindingResult rs) {
+
+		if (!rs.hasErrors()) {
 			String memberPwd = member.getMemberPwd();
-			
+
 			String pwd = EncrytedPasswordUtils.encrytePassword(memberPwd);
-			
+
 			member.setMemberPwd(pwd);
-			
+
 			service.insert(member);
-			
+
 			mav.getModel().put("member", member);
 		}
-		
+
 		mav.setViewName("welcomePage");
-		
+
 		return mav;
 	}
-	
+
 	@GetMapping("/editMember")
 	public ModelAndView editMember(ModelAndView mav, @RequestParam(value = "id") Integer id) {
-		
+
 		Member mb = service.findById(id);
-		
+
 		mav.getModel().put("member", mb);
 		mav.setViewName("member/editMember");
-		
+
 		return mav;
 	}
-	
+
 	@PostMapping("/editMember")
-	public ModelAndView viewMember(ModelAndView mav, @Valid @ModelAttribute(name = "member") Member mb, BindingResult rs) {
-		
+	public ModelAndView viewMember(ModelAndView mav, @Valid @ModelAttribute(name = "member") Member mb) {
+
 		mav.setViewName("member/editMember");
-		
-		if(!rs.hasErrors()) {
-			
-			service.insert(mb);
-			
-			mav.setViewName("redirect:/viewMember");
-		}
-		
-		
+
+		String memberPwd = mb.getMemberPwd();
+
+		String pwd = EncrytedPasswordUtils.encrytePassword(memberPwd);
+
+		mb.setMemberPwd(pwd);
+
+		service.update(mb);
+
+		mav.setViewName("redirect:/viewMember");
+
 		return mav;
 	}
 }

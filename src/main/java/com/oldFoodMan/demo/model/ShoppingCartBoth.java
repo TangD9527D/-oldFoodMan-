@@ -14,57 +14,72 @@ public class ShoppingCartBoth implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	
-	private Integer product_id;
+	private Integer productId;
 	
 	
-	private Integer member_id;
+	private Integer memberId;
 	
-	private Integer product_amount;
+	private Integer productAmount;
 	
 	public ShoppingCartBoth() {
 		
 	}
 	
 
-	public Integer getProduct_id() {
-		return product_id;
+	
+
+
+	public Integer getProductId() {
+		return productId;
 	}
 
 
 
 
-	public void setProduct_id(Integer product_id) {
-		this.product_id = product_id;
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 
 
 
 
-	public Integer getMember_id() {
-		return member_id;
+
+	public Integer getMemberId() {
+		return memberId;
 	}
 
 
 
 
-	public void setMember_id(Integer member_id) {
-		this.member_id = member_id;
+
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 
 
-	public Integer getProduct_amount() {
-		return product_amount;
+
+
+
+	public Integer getProductAmount() {
+		return productAmount;
 	}
 
 
-	public void setProduct_amount(Integer product_amount) {
-		this.product_amount = product_amount;
+
+
+
+	public void setProductAmount(Integer productAmount) {
+		this.productAmount = productAmount;
 	}
+
+
+
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(member_id, product_amount, product_id);
+		return Objects.hash(memberId, productAmount, productId);
 	}
 
 
@@ -77,8 +92,8 @@ public class ShoppingCartBoth implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		ShoppingCartBoth other = (ShoppingCartBoth) obj;
-		return Objects.equals(member_id, other.member_id) && Objects.equals(product_amount, other.product_amount)
-				&& Objects.equals(product_id, other.product_id);
+		return Objects.equals(memberId, other.memberId) && Objects.equals(productAmount, other.productAmount)
+				&& Objects.equals(productId, other.productId);
 	}
 
 

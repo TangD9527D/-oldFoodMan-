@@ -47,6 +47,8 @@
 						
 						<li class="nav-item"><a class="nav-link"
 						href="${contextRoot}/ajaxFoodVis">揪團Eat</a></li>
+						<li class="nav-item"><a class="nav-link"
+						href="${contextRoot}/editMember?id=3">編輯帳號test</a></li>
 
 				</ul>
 			</div>

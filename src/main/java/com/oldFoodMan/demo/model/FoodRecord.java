@@ -83,8 +83,6 @@ public class FoodRecord implements Serializable {
 	private int gender1;
 	private int gender2;
 	
-	
-	
 	public Set<RecordMessages> getRecordMessages() {
 		return recordMessages;
 	}

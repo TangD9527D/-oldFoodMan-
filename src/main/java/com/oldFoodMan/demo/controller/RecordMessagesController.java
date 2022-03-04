@@ -32,53 +32,20 @@ public class RecordMessagesController {
 	private RecordMessageService msgService;
 	
 	
-	//新增(有外鍵)Msg
-//	@PostMapping(value = "/createMsg")
-//	public ModelAndView postNewData(ModelAndView mav, @Valid @ModelAttribute(name = "msg") RecordMessages rMsg,BindingResult rs, HttpSession session) {
-//		Member member = (Member)session.getAttribute("member");
-//		FoodRecord foodRecord = (FoodRecord)session.getAttribute("foodRecord");
-//		Integer member_id = member.getId();
-//		Integer record_id = foodRecord.getId();
-//		System.out.println("member_id = "+member_id);
-//		System.out.println("record_id = "+record_id);
-//		rMsg.setMember_id(member);
-//		rMsg.setId(record_id);
-//		msgService.insertMessage(rMsg);
-//		mav.setViewName("redirect:/theLastestRecord");   //回傳到PageController的record/totalRecord的頁面
-//		return mav;
-//	}
-	
-	
-	//新增(測試梅外鍵)Msg
-//	@PostMapping(value = "/createMsg")
-//	public ModelAndView postNewData(ModelAndView mav, @Valid @ModelAttribute(name = "msg") RecordMessages rMsg,BindingResult rs,HttpSession session) {
-//		Member member = (Member)session.getAttribute("member");
-//		FoodRecord fr = (FoodRecord)session.getAttribute("foodRecord");
-//		Integer member_id = member.getId();
-//		Integer fr_id = fr.getId();
-//		System.out.println("會員ID = "+ member_id);
-//		System.out.println("食記ID = "+ fr_id);
-//		rMsg.setMember_id(member);
-//		rMsg.setId(fr_id);
-//		msgService.insertMessage(rMsg);
-//		mav.setViewName("redirect:/viewById");   //回傳到PageController的record/totalRecord的頁面
-//		return mav;
-//	}
-	
-	
 	//api
 		@ResponseBody   //因為是要回傳json所以要用@ResopnseBody (ModelAndView 是回傳一個View)
-		@PostMapping("/api/postMessage")	
+		@PostMapping("/api/postMessage")		
 		public List<RecordMessages> postMessageApi(@RequestBody RecordMessageDto dto,HttpSession session){  //@RequestBody RecordMessageDto 請求的本體(送進來的) ；List<RecordMessages>回傳回去的
-			String text = dto.getMsg();     //從dto拿到值，這是一個String的text
 			RecordMessages foodMsg = new RecordMessages();   //因為是新增資料，所以需要new
-			foodMsg.setText(text);    //然後把text送給foodMsg
-			Member member = (Member)session.getAttribute("member");
-			FoodRecord fr = (FoodRecord)session.getAttribute("fr_ID");
-			System.out.println("MSG取fr的id = "+ fr);
+			String text = dto.getMsg();     //從dto拿到值，這是一個String的text	
+			foodMsg.setText(text);    //然後把text送給foodMsg	
 			
-			Integer member_id = member.getId();
-			Integer fr_id = fr.getId();
+			Member member = (Member)session.getAttribute("member");
+			System.out.println("member = "+member);
+			FoodRecord sessionRecordId = (FoodRecord)session.getAttribute("sessionRecordId");
+			
+			Integer memberId = member.getId();
+			Integer RecordId = sessionRecordId.getId();
 			
 			System.out.println("會員ID = "+ member_id);
 			System.out.println("食記ID = "+ fr_id);
@@ -88,13 +55,40 @@ public class RecordMessagesController {
 			
 			msgService.insertMessage(foodMsg);   //將資料存進去
 			
+			foodMsg.setRecord_id(sessionRecordId);
+			System.out.println("食記ID = "+sessionRecordId);
+			
+			
+			msgService.insertMessage(foodMsg); //先存食記
+			
+
+	
 			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件
 			List<RecordMessages> list = msg_page.getContent();    //page物件需要用getContent()方法才能拿到List
 			
 			return list;
-		
 		}
 		
+		
+		//用ID查看所有留言
+		@GetMapping("/viewMsgById")
+		public ModelAndView viewMsgById(ModelAndView mav, @RequestParam(name = "id") Integer id){
+			mav.setViewName("record/viewById");	
+			RecordMessages rMsg = new RecordMessages();
+			System.out.println("rMsg = "+rMsg);
+			
+			RecordMessages msgById = msgService.findById(id);
+			System.out.println("msgById = "+msgById);
+
+			mav.getModel().put("recordMessage", rMsg);  //留言
+			mav.getModel().put("recordMsgById", msgById);  //ID
+		
+			return mav;
+			
+		}
+		
+		
+//--------------------------------------------------------------------------------------------------------------------------
 		//修改留言(顯示之前的留言資料)
 		@GetMapping("/updateMsg")
 		public ModelAndView showPreviousMsg(ModelAndView mav, @RequestParam(name = "id") Integer id) {
