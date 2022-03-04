@@ -16,4 +16,10 @@ public interface RecordMessagesRepository extends JpaRepository<RecordMessages, 
 	@Modifying
 	@Query(value="UPDATE record_messages SET member_id=?, record_id=?WHERE id=?",nativeQuery=true)
 	public void updateMemberID_recordID(@Param("id") Integer id,@Param("member_id") Member member_id, @Param("record_id") FoodRecord record_id);
+	
+	@Transactional
+	@Modifying
+	@Query(value="SELECT id,added,texts,member_id FROM record_messages WHERE record_id =? ORDER BY added DESC",nativeQuery=true)
+	public void msgByIdOredrByDate(@Param("id")Integer id);
+
 }

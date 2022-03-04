@@ -57,6 +57,8 @@ public class RecordMessageService {
 		return record;
 	}
 	
+
+	
 	
 	//用id刪除
 	public void deleteByID(Integer id) {
