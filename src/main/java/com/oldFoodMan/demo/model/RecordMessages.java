@@ -71,6 +71,16 @@ public class RecordMessages implements Serializable {
 	}
 
 	
+	
+	
+	public FoodRecord getRecord_id() {
+		return record_id;
+	}
+
+	public void setRecord_id(FoodRecord record_id) {
+		this.record_id = record_id;
+	}
+
 	public Member getMember_id() {
 		return member_id;
 	}

@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin()
 				.loginProcessingUrl("/j_spring_security_check")
 				.loginPage("/login")
-				.defaultSuccessUrl("/searchMaps")//登入成功時所導向的網頁 ("/",true) 強制成功
+				.defaultSuccessUrl("/")//登入成功時所導向的網頁 ("/",true) 強制成功
 				.failureUrl("/login?error=true")//登入錯誤時所導向的頁面
 				.usernameParameter("account")//
 				.passwordParameter("password")

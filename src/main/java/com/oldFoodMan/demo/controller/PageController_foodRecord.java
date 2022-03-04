@@ -80,10 +80,9 @@ public class PageController_foodRecord {
 			System.out.println("這裡是Food : "+frById);
 			
 			mav.getModel().put("foodRecord", fr);
-			session.setAttribute("fr_ID", frById);
+			session.setAttribute("fr_ID", frById);  //將食記的ID存到session "fr_ID" 內
 			mav.getModel().put("foodrecordById", frById);
-			
-			System.out.println("here");
+
 			return mav;
 		}
 

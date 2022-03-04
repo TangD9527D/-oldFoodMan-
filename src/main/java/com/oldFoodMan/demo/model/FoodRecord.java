@@ -85,9 +85,14 @@ public class FoodRecord implements Serializable {
 	
 	
 	
-	
-	
-	
+	public Set<RecordMessages> getRecordMessages() {
+		return recordMessages;
+	}
+
+	public void setRecordMessages(Set<RecordMessages> recordMessages) {
+		this.recordMessages = recordMessages;
+	}
+
 	public Member getMember_id() {
 		return member_id;
 	}

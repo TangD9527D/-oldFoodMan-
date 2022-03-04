@@ -82,8 +82,10 @@ public class RecordMessagesController {
 			
 			System.out.println("會員ID = "+ member_id);
 			System.out.println("食記ID = "+ fr_id);
-			foodMsg.setMember_id(member);
+			
 			foodMsg.setId(fr_id);
+			foodMsg.setMember_id(member);
+			
 			msgService.insertMessage(foodMsg);   //將資料存進去
 			
 			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件
