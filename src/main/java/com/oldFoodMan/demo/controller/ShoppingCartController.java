@@ -2,6 +2,7 @@ package com.oldFoodMan.demo.controller;
 
 
 
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,17 +29,28 @@ public class ShoppingCartController {
 	
 	@GetMapping("/shoppingCart")
 	public String myShoppingCart(Model model) {
-		List<ShoppingCart> myProducts = service.findAll();
-		model.addAttribute("myProducts", myProducts); 
 		return "shoppingCart";
 	}
 	
-//	@ResponseBody
-//	@PostMapping("/shoppingCart")
-//	public List<ShoppingCart> allProduct() {
-//		List<ShoppingCart> myproducts = service.findAll();
-//		return myproducts;
-//	}
+	@ResponseBody
+	@PostMapping("/shoppingCart")
+	public List<ShoppingCart> myAllProduct(HttpSession session) {
+		Member member = (Member) session.getAttribute("member");
+		List<ShoppingCart> myProducts = service.findProductsByMemberId(member);
+	
+		for(ShoppingCart p : myProducts) {
+			double discount = p.getProductId().getProduct_discount();
+			double price = p.getProductId().getProduct_price();
+			double newPrice = discount * price;
+			p.setProductPay(newPrice);
+			
+			int amount = p.getProductAmount();
+			double newPay = amount * newPrice;
+			p.setProductNewPay(newPay);
+		}
+		
+		return myProducts;
+	}
 	
 	@ResponseBody
 	@PostMapping("/addCart/{product_id}")
@@ -48,6 +60,23 @@ public class ShoppingCartController {
 		service.addProductToCart(product, member); 
 		return "";
 	}
+	
+	@PostMapping("/cart/increaseOne/{productId}")
+	public String increaseOne(@PathVariable int productId, HttpSession session) {
+		Member member = (Member)session.getAttribute("member");
+		Product product = service.findProductByID(productId);
+		service.updateUpProductAmount(product, member);
+		return "";
+	}
+	
+	@PostMapping("/cart/decreaseOne/{productId}")
+	public String decreaseOne(@PathVariable int productId, HttpSession session) {
+		Member member = (Member)session.getAttribute("member");
+		Product product = service.findProductByID(productId);
+		service.updateLowProductAmount(product, member);
+		return "";
+	}
+	
 	
 	
 }

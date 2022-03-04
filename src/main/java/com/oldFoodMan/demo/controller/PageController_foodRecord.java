@@ -70,57 +70,24 @@ public class PageController_foodRecord {
 		return mav;
 	}
 	
-	//用ID看食記
+			
+		//依食記ID看食記，顯示該食記的留言
 		@GetMapping("/viewById")
-		public ModelAndView viewOneRecord(ModelAndView mav, @RequestParam(name = "id") Integer id,HttpSession session){
-		
+		public ModelAndView viewOneRecord(ModelAndView mav, @RequestParam(name = "id") Integer id,@RequestParam(name="p", defaultValue = "1") Integer pageNumberMsg,HttpSession session){
 			mav.setViewName("record/viewById");	
 			FoodRecord fr = new FoodRecord();
 			FoodRecord frById = service.findById(id);
-			System.out.println("這裡是Food : "+frById);
 			mav.getModel().put("foodRecord", fr);
-			session.setAttribute("sessionRecordId", frById);
 			mav.getModel().put("foodrecordById", frById);
-			return mav;
-		}
-
-//------留言相關的Controller-----------------------------------------	
-		
-	//留言page
-	@GetMapping("/viewMessages")
-	public ModelAndView viewMessagePage(ModelAndView mav,@RequestParam(name="p", defaultValue = "1") Integer pageNumberMsg) {
-		mav.setViewName("record/viewById");
-		Page<RecordMessages> msg_page = msgService.findByPage(pageNumberMsg);  //回傳一個Page泛型的物件
-		mav.getModel().put("msg_page", msg_page);   //再將這個Page傳回去  →"msg_page"是JSP會拿到的名字，JSP要讀這個page的物件
-		return mav;
-	}
+			session.setAttribute("sessionRecordId", frById);
+			Page<RecordMessages> msg_page = msgService.findByPage(pageNumberMsg);  //回傳一個Page泛型的物件
+			mav.getModel().put("msg_page", msg_page);   //再將這個Page傳回去  →"msg_page"是JSP會拿到的名字，JSP要讀這個page的物件
 	
-	//看剛寫好的留言
-		@GetMapping("/theLastestMsg")
-		public ModelAndView theLastestMsg(ModelAndView mav) {
-			mav.setViewName("record/viewOneRecord");
-			RecordMessages rMsg = new RecordMessages();
-			RecordMessages lastestMsg = msgService.getLastest();
-			mav.getModel().put("recordMessage", rMsg);
-			mav.getModel().put("lastestRecordMessages", lastestMsg);
 			
+			System.out.println("here");
 			return mav;
-		}
-		
-	//用ID看留言
-		@GetMapping("/viewMsgById")
-		public ModelAndView viewMsgById(ModelAndView mav, @RequestParam(name = "id") Integer id,HttpSession session){
-			mav.setViewName("record/viewById");	
-			RecordMessages rMsg = new RecordMessages();
-			RecordMessages msgById = msgService.findById(id);
-
-			mav.getModel().put("recordMessage", rMsg);
-			mav.getModel().put("recordMsgById", msgById);
-			session.setAttribute("sessionMsgId", msgById);
-			
-			System.out.println("here Msg");
-			return mav;
-		}
+		}	
+	
 	
 
 }
