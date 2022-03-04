@@ -31,20 +31,22 @@ public class JoinVisService {
 
 
 	public void insert(JoinVis joinvis) {
+		System.out.println("有什麼:" + joinvis);
+		
 		joinDao.save(joinvis);
 
 	}
 	
 	
-	public void addJoinVis(JoinVis joincon) {
-
+	public void addJoinVis(JoinVis joincon,Member member,OldFoodManBean vis_id) {
+		String add_conditon=joincon.getAdd_condition();
 
 		JoinVis jovis = new JoinVis();
 		
-		jovis.setMember_id(joincon.getMember_id());
-		jovis.setMy_food_vis_id(joincon.getMy_food_vis_id());
-		jovis.setAdd_condition(joincon.getAdd_condition());
-		System.out.println("service: "+joincon);
+		jovis.setMember_id(member);
+		jovis.setMy_food_vis_id(vis_id);
+		jovis.setAdd_condition(add_conditon);
+		System.out.println("service: "+jovis);
 		joinDao.save(jovis);
 		
 	}
