@@ -2,6 +2,7 @@ package com.oldFoodMan.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.dto.RecordMessageDto;
+import com.oldFoodMan.demo.model.FoodRecord;
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.RecordMessages;
 import com.oldFoodMan.demo.service.RecordMessageService;
 
@@ -29,24 +32,58 @@ public class RecordMessagesController {
 	private RecordMessageService msgService;
 	
 	
-	//新增Msg
-	@PostMapping(value = "/createMsg")
-	public ModelAndView postNewData(ModelAndView mav, @Valid @ModelAttribute(name = "msg") RecordMessages rMsg,BindingResult rs) {
-		msgService.insertMessage(rMsg);
-		mav.setViewName("redirect:/theLastestRecord");   //回傳到PageController的record/totalRecord的頁面
-		return mav;
-	}
+	//新增(有外鍵)Msg
+//	@PostMapping(value = "/createMsg")
+//	public ModelAndView postNewData(ModelAndView mav, @Valid @ModelAttribute(name = "msg") RecordMessages rMsg,BindingResult rs, HttpSession session) {
+//		Member member = (Member)session.getAttribute("member");
+//		FoodRecord foodRecord = (FoodRecord)session.getAttribute("foodRecord");
+//		Integer member_id = member.getId();
+//		Integer record_id = foodRecord.getId();
+//		System.out.println("member_id = "+member_id);
+//		System.out.println("record_id = "+record_id);
+//		rMsg.setMember_id(member);
+//		rMsg.setId(record_id);
+//		msgService.insertMessage(rMsg);
+//		mav.setViewName("redirect:/theLastestRecord");   //回傳到PageController的record/totalRecord的頁面
+//		return mav;
+//	}
+	
+	
+	//新增(測試梅外鍵)Msg
+//	@PostMapping(value = "/createMsg")
+//	public ModelAndView postNewData(ModelAndView mav, @Valid @ModelAttribute(name = "msg") RecordMessages rMsg,BindingResult rs,HttpSession session) {
+//		Member member = (Member)session.getAttribute("member");
+//		FoodRecord fr = (FoodRecord)session.getAttribute("foodRecord");
+//		Integer member_id = member.getId();
+//		Integer fr_id = fr.getId();
+//		System.out.println("會員ID = "+ member_id);
+//		System.out.println("食記ID = "+ fr_id);
+//		rMsg.setMember_id(member);
+//		rMsg.setId(fr_id);
+//		msgService.insertMessage(rMsg);
+//		mav.setViewName("redirect:/viewById");   //回傳到PageController的record/totalRecord的頁面
+//		return mav;
+//	}
 	
 	
 	//api
 		@ResponseBody   //因為是要回傳json所以要用@ResopnseBody (ModelAndView 是回傳一個View)
 		@PostMapping("/api/postMessage")	
-		public List<RecordMessages> postMessageApi(@RequestBody RecordMessageDto dto){  //@RequestBody RecordMessageDto 請求的本體(送進來的) ；List<RecordMessages>回傳回去的
+		public List<RecordMessages> postMessageApi(@RequestBody RecordMessageDto dto,HttpSession session){  //@RequestBody RecordMessageDto 請求的本體(送進來的) ；List<RecordMessages>回傳回去的
 			String text = dto.getMsg();     //從dto拿到值，這是一個String的text
-			
 			RecordMessages foodMsg = new RecordMessages();   //因為是新增資料，所以需要new
 			foodMsg.setText(text);    //然後把text送給foodMsg
+			Member member = (Member)session.getAttribute("member");
+			FoodRecord fr = (FoodRecord)session.getAttribute("fr_ID");
+			System.out.println("MSG取fr的id = "+ fr);
 			
+			Integer member_id = member.getId();
+			Integer fr_id = fr.getId();
+			
+			System.out.println("會員ID = "+ member_id);
+			System.out.println("食記ID = "+ fr_id);
+			foodMsg.setMember_id(member);
+			foodMsg.setId(fr_id);
 			msgService.insertMessage(foodMsg);   //將資料存進去
 			
 			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件

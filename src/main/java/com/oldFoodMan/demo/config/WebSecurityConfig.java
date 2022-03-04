@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
 		
 		// 進入(/userInfo) 頁面時需登入，如未登入會重新導向到(/login)登入頁面
-		http.authorizeRequests().antMatchers("/userInfo").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+		http.authorizeRequests().antMatchers("/userInfo", "/productsPage" , "/productsBackStagePage").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 		
 		//同上，但只有指定為ROLE_ADMIN才可以進入
 		http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
@@ -59,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin()
 				.loginProcessingUrl("/j_spring_security_check")
 				.loginPage("/login")
-				.defaultSuccessUrl("/")//登入成功時所導向的網頁 ("/",true) 強制成功
+				.defaultSuccessUrl("/searchMaps")//登入成功時所導向的網頁 ("/",true) 強制成功
 				.failureUrl("/login?error=true")//登入錯誤時所導向的頁面
 				.usernameParameter("account")//
 				.passwordParameter("password")

@@ -43,7 +43,7 @@
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">日期</label>
 									<input type="date" value="${ofm.vis_date}" disabled class="form-control" />
-
+ 	
 								</div>
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">時間</label>

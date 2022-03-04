@@ -19,6 +19,8 @@ public class ShoppingCartBoth implements Serializable{
 	
 	private Integer member_id;
 	
+	private Integer product_amount;
+	
 	public ShoppingCartBoth() {
 		
 	}
@@ -50,11 +52,19 @@ public class ShoppingCartBoth implements Serializable{
 	}
 
 
+	public Integer getProduct_amount() {
+		return product_amount;
+	}
+
+
+	public void setProduct_amount(Integer product_amount) {
+		this.product_amount = product_amount;
+	}
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(member_id, product_id);
+		return Objects.hash(member_id, product_amount, product_id);
 	}
 
 
@@ -67,8 +77,16 @@ public class ShoppingCartBoth implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		ShoppingCartBoth other = (ShoppingCartBoth) obj;
-		return Objects.equals(member_id, other.member_id) && Objects.equals(product_id, other.product_id);
+		return Objects.equals(member_id, other.member_id) && Objects.equals(product_amount, other.product_amount)
+				&& Objects.equals(product_id, other.product_id);
 	}
+
+
+	
+
+	
+
+
 	
 	
 }

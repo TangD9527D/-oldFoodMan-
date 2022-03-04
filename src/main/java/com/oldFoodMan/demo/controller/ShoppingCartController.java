@@ -33,10 +33,16 @@ public class ShoppingCartController {
 		return "shoppingCart";
 	}
 	
+//	@ResponseBody
+//	@PostMapping("/shoppingCart")
+//	public List<ShoppingCart> allProduct() {
+//		List<ShoppingCart> myproducts = service.findAll();
+//		return myproducts;
+//	}
 	
 	@ResponseBody
 	@PostMapping("/addCart/{product_id}")
-	public String addtoCart(@PathVariable int product_id, HttpSession session){
+	public String addtoCart(@PathVariable int product_id, HttpSession session) throws Exception{
 		Member member = (Member)session.getAttribute("member");
 		Product product = service.findProductByID(product_id);
 		service.addProductToCart(product, member); 

@@ -2,6 +2,8 @@ package com.oldFoodMan.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -70,11 +72,15 @@ public class PageController_foodRecord {
 	
 	//用ID看食記
 		@GetMapping("/viewById")
-		public ModelAndView viewOneRecord(ModelAndView mav, @RequestParam(name = "id") Integer id){
+		public ModelAndView viewOneRecord(ModelAndView mav, @RequestParam(name = "id") Integer id,HttpSession session){
+			
 			mav.setViewName("record/viewById");	
 			FoodRecord fr = new FoodRecord();
 			FoodRecord frById = service.findById(id);
+			System.out.println("這裡是Food : "+frById);
+			
 			mav.getModel().put("foodRecord", fr);
+			session.setAttribute("fr_ID", frById);
 			mav.getModel().put("foodrecordById", frById);
 			
 			System.out.println("here");

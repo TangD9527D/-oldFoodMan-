@@ -44,10 +44,17 @@ public class OfmService {
 	public List<OldFoodManBean> findAll() {
 
 		List<OldFoodManBean> messages = dao.findAll();
-
+		
 		return messages;
 	}
 
+	public List<OldFoodManBean> findAllNoMemberID(){
+		
+		List<OldFoodManBean> ofmforfull=dao.findAllNoMemberID();
+		return ofmforfull;
+	}
+	
+	
 	public Page<OldFoodManBean> findByPage(Integer pageNumber) {
 		Pageable pgb = PageRequest.of(pageNumber - 1, 5, Sort.Direction.DESC, "added");
 		return dao.findAll(pgb);

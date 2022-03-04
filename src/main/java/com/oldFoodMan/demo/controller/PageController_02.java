@@ -70,7 +70,7 @@ public class PageController_02 {
 	}
 
 	
-	@GetMapping("searchMaps")
+	@GetMapping("/")
 	public ModelAndView mapsAjaxPage(ModelAndView mav,
 			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber) {
 

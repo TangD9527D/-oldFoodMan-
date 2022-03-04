@@ -2,7 +2,6 @@ package com.oldFoodMan.demo.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -19,7 +18,13 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="member")
@@ -31,14 +36,7 @@ public class Member implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
-	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
-	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
-	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
-	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
-	
-	
+
 	@Column(name = "memberName")
 	private String memberName;
 	
@@ -71,16 +69,27 @@ public class Member implements Serializable {
 	@Column(name = "createDate")
 	private Date createDate; 
 	
-
+	@Transient
+	private MultipartFile MemberImage;
 	
-	
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
 	private Set<UserRole> userRole = new LinkedHashSet<UserRole>();
-
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
+	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
+	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
+	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "membervis")
-	private Set<OldFoodManBean> ofm = new HashSet<OldFoodManBean>();
+	private Set<OldFoodManBean> ofm = new LinkedHashSet<OldFoodManBean>();
+	
+//	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
+//	private Set<OldFoodManBean> ofmid = new LinkedHashSet<OldFoodManBean>();
+	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
+	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
 	
 	public Member() {
 	}
@@ -170,6 +179,14 @@ public class Member implements Serializable {
 		this.createDate = createDate;
 	}
 	
+	public MultipartFile getMemberImage() {
+		return MemberImage;
+	}
+
+	public void setMemberImage(MultipartFile memberImage) {
+		MemberImage = memberImage;
+	}
+
 	public Set<UserRole> getUserRole() {
 		return userRole;
 	}
@@ -177,10 +194,6 @@ public class Member implements Serializable {
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
 	}
-
-	
-	
-	
 	
 	public Set<OldFoodManBean> getOfm() {
 		return ofm;
@@ -188,6 +201,30 @@ public class Member implements Serializable {
 
 	public void setOfm(Set<OldFoodManBean> ofm) {
 		this.ofm = ofm;
+	}
+
+	public Set<ShoppingCart> getShoppingCart() {
+		return shoppingCart;
+	}
+
+	public void setShoppingCart(Set<ShoppingCart> shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
+
+	public Set<FoodRecord> getFoodRecord() {
+		return foodRecord;
+	}
+
+	public void setFoodRecord(Set<FoodRecord> foodRecord) {
+		this.foodRecord = foodRecord;
+	}
+
+	public Set<RecordMessages> getRecordMessages() {
+		return recordMessages;
+	}
+
+	public void setRecordMessages(Set<RecordMessages> recordMessages) {
+		this.recordMessages = recordMessages;
 	}
 
 	@Override
@@ -214,22 +251,7 @@ public class Member implements Serializable {
 		builder.append("]");
 		return builder.toString();
 	}
-
-	public Set<ShoppingCart> getShoppingCart() {
-		return shoppingCart;
-	}
-
-	public void setShoppingCart(Set<ShoppingCart> shoppingCart) {
-		this.shoppingCart = shoppingCart;
-	}
-
-	public Set<FoodRecord> getFoodRecord() {
-		return foodRecord;
-	}
-
-	public void setFoodRecord(Set<FoodRecord> foodRecord) {
-		this.foodRecord = foodRecord;
-	}
+	
 	
 	
 	

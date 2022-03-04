@@ -34,10 +34,7 @@ public class JoinVisService {
 	
 	
 	public void addJoinVis(JoinVis jv) {
-		
-		
-		
-		
+
 		
 		joinDao.save(jv);
 		

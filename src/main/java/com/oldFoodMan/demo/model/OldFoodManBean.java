@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,9 +22,12 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="my_food_vis")
+@JsonIgnoreProperties(value = "membervis")
 public class OldFoodManBean implements Serializable{
 	
 	@Id
@@ -65,11 +67,12 @@ public class OldFoodManBean implements Serializable{
 	private String vis_condition;
 	
 	
-
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn(name = "member_id")
 	private Integer member_id;
 	
 	
-	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "add_food_group",
 	joinColumns = {@JoinColumn(name="my_food_vis_id",referencedColumnName = "vis_id")},
@@ -196,6 +199,8 @@ public class OldFoodManBean implements Serializable{
 
 	
 
+	
+	
 	public Integer getMember_id() {
 		return member_id;
 	}
@@ -204,6 +209,15 @@ public class OldFoodManBean implements Serializable{
 		this.member_id = member_id;
 	}
 	
+	@JsonIgnore
+	public Set<Member> getMembervis() {
+		return membervis;
+	}
+
+	public void setMembervis(Set<Member> membervis) {
+		this.membervis = membervis;
+	}
+
 	public Set<Member> getMember() {
 		return membervis;
 	}
@@ -212,13 +226,7 @@ public class OldFoodManBean implements Serializable{
 		this.membervis = membervis;
 	}
 
-//	public Set<JoinVis> getJoinvis() {
-//		return joinvis;
-//	}
-//
-//	public void setJoinvis(Set<JoinVis> joinvis) {
-//		this.joinvis = joinvis;
-//	}
+
 
 	@Override
 	public String toString() {
@@ -241,6 +249,8 @@ public class OldFoodManBean implements Serializable{
 		builder.append(vis_condition);
 		builder.append(", member_id=");
 		builder.append(member_id);
+		builder.append(", membervis=");
+		builder.append(membervis);
 		builder.append("]");
 		return builder.toString();
 	}
