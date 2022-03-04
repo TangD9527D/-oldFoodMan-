@@ -29,11 +29,7 @@ import com.oldFoodMan.demo.service.OfmService;
 public class FoodVisController_32 {
 	@Autowired
 	private OfmService ofmservice;
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 98b04bb97f677531639d3cf13b9d7df06db58632
 	
 	@PostMapping(value="/addFoodVis")
 	public ModelAndView postNewMessage(ModelAndView mav,@Valid @ModelAttribute(name = "ofm") OldFoodManBean msg ,Member member,HttpSession hs,BindingResult rs) {
@@ -119,11 +115,9 @@ public class FoodVisController_32 {
 		System.out.println("id:" + id);
 		
 		OldFoodManBean ofmVis=new OldFoodManBean();
-<<<<<<< HEAD
-	
-=======
+
 //		Member mvis=new Member();
->>>>>>> 98b04bb97f677531639d3cf13b9d7df06db58632
+
 //		ofmVis.setVis_name(vis_name);
 		ofmVis.setVis_res_name(vis_res_name);
 		ofmVis.setVis_date(vis_date);
