@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="layout/navbar.jsp" />
+<jsp:include page="../menu.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,7 +96,7 @@
 							<input  type="hidden"  class="form-control" value="" />
 							<div class="form-group">
 								<label for="inputAddress2">加入原因</label> 
-								<input type="text"   class="form-control" />
+								<input type="text"  name="add_condition" class="form-control" />
 							</div>
 
 						<button type="submit" class="btn btn-outline-dark" >加入</button>
