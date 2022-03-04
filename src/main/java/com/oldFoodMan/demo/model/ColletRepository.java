@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ColletRepository extends JpaRepository<FoodRecord, Integer> {
 
-	@Query("from FoodRecord where shopType = :shopType")
+	@Query(value="select * from FoodRecord where shopType = :shopType",nativeQuery = true)
 	public List<FoodRecord> findByShopType(@Param(value = "shopType") String shopType);
 	
 	

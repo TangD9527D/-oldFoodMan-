@@ -5,17 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.oldFoodMan.demo.dto.ScheduleDto;
-import com.oldFoodMan.demo.model.FoodRecord;
+import com.oldFoodMan.demo.dto.ColletDto;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.ScheduleBean;
 import com.oldFoodMan.demo.service.ScheduleService;
@@ -28,7 +25,7 @@ public class ScheduleController {
 	
 	@ResponseBody
 	@PostMapping("/locations")	
-	public ScheduleBean likeLocation(@RequestBody ScheduleDto dto,HttpSession hs){
+	public ScheduleBean likeLocation(@RequestBody ColletDto dto,HttpSession hs){
 		
 		Member mid = (Member)hs.getAttribute("member");
 		Integer id=mid.getId();
@@ -53,7 +50,7 @@ public class ScheduleController {
 	
 	@ResponseBody
 	@GetMapping("/likelocold")
-	public ScheduleBean printLikeLocation(@RequestBody ScheduleDto dto , HttpSession hs) {
+	public ScheduleBean printLikeLocation(@RequestBody ColletDto dto , HttpSession hs) {
 		
 		Member mid = (Member)hs.getAttribute("member");
 		Integer id=mid.getId();
