@@ -115,6 +115,9 @@ public class FoodVisController_32 {
 		OldFoodManBean ofmVis=new OldFoodManBean();
 
 
+//		Member mvis=new Member();
+
+
 //		ofmVis.setVis_name(vis_name);
 		ofmVis.setVis_res_name(vis_res_name);
 		ofmVis.setVis_date(vis_date);
