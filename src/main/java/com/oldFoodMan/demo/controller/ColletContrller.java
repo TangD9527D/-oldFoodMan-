@@ -20,16 +20,16 @@ public class ColletContrller {
 	ColletService service;
 	
 	@ResponseBody
-	@GetMapping("/api/collet")
+	@GetMapping("/collet")
 	public List<FoodRecord> colletRecord(ModelAndView mav,@RequestBody ColletDto dto) {
 		
 		System.out.println("shopType:"+dto.getLikeLocations());
-//		mav.setViewName("maps");
+		mav.setViewName("maps2");
 		
 		List<FoodRecord> st =service.findByShopType(dto.getLikeLocations());
 			
 		mav.getModel().put("st", st);		
-		
+
 		return st ;
 		
 	}
