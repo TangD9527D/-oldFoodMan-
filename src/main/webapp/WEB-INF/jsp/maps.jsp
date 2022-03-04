@@ -139,7 +139,6 @@ html, body {
 	border-radius: 10px;
 	background: gray;
 	text-align: center;
-	
 }
 
 #inputdiv {
@@ -166,7 +165,6 @@ html, body {
 }
 
 #range {
-
 	border: 0.5px solid transparent;
 	text-align: justify;
 	width: 100%;
@@ -219,7 +217,6 @@ img {
 }
 
 #location1 {
-	
 	float: right;
 	width: 100%;
 	height: 80%;
@@ -236,18 +233,18 @@ img {
 		<h4 style="text-align: center; padding-top: 20px">收藏的地點🌟</h4>
 		<hr style="color: pink; border: 5px solid pink">
 		<div id="location1"></div>
-		
-				
-			
+
+
+
 	</div>
 
 	<div id="allpage">
 		<!--整個頁面的65%-->
 		<div id="inputdiv">
 			<!--allpage的65%-->
-			<input id="input" class="btn btn-secondary" type="search" placeholder="Search Food & record"
-				 />
-				 <button id="food" class="btn btn-outline-secondary btn-lg" >食記</button>
+			<input id="input" class="btn btn-secondary" type="search"
+				placeholder="Search Food & record" />
+			<button id="food" onclick="confirm('確定送出？'); collet();" class="btn btn-outline-secondary btn-lg">食記</button>
 		</div>
 
 		<div id="map"></div>
@@ -259,11 +256,9 @@ img {
 				value="ShowMark" /> <input id="hide-markers"
 				class="btn btn-outline-dark btn-sm" type="button" value="HideMark" />
 
-			<button id="star"
-				onclick=""
-				class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
+			<button id="star" onclick="confirm('確定送出？'); return insertlocation()" class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
 
-<!-- confirm('確定送出？'); return insertlocation() -->
+			<!--  -->
 
 		</div>
 
@@ -276,11 +271,34 @@ img {
 						<h3 id="p" class="card-title"
 							style="background-color: #ADADAD; text-align: center">${maps.title}</h3>
 						<h5 id="p" class="card-text">${maps.content}</h5>
-						<a href="#" class="btn btn-secondary"
+						<a href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} " class="btn btn-secondary"
 							style="position: absolute; bottom: 15px">繼續閱讀</a>
 						<div id="right">
 							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
 								value="${maps.added}" />
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+
+
+
+
+		<div id="range1" class="">
+			<c:forEach var="st" items="${st.content}">
+				<div class="card" id="p1" style="width: 8cm;">
+					<img src="<c:url value='/getPicture/${st.id}'/>"
+						style="width: 250px; height: 220px" class="card-img-top" alt="...">
+					<div id="box" class="card-body">
+						<h3 id="p" class="card-title"
+							style="background-color: #ADADAD; text-align: center">${st.title}</h3>
+						<h5 id="p" class="card-text">${st.content}</h5>
+						<a href="#" class="btn btn-secondary"
+							style="position: absolute; bottom: 15px">繼續閱讀</a>
+						<div id="right">
+							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
+								value="${st.added}" />
 						</div>
 					</div>
 				</div>
@@ -436,6 +454,7 @@ img {
 
 			var inputResName = document.getElementById('input').value;
 			var Member_id=document.getElementById('member_id').value;
+			console.log(input);
 			console.log(Member_id);
 			var dtoObject = {
 				"likelocations" : inputResName,
@@ -463,7 +482,7 @@ img {
  
 
 </script>
-<script>
+	<script>
 
 document.getElementById("star").addEventListener("click",function(){
 	  swal("Good job!", "已經收藏此地點!", "success").then(insertlocation());
@@ -472,7 +491,7 @@ document.getElementById("star").addEventListener("click",function(){
 
 
 </script>
-<script>
+	<script>
 
 // //網頁接值
 		$(document).ready(function() {	
@@ -501,6 +520,54 @@ document.getElementById("star").addEventListener("click",function(){
 				});
 		
 			})
+
+</script>
+
+	<script>
+
+		function collet(){
+			
+			
+			var inputResName = document.getElementById('input').value;
+			var dtoObject = {
+				"likelocations" : inputResName,				
+				}
+			var dtoJsonString = JSON.stringify(dtoObject);	
+				console.log(dtoJsonString);
+				$.ajax({
+						url : 'http://localhost:8080/oldFoodMan/api/collet'+dtoJsonString,
+						contentType : 'application/json ; charset=UTF-8',
+						dataType : 'json',
+						method : 'get',
+						data : dtoJsonString,
+						success : function(result) {
+							console.log(result)
+						var msg_data='';
+				$.each(result,function(index,value){
+						msg_data+= '<div class="card" style="width: 8cm;">'
+						msg_data+= '<img src="...'+ value.coverImage +'" class="card-img-top" alt="...">'	
+						msg_data+= '<div class="card-body">'		
+						msg_data+= '<h5 class="card-title">'+ value.title +'</h5>'
+						msg_data+= '<p class="card-text">'+ value.content  +'</p>'
+						msg_data+= '<a href="" class="btn btn-primary">Go somewhere</a>'
+						msg_data+= '</div>'
+						msg_data+= '</div>'
+						})
+
+						$('#range1').append(msg_data)
+
+		
+						},
+						error : function(err) {
+							console.log(err)
+							alert('發生錯誤')
+						}
+
+				})
+
+	}
+
+
 
 </script>
 

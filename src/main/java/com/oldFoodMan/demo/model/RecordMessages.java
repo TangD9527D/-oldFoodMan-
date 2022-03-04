@@ -43,7 +43,7 @@ public class RecordMessages implements Serializable {
 //	@NotEmpty(message = "不可空白")
 //	@Size(min = 3, max = 20,message = "請輸入 3 至 20 個字")
 //	@Email(message = "請輸入 Email")
-	@Column(name="text")
+	@Column(name="texts")
 	private String text;
 	
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")

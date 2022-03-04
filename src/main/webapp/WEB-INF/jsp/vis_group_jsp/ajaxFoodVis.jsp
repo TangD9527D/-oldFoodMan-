@@ -224,7 +224,7 @@ var tdate=new Date();
 	
 		function addjoin(Vis_id) {	
 			var btn=$('#get').attr();
-			console.log(btn)
+			console.log("btn: "+btn)
 			var Vis_id=document.getElementById('get').value;
 			var inputCondition = document.getElementById('add_condition').value;
 			var Member_id=document.getElementById('member_id').value;
