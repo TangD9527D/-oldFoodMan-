@@ -21,7 +21,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int product_id;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "product_id",cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "productId")
 	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
 	
 	
