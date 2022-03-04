@@ -2,7 +2,7 @@ package com.oldFoodMan.demo.model;
 
 
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -10,6 +10,9 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "shoppingcart")
@@ -18,65 +21,95 @@ public class ShoppingCart {
 
 	@Id
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "product_id")
-	private Product product_id;
+	@JoinColumn(name = "productId")
+	private Product productId;
 	
 	@Id
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "member_id")
-	private Member member_id;
+	@JoinColumn(name = "memberId")
+	@JsonIgnore
+	private Member memberId;
 
-	private Integer product_amount;
+	private Integer productAmount;
 	
+	@Transient
+	private double productPay;
+	
+	@Transient
+	private double productNewPay;
 	
 	public ShoppingCart() {
 	}
 
 
-
-	public Product getProduct_id() {
-		return product_id;
+	public Product getProductId() {
+		return productId;
 	}
 
 
-
-	public void setProduct_id(Product product_id) {
-		this.product_id = product_id;
+	public void setProductId(Product productId) {
+		this.productId = productId;
 	}
 
 
-
-	public Member getMember_id() {
-		return member_id;
+	public Member getMemberId() {
+		return memberId;
 	}
 
 
-
-	public void setMember_id(Member member_id) {
-		this.member_id = member_id;
+	public void setMemberId(Member memberId) {
+		this.memberId = memberId;
 	}
+
+
+	public Integer getProductAmount() {
+		return productAmount;
+	}
+
+
+	public void setProductAmount(Integer productAmount) {
+		this.productAmount = productAmount;
+	}
+
+
+	public double getProductPay() {
+		return productPay;
+	}
+
+
+	public void setProductPay(double productPay) {
+		this.productPay = productPay;
+	}
+
+
+	public double getProductNewPay() {
+		return productNewPay;
+	}
+
+
+	public void setProductNewPay(double productNewPay) {
+		this.productNewPay = productNewPay;
+	}
+
+
+	public ShoppingCart(Product productId, Member memberId, Integer productAmount, double productPay,
+			double productNewPay) {
+		super();
+		this.productId = productId;
+		this.memberId = memberId;
+		this.productAmount = productAmount;
+		this.productPay = productPay;
+		this.productNewPay = productNewPay;
+	}
+
 
 	
 
-	public Integer getProduct_amount() {
-		return product_amount;
-	}
+	
 
 
 
-	public void setProduct_amount(Integer product_amount) {
-		this.product_amount = product_amount;
-	}
-
-
-
-	public ShoppingCart(Product product_id, Member member_id, Integer product_amount) {
-		super();
-		this.product_id = product_id;
-		this.member_id = member_id;
-		this.product_amount = product_amount;
-	}
-
+	
 
 
 	

@@ -22,12 +22,16 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.oldFoodMan.demo.dto.FoodVisDto;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OldFoodManBean;
+import com.oldFoodMan.demo.model.TestOFM;
 import com.oldFoodMan.demo.service.OfmService;
+import com.oldFoodMan.demo.service.TestOfmService;
 @Controller
 public class FoodVisController_32 {
 	@Autowired
 	private OfmService ofmservice;
-
+	
+	@Autowired
+	private TestOfmService testservice;
 	
 	@PostMapping(value="/addFoodVis")
 	public ModelAndView postNewMessage(ModelAndView mav,@Valid @ModelAttribute(name = "ofm") OldFoodManBean msg ,Member member,HttpSession hs,BindingResult rs) {
@@ -96,14 +100,14 @@ public class FoodVisController_32 {
 	
 	@ResponseBody
 	@PostMapping("/api/postFoodVis")
-	public List<OldFoodManBean> postFoodVis(@RequestBody FoodVisDto dto,HttpSession hs){
+	public List<TestOFM> postFoodVis(@RequestBody FoodVisDto dto,HttpSession hs){
 		
 		Member mid = (Member)hs.getAttribute("member");
 		Integer id=mid.getId();
-//		String vis_name=dto.getVis_name();
+
 		String vis_res_name=dto.getVis_res_name();
 		Date vis_date=dto.getVis_date();
-//		String vis_email=dto.getVis_email();
+
 		String vis_time=dto.getVis_time();
 		String vis_location=dto.getVis_location();
 		String vis_num=dto.getVis_num();
@@ -131,8 +135,8 @@ public class FoodVisController_32 {
 		ofmservice.insert(ofmVis);
 //		memservice.insert(mvis);
 		
-		Page<OldFoodManBean> page =ofmservice.findByPage(1);
-		List<OldFoodManBean> list=page.getContent();
+		Page<TestOFM> page =testservice.findByPage(1);
+		List<TestOFM> list=page.getContent();
 		
 		return list;
 		
@@ -141,10 +145,10 @@ public class FoodVisController_32 {
 
 	@ResponseBody
 	@GetMapping("/api/getFoodVis")
-	public List<OldFoodManBean> getFoodVis(ModelAndView mav,OldFoodManBean ofm){
+	public List<TestOFM> getFoodVis(ModelAndView mav){
 		
-		List<OldFoodManBean> listall =ofmservice.findAllNoMemberID();
-		System.out.println(ofm.getVis_id());
+		List<TestOFM> listall =testservice.findAllNoMemberID();
+		System.out.println();
 //		List<OldFoodManBean> list=page.getContent();
 		
 		return listall;
