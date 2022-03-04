@@ -42,33 +42,32 @@ public class JoinVisController_32 {
 	}
 	
 	
-	@ResponseBody
+//	@ResponseBody
 	@PostMapping("/addjoinvis/{vis_id}")
-	public ModelAndView addVis(ModelAndView mav,@ModelAttribute(name = "ofm") @PathVariable Integer vis_id,@RequestBody JoinVisDto dto,JoinVis joinvis, HttpSession session){
+	public ModelAndView addVis(ModelAndView mav,@ModelAttribute(name = "ofm") @PathVariable Integer vis_id,JoinVis joinvis, HttpSession session){
 		Member member = (Member)session.getAttribute("member");
 		
-		String condition=dto.getAdd_condition();
 		
 		System.out.println("idvis: "+vis_id);
 
 		
 
 		OldFoodManBean ofmvis=ofmservice.findById(vis_id);
+		joinvis.setMember_id(member);
+		joinvis.setMy_food_vis_id(ofmvis);
 		
+		System.out.println("第二個 條件:"+joinvis.getAdd_condition());
 		
-		JoinVis joinvisadd=new JoinVis();
+		System.out.println("第三個 :"+joinvis);
 		
-		joinvisadd.setMember_id(member);
-		joinvisadd.setMy_food_vis_id(ofmvis);
-		joinvisadd.setAdd_condition(condition);
+//		JoinVis josave=new JoinVis();
+//		josave.setAdd_condition(joinvis.getAdd_condition());
+//		josave.setMember_id(member);
+//		josave.setMy_food_vis_id(ofmvis);
+		jvservice.addJoinVis(joinvis,member,ofmvis); 
+//		jvservice.insert(joinvis);
 		
-		System.out.println("第二個 條件:"+condition);
-		System.out.println("第三個 visid:"+vis_id);
-		
-		jvservice.addJoinVis(joinvisadd); 
-		
-		
-		mav.getModel().put("ofm", joinvisadd);
+		mav.getModel().put("ofm", joinvis);
 		mav.setViewName("redirect:/ajaxFoodVis");
 		return mav;
 	}

@@ -73,7 +73,7 @@ public class OldFoodManBean implements Serializable{
 	private Integer member_id;
 	
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "add_food_group",
 	joinColumns = {@JoinColumn(name="my_food_vis_id",referencedColumnName = "vis_id")},
@@ -211,7 +211,7 @@ public class OldFoodManBean implements Serializable{
 	}
 	
 	@Transactional
-	@JsonIgnore
+//	@JsonIgnore
 	public Set<Member> getMembervis() {
 		return membervis;
 	}

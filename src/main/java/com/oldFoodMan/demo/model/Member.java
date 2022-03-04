@@ -82,7 +82,7 @@ public class Member implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
 	
-	@JsonIgnore
+	
 	@ManyToMany(mappedBy = "membervis")
 	private Set<OldFoodManBean> ofm = new LinkedHashSet<OldFoodManBean>();
 	
