@@ -8,18 +8,20 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name="add_food_group")
 @IdClass(JoinVisBoth.class)
 public class JoinVis implements Serializable{
 
 	
 	@Id
-	private Member member_id;
+	private Integer member_id;
 	
 	@Id
-	private OldFoodManBean my_food_vis_id;
+	private Integer my_food_vis_id;
 	
 	private String add_condition;
 	
@@ -33,7 +35,7 @@ public class JoinVis implements Serializable{
 		
 	}
 
-	public JoinVis(Member member_id, OldFoodManBean my_food_vis_id, String add_condition, Integer add_check) {
+	public JoinVis(Integer member_id, Integer my_food_vis_id, String add_condition, Integer add_check) {
 		super();
 		this.member_id = member_id;
 		this.my_food_vis_id = my_food_vis_id;
@@ -41,19 +43,19 @@ public class JoinVis implements Serializable{
 		this.add_check = add_check;
 	}
 
-	public Member getMember_id() {
+	public Integer getMember_id() {
 		return member_id;
 	}
 
-	public void setMember_id(Member member_id) {
+	public void setMember_id(Integer member_id) {
 		this.member_id = member_id;
 	}
 
-	public OldFoodManBean getMy_food_vis_id() {
+	public Integer getMy_food_vis_id() {
 		return my_food_vis_id;
 	}
 
-	public void setMy_food_vis_id(OldFoodManBean my_food_vis_id) {
+	public void setMy_food_vis_id(Integer my_food_vis_id) {
 		this.my_food_vis_id = my_food_vis_id;
 	}
 
