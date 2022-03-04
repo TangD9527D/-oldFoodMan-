@@ -405,7 +405,68 @@ var tdate=new Date();
 		
 		
 
+<<<<<<< HEAD
 <!-- 分頁頁碼 -->
+=======
+
+		
+		<!-- dialog視窗 -->
+
+		
+<%-- 		<c:forEach var="viewallvis" items="${page.content}"> --%>
+		<div class="modal fade" id="exampleModal1" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<div class="card-header text-white bg-dark " id="exampleModalLabel">加入揪團</div>
+						
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						
+
+			<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="inputEmail4">加入原因</label> <input type="text" id="add_condition" name="add_condition"
+					class="form-control" required>
+
+			</div>
+			
+		</div>
+		
+		<div class="form-row">
+			
+			<div class="form-group col-md-6">
+				<input type="text"
+					id="member_id" value="${ofmid.id}" class="form-control" required>
+					${viewallvis.vis_res_name}
+			</div>
+			
+		</div>
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn btn-info" onclick="confirm('確定加入？');return addjoin()">加入</button>
+						
+					</div>	
+							
+							
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		</c:forEach>
+		
+		
+		<!-- 分頁頁碼 -->
+>>>>>>> 4a015be2f193a640f5dbbd922dd8135802655184
 		<div >
 			<div class="pagination">
 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
