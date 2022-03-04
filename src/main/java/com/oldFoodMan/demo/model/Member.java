@@ -76,7 +76,7 @@ public class Member implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
 	private Set<UserRole> userRole = new LinkedHashSet<UserRole>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "memberId")
 	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ScheduleDto implements Serializable {
+public class ColletDto implements Serializable {
 	
 	@JsonProperty(value="likelocations")
 	private String likeLocations ;
@@ -13,10 +13,7 @@ public class ScheduleDto implements Serializable {
 	private Integer member_id;
 	
 	
-	public ScheduleDto() {
-		
-	}
-
+	
 
 	public String getLikeLocations() {
 		return likeLocations;

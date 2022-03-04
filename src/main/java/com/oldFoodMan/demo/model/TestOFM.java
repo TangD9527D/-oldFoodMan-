@@ -18,7 +18,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.transaction.Transactional;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,8 +27,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="my_food_vis")
-@JsonIgnoreProperties(value = "membervis")
-public class OldFoodManBean implements Serializable{
+public class TestOFM implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,12 +71,7 @@ public class OldFoodManBean implements Serializable{
 	private Integer member_id;
 	
 	
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "add_food_group",
-	joinColumns = {@JoinColumn(name="my_food_vis_id",referencedColumnName = "vis_id")},
-	inverseJoinColumns = {@JoinColumn(name="member_id",referencedColumnName = "id")})
-	private Set<Member> membervis = new HashSet<Member>();
+	
 	
 	
 //	@OneToMany(fetch = FetchType.LAZY,mappedBy = "my_food_vis_id",cascade = CascadeType.ALL)
@@ -87,7 +80,7 @@ public class OldFoodManBean implements Serializable{
 	
 
 
-	public OldFoodManBean() {
+	public TestOFM() {
 		
 	}
 	
@@ -210,23 +203,7 @@ public class OldFoodManBean implements Serializable{
 		this.member_id = member_id;
 	}
 	
-	@Transactional
-	@JsonIgnore
-	public Set<Member> getMembervis() {
-		return membervis;
-	}
-
-	public void setMembervis(Set<Member> membervis) {
-		this.membervis = membervis;
-	}
-
-	public Set<Member> getMember() {
-		return membervis;
-	}
-
-	public void setMember(Set<Member> membervis) {
-		this.membervis = membervis;
-	}
+	
 
 
 
@@ -251,8 +228,7 @@ public class OldFoodManBean implements Serializable{
 		builder.append(vis_condition);
 		builder.append(", member_id=");
 		builder.append(member_id);
-		builder.append(", membervis=");
-		builder.append(membervis);
+
 		builder.append("]");
 		return builder.toString();
 	}
