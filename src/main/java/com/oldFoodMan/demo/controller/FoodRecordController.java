@@ -155,7 +155,7 @@ public class FoodRecordController {
 	public String postNewData(@ModelAttribute(name="foodRecord")FoodRecord fr,BindingResult result, HttpSession session) {
 		Member member = (Member)session.getAttribute("member");   //session.getAttribute("member")是個物件，所以轉型別為Member的型別
 		Integer memberID = member.getId();
-		System.out.println(memberID);
+		System.out.println("member = "+member);
 		String[] suppressedFields = result.getSuppressedFields();   //SuppressedFields: 不允許的欄位
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("嘗試傳入不允許的欄位: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));

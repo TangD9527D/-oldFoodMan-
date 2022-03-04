@@ -73,17 +73,14 @@ public class PageController_foodRecord {
 	//用ID看食記
 		@GetMapping("/viewById")
 		public ModelAndView viewOneRecord(ModelAndView mav, @RequestParam(name = "id") Integer id,HttpSession session){
-			
+		
 			mav.setViewName("record/viewById");	
 			FoodRecord fr = new FoodRecord();
 			FoodRecord frById = service.findById(id);
 			System.out.println("這裡是Food : "+frById);
-			
 			mav.getModel().put("foodRecord", fr);
-			session.setAttribute("fr_ID", frById);
+			session.setAttribute("sessionRecordId", frById);
 			mav.getModel().put("foodrecordById", frById);
-			
-			System.out.println("here");
 			return mav;
 		}
 
@@ -112,13 +109,14 @@ public class PageController_foodRecord {
 		
 	//用ID看留言
 		@GetMapping("/viewMsgById")
-		public ModelAndView viewMsgById(ModelAndView mav, @RequestParam(name = "id") Integer id){
+		public ModelAndView viewMsgById(ModelAndView mav, @RequestParam(name = "id") Integer id,HttpSession session){
 			mav.setViewName("record/viewById");	
 			RecordMessages rMsg = new RecordMessages();
 			RecordMessages msgById = msgService.findById(id);
 
 			mav.getModel().put("recordMessage", rMsg);
 			mav.getModel().put("recordMsgById", msgById);
+			session.setAttribute("sessionMsgId", msgById);
 			
 			System.out.println("here Msg");
 			return mav;

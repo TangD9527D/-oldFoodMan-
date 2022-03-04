@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.oldFoodMan.demo.model.FoodRecord;
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.RecordMessages;
 import com.oldFoodMan.demo.model.RecordMessagesRepository;
 
@@ -42,6 +44,11 @@ public class RecordMessageService {
 		public RecordMessages getLastest() {
 			return dao.findFirstByOrderByAddedDesc();
 		}
+		
+	//update留言的會員ID&食記ID
+	public void updateId(Integer id,Member member_id,FoodRecord record_id) {
+		dao.updateMemberID_recordID(id,member_id,record_id);
+	}
 
 	
 	//查全部
