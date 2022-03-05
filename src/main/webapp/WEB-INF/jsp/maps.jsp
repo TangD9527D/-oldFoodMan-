@@ -161,11 +161,10 @@ html, body {
 #hide-markers {
 	float: right;
 }
-#allrange{
 
-text-align: justify;
+#allrange {
+	text-align: justify;
 	width: 100%;
-	
 }
 
 #range {
@@ -173,11 +172,11 @@ text-align: justify;
 	text-align: justify;
 	width: 100%;
 }
+
 #range1 {
 	border: 0.5px solid transparent;
 	text-align: justify;
 	width: 100%;
-	
 }
 
 #p1 {
@@ -233,19 +232,20 @@ img {
 	margin: 0.1px auto;
 	border-radius: 15px;
 	text-align: justify;
+	border: 5px solid pink;
 }
 </style>
 
 
 </head>
 <body>
+
 	<div id="location">
 		<h4 style="text-align: center; padding-top: 20px">收藏的地點🌟</h4>
 		<hr style="color: pink; border: 5px solid pink">
 		<div id="location1"></div>
 
-
-
+		
 	</div>
 
 	<div id="allpage">
@@ -254,7 +254,19 @@ img {
 			<!--allpage的65%-->
 			<input id="input" class="btn btn-secondary" type="search"
 				placeholder="Search Food & record" />
-			<button id="food" onclick="collet11()" class="btn btn-outline-secondary btn-lg">站內食記</button>
+			<button id="food" onclick="collet11()"
+				class="btn btn-outline-secondary btn-lg">站內食記</button>
+				<ul>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-expanded="false"> 食記分類
+			</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item"  href="#"><button class="btn btn-primary" value="火鍋" onclick="collet11()" >火鍋</button></a> 
+					<a class="dropdown-item"  href="#"><button class="btn btn-primary" value="燒烤" onclick="collet11()" >燒烤</button></a> 
+					<a class="dropdown-item"  href="#"><button class="btn btn-primary" value="日式" onclick="collet11()" >日式</button></a> 
+				</div></li>
+		</ul>
 		</div>
 
 		<div id="map"></div>
@@ -266,36 +278,37 @@ img {
 				value="ShowMark" /> <input id="hide-markers"
 				class="btn btn-outline-dark btn-sm" type="button" value="HideMark" />
 
-			<button id="star" onclick="confirm('確定送出？'); return insertlocation()" class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
+			<button id="star" onclick="confirm('確定送出？'); return insertlocation()"
+				class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
 
 			<!--  -->
 
 		</div>
-		
+
 		<div id="allrange">
-		<div id="range1" class="">
-<%-- 			<c:forEach var="st" items="${st.content}"> --%>
-<!-- 				<div class="card" id="p1" style="width: 8cm;"> -->
-<%-- 					<img src="<c:url value='/getPicture/${st.id}'/>" --%>
-<!-- 						style="width: 250px; height: 220px" class="card-img-top" alt="..."> -->
-<!-- 					<div id="box" class="card-body"> -->
-<!-- 						<h3 id="p" class="card-title" -->
-<%-- 							style="background-color: #ADADAD; text-align: center">${st.title}</h3> --%>
-<%-- 						<h5 id="p" class="card-text">${st.content}</h5> --%>
-<!-- 						<a href="#" class="btn btn-secondary" -->
-<!-- 							style="position: absolute; bottom: 15px">繼續閱讀</a> -->
-<!-- 						<div id="right"> -->
-<%-- 							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE" --%>
-<%-- 								value="${st.added}" /> --%>
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<%-- 			</c:forEach> --%>
- 		</div> 
-	</div>
-		
-		
-		
+			<div id="range1" class="">
+				<%-- 			<c:forEach var="st" items="${st.content}"> --%>
+				<!-- 				<div class="card" id="p1" style="width: 8cm;"> -->
+				<%-- 					<img src="<c:url value='/getPicture/${st.id}'/>" --%>
+				<!-- 						style="width: 250px; height: 220px" class="card-img-top" alt="..."> -->
+				<!-- 					<div id="box" class="card-body"> -->
+				<!-- 						<h3 id="p" class="card-title" -->
+				<%-- 							style="background-color: #ADADAD; text-align: center">${st.title}</h3> --%>
+				<%-- 						<h5 id="p" class="card-text">${st.content}</h5> --%>
+				<!-- 						<a href="#" class="btn btn-secondary" -->
+				<!-- 							style="position: absolute; bottom: 15px">繼續閱讀</a> -->
+				<!-- 						<div id="right"> -->
+				<%-- 							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE" --%>
+				<%-- 								value="${st.added}" /> --%>
+				<!-- 						</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+				<%-- 			</c:forEach> --%>
+			</div>
+		</div>
+
+
+
 
 		<div id="range" class="">
 			<c:forEach var="maps" items="${page.content}">
@@ -306,7 +319,9 @@ img {
 						<h3 id="p" class="card-title"
 							style="background-color: #FFCBB3; text-align: center">${maps.title}</h3>
 						<h5 id="p" class="card-text">${maps.content}</h5>
-						<a href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} " class="btn btn-secondary"
+						<a
+							href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
+							class="btn btn-secondary"
 							style="position: absolute; bottom: 15px">繼續閱讀</a>
 						<div id="right">
 							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
@@ -317,10 +332,10 @@ img {
 			</c:forEach>
 		</div>
 
-</div>
+	</div>
 
 
-		
+
 
 
 
