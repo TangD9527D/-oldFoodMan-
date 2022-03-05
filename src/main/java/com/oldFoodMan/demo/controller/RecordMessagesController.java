@@ -47,11 +47,10 @@ public class RecordMessagesController {
 			Integer memberId = member.getId();
 			Integer RecordId = sessionRecordId.getId();
 			
-			System.out.println("會員ID = "+ member_id);
-			System.out.println("食記ID = "+ fr_id);
+			System.out.println("會員ID = "+ memberId);
+			System.out.println("食記ID = "+ RecordId);
 			
-			foodMsg.setId(fr_id);
-			foodMsg.setMember_id(member);
+			foodMsg.setId(memberId);
 			
 			msgService.insertMessage(foodMsg);   //將資料存進去
 			

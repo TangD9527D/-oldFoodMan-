@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Blob;
-import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +19,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.Member;
@@ -53,7 +53,7 @@ public class MemberController {
 			mav.getModel().put("member", member);
 		}
 
-		mav.setViewName("welcomePage");
+		mav.setViewName("maps");
 
 		return mav;
 	}
@@ -73,43 +73,44 @@ public class MemberController {
 	public ModelAndView viewMember(ModelAndView mav, @Valid @ModelAttribute(name = "member") Member mb) {
 
 		mav.setViewName("member/editMember");
-
-		String memberPwd = mb.getMemberPwd();
-
-		String pwd = EncrytedPasswordUtils.encrytePassword(memberPwd);
-
-		mb.setMemberPwd(pwd);
-
+		
+		MultipartFile productImage = mb.getMemberImage();
+		String originalFilename = productImage.getOriginalFilename();
+		mb.setFilesNames(originalFilename);
+		
 		service.update(mb);
+		
+		String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+		String rootDirectory = servletContext.getRealPath("/");
+		try {
+			File imageFolder = new File(rootDirectory, "imgDon");
+			if (!imageFolder.exists()) imageFolder.mkdirs();
+			File file = new File(imageFolder, mb.getId() + ext);
+			productImage.transferTo(file);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+		}
 
 		mav.setViewName("redirect:/viewMember");
 
 		return mav;
 	}
 	
-	@GetMapping("/getPicture/{memberId}")
-	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @RequestParam(value = "id") Integer memberId) {
-		String filePath = "/resources/images/NoImage.jpg";
+	@GetMapping("/getPhoto/{memberId}")
+	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer memberId) {
+		String filePath = "imgDon/noPhoto.png";
 
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
 		String filename = "";
-		int len = 0;
 		Member mb = service.findById(memberId);
-		if (mb != null) {
-			Blob blob = mb.getCoverImage();
-			filename = mb.getFileName();
-			if (blob != null) {
-				try {
-					len = (int) blob.length();
-					media = blob.getBytes(1, len);
-				} catch (SQLException e) {
-					throw new RuntimeException("ProductController的getPicture()發生SQLException: " + e.getMessage());
-				}
-			} else {
-				media = toByteArray(filePath);
-				filename = filePath;
-			}
+		String originalFilename = mb.getFilesNames();
+		if (originalFilename != null) {
+			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+			filePath = "imgDon/" + memberId + ext;
+			media = toByteArray(filePath);
+			filename = filePath;
 		} else {
 			media = toByteArray(filePath);
 			filename = filePath;

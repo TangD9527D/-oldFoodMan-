@@ -403,7 +403,7 @@ var tdate=new Date();
 							modelAttribute="ofmid" method="post">
 			<div class="form-group col-md-6">
 				<input type="text"
-					id="member_id" value="${ofmid.id}" class="form-control" required>
+					id="member_id" value="${ofmid}" class="form-control" required>
 			</div>
 			</form:form>
 		</div>
@@ -444,9 +444,15 @@ var tdate=new Date();
 								value="${viewallvis.added}" />
   </div>
 </div>
-
+</c:forEach>
 <p>
-	
+
+		
+		
+
+<!-- 分頁頁碼 -->
+		
+
 		<!-- dialog視窗 -->
 
 		<div class="modal fade" id="exampleModal1" tabindex="-1"
@@ -474,14 +480,13 @@ var tdate=new Date();
 		</div>
 		
 		<div class="form-row">
-			<form:form class="form" action="${contextRoot}/ajaxFoodVis"
-							modelAttribute="ofmid" method="post">
+			
 			<div class="form-group col-md-6">
 				<input type="text"
 					id="member_id" value="${ofmid.id}" class="form-control" required>
 					${viewallvis.vis_res_name}
 			</div>
-			</form:form>
+			
 		</div>
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
@@ -496,8 +501,14 @@ var tdate=new Date();
 					
 				</div>
 			</div>
-			</div>
-			</c:forEach>
+		</div>
+		
+
+		
+		
+		<!-- 分頁頁碼 -->
+
+		<div >
 			<div class="pagination">
 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
 
@@ -524,6 +535,7 @@ var tdate=new Date();
 		</section>
 		</aside>
 		</div>
+
 		</div>
 		
 		
@@ -532,6 +544,19 @@ var tdate=new Date();
 		
 		<!-- 分頁頁碼 -->
 
+</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+<!-- </div> -->
 </body>
 
 </html>

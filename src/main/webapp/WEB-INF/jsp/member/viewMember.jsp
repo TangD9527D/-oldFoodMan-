@@ -20,46 +20,40 @@
             <form>
             	<div style="width: 320px; height: 340px">
             		<img width='200' height='200'
-							src="<c:url value='/getPicture/${member.id}' />" />
+							src="<c:url value='/getPhoto/${member.id}' />" />
             	</div>
                 <div class="newPwd_13">
                     <label for="names" class="la1">姓名:&nbsp;</label>
-                    <input type="text" id="names" class="inPut" name="names" value="${member.account}" >
-                    <p class="txtP">&nbsp;${member.memberName}</p>
+                    <input type="text" id="names" class="inPut" name="names" value="${member.memberName}" >
+                    <p class="txtP">&nbsp;</p>
                 </div>
                 <div class="phone_13">
                     <label for="phone" class="la1">電話:&nbsp;</label>
-                    <input type="text" id="phone" class="inPut" name="phone">
+                    <input type="text" id="phone" class="inPut" name="phone" value="${member.phone}">
                     <p class="txtP">&nbsp;</p>
                 </div>
                 <div class="newAccount_13">
                     <label for="account" class="la1">帳號(email):&nbsp;</label>
-                    <input type="text" id="account" class="inPut" name="account">
-                    <p class="txtP">&nbsp;</p>
-                </div>
-                <div class="newPwd_13">
-                    <label for="pwd" class="la1">密碼:&nbsp;</label>
-                    <input type="password" id="pwd" class="inPut" name="pwd">
+                    <input type="text" id="account" class="inPut" name="account" value="${member.account}">
                     <p class="txtP">&nbsp;</p>
                 </div>
                 <div class="nickName_13">
                     <label for="nickName" class="la1">用戶名稱:&nbsp;</label>
-                    <input type="text" id="nickName" class="inPut" name="nickName">
+                    <input type="text" id="nickName" class="inPut" name="nickName" value="${member.nickName}">
                     <p class="txtP">&nbsp;</p>
                 </div>
                 <div class="birth_13">
                     <label for="pwd" class="la1">生日:&nbsp;</label>
-                    <label ><input type="date" name="birth" value="?/?/?" class="inPutsb"></label>
+                    <label ><input type="date" name="birth" class="inPutsb" value="${member.birth}"></label>
                     <p class="txtP">&nbsp;</p>
                 </div>
                 <div class="city_13">
                     <label for="city" class="la1">居住城市:&nbsp;</label>
-                    <input type="text" id="city" class="inPut" name="city">
+                    <input type="text" id="city" class="inPut" name="city" value="${member.city}">
                     <p class="txtP">&nbsp;</p>
                 </div>
                 <div class="sub">
-                    <input type="submit" value="送出" class="inPut">
-                    <input type="reset" value="清除" class="inPut">
+                    <input type="button" value="編輯" onclick="location.href='${contextRoot}/editMember?id=${member.id}'">
                 </div>
             </form>
         </fieldset>

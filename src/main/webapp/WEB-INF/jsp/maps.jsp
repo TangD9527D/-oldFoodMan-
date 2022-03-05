@@ -13,8 +13,6 @@
 <title>FoodSearch</title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <!-- <link rel="stylesheet" type="text/css" href="./style.css" /> -->
-
-
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -133,11 +131,11 @@ html, body {
 	font-size: 30px;
 	font-family: fantasy;
 	line-height: 30px;
-	width: 94%;
+	width: 90%;
 	font-weight: 300px;
 	color: black;
 	border-radius: 10px;
-	background: gray;
+	background: FFCBB3;
 	text-align: center;
 }
 
@@ -164,7 +162,18 @@ html, body {
 	float: right;
 }
 
+#allrange {
+	text-align: justify;
+	width: 100%;
+}
+
 #range {
+	border: 0.5px solid transparent;
+	text-align: justify;
+	width: 100%;
+}
+
+#range1 {
 	border: 0.5px solid transparent;
 	text-align: justify;
 	width: 100%;
@@ -223,19 +232,20 @@ img {
 	margin: 0.1px auto;
 	border-radius: 15px;
 	text-align: justify;
+	border: 5px solid pink;
 }
 </style>
 
 
 </head>
 <body>
+
 	<div id="location">
 		<h4 style="text-align: center; padding-top: 20px">收藏的地點🌟</h4>
 		<hr style="color: pink; border: 5px solid pink">
 		<div id="location1"></div>
 
-
-
+		
 	</div>
 
 	<div id="allpage">
@@ -244,7 +254,19 @@ img {
 			<!--allpage的65%-->
 			<input id="input" class="btn btn-secondary" type="search"
 				placeholder="Search Food & record" />
-			<button id="food" onclick="confirm('確定送出？'); collet();" class="btn btn-outline-secondary btn-lg">食記</button>
+			<button id="food" onclick="collet11()"
+				class="btn btn-outline-secondary btn-lg">站內食記</button>
+				<ul>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-expanded="false"> 食記分類
+			</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item"  href="#"><button class="btn btn-primary" value="火鍋" onclick="collet11()" >火鍋</button></a> 
+					<a class="dropdown-item"  href="#"><button class="btn btn-primary" value="燒烤" onclick="collet11()" >燒烤</button></a> 
+					<a class="dropdown-item"  href="#"><button class="btn btn-primary" value="日式" onclick="collet11()" >日式</button></a> 
+				</div></li>
+		</ul>
 		</div>
 
 		<div id="map"></div>
@@ -256,11 +278,37 @@ img {
 				value="ShowMark" /> <input id="hide-markers"
 				class="btn btn-outline-dark btn-sm" type="button" value="HideMark" />
 
-			<button id="star" onclick="confirm('確定送出？'); return insertlocation()" class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
+			<button id="star" onclick="confirm('確定送出？'); return insertlocation()"
+				class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
 
 			<!--  -->
 
 		</div>
+
+		<div id="allrange">
+			<div id="range1" class="">
+				<%-- 			<c:forEach var="st" items="${st.content}"> --%>
+				<!-- 				<div class="card" id="p1" style="width: 8cm;"> -->
+				<%-- 					<img src="<c:url value='/getPicture/${st.id}'/>" --%>
+				<!-- 						style="width: 250px; height: 220px" class="card-img-top" alt="..."> -->
+				<!-- 					<div id="box" class="card-body"> -->
+				<!-- 						<h3 id="p" class="card-title" -->
+				<%-- 							style="background-color: #ADADAD; text-align: center">${st.title}</h3> --%>
+				<%-- 						<h5 id="p" class="card-text">${st.content}</h5> --%>
+				<!-- 						<a href="#" class="btn btn-secondary" -->
+				<!-- 							style="position: absolute; bottom: 15px">繼續閱讀</a> -->
+				<!-- 						<div id="right"> -->
+				<%-- 							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE" --%>
+				<%-- 								value="${st.added}" /> --%>
+				<!-- 						</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+				<%-- 			</c:forEach> --%>
+			</div>
+		</div>
+
+
+
 
 		<div id="range" class="">
 			<c:forEach var="maps" items="${page.content}">
@@ -269,9 +317,11 @@ img {
 						style="width: 250px; height: 220px" class="card-img-top" alt="...">
 					<div id="box" class="card-body">
 						<h3 id="p" class="card-title"
-							style="background-color: #ADADAD; text-align: center">${maps.title}</h3>
+							style="background-color: #FFCBB3; text-align: center">${maps.title}</h3>
 						<h5 id="p" class="card-text">${maps.content}</h5>
-						<a href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} " class="btn btn-secondary"
+						<a
+							href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
+							class="btn btn-secondary"
 							style="position: absolute; bottom: 15px">繼續閱讀</a>
 						<div id="right">
 							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
@@ -282,29 +332,10 @@ img {
 			</c:forEach>
 		</div>
 
-
-
-
-		<div id="range1" class="">
-			<c:forEach var="st" items="${st.content}">
-				<div class="card" id="p1" style="width: 8cm;">
-					<img src="<c:url value='/getPicture/${st.id}'/>"
-						style="width: 250px; height: 220px" class="card-img-top" alt="...">
-					<div id="box" class="card-body">
-						<h3 id="p" class="card-title"
-							style="background-color: #ADADAD; text-align: center">${st.title}</h3>
-						<h5 id="p" class="card-text">${st.content}</h5>
-						<a href="#" class="btn btn-secondary"
-							style="position: absolute; bottom: 15px">繼續閱讀</a>
-						<div id="right">
-							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
-								value="${st.added}" />
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
 	</div>
+
+
+
 
 
 
@@ -380,7 +411,7 @@ img {
                  }
 
                  const icon = {
-                     url: "<c:url value="/images/snow.png"/>", //搜尋後所標記的圖片                        
+                     url: "<c:url value='/images/snow.png'/>", //搜尋後所標記的圖片                        
                      size: new google.maps.Size(71, 71),
                      anchor: new google.maps.Point(20, 34),  //標記點的偏移度
                      scaledSize: new google.maps.Size(60, 60),//圖片大小
@@ -416,7 +447,7 @@ img {
              map,
              animation: google.maps.Animation.BOUNCE, //設定圖示顯示樣式為跳躍
              title: "Hello World!",
-             icon: "<c:url value="/images/snow.png"/>",
+             icon: "<c:url value='/images/snow.png'/>",
             
          });
 
@@ -525,43 +556,42 @@ document.getElementById("star").addEventListener("click",function(){
 
 	<script>
 
-// 		function collet(){
+		function collet11(){		
 			
-			
-// 			var inputResName = document.getElementById('input').value;
+			var inputResName = document.getElementById('input').value;
 
-// 				$.ajax({
-// 						url : 'http://localhost:8080/oldFoodMan/collet?shopType='+inputResName ,
-// 						contentType : 'application/json ; charset=UTF-8',
-// 						dataType : 'json',
-// 						method : 'get',
+				$.ajax({
+						url : 'http://localhost:8080/oldFoodMan/collet?shopType='+inputResName ,
+						contentType : 'application/json ; charset=UTF-8',
+						dataType : 'json',
+						method : 'get',
 
-// 						success : function(result) {
-// 							console.log(result)
-// 						var msg_data='';
-// 				$.each(result,function(index,value){
-// 						msg_data+= '<div class="card" style="width: 8cm;">'
-// // 						msg_data+= '<img src="...'+ value.coverImage +'" class="card-img-top" alt="...">'	
-// 						msg_data+= '<div class="card-body">'		
-// 						msg_data+= '<h5 class="card-title">'+ value.title +'</h5>'
-// 						msg_data+= '<p class="card-text">'+ value.content  +'</p>'
-// 						msg_data+= '<a href="" class="btn btn-primary">Go somewhere</a>'
-// 						msg_data+= '</div>'
-// 						msg_data+= '</div>'
-// 						})
+						success : function(result) {
+							console.log(result)
+						var msg_data='';
+				$.each(result,function(index,value){
+						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
+//  						msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'	
+						msg_data+= '<div class="card-body">'		
+						msg_data+= '<h5 class="card-title">'+ value.title +'</h5>'
+						msg_data+= '<p class="card-text">'+ value.content  +'</p>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary"><c:out value="繼續閱讀..."/></a>'
+						msg_data+= '</div>'
+						msg_data+= '</div>'
+						})
 
-// 						$('#range1').append(msg_data)
+						$('#range1').append(msg_data)
 
 		
-// 						},
-// 						error : function(err) {
-// 							console.log(err)
-// 							alert('發生錯誤')
-// 						}
+						},
+						error : function(err) {
+							console.log(err)
+							alert('發生錯誤')
+						}
 
-// 				})
+				})
 
-// 	}
+	}
 
 
 
