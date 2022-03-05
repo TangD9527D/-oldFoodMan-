@@ -53,7 +53,7 @@ public class MemberController {
 			mav.getModel().put("member", member);
 		}
 
-		mav.setViewName("/");
+		mav.setViewName("maps");
 
 		return mav;
 	}
