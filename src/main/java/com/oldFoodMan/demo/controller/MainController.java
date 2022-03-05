@@ -13,6 +13,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.utils.WebUtils;
@@ -52,6 +53,16 @@ public class MainController {
         return "redirect:/";
     }
 
+//	@PostMapping(value = "/logout")
+//    public String logoutSuccessfulPages(HttpServletRequest request, HttpServletResponse response,Model model) {
+//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();  
+//        if (auth != null){      
+//           new SecurityContextLogoutHandler().logout(request, response, auth);  
+//        }  
+//        model.addAttribute("title", "Logout");
+//        return "redirect:/";
+//    }
+	
 	@GetMapping(value = "/userInfo")
     public String userInfo(Model model, Principal principal) {
 

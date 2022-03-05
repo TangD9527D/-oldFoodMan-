@@ -108,6 +108,7 @@
 							<div class="under_13"><span id="new_account">新增帳號</span>&emsp;&emsp;<span id="log_in"><button name="submit"
 										type="submit" value="submit" class="btn btn-primary">登入</button></span></div>
 					</form:form>
+					<a href="/oauth2/authorization/google">Sign-in Google</a>
 				</div>
 			</div>
 			<script>
