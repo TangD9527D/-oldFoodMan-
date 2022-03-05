@@ -61,19 +61,30 @@ public class ShoppingCartController {
 		return "";
 	}
 	
+	@ResponseBody
 	@PostMapping("/cart/increaseOne/{productId}")
-	public String increaseOne(@PathVariable int productId, HttpSession session) {
+	public ShoppingCart increaseOne(@PathVariable int productId, HttpSession session) {
 		Member member = (Member)session.getAttribute("member");
 		Product product = service.findProductByID(productId);
-		service.updateUpProductAmount(product, member);
-		return "";
+		ShoppingCart newCart = service.updateUpProductAmount(product, member);
+		return newCart;
 	}
 	
+	@ResponseBody
 	@PostMapping("/cart/decreaseOne/{productId}")
 	public String decreaseOne(@PathVariable int productId, HttpSession session) {
 		Member member = (Member)session.getAttribute("member");
 		Product product = service.findProductByID(productId);
 		service.updateLowProductAmount(product, member);
+		return "";
+	}
+	
+	@ResponseBody
+	@PostMapping("/cart/psersonAuto/{productId}/{inputVal}")
+	public String personAuto(@PathVariable int productId, @PathVariable int inputVal, HttpSession session) {
+		Member member = (Member)session.getAttribute("member");
+		Product product = service.findProductByID(productId);
+		service.updateAutoProductAmount(product, member, inputVal);
 		return "";
 	}
 	

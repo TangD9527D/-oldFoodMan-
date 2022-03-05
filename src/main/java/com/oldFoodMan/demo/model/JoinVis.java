@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -23,8 +24,10 @@ public class JoinVis implements Serializable{
 	@Id
 	private OldFoodManBean my_food_vis_id;
 	
+	@Transient
 	private String add_condition;
 	
+	@Transient
 	private Integer add_check;
 	
 	

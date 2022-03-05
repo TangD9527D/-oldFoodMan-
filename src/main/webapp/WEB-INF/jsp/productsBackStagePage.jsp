@@ -292,7 +292,7 @@
             
             var id = $('#Uproduct_id').val();
 			
-            upRow = $(this).closest('tr');
+            upRow = $(this).parents('tr');
             
             $.ajax({                                         //更新表格資料
                 url:'http://localhost:8080/oldFoodMan/updateProduct/' + id,
@@ -302,7 +302,7 @@
                 method: 'post',
                 data: dtoJsonString,
                 success:function(result){    
-                	$("#tableAjax").DataTable().row(this).data(result).draw(false);  //有問題!!!!!!!!!!!!!!!!!!記得改
+                	$("#tableAjax").DataTable().row(upRow).data(result).draw(false);  //有問題!!!!!!!!!!!!!!!!!!記得改
                 },
                 error:function(err){
                     console.log(err);
