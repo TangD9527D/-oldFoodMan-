@@ -455,8 +455,12 @@ var tdate=new Date();
 					
 				</div>
 			</div>
+		<!-- 分頁頁碼 -->
+
+		<div >
 			</div>
-			</c:forEach>
+	<%--		</c:forEach>--%>
+
 			<div class="pagination">
 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
 
