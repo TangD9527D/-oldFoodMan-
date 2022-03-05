@@ -50,8 +50,6 @@ public class JoinVisController_32 {
 		
 		System.out.println("idvis: "+vis_id);
 
-		
-
 		OldFoodManBean ofmvis=ofmservice.findById(vis_id);
 		joinvis.setMember_id(member);
 		joinvis.setMy_food_vis_id(ofmvis);
