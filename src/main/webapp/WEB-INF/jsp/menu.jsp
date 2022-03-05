@@ -49,6 +49,15 @@
 						href="${contextRoot}/ajaxFoodVis">揪團Eat</a></li>
 						<li class="nav-item"><a class="nav-link"
 						href="${contextRoot}/viewMember">帳號test</a></li>
+						<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-expanded="false"> 食記分類
+			</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item"  href="#"><button class="btn btn-secondary" value="火鍋" onclick="collet11()" >火鍋</button></a> 
+					<a class="dropdown-item"  href="#"><button class="btn btn-secondary" value="燒烤" onclick="collet11()" >燒烤</button></a> 
+					<a class="dropdown-item"  href="#"><button class="btn btn-secondary" value="日式" onclick="collet11()" >日式</button></a> 
+				</div></li>
 
 				</ul>
 			</div>
