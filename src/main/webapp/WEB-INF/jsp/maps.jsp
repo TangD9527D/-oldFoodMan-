@@ -256,17 +256,7 @@ img {
 				placeholder="Search Food & record" />
 			<button id="food" onclick="collet11()"
 				class="btn btn-outline-secondary btn-lg">站內食記</button>
-				<ul>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-				role="button" data-toggle="dropdown" aria-expanded="false"> 食記分類
-			</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item"  href="#"><button class="btn btn-primary" value="火鍋" onclick="collet11()" >火鍋</button></a> 
-					<a class="dropdown-item"  href="#"><button class="btn btn-primary" value="燒烤" onclick="collet11()" >燒烤</button></a> 
-					<a class="dropdown-item"  href="#"><button class="btn btn-primary" value="日式" onclick="collet11()" >日式</button></a> 
-				</div></li>
-		</ul>
+				
 		</div>
 
 		<div id="map"></div>
@@ -317,7 +307,7 @@ img {
 						style="width: 250px; height: 220px" class="card-img-top" alt="...">
 					<div id="box" class="card-body">
 						<h3 id="p" class="card-title"
-							style="background-color: #FFCBB3; text-align: center">${maps.title}</h3>
+							style="background-color: 	#CDCD9A; text-align: center">${maps.title}</h3>
 						<h5 id="p" class="card-text">${maps.content}</h5>
 						<a
 							href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
@@ -571,11 +561,52 @@ document.getElementById("star").addEventListener("click",function(){
 						var msg_data='';
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-//  						msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'	
+//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
+						msg_data+= '<img src="/getPicture/'+ value.uploadPicture +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>'
 						msg_data+= '<div class="card-body">'		
-						msg_data+= '<h5 class="card-title">'+ value.title +'</h5>'
-						msg_data+= '<p class="card-text">'+ value.content  +'</p>'
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
+						msg_data+= '<h5 class="card-text">'+ value.content  +'</h5>'
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary"><c:out value="繼續閱讀..."/></a>'
+						msg_data+= '</div>'
+						msg_data+= '</div>'
+						})
+
+						$('#range1').append(msg_data)
+
+		
+						},
+						error : function(err) {
+							console.log(err)
+							alert('發生錯誤')
+						}
+
+				})
+
+	}
+		
+		
+function collet22(){		
+			
+			var inputResName = document.getElementById('bt1').attr;
+			var inputResName = document.getElementById('bt2').attr;
+			var inputResName = document.getElementById('bt3').attr;
+				$.ajax({
+						url : 'http://localhost:8080/oldFoodMan/collet?shopType='+inputResName ,
+						contentType : 'application/json ; charset=UTF-8',
+						dataType : 'json',
+						method : 'get',
+
+						success : function(result) {
+							console.log(result)
+						var msg_data='';
+				$.each(result,function(index,value){
+						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
+//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
+						msg_data+= '<img src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
+						msg_data+= '<div class="card-body">'		
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
+						msg_data+= '<h5 ip="p" class="card-text">'+ value.content  +'</h5>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀..."/></a>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
