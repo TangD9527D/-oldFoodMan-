@@ -3,6 +3,7 @@ package com.oldFoodMan.demo.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,19 +46,20 @@ public class JoinVisController_32 {
 	
 //	@ResponseBody
 	@PostMapping("/addjoinvis/{vis_id}")
-	public ModelAndView addVis(ModelAndView mav,@ModelAttribute(name = "ofm") @PathVariable Integer vis_id,JoinVis joinvis, HttpSession session){
+	public ModelAndView addVis(ModelAndView mav,@PathVariable Integer vis_id,JoinVis joinvis, HttpSession session){
 		Member member = (Member)session.getAttribute("member");
 		
 		
 		System.out.println("idvis: "+vis_id);
 
 		OldFoodManBean ofmvis=ofmservice.findById(vis_id);
-		joinvis.setMember_id(member);
-		joinvis.setMy_food_vis_id(ofmvis);
 		
-		System.out.println("第二個 條件:"+joinvis.getAdd_condition());
+//		joinvis.setMember_id(member);
+//		joinvis.setMy_food_vis_id(ofmvis);
 		
-		System.out.println("第三個 :"+joinvis);
+		System.out.println("第二個 條件:"+joinvis);
+		
+		System.out.println("第三個 :"+ofmvis);
 		
 //		JoinVis josave=new JoinVis();
 //		josave.setAdd_condition(joinvis.getAdd_condition());
@@ -70,7 +73,32 @@ public class JoinVisController_32 {
 		return mav;
 	}
 	
-	
+	@ResponseBody
+	@GetMapping("/getMyJoin")
+	public ModelAndView findMyJoinByMemberID(ModelAndView mav,@RequestParam(name="member_id") Integer member_id,HttpSession hs){
+		
+		Member mid = (Member)hs.getAttribute("member");
+		System.out.println("查自己:" +mid);
+		Integer memberid=mid.getId();
+		List<JoinVis> list=jvservice.findJoinVisByMemberID(memberid);
+		
+		Integer vis_id=null;
+		
+		List<OldFoodManBean> ofm=null;
+		
+		for(JoinVis J : list) {
+		vis_id=J.getMy_food_vis_id();
+		ofm=ofmservice.findByID(vis_id);
+		
+		}
+		
+		
+		System.out.println("有什麼:"+ofm);
+		mav.getModel().put("join", list);
+		mav.getModel().put("op", ofm);
+		mav.setViewName("ajaxFoodVis");
+		return mav;
+	}
 	
 	
 	

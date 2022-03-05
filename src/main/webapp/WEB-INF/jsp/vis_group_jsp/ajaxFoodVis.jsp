@@ -16,18 +16,53 @@
 
 <style>
 .allpage{
-width:85%;
+width:80%;
 
 margin:10px auto;
 
 }
 
+#content {
+    width:100%;
+    overflow:auto;
+}
+
+.article {
+    width:60%;
+    float:left; 
+}
+.section {
+	
+    background-color:#ffffff;
+    border-radius:5px;
+    margin:10px 0;
+    padding:20px 26px;
+    line-height:2em;
+}
+.aside {
+    width:30%;
+    float:right; 
+    position:position;
+    top:400px
+}
 
 .div04_32 {
 background-color: white;
-	width:50%;
+	width:100%;
+ 	float:left; 
+ 	margin: 50px auto; 
+    padding: 30px;
+    box-shadow: 5px 5px 5px gray;
+	border-radius: 20px;
+    border:2px outset gray;
+	
+}
+.div05_32 {
+background-color: white;
+	width:100%;
 	float:left;
-	margin: 50px auto;
+	margin-top: 50px ;
+	margin-right:100px;
     padding: 30px;
     box-shadow: 5px 5px 5px gray;
 	border-radius: 20px;
@@ -180,47 +215,37 @@ var tdate=new Date();
 					}
 				});
 
-			}
-					
-		);
+	},
 	
-// 	//ajax使用分頁show data
-// 	$(document)
-// 	.ready(function viewdata(){
-// 		$.ajax({
-// 			url: 'http://localhost:8080/oldFoodMan/api/getFoodVisByPage',
-// 			contentType: 'application/json; charset=UTF-8',
-// 			dataType: 'json',
-// 			method: 'get',
-// 			success: function (result) {
-// 			console.log("result " + result)
-// 				var msg_data = '';
-// 				$.each(result, function (index, value) {
-// 					msg_data += '<tr>'
-// 					msg_data += '<td class="table-light">' + value.vis_date + '</td>'
-// 					msg_data += '<td class="table-light">' + value.vis_time + '</td>'
-// 					msg_data += '<td class="table-light">' + value.vis_res_name + '</td>'
-// 					msg_data += '<td class="table-light">' + value.vis_location + '</td>'
-// 					msg_data += '<td class="table-light">' + value.vis_num + '</td>'
-// 					msg_data += '<td class="table-light">' + value.vis_condition + '</td>'
-// 						msg_data += '<tr>'
-
-// 				})
-
-// 				$('#trid1').append(msg_data)
-
-// 			},
-// 			error: function (err) {
-// 				console.log(err)
-// 				alert('發生錯誤')
-// 			}
-
-// 		})
 		
+	
+	
+	);
+	
+	$(document).ready(function viewdata(){
+		var id=document.getElementById('member_id').value;
+			
 		
-		
-// 	}
-// 	);
+		$.ajax({
+			url: 'http://localhost:8080/oldFoodMan/getMyJoin?member_id='+id ,
+			contentType: 'application/json; charset=UTF-8',			
+			method: 'get',
+			success: function (result) {
+			console.log("result " + result)
+				alert('成功')
+				},
+				
+			error : function(err) {
+					console.log(err)
+					alert('發生錯誤')
+				}
+		});
+	}
+
+	
+	
+	)
+	
 	
 			
 // 		新增揪團窗格			
@@ -286,18 +311,44 @@ var tdate=new Date();
 </head>
 
 <body>
-	
-	
-
 <div class="allpage">
-	
+	<div id="content">
+	<article class="article">
 	<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
-	<div>
-		<div id="example" class="div04_32"></div>
-	</div>
+	<section class="section">
+	<div >
 
-<!-- 	<div class="container"> -->
-		<p />
+<!-- 		行事曆 -->
+		<div class="div04_32">
+		<div id="example" ></div>
+		</div>
+		<div class="div05_32">
+		<div >
+		<c:forEach var="joinvisop" items="${op.content}">
+		<div id="table_id" class="card text-center">
+  		<h4 class="card-header text-white bg-dark">
+    		${joinvisop.vis_res_name}
+  		</h4>
+  		<div class="card-body">
+   		<h5 class="card-title"><i class="fa-regular fa-clock">${joinvisop.vis_date}&nbsp;&nbsp; ${viewallvis.vis_time}</i></h5>
+   		
+    	<p class="card-text"><i class="fa-solid fa-location-dot">${joinvisop.vis_location}</i></p>
+    	<a href="${contextRoot}/findOneVis?id=${joinvisop.vis_id}" id="joinvis" class="btn btn-secondary">加入</a>
+  		</div>
+  		<div class="card-footer text-muted">
+    		新增時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
+								value="${joinvisop.added}" />
+  </div>
+</div>
+</c:forEach>
+
+		</div>
+		</div>
+		
+		
+	</div>
+	</section>
+	</article>
 		
 <!-- dialog視窗 -->
 
@@ -316,17 +367,7 @@ var tdate=new Date();
 					</div>
 					<div class="modal-body">
 						<form>
-<!-- 							<div class="form-row"> -->
-<!-- 			<div class="form-group col-md-6"> -->
-<!-- 				<label for="inputEmail4">發起人</label> <input id="vis_name" -->
-<!-- 					type="text" class="form-control " required> -->
-<!-- 			</div> -->
-<!-- 			<div class="form-group col-md-6"> -->
-<!-- 				<label for="inputEmail4">Email</label> <input id="vis_email" -->
-<!-- 					type="text" class="form-control" required> -->
 
-<!-- 			</div> -->
-<!-- 		</div> -->
 							<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="inputEmail4">日期</label> <input type="date" id="vis_date"
@@ -381,7 +422,10 @@ var tdate=new Date();
 			</div>
 		</div>
 </div>
-<div class="viewtable">
+<aside class="aside">
+<section class="section">
+<!-- <div class="viewtable"> -->
+
 		<div class="header1"><i style="font-size:50px" class="fa-solid fa-utensils"></i><span style="font-size:40px">揪團Eat</span></div>
 		
 		<c:forEach var="viewallvis" items="${page.content}">
@@ -402,12 +446,9 @@ var tdate=new Date();
 </div>
 
 <p>
-
-		
+	
 		<!-- dialog視窗 -->
 
-		
-<%-- 		<c:forEach var="viewallvis" items="${page.content}"> --%>
 		<div class="modal fade" id="exampleModal1" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -431,7 +472,7 @@ var tdate=new Date();
 			</div>
 			
 		</div>
-		11
+		
 		<div class="form-row">
 			<form:form class="form" action="${contextRoot}/ajaxFoodVis"
 							modelAttribute="ofmid" method="post">
@@ -479,8 +520,12 @@ var tdate=new Date();
 				</c:forEach>
 
 			</div>
+
+		</section>
+		</aside>
 		</div>
 		</div>
+		
 		
 		
 		

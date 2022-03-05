@@ -48,11 +48,12 @@ public class OfmService {
 		return messages;
 	}
 
-	public List<OldFoodManBean> findAllNoMemberID(){
+	public List<OldFoodManBean> findByID(Integer id){
 		
-		List<OldFoodManBean> ofmforfull=dao.findAllNoMemberID();
+		List<OldFoodManBean> ofmforfull=dao.findByID(id);
 		return ofmforfull;
 	}
+	
 	
 	
 	public Page<OldFoodManBean> findByPage(Integer pageNumber) {

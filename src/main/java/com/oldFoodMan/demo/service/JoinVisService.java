@@ -38,18 +38,26 @@ public class JoinVisService {
 	}
 	
 	
-	public void addJoinVis(JoinVis joincon,Member member,OldFoodManBean vis_id) {
-		String add_conditon=joincon.getAdd_condition();
-
-		JoinVis jovis = new JoinVis();
+	public void addJoinVis(JoinVis joincon,Member member,OldFoodManBean ofm) {
+		String condition=joincon.getAdd_condition();
+		Integer member_id=member.getId();
+		Integer vis_id=ofm.getVis_id();
 		
-		jovis.setMember_id(member);
-		jovis.setMy_food_vis_id(vis_id);
-		jovis.setAdd_condition(add_conditon);
-		System.out.println("service: "+jovis);
-		joinDao.save(jovis);
+		
+		JoinVis join=new JoinVis();
+		
+		
+		join.setAdd_condition(condition);
+		join.setMember_id(member_id);
+		join.setMy_food_vis_id(vis_id);
+		
+		
+		System.out.println("service: "+join);
+		
+		joinDao.save(join);
 		
 	}
+	
 	
 	public List<JoinVis> findJoinVisByMemberID(Integer member) {
 		

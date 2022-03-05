@@ -147,7 +147,7 @@ public class FoodVisController_32 {
 		
 		List<TestOFM> listall =testservice.findAllNoMemberID();
 		System.out.println();
-//		List<OldFoodManBean> list=page.getContent();
+		
 		
 		return listall;
 		
