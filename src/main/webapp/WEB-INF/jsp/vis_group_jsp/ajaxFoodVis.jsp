@@ -462,7 +462,7 @@ var tdate=new Date();
 			</div>
 		</div>
 		
-		</c:forEach>
+
 		
 		
 		<!-- 分頁頁碼 -->

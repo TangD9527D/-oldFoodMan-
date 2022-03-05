@@ -25,7 +25,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="member")
@@ -68,7 +67,10 @@ public class Member implements Serializable {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "createDate")
-	private Date createDate; 
+	private Date createDate;
+	
+	@Column(name = "fileNames")
+	private String fileNames; 
 	
 	@Transient
 	private MultipartFile MemberImage;
@@ -180,6 +182,14 @@ public class Member implements Serializable {
 		this.createDate = createDate;
 	}
 	
+	public String getFilesNames() {
+		return fileNames;
+	}
+
+	public void setFilesNames(String filesNames) {
+		this.fileNames = filesNames;
+	}
+
 	public MultipartFile getMemberImage() {
 		return MemberImage;
 	}
