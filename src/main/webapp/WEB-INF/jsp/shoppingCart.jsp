@@ -55,7 +55,7 @@
 			        { data: null,title: "數量",
 				    	render: function (data, type, row) {
 				              return  '<button type="button" class="btn btn-warning btn-sm"  onclick="increaseOne(' + data.productId.product_id + ')">增加</button> ' +
-				                      '<input type="text" value="'+ data.productAmount + '" size="1" onchange="personAuto('+ data.productId.product_id +')"></input>&nbsp' + 
+				                      '<input type="text" value="'+ data.productAmount + '" size="1"  id="'+ data.productId.product_id + '"onchange="personAuto('+ data.productId.product_id +')"></input>&nbsp' + 
 				                      '<button type="button" class="btn btn-danger btn-sm" id="deleteOne"  value="' + data.productId.product_id + '" >減少</button>'
 				                      
 				              }
@@ -71,30 +71,21 @@
 		            var intVal = function ( i ) {
 		                return typeof i === 'string' ?
 		                    i.replace(/[\$,]/g, '')*1 :
-		                    typeof i === 'number' ?
-		                        i : 0;
+		                    typeof i === 'number' ? i : 0;
 		            };
 		 
 		            // Total over all pages
-		            total = api
-		                .column( 5 )
-		                .data()
-		                .reduce( function (a, b) {
-		                    return intVal(a) + intVal(b);
-		                }, 0 );
+		            total = api.column( 5 ).data().reduce( function (a, b) {
+		                    									return intVal(a) + intVal(b);
+		                									}, 0 );
 		 
 		            // Total over this page
-		            pageTotal = api
-		                .column( 5, { page: 'current'} )
-		                .data()
-		                .reduce( function (a, b) {
-		                    return intVal(a) + intVal(b);
-		                }, 0 );
+		            pageTotal = api.column( 5, { page: 'current'} ).data().reduce( function (a, b) {
+		                    															return intVal(a) + intVal(b);
+		                														    }, 0 );
 		 
 		            // Update footer
-		            $( api.column( 5 ).footer() ).html(
-		                '$'+pageTotal +'( 總金額 : $'+ total +')'
-		            );
+		            $( api.column( 5 ).footer() ).html('$'+pageTotal +'( 總金額 : $'+ total +')');
 		        },
 		        
 		        
@@ -127,18 +118,18 @@
 			
 		})
 		
-		//加商品數量
+		//按鈕加商品數量
 		function increaseOne(id){
 			
 			$.ajax({
 				method:"post",
 				url:"http://localhost:8080/oldFoodMan/cart/increaseOne/" + id,
 				success:function(data){
-					
+					$("#tableAjax2").DataTable().row(this).data(data).draw(false);
 				}
 			})
 		}
-		
+		//按鈕減商品數量
 		$(document).on('click', '#deleteOne', function(){  //用一般的.click會有氣泡事件問題
 			var id = $(this).attr("value");
 			
@@ -150,9 +141,16 @@
 				},
 			});
 		})
-		
+		//手動輸入更改商品數量
 		function personAuto(id){
-			console.log("ok!!")
+			var inputVal = $('#'+id).val();
+			$.ajax({
+				type : "post",
+				url : "http://localhost:8080/oldFoodMan/cart/psersonAuto/" + id + "/" + inputVal,
+				success : function(data){
+					//$('#'+id).val("ok");
+				}
+			})
 		}
 		
 		
