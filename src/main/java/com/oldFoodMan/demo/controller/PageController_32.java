@@ -70,7 +70,7 @@ public class PageController_32 {
 		return mav;
 	}
 	
-//	@GetMapping("/ajaxFoodVis")
+	@GetMapping("/ajaxFoodVis")
 	public ModelAndView viewVisPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber,HttpSession hs) {
 		Member mid = (Member)hs.getAttribute("member");
 
@@ -80,7 +80,7 @@ public class PageController_32 {
 		
 		mav.getModel().put("page", page);
 		mav.getModel().put("ofmid", mid);
-		System.out.println("id: "+mav);
+		System.out.println("memberid: "+mav);
 		
 		return mav;
 	}
