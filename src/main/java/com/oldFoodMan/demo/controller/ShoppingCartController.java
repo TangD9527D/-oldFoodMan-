@@ -88,6 +88,16 @@ public class ShoppingCartController {
 		return "";
 	}
 	
+//  //點擊按鈕刪除單一筆購物車商品 3/6試試看!!
+//	@ResponseBody
+//	@PostMapping("/cart/deleteOneProduct/{productId}")
+//	public String deleteFromCart(@PathVariable int productId, HttpSession session) {
+//		Member member = (Member)session.getAttribute("member");
+//		Product product = service.findProductByID(productId);
+//		service.deleteFromCart(product, member);
+//		return "";
+//	}
+	
 	
 	
 }

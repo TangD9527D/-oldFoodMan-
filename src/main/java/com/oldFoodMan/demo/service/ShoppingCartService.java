@@ -52,6 +52,7 @@ public class ShoppingCartService {
 	}
 	
 	public ShoppingCart updateUpProductAmount(Product product, Member member) {
+//      這樣應該是可以的，但實際跑不行，先用下方先刪除再加的作法
 //		Integer product_id = product.getProduct_id();
 //		Integer member_id = member.getId();
 //		System.out.println("product_id : " + product_id);
@@ -73,6 +74,24 @@ public class ShoppingCartService {
 		ShoppingCart a = shopDao.findByProductIdAndMemberId(product_id, member_id);
 		int Product_amount = a.getProductAmount();
 		
+//		//判斷使用者有無超過商品庫存數量  3/6測試看看
+//		Integer stock = product.getProduct_stock();
+//		if(Product_amount > stock) {
+//			return null;
+//		}else {
+//			ShoppingCart cart = new ShoppingCart();
+//			cart.setMemberId(member);
+//			cart.setProductId(product);
+//			cart.setProductAmount(Product_amount+1);
+//			shopDao.delete(a);
+//			shopDao.save(cart);
+//			
+//			ShoppingCart newCart = shopDao.findByProductIdAndMemberId(product_id, member_id);
+//			return newCart;
+//		}
+		
+		
+		
 		ShoppingCart cart = new ShoppingCart();
 		cart.setMemberId(member);
 		cart.setProductId(product);
@@ -93,6 +112,19 @@ public class ShoppingCartService {
 		ShoppingCart a = shopDao.findByProductIdAndMemberId(product_id, member_id);
 		int Product_amount = a.getProductAmount();
 		
+//		//判斷使用者點擊數量有無低於0   3/6測試看看
+//		Integer stock = product.getProduct_stock();
+//		if(Product_amount <= 0) {
+//			return null;
+//		}else {
+//			ShoppingCart cart = new ShoppingCart();
+//			cart.setMemberId(member);
+//			cart.setProductId(product);
+//			cart.setProductAmount(Product_amount-1);
+//			shopDao.delete(a);
+//			shopDao.save(cart);
+//		}
+		
 		ShoppingCart cart = new ShoppingCart();
 		cart.setMemberId(member);
 		cart.setProductId(product);
@@ -107,12 +139,34 @@ public class ShoppingCartService {
 		ShoppingCart a = shopDao.findByProductIdAndMemberId(product_id, member_id);
 		shopDao.delete(a);
 		
+//		//判斷使用者輸入數量有無大於庫存量或是小於1   3/6測試看看
+//		Integer stock = product.getProduct_stock();
+//		if(inputVal > stock || inputVal <= 0) {
+//			return null;
+//		}else {
+//			ShoppingCart cart = new ShoppingCart();
+//			cart.setMemberId(member);
+//			cart.setProductId(product);
+//			cart.setProductAmount(inputVal);
+//			shopDao.save(cart);
+//		}
+		
+		
 		ShoppingCart cart = new ShoppingCart();
 		cart.setMemberId(member);
 		cart.setProductId(product);
 		cart.setProductAmount(inputVal);
 		shopDao.save(cart);
 	}
+	
+//	//點擊按鈕刪除單筆購物車商品 3/6試試看
+//	public void deleteFromCart(Product product, Member member) {
+//		Integer member_id = (Integer)member.getId();
+//		Integer product_id = product.getProduct_id();
+//		
+//		ShoppingCart cart = shopDao.findByProductIdAndMemberId(product_id, member_id);
+//		shopDao.delete(cart);
+//	}
 	
 	
 }
