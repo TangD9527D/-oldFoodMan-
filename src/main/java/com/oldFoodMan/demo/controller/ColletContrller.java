@@ -51,6 +51,22 @@ public class ColletContrller {
 //		
 //	}
 	
+	@ResponseBody
+	@GetMapping("/collet")
+	public List<FoodRecord> searchRecord (ModelAndView mav ,@RequestParam(name="shopType")String shopType){		
+		
+		System.out.println("shopType:" + shopType);
+		
+		List<FoodRecord> st = service.findByShopType(shopType);
+		
+		mav.getModel().put("st", st);
+		mav.setViewName("maps");
+		return st ;
+		
+		
+	}
+	
+	
 	
 	
 	
