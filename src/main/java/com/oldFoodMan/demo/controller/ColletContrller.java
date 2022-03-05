@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,23 +20,36 @@ public class ColletContrller {
 	@Autowired
 	ColletService service;
 	
-	@ResponseBody
-	@GetMapping("/collet")
-	public List<FoodRecord> colletRecord(ModelAndView mav,@RequestBody ColletDto dto) {
-		
-		System.out.println("shopType:"+dto.getLikeLocations());
-		mav.setViewName("maps2");
-		
-		List<FoodRecord> st =service.findByShopType(dto.getLikeLocations());
-			
-		mav.getModel().put("st", st);		
 
-		return st ;
+	@GetMapping("/colletdate")
+	public ModelAndView colletRecord(ModelAndView mav,@RequestParam(name="shopType") String shopType ) {
+		
+		System.out.println("shopType:"+ shopType);
+		
+		
+		List<FoodRecord> st =service.findByShopType(shopType);
+		
+		mav.getModel().put("st", st);		
+		mav.setViewName("collet");
+		return mav ;
 		
 	}
 	
 	
-	
+//	@ResponseBody
+//	@GetMapping("/collet")
+//	public List<FoodRecord> colletRecordajax(ModelAndView mav,@RequestParam(name="shopType") String shopType) {
+//		
+//		System.out.println("shopType:"+ shopType);
+//		
+//		
+//		List<FoodRecord> st =service.findByShopType(shopType);
+//		
+//		mav.getModel().put("st", st);		
+//		mav.setViewName("maps");
+//		return st ;
+//		
+//	}
 	
 	
 	

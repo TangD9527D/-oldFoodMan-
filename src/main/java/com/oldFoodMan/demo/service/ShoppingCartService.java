@@ -25,6 +25,7 @@ public class ShoppingCartService {
 		return shopDao.findByMemberId(member);
 	}
 	
+	
 	public Product findProductByID(int product_id) {
 		Optional<Product> p = ProDao.findById(product_id);
 		Product p1 = p.get();
@@ -50,7 +51,7 @@ public class ShoppingCartService {
 		
 	}
 	
-	public void updateUpProductAmount(Product product, Member member) {
+	public ShoppingCart updateUpProductAmount(Product product, Member member) {
 //		Integer product_id = product.getProduct_id();
 //		Integer member_id = member.getId();
 //		System.out.println("product_id : " + product_id);
@@ -79,6 +80,9 @@ public class ShoppingCartService {
 		shopDao.delete(a);
 		shopDao.save(cart);
 		
+		ShoppingCart newCart = shopDao.findByProductIdAndMemberId(product_id, member_id);
+		return newCart;
+		
 	}
 	
 	public void updateLowProductAmount(Product product, Member member) {
@@ -95,7 +99,19 @@ public class ShoppingCartService {
 		cart.setProductAmount(Product_amount-1);
 		shopDao.delete(a);
 		shopDao.save(cart);
+	}
+	
+	public void updateAutoProductAmount(Product product, Member member, Integer inputVal) {
+		Integer product_id = product.getProduct_id();
+		Integer member_id = member.getId();
+		ShoppingCart a = shopDao.findByProductIdAndMemberId(product_id, member_id);
+		shopDao.delete(a);
 		
+		ShoppingCart cart = new ShoppingCart();
+		cart.setMemberId(member);
+		cart.setProductId(product);
+		cart.setProductAmount(inputVal);
+		shopDao.save(cart);
 	}
 	
 	

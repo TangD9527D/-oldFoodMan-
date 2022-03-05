@@ -121,11 +121,9 @@ public class FoodVisController_32 {
 
 //		Member mvis=new Member();
 
-
-//		ofmVis.setVis_name(vis_name);
 		ofmVis.setVis_res_name(vis_res_name);
 		ofmVis.setVis_date(vis_date);
-//		ofmVis.setVis_email(vis_email);
+
 		ofmVis.setVis_time(vis_time);
 		ofmVis.setVis_location(vis_location);
 		ofmVis.setVis_num(vis_num);
