@@ -76,7 +76,7 @@ public class MemberController {
 		
 		MultipartFile productImage = mb.getMemberImage();
 		String originalFilename = productImage.getOriginalFilename();
-		mb.setFilesNames(originalFilename);
+		mb.setFileNames(originalFilename);
 		
 		service.update(mb);
 		
@@ -105,7 +105,7 @@ public class MemberController {
 		HttpHeaders headers = new HttpHeaders();
 		String filename = "";
 		Member mb = service.findById(memberId);
-		String originalFilename = mb.getFilesNames();
+		String originalFilename = mb.getFileNames();
 		if (originalFilename != null) {
 			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 			filePath = "imgDon/" + memberId + ext;

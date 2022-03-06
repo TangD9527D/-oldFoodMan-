@@ -9,10 +9,14 @@
 <head>
 <meta charset="UTF-8">
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Norican&display=swap"
+	rel="stylesheet">
 <title>Login</title>
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
 <script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="827577528120-6tavk1mu6caa0beeaklridnkgk5phd04.apps.googleusercontent.com">
 <style>
 .body_13 {
 	background-image: url("images/44737597.jpg");
@@ -63,18 +67,18 @@
 }
 
 .lab {
-        width: 120px;
-        float: left;
-        text-align: right;
-    }
+	width: 120px;
+	float: left;
+	text-align: right;
+}
 
-.login_fail{
+.login_fail {
 	font-size: larger;
 	color: rgb(255, 0, 0);
 	font-weight: 600;
 }
 
-.mark{
+.mark {
 	font-size: xx-large;
 	font-family: 'Norican', cursive;
 	border-radius: 6px 6px 0px 0px;
@@ -89,26 +93,36 @@
 		<div class="outside">
 			<div class="out_div_13">
 				<div class="login_13">
-					<form:form action="/oldFoodMan/j_spring_security_check" method="POST" lass="login_table">
-						<div class="mark"><span>oldFoodMan</span></div>
-							<div class="account_13">
-								<label class="lab">帳號:&nbsp;</label>
-								<input type="text" id="account" name="account">
-							</div>
-							<br>
-							<div class="pwd_13">
-								<label class="lab">密碼:&nbsp;</label>
-								<input type="password" id="pwd" name="password">
-							</div>
-							<!-- /login?error=true -->
-							<c:if test="${param.error == 'true'}">
-								<span class="login_fail">Login Failed!!!</span>
-							</c:if>
-							<br>
-							<div class="under_13"><span id="new_account">新增帳號</span>&emsp;&emsp;<span id="log_in"><button name="submit"
-										type="submit" value="submit" class="btn btn-primary">登入</button></span></div>
+					<form:form action="/oldFoodMan/j_spring_security_check"
+						method="POST" lass="login_table">
+						<div class="mark">
+							<span>oldFoodMan</span>
+						</div>
+						<div class="account_13">
+							<label class="lab">帳號:&nbsp;</label> <input type="text"
+								id="account" name="account">
+						</div>
+						<br>
+						<div class="pwd_13">
+							<label class="lab">密碼:&nbsp;</label> <input type="password"
+								id="pwd" name="password">
+						</div>
+						<!-- /login?error=true -->
+						<c:if test="${param.error == 'true'}">
+							<span class="login_fail">Login Failed!!!</span>
+						</c:if>
+						<br>
+						<div class="under_13">
+							<span id="new_account">新增帳號</span>&emsp;&emsp;<span id="log_in"><button
+									name="submit" type="submit" value="submit"
+									class="btn btn-primary">登入</button></span>
+						</div>
 					</form:form>
-					<a href="/oauth2/authorization/google">Sign-in Google</a>
+				</div>
+				<div>
+					<h4>
+						<a href="${contextRoot}/oauth2/code/google">Sign-in Google</a>
+					</h4>
 				</div>
 			</div>
 			<script>
@@ -123,7 +137,7 @@
 									location.href = "http://localhost:8090/%E5%B0%88%E9%A1%8C-%E8%80%81%E9%A3%9F%E4%BA%BA/%E5%B8%B3%E8%99%9F_%E7%99%BB%E5%85%A5%E9%A0%81%E9%9D%A2_13/new_account.html";
 								});
 			</script>
-		</div>	
+		</div>
 	</div>
 </body>
 
