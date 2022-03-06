@@ -403,7 +403,7 @@ var tdate=new Date();
 							modelAttribute="ofmid" method="post">
 			<div class="form-group col-md-6">
 				<input type="text"
-					id="member_id" value="${ofmid}" class="form-control" required>
+					id="member_id" value="${ofmid.id}" class="form-control" required>
 			</div>
 			</form:form>
 		</div>
