@@ -147,9 +147,11 @@
 			$.ajax({
 				type : "post",
 				url : "http://localhost:8080/oldFoodMan/cart/psersonAuto/" + id + "/" + inputVal,
+				dataType : "json",
+				contentType: 'application/json;charset=UTF-8',
 				success : function(data){
-					//$('#'+id).val("ok");
-				}
+					$('#'+id).val(data.productAmount);
+				},
 			})
 		}
 		
