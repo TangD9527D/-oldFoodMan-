@@ -3,6 +3,8 @@ package com.oldFoodMan.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -133,30 +135,34 @@ public class ShoppingCartService {
 		shopDao.save(cart);
 	}
 	
-	public void updateAutoProductAmount(Product product, Member member, Integer inputVal) {
+	public ShoppingCart updateAutoProductAmount(Product product, Member member, Integer inputVal) {
 		Integer product_id = product.getProduct_id();
 		Integer member_id = member.getId();
 		ShoppingCart a = shopDao.findByProductIdAndMemberId(product_id, member_id);
 		shopDao.delete(a);
 		
-//		//判斷使用者輸入數量有無大於庫存量或是小於1   3/6測試看看
-//		Integer stock = product.getProduct_stock();
-//		if(inputVal > stock || inputVal <= 0) {
-//			return null;
-//		}else {
-//			ShoppingCart cart = new ShoppingCart();
-//			cart.setMemberId(member);
-//			cart.setProductId(product);
-//			cart.setProductAmount(inputVal);
-//			shopDao.save(cart);
-//		}
-		
-		
-		ShoppingCart cart = new ShoppingCart();
-		cart.setMemberId(member);
-		cart.setProductId(product);
-		cart.setProductAmount(inputVal);
-		shopDao.save(cart);
+		//要直接幫使用者改最小或最大嗎???還是回歸未更動前的數量?
+		Integer stock = product.getProduct_stock();
+		if(inputVal > stock) {
+			ShoppingCart cart = new ShoppingCart();
+			cart.setMemberId(member);
+			cart.setProductId(product);
+			cart.setProductAmount(stock);
+			shopDao.save(cart);
+		}else if(inputVal <= 0) {
+			ShoppingCart cart = new ShoppingCart();
+			cart.setMemberId(member);
+			cart.setProductId(product);
+			cart.setProductAmount(1);
+			shopDao.save(cart);
+		}else {
+			ShoppingCart cart = new ShoppingCart();
+			cart.setMemberId(member);
+			cart.setProductId(product);
+			cart.setProductAmount(inputVal);
+			shopDao.save(cart);
+		}
+		return shopDao.findByProductIdAndMemberId(product_id, member_id);
 	}
 	
 //	//點擊按鈕刪除單筆購物車商品 3/6試試看
