@@ -1,6 +1,7 @@
 package com.oldFoodMan.demo.model;
 
 import java.io.Serializable;
+import java.security.Provider;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -8,6 +9,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +27,6 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="member")
@@ -71,6 +73,10 @@ public class Member implements Serializable {
 	
 	@Column(name = "fileNames")
 	private String fileNames; 
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name ="auth_provider")
+    private AuthenticationProvider authProvider;
 	
 	@Transient
 	private MultipartFile MemberImage;
@@ -182,12 +188,20 @@ public class Member implements Serializable {
 		this.createDate = createDate;
 	}
 	
-	public String getFilesNames() {
+	public String getFileNames() {
 		return fileNames;
 	}
 
-	public void setFilesNames(String filesNames) {
-		this.fileNames = filesNames;
+	public void setFileNames(String fileNames) {
+		this.fileNames = fileNames;
+	}
+
+	public AuthenticationProvider getAuthProvider() {
+		return authProvider;
+	}
+
+	public void setAuthProvider(AuthenticationProvider authProvider) {
+		this.authProvider = authProvider;
 	}
 
 	public MultipartFile getMemberImage() {
