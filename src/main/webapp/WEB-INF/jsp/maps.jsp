@@ -20,7 +20,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-
+<link rel="stylesheet" href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -135,7 +135,7 @@ html, body {
 	font-weight: 300px;
 	color: black;
 	border-radius: 10px;
-	background: FFCBB3;
+	background: #bebab3;
 	text-align: center;
 }
 
@@ -230,10 +230,24 @@ img {
 	width: 100%;
 	height: 80%;
 	margin: 0.1px auto;
-	border-radius: 15px;
+	border-radius: 20PX;
 	text-align: justify;
-	border: 5px solid pink;
+
 }
+
+#li{
+	overflow: hidden;	
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 1; /*行數*/
+	-webkit-box-orient: vertical;
+	white-space: normal;
+	text-align: justify;
+
+
+}
+
+
+
 </style>
 
 
@@ -241,11 +255,12 @@ img {
 <body>
 
 	<div id="location">
-		<h4 style="text-align: center; padding-top: 20px">收藏的地點🌟</h4>
+		<h4 style="text-align:center;padding-top:20px">收藏的地點<i class="fa-regular fa-star"></i></h4>
 		<hr style="color: pink; border: 5px solid pink">
 		<div id="location1"></div>
+		<input type="hidden" id="member_id" value="${member_id}"
+			class="form-control" required>
 
-		
 	</div>
 
 	<div id="allpage">
@@ -256,7 +271,7 @@ img {
 				placeholder="Search Food & record" />
 			<button id="food" onclick="collet11()"
 				class="btn btn-outline-secondary btn-lg">站內食記</button>
-				
+
 		</div>
 
 		<div id="map"></div>
@@ -268,8 +283,7 @@ img {
 				value="ShowMark" /> <input id="hide-markers"
 				class="btn btn-outline-dark btn-sm" type="button" value="HideMark" />
 
-			<button id="star" onclick="confirm('確定送出？'); return insertlocation()"
-				class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
+			<button id="star" onclick="" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-star"></i>收藏地點</button>
 
 			<!--  -->
 
@@ -307,7 +321,7 @@ img {
 						style="width: 250px; height: 220px" class="card-img-top" alt="...">
 					<div id="box" class="card-body">
 						<h3 id="p" class="card-title"
-							style="background-color: 	#CDCD9A; text-align: center">${maps.title}</h3>
+							style="background-color: #bebab3; text-align: center">${maps.title}</h3>
 						<h5 id="p" class="card-text">${maps.content}</h5>
 						<a
 							href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
@@ -469,6 +483,7 @@ img {
      }     
 	       
     </script>
+<!--收藏地點方法 -->
 	<script>
 
  		function insertlocation() {
@@ -483,6 +498,10 @@ img {
 				}
 			var dtoJsonString = JSON.stringify(dtoObject);	
 				console.log(dtoJsonString);
+			
+				
+				
+				
 			$.ajax({
 				url : 'http://localhost:8080/oldFoodMan/locations',
 				contentType : 'application/json; charset=UTF-8',
@@ -490,8 +509,24 @@ img {
 				method : 'post',
 				data : dtoJsonString,
 				
-				success : function(data) {
-					$('#location1').append(data.likelocations)
+				success : function(result) {	
+					
+					console.log(result)
+										
+					
+					
+					
+					var msg_data='';
+					$.each(result,function(index,value){
+						
+						msg_data = '<li id="li" class="list-group-item list-group-item-info">'+ inputResName +'</li>'
+						
+					})
+				
+				
+					
+					$('#location1').append(msg_data)	
+			
 				},
 				error : function(err) {
 				console.log(err)
@@ -499,10 +534,11 @@ img {
 				}
 
 			})
-		}
- 
-
+		
+ 		 		
+ 		}
 </script>
+		<!--綁定按鍵sweetalert2並執行收藏地點方法 -->
 	<script>
 
 document.getElementById("star").addEventListener("click",function(){
@@ -515,35 +551,35 @@ document.getElementById("star").addEventListener("click",function(){
 	<script>
 
 // //網頁接值
-		$(document).ready(function() {	
-			$.ajax({
-					url : 'http://localhost:8080/oldFoodMan/likeloc',
-					contentType : 'application/json ; charset=UTF-8',
-					dataType : 'json',
-					method : 'get',
-					success : function(result){
-						console.log("rs: "+result)
-						var msg_data='';
-						$.each(result,function(index,value){
+// 		$(document).ready(function() {	
+// 			$.ajax({
+// 					url : 'http://localhost:8080/oldFoodMan/likeloc',
+// 					contentType : 'application/json ; charset=UTF-8',
+// 					dataType : 'json',
+// 					method : 'get',
+// 					success : function(result){
+// 						console.log("rs: "+result)
+// 						var msg_data='';
+// 						$.each(result,function(index,value){
 			
-							msg_data+= '<h5>'+value.likelocations +'</h5>'
+// 							msg_data+= '<h5>'+value.likelocations +'</h5>'
 				
-						})
-						$('#location1').append(msg_data.likelocations)
+// 						})
+// 						$('#location1').append(msg_data.likelocations)
 
 					
-					},
-					error : function(err) {
-						console.log(err)
-						alert('發生錯誤')
-					}		
+// 					},
+// 					error : function(err) {
+// 						console.log(err)
+// 						alert('發生錯誤')
+// 					}		
 		
-				});
+// 				});
 		
-			})
+// 			})
 
 </script>
-
+<!-- 	抓關鍵字搜尋站內食記的方法 -->
 	<script>
 
 		function collet11(){		
@@ -566,7 +602,7 @@ document.getElementById("star").addEventListener("click",function(){
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary"><c:out value="繼續閱讀..."/></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary"><c:out value="繼續閱讀"/></a>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -606,7 +642,7 @@ function collet22(){
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 ip="p" class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀..."/></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary"style="position: absolute; bottom: 15px"><c:out value="繼續閱讀..."/></a>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -627,6 +663,41 @@ function collet22(){
 
 
 </script>
+<script>
+$(document).ready(function() {
+	
+		$.ajax({
+			url : 'http://localhost:8080/oldFoodMan/likeloc',
+			contentType : 'application/json ; charset=UTF-8',
+			dataType : 'json',
+			method : 'get',
+// 			data : dtoJsonString,
+			success : function(result) {
+			
+				var msg_data='';
+				$.each(result,function(index,value){
+					msg_data += '<li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li>'
+				})
+
+				$('#location1').append(msg_data)
+
+				
+			},
+			error : function(err) {
+				console.log(err)
+				alert('發生錯誤')
+			}
+
+		})
+
+	})
+
+
+
+
+
+</script>
+
 
 </body>
 </html>
