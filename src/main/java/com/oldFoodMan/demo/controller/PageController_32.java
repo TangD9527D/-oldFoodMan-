@@ -21,38 +21,12 @@ import com.oldFoodMan.demo.service.OfmService;
 @Controller
 public class PageController_32 {
 	
-//	@Autowired
-//	private WorkMessagesService service;
+
 	
 	@Autowired
 	private OfmService serviceOfm;
 
-//	@GetMapping("/")
-//	public String Home() {
-//		
-//		return "index";
-//		
-//	}
-//	@GetMapping("/about")
-//	public String aboutPage() {
-//		
-//		return "/messages/about";
-//	}
-	
-	
-//	@GetMapping("/addMessage")
-//	public ModelAndView addMessagePage(ModelAndView mav) {
-//		
-//		mav.setViewName("messages/addMessage");
-//		
-//		WorkMessages msg = new WorkMessages();
-//		WorkMessages lastest=service.getLastest();
-//		mav.getModel().put("workMessages", msg);
-//		mav.getModel().put("lastestMessages", lastest);
-//		
-//		return mav;
-//	}
-	
+
 	@GetMapping("/addFoodVis")
 	public ModelAndView addFoodVisPage(ModelAndView mav,HttpSession hs) {
 		
@@ -95,12 +69,5 @@ public class PageController_32 {
 		return mav;
 	}
 	
-//	@GetMapping("/ajaxFoodVis")
-//	public ModelAndView ajaxPage(ModelAndView mav) {
-//		
-//		mav.setViewName("messages/ajaxFoodVis");
-//		
-//		return mav;
-//		
-//	}
+
 }
