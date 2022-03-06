@@ -14,7 +14,7 @@ public interface ColletRepository extends JpaRepository<FoodRecord, Integer> {
 	
 	
 	
-	String SQL = "Select * from location where location like '%"+search+"%' or ename like '%" +search+
-			"%' or email like '%"+search+"%'"  ;					
-	
+//	String SQL = "Select * from location where location like '%"+search+"%' or ename like '%" +search+
+//			"%' or email like '%"+search+"%'"  ;					
+//	
 }
