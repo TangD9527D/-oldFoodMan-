@@ -2,6 +2,7 @@ package com.oldFoodMan.demo.controller;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +24,10 @@ import com.oldFoodMan.demo.dto.JoinVisDto;
 import com.oldFoodMan.demo.model.JoinVis;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OldFoodManBean;
+import com.oldFoodMan.demo.model.TestOFM;
 import com.oldFoodMan.demo.service.JoinVisService;
 import com.oldFoodMan.demo.service.OfmService;
+import com.oldFoodMan.demo.service.TestOfmService;
 
 @Controller
 public class JoinVisController_32 {
@@ -35,6 +38,8 @@ public class JoinVisController_32 {
 	@Autowired
 	private OfmService ofmservice;
 	
+	@Autowired
+	private TestOfmService toservice;
 	
 	@GetMapping("/joinvisall")
 	public String joinVisAll(Model model) {
@@ -73,33 +78,59 @@ public class JoinVisController_32 {
 		return mav;
 	}
 	
+//	@ResponseBody
+//	@GetMapping("/getMyJoin")
+//	public List<TestOFM> findMyJoinByMemberID(ModelAndView mav,@RequestParam(name="member_id") Integer member_id,HttpSession hs){
+//		
+//		Member mid = (Member)hs.getAttribute("member");
+//		System.out.println("查自己:" +mid);
+//		Integer memberid=mid.getId();
+//		List<JoinVis> list=jvservice.findJoinVisByMemberID(memberid);
+//
+//		
+//		if(list != null) {
+//		Integer j=null;
+//		List<TestOFM>ofm=null;
+//		
+//			for(JoinVis J : list) {
+//				System.out.println("有什麼:"+list);
+//				j=J.getMy_food_vis_id();
+//
+//				System.out.println("有多少id: "+j);
+////				mav.getModel().put("join", list);
+////				mav.getModel().put("op", ofm);
+////				mav.setViewName("vis_group_jsp/ajaxFoodVis");
+//				ofm=toservice.findByID(j);
+//				}
+//			System.out.println("結果: "+ofm);
+//			return ofm;	
+//			
+//			}
+//		
+//		
+//		
+//	return null;
+//		
+//		
+//	}
+	
 	@ResponseBody
 	@GetMapping("/getMyJoin")
-	public ModelAndView findMyJoinByMemberID(ModelAndView mav,@RequestParam(name="member_id") Integer member_id,HttpSession hs){
+	public List<TestOFM> findMyJoinByMemberID(ModelAndView mav,@RequestParam(name="member_id") Integer member_id,HttpSession hs){
 		
 		Member mid = (Member)hs.getAttribute("member");
 		System.out.println("查自己:" +mid);
 		Integer memberid=mid.getId();
-		List<JoinVis> list=jvservice.findJoinVisByMemberID(memberid);
-		
-		Integer vis_id=null;
-		
-		List<OldFoodManBean> ofm=null;
-		
-		for(JoinVis J : list) {
-		vis_id=J.getMy_food_vis_id();
-		ofm=ofmservice.findByID(vis_id);
-		
-		}
 		
 		
-		System.out.println("有什麼:"+ofm);
-		mav.getModel().put("join", list);
-		mav.getModel().put("op", ofm);
-		mav.setViewName("ajaxFoodVis");
-		return mav;
+				
+		List<TestOFM>ofm=toservice.findByMemberID(member_id);
+			
+			return ofm;	
+			
+			
+		
 	}
-	
 	
 	
 	

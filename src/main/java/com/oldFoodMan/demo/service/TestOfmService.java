@@ -49,9 +49,10 @@ public class TestOfmService {
 		return dao.findAll(pgb);
 	}
 
-//	public OldFoodManBean getLastest() {
-//
-//		return dao.findFirstByOrderByAddedDesc();
-//	}
+	public List<TestOFM> findByMemberID(Integer id){
+		
+		List<TestOFM> ofmforfull=dao.findByMemberId(id);
+		return ofmforfull;
+	}
 
 }

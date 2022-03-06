@@ -63,13 +63,24 @@ background-color: white;
 	float:left;
 	margin-top: 50px ;
 	margin-right:100px;
+	
     padding: 30px;
     box-shadow: 5px 5px 5px gray;
 	border-radius: 20px;
     border:2px outset gray;
 	
 }
+#test{
+width:90%;
+margin:0 auto;
 
+
+}
+
+#p1{
+float:left;
+margin:10px 20px;
+}
 .viewtable{
 	width:38%;
 	float:right;
@@ -232,7 +243,22 @@ var tdate=new Date();
 			method: 'get',
 			success: function (result) {
 			console.log("result " + result)
-				alert('成功')
+				
+				var msg_data='';
+				$.each(result,function(index,value){
+					
+						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
+//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
+					
+						msg_data+= '<div class="card-body">'		
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.vis_res_name +'</h3>'
+						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_date  +'</h5>'
+						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
+						msg_data+= '</div>'
+						msg_data+= '</div>'
+						})
+
+						$('#test').append(msg_data)
 				},
 				
 			error : function(err) {
@@ -322,25 +348,12 @@ var tdate=new Date();
 		<div class="div04_32">
 		<div id="example" ></div>
 		</div>
-		<div class="div05_32">
-		<div >
-		<c:forEach var="joinvisop" items="${op.content}">
-		<div id="table_id" class="card text-center">
-  		<h4 class="card-header text-white bg-dark">
-    		${joinvisop.vis_res_name}
-  		</h4>
-  		<div class="card-body">
-   		<h5 class="card-title"><i class="fa-regular fa-clock">${joinvisop.vis_date}&nbsp;&nbsp; ${viewallvis.vis_time}</i></h5>
-   		
-    	<p class="card-text"><i class="fa-solid fa-location-dot">${joinvisop.vis_location}</i></p>
-    	<a href="${contextRoot}/findOneVis?id=${joinvisop.vis_id}" id="joinvis" class="btn btn-secondary">加入</a>
-  		</div>
-  		<div class="card-footer text-muted">
-    		新增時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
-								value="${joinvisop.added}" />
-  </div>
-</div>
-</c:forEach>
+		<div  class="div05_32">
+		<div id="test">
+		
+		
+  
+
 
 		</div>
 		</div>
@@ -521,7 +534,7 @@ var tdate=new Date();
 
 						</c:when>
 						<c:otherwise>
-							 <li class="page-item active" aria-current="page"><span class="page-link"><c:out value="${pageNumber} " /></span></li>
+							 <li class="page-item active"  aria-current="page"><span class="page-link"><c:out value="${pageNumber} " /></span></li>
 						</c:otherwise>
 
 					</c:choose>
@@ -546,7 +559,6 @@ var tdate=new Date();
 
 </div>
 	</div>
-
 
 
 
