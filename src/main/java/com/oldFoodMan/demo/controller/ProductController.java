@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.oldFoodMan.demo.dto.ProductDto;
 import com.oldFoodMan.demo.model.Product;
 import com.oldFoodMan.demo.service.ProductService;
+import com.oldFoodMan.demo.service.ShoppingCartService;
 
 
 
@@ -30,7 +31,10 @@ import com.oldFoodMan.demo.service.ProductService;
 public class ProductController {
 	
 	@Autowired
-	private ProductService service;
+	private ProductService proService;
+	
+	@Autowired
+	private ShoppingCartService shopService;
 	
 	private String returnUrl;
 	
@@ -45,18 +49,19 @@ public class ProductController {
 	@PostMapping("/productsBackStagePage")
 	public List<Product> allProduct() {
 		//List<Product> products = service.findAll();
-		List<Product> products = service.discount();
+		List<Product> products = proService.discount();
 		return products;
 	}
 	
 	@ResponseBody
 	@PostMapping("/deleteProduct/{product_id}")
 	public List<Product> ajaxDeleteData(@PathVariable(name = "product_id") int productId){
-		System.out.println("111111");
-		System.out.println(productId);
-		service.deleteProduct(productId);
 		
-		return service.discount();
+//		shopService.deleteAllOneFromCart(productId);  這個是想刪除後臺商品時，先將所有購物車有此商品都先刪掉，再刪後台，ERR:未傳回結果集??可以是SQL一樣語法就可以??
+		
+		proService.deleteProduct(productId);
+		
+		return proService.discount();
 	}
 	
 	
@@ -121,7 +126,7 @@ public class ProductController {
 		p.setProduct_newPrice(new_price);
 		p.setProduct_image(returnUrl);
 		System.out.println("2:  " + returnUrl);
-		service.insertProduct(p);
+		proService.insertProduct(p);
 		
 		//return service.FindById(???);
 		return p;
@@ -130,7 +135,7 @@ public class ProductController {
 	@ResponseBody
 	@PostMapping("/updateDiolog/{product_id}")
 	public Product ajaxUpdateData(@PathVariable(name = "product_id") int product_id){
-		Product p = service.FindById(product_id);
+		Product p = proService.FindById(product_id);
 		double new_price = p.getProduct_discount()*p.getProduct_price();
 		p.setProduct_newPrice(new_price);
 		return p;
@@ -148,7 +153,7 @@ public class ProductController {
 		String remark = dto.getProduct_remark();
 		double new_price = price*discount;
 		
-		Product p = service.FindById(product_id);
+		Product p = proService.FindById(product_id);
 		p.setProduct_number(number);
 		p.setProduct_name(name);
 		p.setProduct_category(category);
@@ -158,7 +163,7 @@ public class ProductController {
 		p.setProduct_remark(remark);
 		p.setProduct_newPrice(new_price);
 		p.setProduct_image(returnUrl);
-		service.insertProduct(p);
+		proService.insertProduct(p);
 		return p;
 	}
 	
@@ -167,7 +172,7 @@ public class ProductController {
 	
 	@GetMapping("/productsPage")
 	public String allFrontProducts(Model model) {
-		List<Product> products = service.discount();
+		List<Product> products = proService.discount();
 		model.addAttribute("allProducts", products);
 		return "productsPage";
 	}
