@@ -147,7 +147,7 @@ width:500px;
 				<c:out value="${foodrecordById.gender2}" />
 			</div>
 			<div id="arthurLL">
-				<h5>作者 蘋果馬丁尼 @croissantoffee</h5>
+		
 			</div>
 			<div id="shareLL">
 			<div class="line-it-button" data-lang="zh_Hant" data-type="share-b" data-env="REAL" data-url="http://localhost:8080/my-project/viewById?id=${foodrecordById.id}" data-color="default" data-size="small" data-count="true" data-ver="3" style="display: none;"></div>
@@ -191,24 +191,24 @@ width:500px;
 				</div>
 				<div id="taste">
 					<h3>美味</h3>
-					<h6>
+					<h6 >
 						<c:out value="${foodrecordById.tasty}" />
 					</h6>
-					<img src="imgLL/01.jpg">
+					<h6 id="tastyId"><c:out value="${foodrecordById.gender}" /></h6>
 				</div>
 				<div id="air">
 					<h3>氣氛</h3>
 					<h6>
 						<c:out value="${foodrecordById.atmosphere}" />
 					</h6>
-					<img src="imgLL/01.jpg">
+					<img id="atmosphereId" src="imgLL/01.jpg">
 				</div>
 				<div id="cpValue">
 					<h3>西批值</h3>
 					<h6>
 						<c:out value="${foodrecordById.cp}" />
 					</h6>
-					<img src="imgLL/01.jpg">
+					<img id="cpId" src="imgLL/01.jpg">
 				</div>
 				<div id="share">
 					<h3>分享</h3>
@@ -404,7 +404,12 @@ width:500px;
 
 		})
 	})
-		
+	
+	//根據評分顯示圖片
+	var tastyId=document.getElementById('tastyId').innerText;  //得到評分1-5
+	document.getElementById("tastyId").src="images/"+tastyId+".png";
+	
+	
 	</script>
 
 
