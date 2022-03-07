@@ -79,7 +79,7 @@ margin:0 auto;
 
 #p1{
 float:left;
-margin:10px 20px;
+margin:6px 8px;
 }
 .viewtable{
 	width:38%;
@@ -180,7 +180,8 @@ color:#B87070;
 
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
 
 
 
@@ -193,18 +194,22 @@ color:#B87070;
 	<div id="content">
 	<article class="article">
 <!-- 	<button type="button" id="star" onclick="">test</button> -->
-	<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
+	
 	<section class="section">
 	<div >
 <form:form class="form" action="${contextRoot}/ajaxFoodVis"
 							modelAttribute="ofmid" method="post" >
+<!-- 							<button type="button" id="checksubmittest"></button> -->
+							<button type="button" class="btn btn btn-info btn-lg" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
 <!-- 		行事曆 -->
 		<div class="div04_32">
 		<div id="example" ></div>
 		</div>
+		
 		<div  class="div05_32">
-		<div id="myadd">
 		<h2>${ofmid.memberName} 參加的揪團Eat</h2>
+		<div id="myadd">
+		
 		
 		
   
@@ -213,8 +218,9 @@ color:#B87070;
 		</div>
 		</div>
 		<div  class="div05_32">
-		<div id="myvis">
 		<h2>${ofmid.memberName} 發起的揪團Eat</h2>
+		<div id="myvis">
+		
 		
 		
   
@@ -261,7 +267,7 @@ color:#B87070;
 			<div class="form-group col-md-6">
 			
 				<label for="inputEmail4">日期</label> <input type="date" id="vis_date"
-					class="form-control" required>
+					 class="form-control" required>
 
 			</div>
 			<div class="form-group col-md-6">
@@ -283,7 +289,7 @@ color:#B87070;
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label for="inputEmail4">人數上限</label> <input type="number"
-					id="vis_num" class="form-control" required>
+					id="vis_num" max="50" min="0" class="form-control" required>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="inputPassword4">備註</label> <input type="text"
@@ -299,8 +305,8 @@ color:#B87070;
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn btn-info" onclick="confirm('確定送出？'); return insertdata();">確定新增</button>
-						
+						<button type="button" id="checksubmit" class="btn btn btn-info" >確定新增</button>
+<!-- 						onclick="confirm('確定送出？'); return insertdata();" -->
 					</div>	
 							
 						</form:form>	
@@ -329,7 +335,7 @@ color:#B87070;
     	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}" id="joinvis" class="btn btn-secondary">加入</a>
   		</div>
   		<div class="card-footer text-muted">
-    		新增時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
+    		建立時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
 								value="${viewallvis.added}" />
   </div>
 </div>
@@ -528,12 +534,12 @@ var tdate=new Date();
 				var msg_data='';
 				$.each(result,function(index,value){
 					
-						msg_data+= '<div id="p1" class="card" style="width: 6cm;">'
+						msg_data+= '<div id="p1" class="card" style="width: 7cm;">'
 //  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 					
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #D8D8EB; text-align: center">'+ value.vis_res_name +'</h3>'
-						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_date  +'</h5>'
+						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  +'</h5>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
@@ -544,7 +550,14 @@ var tdate=new Date();
 				
 			error : function(err) {
 					console.log(err)
- 					
+//  					window.onload=function(){
+// 						Swal.fire({
+// 							  icon: 'error',
+// 							  title: '請登入會員',
+// 							  footer: '<a href="http://localhost:8080/oldFoodMan/">返回首頁</a>'
+// 							})
+						
+// 					}
 					alert('請登入會員')
 					location.href=${contextRoot}/
 				}
@@ -552,11 +565,7 @@ var tdate=new Date();
 		
 		
 		});
-		
-		
-		
-		
-		
+
 	})
 	
 	$(document).ready(function viewdata(){
@@ -574,7 +583,7 @@ var tdate=new Date();
 				var msg_data='';
 				$.each(result,function(index,value){
 					
-						msg_data+= '<div id="p1" class="card" style="width: 6cm;">'
+						msg_data+= '<div id="p1" class="card" style="width: 7cm;">'
 					
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #E1C4C4; text-align: center">'+ value.vis_res_name +'</h3>'
@@ -589,9 +598,16 @@ var tdate=new Date();
 				
 			error : function(err) {
 					console.log(err)
- 					
+// 					window.onload=function(){
+// 						Swal.fire({
+// 							  icon: 'error',
+// 							  title: '請登入會員',
+// 							  footer: '<a href="http://localhost:8080/oldFoodMan/">返回首頁</a>'
+// 							})
+						
+// 					}
 // 					alert('請登入會員')
-					location.href=${contextRoot}/
+// 					location.href=${contextRoot}/
 				}
 		});
 	
@@ -603,20 +619,18 @@ var tdate=new Date();
 			
 // 		新增揪團窗格			
 		function insertdata() {
-// 			var inputName = document.getElementById('vis_name').value;
+
 			var inputResName = document.getElementById('vis_res_name').value;
 			var inputDate = document.getElementById('vis_date').value;
-// 			var inputEmail = document.getElementById('vis_email').value;
+
 			var inputTime = document.getElementById('vis_time').value;
 			var inputLocation = document.getElementById('vis_location').value;
 			var inputNum = document.getElementById('vis_num').value;
 			var inputCondition = document.getElementById('vis_condition').value;
 			var Member_id=document.getElementById('member_id').value;
 			var dtoObject = {
-// 				"vis_name" : inputName,
 				"vis_res_name" : inputResName,
 				"vis_date" : inputDate,
-// 				"vis_email" : inputEmail,
 				"vis_time" : inputTime,
 				"vis_location" : inputLocation,
 				"vis_num" : inputNum,
@@ -626,11 +640,7 @@ var tdate=new Date();
 			var dtoJsonString = JSON.stringify(dtoObject);
 			
 			if(inputDate==""|| inputTime==""|| inputResName==""){
-// 				$("#vis_name").addClass("is-invalid")
-// 				$("#vis_date").addClass("is-invalid")
-// 				$("#vis_time").addClass("is-invalid")
-// 				$("#vis_res_name").addClass("is-invalid")
-				
+
 				alert("尚有欄位未輸入!!");
 				
 				return ;
@@ -645,8 +655,8 @@ var tdate=new Date();
 				method : 'post',
 				data : dtoJsonString,
 				success : function(data) {
-
-					 location.reload()					
+					
+					location.reload();		
 					
 				},
 				error : function(err) {
@@ -659,6 +669,39 @@ var tdate=new Date();
 		
 	}
 
+	
+	
+	
+	
+	
+	document.getElementById("checksubmit").addEventListener("click",function(){
+		var inputResName = document.getElementById('vis_res_name').value;
+		var inputDate = document.getElementById('vis_date').value;
+		var inputTime = document.getElementById('vis_time').value;
+		var inputLocation = document.getElementById('vis_location').value;
+		var inputNum = document.getElementById('vis_num').value;
+		var Member_id=document.getElementById('member_id').value;
+		
+		if(inputDate==""|| inputTime==""|| inputResName==""){
+			console.log(inputDate)
+			Swal.fire(
+					  '請輸入完整資料',
+					  ' ',
+					  'error'
+					)
+	
+		}else if(inputDate!=""|| inputTime!=""|| inputResName!=""){
+			
+			Swal.fire(
+				  '新增成功',
+				  '返回頁面',
+				  'success'
+				).then((value) => {
+					insertdata();
+				})
+				
+			}
+		});
 </script>
 
 
