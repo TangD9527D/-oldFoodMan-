@@ -34,11 +34,6 @@ public class TestOFM implements Serializable{
 	@Column(name = "vis_id")
 	private Integer vis_id;
 	
-//	@Column(name = "vis_name")
-//	private String vis_name;
-//	
-//	@Column(name = "vis_email")
-//	private String vis_email;
 	
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss",timezone = "GMT+8")
@@ -66,19 +61,10 @@ public class TestOFM implements Serializable{
 	private String vis_condition;
 	
 	
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumn(name = "member_id")
+
 	private Integer member_id;
 	
 	
-	
-	
-	
-//	@OneToMany(fetch = FetchType.LAZY,mappedBy = "my_food_vis_id",cascade = CascadeType.ALL)
-//	private Set<JoinVis> joinvis = new LinkedHashSet<JoinVis>();
-	
-	
-
 
 	public TestOFM() {
 		

@@ -263,7 +263,9 @@ var tdate=new Date();
 				
 			error : function(err) {
 					console.log(err)
-					alert('發生錯誤')
+					 swal("Good job!", "You clicked the button!", "success");
+// 					alert('請登入會員')
+					location.href=${contextRoot}/
 				}
 		});
 	}
@@ -343,13 +345,15 @@ var tdate=new Date();
 	<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
 	<section class="section">
 	<div >
-
+<form:form class="form" action="${contextRoot}/ajaxFoodVis"
+							modelAttribute="ofmid" method="post" >
 <!-- 		行事曆 -->
 		<div class="div04_32">
 		<div id="example" ></div>
 		</div>
 		<div  class="div05_32">
 		<div id="test">
+		<h2>${ofmid.memberName} 參加的揪團Eat</h2>
 		
 		
   
@@ -358,7 +362,7 @@ var tdate=new Date();
 		</div>
 		</div>
 		
-		
+		</form:form>
 	</div>
 	</section>
 	</article>
@@ -380,9 +384,21 @@ var tdate=new Date();
 					</div>
 					<div class="modal-body">
 						<form>
-
-							<div class="form-row">
+	<form:form class="form" action="${contextRoot}/ajaxFoodVis"
+							modelAttribute="ofmid" method="post" >
+							
 			<div class="form-group col-md-6">
+			
+				<h4>舉辦者： ${ofmid.memberName}</h4> 
+
+			</div>					
+							
+							
+							
+			<div class="form-row">
+						
+			<div class="form-group col-md-6">
+			
 				<label for="inputEmail4">日期</label> <input type="date" id="vis_date"
 					class="form-control" required>
 
@@ -412,13 +428,12 @@ var tdate=new Date();
 				<label for="inputPassword4">備註</label> <input type="text"
 					id="vis_condition" class="form-control" >
 			</div>
-			<form:form class="form" action="${contextRoot}/ajaxFoodVis"
-							modelAttribute="ofmid" method="post">
+			
 			<div class="form-group col-md-6">
 				<input type="text"
 					id="member_id" value="${ofmid.id}" class="form-control" required>
 			</div>
-			</form:form>
+			
 		</div>
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
@@ -427,7 +442,7 @@ var tdate=new Date();
 						
 					</div>	
 							
-							
+						</form:form>	
 						</form>
 					</div>
 					
@@ -544,7 +559,7 @@ var tdate=new Date();
 				</c:forEach>
 
 			</div>
-
+</div>
 		</section>
 		</aside>
 		</div>
@@ -557,8 +572,6 @@ var tdate=new Date();
 		
 		<!-- 分頁頁碼 -->
 
-</div>
-	</div>
 
 
 

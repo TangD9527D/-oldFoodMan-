@@ -22,23 +22,12 @@
 					<div class="card-header text-white bg-dark ">揪團資訊</div>
 					<div class="card-body">
 						<form:form class="form" action="${contextRoot}/findOneVis"
-							modelAttribute="ofm" method="post">
+							modelAttribute="ofm" modelAttribut="ofmid" method="post">
+							<h2>開團者： ${ofmid.memberName}</h2>
 							<form:input type="hidden" path="vis_id"/>
 							<form:input type="hidden" path="added"/>
-<!-- 							<div class="form-row"> -->
-<!-- 								<div class="form-group col-md-6"> -->
-<!-- 									<label for="inputEmail4">發起人</label> -->
-<%-- 									<input type="text" value="${ofm.vis_name}" disabled class="form-control" /> --%>
 
-<!-- 								</div> -->
-<!-- 								<div class="form-group col-md-6"> -->
-<!-- 									<label for="inputEmail4">Email</label> -->
-<%-- 									<input type="text" value="${ofm.vis_email}" disabled class="form-control" /> --%>
 
-<!-- 								</div> -->
-								
-
-<!-- 							</div> -->
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">日期</label>
