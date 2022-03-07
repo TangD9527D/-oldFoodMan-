@@ -198,8 +198,20 @@ public class FoodVisController_32 {
 		
 	}
 	
-	
-	
+	@ResponseBody
+	@GetMapping("/getMyVis")
+	public List<TestOFM> getMyVis(ModelAndView mav,@RequestParam(name="member_id") Integer member_id,HttpSession hs){
+		Member mid = (Member)hs.getAttribute("member");
+		
+		
+		System.out.println("查自己:" +mid);
+		System.out.println("我的ID: "+member_id);
+		List<TestOFM> list=testservice.findMyFoodVisByMemberID(member_id);
+
+		
+		return list;
+		
+	}
 	
 	
 	
