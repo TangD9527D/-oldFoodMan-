@@ -15,8 +15,6 @@
 <title>Login</title>
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
 <script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<meta name="google-signin-client_id" content="827577528120-6tavk1mu6caa0beeaklridnkgk5phd04.apps.googleusercontent.com">
 <style>
 .body_13 {
 	background-image: url("images/44737597.jpg");
@@ -113,30 +111,21 @@
 						</c:if>
 						<br>
 						<div class="under_13">
-							<span id="new_account">新增帳號</span>&emsp;&emsp;<span id="log_in"><button
-									name="submit" type="submit" value="submit"
-									class="btn btn-primary">登入</button></span>
+							<span id="new_account"><a href="${contextRoot}/newAccount">新增帳號</a></span>&emsp;&emsp;<span
+								id="log_in">
+								<button name="submit" type="submit" value="submit"
+									class="btn btn-primary">登入</button>
+							</span>
 						</div>
 					</form:form>
 				</div>
 				<div>
 					<h4>
-						<a href="${contextRoot}/oauth2/authorization/google">Sign-in Google</a>
+						<a href="${contextRoot}/oauth2/authorization/google">Sign-in
+							Google</a>
 					</h4>
 				</div>
 			</div>
-			<script>
-				$("#new_account")
-						.hover(function() {
-							$("#new_account").addClass("new_act");
-						}, function() {
-							$("#new_account").removeClass("new_act");
-						})
-						.click(
-								function() {
-									location.href = "http://localhost:8090/%E5%B0%88%E9%A1%8C-%E8%80%81%E9%A3%9F%E4%BA%BA/%E5%B8%B3%E8%99%9F_%E7%99%BB%E5%85%A5%E9%A0%81%E9%9D%A2_13/new_account.html";
-								});
-			</script>
 		</div>
 	</div>
 </body>
