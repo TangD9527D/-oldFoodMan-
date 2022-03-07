@@ -67,6 +67,7 @@ public class Member implements Serializable {
 	@Column(name = "city")
 	private String city;
 	
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "createDate")
 	private Date createDate;
