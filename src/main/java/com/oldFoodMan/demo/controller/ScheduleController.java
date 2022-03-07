@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -72,9 +73,12 @@ public class ScheduleController {
 	
 	@ResponseBody
 	@GetMapping("likeloc")
-	public List<ScheduleBean> mapsAjax(ModelAndView mav) {
+	public List<ScheduleBean> mapsAjax(ModelAndView mav,@RequestParam(value="member_id")Integer id,HttpSession hs ) {
 
-		List<ScheduleBean> list = scheduleservice.findAll();
+		Member mid = (Member)hs.getAttribute("member");
+		Integer idd=mid.getId();
+		System.out.println("當下的: "+id);
+		List<ScheduleBean> list = scheduleservice.findByIdlike(id);
 
 		return list;
 

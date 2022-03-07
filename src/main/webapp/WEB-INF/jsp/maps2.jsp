@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@	taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -13,8 +13,6 @@
 <title>FoodSearch</title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <!-- <link rel="stylesheet" type="text/css" href="./style.css" /> -->
-
-
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -22,7 +20,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-
+<link rel="stylesheet" href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -133,11 +131,11 @@ html, body {
 	font-size: 30px;
 	font-family: fantasy;
 	line-height: 30px;
-	width: 94%;
+	width: 90%;
 	font-weight: 300px;
 	color: black;
 	border-radius: 10px;
-	background: gray;
+	background: #bebab3;
 	text-align: center;
 }
 
@@ -162,6 +160,17 @@ html, body {
 
 #hide-markers {
 	float: right;
+}
+
+#allrange {
+	text-align: justify;
+	width: 100%;
+}
+
+#range {
+	border: 0.5px solid transparent;
+	text-align: justify;
+	width: 100%;
 }
 
 #range1 {
@@ -221,20 +230,46 @@ img {
 	width: 100%;
 	height: 80%;
 	margin: 0.1px auto;
-	border-radius: 15px;
+	border-radius: 20PX;
 	text-align: justify;
+
 }
+
+#li{
+	overflow: hidden;	
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 1; /*行數*/
+	-webkit-box-orient: vertical;
+	white-space: normal;
+	text-align: justify;
+
+
+}
+
+
+
 </style>
 
 
 </head>
 <body>
+
 	<div id="location">
-		<h4 style="text-align: center; padding-top: 20px">收藏的地點🌟</h4>
+		<h4 style="text-align:center;padding-top:20px">收藏的地點<i class="fa-regular fa-star"></i></h4>
 		<hr style="color: pink; border: 5px solid pink">
 		<div id="location1"></div>
+		
+		<form:form class="form" action="${contextRoot}/main"
+							modelAttribute="member" method="post">
+			<div class="form-group col-md-6">
+				<input type="hidden"
+				   	id="member_id2" value="${member.id}" class="form-control" required>
+			</div>
+			</form:form>
 
-
+		<input type="hidden" id="member_id" value="${member_id}"
+		
+			class="form-control" required>
 
 	</div>
 
@@ -244,7 +279,9 @@ img {
 			<!--allpage的65%-->
 			<input id="input" class="btn btn-secondary" type="search"
 				placeholder="Search Food & record" />
-			<button id="food" onclick="confirm('確定送出？'); collet();" class="btn btn-outline-secondary btn-lg">食記</button>
+			<button id="food" onclick="collet11()"
+				class="btn btn-outline-secondary btn-lg">站內食記</button>
+
 		</div>
 
 		<div id="map"></div>
@@ -256,52 +293,65 @@ img {
 				value="ShowMark" /> <input id="hide-markers"
 				class="btn btn-outline-dark btn-sm" type="button" value="HideMark" />
 
-			<button id="star" onclick="confirm('確定送出？'); return insertlocation()" class="btn btn-outline-secondary btn-sm">✨收藏地點</button>
+			<button id="star" onclick="" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-star"></i>收藏地點</button>
 
 			<!--  -->
 
 		</div>
 
-<!-- 		<div id="range" class=""> -->
-<%-- 			<c:forEach var="maps" items="${page.content}"> --%>
-<!-- 				<div class="card" id="p1" style="width: 8cm;"> -->
-<%-- 					<img src="<c:url value='/getPicture/${maps.id}'/>" --%>
-<!-- 						style="width: 250px; height: 220px" class="card-img-top" alt="..."> -->
-<!-- 					<div id="box" class="card-body"> -->
-<!-- 						<h3 id="p" class="card-title" -->
-<%-- 							style="background-color: #ADADAD; text-align: center">${maps.title}</h3> --%>
-<%-- 						<h5 id="p" class="card-text">${maps.content}</h5> --%>
-<%-- 						<a href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} " class="btn btn-secondary" --%>
-<!-- 							style="position: absolute; bottom: 15px">繼續閱讀</a> -->
-<!-- 						<div id="right"> -->
-<%-- 							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE" --%>
-<%-- 								value="${maps.added}" /> --%>
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<%-- 			</c:forEach> --%>
-<!-- 		</div> -->
+		
+		<div id="allrange">
+			<span id="rangetype"></span>
+			<div id="range1" class="">
+				<%-- 			<c:forEach var="st" items="${st.content}"> --%>
+				<!-- 				<div class="card" id="p1" style="width: 8cm;"> -->
+				<%-- 					<img src="<c:url value='/getPicture/${st.id}'/>" --%>
+				<!-- 						style="width: 250px; height: 220px" class="card-img-top" alt="..."> -->
+				<!-- 					<div id="box" class="card-body"> -->
+				<!-- 						<h3 id="p" class="card-title" -->
+				<%-- 							style="background-color: #ADADAD; text-align: center">${st.title}</h3> --%>
+				<%-- 						<h5 id="p" class="card-text">${st.content}</h5> --%>
+				<!-- 						<a href="#" class="btn btn-secondary" -->
+				<!-- 							style="position: absolute; bottom: 15px">繼續閱讀</a> -->
+				<!-- 						<div id="right"> -->
+				<%-- 							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE" --%>
+				<%-- 								value="${st.added}" /> --%>
+				<!-- 						</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
+				<%-- 			</c:forEach> --%>
+			</div>
+		</div>
 
-		<div id="range1" class="">
-			<c:forEach var="st" items="${st.content}">
+
+
+
+		<div id="range" class="">
+			<c:forEach var="maps" items="${page.content}">
 				<div class="card" id="p1" style="width: 8cm;">
-					<img src="<c:url value='/getPicture/${st.id}'/>"
+					<img src="<c:url value='/getPicture/${maps.id}'/>"
 						style="width: 250px; height: 220px" class="card-img-top" alt="...">
 					<div id="box" class="card-body">
 						<h3 id="p" class="card-title"
-							style="background-color: #ADADAD; text-align: center">${st.title}</h3>
-						<h5 id="p" class="card-text">${st.content}</h5>
-						<a href="#" class="btn btn-secondary"
+							style="background-color: #bebab3; text-align: center">${maps.title}</h3>
+						<h5 id="p" class="card-text">${maps.content}</h5>
+						<a
+							href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
+							class="btn btn-secondary"
 							style="position: absolute; bottom: 15px">繼續閱讀</a>
 						<div id="right">
 							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
-								value="${st.added}" />
+								value="${maps.added}" />
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
+
 	</div>
+
+
+
 
 
 
@@ -377,7 +427,7 @@ img {
                  }
 
                  const icon = {
-                     url: "<c:url value="/images/snow.png"/>", //搜尋後所標記的圖片                        
+                     url: "<c:url value='/images/snow.png'/>", //搜尋後所標記的圖片                        
                      size: new google.maps.Size(71, 71),
                      anchor: new google.maps.Point(20, 34),  //標記點的偏移度
                      scaledSize: new google.maps.Size(60, 60),//圖片大小
@@ -413,7 +463,7 @@ img {
              map,
              animation: google.maps.Animation.BOUNCE, //設定圖示顯示樣式為跳躍
              title: "Hello World!",
-             icon: "<c:url value="/images/snow.png"/>",
+             icon: "<c:url value='/images/snow.png'/>",
             
          });
 
@@ -445,12 +495,13 @@ img {
      }     
 	       
     </script>
+<!--收藏地點方法 -->
 	<script>
-
+	var Member_id=document.getElementById('member_id').value;
  		function insertlocation() {
 
 			var inputResName = document.getElementById('input').value;
-			var Member_id=document.getElementById('member_id').value;
+			
 			console.log(input);
 			console.log(Member_id);
 			var dtoObject = {
@@ -459,6 +510,10 @@ img {
 				}
 			var dtoJsonString = JSON.stringify(dtoObject);	
 				console.log(dtoJsonString);
+			
+				
+				
+				
 			$.ajax({
 				url : 'http://localhost:8080/oldFoodMan/locations',
 				contentType : 'application/json; charset=UTF-8',
@@ -466,8 +521,21 @@ img {
 				method : 'post',
 				data : dtoJsonString,
 				
-				success : function(data) {
-					$('#location1').append(data.likelocations)
+				success : function(result) {	
+					
+					console.log(result)				
+															
+					var msg_data='';
+					$.each(result,function(index,value){
+						
+						msg_data = '<li id="li" class="list-group-item list-group-item-info">'+ inputResName +'</li>'
+						
+					})
+				
+				
+					
+					$('#location1').append(msg_data)	
+			
 				},
 				error : function(err) {
 				console.log(err)
@@ -475,10 +543,37 @@ img {
 				}
 
 			})
-		}
- 
+		
+ 		 		
+ 		}
+ 		
+ 		var Member_id2=document.getElementById('member_id2').value;
+ 		console.log("ID: "+Member_id2)
+ 			$.ajax({
+ 				url : 'http://localhost:8080/oldFoodMan/likeloc?member_id='+ Member_id2,
+ 				contentType : 'application/json ; charset=UTF-8',
+ 				dataType : 'json',
+ 				method : 'get',
+// 	 			data : dtoJsonString,
+ 				success : function(result) {
+ 				
+ 					var msg_data='';
+ 					$.each(result,function(index,value){
+ 						msg_data += '<li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li>'
+ 					})
 
+ 					$('#location1').append(msg_data)
+
+ 					
+ 				},
+ 				error : function(err) {
+ 					console.log(err)
+ 					alert('發生錯誤')
+ 				}
+
+ 			})
 </script>
+		<!--綁定按鍵sweetalert2並執行收藏地點方法 -->
 	<script>
 
 document.getElementById("star").addEventListener("click",function(){
@@ -491,62 +586,100 @@ document.getElementById("star").addEventListener("click",function(){
 	<script>
 
 // //網頁接值
-		$(document).ready(function() {	
-			$.ajax({
-					url : 'http://localhost:8080/oldFoodMan/likeloc',
-					contentType : 'application/json ; charset=UTF-8',
-					dataType : 'json',
-					method : 'get',
-					success : function(result){
-						console.log("rs: "+result)
-						var msg_data='';
-						$.each(result,function(index,value){
+// 		$(document).ready(function() {	
+// 			$.ajax({
+// 					url : 'http://localhost:8080/oldFoodMan/likeloc',
+// 					contentType : 'application/json ; charset=UTF-8',
+// 					dataType : 'json',
+// 					method : 'get',
+// 					success : function(result){
+// 						console.log("rs: "+result)
+// 						var msg_data='';
+// 						$.each(result,function(index,value){
 			
-							msg_data+= '<h5>'+value.likelocations +'</h5>'
+// 							msg_data+= '<h5>'+value.likelocations +'</h5>'
 				
-						})
-						$('#location1').append(msg_data.likelocations)
+// 						})
+// 						$('#location1').append(msg_data.likelocations)
 
 					
-					},
-					error : function(err) {
-						console.log(err)
-						alert('發生錯誤')
-					}		
+// 					},
+// 					error : function(err) {
+// 						console.log(err)
+// 						alert('發生錯誤')
+// 					}		
 		
-				});
+// 				});
 		
-			})
+// 			})
 
 </script>
-
+<!-- 	抓關鍵字搜尋站內食記的方法 -->
 	<script>
 
-		function collet(){
-			
+		function collet11(){		
 			
 			var inputResName = document.getElementById('input').value;
-			var dtoObject = {
-				"likelocations" : inputResName,				
-				}
-			var dtoJsonString = JSON.stringify(dtoObject);	
-				console.log(dtoJsonString);
+
 				$.ajax({
-						url : 'http://localhost:8080/oldFoodMan/api/collet'+dtoJsonString,
+						url : 'http://localhost:8080/oldFoodMan/collet?shopType='+inputResName ,
 						contentType : 'application/json ; charset=UTF-8',
 						dataType : 'json',
 						method : 'get',
-						data : dtoJsonString,
+
 						success : function(result) {
 							console.log(result)
 						var msg_data='';
 				$.each(result,function(index,value){
-						msg_data+= '<div class="card" style="width: 8cm;">'
-						msg_data+= '<img src="...'+ value.coverImage +'" class="card-img-top" alt="...">'	
+						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
+//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
+						console.log(value.uploadPicture)
+						msg_data+= '<img src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.uploadPicture +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
 						msg_data+= '<div class="card-body">'		
-						msg_data+= '<h5 class="card-title">'+ value.title +'</h5>'
-						msg_data+= '<p class="card-text">'+ value.content  +'</p>'
-						msg_data+= '<a href="" class="btn btn-primary">Go somewhere</a>'
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
+						msg_data+= '<h5 class="card-text">'+ value.content  +'</h5>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary"><c:out value="繼續閱讀"/></a>'
+						msg_data+= '</div>'
+						msg_data+= '</div>'
+						})
+
+						$('#rangetype').append(inputResName)
+						$('#range1').append(msg_data)
+
+		
+						},
+						error : function(err) {
+							console.log(err)
+							alert('發生錯誤')
+						}
+
+				})
+
+	}
+		
+		
+function collet22(){		
+			
+			var inputResName = document.getElementById('bt1').attr;
+			var inputResName = document.getElementById('bt2').attr;
+			var inputResName = document.getElementById('bt3').attr;
+				$.ajax({
+						url : 'http://localhost:8080/oldFoodMan/collet?shopType='+inputResName ,
+						contentType : 'application/json ; charset=UTF-8',
+						dataType : 'json',
+						method : 'get',
+
+						success : function(result) {
+							console.log(result)
+						var msg_data='';
+				$.each(result,function(index,value){
+						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
+//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
+						msg_data+= '<img src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
+						msg_data+= '<div class="card-body">'		
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
+						msg_data+= '<h5 ip="p" class="card-text">'+ value.content  +'</h5>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary"style="position: absolute; bottom: 15px"><c:out value="繼續閱讀..."/></a>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -567,6 +700,19 @@ document.getElementById("star").addEventListener("click",function(){
 
 
 </script>
+<script>
+
+	
+	
+
+	
+
+
+
+
+
+</script>
+
 
 </body>
 </html>
