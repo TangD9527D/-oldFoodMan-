@@ -60,10 +60,18 @@ public class ScheduleService {
 		
 		return sbdao.findAll(pgb);
 		
+				
+	}
+	
+	public List<ScheduleBean> findByIdlike(Integer id){
 		
+		List<ScheduleBean> location=sbdao.findByIdlike(id);
 		
+		return location ;
 		
 	}
+	
+	
 	
 
 }

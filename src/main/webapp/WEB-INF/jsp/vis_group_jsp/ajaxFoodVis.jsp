@@ -70,7 +70,7 @@ background-color: white;
     border:2px outset gray;
 	
 }
-#test{
+#myadd{
 width:90%;
 margin:0 auto;
 
@@ -86,6 +86,15 @@ margin:10px 20px;
 	float:right;
 
 }
+
+#myvis{
+width:90%;
+margin:0 auto;
+
+
+}
+
+
 
 .header1{
 color:#5A5AAD;
@@ -169,169 +178,12 @@ color:#B87070;
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-<script>
-var tdate=new Date();
 
-	$(document).ready(function fullcalendar(){
-		$("#example").fullCalendar(
-							{// 參數設定[註1]
-											
-							header : { // 頂部排版
-												
-							left : "prev,next today", // 左邊放置上一頁、下一頁和今天
-							center : "title", // 中間放置標題
-							right : "month,basicWeek,basicDay" // 右邊放置月、周、天
-							},
-							monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],				
-							//dayNames: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
-							dayNamesShort: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-							defaultDate : tdate, // 起始日期
-							weekends : true, // 顯示星期六跟星期日
-							editable : true, // 啟動拖曳調整日期
-							
-							events : function(start, end,timezone, callback) {
-								$.ajax({
-										url : 'http://localhost:8080/oldFoodMan/api/getFoodVis',
-										contentType : 'application/json; charset=UTF-8',
-										dataType : 'json',
-										method : 'get',
-										success : function(result) {
-										console.log("2:"+ result)
 
-										var events = [];
-										$.each(result,function(index,value) {
-											var newDate = new Date(Date.parse(value.vis_date))
-											var idt = value.vis_id
-											console.log("id:"+ idt)
-											var date = moment(newDate).format('YYYY-MM-DD')
-											var visurl = "http://localhost:8080/oldFoodMan/findOneVis?id="+ value.vis_id
 
-											console.log(visurl)
-											events.push({
-											title : value.vis_res_name,
-											start : date,
-											url : visurl,
-											backgroundColor:"#8080C0",
-											borderColor:"#8080C0"
-													});
 
-												});
-
-											callback(events);
-
-								}
-
-						});
-					}
-				});
-
-	},
-	
-		
-	
-	
-	);
-	
-	$(document).ready(function viewdata(){
-		var id=document.getElementById('member_id').value;
-			
-		
-		$.ajax({
-			url: 'http://localhost:8080/oldFoodMan/getMyJoin?member_id='+id ,
-			contentType: 'application/json; charset=UTF-8',			
-			method: 'get',
-			success: function (result) {
-			console.log("result " + result)
-				
-				var msg_data='';
-				$.each(result,function(index,value){
-					
-						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
-					
-						msg_data+= '<div class="card-body">'		
-						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.vis_res_name +'</h3>'
-						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_date  +'</h5>'
-						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
-						msg_data+= '</div>'
-						msg_data+= '</div>'
-						})
-
-						$('#test').append(msg_data)
-				},
-				
-			error : function(err) {
-					console.log(err)
-					alert('發生錯誤')
-				}
-		});
-	}
-
-	
-	
-	)
-	
-	
-			
-// 		新增揪團窗格			
-		function insertdata() {
-// 			var inputName = document.getElementById('vis_name').value;
-			var inputResName = document.getElementById('vis_res_name').value;
-			var inputDate = document.getElementById('vis_date').value;
-// 			var inputEmail = document.getElementById('vis_email').value;
-			var inputTime = document.getElementById('vis_time').value;
-			var inputLocation = document.getElementById('vis_location').value;
-			var inputNum = document.getElementById('vis_num').value;
-			var inputCondition = document.getElementById('vis_condition').value;
-			var Member_id=document.getElementById('member_id').value;
-			var dtoObject = {
-// 				"vis_name" : inputName,
-				"vis_res_name" : inputResName,
-				"vis_date" : inputDate,
-// 				"vis_email" : inputEmail,
-				"vis_time" : inputTime,
-				"vis_location" : inputLocation,
-				"vis_num" : inputNum,
-				"vis_condition" : inputCondition,
-				"member_id": Member_id
-			}
-			var dtoJsonString = JSON.stringify(dtoObject);
-			
-			if(inputDate==""|| inputTime==""|| inputResName==""){
-// 				$("#vis_name").addClass("is-invalid")
-// 				$("#vis_date").addClass("is-invalid")
-// 				$("#vis_time").addClass("is-invalid")
-// 				$("#vis_res_name").addClass("is-invalid")
-				
-				alert("尚有欄位未輸入!!");
-				
-				return ;
-		
-			
-			}else {
-				
-			$.ajax({
-				url : 'http://localhost:8080/oldFoodMan/api/postFoodVis',
-				contentType : 'application/json; charset=UTF-8',
-				dataType : 'json',
-				method : 'post',
-				data : dtoJsonString,
-				success : function(data) {
-					 location.reload()					
-					
-				},
-				error : function(err) {
-					console.log(err)
-					alert('發生錯誤')
-				}
-
-			})
-		}
-		
-	}
-
-</script>
 
 
 </head>
@@ -340,16 +192,29 @@ var tdate=new Date();
 <div class="allpage">
 	<div id="content">
 	<article class="article">
+<!-- 	<button type="button" id="star" onclick="">test</button> -->
 	<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
 	<section class="section">
 	<div >
-
+<form:form class="form" action="${contextRoot}/ajaxFoodVis"
+							modelAttribute="ofmid" method="post" >
 <!-- 		行事曆 -->
 		<div class="div04_32">
 		<div id="example" ></div>
 		</div>
 		<div  class="div05_32">
-		<div id="test">
+		<div id="myadd">
+		<h2>${ofmid.memberName} 參加的揪團Eat</h2>
+		
+		
+  
+
+
+		</div>
+		</div>
+		<div  class="div05_32">
+		<div id="myvis">
+		<h2>${ofmid.memberName} 發起的揪團Eat</h2>
 		
 		
   
@@ -358,7 +223,7 @@ var tdate=new Date();
 		</div>
 		</div>
 		
-		
+		</form:form>
 	</div>
 	</section>
 	</article>
@@ -380,9 +245,21 @@ var tdate=new Date();
 					</div>
 					<div class="modal-body">
 						<form>
-
-							<div class="form-row">
+	<form:form class="form" action="${contextRoot}/ajaxFoodVis"
+							modelAttribute="ofmid" method="post" >
+							
 			<div class="form-group col-md-6">
+			
+				<h4>舉辦者： ${ofmid.memberName}</h4> 
+
+			</div>					
+							
+							
+							
+			<div class="form-row">
+						
+			<div class="form-group col-md-6">
+			
 				<label for="inputEmail4">日期</label> <input type="date" id="vis_date"
 					class="form-control" required>
 
@@ -412,13 +289,12 @@ var tdate=new Date();
 				<label for="inputPassword4">備註</label> <input type="text"
 					id="vis_condition" class="form-control" >
 			</div>
-			<form:form class="form" action="${contextRoot}/ajaxFoodVis"
-							modelAttribute="ofmid" method="post">
+			
 			<div class="form-group col-md-6">
 				<input type="text"
 					id="member_id" value="${ofmid.id}" class="form-control" required>
 			</div>
-			</form:form>
+			
 		</div>
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
@@ -427,7 +303,7 @@ var tdate=new Date();
 						
 					</div>	
 							
-							
+						</form:form>	
 						</form>
 					</div>
 					
@@ -544,7 +420,7 @@ var tdate=new Date();
 				</c:forEach>
 
 			</div>
-
+</div>
 		</section>
 		</aside>
 		</div>
@@ -557,18 +433,235 @@ var tdate=new Date();
 		
 		<!-- 分頁頁碼 -->
 
-</div>
-	</div>
+<!-- Swal.fire({ -->
+<!--   position: 'top-end', -->
+<!--   icon: 'success', -->
+<!--   title: 'Your work has been saved', -->
+<!--   showConfirmButton: false, -->
+<!--   timer: 1500 -->
+<!-- }) -->
 
 
 
+<!-- <script> -->
 
 
 
+<!-- </script> -->
 
 
+<script>
+var tdate=new Date();
 
-<!-- </div> -->
+	$(document).ready(function fullcalendar(){
+		$("#example").fullCalendar(
+							{// 參數設定[註1]
+											
+							header : { // 頂部排版
+												
+							left : "prev,next today", // 左邊放置上一頁、下一頁和今天
+							center : "title", // 中間放置標題
+							right : "month,basicWeek,basicDay" // 右邊放置月、周、天
+							},
+							monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],				
+							//dayNames: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+							dayNamesShort: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+
+							defaultDate : tdate, // 起始日期
+							weekends : true, // 顯示星期六跟星期日
+							editable : true, // 啟動拖曳調整日期
+							
+							events : function(start, end,timezone, callback) {
+								$.ajax({
+										url : 'http://localhost:8080/oldFoodMan/api/getFoodVis',
+										contentType : 'application/json; charset=UTF-8',
+										dataType : 'json',
+										method : 'get',
+										success : function(result) {
+										console.log("2:"+ result)
+
+										var events = [];
+										$.each(result,function(index,value) {
+											var newDate = new Date(Date.parse(value.vis_date))
+											var idt = value.vis_id
+											console.log("id:"+ idt)
+											var date = moment(newDate).format('YYYY-MM-DD')
+											var visurl = "http://localhost:8080/oldFoodMan/findOneVis?id="+ value.vis_id
+
+											console.log(visurl)
+											events.push({
+											title : value.vis_res_name,
+											start : date,
+											url : visurl,
+											backgroundColor:"#8080C0",
+											borderColor:"#8080C0"
+													});
+
+												});
+
+											callback(events);
+
+								}
+
+						});
+					}
+				});
+
+	},
+	
+		
+	
+	
+	);
+	
+	$(document).ready(function viewdata(){
+		var id=document.getElementById('member_id').value;
+			
+		
+		$.ajax({
+			url: 'http://localhost:8080/oldFoodMan/getMyJoin?member_id='+id ,
+			contentType: 'application/json; charset=UTF-8',			
+			method: 'get',
+			success: function (result) {
+			console.log("result " + result)
+				
+				var msg_data='';
+				$.each(result,function(index,value){
+					
+						msg_data+= '<div id="p1" class="card" style="width: 6cm;">'
+//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
+					
+						msg_data+= '<div class="card-body">'		
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #D8D8EB; text-align: center">'+ value.vis_res_name +'</h3>'
+						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_date  +'</h5>'
+						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
+						msg_data+= '</div>'
+						msg_data+= '</div>'
+						})
+
+						$('#myadd').append(msg_data)
+				},
+				
+			error : function(err) {
+					console.log(err)
+ 					
+					alert('請登入會員')
+					location.href=${contextRoot}/
+				}
+		
+		
+		
+		});
+		
+		
+		
+		
+		
+	})
+	
+	$(document).ready(function viewdata(){
+		var id=document.getElementById('member_id').value;
+	
+		
+		
+	$.ajax({
+			url: 'http://localhost:8080/oldFoodMan/getMyVis?member_id='+id ,
+			contentType: 'application/json; charset=UTF-8',			
+			method: 'get',
+			success: function (result) {
+			console.log("我的團: " + result)
+				
+				var msg_data='';
+				$.each(result,function(index,value){
+					
+						msg_data+= '<div id="p1" class="card" style="width: 6cm;">'
+					
+						msg_data+= '<div class="card-body">'		
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #E1C4C4; text-align: center">'+ value.vis_res_name +'</h3>'
+						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_date  +'</h5>'
+						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
+						msg_data+= '</div>'
+						msg_data+= '</div>'
+						})
+
+						$('#myvis').append(msg_data)
+				},
+				
+			error : function(err) {
+					console.log(err)
+ 					
+// 					alert('請登入會員')
+					location.href=${contextRoot}/
+				}
+		});
+	
+	})
+	
+	
+	
+	
+			
+// 		新增揪團窗格			
+		function insertdata() {
+// 			var inputName = document.getElementById('vis_name').value;
+			var inputResName = document.getElementById('vis_res_name').value;
+			var inputDate = document.getElementById('vis_date').value;
+// 			var inputEmail = document.getElementById('vis_email').value;
+			var inputTime = document.getElementById('vis_time').value;
+			var inputLocation = document.getElementById('vis_location').value;
+			var inputNum = document.getElementById('vis_num').value;
+			var inputCondition = document.getElementById('vis_condition').value;
+			var Member_id=document.getElementById('member_id').value;
+			var dtoObject = {
+// 				"vis_name" : inputName,
+				"vis_res_name" : inputResName,
+				"vis_date" : inputDate,
+// 				"vis_email" : inputEmail,
+				"vis_time" : inputTime,
+				"vis_location" : inputLocation,
+				"vis_num" : inputNum,
+				"vis_condition" : inputCondition,
+				"member_id": Member_id
+			}
+			var dtoJsonString = JSON.stringify(dtoObject);
+			
+			if(inputDate==""|| inputTime==""|| inputResName==""){
+// 				$("#vis_name").addClass("is-invalid")
+// 				$("#vis_date").addClass("is-invalid")
+// 				$("#vis_time").addClass("is-invalid")
+// 				$("#vis_res_name").addClass("is-invalid")
+				
+				alert("尚有欄位未輸入!!");
+				
+				return ;
+		
+			
+			}else {
+				
+			$.ajax({
+				url : 'http://localhost:8080/oldFoodMan/api/postFoodVis',
+				contentType : 'application/json; charset=UTF-8',
+				dataType : 'json',
+				method : 'post',
+				data : dtoJsonString,
+				success : function(data) {
+
+					 location.reload()					
+					
+				},
+				error : function(err) {
+					console.log(err)
+					alert('發生錯誤')
+				}
+
+			})
+		}
+		
+	}
+
+</script>
+
+
 </body>
 
 </html>

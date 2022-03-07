@@ -54,5 +54,11 @@ public class TestOfmService {
 		List<TestOFM> ofmforfull=dao.findByMemberId(id);
 		return ofmforfull;
 	}
+	
+	public List<TestOFM> findMyFoodVisByMemberID(Integer id){
+		
+		List<TestOFM> ofmforfull=dao.findMyFoodVisByMemberID(id);
+		return ofmforfull;
+	}
 
 }

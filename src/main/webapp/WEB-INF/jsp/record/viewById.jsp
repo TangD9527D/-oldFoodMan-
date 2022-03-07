@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="layout/navbar.jsp" />
 <!DOCTYPE html>
 <html>
@@ -235,103 +236,90 @@ width:500px;
 				<br>
 
 				<button id="submitBtn" style="float: right; margin: 5px">發佈</button>
-				<input id="myMessage"
-					style="width: 500px; border-color: lightgray; float: right; border-radius: 10px;"
+				<input id="myMessage" style="width: 500px; border-color: lightgray; float: right; border-radius: 10px;"
 					placeholder="留言..."></input> <br>
 				<br>
 				
-				
-<!--  ---老師範例的查看留言法---------------------------------------------------- -->
-
-		<div class="container">
-		<p />
-		<c:forEach var="msg" items="${msg_page.content}">
-			<div class="row justify-content-center">
-				<div class="col-9">
-				
-					<div class="card">
-						<div class="card-header">
-							回覆時間
-							<c:out value="${msg.added}" />
-						
-						</div>
-						<div class="card-body">
+		
+<!--  ---看留言---------------------------------------------------- -->	
+				<div id="showMsg" class="card">
+					<c:forEach var="msg" items="${msg_page.content}"> 
+					<div class="card-header">時間 :<c:out value="${msg.added}" /></div>
+					<div class="card-body">
+						<p class="card-text">
+						<a id="deleteBtn"  onclick="return confirm('確認刪除?')" class="btn btn-primary">刪除</a><br>
 						食記ID:<c:out value="${msg.record_id.id}" /><br>
 						會員ID:<c:out value="${msg.member_id.id}" /><br>
 					    <c:out value="${msg.text}" />
-						</div>
-						<div align="right">
-							編輯
-							刪除
-						</div>
+						</p>
+						
 					</div>
-					
+					</c:forEach>
 				</div>
-			</div>
-			</c:forEach>
-			
-		<div class="row justify-content-center">
-			<div class="col-9">
-				<c:forEach var="pageNumber" begin="1" end="${msg.totalPages}">
-
-					<c:choose>
-						<c:when test="${pageNumber-1 != msg.number}">
-							<a href="${contextRoot}/totalRecord?p=${pageNumber}"><c:out value="${pageNumber}" /> </a>
-						</c:when>
-
-						<c:otherwise>
-							<c:out value="${pageNumber}"></c:out>
-						</c:otherwise>
-					</c:choose>
-
-					<c:if test="${pageNumber != msg.totalPages}">|</c:if>
-
-				</c:forEach>
-			</div>
-		</div>
-	
-
-
-
-<!--  -------------借放------------------------------------------ -->
-<!-- <p /> -->
-<%-- 					<c:forEach var="recordMessage" items="${page.content}"> --%>
-<!-- 						<div class="row justify-content-center"> -->
-<!-- 							<div class="col-9"> -->
-<!-- 								<div class="card"> -->
-<!-- 									<div class="card-header"> -->
-<!-- 										回覆時間 -->
-<%-- 										<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss EEEE" --%>
-<%-- 											value="${recordMessage.added}" /> --%>
-<!-- 									</div> -->
-<!-- 									<div class="card-body"> -->
-<%-- 										<c:out value="${recordMessage.text}" /> --%>
-<!-- 									</div> -->
-<!-- 									<div align="right"> -->
-<%-- 										<a href="${contextRoot}/editMessage?id=${recordMessage.id}">編輯</a> --%>
-<!-- 										<a onclick="return confirm('確認刪除?')" -->
-<%-- 											href="${contextRoot}/deleteMessage?id=${recordMessage.id}">刪除</a> --%>
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<%-- 					</c:forEach> --%>
-
-		
-<!--  ----以下為將table表格用each的方式印出的body部分-------------------------------------------------------------------------------- -->
 				
-				<br><br>
-				<div>
-					<table class="msg_table" id="list_table_json">
-						<thead>
-							<tr>
-							<th>留言</th>
-							</tr>
-						</thead>
-					</table>
+		
+<!--  ---看留言---------------------------------------------------- -->
+
+<!-- 		<div class="container"> -->
+<!-- 		<p /> -->
+<%-- 		<c:forEach var="msg" items="${msg_page.content}"> --%>
+<!-- 			<div class="row justify-content-center"> -->
+<!-- 				<div class="col-9"> -->
+				
+<!-- 					<div class="card"> -->
+<!-- 						<div class="card-header"> -->
+<!-- 							回覆時間 -->
+<%-- 							<c:out value="${msg.added}" /> --%>
+						
+<!-- 						</div> -->
+<!-- 						<div id="msg" class="card-body"> -->
+<%-- 						食記ID:<c:out value="${msg.record_id.id}" /><br> --%>
+<%-- 						會員ID:<c:out value="${msg.member_id.id}" /><br> --%>
+<%-- 					    <span id="ajaxMsg"><c:out value="${msg.text}" /></span> --%>
+<!-- 						</div> -->
+<!-- 						<div align="right"> -->
+						
+<%-- 							<a href="${contextRoot}/updateMsg?id=${msg.id}">編輯</a>  --%>
+<!-- 							<button id="deleteBtn" style="float: right; margin: 5px"> -->
+<%-- 								<a  id="deleteBtn"  onclick="return confirm('確認刪除?')" href="${contextRoot}/deleteMsg?id=${msg.id}">刪除</a> --%>
+<!-- 							</button> -->
+						
+<!-- 						</div> -->
+<!--  					</div>  -->
 					
-				</div>
+<!--  				</div>  -->
+<!-- 			</div>  -->
+<%--  			</c:forEach>  --%>
+ 			
+ 			
+			
+<!--  		<div class="row justify-content-center">  -->
+<!--  			<div class="col-9"> -->
+<%-- 				<c:forEach var="pageNumber" begin="1" end="${msg_page.totalPages}"> --%>
+
+<%-- 					<c:choose> --%>
+<%-- 						<c:when test="${pageNumber-1 != msg_page.number}"> --%>
+<%-- 							<a href="${contextRoot}/totalRecord?p=${pageNumber}"><c:out value="${pageNumber}" /> </a> --%>
+<%-- 						</c:when> --%>
+
+<%-- 						<c:otherwise> --%>
+<%-- 							<c:out value="${pageNumber}"></c:out> --%>
+<%-- 						</c:otherwise> --%>
+<%-- 					</c:choose> --%>
+
+<%-- 					<c:if test="${pageNumber != msg_page.totalPages}">|</c:if> --%>
+
+<%-- 				</c:forEach> --%>
+<!--  			</div> -->
+<!-- 		</div>  -->
+
 <!-- ----------------------------------------------------------------------------------------------------------- -->
+<!--  ---Ajax顯示留言---------------------------------------------------- -->
+				
+				<div id="ajaxMsg" class="card">	
+				</div>
+<!--  ------------------------------------------------------- -->		
+
 		</div>
 	</div>
 	</div>
@@ -352,41 +340,71 @@ width:500px;
 					contentType : 'application/json; charset=UTF-8', // 送過去的格式
 					dataType : 'json', // 傳回來的
 					method : 'post',
-					data : dtoJsonString, //送過去的東新
+					data : dtoJsonString, //送過去的東西
 					success : function(result) { //成功送過去後
-// 						$('#list_table_json tr td').remove()
-						console.log(result);
-<!-- ---------以下為將table表格用each的方式印出----------------------------------------------------------------------------------------- -->						
-// 						var msg_data = ''; //msg_data先設為空的，待會才能放資料進去
-// 						$.each(result, function(index, value) {
-// 							//由於回傳是Json的陣列，一次會回傳一筆，所以用Jquery each的方法
-// 							//result是一個陣列，funcion為一個callback
-// 							//function中的index表示要回傳的第幾筆，可以不用，但是一定要寫index
-// 							//value表示回傳的值
-
-// 							   msg_data += '<tr>'
-// 						       msg_data += '<td style="background-color:#F0F0F0; width: 500px;">' + value.added + '</td>'
-// 						       msg_data += '<tr>'
-// 						       msg_data += '<td id="msg_id">' + value.text +'</td>'
-// 						       msg_data += '<tr>'
-// 						       msg_data += '<td id="msg_id">' + value.text +'</td>'
-						      
-// 						       msg_data += '<tr>'
-// 						})
-// 						$('#list_table_json').append(msg_data) //想要把東西加到list_table_json內，msg_data為要加進去的東西
-<!-- ----------------------------------------------------------------------------------------------------------- -->					
-
+						 $('#showMsg').remove()
+						  $('#ajaxMsg').empty()
+					console.log(result);
+					var msg_data = '';
+					$.each(result, function(index, value){     
+						
+						msg_data += '<div class="card-header">'+"時間 : "+value.added +'</div>'
+						msg_data += '<p class="card-text">'
+						msg_data += '<a id="deleteBtn" class="btn btn-primary" onclick="return confirm('+"確認刪除?"+')" href="${contextRoot}/deleteMsg?id='+value.id+'">'+'刪除'+'</a>'
+						msg_data += '<br>'+value.member_id
+						msg_data += '<br>'+value.record_id
+			            msg_data += '<br>'+value.text   
+			            msg_data += '</p>'
+			            msg_data += '<br>'
+			           
+			        })
+						$('#ajaxMsg').append(msg_data)
 					},
 					error : function(err) {
 						console.log(err)
-						alert('發生錯誤')
+						alert('新增留言發生錯誤')
 					}
 
 				})
 
 			})
+			
+			//刪除留言
+			$('#deleteBtn').click(function() {
+				
+				var url = location.href; 
+				console.log(url);
+				
+// 				$.ajax({
+// 					url : 'http://localhost:8080/oldFoodMan/deleteMsg/'+id,
+			        
+// 			        method: 'post',
+// 					success : function(result){
+// 						 $('#showMsg').remove()
+// 						  $('#ajaxMsg').empty()
+// 					console.log(result);
+// 					var msg_data = '';
+// 					$.each(result, function(index, value){     
+						
+// 						msg_data += '<div class="card-header">'+"時間 : "+value.added +'</div>'
+// 						msg_data += '<p class="card-text">'
+// 						msg_data += '<a id="deleteBtn" class="btn btn-primary" onclick="return confirm('+"確認刪除?"+')" href="${contextRoot}/deleteMsg?id="'+value.id+'">'+'刪除'+'</a>'
+// 						msg_data += '<br>'+value.member_id 
+// 						msg_data += '<br>'+value.record_id 
+// 			            msg_data += '<br>'+value.text   
+// 			            msg_data += '</p>'
+// 			            msg_data += '<br>' 
+// 			        })
+// 					},
+// 					error :function(err){
+// 						console.log(err)
+// 						alert('刪除留言發生錯誤')
+// 					}
+// 				})
 
 		})
+	})
+		
 	</script>
 
 

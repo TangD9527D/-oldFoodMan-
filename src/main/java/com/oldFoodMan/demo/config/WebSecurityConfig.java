@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		
 		// 不需要登入的頁面
-		http.authorizeRequests().antMatchers("/", "/loginn", "/logout", "/oauth2/**").permitAll();
+		http.authorizeRequests().antMatchers("/", "/login", "/logout", "/oauth2/**").permitAll();
 		
 		// 進入(/userInfo) 頁面時需登入，如未登入會重新導向到(/login)登入頁面
 		http.authorizeRequests().antMatchers("/userInfo", "/productsPage" , "/productsBackStagePage").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
@@ -54,6 +54,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		//當沒有權限的人要進入有權限人的頁面時，導向的頁面
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
+		
+//		http.authorizeHttpRequests().anyRequest().authenticated().and().oauth2Login();
 
 		 http.authorizeRequests()
 		 .antMatchers("/oauth2/**").permitAll()
@@ -63,19 +65,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          	.permitAll()
          	.loginProcessingUrl("/j_spring_security_check")
          	.loginPage("/login")
-         	.defaultSuccessUrl("/")
+         	.defaultSuccessUrl("/main")
          	.failureUrl("/login?error=true")
          	.usernameParameter("account")
          	.passwordParameter("password")
          .and()
          .oauth2Login()
 		 	.loginPage("/login")
-		 	.defaultSuccessUrl("/")
 		 	.userInfoEndpoint().userService(oAuth2UserService)
 		 	.and()
 		 .and()
 		 .logout()// Config for Logout Page
-		 .logoutUrl("/j_spring_security_logout")
+		 .permitAll()
 		 .logoutSuccessUrl("/");//登出成功時導向頁面
 		
 	

@@ -52,7 +52,7 @@ public class RecordMessageService {
 
 	
 	//查全部
-	public List<RecordMessages>  findAllRecord() {
+	public List<RecordMessages>  findAllMsg() {
 		List<RecordMessages> record = dao.findAll();
 		return record;
 	}

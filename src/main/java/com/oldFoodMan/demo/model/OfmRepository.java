@@ -22,6 +22,7 @@ public interface OfmRepository extends JpaRepository<OldFoodManBean, Integer> {
 	@Query(value = "Select * from my_food_vis where vis_id=:vis_id",nativeQuery = true)
 	public List<OldFoodManBean> findByID(@Param(value = "vis_id") Integer vis_id);
 	
-	
+	@Query(value = "Select * from my_food_vis where member_id=:member_id",nativeQuery = true)
+	public List<OldFoodManBean> findMyFoodVisByMemberID(@Param(value = "member_id") Integer member_id);
 	
 }

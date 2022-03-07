@@ -20,7 +20,8 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
+<link rel="stylesheet"
+	href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -232,37 +233,36 @@ img {
 	margin: 0.1px auto;
 	border-radius: 20PX;
 	text-align: justify;
-
 }
 
-#li{
-	overflow: hidden;	
+#li {
+	overflow: hidden;
 	text-overflow: ellipsis;
 	-webkit-line-clamp: 1; /*行數*/
 	-webkit-box-orient: vertical;
 	white-space: normal;
 	text-align: justify;
-
-
 }
-
-
-
 </style>
 
 
 </head>
 <body>
+	<c:if test="${pageContext.request.userPrincipal == null}">
+		<div id="location">
+			<h4 style="text-align: center; padding-top: 20px">
+				收藏的地點<i class="fa-regular fa-star"></i>
+			</h4>
+			<hr style="color: pink; border: 5px solid pink">
+			<div id="location1"></div>
 
-	<div id="location">
-		<h4 style="text-align:center;padding-top:20px">收藏的地點<i class="fa-regular fa-star"></i></h4>
-		<hr style="color: pink; border: 5px solid pink">
-		<div id="location1"></div>
-		<input type="hidden" id="member_id" value="${member_id}"
-			class="form-control" required>
 
-	</div>
 
+			<input type="hidden" id="member_id" value="${member_id}"
+				class="form-control" required>
+
+		</div>
+	</c:if>
 	<div id="allpage">
 		<!--整個頁面的65%-->
 		<div id="inputdiv">
@@ -283,13 +283,17 @@ img {
 				value="ShowMark" /> <input id="hide-markers"
 				class="btn btn-outline-dark btn-sm" type="button" value="HideMark" />
 
-			<button id="star" onclick="" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-star"></i>收藏地點</button>
+			<button id="star" onclick="" class="btn btn-outline-secondary btn-sm">
+				<i class="fa-solid fa-star"></i>收藏地點
+			</button>
 
 			<!--  -->
 
 		</div>
 
+
 		<div id="allrange">
+			<span id="rangetype"></span>
 			<div id="range1" class="">
 				<%-- 			<c:forEach var="st" items="${st.content}"> --%>
 				<!-- 				<div class="card" id="p1" style="width: 8cm;"> -->
@@ -483,13 +487,13 @@ img {
      }     
 	       
     </script>
-<!--收藏地點方法 -->
+	<!--收藏地點方法 -->
 	<script>
-
+	var Member_id=document.getElementById('member_id').value;
  		function insertlocation() {
 
 			var inputResName = document.getElementById('input').value;
-			var Member_id=document.getElementById('member_id').value;
+			
 			console.log(input);
 			console.log(Member_id);
 			var dtoObject = {
@@ -511,11 +515,8 @@ img {
 				
 				success : function(result) {	
 					
-					console.log(result)
-										
-					
-					
-					
+					console.log(result)				
+															
 					var msg_data='';
 					$.each(result,function(index,value){
 						
@@ -537,12 +538,38 @@ img {
 		
  		 		
  		}
+ 		
+ 		var Member_id2=document.getElementById('member_id2').value;
+ 		console.log("ID: "+Member_id2)
+ 			$.ajax({
+ 				url : 'http://localhost:8080/oldFoodMan/likeloc?member_id='+ Member_id2,
+ 				contentType : 'application/json ; charset=UTF-8',
+ 				dataType : 'json',
+ 				method : 'get',
+// 	 			data : dtoJsonString,
+ 				success : function(result) {
+ 				
+ 					var msg_data='';
+ 					$.each(result,function(index,value){
+ 						msg_data += '<li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li>'
+ 					})
+
+ 					$('#location1').append(msg_data)
+
+ 					
+ 				},
+ 				error : function(err) {
+ 					console.log(err)
+ 					alert('發生錯誤')
+ 				}
+
+ 			})
 </script>
-		<!--綁定按鍵sweetalert2並執行收藏地點方法 -->
+	<!--綁定按鍵sweetalert2並執行收藏地點方法 -->
 	<script>
 
 document.getElementById("star").addEventListener("click",function(){
-	  swal("Good job!", "已經收藏此地點!", "success").then(insertlocation());
+	  swal("發生錯誤!", "請登入會員!", "error").then(insertlocation());
 	});
 	
 
@@ -579,7 +606,7 @@ document.getElementById("star").addEventListener("click",function(){
 // 			})
 
 </script>
-<!-- 	抓關鍵字搜尋站內食記的方法 -->
+	<!-- 	抓關鍵字搜尋站內食記的方法 -->
 	<script>
 
 		function collet11(){		
@@ -598,7 +625,8 @@ document.getElementById("star").addEventListener("click",function(){
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
 //  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
-						msg_data+= '<img src="/getPicture/'+ value.uploadPicture +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>'
+						console.log(value.uploadPicture)
+						msg_data+= '<img src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.uploadPicture +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 class="card-text">'+ value.content  +'</h5>'
@@ -607,6 +635,7 @@ document.getElementById("star").addEventListener("click",function(){
 						msg_data+= '</div>'
 						})
 
+						$('#rangetype').append(inputResName)
 						$('#range1').append(msg_data)
 
 		
@@ -663,34 +692,12 @@ function collet22(){
 
 
 </script>
-<script>
-$(document).ready(function() {
+	<script>
+
 	
-		$.ajax({
-			url : 'http://localhost:8080/oldFoodMan/likeloc',
-			contentType : 'application/json ; charset=UTF-8',
-			dataType : 'json',
-			method : 'get',
-// 			data : dtoJsonString,
-			success : function(result) {
-			
-				var msg_data='';
-				$.each(result,function(index,value){
-					msg_data += '<li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li>'
-				})
+	
 
-				$('#location1').append(msg_data)
-
-				
-			},
-			error : function(err) {
-				console.log(err)
-				alert('發生錯誤')
-			}
-
-		})
-
-	})
+	
 
 
 
