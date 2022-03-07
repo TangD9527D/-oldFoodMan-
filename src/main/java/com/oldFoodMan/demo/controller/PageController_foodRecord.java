@@ -88,6 +88,18 @@ public class PageController_foodRecord {
 		return mav;
 	}	
 	
+	//----MSG page--------------
 	
+	@GetMapping("/theLastestMSG")
+	public ModelAndView theLastestMSG(ModelAndView mav) {
+		mav.setViewName("record/viewById");
+		RecordMessages msg = new RecordMessages();
+		RecordMessages lastestMsg = msgService.getLastest();
+		
+		mav.getModel().put("lastestMsg", msg);  //是TotalRecord中c:out 的var
+		mav.getModel().put("lastestMsg", lastestMsg);
+		
+		return mav;
+	}
 
 }
