@@ -11,13 +11,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>老食名人</title>
+    <title>老食頁面</title>
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_header.css">
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_navi.css">
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_left.css">
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_right.css">
-    <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base">
+    <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base.css">
+    <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
     <style>
+        
+        .reviewer-navi.reviewer-navi--l .reviewer-navi__item.is-selected.is-selected.is-selected .reviewer-navi__target::after{
+            width: 92%;
+            margin-left: -46%;
+        }
+
+        .reviewer-navi__item.is-selected.is-selected.is-selected .reviewer-navi__target::after{
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            height: 3px;
+            width: 85%;
+            margin-left: 42.5%;
+            background: #463f2d;
+            content: '';
+        }
+
+        .reviewer-navi__item:last-child::after{
+            background: transparent;
+        }
+
         li{
             list-style: inherit;
         }
@@ -69,7 +91,9 @@
                 <p>Le fabuleux destin d'Amelie Poulain</p>
             </div>
             <div id="welcome" class="person-header--nav js-welcome-wrapper">
-                <p>置頂個人導覽</p>
+                <a href="${contextRoot}/">
+                	<p>回首頁</p>
+                </a>
             </div>
         </div>
     </div>
@@ -81,7 +105,7 @@
     </div>
 </div>
 
-
+<!--Header * Start-->
 <div class="reviewer-header-wrap">
     <div class="reviewer-header">
         <div class="header-cover">
@@ -98,8 +122,8 @@
                 </div>
             </div>
             <div id="page-info" class="header-cover--info js-page-info">
-                <p class="page-name">Alice's Tea Party</p>
-                <p class="page-sub-title">Just a cafe lover</p>
+                <p class="page-name">奧格瑪美食指南</p>
+                <p class="page-sub-title">為了明天我們先吃飽飽</p>
             </div>
             <div class="header-cover__actions">
                 <div class="reviewer-action-btns">
@@ -117,10 +141,11 @@
                     <div class="reviewer-action-btns__block">
                         <div class="reviewer-block-btn">
                         	<a href="${contextRoot}/setReviewerPage">
-                            	<p class="js-main-block-btn c-btn reviewer-block-btn__target">
+                            <p class="js-main-block-btn c-btn reviewer-block-btn__target">
                                 <span class="c-btn__text">s</span>
-                            	</p>
+                            </p>
                             </a>
+                            <div></div>
                         </div>
                     </div>
                 </div>
@@ -130,9 +155,15 @@
             <div class="header-contents__img-wrap">
                 <div class="header-contents__img header-contents__img--l">
                     <div id="reviewer-image" class="reviewer-image-box reviewer-image-box--1 js-reviewer-image js-upload-icon-image">
-                        <a href="">
-                            <img alt src="${contextRoot}/imgLemon/半路04.jpg" width="120" height="120">
-                        </a>
+                        <div id="js-reviewer-image-display">
+                            <img src="<c:url value='/getPhoto/${memberPage.id}' />" width="120" height="120">
+                        </div>
+                        <form id="js-profile-image-form" autocomplete="off" data-type="json" enctype="multipart/form-data" action="#" accept-charset="UTF-8" data-remote="true" method="post">
+                            <div class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;">
+                            <button class="c-btn c-btn--s reviewer-image-box__reimage-btn">變更</button>
+                            <input type="file" name="file-profile-image" id="js-file-profile-image" class="reviewer-image-box__reimage-file js-upload-icon-file">
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -140,7 +171,7 @@
                 <div class="reviewer-status reviewer-status--top">
                     <p class="reviewer-status__item">
                         <span class="reviewer-status__nickname">
-                            <strong class="reviewer-nickname fs18">斉藤アリス</strong>
+                            <strong class="reviewer-nickname fs18"><c:out value="${memberPage.memberName}"/></strong>
                         </span>
                         <span class="reviewer-status__attr">(30歲出頭-女性-花蓮縣)</span>
                     </p>
@@ -161,7 +192,7 @@
                 <div class="reviewer-counter">
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject">
-                            <span class="reviewer-counter__label">ロコミ数</span>
+                            <span class="reviewer-counter__label">喜好店家</span>
                             <span class="c-icon-help c-icon-help--dark">
                                 <span class="c-icon-help__btn">?</span>
                                 <span class="c-icon-help__tooltip-frame reviewer-counter__help">
@@ -179,7 +210,7 @@
                     </dl>
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject reviewer-counter__subject--photo">
-                            <span class="reviewer-counter__label">写真</span>
+                            <span class="reviewer-counter__label">照片</span>
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
@@ -192,7 +223,7 @@
                     </dl>
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject reviewer-counter__subject--visitor">
-                            <span class="reviewer-counter__label">訪問者数</span>
+                            <span class="reviewer-counter__label">瀏覽次數</span>
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
@@ -203,7 +234,7 @@
                     </dl>
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject reviewer-counter__subject--visitor">
-                            <span class="reviewer-counter__label">いいね!</span>
+                            <span class="reviewer-counter__label">讚!</span>
                             <span class="c-icon-help c-icon-help--dark">
                                 <span class="c-icon-help__btn">?</span>
                                 <span class="c-icon-help__tooltip-frame reviewer-counter__help">
@@ -225,9 +256,9 @@
         <div class="reviewer-navi reviewer-navi--l">
             <ul class="reviewer-navi__list">
                 <li class="reviewer-navi__item reviewer-navi__item--log is-selected">
-                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerMainPage">
+                    <a class="reviewer-navi__target" href="#">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__menu reviewer-navi__menu--top">トップ</span>
+                            <span class="reviewer-navi__menu reviewer-navi__menu--top">首頁</span>
                         </span>
                     </a>
                 </li>
@@ -235,7 +266,7 @@
                     <a class="reviewer-navi__target" href="#">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">1478</span>
-                            <span class="reviewer-navi__menu">have been to</span>
+                            <span class="reviewer-navi__menu">拜訪店家</span>
                         </span>
                     </a>
                 </li>
@@ -243,7 +274,7 @@
                     <a class="reviewer-navi__target" href="#">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">156</span>
-                            <span class="reviewer-navi__menu">favorite</span>
+                            <span class="reviewer-navi__menu">喜愛店家</span>
                         </span>
                     </a>
                 </li>
@@ -251,7 +282,7 @@
                     <div class="reviewer-navi__target">
                         <sapn class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">0</span>
-                            <span class="reviewer-navi__menu">brief</span>
+                            <span class="reviewer-navi__menu">小口袋</span>
                         </sapn>
                     </div>
                 </li>
@@ -259,7 +290,7 @@
                     <a class="reviewer-navi__target" href="#">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">62</span>
-                            <span class="reviewer-navi__menu">following</span>
+                            <span class="reviewer-navi__menu">追蹤</span>
                         </span>
                     </a>
                 </li>
@@ -267,7 +298,7 @@
                     <a class="reviewer-navi__target" href="#">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">22157</span>
-                            <span class="reviewer-navi__menu">follower</span>
+                            <span class="reviewer-navi__menu">追隨者</span>
                         </span>
                     </a>
                 </li>
@@ -275,6 +306,9 @@
         </div>
     </div>
 </div>   
+
+<!--header end-->
+
 <div id="container">
     <!-- contents * start -->
     <div id="contents" class="clearfix contents-reviewer">
@@ -450,7 +484,7 @@
         <div id="column-side" class="layout1-side">
             <p class="tra-banner-mypage u-mb">
                 <a href="#" class="tra-banner-mypage__target">
-                    <img width="300" height="120" alt="面對食物總是老實" src="${contextRoot}/imgLemon/sidebanner.jpg">
+                    <img width="300" height="120" alt="面對食物總是老實" src="/img/sidebanner.jpg">
                 </a>
             </p>
             <div id="column-side-inner">
@@ -501,7 +535,7 @@
                     <h2 class="side-title">拜訪區域</h2>
                     <div id="area-map">
                         <div class="frame">
-                            <img src="${contextRoot}/img/0130藍色的夢.jpg" width="280" height="210" alt="拜訪區域">
+                            <img src="/img/0130藍色的夢.jpg" width="280" height="210" alt="拜訪區域">
                         </div>
                         <ul>
                             <li class="level15" id="tokyo">
@@ -567,6 +601,18 @@
     </div>
     <!-- contents * end -->
 </div>
+
+
+<script type="Text/JavaScript">
+    $(document).ready(function(){
+        $('#reviewer-image').hover(function(){
+            $('#hoverrr').css('display','block');
+        },function(){
+            $('#hoverrr').css('display','none');
+        });
+    })
+
+</script>
 
 </body>
 </html>

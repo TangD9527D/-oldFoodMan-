@@ -17,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,6 +27,8 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
 
 
 @Entity
@@ -100,6 +103,11 @@ public class Member implements Serializable {
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
+	
+	
+	//Lemon
+	@OneToOne(mappedBy = "member")
+	private ReviewerSetting reviewersetting;
 	
 	public Member() {
 	}

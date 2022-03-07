@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,7 +121,7 @@
 
         .chart-box .graph{
             padding: 22px 0 0;
-            background: url(/imgLemon/bar.gif) no-repeat right top;
+            background: url(${contextRoot}/imgLemon/bar.gif) no-repeat right top;
         }
 
         .chart-box .graph ul{
@@ -332,8 +333,8 @@
             <div class="header-contents__img-wrap">
                 <div class="header-contents__img header-contents__img--l">
                     <div id="reviewer-image" class="reviewer-image-box reviewer-image-box--1 js-reviewer-image js-upload-icon-image">
-                        <a href="">
-                            <img alt src="imgLemon/半路04.jpg" width="120" height="120">
+                        <a href="${contextRoot}/reviewerMainPage/${memberPage.account}">
+                            <img alt src="<c:out value="${memberPage.memberName}"/>" width="120" height="120">
                         </a>
                     </div>
                 </div>
@@ -516,7 +517,7 @@
                             <ul class="clearfix">
                                 <li class="clearfix">
                                     <p class="rate-img">
-                                        <img src="/imgLemon/star_s50.gif" width="68" height="12">
+                                        <img src="${contextRoot}/imgLemon/star_s50.gif" width="68" height="12">
                                     </p>
                                     <p class="score">5</p>
                                     <p class="num">
@@ -530,7 +531,7 @@
                                 </li>
                                 <li class="clearfix">
                                     <p class="rate-img">
-                                        <img src="/imgLemon/star_s40.gif" width="68" height="12">
+                                        <img src="${contextRoot}/imgLemon/star_s40.gif" width="68" height="12">
                                     </p>
                                     <p class="score">4</p>
                                     <p class="num">
@@ -544,7 +545,7 @@
                                 </li>
                                 <li class="clearfix">
                                     <p class="rate-img">
-                                        <img src="/imgLemon/star_s30.gif" width="68" height="12">
+                                        <img src="${contextRoot}/imgLemon/star_s30.gif" width="68" height="12">
                                     </p>
                                     <p class="score">3</p>
                                     <p class="num">
@@ -558,7 +559,7 @@
                                 </li>
                                 <li class="clearfix">
                                     <p class="rate-img">
-                                        <img src="/imgLemon/star_s20.gif" width="68" height="12">
+                                        <img src="${contextRoot}/imgLemon/star_s20.gif" width="68" height="12">
                                     </p>
                                     <p class="score">2</p>
                                     <p class="num">
@@ -572,7 +573,7 @@
                                 </li>
                                 <li class="clearfix">
                                     <p class="rate-img">
-                                        <img src="/imgLemon/star_s10.gif" width="68" height="12">
+                                        <img src="${contextRoot}/imgLemon/star_s10.gif" width="68" height="12">
                                     </p>
                                     <p class="score">1</p>
                                     <p class="num">

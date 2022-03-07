@@ -3,9 +3,12 @@ package com.oldFoodMan.demo.service.lemon;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
 import com.oldFoodMan.demo.model.lemon.ReviewerSettingDao;
 
@@ -15,7 +18,15 @@ public class ReviewerSettingService {
 	@Autowired
 	private ReviewerSettingDao dao;
 	
+	@Autowired
+	private HttpSession hs;
+	
 	public void insert(ReviewerSetting rvwrst) {
+		Member member = (Member)hs.getAttribute("member");
+		if(rvwrst.getMember().equals(member)) {
+			
+		}
+		rvwrst.setMember(member);
 		dao.save(rvwrst);
 	}
 	

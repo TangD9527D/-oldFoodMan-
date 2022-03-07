@@ -342,6 +342,37 @@
     background:#ffffff;
 }
 
+.reviewer-image-box__reimage{
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    overflow: hidden;
+}
+
+.c-btn.c-btn--s{
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-size: 1.1rem;
+}
+
+.reviewer-image-box__reimage-file{
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-size: 200%;
+    opacity: 0;
+}
+
+input{
+    padding: 0;
+}
+
+input{
+    margin: 0;
+    font: inherit;
+}
+
 .header-contents__info--l{
     padding: 15px 20px 20px;
 }

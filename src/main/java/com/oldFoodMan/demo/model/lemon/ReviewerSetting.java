@@ -3,14 +3,19 @@ package com.oldFoodMan.demo.model.lemon;
 import java.io.Serializable;
 import java.sql.Blob;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.oldFoodMan.demo.model.Member;
 
 @Entity
 @Table(name = "reviewer_setting")
@@ -35,12 +40,21 @@ public class ReviewerSetting implements Serializable {
 	private String reviewer_occupation;
 	private Blob reviewer_cover;
 	private String reviewer_cover_filename;
-	private Integer member_id;
+
 	@Transient
 	private MultipartFile coverImage;
 
+	//一對一
+	@OneToOne
+	@JoinColumn(name = "member_id")
+	private Member member;
 	
-	
+	public Member getMember() {
+		return member;
+	}
+	public void setMember(Member member) {
+		this.member = member;
+	}
 	public Integer getReviewer_id() {
 		return reviewer_id;
 	}
@@ -95,12 +109,6 @@ public class ReviewerSetting implements Serializable {
 	public void setReviewer_cover_filename(String reviewer_cover_filename) {
 		this.reviewer_cover_filename = reviewer_cover_filename;
 	}
-	public Integer getMember_id() {
-		return member_id;
-	}
-	public void setMember_id(Integer member_id) {
-		this.member_id = member_id;
-	}
 	public MultipartFile getCoverImage() {
 		return coverImage;
 	}
@@ -132,13 +140,14 @@ public class ReviewerSetting implements Serializable {
 		builder.append(reviewer_cover);
 		builder.append(", reviewer_cover_filename=");
 		builder.append(reviewer_cover_filename);
-		builder.append(", member_id=");
-		builder.append(member_id);
 		builder.append(", coverImage=");
 		builder.append(coverImage);
+		builder.append(", member=");
+		builder.append(member);
 		builder.append("]");
 		return builder.toString();
 	}
+	
 	
 	
 	
