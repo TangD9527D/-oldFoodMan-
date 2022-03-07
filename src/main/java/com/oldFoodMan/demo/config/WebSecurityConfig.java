@@ -18,9 +18,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	MemberServiceImpl userDetailsService;
-	
-	@Autowired
-	private MemberOAuth2UserService oAuth2UserService;
 
 	@Bean // 加鹽(要加密的字串中加特定的字符，打亂原始的字符串)
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -54,8 +51,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		//當沒有權限的人要進入有權限人的頁面時，導向的頁面
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
-		
-//		http.authorizeHttpRequests().anyRequest().authenticated().and().oauth2Login();
 
 		 http.authorizeRequests()
 		 .antMatchers("/oauth2/**").permitAll()
@@ -72,14 +67,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          .and()
          .oauth2Login()
 		 	.loginPage("/login")
+		 	.defaultSuccessUrl("/main")
+		 	.failureUrl("/login?error=true")
 		 	.userInfoEndpoint().userService(oAuth2UserService)
 		 	.and()
 		 .and()
 		 .logout()// Config for Logout Page
 		 .permitAll()
 		 .logoutSuccessUrl("/");//登出成功時導向頁面
-		
-	
+		 
 		//配置登入表單
 //		http.authorizeRequests()
 //				.and()
@@ -97,5 +93,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //				.logoutSuccessUrl("/");//登出成功時導向頁面
 //
 	}
+	
+	@Autowired
+	private MemberOAuth2UserService oAuth2UserService;
 
 }
