@@ -19,6 +19,7 @@
 				<legend>
 					<h1>編輯帳號</h1>
 					<form:input style="display: none;" path="id" />
+					<form:input style="display: none;" path="createDate" />
 				</legend>
 				<div>
 					<form:input id="memberImage" path="memberImage" type="file"

@@ -121,7 +121,7 @@
 				</div>
 				<div>
 					<h4>
-						<a href="${contextRoot}/oauth2/code/google">Sign-in Google</a>
+						<a href="${contextRoot}/oauth2/authorization/google">Sign-in Google</a>
 					</h4>
 				</div>
 			</div>
