@@ -2,6 +2,7 @@ package com.oldFoodMan.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,12 +53,10 @@ public class RecordMessagesController {
 			System.out.println("會員ID = "+member);
 			
 			foodMsg.setRecord_id(sessionRecordId);
-			System.out.println("食記ID = "+sessionRecordId);
-			
+			System.out.println("食記ID = "+sessionRecordId);	
 			
 			msgService.insertMessage(foodMsg); //先存食記
 			
-
 	
 			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件
 			List<RecordMessages> list = msg_page.getContent();    //page物件需要用getContent()方法才能拿到List
@@ -64,6 +64,8 @@ public class RecordMessagesController {
 			return list;
 		}
 		
+	
+
 		
 		//用ID查看所有留言
 		@GetMapping("/viewMsgById")
@@ -106,10 +108,12 @@ public class RecordMessagesController {
 		
 
 		//刪除留言
-		@GetMapping(value = "/deleteMsg")
-		public ModelAndView deleteMsg(ModelAndView mav, @RequestParam(name = "id",required = false) Integer id) {
+		@PostMapping(value = "/deleteMsg/{id}")	
+		public void deleteMsg(HttpServletResponse resp,@PathVariable(name="id") Integer id) {
+			System.out.println(id);
 			msgService.deleteByID(id);
-			mav.setViewName("redirect:/totalRecord"); // redirect到viewMessages這個Controller
-			return mav;
+			System.out.println("刪除留言");
 		}
+		
+		
 }
