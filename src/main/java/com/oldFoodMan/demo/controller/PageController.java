@@ -19,18 +19,6 @@ public class PageController {
 	@Autowired
 	private MemberServiceImpl service;
 
-	@GetMapping("/userPage/{user}")
-	public ModelAndView userPage(ModelAndView mav) {
-
-		mav.setViewName("lemon/reviewerMainPage");
-
-		Member mb = new Member();
-
-		mav.getModel().put("member", mb);
-
-		return mav;
-	}
-
 	@GetMapping("/newAccount")
 	public ModelAndView newAccount(ModelAndView mav) {
 

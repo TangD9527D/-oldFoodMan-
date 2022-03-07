@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <%-- <jsp:include page="../messages/layout/navbar.jsp" /> --%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -372,7 +373,7 @@
                                 <p class="u-text-notice setting-notice fs11">
                                     顯示在自己老食評論頁面的個人檔案
                                 </p>
-                                <form:textarea name="editor1" id="intro" path="reviewer_intro" size="100"></form:textarea>
+                                <form:textarea name="editor1" id="intro" path="reviewer_intro" class="c-textfield c-textfield--full c-textfield--textarea" maxlength="250" rows="3" cols="47"></form:textarea>
                                   
                             </td>
                         </tr>
