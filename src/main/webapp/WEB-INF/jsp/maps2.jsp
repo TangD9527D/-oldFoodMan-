@@ -630,11 +630,18 @@ document.getElementById("star").addEventListener("click",function(){
 						success : function(result) {
 							console.log(result)
 						var msg_data='';
+					
+							console.log(result)
+							
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
 //  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						console.log(value.uploadPicture)
-						msg_data+= '<img src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.uploadPicture +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
+						console.log(value.id)
+						var image = value.uploadPicture
+						var ok = image.split('.').pop()
+						console.log(ok)
+						msg_data+= '<img src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 class="card-text">'+ value.content  +'</h5>'
