@@ -255,9 +255,6 @@ img {
 			</h4>
 			<hr style="color: pink; border: 5px solid pink">
 			<div id="location1"></div>
-
-
-
 			<input type="hidden" id="member_id" value="${member_id}"
 				class="form-control" required>
 
