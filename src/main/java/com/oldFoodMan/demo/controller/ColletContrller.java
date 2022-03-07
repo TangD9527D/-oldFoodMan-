@@ -5,13 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.oldFoodMan.demo.dto.ColletDto;
 import com.oldFoodMan.demo.model.FoodRecord;
+import com.oldFoodMan.demo.model.FoodRecordForSearch;
 import com.oldFoodMan.demo.service.ColletService;
 
 @Controller
@@ -59,6 +58,12 @@ public class ColletContrller {
 		
 		List<FoodRecord> st = service.findByShopType(shopType);
 		
+		
+		
+		
+		System.out.println("st:" +st);
+		
+
 		mav.getModel().put("st", st);
 		mav.setViewName("maps");
 		return st ;

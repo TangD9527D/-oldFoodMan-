@@ -26,11 +26,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="foodRecord")
-public class FoodRecord implements Serializable {
+public class FoodRecordForSearch implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,16 +44,54 @@ public class FoodRecord implements Serializable {
 	private Date added;
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "member_id")
-	@JsonIgnore
+	@Column(name="member_id")
 	private Member member_id;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "id")
-	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
 	
 	
-	public FoodRecord() {
+	
+	
+	@Column(name="title")
+	private String title;
+	@Column(name="content")
+	private String content;
+	@Column(name="shopName")
+	private String shopName;
+	@Column(name="shopType")
+	private String shopType;
+	@Column(name="audience")
+	private String audience;
+	@Column(name="priceScope")
+	private String priceScope;
+	@Column(name="city")
+	private String city;
+	@Column(name="town")
+	private String town;
+	@Column(name="shopAddress")
+	private String shopAddress;
+	@Column(name="tel")
+	private String tel;
+	@Column(name="businessHours")
+	private String businessHours;
+	@Column(name="tag")
+	private String tag;
+	@Column(name="coverImage")
+	private Blob   coverImage;
+	@Column(name="uploadPicture")
+	private String uploadPicture;
+	@Column(name="tasty")
+	private String tasty;
+	@Column(name="atmosphere")
+	private String atmosphere;
+	@Column(name="cp")
+	private String cp;
+	
+	private int gender;
+	private int gender1;
+	private int gender2;
+	
+	
+	public FoodRecordForSearch() {
 	}
 	
 	@PrePersist    //當 Entity 狀態(有4個狀態)變成Persistent的時候做以下方法
@@ -62,35 +99,6 @@ public class FoodRecord implements Serializable {
 		if(added == null) {
 			added = new Date();
 		}
-	}
-	
-	private String title;
-	private String content;
-	private String shopName;
-	private String shopType;
-	private String audience;
-	private String priceScope;
-	private String city;
-	private String town;
-	private String shopAddress;
-	private String tel;
-	private String businessHours;
-	private String tag;
-	private Blob   coverImage;	
-	private String uploadPicture;
-	private String tasty;
-	private String atmosphere;
-	private String cp;
-	private int gender;
-	private int gender1;
-	private int gender2;
-	
-	public Set<RecordMessages> getRecordMessages() {
-		return recordMessages;
-	}
-
-	public void setRecordMessages(Set<RecordMessages> recordMessages) {
-		this.recordMessages = recordMessages;
 	}
 
 	public Member getMember_id() {
@@ -341,7 +349,7 @@ public class FoodRecord implements Serializable {
 		return builder.toString();
 	}
 
-	public FoodRecord(Integer id, Date added, String title, String content, String shopName, String shopType,
+	public FoodRecordForSearch(Integer id, Date added, String title, String content, String shopName, String shopType,
 			String audience, String priceScope, String city, String town, String shopAddress, String tel,
 			String businessHours, String tag, Blob coverImage, String uploadPicture, String tasty, String atmosphere,
 			String cp, int gender, int gender1, int gender2, MultipartFile productImage) {

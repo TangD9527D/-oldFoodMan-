@@ -524,7 +524,7 @@ img {
 					})
 				
 				
-					
+				
 					$('#location1').append(msg_data)	
 			
 				},
@@ -598,7 +598,7 @@ document.getElementById("star").addEventListener("click",function(){
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
 //  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
-						msg_data+= '<img src="/getPicture/'+ value.uploadPicture +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>'
+// 						msg_data+= '<img src="/images/'+ value.uploadPicture +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>'
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 class="card-text">'+ value.content  +'</h5>'
