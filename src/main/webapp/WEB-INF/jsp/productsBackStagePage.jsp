@@ -236,7 +236,6 @@
 				url : "http://localhost:8080/oldFoodMan/deleteProduct/" + id,
 				success : function(result) {
 					$("#tableAjax").DataTable().row(dtRow).remove().draw(false);
-					console.log('ok')
 				},
 			});
 		})
@@ -262,7 +261,7 @@
 		}
 		
 		//修改
-		$("#Btn_update").click(function(){
+		$(document).on('click', '#Btn_update', function(){
 			var file = $("#Uproduct_image")[0].files[0];    //獲取圖片路徑
 			var formData = new FormData();
 			formData.append("file",file);
@@ -292,7 +291,7 @@
             
             var id = $('#Uproduct_id').val();
 			
-            upRow = $(this).parents('tr');
+            upRow = $(this).closest('tr');
             
             $.ajax({                                         //更新表格資料
                 url:'http://localhost:8080/oldFoodMan/updateProduct/' + id,
@@ -362,7 +361,7 @@
 		
 		//一鍵輸入
 		$("#autoInsert").click(function(){
-			$('#product_number').val('1002');
+			$('#product_number').val('1001');
 			$('#product_name').val('築間');
 			$('#product_category').val('火鍋');
 			$('#product_stock').val('50');

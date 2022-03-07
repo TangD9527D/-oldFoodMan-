@@ -14,4 +14,9 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Shop
 	public ShoppingCart findByProductIdAndMemberId(@Param(value = "productId")int product_id, @Param(value = "memberId")int member_id);
 	
 	public List<ShoppingCart> findByMemberId(Member memberid);
+	
+	@Query(value = "delete from shoppingcart where productId = :productId", nativeQuery = true)
+	public int deleteAllOneByProductId(@Param(value = "productId") int productId);
+	
+
 }

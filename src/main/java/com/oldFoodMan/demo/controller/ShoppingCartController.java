@@ -13,9 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.nimbusds.jose.shaded.json.JSONObject;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.Product;
 import com.oldFoodMan.demo.model.ShoppingCart;
@@ -67,16 +68,37 @@ public class ShoppingCartController {
 		Member member = (Member)session.getAttribute("member");
 		Product product = service.findProductByID(productId);
 		ShoppingCart newCart = service.updateUpProductAmount(product, member);
+		
+		double discount = newCart.getProductId().getProduct_discount();
+		double price = newCart.getProductId().getProduct_price();
+		double newPrice = discount * price;
+		newCart.setProductPay(newPrice);
+		
+		int amount = newCart.getProductAmount();
+		double newPay = amount * newPrice;
+		newCart.setProductNewPay(newPay);
+		
+		
 		return newCart;
 	}
 	
 	@ResponseBody
 	@PostMapping("/cart/decreaseOne/{productId}")
-	public String decreaseOne(@PathVariable int productId, HttpSession session) {
+	public ShoppingCart decreaseOne(@PathVariable int productId, HttpSession session) {
 		Member member = (Member)session.getAttribute("member");
 		Product product = service.findProductByID(productId);
-		service.updateLowProductAmount(product, member);
-		return "";
+		ShoppingCart newCart = service.updateLowProductAmount(product, member);
+		
+		double discount = newCart.getProductId().getProduct_discount();
+		double price = newCart.getProductId().getProduct_price();
+		double newPrice = discount * price;
+		newCart.setProductPay(newPrice);
+		
+		int amount = newCart.getProductAmount();
+		double newPay = amount * newPrice;
+		newCart.setProductNewPay(newPay);
+		
+		return newCart;
 	}
 	
 	@ResponseBody
@@ -84,18 +106,42 @@ public class ShoppingCartController {
 	public ShoppingCart personAuto(@PathVariable int productId, @PathVariable int inputVal, HttpSession session) {
 		Member member = (Member)session.getAttribute("member");
 		Product product = service.findProductByID(productId);
-		ShoppingCart cart = service.updateAutoProductAmount(product, member, inputVal);
+		ShoppingCart newCart = service.updateAutoProductAmount(product, member, inputVal);
+		
+		double discount = newCart.getProductId().getProduct_discount();
+		double price = newCart.getProductId().getProduct_price();
+		double newPrice = discount * price;
+		newCart.setProductPay(newPrice);
+		
+		int amount = newCart.getProductAmount();
+		double newPay = amount * newPrice;
+		newCart.setProductNewPay(newPay);
+		
+		return newCart;
+	}
+	
+	@ResponseBody
+	@PostMapping("/cart/deleteOneProduct/{productId}")
+	public String deleteFromCart(@PathVariable int productId, HttpSession session) {
+		Member member = (Member)session.getAttribute("member");
+		Product product = service.findProductByID(productId);
+		service.deleteFromCart(product, member);
+		return "";
+	}
+	
+	@ResponseBody
+	@PostMapping("/Cart/findOne/{productId}")
+	public ShoppingCart myOneProduct(@PathVariable int productId, HttpSession session) {
+		Member member = (Member) session.getAttribute("member");
+		ShoppingCart cart = service.findMyOneProduct(productId, member);
+		
 		return cart;
 	}
 	
-//  //點擊按鈕刪除單一筆購物車商品 3/6試試看!!
 //	@ResponseBody
-//	@PostMapping("/cart/deleteOneProduct/{productId}")
-//	public String deleteFromCart(@PathVariable int productId, HttpSession session) {
-//		Member member = (Member)session.getAttribute("member");
-//		Product product = service.findProductByID(productId);
-//		service.deleteFromCart(product, member);
-//		return "";
+//	@PostMapping("/Cart/deleteSelected")
+//	public ShoppingCart deleteSelected(@RequestBody) {
+//		
 //	}
 	
 	
