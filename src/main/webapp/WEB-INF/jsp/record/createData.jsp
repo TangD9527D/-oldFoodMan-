@@ -161,12 +161,17 @@ legend {
 				<label class="lab">類型:</label>
 				<form:select path="shopType" id="type" onchange="selectType()">
 					<option value="">請選擇</option>
-					<option value="早餐">早餐</option>
-					<option value="午餐">午餐</option>
+					<option value="火鍋">火鍋</option>
+					<option value="燒烤">燒烤</option>
+					<option value="日式">日式</option>
+					<option value="西式">美式</option>
+					<option value="泰式">泰式</option>
+					<option value="小吃">小吃</option>
+					<option value="餐酒館">餐酒館</option>
+					<option value="居酒屋">居酒屋</option>
 					<option value="早午餐">早午餐</option>
-					<option value="下午茶">下午茶</option>
-					<option value="晚餐">晚餐</option>
-					<option value="宵夜">宵夜</option>
+					
+			
 				</form:select>
 			</div>
 			<div class="st1">
@@ -201,7 +206,7 @@ legend {
 				<br>
 			</div>
 			<div class="st1">
-				<label class="lab">營業時間:</label>
+				<label class="lab">用餐日期:</label>
 				<form:select path="businessHours" id="day" onchange="selectDay()">
 					<option value="">請選擇</option>
 					<option value="星期一">星期一</option>
@@ -273,7 +278,7 @@ legend {
         $("#title").val("[食記] 台北 教父牛排 Danny's Steakhouse");
         $("#inputID").val("久聞牛排教父鄧有葵的大名已久，可一直也沒什麼心思想吃，其實我很少會上牛排館吃牛排，因為我總認為牛排這種食物，只要食材本身好，廚師的手藝倒是其次。而且台灣中上價位的牛排館所使用的無非也是美國牛，美國牛去美福或Costco都能買到，回家後用平底鍋煎一下或烤箱烤一下，佐點海鹽沾著吃，一點也不輸外面一客一兩千的牛排。尤其吃過日本近江牛的美味後，美國牛的味道已經滿足不了我了。不過既然朋友想嘗試看看牛排教父的牛排，那便約來一試，嘗嘗也好。");
         $("#shopName").val("教父牛排 Danny's Steakhouse");
-        $("#type").val("晚餐");
+        $("#type").val("西式");
         $("#audience").val("朋友/家人");
         console.log($("#audience")); 
         $("#price").val("$$$   1001-3000元");
