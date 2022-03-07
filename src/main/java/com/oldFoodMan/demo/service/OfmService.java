@@ -60,6 +60,12 @@ public class OfmService {
 		Pageable pgb = PageRequest.of(pageNumber - 1, 5, Sort.Direction.DESC, "added");
 		return dao.findAll(pgb);
 	}
+	
+//	public List<OldFoodManBean> findByMemberID(Integer id){
+//		
+//		List<OldFoodManBean> ofmforfull=dao.findByMemberID(id);
+//		return ofmforfull;
+//	}
 
 //	public OldFoodManBean getLastest() {
 //

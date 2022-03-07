@@ -61,7 +61,7 @@ public class TestOFM implements Serializable{
 	private String vis_condition;
 	
 	
-
+	@Column(name = "member_id")
 	private Integer member_id;
 	
 	

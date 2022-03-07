@@ -20,5 +20,6 @@ public interface TestOfmRepository extends JpaRepository<TestOFM, Integer> {
 	@Query(value="select * from add_food_group join my_food_vis on my_food_vis.vis_id=add_food_group.my_food_vis_id where add_food_group.member_id = :member_id",nativeQuery=true)
 	public List<TestOFM> findByMemberId(@Param(value="member_id") Integer member_id);
 	
-	
+	@Query(value = "Select * from my_food_vis where member_id=:member_id",nativeQuery = true)
+	public List<TestOFM> findMyFoodVisByMemberID(@Param(value = "member_id") Integer member_id);
 }
