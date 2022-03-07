@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.FoodRecord;
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.service.OldFoodManServiceTest;
 
 @Controller
@@ -72,18 +74,34 @@ public class PageController_02 {
 	
 	@GetMapping("/")
 	public ModelAndView mapsAjaxPage(ModelAndView mav,
-			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber) {
+			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber ) {
 
+		
 		mav.setViewName("maps");
 
 		Page<FoodRecord> page = service.findByPage(pageNumber);
-
+	
 		mav.getModel().put("page", page);
 
 		return mav;
 
 	}
+	
+	@GetMapping("/main")
+	public ModelAndView mapsAjaxPageMain(ModelAndView mav,
+			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber ,HttpSession hs) {
+		Member mid = (Member)hs.getAttribute("member");
+		Integer idd=mid.getId();
+		
+		mav.setViewName("maps2");
 
+		Page<FoodRecord> page = service.findByPage(pageNumber);
+		mav.getModel().put("member", mid);
+		mav.getModel().put("page", page);
+
+		return mav;
+
+	}
 	@ResponseBody
 	@GetMapping("api/searchMaps2")
 	public List<FoodRecord> mapsAjaxPage2(ModelAndView mav,

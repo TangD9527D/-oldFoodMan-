@@ -76,6 +76,7 @@ public class FoodRecord implements Serializable {
 	private String tel;
 	private String businessHours;
 	private String tag;
+	@JsonIgnore
 	private Blob   coverImage;	
 	private String uploadPicture;
 	private String tasty;
