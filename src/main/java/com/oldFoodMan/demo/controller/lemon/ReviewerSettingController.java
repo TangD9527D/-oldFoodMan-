@@ -1,7 +1,5 @@
 package com.oldFoodMan.demo.controller.lemon;
 
-import java.lang.ProcessBuilder.Redirect;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +11,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
+import com.oldFoodMan.demo.model.lemon.ReviewerSettingRepository;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.service.lemon.ReviewerSettingService;
 
 @Controller
 public class ReviewerSettingController {
+	
+	@Autowired
+	private ReviewerSettingRepository rsr;
 	
 	@Autowired
 	private ReviewerSettingService service;
@@ -65,7 +67,25 @@ public class ReviewerSettingController {
 	
 	@PostMapping(value="/setReviewerPage")
 	public ModelAndView postSetting(ModelAndView mav,@ModelAttribute ReviewerSetting rvwrs) {
-		service.insert(rvwrs);
+		
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		Integer memberId = service.checkMemberId();
+		
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+memberId);
+		System.out.println(rvwrs.getMember());
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//		if(rvwrs.getMember()!=null) {
+		rsr.updateTitle(memberId, rvwrs.getReviewer_title());
+		rsr.updateSubTitle(memberId, rvwrs.getReviewer_subtitle());
+		rsr.updateIntro(memberId, rvwrs.getReviewer_intro());
+		rsr.updateCamera(memberId, rvwrs.getReviewer_camera());
+		rsr.updateOccupation(memberId, rvwrs.getReviewer_occupation());
+//		} else {
+//			service.insert(rvwrs);
+//		}
+		
+		
+	
 		mav.setViewName("redirect:/reviewerMainPage/");
 		return mav;
 	}

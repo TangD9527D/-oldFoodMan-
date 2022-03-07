@@ -21,11 +21,16 @@ public class ReviewerSettingService {
 	@Autowired
 	private HttpSession hs;
 	
+	
+	public Integer checkMemberId() {
+		Member member = (Member)hs.getAttribute("member");
+		Integer id = member.getId();
+		
+		return id;
+	}
+	
 	public void insert(ReviewerSetting rvwrst) {
 		Member member = (Member)hs.getAttribute("member");
-		if(rvwrst.getMember().equals(member)) {
-			
-		}
 		rvwrst.setMember(member);
 		dao.save(rvwrst);
 	}
