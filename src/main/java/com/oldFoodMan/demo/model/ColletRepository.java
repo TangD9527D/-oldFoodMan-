@@ -17,8 +17,8 @@ public interface ColletRepository extends JpaRepository<FoodRecord, Integer> {
 //	String SQL = "Select * from location where location like '%"+search+"%' or ename like '%" +search+
 
 //			"%' or email like '%"+search+"%'"  ;	
-	
-	
-	@Query(value="select*from my_food_vis where vis_location like % :search % or vis_res_name like % :search %",nativeQuery=true)
-	public List<JoinVis> search(@Param(value="search") String search);
+//	
+//	
+//	@Query(value="select*from my_food_vis where vis_location like % :search % or vis_res_name like % :search %",nativeQuery=true)
+//	public List<JoinVis> search(@Param(value="search") String search);
 }
