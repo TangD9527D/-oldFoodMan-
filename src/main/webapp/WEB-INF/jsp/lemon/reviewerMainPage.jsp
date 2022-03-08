@@ -158,12 +158,9 @@
                         <div id="js-reviewer-image-display">
                             <img src="<c:url value='/getPhoto/${memberPage.id}' />" width="120" height="120">
                         </div>
-                        <form id="js-profile-image-form" autocomplete="off" data-type="json" enctype="multipart/form-data" action="#" accept-charset="UTF-8" data-remote="true" method="post">
-                            <div class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;">
+                            <a class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;" href="#">
                             <button class="c-btn c-btn--s reviewer-image-box__reimage-btn">變更</button>
-                            <input type="file" name="file-profile-image" id="js-file-profile-image" class="reviewer-image-box__reimage-file js-upload-icon-file">
-                            </div>
-                        </form>
+                            </a>
                     </div>
                 </div>
             </div>
