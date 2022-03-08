@@ -16,6 +16,7 @@ import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OfmRepository;
 import com.oldFoodMan.demo.model.OldFoodManBean;
 import com.oldFoodMan.demo.model.Product;
+import com.oldFoodMan.demo.model.addVisRepository;
 
 
 
@@ -28,7 +29,8 @@ public class JoinVisService {
 	@Autowired
 	private OfmRepository visDao;
 	
-
+	@Autowired
+	private addVisRepository addDao;
 
 	public void insert(JoinVis joinvis) {
 		System.out.println("有什麼:" + joinvis);
@@ -89,4 +91,14 @@ public class JoinVisService {
 	public void deleteJoinVis(Integer member) {
 //		return joinDao.deleteById(member);
 	}
+	
+	public List<Member> findByMyFoodVisId(Integer myfoodvisid){
+		return addDao.findByMyFoodVisId(myfoodvisid);
+	}
+	
+	
+	
+	
+	
+	
 }

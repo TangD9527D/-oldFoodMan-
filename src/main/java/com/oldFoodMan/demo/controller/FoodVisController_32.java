@@ -2,7 +2,7 @@ package com.oldFoodMan.demo.controller;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.dto.FoodVisDto;
+import com.oldFoodMan.demo.model.JoinVis;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OldFoodManBean;
 import com.oldFoodMan.demo.model.TestOFM;
+import com.oldFoodMan.demo.service.JoinVisService;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.service.OfmService;
 import com.oldFoodMan.demo.service.TestOfmService;
@@ -36,6 +38,12 @@ public class FoodVisController_32 {
 	
 	@Autowired
 	private MemberServiceImpl memberservice;
+	
+	
+
+	@Autowired
+	private JoinVisService joinservice;
+	
 	
 	@PostMapping(value="/addFoodVis")
 	public ModelAndView postNewMessage(ModelAndView mav,@Valid @ModelAttribute(name = "ofm") OldFoodManBean msg ,Member member,HttpSession hs,BindingResult rs) {
@@ -172,24 +180,30 @@ public class FoodVisController_32 {
 	}
 	
 	@GetMapping("/findOneVis")
-	public ModelAndView findById(ModelAndView mav, @RequestParam(name="id") Integer id,HttpSession hs) {
+	public  ModelAndView findById(ModelAndView mav, @RequestParam(name="id") Integer id,HttpSession hs) {
 		Member mid = (Member)hs.getAttribute("member");
 		Integer memberid=mid.getId();//登入者本身ID
 		
 		
 		OldFoodManBean ofm=ofmservice.findById(id);//團ID
+		List<Member>joinofm=joinservice.findByMyFoodVisId(id);
 		
+
+		
+//		System.out.println("有啥: "+joinofm);
 		Integer member=ofm.getMember_id(); //取得開團者ID
 		
 		Member fmid=memberservice.findById(member);//從開團者ID拿到開團者會員資料
 		
 		System.out.println("member: "+member);
 		System.out.println("id: "+memberid);
-		
+
 		
 		mav.getModel().put("ofmid", fmid);
 		mav.getModel().put("ofm", ofm);
+		mav.getModel().put("joinofm", joinofm);
 		
+		System.out.println("有啥: "+joinofm);
 		mav.setViewName("vis_group_jsp/findOneVis");
 		
 		return mav;
