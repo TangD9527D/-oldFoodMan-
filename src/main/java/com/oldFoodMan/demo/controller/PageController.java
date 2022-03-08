@@ -44,4 +44,9 @@ public class PageController {
 
 		return mav;
 	}
+	
+	@GetMapping("/forgotMail")
+	public String forgotMail() {
+		return "forgotMail";
+	}
 }

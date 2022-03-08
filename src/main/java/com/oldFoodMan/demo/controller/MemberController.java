@@ -61,7 +61,7 @@ public class MemberController {
 	}
 
 	@GetMapping("/editMember")
-	public ModelAndView editMember(ModelAndView mav, @RequestParam(value = "id") Integer id) {
+	public ModelAndView viewMember(ModelAndView mav, @RequestParam(value = "id") Integer id) {
 
 		Member mb = service.findById(id);
 
@@ -72,7 +72,7 @@ public class MemberController {
 	}
 
 	@PostMapping("/editMember")
-	public ModelAndView viewMember(ModelAndView mav, @Valid @ModelAttribute(name = "member") Member mb) {
+	public ModelAndView editMember(ModelAndView mav, @Valid @ModelAttribute(name = "member") Member mb) {
 
 		mav.setViewName("member/editMember");
 		

@@ -13,8 +13,13 @@ public class EncrytedPasswordUtils {
 	public static void main(String[] args) {
 		String password = "don";
 		String encrytedPassword = encrytePassword(password);
+		
+		String email = "tang8797@gmail.com";
+		
+		String message = "http://localhost:8080/oldFoodMan\reSetPassword?"+ email;
 
 		System.out.println("Encryted Password: " + encrytedPassword);
+		System.out.println(message);
 	}
 
 }

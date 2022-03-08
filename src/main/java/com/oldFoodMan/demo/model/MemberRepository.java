@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 
 	@Query("from Member where account = :account")
-	public Optional <Member> findByName(@Param(value = "account") String account);
- 
+	public Optional <Member> findByAccount(@Param(value = "account") String account);
+	
 }
