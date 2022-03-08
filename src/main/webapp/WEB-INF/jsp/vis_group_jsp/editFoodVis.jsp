@@ -19,12 +19,13 @@
 
 			<div class="col-9">
 				<div class="card">
-					<div class="card-header text-white bg-dark ">新增留言</div>
+					<div class="card-header text-white bg-dark ">編輯我的揪團</div>
 					<div class="card-body">
 						<form:form class="form" action="${contextRoot}/editFoodVis"
 							modelAttribute="ofm" method="post">
 							<form:input type="hidden" path="vis_id"/>
 							<form:input type="hidden" path="added"/>
+							<form:input type="hidden" path="member_id"/>
 <!-- 							<div class="form-row"> -->
 <!-- 								<div class="form-group col-md-6"> -->
 <!-- 									<label for="inputEmail4">發起人</label> -->
