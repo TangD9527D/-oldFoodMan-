@@ -319,17 +319,13 @@
                     <tbody>
                         <tr>
                             <th>
-                                ReviewerPage
-                                <br>
-                                URL
+                                <label for="user_view_my_page_sub_title">
+                                   	Cover Image
+                                </label>
                             </th>
                             <td>
-                                <p>
-                                    https://O_Olog.com/reviewer/
-                                    <span>croissantoffee</span>
-                                </p>
-                                <p class="u-text-notice setting-notice fs11"> ※one shot only </p>
-                                <input type="hidden" value="croissantoffee" name="user_view[my_site_uri]" id="user_view_my_site_uri" />
+                            	<p class="u-text-notice setting-notice fs11"> ※設定背景圖片 </p>
+                                <form:input id="coverImage" path="coverImage" type="file" />
                             </td>
                         </tr>
                         <tr>
