@@ -22,7 +22,7 @@
 					<div class="card-header text-white bg-dark ">揪團資訊</div>
 					<div class="card-body">
 						<form:form class="form" action="${contextRoot}/findOneVis"
-							modelAttribute="ofm" modelAttribut="ofmid" method="post">
+							modelAttribute="ofm"   method="post">
 							<h2>開團者： ${ofmid.memberName}</h2>
 							<form:input type="hidden" path="vis_id"/>
 							<form:input type="hidden" path="added"/>
@@ -62,7 +62,13 @@
 								</div>
 							</div>
 							
-							
+							<div class="form-group">
+								<label for="inputAddress2">參加者</label> 
+								<c:forEach var="joinofm" items="${joinofm}">
+								<input type="text" value="${joinofm.memberName}" disabled class="form-control" />
+									</c:forEach>
+							</div>
+						
 						</form:form>
 						
 					</div>
