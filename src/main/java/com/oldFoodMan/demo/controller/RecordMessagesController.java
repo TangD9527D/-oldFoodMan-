@@ -96,15 +96,18 @@ public class RecordMessagesController {
 		}
 		
 		//修改留言(更新留言)
-		@PostMapping("/updateMsg")
-		public ModelAndView updateMsg(ModelAndView mav, @Valid @ModelAttribute(name="recordMessage") RecordMessages msg, BindingResult result) {	
-			mav.setViewName("record/updateMsg");	
-			if(!result.hasErrors()) {
-				 msgService.insertMessage(msg);
-				 mav.setViewName("redirect:/theLastestRecord");
-			}	
-			return mav;	
+		@ResponseBody  //從後端傳資料到前端AJAX
+		@PostMapping("/updateMsg/{id}")
+		public List<RecordMessages> updateMsg(HttpServletResponse resp,@PathVariable(name="id") Integer id,@RequestBody  RecordMessages editMsg ,HttpSession session) {	
+			RecordMessages msgId = msgService.findById(id);
+			msgService.insertMessage(msgId);
+			
+			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件
+			List<RecordMessages> list = msg_page.getContent();    //page物件需要用getContent()方法才能拿到List
+			
+			return list;
 		}
+
 		
 
 		//刪除留言

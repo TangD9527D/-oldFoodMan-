@@ -234,39 +234,19 @@ width:500px;
 					<div class="card-header">時間 :<c:out value="${msg.added}" /></div>
 					<div class="card-body">
 						<p class="card-text">
-						<a id="deleteBtn"  onclick="return confirm('確認刪除?')" class="btn btn-primary">刪除</a><br>
+						<a class="btn btn-primary id="deleteBtn"  onclick="return confirm('確認刪除?')" >刪除</a> 
+						<a class="btn btn-primary id="editBtn">修改</a><br>
 						食記ID:<c:out value="${msg.record_id.id}" /><br>
 						會員ID:<c:out value="${msg.member_id.id}" /><br>
 						<p id="msgId"><c:out value="${msg.id}" /></p><br>
 					    <c:out value="${msg.text}" />
+					    
 						</p>
 						
 					</div>
 					</c:forEach>
 				</div>
 				
-	
-<!--  ---看留言---------------------------------------------------- -->
-
-<!--  		<div class="row justify-content-center">  -->
-<!--  			<div class="col-9"> -->
-<%-- 				<c:forEach var="pageNumber" begin="1" end="${msg_page.totalPages}"> --%>
-
-<%-- 					<c:choose> --%>
-<%-- 						<c:when test="${pageNumber-1 != msg_page.number}"> --%>
-<%-- 							<a href="${contextRoot}/totalRecord?p=${pageNumber}"><c:out value="${pageNumber}" /> </a> --%>
-<%-- 						</c:when> --%>
-
-<%-- 						<c:otherwise> --%>
-<%-- 							<c:out value="${pageNumber}"></c:out> --%>
-<%-- 						</c:otherwise> --%>
-<%-- 					</c:choose> --%>
-
-<%-- 					<c:if test="${pageNumber != msg_page.totalPages}">|</c:if> --%>
-
-<%-- 				</c:forEach> --%>
-<!--  			</div> -->
-<!-- 		</div>  -->
 <!--  ---Ajax顯示留言---------------------------------------------------- -->
 				
 				<div id="ajaxMsg" class="card">	
@@ -317,6 +297,48 @@ width:500px;
 					}
 				})
 			})
+			
+			//修改留言
+			$('#deleteBtn').click(function() {		
+				
+				var msgId=document.getElementById("msgId").innerText; 	  //文章id		
+				var typeOf = typeof(msgId);  //目前為字串
+// 				alert("msgId = "+msgId);
+// 				alert("typeOf = "+typeOf);
+				
+				$.ajax({
+					url : 'http://localhost:8080/oldFoodMan/updateMsg/'+msgId,
+					contentType : 'application/json; charset=UTF-8', // 送過去的格式
+					dataType : 'json', // 傳回來的
+					method : 'post',
+					success : function(result) { //成功送過去後
+						 $('#showMsg').remove()
+						  $('#ajaxMsg').empty()
+					console.log(result);
+					var msg_data = '';
+					$.each(result, function(index, value){     
+						
+						msg_data += '<div class="card-header">'+"時間 : "+value.added +'</div>'
+						msg_data += '<p class="card-text">'
+						msg_data += '<a id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" class="btn btn-primary">'+'刪除'+'</a>'
+						msg_data += '<br>'+"會員ID:"+value.member_id
+						msg_data += '<br>'+"文章ID:"+value.record_id
+						msg_data += '<br>'+"留言ID:"+value.id
+			            msg_data += '<br>'+value.text   
+			            msg_data += '</p>'
+			            msg_data += '<br>'  
+			        })
+						$('#ajaxMsg').append(msg_data)
+					},
+					error :function(err){
+						console.log(err)
+						alert('刪除留言發生錯誤')
+					}
+				})
+			})
+			
+			
+			
 			
 			//刪除留言
 			$('#deleteBtn').click(function() {		
