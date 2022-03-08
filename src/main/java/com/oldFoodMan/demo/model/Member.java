@@ -1,7 +1,6 @@
 package com.oldFoodMan.demo.model;
 
 import java.io.Serializable;
-import java.security.Provider;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -80,7 +79,7 @@ public class Member implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name ="auth_provider")
-    private AuthenticationProvider authProvider;
+    private Provider authProvider;
 	
 	@Transient
 	private MultipartFile MemberImage;
@@ -205,11 +204,11 @@ public class Member implements Serializable {
 		this.fileNames = fileNames;
 	}
 
-	public AuthenticationProvider getAuthProvider() {
+	public Provider getAuthProvider() {
 		return authProvider;
 	}
 
-	public void setAuthProvider(AuthenticationProvider authProvider) {
+	public void setAuthProvider(Provider authProvider) {
 		this.authProvider = authProvider;
 	}
 
@@ -259,6 +258,14 @@ public class Member implements Serializable {
 
 	public void setRecordMessages(Set<RecordMessages> recordMessages) {
 		this.recordMessages = recordMessages;
+	}
+	
+	public ReviewerSetting getReviewersetting() {
+		return reviewersetting;
+	}
+
+	public void setReviewersetting(ReviewerSetting reviewersetting) {
+		this.reviewersetting = reviewersetting;
 	}
 
 	@Override

@@ -46,10 +46,38 @@
 		</table><br>
 		<p></p>
 		<div>
-			<button type="button" class="btn btn-danger btn-sm" id="deleteSelect">一鍵刪除</button>
+			<button type="button" class="btn btn-danger btn-sm" id="deleteSelect">多筆刪除</button>
 			<button type="button" class="btn btn-primary" style="float:right">去結帳</button>
+			<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#BuyModal" id="toBuy">去結帳</button>
 		</div>
 	</div>
+	
+	<div class="modal fade" id="BuyModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">訂單資訊</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					
+					<div>
+					<table class="table" id="ajaxToBuyTable">
+						
+					</table>
+				</div>
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" id="Btn_update" data-dismiss="modal">確定結帳</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	
 	<script>
 		$(document).ready( function () {
@@ -216,7 +244,7 @@
 				},
 			})
 		})
-		
+		//單筆刪除
 		$(document).on('click', '#deleteFromCart', function(){  
 			var id = $(this).attr("value");
 			dtRow = $(this).closest('tr');
@@ -228,26 +256,93 @@
 				},
 			});
 		})
-		
-		$("#deleteSelect").click(function(){
-			let selected = [];
-			//var dtoObject = {'product_number':inputNumber, 'product_name':inputName, 'product_category':inputCategory}
+		//多筆刪除
+		$("#deleteSelect").click(function() {
+			var arr = [];
+			var dtRow = [];
 			let checkboxes = document.querySelectorAll("[name=checkbox]");
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked === true) {
-                    
-                    var str = (checkboxes[i].id).substring(8, 10);
-                 
-                    selected.push(str); //字串一個一個放進同一陣列
+			for (var i = 0; i < checkboxes.length; i++) {
+				if (checkboxes[i].checked === true) {
+
+					var str = (checkboxes[i].id).substring(8, 10);
+					
+					arr.push({"productId":str}); //要準備轉JSON
+		            
+					dtRow.push(str); //用來刪除多筆的陣列
+					console.log("dtRow:" + dtRow);
+				}
+			}
+			var dtoJsonString = JSON.stringify(arr); //轉Json
+			
+			console.log(dtoJsonString);
+			$.ajax({
+				url:'http://localhost:8080/oldFoodMan/Cart/deleteSelected',
+                contentType: 'application/json;charset=UTF-8',
+                method: 'post',
+                data: dtoJsonString,
+                success:function(data){
+                	$.each(dtRow, function(index, value) {
+                		deleteRow = $('#checkbox'+value).closest('tr');
+                		$("#tableAjax2").DataTable().row(deleteRow).remove().draw(false);
+                	});
+      
                 }
-            }
-            var dtoJsonString = JSON.stringify(selected); //轉Json
-            console.log(dtoJsonString)
-			
-            
-			
+			})
 		})
+		
+		
+		$('#toBuy').click(function(){
+			var buyArr = [];
+			var buyRow = [];
+			let checkboxes = document.querySelectorAll("[name=checkbox]");
+			for (var i = 0; i < checkboxes.length; i++) {
+				if (checkboxes[i].checked === true) {
+
+					var str = (checkboxes[i].id).substring(8, 10);
+					
+					buyArr.push({"productId":str}); //要準備轉JSON
+		            
+					buyRow.push(str); //用來刪除多筆的陣列
+					console.log("buyRow:" + buyRow);
+				}
+			}
+			var dtoJsonString = JSON.stringify(buyArr); //轉Json
 			
+			console.log(dtoJsonString);
+			$.ajax({
+				url:'http://localhost:8080/oldFoodMan/Cart/toBuy',
+                contentType: 'application/json;charset=UTF-8',
+                method: 'post',
+                data: dtoJsonString,
+                success:function(data){
+                	$('#ajaxToBuyTable').remove();
+                	var msg_data = '';
+                	$.each(data,function(index,value){
+                		console.log(value);
+                		msg_data += '<thead class="thead-light"><tr>';
+                        msg_data += '<th scope="col">#</th>';
+                        msg_data += '<th scope="col">'+ value.productAmount +'</th>';
+                        msg_data += '<th scope="col">'+ value.productAmount +'</th>';
+                        msg_data += '<th scope="col">'+ value.productAmount +'</th></tr></thead>';
+                        msg_data += '<tbody><tr><th scope="row">1</th>';
+                        msg_data += '<td>' + value.productAmount + '</td>';
+                        msg_data += '<td>' + value.productAmount + '</td>';
+                        msg_data += '<td>' + value.productAmount + '</td></tr>';
+                        msg_data += '<tr>';
+                        msg_data += '<th scope="row">2</th>';
+                        msg_data += '<td>' + value.productAmount + '</td>';
+                        msg_data += '<td>' + value.productAmount + '</td>';
+                        msg_data += '<td>' + value.productAmount + '</td></tr>';
+                        msg_data += '<th scope="row">3</th>';
+                        msg_data += '<td>' + value.productAmount + '</td>';
+                        msg_data += '<td>' + value.productAmount + '</td>';
+                        msg_data += '<td>' + value.productAmount + '</td></tr></tbody>';
+                	})
+                	 $('#ajaxToBuyTable').append(msg_data);
+                }
+
+			})
+		})
 			
 		
 		

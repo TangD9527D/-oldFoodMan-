@@ -287,8 +287,6 @@
             var inputPrice = $('#Uproduct_price').val();
             var inputRemark = $('#Uproduct_remark').val();
             var dtoObject = {'product_number':inputNumber, 'product_name':inputName, 'product_category':inputCategory, 'product_stock':inputStock, 'product_discount':inputDiscount,'product_price':inputPrice,'product_remark':inputRemark};
-            var dtoJsonString = JSON.stringify(dtoObject);
-            
             var id = $('#Uproduct_id').val();
 			
             upRow = $(this).closest('tr');

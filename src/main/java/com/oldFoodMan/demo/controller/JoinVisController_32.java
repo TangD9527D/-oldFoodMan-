@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.criteria.Join;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,7 +133,24 @@ public class JoinVisController_32 {
 		
 	}
 	
-
+//	@GetMapping("/viewbymyfoodvisid")
+//	public ModelAndView findByMyFoodVisId(ModelAndView mav,@RequestParam(name="id") Integer vis_id,HttpSession hs){
+//		
+//		Member mid = (Member)hs.getAttribute("member");
+//		System.out.println("查自己:" +mid);
+////		Integer memberid=mid.getId();
+//		System.out.println("有沒有vis_id: "+ vis_id);
+//		List<JoinVis> ofmjovis=jvservice.findByMyFoodVisId(vis_id);
+//		
+//		System.out.println("有沒有團員: "+ofmjovis);
+//		mav.getModel().put("ofmjovis",ofmjovis);
+//
+//		mav.setViewName("vis_group_jsp/findOneVis");
+//		
+//		return mav;
+//		
+//	}
+//	
 	
 	
 	

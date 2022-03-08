@@ -25,7 +25,6 @@ public class ReviewerSettingService {
 	public Integer checkMemberId() {
 		Member member = (Member)hs.getAttribute("member");
 		Integer id = member.getId();
-		
 		return id;
 	}
 	

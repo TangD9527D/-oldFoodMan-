@@ -77,35 +77,10 @@
 			
 		</div>
 		
-				<div class="row justify-content-center">
-
-			<div class="col-6">
-				<div class="card">
-					<div class="card-header text-white bg-dark ">加入</div>
-					<div class="card-body">
-						
-							<form:form class="form" action="${contextRoot}/addjoinvis/${ofm.vis_id} "
-							modelAttribute="ofm" method="post">
-
-							
-							<input  type="hidden"  class="form-control" value="" />
-							<div class="form-group">
-								<label for="inputAddress2">加入原因</label> 
-								<input type="text"  name="add_condition" class="form-control" />
-							</div>
-
-						<button type="submit" class="btn btn-outline-dark" >加入</button>
-						</form:form>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-		
 
 		</div>
 		<!-- dialog視窗 -->
-
+<div>
 		<div >
 		<div class="modal fade" id="exampleModal" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">

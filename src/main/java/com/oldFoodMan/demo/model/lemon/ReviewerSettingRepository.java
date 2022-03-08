@@ -1,10 +1,14 @@
 package com.oldFoodMan.demo.model.lemon;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.oldFoodMan.demo.model.Member;
 
 public interface ReviewerSettingRepository extends JpaRepository<ReviewerSetting,Integer> {
 	
@@ -33,6 +37,7 @@ public interface ReviewerSettingRepository extends JpaRepository<ReviewerSetting
 	@Query(value="update reviewer_setting set reviewer_occupation=:occupation where member_id=:id",nativeQuery = true)
 	public void updateOccupation(@Param("id") Integer id,@Param("occupation") String occupation);
 	
-	
+	@Query(value="select * from reviewer_setting where member_id=:id",nativeQuery = true)
+	public ReviewerSetting findByMember(@Param(value="id") Integer id);
 }
 

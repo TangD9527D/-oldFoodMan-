@@ -3,7 +3,6 @@ package com.oldFoodMan.demo.model.lemon;
 import java.io.Serializable;
 import java.sql.Blob;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

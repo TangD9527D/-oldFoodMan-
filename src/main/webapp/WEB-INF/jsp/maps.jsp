@@ -12,21 +12,6 @@
 <meta charset="UTF-8">
 <title>FoodSearch</title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<!-- <link rel="stylesheet" type="text/css" href="./style.css" /> -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-<link rel="stylesheet"
-	href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script
-	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link rel="shortcut icon" href="/images/favicon.png" />
 <!-- 改為老食人小圖 -->
@@ -35,7 +20,7 @@
 #allpage {
 	width: 70%;
 	height: 70%;
-	margin: 10px auto;
+	margin: 20px auto;
 	/* float: left; */
 }
 
@@ -53,80 +38,80 @@ html, body {
     padding: 0; */
 }
 
-#description {
-	font-family: fantasy;
-	font-size: 15px;
-	font-weight: 300;
-}
-
-#infowindow-content .title {
-	font-weight: bold;
-}
-
-#infowindow-content {
-	display: none;
-}
-
-#map #infowindow-content {
-	display: inline;
-}
-
-.pac-card {
-	background-color: #fff;
-	border: 0;
-	border-radius: 2px;
-	box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-	margin: 10px;
-	padding: 0 0.5em;
-	font: 400 18px fantasy, Arial, sans-serif;
-	/* overflow: hidden; */
-	font-family: fantasy;
-	padding: 0;
-}
-
-#pac-container {
-	padding-bottom: 12px;
-	margin-right: 12px;
-}
-
-.pac-controls {
-	/* display: inline-block; */
-	/* padding: 5px 11px; */
-	margin: 15px auto;
-}
-
-.pac-controls label {
-	font-family: fantasy;
-	font-size: 13px;
-	font-weight: 300;
-}
-
-#pac-input {
-	background-color: #fff;
-	font-family: fantasy;
-	font-size: 15px;
-	font-weight: 300;
-	/* margin-left: 12px;
-    padding: 0 11px 0 13px; */
-	/* text-overflow: ellipsis; */
-	width: 400px;
-}
-
-#pac-input:focus {
-	border-color: #4d90fe;
-}
-
-#title {
-	color: #fff;
-	background-color: #4d90fe;
-	font-size: 25px;
-	font-weight: 500;
-	padding: 6px 12px;
-}
-
-#target {
-	width: 345px;
-}
+  #description {
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  
+  #infowindow-content .title {
+    font-weight: bold;
+  }
+  
+  #infowindow-content {
+    display: none;
+  }
+  
+  #map #infowindow-content {
+    display: inline;
+  }
+  
+  .pac-card {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px fantasy, Arial, sans-serif;
+    /* overflow: hidden; */
+    font-family: fantasy;
+    padding: 0;
+  }
+  
+  #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
+  
+  .pac-controls {
+    /* display: inline-block; */
+    /* padding: 5px 11px; */
+    margin: 15px auto;
+  }
+  
+  .pac-controls label {
+    font-family: fantasy;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  
+  #pac-input {
+    background-color: #fff;
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px; 
+    text-overflow: ellipsis; 
+    width: 400px;
+  }
+  
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
+  
+  #title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+  }
+  
+  #target {
+    width: 345px;
+  }
 
 #input {
 	font-size: 30px;
@@ -166,6 +151,7 @@ html, body {
 #allrange {
 	text-align: justify;
 	width: 100%;
+	margin
 }
 
 #range {
@@ -187,7 +173,7 @@ html, body {
 	width: 100%;
 }
 
-img {
+#img {
 	display: block;
 	margin: 25px auto;
 }
@@ -248,21 +234,7 @@ img {
 
 </head>
 <body>
-	<c:if test="${pageContext.request.userPrincipal == null}">
-		<div id="location">
-			<h4 style="text-align: center; padding-top: 20px">
-				收藏的地點<i class="fa-regular fa-star"></i>
-			</h4>
-			<hr style="color: pink; border: 5px solid pink">
-			<div id="location1"></div>
 
-
-
-			<input type="hidden" id="member_id" value="${member_id}"
-				class="form-control" required>
-
-		</div>
-	</c:if>
 	<div id="allpage">
 		<!--整個頁面的65%-->
 		<div id="inputdiv">
@@ -297,7 +269,7 @@ img {
 			<div id="range1" class="">
 				<%-- 			<c:forEach var="st" items="${st.content}"> --%>
 				<!-- 				<div class="card" id="p1" style="width: 8cm;"> -->
-				<%-- 					<img src="<c:url value='/getPicture/${st.id}'/>" --%>
+				<%-- 					<img id="img" src="<c:url value='/getPicture/${st.id}'/>" --%>
 				<!-- 						style="width: 250px; height: 220px" class="card-img-top" alt="..."> -->
 				<!-- 					<div id="box" class="card-body"> -->
 				<!-- 						<h3 id="p" class="card-title" -->
@@ -313,7 +285,7 @@ img {
 				<!-- 				</div> -->
 				<%-- 			</c:forEach> --%>
 			</div>
-		</div>
+		
 
 
 
@@ -321,7 +293,7 @@ img {
 		<div id="range" class="">
 			<c:forEach var="maps" items="${page.content}">
 				<div class="card" id="p1" style="width: 8cm;">
-					<img src="<c:url value='/getPicture/${maps.id}'/>"
+					<img id="img" src="<c:url value='/getPicture/${maps.id}'/>"
 						style="width: 250px; height: 220px" class="card-img-top" alt="...">
 					<div id="box" class="card-body">
 						<h3 id="p" class="card-title"
@@ -339,7 +311,7 @@ img {
 				</div>
 			</c:forEach>
 		</div>
-
+		</div>
 	</div>
 
 
@@ -605,6 +577,18 @@ document.getElementById("star").addEventListener("click",function(){
 		
 // 			})
 
+
+
+$("#input").bind("keypress", {}, keypressInBox);
+
+function keypressInBox(e) {
+var code = (e.keyCode ? e.keyCode : e.which);
+if (code == 13) { //Enter keycode
+	collet11();
+}
+
+}
+
 </script>
 	<!-- 	抓關鍵字搜尋站內食記的方法 -->
 	<script>
@@ -624,18 +608,28 @@ document.getElementById("star").addEventListener("click",function(){
 						var msg_data='';
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
-						console.log(value.uploadPicture)
-						msg_data+= '<img src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.uploadPicture +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
-						msg_data+= '<div class="card-body">'		
-						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
+							console.log(value.uploadPicture)
+							console.log(value.create_at)
+							var image = value.uploadPicture
+							var ok = image.split('.').pop()
+							console.log(ok)
+						
+						
+						
+						
+						msg_data+= '<img src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
+						msg_data+= '<div id="box" class="card-body">'		
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center" >'+ value.title +'</h3>'
 						msg_data+= '<h5 class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary"><c:out value="繼續閱讀"/></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀"/></a>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
+						
+						let strObj=new String(["[您所搜尋有關於]"]);
+						let strObj1=new String(["[的食記]"]);
 
-						$('#rangetype').append(inputResName)
+						$('#rangetype').append(strObj + inputResName + strObj1 )
 						$('#range1').append(msg_data)
 
 		
@@ -666,8 +660,7 @@ function collet22(){
 						var msg_data='';
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
-						msg_data+= '<img src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
+						msg_data+= '<img id="img" src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 ip="p" class="card-text">'+ value.content  +'</h5>'

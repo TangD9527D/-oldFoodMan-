@@ -62,7 +62,7 @@ public class RecordMessageService {
 	
 	//用id刪除
 	public void deleteByID(Integer id) {
-		dao.deleteById(id);
+		 dao.deleteById(id);
 	}
 	
 	//分頁

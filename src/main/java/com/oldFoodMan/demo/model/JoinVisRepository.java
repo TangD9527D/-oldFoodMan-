@@ -17,5 +17,5 @@ public interface JoinVisRepository extends JpaRepository<JoinVis, JoinVisBoth> {
 	public List<JoinVis> findByMemberId(@Param(value="member_id") Integer member_id);
 	
 
-	
+
 }

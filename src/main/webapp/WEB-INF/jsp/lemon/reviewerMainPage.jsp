@@ -115,8 +115,8 @@
                 </div>
                 <div class="person-reviewer-cover-image">
                     <div class="oldcrop-frame" style="overflow: hidden; position: relative; width: 980px; height: 340px;">
-                        <img class="crop-img js-crop-img oldcrop-image" data-width:="980" data-top="-108" data-left="0" style="position:absolute; width:980px; left:0px; top:-108px; opacity: 0.1;" alt="reviewer's cover image"
-                        src="${contextRoot}/imgLemon/無留手02.jpg">
+                        <img class="crop-img js-crop-img oldcrop-image" data-width:="980" data-top="-108" data-left="0" style="position:absolute; width:980px; left:0px; top:-108px; opacity: 1;" alt="reviewer's cover image"
+                        src="<c:url value='/getPictureLemon/${memberPage.id}' />">
                         <!-- image size=1470*981 -->
                     </div>
                 </div>
@@ -158,12 +158,9 @@
                         <div id="js-reviewer-image-display">
                             <img src="<c:url value='/getPhoto/${memberPage.id}' />" width="120" height="120">
                         </div>
-                        <form id="js-profile-image-form" autocomplete="off" data-type="json" enctype="multipart/form-data" action="#" accept-charset="UTF-8" data-remote="true" method="post">
-                            <div class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;">
+                            <a class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;" href="#">
                             <button class="c-btn c-btn--s reviewer-image-box__reimage-btn">變更</button>
-                            <input type="file" name="file-profile-image" id="js-file-profile-image" class="reviewer-image-box__reimage-file js-upload-icon-file">
-                            </div>
-                        </form>
+                            </a>
                     </div>
                 </div>
             </div>

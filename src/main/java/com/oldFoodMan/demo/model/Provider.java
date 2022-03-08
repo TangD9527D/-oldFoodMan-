@@ -1,5 +1,5 @@
 package com.oldFoodMan.demo.model;
 
-public enum AuthenticationProvider {
+public enum Provider {
 	LOCAL, GOOGLE
 }

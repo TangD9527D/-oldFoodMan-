@@ -57,7 +57,7 @@ public class ProductController {
 	@PostMapping("/deleteProduct/{product_id}")
 	public List<Product> ajaxDeleteData(@PathVariable(name = "product_id") int productId){
 		
-//		shopService.deleteAllOneFromCart(productId);  這個是想刪除後臺商品時，先將所有購物車有此商品都先刪掉，再刪後台，ERR:未傳回結果集??可以是SQL一樣語法就可以??
+		shopService.deleteAllOneFromCart(productId);  
 		
 		proService.deleteProduct(productId);
 		
