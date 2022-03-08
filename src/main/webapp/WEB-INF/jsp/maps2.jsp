@@ -592,11 +592,6 @@ document.getElementById("star").addEventListener("click",function(){
 		
 // 			})
 
-
-
-</script>
-	<!-- 	模糊搜尋站內食記的方法   看要不要用enterdown input -->
-	<script>
 $("#input").bind("keypress", {}, keypressInBox);
 
 function keypressInBox(e) {
@@ -606,6 +601,11 @@ if (code == 13) { //Enter keycode
 }
 
 }
+
+</script>
+	<!-- 	模糊搜尋站內食記的方法   看要不要用enterdown input -->
+	<script>
+
 		function collet11(){		
 			
 			var inputResName = document.getElementById('input').value;
