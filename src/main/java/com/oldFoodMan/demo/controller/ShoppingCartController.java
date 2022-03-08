@@ -3,6 +3,7 @@ package com.oldFoodMan.demo.controller;
 
 
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -16,11 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.nimbusds.jose.shaded.json.JSONObject;
+
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.Product;
 import com.oldFoodMan.demo.model.ShoppingCart;
 import com.oldFoodMan.demo.service.ShoppingCartService;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 public class ShoppingCartController {
@@ -138,12 +142,47 @@ public class ShoppingCartController {
 		return cart;
 	}
 	
-//	@ResponseBody
-//	@PostMapping("/Cart/deleteSelected")
-//	public ShoppingCart deleteSelected(@RequestBody) {
-//		
-//	}
+	@ResponseBody
+	@PostMapping("/Cart/deleteSelected")
+	public String deleteSelected(@RequestBody String jsonPara, HttpSession session) {
+		Member member = (Member) session.getAttribute("member");
+		  //使用JSONArrayt處理json字符串
+		JSONArray jsonArr = JSONArray.fromObject(jsonPara);
+		String productId = "";
+		for (int i = 0; i < jsonArr.size(); i++) {
+			JSONObject jsonObject = (JSONObject) jsonArr.get(i);
+			productId = jsonObject.getString("productId");
+			System.out.println("productId:" + productId);
+			Integer product_Id = Integer.parseInt(productId);
+			Product product = service.findProductByID(product_Id);
+			service.deleteFromCart(product, member);
+	    }
+		return "";
+		
+	}
 	
-	
-	
+	@ResponseBody
+	@PostMapping("/Cart/toBuy")
+	public List<ShoppingCart> GoToBuy(@RequestBody String jsonPara, HttpSession session) {
+		Member member = (Member) session.getAttribute("member");
+		Integer memberId = member.getId();
+		List<ShoppingCart> carts = new LinkedList<ShoppingCart>();
+		
+		  //使用JSONArrayt處理json字符串
+		JSONArray jsonArr = JSONArray.fromObject(jsonPara);
+		String productId = "";
+		for (int i = 0; i < jsonArr.size(); i++) {
+			JSONObject jsonObject = (JSONObject) jsonArr.get(i);
+			productId = jsonObject.getString("productId");
+			System.out.println("productId:" + productId);
+			Integer product_Id = Integer.parseInt(productId);
+			ShoppingCart cart = service.findByProAndMemId(product_Id, memberId);
+			carts.add(cart);
+			
+	    }
+		System.out.println(carts);
+		return carts;
+		
+	}
+
 }

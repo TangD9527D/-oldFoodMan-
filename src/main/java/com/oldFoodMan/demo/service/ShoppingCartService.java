@@ -34,6 +34,11 @@ public class ShoppingCartService {
 		return p1;
 	}
 	
+	public ShoppingCart findByProAndMemId(int productId, int memberId){
+		return shopDao.findByProductIdAndMemberId(productId, memberId);
+		
+	}
+	
 	
 	public void addProductToCart(Product product, Member member) throws Exception {
 		Integer product_id = product.getProduct_id();
@@ -166,11 +171,18 @@ public class ShoppingCartService {
 		shopDao.delete(cart);
 	}
 	
+	
+	
 	//此方法為後台刪除產品時，先刪除使用者購物車內同一產品，避免外鍵約束
 	public void deleteAllOneFromCart(Integer productId) {
 		System.out.println("TEST:  !!!!" + productId);
 		shopDao.deleteAllOneByProductId(productId);
 	}
+	
+	
+	
+	
+	
 	
 	public ShoppingCart findMyOneProduct(Integer productId, Member member) {
 		Integer member_id = (Integer)member.getId();
