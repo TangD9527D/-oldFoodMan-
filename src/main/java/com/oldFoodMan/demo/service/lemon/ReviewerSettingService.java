@@ -39,6 +39,8 @@ public class ReviewerSettingService {
 		return list;
 	}
 	
+
+	
 	public ReviewerSetting findById(Integer id) {
 		Optional<ReviewerSetting> op = dao.findById(id);
 		if(op.isPresent()) {

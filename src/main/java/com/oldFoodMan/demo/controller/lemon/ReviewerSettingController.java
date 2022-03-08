@@ -96,53 +96,88 @@ public class ReviewerSettingController {
 		
 		Integer memberId = service.checkMemberId();
 		
-//		Member mm = memberService.findById(memberId);
-//		ReviewerSetting ss = mm.getReviewersetting();
-//		Integer rsId = ss.getReviewer_id();
+//		rsr.deletequeryMemberId(memberId);
+	
+		Integer queryId = rsr.queryMemberId(memberId);
 		
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println(memberId);
-		System.out.println(rvwrs.getMember());
+		System.out.println(queryId+"O_O");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-//		if(rvwrs.getMember()!=null) {
-//		rsr.updateTitle(memberId, rvwrs.getReviewer_title());
-//		rsr.updateSubTitle(memberId, rvwrs.getReviewer_subtitle());
-//		rsr.updateIntro(memberId, rvwrs.getReviewer_intro());
-//		rsr.updateCamera(memberId, rvwrs.getReviewer_camera());
-//		rsr.updateOccupation(memberId, rvwrs.getReviewer_occupation());
-//		} else {
-//			service.insert(rvwrs);
-//		}
 		
-		MultipartFile coverImage = rvwrs.getCoverImage();
-		String originalFilename = coverImage.getOriginalFilename();
-		rvwrs.setReviewer_cover_filename(originalFilename);
-		if(coverImage !=null && !coverImage.isEmpty()) {
+		if(queryId==null) {
+			MultipartFile coverImage = rvwrs.getCoverImage();
+			String originalFilename = coverImage.getOriginalFilename();
+			rvwrs.setReviewer_cover_filename(originalFilename);
+			if(coverImage !=null && !coverImage.isEmpty()) {
+				try {
+					byte[] b = coverImage.getBytes();
+					Blob blob = new SerialBlob(b);
+					rvwrs.setReviewer_cover(blob);
+				} catch(Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException("上傳異常"+e.getMessage());
+				}
+			}
+			
+			service.insert(rvwrs);
+			
+			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+			String rootDirectory = servletContext.getRealPath("/");
 			try {
-				byte[] b = coverImage.getBytes();
-				Blob blob = new SerialBlob(b);
-				rvwrs.setReviewer_cover(blob);
+				File imageFolder = new File(rootDirectory,"imgLemon");
+				if(!imageFolder.exists())imageFolder.mkdir();
+				File file = new File(imageFolder,rvwrs.getMember()+ext);
+				coverImage.transferTo(file);
 			} catch(Exception e) {
 				e.printStackTrace();
 				throw new RuntimeException("上傳異常"+e.getMessage());
 			}
+			
+		} else {
+			
+			
+			
+			
+			rsr.updateTitle(memberId, rvwrs.getReviewer_title());
+			rsr.updateSubTitle(memberId, rvwrs.getReviewer_subtitle());
+			rsr.updateIntro(memberId, rvwrs.getReviewer_intro());
+			rsr.updateCamera(memberId, rvwrs.getReviewer_camera());
+			rsr.updateOccupation(memberId, rvwrs.getReviewer_occupation());
+//			
+//			MultipartFile coverImage = rvwrs.getCoverImage();
+//			String originalFilename = coverImage.getOriginalFilename();
+//			rvwrs.setReviewer_cover_filename(originalFilename);
+//			
+//			if(coverImage !=null && !coverImage.isEmpty()) {
+//				try {
+//					byte[] b = coverImage.getBytes();
+//					Blob blob = new SerialBlob(b);
+//					rvwrs.setReviewer_cover(blob);
+//					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
+//					System.out.println(rvwrs.getReviewer_cover().getBinaryStream());
+//					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
+//				} catch(Exception e) {
+//					e.printStackTrace();
+//					throw new RuntimeException("上傳異常"+e.getMessage());
+//				}
+//			}
+//			
+//			rsr.updateReviewer_cover(memberId, rvwrs.getReviewer_cover());
+//			
+//			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+//			String rootDirectory = servletContext.getRealPath("/");
+//			try {
+//				File imageFolder = new File(rootDirectory,"imgLemon");
+//				if(!imageFolder.exists())imageFolder.mkdir();
+//				File file = new File(imageFolder,rvwrs.getMember()+ext);
+//				coverImage.transferTo(file);
+//			} catch(Exception e) {
+//				e.printStackTrace();
+//				throw new RuntimeException("上傳異常"+e.getMessage());
+//			}
 		}
-		
-		service.insert(rvwrs);
-		
-		String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-		String rootDirectory = servletContext.getRealPath("/");
-		try {
-			File imageFolder = new File(rootDirectory,"imgLemon");
-			if(!imageFolder.exists())imageFolder.mkdir();
-			File file = new File(imageFolder,rvwrs.getMember()+ext);
-			coverImage.transferTo(file);
-		} catch(Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException("上傳異常"+e.getMessage());
-		}
-		
-	
+
 		mav.setViewName("redirect:/reviewerMainPage/");
 		return mav;
 	}
