@@ -642,8 +642,8 @@ if (code == 13) { //Enter keycode
 						})
 						
 						let strObj=new String(["[您所搜尋有關於]"]);
-						
-						$('#rangetype').append(strObj +inputResName)
+						let strObj1=new String(["的食記"]);
+						$('#rangetype').append(strObj +inputResName + strObj1 )
 						$('#range1').append(msg_data)
 
 		

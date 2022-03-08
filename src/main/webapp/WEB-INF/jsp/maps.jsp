@@ -577,6 +577,18 @@ document.getElementById("star").addEventListener("click",function(){
 		
 // 			})
 
+
+
+$("#input").bind("keypress", {}, keypressInBox);
+
+function keypressInBox(e) {
+var code = (e.keyCode ? e.keyCode : e.which);
+if (code == 13) { //Enter keycode
+	collet11();
+}
+
+}
+
 </script>
 	<!-- 	抓關鍵字搜尋站內食記的方法 -->
 	<script>
@@ -596,18 +608,28 @@ document.getElementById("star").addEventListener("click",function(){
 						var msg_data='';
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-						console.log(value.uploadPicture)
-						msg_data+= '<img id="img" src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.uploadPicture +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
+							console.log(value.uploadPicture)
+							console.log(value.create_at)
+							var image = value.uploadPicture
+							var ok = image.split('.').pop()
+							console.log(ok)
+						
+						
+						
+						
+						msg_data+= '<img src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
 						msg_data+= '<div id="box" class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center" >'+ value.title +'</h3>'
 						msg_data+= '<h5 class="card-text">'+ value.content  +'</h5>'
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀"/></a>'
-					
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
+						
+						let strObj=new String(["[您所搜尋有關於]"]);
+						let strObj1=new String(["[的食記]"]);
 
-						$('#rangetype').append(inputResName)
+						$('#rangetype').append(strObj + inputResName + strObj1 )
 						$('#range1').append(msg_data)
 
 		
