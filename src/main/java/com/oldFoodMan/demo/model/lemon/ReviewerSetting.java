@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.oldFoodMan.demo.model.Member;
 
 @Entity
-@Table(name = "reviewer_setting")
+@Table(name="reviewer_setting")
 public class ReviewerSetting implements Serializable {
 
 	/**
@@ -47,6 +47,10 @@ public class ReviewerSetting implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "member_id")
 	private Member member;
+	
+	public ReviewerSetting(Member member) {
+		this.member = member;
+	}
 	
 	public Member getMember() {
 		return member;

@@ -1,5 +1,6 @@
 package com.oldFoodMan.demo.model.lemon;
 
+import java.sql.Blob;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -37,7 +38,18 @@ public interface ReviewerSettingRepository extends JpaRepository<ReviewerSetting
 	@Query(value="update reviewer_setting set reviewer_occupation=:occupation where member_id=:id",nativeQuery = true)
 	public void updateOccupation(@Param("id") Integer id,@Param("occupation") String occupation);
 	
+	@Transactional
+	@Modifying
+	@Query(value="update reviewer_setting set reviewer_cover=:cover where member_id=:id",nativeQuery = true)
+	public void updateReviewer_cover(@Param("id") Integer id,@Param("cover") Blob cover);
+	
 	@Query(value="select * from reviewer_setting where member_id=:id",nativeQuery = true)
 	public ReviewerSetting findByMember(@Param(value="id") Integer id);
+	
+	@Query(value="select member_id from reviewer_setting where member_id=:id",nativeQuery = true)
+	public Integer queryMemberId(@Param(value="id") Integer id);
+	
+	@Query(value="delete from reviewer_setting where member_id=:id",nativeQuery = true)
+	public void deletequeryMemberId(@Param(value="id") Integer id);
 }
 
