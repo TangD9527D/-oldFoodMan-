@@ -111,13 +111,42 @@
 						</c:if>
 						<br>
 						<div class="under_13">
-							<span id="new_account"><a href="${contextRoot}/newAccount">新增帳號</a></span>&emsp;&emsp;<span
-								id="log_in">
+							<span id="new_account"> <a
+								href="${contextRoot}/forgotMail">忘記密碼</a></span>&emsp;&emsp;
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#exampleModal">新增帳號</button>
+							<span id="log_in"> 
+							<a href="${contextRoot}/newAccount">新增帳號</a>
+							</span>&emsp;&emsp;<span id="log_in">
 								<button name="submit" type="submit" value="submit"
 									class="btn btn-primary">登入</button>
 							</span>
 						</div>
 					</form:form>
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h2 class="modal-title" id="exampleModalLabel">新增帳號</h2>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+								
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">關閉</button>
+									<button type="button" class="btn btn-primary">新增</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div>
 					<h4>

@@ -20,7 +20,6 @@ import com.oldFoodMan.demo.model.MemberRepository;
 import com.oldFoodMan.demo.model.Role;
 import com.oldFoodMan.demo.model.RoleRepository;
 import com.oldFoodMan.demo.model.UserRole;
-import com.oldFoodMan.demo.model.UserRoleId;
 import com.oldFoodMan.demo.model.UserRoleRepository;
 
 @Service
@@ -41,7 +40,7 @@ public class MemberServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String account) throws UsernameNotFoundException {
 		
-		Optional<Member> option = memberDao.findByName(account);
+		Optional<Member> option = memberDao.findByAccount(account);
 		
 		Member mb = option.get();
 		
@@ -106,5 +105,15 @@ public class MemberServiceImpl implements UserDetailsService {
 		
 	public void delete(Integer id) {
 		memberDao.deleteById(id);
+	}
+	
+	public Member findByAccount(String account) {
+		Optional<Member> op = memberDao.findByAccount(account);
+		
+		if(op.isPresent()) {
+			return op.get();
+		}
+		
+		return null;
 	}
 }

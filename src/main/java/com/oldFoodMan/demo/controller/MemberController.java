@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -60,7 +59,7 @@ public class MemberController {
 	}
 
 	@GetMapping("/editMember")
-	public ModelAndView editMember(ModelAndView mav, @RequestParam(value = "id") Integer id) {
+	public ModelAndView viewMember(ModelAndView mav, @RequestParam(value = "id") Integer id) {
 
 		Member mb = service.findById(id);
 
@@ -71,7 +70,7 @@ public class MemberController {
 	}
 
 	@PostMapping("/editMember")
-	public ModelAndView viewMember(ModelAndView mav, @Valid @ModelAttribute(name = "member") Member mb) {
+	public ModelAndView editMember(ModelAndView mav, @Valid @ModelAttribute(name = "member") Member mb) {
 
 		mav.setViewName("member/editMember");
 		
