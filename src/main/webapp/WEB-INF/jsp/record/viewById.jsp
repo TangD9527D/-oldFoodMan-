@@ -157,7 +157,7 @@ width:500px;
 						<c:out value="${foodrecordById.town}" />
 						<br>
 						<c:out value="${foodrecordById.shopAddress}" />
-						<br> <br> 營業時間<br>
+						<br> <br> 用餐日<br>
 						<c:out value="${foodrecordById.businessHours}" />
 						<br> <br> 電話<br>
 						<c:out value="${foodrecordById.tel}" />
@@ -231,17 +231,17 @@ width:500px;
 <!--  ---看留言---------------------------------------------------- -->	
 				<div id="showMsg" class="card">
 					<c:forEach var="msg" items="${msg_page.content}"> 
-					<div class="card-header">時間 :<c:out value="${msg.added}" /></div>
+					<div class="card-header"><span>會員ID : <c:out value="${msg.member_id.id}" /></span>
+											 <span style="float:right">時間 :<c:out value="${msg.added}" /></span></div>
 					<div class="card-body">
-						<p class="card-text">
-						<a class="btn btn-primary id="deleteBtn"  onclick="return confirm('確認刪除?')" >刪除</a> 
-						<a class="btn btn-primary id="editBtn">修改</a><br>
-						食記ID:<c:out value="${msg.record_id.id}" /><br>
-						會員ID:<c:out value="${msg.member_id.id}" /><br>
+						<p id="editId" class="card-text">
+						<a class="btn btn-primary" id="deleteBtn"  onclick="return confirm('確認刪除?')" >刪除</a> 
+						<a class="btn btn-primary" id="editBtn">修改</a>
 						<p id="msgId"><c:out value="${msg.id}" /></p><br>
+						<p id="memberId"><c:out value="${msg.member_id.id}" /></p><br>
 					    <c:out value="${msg.text}" />
 					    
-						</p>
+						
 						
 					</div>
 					</c:forEach>
@@ -258,6 +258,10 @@ width:500px;
 	</div>
 
 	<script>
+		window.onload =(function(){
+			var memberId = document.getElementById("memberId").innerText;
+			console.log("memberId = "+memberId);
+		})
 		$(document).ready(function() {
 			$('#submitBtn').click(function() { //監聽submitBtn這個按鈕，當Click的時候進行CallBack Function
 				var inputText = document.getElementById('myMessage').value; //先抓到Input內的資料， 並給他一個變數
@@ -266,6 +270,12 @@ width:500px;
 								console.log("dtoObject = "+dtoObject);
 				var dtoJsonString = JSON.stringify(dtoObject); //將物件轉成JSON。用stringify才能將物件轉成JSON的字串
 								console.log("dtoJsonString = "+dtoJsonString);
+				var memberId = document.getElementById("memberId").innerText;
+				
+				
+								
+								
+
 				$.ajax({
 					url : 'http://localhost:8080/oldFoodMan/api/postMessage',
 					contentType : 'application/json; charset=UTF-8', // 送過去的格式
@@ -279,11 +289,12 @@ width:500px;
 					var msg_data = '';
 					$.each(result, function(index, value){     
 						
-						msg_data += '<div class="card-header">'+"時間 : "+value.added +'</div>'
+						msg_data += '<div class="card-header">'
+						msg_data += '<span>'+"會員ID :"+memberId +'</span>'
+						msg_data += '<span style="float:right">'+"時間 : "+value.added +'</span>'+'</div>'
 						msg_data += '<p class="card-text">'
 						msg_data += '<a id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" class="btn btn-primary">'+'刪除'+'</a>'
-						msg_data += '<br>'+"會員ID:"+value.member_id
-						msg_data += '<br>'+"文章ID:"+value.record_id
+						msg_data += '<br>'+"會員ID:"+memberId
 						msg_data += '<br>'+"留言ID:"+value.id
 			            msg_data += '<br>'+value.text   
 			            msg_data += '</p>'
@@ -298,55 +309,15 @@ width:500px;
 				})
 			})
 			
-			//修改留言
-			$('#deleteBtn').click(function() {		
-				
-				var msgId=document.getElementById("msgId").innerText; 	  //文章id		
-				var typeOf = typeof(msgId);  //目前為字串
-// 				alert("msgId = "+msgId);
-// 				alert("typeOf = "+typeOf);
-				
-				$.ajax({
-					url : 'http://localhost:8080/oldFoodMan/updateMsg/'+msgId,
-					contentType : 'application/json; charset=UTF-8', // 送過去的格式
-					dataType : 'json', // 傳回來的
-					method : 'post',
-					success : function(result) { //成功送過去後
-						 $('#showMsg').remove()
-						  $('#ajaxMsg').empty()
-					console.log(result);
-					var msg_data = '';
-					$.each(result, function(index, value){     
-						
-						msg_data += '<div class="card-header">'+"時間 : "+value.added +'</div>'
-						msg_data += '<p class="card-text">'
-						msg_data += '<a id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" class="btn btn-primary">'+'刪除'+'</a>'
-						msg_data += '<br>'+"會員ID:"+value.member_id
-						msg_data += '<br>'+"文章ID:"+value.record_id
-						msg_data += '<br>'+"留言ID:"+value.id
-			            msg_data += '<br>'+value.text   
-			            msg_data += '</p>'
-			            msg_data += '<br>'  
-			        })
-						$('#ajaxMsg').append(msg_data)
-					},
-					error :function(err){
-						console.log(err)
-						alert('刪除留言發生錯誤')
-					}
-				})
-			})
-			
-			
-			
-			
+		
 			//刪除留言
 			$('#deleteBtn').click(function() {		
 				
-				var msgId=document.getElementById("msgId").innerText; 	  //文章id		
+				var memberId = document.getElementById("memberId").innerText; 
+				var msgId = document.getElementById("msgId").innerText; 	  //文章id		
 				var typeOf = typeof(msgId);  //目前為字串
-// 				alert("msgId = "+msgId);
-// 				alert("typeOf = "+typeOf);
+				// alert("msgId = "+msgId);
+				// alert("typeOf = "+typeOf);
 				
 				$.ajax({
 					url : 'http://localhost:8080/oldFoodMan/deleteMsg/'+msgId,
@@ -356,29 +327,66 @@ width:500px;
 					success : function(result) { //成功送過去後
 						 $('#showMsg').remove()
 						  $('#ajaxMsg').empty()
-					console.log(result);
-					var msg_data = '';
-					$.each(result, function(index, value){     
+						console.log(result);
+						var msg_data = '';
+						$.each(result, function(index, value){     
 						
-						msg_data += '<div class="card-header">'+"時間 : "+value.added +'</div>'
+						msg_data += '<div class="card-header">'
+						msg_data += '<span>'+"會員ID :"+memberId +'</span>'
+						msg_data += '<span style="float:right">'+"時間 : "+value.added +'</span>'+'</div>'
 						msg_data += '<p class="card-text">'
 						msg_data += '<a id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" class="btn btn-primary">'+'刪除'+'</a>'
-						msg_data += '<br>'+"會員ID:"+value.member_id
-						msg_data += '<br>'+"文章ID:"+value.record_id
+						msg_data += '<br>'+"會員ID:"+memberId
 						msg_data += '<br>'+"留言ID:"+value.id
 			            msg_data += '<br>'+value.text   
 			            msg_data += '</p>'
 			            msg_data += '<br>'  
-			        })
-						$('#ajaxMsg').append(msg_data)
-					},
-					error :function(err){
+			      	  })
+					  $('#ajaxMsg').append(msg_data)
+					}, 
+					  error :function(err){
 						console.log(err)
 						alert('刪除留言發生錯誤')
-					}
+						}
 				})
 			})
+			
+			//編輯留言
+			$('#editBtn').click(function(){
+				var inputText = document.getElementById('editId').innerText; //先抓到Input內的資料， 並給他一個變數
+						console.log("inputText = "+inputText);
+				var editObject = {"message" : inputText} //將inputText放到一個物件內 {"Dto的Key": 值(就是前面的inputText)}，這時還是一個物件
+						console.log("editObject = "+editObject);
+				var editJsonString = JSON.stringify(editObject); //將物件轉成JSON。用stringify才能將物件轉成JSON的字串
+						console.log("editJsonString = "+editJsonString);
+				var memberId = document.getElementById("memberId").innerText; 
+				
+				var msgId = document.getElementById("msgId").innerText; 	  //文章id		
+				var typeOf = typeof(msgId);  //目前為字串
+				alert("msgId = "+msgId);
+				alert("typeOf = "+typeOf);
+				
+				$.ajax({
+					url:'http://localhost:8080/oldFoodMan/updateMsg/'+msgId,
+					contentType:'application/json; charset=UTF-8', //送過去的格式
+					data:editJsonString, //送去server的資料
+					dataType:'JSON',//傳回前端的格式
+					method: 'post', //get or post
+					
+					success : function(){ //成功送到伺服器端後要做的事
+						alert('Hello');
+					},
+					error : function(err){  //發生錯誤時要做的事
+						console.log(err)
+						alert('編輯發生錯誤')
+					}
+				})
+				
+			})
+			
 		
+
+		})
 
 	//根據評分顯示圖片
 	function setScore() {
@@ -412,7 +420,9 @@ width:500px;
 		setScore3()  //呼叫function
 		setScore4()  //呼叫function
 		setScore5()  //呼叫function
-		})
+
+
+	
 	</script>
 
 

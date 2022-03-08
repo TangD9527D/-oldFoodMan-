@@ -100,6 +100,9 @@ public class RecordMessagesController {
 		@PostMapping("/updateMsg/{id}")
 		public List<RecordMessages> updateMsg(HttpServletResponse resp,@PathVariable(name="id") Integer id,@RequestBody  RecordMessages editMsg ,HttpSession session) {	
 			RecordMessages msgId = msgService.findById(id);
+			String newMsg = editMsg.getText();
+			msgId.setText(newMsg);
+			System.out.println("新的留言 = "+msgId);
 			msgService.insertMessage(msgId);
 			
 			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件

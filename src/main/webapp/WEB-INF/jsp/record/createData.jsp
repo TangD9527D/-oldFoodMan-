@@ -206,7 +206,7 @@ legend {
 				<br>
 			</div>
 			<div class="st1">
-				<label class="lab">用餐日期:</label>
+				<label class="lab">用餐日:</label>
 				<form:select path="businessHours" id="day" onchange="selectDay()">
 					<option value="">請選擇</option>
 					<option value="星期一">星期一</option>
@@ -219,12 +219,6 @@ legend {
 				</form:select>
 			</div>
 					
-					
-				<div class="st1">
-					<label class="lab">標籤:</label>
-					<form:input id="tag" path="tag" type="text"></form:input>
-					<br>
-				</div>
 
 				</form>
 				<br>
