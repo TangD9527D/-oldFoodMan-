@@ -70,6 +70,7 @@ background-color: white;
     border:2px outset gray;
 	
 }
+
 #myadd{
 width:90%;
 margin:0 auto;
@@ -97,7 +98,7 @@ margin:0 auto;
 
 
 .header1{
-color:#5A5AAD;
+color:#deb887;
 width:100%;
 
 margin-bottom:5px;
@@ -144,6 +145,47 @@ background: #EBD6D6;
 color:#B87070;
 }
 
+.testi{
+font-size:23px;
+color:gray;
+float:right;
+margin-right:5px;
+
+}
+
+.testi:hover {
+font-size:23px;
+color:#778899;
+font-weight:bolder;
+}
+
+.testii{
+font-size:23px;
+color:#8b0000;
+float:right;
+margin-right:5px;
+
+}
+
+.testii:hover {
+font-size:23px;
+color:#dc143c;
+font-weight:bolder;
+}
+
+.hover{
+
+}
+
+.tp1{
+color:black;
+text-decoration:none;
+}
+.tp1:hover{
+font-weight:bolder;
+color:#778899;
+text-decoration:none;
+}
 </style>
 
 
@@ -499,8 +541,8 @@ var tdate=new Date();
 											title : value.vis_res_name,
 											start : date,
 											url : visurl,
-											backgroundColor:"#8080C0",
-											borderColor:"#8080C0"
+											backgroundColor:"#deb887",
+											borderColor:"#deb887"
 													});
 
 												});
@@ -520,7 +562,7 @@ var tdate=new Date();
 	
 	);
 	
-	$(document).ready(function viewdata(){
+	$(document).ready(function viewMyJoindata(){
 		var id=document.getElementById('member_id').value;
 			
 		
@@ -538,7 +580,7 @@ var tdate=new Date();
 //  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 					
 						msg_data+= '<div class="card-body">'		
-						msg_data+= '<h3 id="p" class="card-title" style="background-color: #D8D8EB; text-align: center">'+ value.vis_res_name +'</h3>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title" style="background-color: #D8D8EB; text-align: center">'+ value.vis_res_name +'</h3></a>'
 						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  +'</h5>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
 						msg_data+= '</div>'
@@ -568,7 +610,7 @@ var tdate=new Date();
 
 	})
 	
-	$(document).ready(function viewdata(){
+	$(document).ready(function viewMyVisdata(){
 		var id=document.getElementById('member_id').value;
 	
 		
@@ -586,9 +628,12 @@ var tdate=new Date();
 						msg_data+= '<div id="p1" class="card" style="width: 7cm;">'
 					
 						msg_data+= '<div class="card-body">'		
-						msg_data+= '<h3 id="p" class="card-title" style="background-color: #E1C4C4; text-align: center">'+ value.vis_res_name +'</h3>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp1" style="background-color: #faebd7; text-align: center";>'+ value.vis_res_name +'</h3></a>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_date  +'</h5>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/deleteMyFoodVis?id='+ value.vis_id +'"><i class="fa-regular fa-trash-can testii" id="testii"></i></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/editFoodVis?id='+ value.vis_id +'"><i class="fa-solid fa-pen-to-square testi"  ></i></a>'
+
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -702,6 +747,18 @@ var tdate=new Date();
 				
 			}
 		});
+	
+	document.getElementById("testii").addEventListener("click",function(){
+		
+		Swal.fire(
+				  '新增成功',
+				  '返回頁面',
+				  'success'
+				)
+		
+		
+	});
+	
 </script>
 
 
