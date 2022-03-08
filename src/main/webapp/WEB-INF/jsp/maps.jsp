@@ -53,80 +53,80 @@ html, body {
     padding: 0; */
 }
 
-#description {
-	font-family: fantasy;
-	font-size: 15px;
-	font-weight: 300;
-}
-
-#infowindow-content .title {
-	font-weight: bold;
-}
-
-#infowindow-content {
-	display: none;
-}
-
-#map #infowindow-content {
-	display: inline;
-}
-
-.pac-card {
-	background-color: #fff;
-	border: 0;
-	border-radius: 2px;
-	box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-	margin: 10px;
-	padding: 0 0.5em;
-	font: 400 18px fantasy, Arial, sans-serif;
-	/* overflow: hidden; */
-	font-family: fantasy;
-	padding: 0;
-}
-
-#pac-container {
-	padding-bottom: 12px;
-	margin-right: 12px;
-}
-
-.pac-controls {
-	/* display: inline-block; */
-	/* padding: 5px 11px; */
-	margin: 15px auto;
-}
-
-.pac-controls label {
-	font-family: fantasy;
-	font-size: 13px;
-	font-weight: 300;
-}
-
-#pac-input {
-	background-color: #fff;
-	font-family: fantasy;
-	font-size: 15px;
-	font-weight: 300;
-	/* margin-left: 12px;
-    padding: 0 11px 0 13px; */
-	/* text-overflow: ellipsis; */
-	width: 400px;
-}
-
-#pac-input:focus {
-	border-color: #4d90fe;
-}
-
-#title {
-	color: #fff;
-	background-color: #4d90fe;
-	font-size: 25px;
-	font-weight: 500;
-	padding: 6px 12px;
-}
-
-#target {
-	width: 345px;
-}
+  #description {
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  
+  #infowindow-content .title {
+    font-weight: bold;
+  }
+  
+  #infowindow-content {
+    display: none;
+  }
+  
+  #map #infowindow-content {
+    display: inline;
+  }
+  
+  .pac-card {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px fantasy, Arial, sans-serif;
+    /* overflow: hidden; */
+    font-family: fantasy;
+    padding: 0;
+  }
+  
+  #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
+  
+  .pac-controls {
+    /* display: inline-block; */
+    /* padding: 5px 11px; */
+    margin: 15px auto;
+  }
+  
+  .pac-controls label {
+    font-family: fantasy;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  
+  #pac-input {
+    background-color: #fff;
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px; 
+    text-overflow: ellipsis; 
+    width: 400px;
+  }
+  
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
+  
+  #title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+  }
+  
+  #target {
+    width: 345px;
+  }
 
 #input {
 	font-size: 30px;
