@@ -304,13 +304,15 @@
 
 .page-name{
     font-family: 'Times New Roman', Times, serif;
-    color: lightcoral;
+    font-weight: bold;
+    color: white;
     font-size: large;
 }
 
 .page-sub-title{
     font-family: 'Courier New', Courier, monospace;
-    color: lightcoral;
+    font-weight: bold;
+    color: white;
     font-size: medium;
 }
 

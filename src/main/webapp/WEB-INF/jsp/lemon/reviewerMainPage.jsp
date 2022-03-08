@@ -115,8 +115,8 @@
                 </div>
                 <div class="person-reviewer-cover-image">
                     <div class="oldcrop-frame" style="overflow: hidden; position: relative; width: 980px; height: 340px;">
-                        <img class="crop-img js-crop-img oldcrop-image" data-width:="980" data-top="-108" data-left="0" style="position:absolute; width:980px; left:0px; top:-108px; opacity: 0.1;" alt="reviewer's cover image"
-                        src="${contextRoot}/imgLemon/無留手02.jpg">
+                        <img class="crop-img js-crop-img oldcrop-image" data-width:="980" data-top="-108" data-left="0" style="position:absolute; width:980px; left:0px; top:-108px; opacity: 1;" alt="reviewer's cover image"
+                        src="<c:url value='/getPictureLemon/${memberPage.id}' />">
                         <!-- image size=1470*981 -->
                     </div>
                 </div>
