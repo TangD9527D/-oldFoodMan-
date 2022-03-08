@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -50,6 +49,8 @@ public class MemberController {
 			member.setMemberPwd(pwd);
 
 			service.insert(member);
+	
+			
 
 			mav.getModel().put("member", member);
 		}

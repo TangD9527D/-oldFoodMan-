@@ -260,6 +260,14 @@ public class Member implements Serializable {
 	public void setRecordMessages(Set<RecordMessages> recordMessages) {
 		this.recordMessages = recordMessages;
 	}
+	
+	public ReviewerSetting getReviewersetting() {
+		return reviewersetting;
+	}
+
+	public void setReviewersetting(ReviewerSetting reviewersetting) {
+		this.reviewersetting = reviewersetting;
+	}
 
 	@Override
 	public String toString() {

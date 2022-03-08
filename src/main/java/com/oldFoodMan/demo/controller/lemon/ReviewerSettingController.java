@@ -68,20 +68,24 @@ public class ReviewerSettingController {
 	@PostMapping(value="/setReviewerPage")
 	public ModelAndView postSetting(ModelAndView mav,@ModelAttribute ReviewerSetting rvwrs) {
 		
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		Integer memberId = service.checkMemberId();
 		
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+memberId);
+//		Member mm = memberService.findById(memberId);
+//		ReviewerSetting ss = mm.getReviewersetting();
+//		Integer rsId = ss.getReviewer_id();
+		
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println(memberId);
 		System.out.println(rvwrs.getMember());
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 //		if(rvwrs.getMember()!=null) {
-		rsr.updateTitle(memberId, rvwrs.getReviewer_title());
-		rsr.updateSubTitle(memberId, rvwrs.getReviewer_subtitle());
-		rsr.updateIntro(memberId, rvwrs.getReviewer_intro());
-		rsr.updateCamera(memberId, rvwrs.getReviewer_camera());
-		rsr.updateOccupation(memberId, rvwrs.getReviewer_occupation());
+//		rsr.updateTitle(memberId, rvwrs.getReviewer_title());
+//		rsr.updateSubTitle(memberId, rvwrs.getReviewer_subtitle());
+//		rsr.updateIntro(memberId, rvwrs.getReviewer_intro());
+//		rsr.updateCamera(memberId, rvwrs.getReviewer_camera());
+//		rsr.updateOccupation(memberId, rvwrs.getReviewer_occupation());
 //		} else {
-//			service.insert(rvwrs);
+			service.insert(rvwrs);
 //		}
 		
 		
