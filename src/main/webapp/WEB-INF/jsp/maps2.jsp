@@ -20,7 +20,8 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
+<link rel="stylesheet"
+	href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -232,22 +233,16 @@ img {
 	margin: 0.1px auto;
 	border-radius: 20PX;
 	text-align: justify;
-
 }
 
-#li{
-	overflow: hidden;	
+#li {
+	overflow: hidden;
 	text-overflow: ellipsis;
 	-webkit-line-clamp: 1; /*行數*/
 	-webkit-box-orient: vertical;
 	white-space: normal;
 	text-align: justify;
-
-
 }
-
-
-
 </style>
 
 
@@ -255,20 +250,21 @@ img {
 <body>
 
 	<div id="location">
-		<h4 style="text-align:center;padding-top:20px">收藏的地點<i class="fa-regular fa-star"></i></h4>
+		<h4 style="text-align: center; padding-top: 20px">
+			收藏的地點<i class="fa-regular fa-star"></i>
+		</h4>
 		<hr style="color: pink; border: 5px solid pink">
 		<div id="location1"></div>
-		
+
 		<form:form class="form" action="${contextRoot}/main"
-							modelAttribute="member" method="post">
+			modelAttribute="member" method="post">
 			<div class="form-group col-md-6">
-				<input type="hidden"
-				   	id="member_id2" value="${member.id}" class="form-control" required>
+				<input type="hidden" id="member_id2" value="${member.id}"
+					class="form-control" required>
 			</div>
-			</form:form>
+		</form:form>
 
 		<input type="hidden" id="member_id" value="${member_id}"
-		
 			class="form-control" required>
 
 	</div>
@@ -293,34 +289,18 @@ img {
 				value="ShowMark" /> <input id="hide-markers"
 				class="btn btn-outline-dark btn-sm" type="button" value="HideMark" />
 
-			<button id="star" onclick="" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-star"></i>收藏地點</button>
+			<button id="star" onclick="" class="btn btn-outline-secondary btn-sm">
+				<i class="fa-solid fa-star"></i>收藏地點
+			</button>
 
 			<!--  -->
 
 		</div>
 
-		
+
 		<div id="allrange">
 			<span id="rangetype"></span>
-			<div id="range1" class="">
-				<%-- 			<c:forEach var="st" items="${st.content}"> --%>
-				<!-- 				<div class="card" id="p1" style="width: 8cm;"> -->
-				<%-- 					<img src="<c:url value='/getPicture/${st.id}'/>" --%>
-				<!-- 						style="width: 250px; height: 220px" class="card-img-top" alt="..."> -->
-				<!-- 					<div id="box" class="card-body"> -->
-				<!-- 						<h3 id="p" class="card-title" -->
-				<%-- 							style="background-color: #ADADAD; text-align: center">${st.title}</h3> --%>
-				<%-- 						<h5 id="p" class="card-text">${st.content}</h5> --%>
-				<!-- 						<a href="#" class="btn btn-secondary" -->
-				<!-- 							style="position: absolute; bottom: 15px">繼續閱讀</a> -->
-				<!-- 						<div id="right"> -->
-				<%-- 							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE" --%>
-				<%-- 								value="${st.added}" /> --%>
-				<!-- 						</div> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
-				<%-- 			</c:forEach> --%>
-			</div>
+			<div id="range1" class=""></div>
 		</div>
 
 
@@ -347,7 +327,6 @@ img {
 				</div>
 			</c:forEach>
 		</div>
-
 	</div>
 
 
@@ -495,7 +474,7 @@ img {
      }     
 	       
     </script>
-<!--收藏地點方法 -->
+	<!--收藏地點方法 -->
 	<script>
 	var Member_id=document.getElementById('member_id').value;
  		function insertlocation() {
@@ -573,7 +552,7 @@ img {
 
  			})
 </script>
-		<!--綁定按鍵sweetalert2並執行收藏地點方法 -->
+	<!--綁定按鍵sweetalert2並執行收藏地點方法 -->
 	<script>
 
 document.getElementById("star").addEventListener("click",function(){
@@ -613,13 +592,25 @@ document.getElementById("star").addEventListener("click",function(){
 		
 // 			})
 
-</script>
-<!-- 	抓關鍵字搜尋站內食記的方法 -->
-	<script>
 
+
+</script>
+	<!-- 	模糊搜尋站內食記的方法   看要不要用enterdown input -->
+	<script>
+$("#input").bind("keypress", {}, keypressInBox);
+
+function keypressInBox(e) {
+var code = (e.keyCode ? e.keyCode : e.which);
+if (code == 13) { //Enter keycode
+	collet11();
+}
+
+}
 		function collet11(){		
 			
 			var inputResName = document.getElementById('input').value;
+			
+			
 
 				$.ajax({
 						url : 'http://localhost:8080/oldFoodMan/collet?shopType='+inputResName ,
@@ -637,20 +628,22 @@ document.getElementById("star").addEventListener("click",function(){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
 //  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						console.log(value.uploadPicture)
-						console.log(value.id)
+						console.log(value.create_at)
 						var image = value.uploadPicture
 						var ok = image.split('.').pop()
 						console.log(ok)
 						msg_data+= '<img src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
-						msg_data+= '<div class="card-body">'		
+						msg_data+= '<div id="box" class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
-						msg_data+= '<h5 class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary"><c:out value="繼續閱讀"/></a>'
+						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-outline-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀"/></a>'			
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
-
-						$('#rangetype').append(inputResName)
+						
+						let strObj=new String(["[您所搜尋有關於]"]);
+						
+						$('#rangetype').append(strObj +inputResName)
 						$('#range1').append(msg_data)
 
 		
@@ -681,12 +674,11 @@ function collet22(){
 						var msg_data='';
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						msg_data+= '<img src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
-						msg_data+= '<div class="card-body">'		
+						msg_data+= '<div id="box1" class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
-						msg_data+= '<h5 ip="p" class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary"style="position: absolute; bottom: 15px"><c:out value="繼續閱讀..."/></a>'
+						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary" ><c:out value="繼續閱讀..."/></a>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -707,7 +699,7 @@ function collet22(){
 
 
 </script>
-<script>
+	<script>
 
 	
 	

@@ -624,10 +624,11 @@ document.getElementById("star").addEventListener("click",function(){
 //  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						console.log(value.uploadPicture)
 						msg_data+= '<img src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.uploadPicture +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
-						msg_data+= '<div class="card-body">'		
-						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
+						msg_data+= '<div id="box" class="card-body">'		
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center" >'+ value.title +'</h3>'
 						msg_data+= '<h5 class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary"><c:out value="繼續閱讀"/></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀"/></a>'
+					
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
