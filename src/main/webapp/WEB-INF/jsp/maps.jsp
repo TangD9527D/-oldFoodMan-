@@ -12,21 +12,6 @@
 <meta charset="UTF-8">
 <title>FoodSearch</title>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<!-- <link rel="stylesheet" type="text/css" href="./style.css" /> -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-<link rel="stylesheet"
-	href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script
-	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link rel="shortcut icon" href="/images/favicon.png" />
 <!-- 改為老食人小圖 -->
@@ -35,7 +20,7 @@
 #allpage {
 	width: 70%;
 	height: 70%;
-	margin: 10px auto;
+	margin: 20px auto;
 	/* float: left; */
 }
 
@@ -166,6 +151,7 @@ html, body {
 #allrange {
 	text-align: justify;
 	width: 100%;
+	margin
 }
 
 #range {
@@ -187,7 +173,7 @@ html, body {
 	width: 100%;
 }
 
-img {
+#img {
 	display: block;
 	margin: 25px auto;
 }
@@ -248,18 +234,7 @@ img {
 
 </head>
 <body>
-	<c:if test="${pageContext.request.userPrincipal == null}">
-		<div id="location">
-			<h4 style="text-align: center; padding-top: 20px">
-				收藏的地點<i class="fa-regular fa-star"></i>
-			</h4>
-			<hr style="color: pink; border: 5px solid pink">
-			<div id="location1"></div>
-			<input type="hidden" id="member_id" value="${member_id}"
-				class="form-control" required>
 
-		</div>
-	</c:if>
 	<div id="allpage">
 		<!--整個頁面的65%-->
 		<div id="inputdiv">
@@ -294,7 +269,7 @@ img {
 			<div id="range1" class="">
 				<%-- 			<c:forEach var="st" items="${st.content}"> --%>
 				<!-- 				<div class="card" id="p1" style="width: 8cm;"> -->
-				<%-- 					<img src="<c:url value='/getPicture/${st.id}'/>" --%>
+				<%-- 					<img id="img" src="<c:url value='/getPicture/${st.id}'/>" --%>
 				<!-- 						style="width: 250px; height: 220px" class="card-img-top" alt="..."> -->
 				<!-- 					<div id="box" class="card-body"> -->
 				<!-- 						<h3 id="p" class="card-title" -->
@@ -310,7 +285,7 @@ img {
 				<!-- 				</div> -->
 				<%-- 			</c:forEach> --%>
 			</div>
-		</div>
+		
 
 
 
@@ -318,7 +293,7 @@ img {
 		<div id="range" class="">
 			<c:forEach var="maps" items="${page.content}">
 				<div class="card" id="p1" style="width: 8cm;">
-					<img src="<c:url value='/getPicture/${maps.id}'/>"
+					<img id="img" src="<c:url value='/getPicture/${maps.id}'/>"
 						style="width: 250px; height: 220px" class="card-img-top" alt="...">
 					<div id="box" class="card-body">
 						<h3 id="p" class="card-title"
@@ -336,7 +311,7 @@ img {
 				</div>
 			</c:forEach>
 		</div>
-
+		</div>
 	</div>
 
 
@@ -621,9 +596,8 @@ document.getElementById("star").addEventListener("click",function(){
 						var msg_data='';
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						console.log(value.uploadPicture)
-						msg_data+= '<img src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.uploadPicture +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
+						msg_data+= '<img id="img" src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.uploadPicture +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
 						msg_data+= '<div id="box" class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center" >'+ value.title +'</h3>'
 						msg_data+= '<h5 class="card-text">'+ value.content  +'</h5>'
@@ -664,8 +638,7 @@ function collet22(){
 						var msg_data='';
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
-						msg_data+= '<img src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
+						msg_data+= '<img id="img" src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 ip="p" class="card-text">'+ value.content  +'</h5>'
