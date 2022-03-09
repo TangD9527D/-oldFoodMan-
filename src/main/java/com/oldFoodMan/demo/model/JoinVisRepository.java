@@ -4,7 +4,10 @@ package com.oldFoodMan.demo.model;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -17,5 +20,9 @@ public interface JoinVisRepository extends JpaRepository<JoinVis, JoinVisBoth> {
 	public List<JoinVis> findByMemberId(@Param(value="member_id") Integer member_id);
 	
 
+	@Transactional
+	@Modifying
+	@Query(value="delete from add_food_group where member_id=:member_id and my_food_vis_id=:my_food_vis_id",nativeQuery=true)
+	public void deleteByMemberIdAndVisId(@Param(value="member_id") Integer member_id,@Param(value="my_food_vis_id") Integer my_food_vis_id);
 
 }

@@ -88,8 +88,9 @@ public class JoinVisService {
 		return joinDao.findAll();
 	}
 	
-	public void deleteJoinVis(Integer member) {
-//		return joinDao.deleteById(member);
+	public void deleteJoinVis(Integer member,Integer vis_id) {
+		 joinDao.deleteByMemberIdAndVisId(member,vis_id);
+		
 	}
 	
 	public List<Member> findByMyFoodVisId(Integer myfoodvisid){
