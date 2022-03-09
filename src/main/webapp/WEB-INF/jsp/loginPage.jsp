@@ -11,7 +11,7 @@
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <link
 	href="https://fonts.googleapis.com/css2?family=Norican&display=swap"
-	rel="stylesheet">
+	rel="stylesheet" />
 <title>Login</title>
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
 <script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
