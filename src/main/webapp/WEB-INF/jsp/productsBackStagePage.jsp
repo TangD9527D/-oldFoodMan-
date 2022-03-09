@@ -288,7 +288,7 @@
             var inputRemark = $('#Uproduct_remark').val();
             var dtoObject = {'product_number':inputNumber, 'product_name':inputName, 'product_category':inputCategory, 'product_stock':inputStock, 'product_discount':inputDiscount,'product_price':inputPrice,'product_remark':inputRemark};
             var id = $('#Uproduct_id').val();
-			
+            var dtoJsonString = JSON.stringify(dtoObject);
             upRow = $(this).closest('tr');
             
             $.ajax({                                         //更新表格資料

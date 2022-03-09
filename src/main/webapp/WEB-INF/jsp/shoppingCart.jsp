@@ -47,8 +47,7 @@
 		<p></p>
 		<div>
 			<button type="button" class="btn btn-danger btn-sm" id="deleteSelect">多筆刪除</button>
-			<button type="button" class="btn btn-primary" style="float:right">去結帳</button>
-			<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#BuyModal" id="toBuy">去結帳</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BuyModal" id="toBuy" style="float:right">去結帳</button>
 		</div>
 	</div>
 	
@@ -57,7 +56,7 @@
 			<div class="modal-dialog modal-xl">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">訂單資訊</h5>
+						<h5 class="modal-title" id="exampleModalLabel">購買資訊</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -66,14 +65,30 @@
 					
 					<div>
 					<table class="table" id="ajaxToBuyTable">
-						
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">產品名</th>
+								<th scope="col">圖片</th>
+								<th scope="col">折扣</th>
+								<th scope="col">單價</th>
+								<th scope="col">數量</th>
+								<th scope="col">總價</th>
+							</tr>
+						</thead>
+						<tbody id="appendTbody">
+							
+						</tbody>
 					</table>
+					<div style="text-align:right;margin-right:100px">
+					    <h3 id="appendNum"></h3>
+						<h3 id="appendPrice"></h3>
+					</div>
 				</div>
 					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" id="Btn_update" data-dismiss="modal">確定結帳</button>
+						<button type="button" class="btn btn-primary" id="Btn_buy" data-dismiss="modal">確定結帳</button>
 					</div>
 				</div>
 			</div>
@@ -290,11 +305,16 @@
 			})
 		})
 		
-		
+		//按下去結帳會先跳確認勾選項目資訊
 		$('#toBuy').click(function(){
 			var buyArr = [];
 			var buyRow = [];
 			let checkboxes = document.querySelectorAll("[name=checkbox]");
+			console.log(checkboxes);
+			if(checkboxes == []){
+				console.log("test")
+			}
+			
 			for (var i = 0; i < checkboxes.length; i++) {
 				if (checkboxes[i].checked === true) {
 
@@ -303,45 +323,59 @@
 					buyArr.push({"productId":str}); //要準備轉JSON
 		            
 					buyRow.push(str); //用來刪除多筆的陣列
-					console.log("buyRow:" + buyRow);
+					
 				}
 			}
 			var dtoJsonString = JSON.stringify(buyArr); //轉Json
 			
-			console.log(dtoJsonString);
+			
 			$.ajax({
 				url:'http://localhost:8080/oldFoodMan/Cart/toBuy',
                 contentType: 'application/json;charset=UTF-8',
                 method: 'post',
                 data: dtoJsonString,
                 success:function(data){
-                	$('#ajaxToBuyTable').empty();
+                	$('#appendTbody').empty();
+                	$('#appendPrice').empty();
+                	$('#appendNum').empty();
                 	var msg_data = '';
+                	var msg_totalPrice = 0;
+                	var msg_num = 0;
                 	$.each(data,function(index,value){
-                		console.log(value);
-                		msg_data += '<thead class="thead-light"><tr>';
-                        msg_data += '<th scope="col">#</th>';
-                        msg_data += '<th scope="col">'+ value.productAmount +'</th>';
-                        msg_data += '<th scope="col">'+ value.productAmount +'</th>';
-                        msg_data += '<th scope="col">'+ value.productAmount +'</th></tr></thead>';
-                        msg_data += '<tbody><tr><th scope="row">1</th>';
+                		
+
+                        msg_data += '<tr><td>' + value.productId.product_name + '</td>';
+                        msg_data += '<td><img src="' + value.productId.product_image + '" width="50"/></td>';
+                        msg_data += '<td>' + Number(value.productId.product_discount)*100 + '%</td>';
+                        msg_data += '<td>' + value.productId.product_price + '</td>';
                         msg_data += '<td>' + value.productAmount + '</td>';
-                        msg_data += '<td>' + value.productAmount + '</td>';
-                        msg_data += '<td>' + value.productAmount + '</td></tr>';
-                        msg_data += '<tr>';
-                        msg_data += '<th scope="row">2</th>';
-                        msg_data += '<td>' + value.productAmount + '</td>';
-                        msg_data += '<td>' + value.productAmount + '</td>';
-                        msg_data += '<td>' + value.productAmount + '</td></tr>';
-                        msg_data += '<th scope="row">3</th>';
-                        msg_data += '<td>' + value.productAmount + '</td>';
-                        msg_data += '<td>' + value.productAmount + '</td>';
-                        msg_data += '<td>' + value.productAmount + '</td></tr></tbody>';
+                        msg_data += '<td>' + Number(value.productAmount)* (Number(value.productId.product_price)*Number(value.productId.product_discount)) + '</td></tr>';
+                        
+                        msg_totalPrice += Number(value.productAmount)* Number(value.productId.product_price);
+                        msg_num = Number(index);
                 	})
-                	 $('#ajaxToBuyTable').append(msg_data);
+                	$('#appendTbody').append(msg_data);
+                	$('#appendPrice').append("總價格(Total) : $" + msg_totalPrice);
+                	$('#appendNum').append("筆數 : " + (msg_num + 1) + "筆");
                 }
 
 			})
+		})
+		
+		//按下確認結帳
+		$('#Btn_buy').click(function(){
+			$()
+			/*
+			$.ajax({
+				url:'http://localhost:8080/oldFoodMan/Cart/comfirmBuy',
+                contentType: 'application/json;charset=UTF-8',
+                method: 'post',
+                data: dtoJsonString,
+                success:function(data){
+				
+                }
+			})
+			*/
 		})
 			
 		
