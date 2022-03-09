@@ -21,8 +21,10 @@
 				<div class="card">
 					<div class="card-header text-white bg-dark ">揪團資訊</div>
 					<div class="card-body">
+					
 						<form:form class="form" action="${contextRoot}/findOneVis"
 							modelAttribute="ofm"   method="post">
+
 							<h2>開團者： ${ofmid.memberName}</h2>
 							<form:input type="hidden" path="vis_id"/>
 							<form:input type="hidden" path="added"/>
