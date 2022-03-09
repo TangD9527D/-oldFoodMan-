@@ -53,6 +53,8 @@ public class FoodRecord implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "id")
 	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "record_id")
+	private Set<Collections> collections = new LinkedHashSet<Collections>();
 	
 	public FoodRecord() {
 	}

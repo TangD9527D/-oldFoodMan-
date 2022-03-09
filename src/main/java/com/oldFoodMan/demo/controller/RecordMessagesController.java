@@ -34,7 +34,7 @@ public class RecordMessagesController {
 	private RecordMessageService msgService;
 	
 	
-	//api
+	//api 0309 orignial
 		@ResponseBody   //因為是要回傳json所以要用@ResopnseBody (ModelAndView 是回傳一個View)
 		@PostMapping("/api/postMessage")		
 		public List<RecordMessages> postMessageApi(@RequestBody RecordMessageDto dto,HttpSession session){  //@RequestBody RecordMessageDto 請求的本體(送進來的) ；List<RecordMessages>回傳回去的
@@ -92,7 +92,7 @@ public class RecordMessagesController {
 			RecordMessages msg = msgService.findById(id);
 			mav.getModel().put("recordMessage", msg);
 			mav.setViewName("record/updateMsg");	
-			return mav;
+			return mav;  
 		}
 		
 		//修改留言(更新留言)
@@ -100,9 +100,14 @@ public class RecordMessagesController {
 		@PostMapping("/updateMsg/{id}")
 		public List<RecordMessages> updateMsg(HttpServletResponse resp,@PathVariable(name="id") Integer id,@RequestBody  RecordMessages editMsg ,HttpSession session) {	
 			RecordMessages msgId = msgService.findById(id);
-			String newMsg = editMsg.getText();
-			msgId.setText(newMsg);
-			System.out.println("新的留言 = "+msgId);
+			String showBeforeText = msgId.getText();   //顯示之前的留言
+			System.out.println("目前的留言 = "+showBeforeText);  //在console中顯示之前的留言
+			
+			String msg = editMsg.getText();  //拿新輸入的留言
+			System.out.println("新輸入的留言 = "+msg);  //在console中顯示新輸入的留言
+			msgId.setText(msg); //存入新輸入的留言
+			
+			System.out.println("msgId = "+msgId);
 			msgService.insertMessage(msgId);
 			
 			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件

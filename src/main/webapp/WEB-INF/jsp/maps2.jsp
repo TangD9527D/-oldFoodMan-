@@ -132,7 +132,7 @@ html, body {
 	font-size: 30px;
 	font-family: fantasy;
 	line-height: 30px;
-	width: 90%;
+	width: 100%;
 	font-weight: 300px;
 	color: black;
 	border-radius: 10px;
@@ -187,7 +187,7 @@ html, body {
 	width: 100%;
 }
 
-img {
+#img {
 	display: block;
 	margin: 25px auto;
 }
@@ -275,9 +275,6 @@ img {
 			<!--allpage的65%-->
 			<input id="input" class="btn btn-secondary" type="search"
 				placeholder="Search Food & record" />
-			<button id="food" onclick="collet11()"
-				class="btn btn-outline-secondary btn-lg">站內食記</button>
-
 		</div>
 
 		<div id="map"></div>
@@ -309,7 +306,7 @@ img {
 		<div id="range" class="">
 			<c:forEach var="maps" items="${page.content}">
 				<div class="card" id="p1" style="width: 8cm;">
-					<img src="<c:url value='/getPicture/${maps.id}'/>"
+					<img id="img" src="<c:url value='/getPicture/${maps.id}'/>"
 						style="width: 250px; height: 220px" class="card-img-top" alt="...">
 					<div id="box" class="card-body">
 						<h3 id="p" class="card-title"
@@ -626,13 +623,13 @@ if (code == 13) { //Enter keycode
 							
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
+//  					msg_data+= '<img id="img" src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						console.log(value.uploadPicture)
 						console.log(value.create_at)
 						var image = value.uploadPicture
 						var ok = image.split('.').pop()
 						console.log(ok)
-						msg_data+= '<img src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
+						msg_data+= '<img id="img" src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
 						msg_data+= '<div id="box" class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
@@ -674,7 +671,7 @@ function collet22(){
 						var msg_data='';
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-						msg_data+= '<img src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
+						msg_data+= '<img id="img" src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
 						msg_data+= '<div id="box1" class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'

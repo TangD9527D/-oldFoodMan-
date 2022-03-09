@@ -42,78 +42,47 @@ public class JoinVisController_32 {
 	@Autowired
 	private TestOfmService toservice;
 	
-	@GetMapping("/joinvisall")
-	public String joinVisAll(Model model) {
-		List<JoinVis> joinvisall = jvservice.findAll();
-		model.addAttribute("joinvisall", joinvisall); 
-		return "";
-	}
+	
+	
+
 	
 	
 //	@ResponseBody
 	@PostMapping("/addjoinvis/{vis_id}")
-	public ModelAndView addVis(ModelAndView mav,@PathVariable Integer vis_id,JoinVis joinvis, HttpSession session){
-		Member member = (Member)session.getAttribute("member");
+	public ModelAndView addVis(ModelAndView mav,@PathVariable Integer vis_id,JoinVis joinvis, HttpSession hs){
+		Member member = (Member)hs.getAttribute("member");
 		
 		
 		System.out.println("idvis: "+vis_id);
 
 		OldFoodManBean ofmvis=ofmservice.findById(vis_id);
 		
-//		joinvis.setMember_id(member);
-//		joinvis.setMy_food_vis_id(ofmvis);
 		
 		System.out.println("第二個 條件:"+joinvis);
 		
 		System.out.println("第三個 :"+ofmvis);
-		
-//		JoinVis josave=new JoinVis();
-//		josave.setAdd_condition(joinvis.getAdd_condition());
-//		josave.setMember_id(member);
-//		josave.setMy_food_vis_id(ofmvis);
+
 		jvservice.addJoinVis(joinvis,member,ofmvis); 
-//		jvservice.insert(joinvis);
+
 		
 		mav.getModel().put("ofm", joinvis);
 		mav.setViewName("redirect:/ajaxFoodVis");
 		return mav;
 	}
 	
-//	@ResponseBody
-//	@GetMapping("/getMyJoin")
-//	public List<TestOFM> findMyJoinByMemberID(ModelAndView mav,@RequestParam(name="member_id") Integer member_id,HttpSession hs){
-//		
-//		Member mid = (Member)hs.getAttribute("member");
-//		System.out.println("查自己:" +mid);
-//		Integer memberid=mid.getId();
-//		List<JoinVis> list=jvservice.findJoinVisByMemberID(memberid);
-//
-//		
-//		if(list != null) {
-//		Integer j=null;
-//		List<TestOFM>ofm=null;
-//		
-//			for(JoinVis J : list) {
-//				System.out.println("有什麼:"+list);
-//				j=J.getMy_food_vis_id();
-//
-//				System.out.println("有多少id: "+j);
-////				mav.getModel().put("join", list);
-////				mav.getModel().put("op", ofm);
-////				mav.setViewName("vis_group_jsp/ajaxFoodVis");
-//				ofm=toservice.findByID(j);
-//				}
-//			System.out.println("結果: "+ofm);
-//			return ofm;	
-//			
-//			}
-//		
-//		
-//		
-//	return null;
-//		
-//		
-//	}
+	@GetMapping(value="deleteMyJoinVis")
+	public ModelAndView deleteMyJoinVis(ModelAndView mav,@RequestParam(name="member_id") Integer member_id,@RequestParam(name="my_food_vis_id") Integer my_food_vis_id) {
+	
+		System.out.println("看看有沒有: "+my_food_vis_id);
+		
+		
+		jvservice.deleteJoinVis(member_id, my_food_vis_id);
+		
+		mav.setViewName("redirect:ajaxFoodVis");
+		return mav;
+	}
+	
+
 	
 	@ResponseBody
 	@GetMapping("/getMyJoin")
@@ -152,6 +121,47 @@ public class JoinVisController_32 {
 //	}
 //	
 	
+//	@ResponseBody
+//	@GetMapping("/getMyJoin")
+//	public List<TestOFM> findMyJoinByMemberID(ModelAndView mav,@RequestParam(name="member_id") Integer member_id,HttpSession hs){
+//		
+//		Member mid = (Member)hs.getAttribute("member");
+//		System.out.println("查自己:" +mid);
+//		Integer memberid=mid.getId();
+//		List<JoinVis> list=jvservice.findJoinVisByMemberID(memberid);
+//
+//		
+//		if(list != null) {
+//		Integer j=null;
+//		List<TestOFM>ofm=null;
+//		
+//			for(JoinVis J : list) {
+//				System.out.println("有什麼:"+list);
+//				j=J.getMy_food_vis_id();
+//
+//				System.out.println("有多少id: "+j);
+////				mav.getModel().put("join", list);
+////				mav.getModel().put("op", ofm);
+////				mav.setViewName("vis_group_jsp/ajaxFoodVis");
+//				ofm=toservice.findByID(j);
+//				}
+//			System.out.println("結果: "+ofm);
+//			return ofm;	
+//			
+//			}
+//		
+//		
+//		
+//	return null;
+//		
+//		
+//	}
 	
+//	@GetMapping("/joinvisall")
+//	public String joinVisAll(Model model) {
+//		List<JoinVis> joinvisall = jvservice.findAll();
+//		model.addAttribute("joinvisall", joinvisall); 
+//		return "";
+//	}
 	
 }

@@ -95,6 +95,16 @@ margin:0 auto;
 
 }
 
+	.btn:hover {
+    /* :hover 代表滑鼠移到元素上時的狀態 */ 
+    transform: scale(1.05);
+  }
+
+  .btn:active {
+    /* :active是滑鼠點擊元素的狀態 */
+    transform: scale(1);
+    box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, .2);
+  }
 
 
 .header1{
@@ -157,6 +167,7 @@ margin-right:5px;
 font-size:23px;
 color:#778899;
 font-weight:bolder;
+transform: scale(1.05);
 }
 
 .testii{
@@ -168,14 +179,20 @@ margin-right:5px;
 }
 
 .testii:hover {
-font-size:23px;
+/* font-size:23px; */
 color:#dc143c;
 font-weight:bolder;
+transform: scale(1.05);
 }
 
 .hover{
 
 }
+
+
+
+
+
 
 .tp1{
 color:black;
@@ -186,6 +203,18 @@ font-weight:bolder;
 color:#778899;
 text-decoration:none;
 }
+
+.tp2{
+color:black;
+text-decoration:none;
+}
+.tp2:hover{
+font-weight:bolder;
+color:#778899;
+text-decoration:none;
+}
+
+
 </style>
 
 
@@ -223,7 +252,7 @@ text-decoration:none;
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="sweetalert2.all.min.js"></script>
+<!-- <script src="sweetalert2.all.min.js"></script> -->
 
 
 
@@ -234,6 +263,7 @@ text-decoration:none;
 <body>
 <div class="allpage">
 	<div id="content">
+	<div class="header1"><i style="font-size:50px" class="fa-solid fa-utensils"></i><span style="font-size:40px">揪團Eat</span></div>
 	<article class="article">
 <!-- 	<button type="button" id="star" onclick="">test</button> -->
 	
@@ -242,7 +272,7 @@ text-decoration:none;
 <form:form class="form" action="${contextRoot}/ajaxFoodVis"
 							modelAttribute="ofmid" method="post" >
 <!-- 							<button type="button" id="checksubmittest"></button> -->
-							<button type="button" class="btn btn btn-info btn-lg" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
+							
 <!-- 		行事曆 -->
 		<div class="div04_32">
 		<div id="example" ></div>
@@ -363,8 +393,8 @@ text-decoration:none;
 <section class="section">
 <!-- <div class="viewtable"> -->
 
-		<div class="header1"><i style="font-size:50px" class="fa-solid fa-utensils"></i><span style="font-size:40px">揪團Eat</span></div>
-		
+		<button type="button"  class="btn btn btn-info btn-lg" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
+		<p>
 		<c:forEach var="viewallvis" items="${page.content}">
 		<div id="table_id" class="card text-center">
   		<h4 class="card-header text-white bg-dark">
@@ -580,9 +610,10 @@ var tdate=new Date();
 //  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 					
 						msg_data+= '<div class="card-body">'		
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title" style="background-color: #D8D8EB; text-align: center">'+ value.vis_res_name +'</h3></a>'
-						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  +'</h5>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp2" style="background-color: #faf0e6; text-align: center">'+ value.vis_res_name +'</h3></a>'
+						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  + '</h5>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/deleteMyJoinVis?member_id='+value.member_id+'&my_food_vis_id='+value.vis_id+'"><i class="fa-regular fa-trash-can testii" id="testii"></i></a>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -748,16 +779,16 @@ var tdate=new Date();
 			}
 		});
 	
-	document.getElementById("testii").addEventListener("click",function(){
+// 	document.getElementById("testii").addEventListener("click",function(){
 		
-		Swal.fire(
-				  '新增成功',
-				  '返回頁面',
-				  'success'
-				)
+// 		Swal.fire(
+// 				  '新增成功',
+// 				  '返回頁面',
+// 				  'success'
+// 				)
 		
 		
-	});
+// 	});
 	
 </script>
 

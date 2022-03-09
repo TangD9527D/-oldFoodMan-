@@ -93,6 +93,7 @@ public class Member implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
 	
+
 	
 	@ManyToMany(mappedBy = "membervis")
 	private Set<OldFoodManBean> ofm = new LinkedHashSet<OldFoodManBean>();
@@ -107,6 +108,9 @@ public class Member implements Serializable {
 	//Lemon
 	@OneToOne(mappedBy = "member")
 	private ReviewerSetting reviewersetting;
+	//Eddie
+	@OneToMany(fetch = FetchType.LAZY,mappedBy ="member_id")
+	private Set<Collections> collections =new LinkedHashSet<Collections>();
 	
 	public Member() {
 	}
