@@ -1,9 +1,11 @@
 package com.oldFoodMan.demo.security.oauth;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 public class MemberOAuth2User implements OAuth2User {
@@ -27,7 +29,14 @@ public class MemberOAuth2User implements OAuth2User {
 
 	@Override
 	public String getName() {
-		return oauth2User.getAttribute("account");
+		return oauth2User.getAttribute("name");
+	}
+	
+	public String getEmail(Principal principal, @AuthenticationPrincipal OAuth2User principal2) {
+		
+		String email = principal2.getAttribute("eamil");
+		
+		return email;
 	}
 
 }

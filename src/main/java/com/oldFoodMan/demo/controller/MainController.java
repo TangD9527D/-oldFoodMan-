@@ -6,20 +6,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.Member;
+import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.utils.WebUtils;
 
 @Controller
 public class MainController {
+	
+	@Autowired
+	private MemberServiceImpl service;
 
 	@GetMapping(value = "/admin")
     public String adminPage(Model model, Principal principal,HttpSession hs) {
@@ -39,8 +46,16 @@ public class MainController {
     }
 
 	@GetMapping(value = "/login")
-    public String loginPage(Model model) {
-        return "loginPage";
+    public ModelAndView loginPage(ModelAndView mav) {
+		
+		Member mb = new Member();
+
+		mav.getModel().put("member", mb);
+		
+		
+		mav.setViewName("loginPage");
+		
+        return mav;
     }
 
 	@GetMapping(value = "/logout")
@@ -97,4 +112,32 @@ public class MainController {
         return "403Page";
     }
 
+	@GetMapping(value = "/google")
+	public ModelAndView user(ModelAndView mav, HttpSession hs, Principal principal, @AuthenticationPrincipal OAuth2User prinaipal2) {
+		
+		String email = prinaipal2.getAttribute("email");
+		String name = prinaipal2.getAttribute("name");
+		
+		System.out.println("email: " + email + "    " + "name: " + name);
+		
+		 Member member = service.findByAccount(email);
+		 System.out.println("memeber:" + member);
+	        if (member == null) {
+	        	Member newUser = new Member();
+	            newUser.setMemberName(name);
+	            newUser.setAccount(email);         
+	            newUser.setMemberPwd("google");
+	            service.insert(newUser); 
+	            
+	            hs.setAttribute("member", newUser);
+	                        
+	        }else {
+	        	hs.setAttribute("member", member);
+	        	
+	        }
+	        
+		mav.setViewName("redirect:/main");
+		
+		return mav;
+	}
 }
