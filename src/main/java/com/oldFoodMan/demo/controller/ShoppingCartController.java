@@ -3,8 +3,11 @@ package com.oldFoodMan.demo.controller;
 
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,8 +24,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.oldFoodMan.demo.model.Member;
+import com.oldFoodMan.demo.model.OrderForm;
 import com.oldFoodMan.demo.model.Product;
 import com.oldFoodMan.demo.model.ShoppingCart;
+import com.oldFoodMan.demo.service.OrderFormService;
 import com.oldFoodMan.demo.service.ShoppingCartService;
 
 @Controller
@@ -30,6 +35,9 @@ public class ShoppingCartController {
 	
 	@Autowired
 	private ShoppingCartService service;
+	
+	@Autowired
+	private OrderFormService orderService;
 	
 	@GetMapping("/shoppingCart")
 	public String myShoppingCart(Model model) {
@@ -183,5 +191,76 @@ public class ShoppingCartController {
 		return carts;
 		
 	}
+	
+	
+	@ResponseBody
+	@PostMapping("/Cart/confirmBuy")
+	public String confirmBuy(@RequestBody String jsonPara, HttpSession session) {
+		Member member = (Member) session.getAttribute("member");
+		Integer memberId = member.getId();
+		  //使用JSONArrayt處理json字符串
+		JSONArray jsonArr = new JSONArray(jsonPara);
+		String productId = "";
+		String orderNumber = Getnum();
+		
+		for (int i = 0; i < jsonArr.length(); i++) {
+			JSONObject jsonObject = (JSONObject) jsonArr.get(i);
+			productId = jsonObject.getString("productId");
+			System.out.println("productId:" + productId);
+			Integer product_Id = Integer.parseInt(productId);
+			Product product = service.findProductByID(product_Id);
+			
+			
+			//將已購買商品加入訂單TABLE
+			String productName = product.getProduct_name();
+			double orderPrice = product.getProduct_price() * product.getProduct_discount();
+			ShoppingCart cart = service.findByProAndMemId(product_Id,memberId);
+			Integer ProductAmount = cart.getProductAmount();
+			
+			
+			OrderForm order = new OrderForm();
+			order.setOrderProductName(productName);
+			order.setOrderPrice(orderPrice);
+			order.setOrderMemberId(memberId);
+			order.setOrderCoupon(UUID.randomUUID()+""+memberId);
+			order.setOrderAmount(ProductAmount);
+			order.setOrderNumber(orderNumber);
+			
+			orderService.insertNewOrder(order);        //商品資訊加入訂單TABLE
+			service.deleteFromCart(product, member);   //結帳後刪除購物車內已購買物品
+			
+			
+			
+	    }
+		return "";
+		
+	}
+	
+	
+	
+	/**
+     * 獲取現在時間
+     * @return返回字串格式yyyyMMddHHmmss
+     */
+	  private String getStringDate() {
+		     Date currentTime = new Date();
+		     SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+		     String dateString = formatter.format(currentTime);
+		     System.out.println("TIME:::"+dateString);
+		     return dateString;
+		  }
+	  /**
+	   * 由年月日時分秒+3位隨機數
+	   * 生成流水號
+	   * @return
+	   */
+	  private String Getnum(){
+		  String t = getStringDate();
+		  int x=(int)(Math.random()*900)+100;
+		  String serial = t + x;
+		  return serial;
+	  }
+	  
 
+	
 }
