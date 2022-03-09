@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.http.MediaType;
@@ -58,10 +59,9 @@ public class ReviewerSettingController {
 		Member memberData = (Member)hs.getAttribute("member");
 		Integer memberId = memberData.getId();
 		Member memberBean = memberService.findById(memberId);
+		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
 		
-		
-		
-//		mav.getModel().put("reviewerPage", reviewerBean);
+		mav.getModel().put("reviewerPage", reviewerBean);
 		mav.getModel().put("memberPage", memberBean);
 		mav.setViewName("/lemon/reviewerMainPage");
 		return mav;
@@ -72,17 +72,25 @@ public class ReviewerSettingController {
 		Member memberData = (Member)hs.getAttribute("member");
 		Integer memberId = memberData.getId();
 		Member memberBean = memberService.findById(memberId);
+		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
 		
+		mav.getModel().put("reviewerPage", reviewerBean);
 		mav.getModel().put("memberPage", memberBean);
 		mav.setViewName("/lemon/reviewerPageIntro");
 		return mav;
 	}
 	
 	@GetMapping("/setReviewerPage")
-	public ModelAndView setReviewerPage(ModelAndView mav) {
+	public ModelAndView setReviewerPage(ModelAndView mav,HttpSession hs) {
+		Member memberData = (Member)hs.getAttribute("member");
+		Integer memberId = memberData.getId();
 		mav.setViewName("/lemon/setReviewerPage");
 		ReviewerSetting rvwrs = new ReviewerSetting();
+		ReviewerSetting preview = new ReviewerSetting();
+		preview = rsr.findByMember(memberId);
 		mav.getModel().put("rvwrSet", rvwrs);
+		mav.getModel().put("preview", preview);
+		
 		return mav;
 	}
 	
@@ -91,35 +99,18 @@ public class ReviewerSettingController {
 		return "/lemon/reviewerIttaomise";
 	}
 	
+	
 	@PostMapping(value="/setReviewerPage")
 	public ModelAndView postSetting(ModelAndView mav,@ModelAttribute ReviewerSetting rvwrs) {
 		
 		Integer memberId = service.checkMemberId();
-		
-//		rsr.deletequeryMemberId(memberId);
-	
 		Integer queryId = rsr.queryMemberId(memberId);
-		
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println(memberId);
-		System.out.println(queryId+"O_O");
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		
+		rsr.deletequeryMemberId(memberId);
 		if(queryId==null) {
 			MultipartFile coverImage = rvwrs.getCoverImage();
 			String originalFilename = coverImage.getOriginalFilename();
 			rvwrs.setReviewer_cover_filename(originalFilename);
-			if(coverImage !=null && !coverImage.isEmpty()) {
-				try {
-					byte[] b = coverImage.getBytes();
-					Blob blob = new SerialBlob(b);
-					rvwrs.setReviewer_cover(blob);
-				} catch(Exception e) {
-					e.printStackTrace();
-					throw new RuntimeException("上傳異常"+e.getMessage());
-				}
-			}
-			
+				
 			service.insert(rvwrs);
 			
 			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
@@ -127,7 +118,7 @@ public class ReviewerSettingController {
 			try {
 				File imageFolder = new File(rootDirectory,"imgLemon");
 				if(!imageFolder.exists())imageFolder.mkdir();
-				File file = new File(imageFolder,rvwrs.getMember()+ext);
+				File file = new File(imageFolder,originalFilename);
 				coverImage.transferTo(file);
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -136,46 +127,12 @@ public class ReviewerSettingController {
 			
 		} else {
 			
-			
-			
-			
-			rsr.updateTitle(memberId, rvwrs.getReviewer_title());
-			rsr.updateSubTitle(memberId, rvwrs.getReviewer_subtitle());
-			rsr.updateIntro(memberId, rvwrs.getReviewer_intro());
-			rsr.updateCamera(memberId, rvwrs.getReviewer_camera());
-			rsr.updateOccupation(memberId, rvwrs.getReviewer_occupation());
-//			
-//			MultipartFile coverImage = rvwrs.getCoverImage();
-//			String originalFilename = coverImage.getOriginalFilename();
-//			rvwrs.setReviewer_cover_filename(originalFilename);
-//			
-//			if(coverImage !=null && !coverImage.isEmpty()) {
-//				try {
-//					byte[] b = coverImage.getBytes();
-//					Blob blob = new SerialBlob(b);
-//					rvwrs.setReviewer_cover(blob);
-//					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
-//					System.out.println(rvwrs.getReviewer_cover().getBinaryStream());
-//					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~");
-//				} catch(Exception e) {
-//					e.printStackTrace();
-//					throw new RuntimeException("上傳異常"+e.getMessage());
-//				}
-//			}
-//			
-//			rsr.updateReviewer_cover(memberId, rvwrs.getReviewer_cover());
-//			
-//			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
-//			String rootDirectory = servletContext.getRealPath("/");
-//			try {
-//				File imageFolder = new File(rootDirectory,"imgLemon");
-//				if(!imageFolder.exists())imageFolder.mkdir();
-//				File file = new File(imageFolder,rvwrs.getMember()+ext);
-//				coverImage.transferTo(file);
-//			} catch(Exception e) {
-//				e.printStackTrace();
-//				throw new RuntimeException("上傳異常"+e.getMessage());
-//			}
+//			rsr.updateTitle(memberId, rvwrs.getReviewer_title());
+//			rsr.updateSubTitle(memberId, rvwrs.getReviewer_subtitle());
+//			rsr.updateIntro(memberId, rvwrs.getReviewer_intro());
+//			rsr.updateCamera(memberId, rvwrs.getReviewer_camera());
+//			rsr.updateOccupation(memberId, rvwrs.getReviewer_occupation());
+			rsr.updateReviewer_filename(memberId, rvwrs.getReviewer_cover_filename());
 		}
 
 		mav.setViewName("redirect:/reviewerMainPage/");
@@ -185,30 +142,48 @@ public class ReviewerSettingController {
 	
 	@GetMapping("/getPictureLemon/{memberId}")
 	public ResponseEntity<byte[]> getPicture(HttpServletResponse resp, @PathVariable Integer memberId){
-		String filePath = "/imgLemon/NoImage.jpg";
+		String filePath = "imgLemon/NoImage.jpg";
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
 		String filename="";
 		Integer len = 0;
-		ReviewerSetting rvwrs = rsr.findByMember(memberId);
-		if(rvwrs!=null) {
-			Blob blob = rvwrs.getReviewer_cover();
-			filename = rvwrs.getReviewer_cover_filename();
-			if(blob!=null) {
-				try {
-					len = (int)blob.length();
-					media = blob.getBytes(1, len);
-				} catch(SQLException e) {
-					throw new RuntimeException("ReviewerConroller / getpicture出問題"+e.getMessage());
-				}
-			} else {
-				media = toByteArray(filePath);
-				filename = filePath;
-			}
+		String cover_filename = rsr.fileNamequeryMemberId(memberId);
+		
+		System.out.println("~~~~~~~~~~~~file name~~~~~~~~"+cover_filename);
+		System.out.println("~~~~~~~~~~~~file path~~~~~~~~"+filePath);
+		
+		if(cover_filename != null) {
+			filePath = "imgLemon/"+cover_filename;
+			media = toByteArray(filePath);
+			filename = filePath;
+			System.out.println("~~~~~~~~~~~~if true file name~~~~~~~~"+filename);
+			System.out.println("~~~~~~~~~~~~if true file path~~~~~~~~"+filePath);	
 		} else {
 			media = toByteArray(filePath);
 			filename = filePath;
+			System.out.println("~~~~~~~~~~~~if false file name~~~~~~~~"+filename);
+			System.out.println("~~~~~~~~~~~~if false file path~~~~~~~~"+filePath);
 		}
+		
+//		if(rvwrs!=null) {
+//			Blob blob = rvwrs.getReviewer_cover();
+//			filename = rvwrs.getReviewer_cover_filename();
+//			if(blob!=null) {
+//				try {
+//					len = (int)blob.length();
+//					media = blob.getBytes(1, len);
+//				} catch(SQLException e) {
+//					throw new RuntimeException("ReviewerConroller / getpicture出問題"+e.getMessage());
+//				}
+//			} else {
+//				media = toByteArray(filePath);
+//				filename = filePath;
+//			}
+//		} else {
+//			media = toByteArray(filePath);
+//			filename = filePath;
+//		}
+	
 			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 			String mimeType = servletContext.getMimeType(filename);
 			MediaType mediaType = MediaType.valueOf(mimeType);
