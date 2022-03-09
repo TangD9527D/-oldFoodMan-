@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.oldFoodMan.demo.security.oauth.MemberOAuth2UserService;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
 
 @Configuration
@@ -53,11 +52,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 
 		 http.authorizeRequests()
-		 .antMatchers("/oauth2/**").permitAll()
          .anyRequest().permitAll()
          .and()
          .formLogin()
-         	.permitAll()
          	.loginProcessingUrl("/j_spring_security_check")
          	.loginPage("/login")
          	.defaultSuccessUrl("/main")
@@ -67,34 +64,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          .and()
          .oauth2Login()
 		 	.loginPage("/login")
-		 	.defaultSuccessUrl("/main")
-		 	.failureUrl("/login?error=true")
-		 	.userInfoEndpoint().userService(oAuth2UserService)
-		 	.and()
+		 	.defaultSuccessUrl("/google")
 		 .and()
 		 .logout()// Config for Logout Page
 		 .permitAll()
 		 .logoutSuccessUrl("/");//登出成功時導向頁面
 		 
-		//配置登入表單
-//		http.authorizeRequests()
-//				.and()
-//				// Submit URL of login page
-//				.formLogin()
-//				.loginProcessingUrl("/j_spring_security_check")
-//				.loginPage("/login")
-//				.defaultSuccessUrl("/")//登入成功時所導向的網頁 ("/",true) 強制成功
-//				.failureUrl("/login?error=true")//登入錯誤時所導向的頁面
-//				.usernameParameter("account")//
-//				.passwordParameter("password")
-//				.and()
-//				.logout()// Config for Logout Page
-//				.logoutUrl("/j_spring_security_logout")
-//				.logoutSuccessUrl("/");//登出成功時導向頁面
-//
 	}
 	
-	@Autowired
-	private MemberOAuth2UserService oAuth2UserService;
-
 }

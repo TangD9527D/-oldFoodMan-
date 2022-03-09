@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.MemberRepository;
+import com.oldFoodMan.demo.model.Provider;
 import com.oldFoodMan.demo.model.Role;
 import com.oldFoodMan.demo.model.RoleRepository;
 import com.oldFoodMan.demo.model.UserRole;
@@ -115,4 +116,17 @@ public class MemberServiceImpl implements UserDetailsService {
 		
 		return null;
 	}
+	
+	public void processOAuthPostLogin(String username) {
+        Optional<Member> existUser = memberDao.findByAccount(username);
+        Member member = existUser.get();
+        if (member == null) {
+            Member newUser = new Member();
+            newUser.setMemberName(username);
+            newUser.setAuthProvider(Provider.GOOGLE);          
+             
+            memberDao.save(newUser);        
+        }
+         
+    }
 }

@@ -105,10 +105,6 @@
 							<label class="lab">密碼:&nbsp;</label> <input type="password"
 								id="pwd" name="password">
 						</div>
-						<!-- /login?error=true -->
-						<c:if test="${param.error == 'true'}">
-							<span class="login_fail">Login Failed!!!</span>
-						</c:if>
 						<br>
 						<div class="under_13">
 							<span id="new_account"> <a
@@ -116,8 +112,7 @@
 							<!-- Button trigger modal -->
 							<button type="button" class="btn btn-primary" data-toggle="modal"
 								data-target="#exampleModal">新增帳號</button>
-							<span id="log_in"> 
-							<a href="${contextRoot}/newAccount">新增帳號</a>
+							<span id="log_in"> <a href="${contextRoot}/newAccount">新增帳號</a>
 							</span>&emsp;&emsp;<span id="log_in">
 								<button name="submit" type="submit" value="submit"
 									class="btn btn-primary">登入</button>
@@ -137,7 +132,33 @@
 									</button>
 								</div>
 								<div class="modal-body">
-								
+									<fieldset class="field_13">
+										<legend> 新增帳號 </legend>
+										<form:form class="form" action="${contextRoot}/newMember"
+											modelAttribute="member" method="post">
+											<div class="newPwd_13">
+												<form:label class="la1" path="memberName">姓名:&nbsp;</form:label>
+												<form:input type="text" id="names" class="inPut"
+													name="names" path="memberName" />
+												<p class="txtP">&nbsp;</p>
+											</div>
+											<div class="newAccount_13">
+												<form:label class="la1" path="account">帳號(email):&nbsp;</form:label>
+												<form:input type="text" id="account" class="inPut"
+													name="account" path="account" />
+												<p class="txtP">&nbsp;</p>
+											</div>
+											<div class="newPwd_13">
+												<form:label class="la1" path="memberPwd">密碼:&nbsp;</form:label>
+												<form:input type="password" id="pwd" class="inPut"
+													name="pwd" path="memberPwd" />
+												<p class="txtP">&nbsp;</p>
+											</div>
+											<div class="sub">
+												<input name="submit" type="submit" value="送出" class="inPut">
+											</div>
+										</form:form>
+									</fieldset>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
