@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +24,6 @@ import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.Product;
 import com.oldFoodMan.demo.model.ShoppingCart;
 import com.oldFoodMan.demo.service.ShoppingCartService;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 @Controller
 public class ShoppingCartController {
@@ -147,9 +146,9 @@ public class ShoppingCartController {
 	public String deleteSelected(@RequestBody String jsonPara, HttpSession session) {
 		Member member = (Member) session.getAttribute("member");
 		  //使用JSONArrayt處理json字符串
-		JSONArray jsonArr = JSONArray.fromObject(jsonPara);
+		JSONArray jsonArr = new JSONArray(jsonPara);
 		String productId = "";
-		for (int i = 0; i < jsonArr.size(); i++) {
+		for (int i = 0; i < jsonArr.length(); i++) {
 			JSONObject jsonObject = (JSONObject) jsonArr.get(i);
 			productId = jsonObject.getString("productId");
 			System.out.println("productId:" + productId);
@@ -169,9 +168,9 @@ public class ShoppingCartController {
 		List<ShoppingCart> carts = new LinkedList<ShoppingCart>();
 		
 		  //使用JSONArrayt處理json字符串
-		JSONArray jsonArr = JSONArray.fromObject(jsonPara);
+		JSONArray jsonArr = new JSONArray(jsonPara);
 		String productId = "";
-		for (int i = 0; i < jsonArr.size(); i++) {
+		for (int i = 0; i < jsonArr.length(); i++) {
 			JSONObject jsonObject = (JSONObject) jsonArr.get(i);
 			productId = jsonObject.getString("productId");
 			System.out.println("productId:" + productId);
