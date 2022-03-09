@@ -779,16 +779,18 @@ var tdate=new Date();
 			}
 		});
 	
-// 	document.getElementById("testii").addEventListener("click",function(){
+	
+	
+	document.getElementById("testii").onclick = function(){
 		
-// 		Swal.fire(
-// 				  '新增成功',
-// 				  '返回頁面',
-// 				  'success'
-// 				)
+		Swal.fire(
+				  '新增成功',
+				  '返回頁面',
+				  'success'
+				)
 		
 		
-// 	});
+	};
 	
 </script>
 

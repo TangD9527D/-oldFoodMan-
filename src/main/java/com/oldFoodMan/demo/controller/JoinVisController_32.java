@@ -51,17 +51,13 @@ public class JoinVisController_32 {
 	@PostMapping("/addjoinvis/{vis_id}")
 	public ModelAndView addVis(ModelAndView mav,@PathVariable Integer vis_id,JoinVis joinvis, HttpSession hs){
 		Member member = (Member)hs.getAttribute("member");
-		
-		
-		System.out.println("idvis: "+vis_id);
+
 
 		OldFoodManBean ofmvis=ofmservice.findById(vis_id);
 		
-		
-		System.out.println("第二個 條件:"+joinvis);
-		
-		System.out.println("第三個 :"+ofmvis);
-
+	//		JoinVis jv=jvservice.selectCountByVisId(vis_id);
+	//	
+	//		System.out.println("數量: "+jv);
 		jvservice.addJoinVis(joinvis,member,ofmvis); 
 
 		

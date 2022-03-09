@@ -97,8 +97,11 @@ public class JoinVisService {
 		return addDao.findByMyFoodVisId(myfoodvisid);
 	}
 	
-	
-	
+	public JoinVis selectCountByVisId(Integer id) {
+		return joinDao.findBymyfoodvisid(id);
+	}
+		
+
 	
 	
 	
