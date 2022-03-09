@@ -98,22 +98,43 @@ public class RecordMessagesController {
 		//修改留言(更新留言)
 		@ResponseBody  //從後端傳資料到前端AJAX
 		@PostMapping("/updateMsg/{id}")
-		public List<RecordMessages> updateMsg(HttpServletResponse resp,@PathVariable(name="id") Integer id,@RequestBody  RecordMessages editMsg ,HttpSession session) {	
+		public List<RecordMessages> updateMsg(HttpServletResponse resp,@PathVariable(name="id") Integer id) {	
 			RecordMessages msgId = msgService.findById(id);
 			String showBeforeText = msgId.getText();   //顯示之前的留言
 			System.out.println("目前的留言 = "+showBeforeText);  //在console中顯示之前的留言
-			
-			String msg = editMsg.getText();  //拿新輸入的留言
-			System.out.println("新輸入的留言 = "+msg);  //在console中顯示新輸入的留言
-			msgId.setText(msg); //存入新輸入的留言
-			
-			System.out.println("msgId = "+msgId);
-			msgService.insertMessage(msgId);
 			
 			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件
 			List<RecordMessages> list = msg_page.getContent();    //page物件需要用getContent()方法才能拿到List
 			
 			return list;
+		}
+		
+		//將新的留言存入資料庫
+		@ResponseBody
+		@PostMapping("/saveNewMsg/{id}")
+		public List<RecordMessages> updateMsg(@PathVariable(name="id") Integer id,@RequestBody RecordMessageDto editMsg, HttpSession session){
+			Member member = (Member)session.getAttribute("member");     //拿Member的Id
+			FoodRecord sessionRecordId = (FoodRecord)session.getAttribute("sessionRecordId"); //拿食記的Id
+					
+			RecordMessages saveId = msgService.findById(id);
+			System.out.println("留言Id的Bean = "+saveId);
+			
+			String inputNewMsg = editMsg.getMsg(); //拿到新寫入的留言
+			System.out.println("新寫進去的留言string = "+inputNewMsg);
+			saveId.setText(inputNewMsg);
+			saveId.setMember_id(member);
+			System.out.println("memberId = "+member);
+			saveId.setRecord_id(sessionRecordId);
+			System.out.println("食記Id = "+sessionRecordId);
+		
+			msgService.insertMessage(saveId);
+			System.out.println("新寫進去的留言bean = "+saveId);
+			
+			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件
+			List<RecordMessages> list = msg_page.getContent();    //page物件需要用getContent()方法才能拿到List
+			
+			return list;
+			
 		}
 
 		
