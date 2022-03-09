@@ -41,6 +41,7 @@
 					<li class="nav-item"><a class="nav-link" href="${contextRoot}/productsPage">餐券商城</a></li>
 					
 					<li class="nav-item"><a class="nav-link" href="${contextRoot}/shoppingCart">我的購物車</a></li>
+					<li class="nav-item"><a class="nav-link" href="${contextRoot}/myOrder">我的訂單</a></li>
 					<li class="nav-item"><a class="nav-link" href="${contextRoot}/productsBackStagePage">商城後台</a></li>
 						<li class="nav-item"><a class="nav-link"
 						href="${contextRoot}/createData">食記</a></li>

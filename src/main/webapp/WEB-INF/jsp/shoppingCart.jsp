@@ -174,17 +174,17 @@
 		        
 		        
 		        "language": {
-		            "lengthMenu": "顯示 _MENU_ 筆資料",
+		            "lengthMenu": "顯示 _MENU_ 筆商品",
 		            "sProcessing": "處理中...",
 		            "sZeroRecords": "没有匹配结果",
-		            "sInfo": "目前有 _MAX_ 筆資料",
-		            "sInfoEmpty": "目前共有 0 筆紀錄",
+		            "sInfo": "目前有 _MAX_ 筆商品",
+		            "sInfoEmpty": "目前共有 0 筆商品",
 		            "sInfoFiltered": " ",
 		            "sInfoPostFix": "",
 		            "sSearch": "搜尋:",
 		            "sUrl": "",
-		            "sEmptyTable": "尚未有資料紀錄存在",
-		            "sLoadingRecords": "載入資料中...",
+		            "sEmptyTable": "尚未有商品",
+		            "sLoadingRecords": "載入商品中...",
 		            "sInfoThousands": ",",
 		            "oPaginate": {
 		                "sFirst": "首頁",
@@ -310,18 +310,14 @@
 			var buyArr = [];
 			var buyRow = [];
 			let checkboxes = document.querySelectorAll("[name=checkbox]");
-			console.log(checkboxes);
-			if(checkboxes == []){
-				console.log("test")
-			}
-			
 			for (var i = 0; i < checkboxes.length; i++) {
 				if (checkboxes[i].checked === true) {
 
-					var str = (checkboxes[i].id).substring(8, 10);
+					var str = (checkboxes[i].id).substring(8, 15);
+					
 					
 					buyArr.push({"productId":str}); //要準備轉JSON
-		            
+					
 					buyRow.push(str); //用來刪除多筆的陣列
 					
 				}
@@ -343,15 +339,16 @@
                 	var msg_num = 0;
                 	$.each(data,function(index,value){
                 		
-
-                        msg_data += '<tr><td>' + value.productId.product_name + '</td>';
+                        msg_data += '<tr><td>' + value.productId.product_name + '<input type="hidden" value="' + value.productId.product_id + '" id="confirmProductId" /></td>';
                         msg_data += '<td><img src="' + value.productId.product_image + '" width="50"/></td>';
                         msg_data += '<td>' + Number(value.productId.product_discount)*100 + '%</td>';
                         msg_data += '<td>' + value.productId.product_price + '</td>';
                         msg_data += '<td>' + value.productAmount + '</td>';
                         msg_data += '<td>' + Number(value.productAmount)* (Number(value.productId.product_price)*Number(value.productId.product_discount)) + '</td></tr>';
                         
-                        msg_totalPrice += Number(value.productAmount)* Number(value.productId.product_price);
+                        
+                        
+                        msg_totalPrice += Number(value.productAmount)* (Number(value.productId.product_price)*Number(value.productId.product_discount));
                         msg_num = Number(index);
                 	})
                 	$('#appendTbody').append(msg_data);
@@ -364,18 +361,36 @@
 		
 		//按下確認結帳
 		$('#Btn_buy').click(function(){
-			$()
-			/*
+			var buyArr = [];
+			var dtRow = [];
+			let tests = document.querySelectorAll("[id=confirmProductId]");
+			console.log(tests);
+			
+			for (var i = 0; i < tests.length; i++) {
+				
+					var str = (tests[i].value);
+					
+					buyArr.push({"productId":str}); //要準備轉JSON
+		            
+					dtRow.push(str); //用來刪除已結帳物品的陣列
+				}
+			
+			var dtoJsonString = JSON.stringify(buyArr); //轉Json
+			console.log(dtoJsonString);
+			
 			$.ajax({
-				url:'http://localhost:8080/oldFoodMan/Cart/comfirmBuy',
+				url:'http://localhost:8080/oldFoodMan/Cart/confirmBuy',
                 contentType: 'application/json;charset=UTF-8',
                 method: 'post',
                 data: dtoJsonString,
                 success:function(data){
-				
+                	$.each(dtRow, function(index, value) {
+                		deleteRow = $('#checkbox'+value).closest('tr');
+                		$("#tableAjax2").DataTable().row(deleteRow).remove().draw(false);
+                	});
+                	alert("已結帳完成!餐券將於3~5分鐘寄至您於本站註冊之會員信箱!")
                 }
 			})
-			*/
 		})
 			
 		

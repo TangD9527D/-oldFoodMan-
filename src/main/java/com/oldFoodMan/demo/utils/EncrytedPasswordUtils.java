@@ -16,7 +16,7 @@ public class EncrytedPasswordUtils {
 		
 		String email = "tang8797@gmail.com";
 		
-		String message = "http://localhost:8080/oldFoodMan\reSetPassword?"+ email;
+		String message = "<html><body><a href=\"http://localhost:8080/oldFoodMan/resetPassword/" + 2 + "\">哈哈</a></body></html>";
 
 		System.out.println("Encryted Password: " + encrytedPassword);
 		System.out.println(message);
