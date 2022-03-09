@@ -294,15 +294,15 @@
                 </div>
                 <div class="person-reviewer-cover-image">
                     <div class="oldcrop-frame" style="overflow: hidden; position: relative; width: 980px; height: 340px;">
-                        <img class="crop-img js-crop-img oldcrop-image" data-width="980" data-top="-108" data-left="0" style="position:absolute; width:980px; left:0px; top:-108px; opacity: 0.1;" alt="reviewer's cover image"
-                        src="imgLemon/無留手02.jpg">
+                        <img class="crop-img js-crop-img oldcrop-image" data-width:="980" data-top="-108" data-left="0" style="position:absolute; width:980px; left:0px; top:-108px; opacity: 1;" alt="reviewer's cover image"
+                        src="<c:url value='/getPictureLemon/${memberPage.id}' />">
                         <!-- image size=1470*981 -->
                     </div>
                 </div>
             </div>
             <div id="page-info" class="header-cover--info js-page-info">
-                <p class="page-name">Alice's Tea Party</p>
-                <p class="page-sub-title">Just a cafe lover</p>
+                <p class="page-name"><c:out value="${reviewerPage.reviewer_title}"/></p>
+                <p class="page-sub-title"><c:out value="${reviewerPage.reviewer_subtitle}"/></p>
             </div>
             <div class="header-cover__actions">
                 <div class="reviewer-action-btns">
@@ -320,10 +320,11 @@
                     <div class="reviewer-action-btns__block">
                         <div class="reviewer-block-btn">
                         	<a href="${contextRoot}/setReviewerPage">
-	                            <p class="js-main-block-btn c-btn reviewer-block-btn__target">
-	                                <span class="c-btn__text">s</span>
-	                            </p>
+                            <p class="js-main-block-btn c-btn reviewer-block-btn__target">
+                                <span class="c-btn__text">s</span>
+                            </p>
                             </a>
+                            <div></div>
                         </div>
                     </div>
                 </div>
@@ -333,9 +334,12 @@
             <div class="header-contents__img-wrap">
                 <div class="header-contents__img header-contents__img--l">
                     <div id="reviewer-image" class="reviewer-image-box reviewer-image-box--1 js-reviewer-image js-upload-icon-image">
-                        <a href="${contextRoot}/reviewerMainPage/${memberPage.account}">
-                            <img alt src="<c:out value="${memberPage.memberName}"/>" width="120" height="120">
-                        </a>
+                        <div id="js-reviewer-image-display">
+                            <img src="<c:url value='/getPhoto/${memberPage.id}' />" width="120" height="120">
+                        </div>
+                            <a class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;" href="#">
+                            <button class="c-btn c-btn--s reviewer-image-box__reimage-btn">變更</button>
+                            </a>
                     </div>
                 </div>
             </div>
@@ -343,18 +347,18 @@
                 <div class="reviewer-status reviewer-status--top">
                     <p class="reviewer-status__item">
                         <span class="reviewer-status__nickname">
-                            <strong class="reviewer-nickname fs18">斉藤アリス</strong>
+                            <strong class="reviewer-nickname fs18"><c:out value="${memberPage.memberName}"/></strong>
                         </span>
                         <span class="reviewer-status__attr">(30歲出頭-女性-花蓮縣)</span>
                     </p>
-                    <p class="reviewer-status__occupation">model & writer</p>
+                    <p class="reviewer-status__occupation"><c:out value="${reviewerPage.reviewer_occupation}"/></p>
                 </div>
                 <div class="comment-prof">
                     <span class="comment-prof__body">
-                        "出生於花蓮,三歲開始在七星潭..."
+                        <c:out value="${reviewerPage.reviewer_intro}"/>
                     </span>
                     <span class="comment-prof__more">
-                        <a class="c-link-arrow" href="">
+                        <a class="c-link-arrow" href="${contextRoot}/reviewerPageIntro">
                             "read more"
                         </a>
                     </span>
@@ -364,7 +368,7 @@
                 <div class="reviewer-counter">
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject">
-                            <span class="reviewer-counter__label">ロコミ数</span>
+                            <span class="reviewer-counter__label">喜好店家</span>
                             <span class="c-icon-help c-icon-help--dark">
                                 <span class="c-icon-help__btn">?</span>
                                 <span class="c-icon-help__tooltip-frame reviewer-counter__help">
@@ -382,7 +386,7 @@
                     </dl>
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject reviewer-counter__subject--photo">
-                            <span class="reviewer-counter__label">写真</span>
+                            <span class="reviewer-counter__label">照片</span>
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
@@ -395,7 +399,7 @@
                     </dl>
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject reviewer-counter__subject--visitor">
-                            <span class="reviewer-counter__label">訪問者数</span>
+                            <span class="reviewer-counter__label">瀏覽次數</span>
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
@@ -406,7 +410,7 @@
                     </dl>
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject reviewer-counter__subject--visitor">
-                            <span class="reviewer-counter__label">いいね!</span>
+                            <span class="reviewer-counter__label">讚!</span>
                             <span class="c-icon-help c-icon-help--dark">
                                 <span class="c-icon-help__btn">?</span>
                                 <span class="c-icon-help__tooltip-frame reviewer-counter__help">
@@ -428,9 +432,9 @@
         <div class="reviewer-navi reviewer-navi--l">
             <ul class="reviewer-navi__list">
                 <li class="reviewer-navi__item reviewer-navi__item--log is-selected">
-                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerMainPage">
+                    <a class="reviewer-navi__target" href="#">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__menu reviewer-navi__menu--top">トップ</span>
+                            <span class="reviewer-navi__menu reviewer-navi__menu--top">首頁</span>
                         </span>
                     </a>
                 </li>
@@ -438,7 +442,7 @@
                     <a class="reviewer-navi__target" href="#">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">1478</span>
-                            <span class="reviewer-navi__menu">have been to</span>
+                            <span class="reviewer-navi__menu">拜訪店家</span>
                         </span>
                     </a>
                 </li>
@@ -446,7 +450,7 @@
                     <a class="reviewer-navi__target" href="#">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">156</span>
-                            <span class="reviewer-navi__menu">favorite</span>
+                            <span class="reviewer-navi__menu">喜愛店家</span>
                         </span>
                     </a>
                 </li>
@@ -454,7 +458,7 @@
                     <div class="reviewer-navi__target">
                         <sapn class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">0</span>
-                            <span class="reviewer-navi__menu">brief</span>
+                            <span class="reviewer-navi__menu">小口袋</span>
                         </sapn>
                     </div>
                 </li>
@@ -462,7 +466,7 @@
                     <a class="reviewer-navi__target" href="#">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">62</span>
-                            <span class="reviewer-navi__menu">following</span>
+                            <span class="reviewer-navi__menu">追蹤</span>
                         </span>
                     </a>
                 </li>
@@ -470,7 +474,7 @@
                     <a class="reviewer-navi__target" href="#">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">22157</span>
-                            <span class="reviewer-navi__menu">follower</span>
+                            <span class="reviewer-navi__menu">追隨者</span>
                         </span>
                     </a>
                 </li>
@@ -480,7 +484,6 @@
 </div>   
 
 <!--header end-->
-
 
 
 
@@ -504,7 +507,11 @@
                     </div>
                 </div>
             </div>
-            <p class="comment-prof"></p>
+            <p class="comment-prof">
+            
+            <c:out value="${reviewerPage.reviewer_intro}"/>
+            
+            </p>
             <div class="rvwrprof-rvwr-medal" style="display: none;"></div>
             <div class="rvwr-heading1 rvwr-heading1--prof" >
                 <h2 class="rvwr-heading1__title">Ranking Preference</h2>
@@ -526,7 +533,7 @@
                                         件]
                                     </p>
                                     <p class="bar">
-                                        <img width="0%" height="12" src="#">
+                                        <img width="70%" height="12" src="${contextRoot}/imgLemon/rating_border.gif">
                                     </p>
                                 </li>
                                 <li class="clearfix">

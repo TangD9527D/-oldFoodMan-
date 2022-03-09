@@ -13,6 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SettingMyPage</title>
+    <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
     <style>
         #container{
             position: relative;
@@ -325,7 +326,7 @@
                             </th>
                             <td>
                             	<p class="u-text-notice setting-notice fs11"> ※設定背景圖片 </p>
-                                <form:input id="coverImage" path="coverImage" type="file" />
+                                <form:input name="coverImage" id="coverImage" path="coverImage" type="file" />
                             </td>
                         </tr>
                         <tr>
@@ -337,10 +338,10 @@
                             </th>
                             <td>
                                 <p class="u-text-notice setting-notice fs11">
-                                    設定個人頁面標題
+                                    設定個人頁面標題 
                                 </p>
                                 <p>
-                                    <form:input class="c-textfield c-textfield--full js-user-mypage-title" maxlength="100" size="100" type="text" value="塔奇克馬風格" name="user_view[my_page_name]" id="user_view_my_page_name" path="reviewer_title" />
+                                    <form:input class="c-textfield c-textfield--full js-user-mypage-title" maxlength="100" size="100" type="text" name="user_view[my_page_name]" id="user_view_my_page_name" path="reviewer_title" />
                                 </p>
                             </td>
                         </tr>
@@ -369,7 +370,7 @@
                                 <p class="u-text-notice setting-notice fs11">
                                     顯示在自己老食評論頁面的個人檔案
                                 </p>
-                                <form:textarea name="editor1" id="intro" path="reviewer_intro" class="c-textfield c-textfield--full c-textfield--textarea" maxlength="250" rows="3" cols="47"></form:textarea>
+                                <form:textarea name="editor1" id="intro" path="reviewer_intro" class="c-textfield c-textfield--full c-textfield--textarea" maxlength="1000" rows="3" cols="47"></form:textarea>
                                   
                             </td>
                         </tr>
@@ -414,6 +415,16 @@
         </form:form>
     </div>
 </div> 
+
+<script>
+
+//var str = $('#user_view_my_page_name').val();
+//$('#txt').val("Set Lbl Value"); 
+//文字框，文字區域：
+//$("#text_id").attr("value",'');//清空內容
+$("#user_view_my_page_name").attr("value",'<c:out value="${preview.reviewer_title}" />');// 填充內容
+
+</script>
 
 </body>
 </html>

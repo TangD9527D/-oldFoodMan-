@@ -122,8 +122,8 @@
                 </div>
             </div>
             <div id="page-info" class="header-cover--info js-page-info">
-                <p class="page-name">奧格瑪美食指南</p>
-                <p class="page-sub-title">為了明天我們先吃飽飽</p>
+                <p class="page-name"><c:out value="${reviewerPage.reviewer_title}"/></p>
+                <p class="page-sub-title"><c:out value="${reviewerPage.reviewer_subtitle}"/></p>
             </div>
             <div class="header-cover__actions">
                 <div class="reviewer-action-btns">
@@ -172,11 +172,11 @@
                         </span>
                         <span class="reviewer-status__attr">(30歲出頭-女性-花蓮縣)</span>
                     </p>
-                    <p class="reviewer-status__occupation">model & writer</p>
+                    <p class="reviewer-status__occupation"><c:out value="${reviewerPage.reviewer_occupation}"/></p>
                 </div>
                 <div class="comment-prof">
                     <span class="comment-prof__body">
-                        "出生於花蓮,三歲開始在七星潭..."
+                        <c:out value="${reviewerPage.reviewer_intro}"/>
                     </span>
                     <span class="comment-prof__more">
                         <a class="c-link-arrow" href="${contextRoot}/reviewerPageIntro">

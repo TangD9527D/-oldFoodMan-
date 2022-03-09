@@ -49,4 +49,8 @@ public class ReviewerSettingService {
 		return null;
 	}
 	
+//	public String getAgeByMember(Integer id ) {
+//		
+//	}
+	
 }

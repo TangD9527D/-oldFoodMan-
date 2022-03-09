@@ -43,13 +43,23 @@ public interface ReviewerSettingRepository extends JpaRepository<ReviewerSetting
 	@Query(value="update reviewer_setting set reviewer_cover=:cover where member_id=:id",nativeQuery = true)
 	public void updateReviewer_cover(@Param("id") Integer id,@Param("cover") Blob cover);
 	
+	@Transactional
+	@Modifying
+	@Query(value="update reviewer_setting set reviewer_cover_filename=:covername where member_id=:id",nativeQuery = true)
+	public void updateReviewer_filename(@Param("id") Integer id,@Param("covername") String covername);
+	
 	@Query(value="select * from reviewer_setting where member_id=:id",nativeQuery = true)
 	public ReviewerSetting findByMember(@Param(value="id") Integer id);
 	
 	@Query(value="select member_id from reviewer_setting where member_id=:id",nativeQuery = true)
 	public Integer queryMemberId(@Param(value="id") Integer id);
 	
+	@Transactional
+	@Modifying
 	@Query(value="delete from reviewer_setting where member_id=:id",nativeQuery = true)
 	public void deletequeryMemberId(@Param(value="id") Integer id);
+	
+	@Query(value="select reviewer_cover_filename from reviewer_setting where member_id=:id",nativeQuery = true)
+	public String fileNamequeryMemberId(@Param(value="id") Integer id);
 }
 
