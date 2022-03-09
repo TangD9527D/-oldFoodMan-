@@ -315,7 +315,7 @@
                 method: 'post',
                 data: dtoJsonString,
                 success:function(data){
-                	$('#ajaxToBuyTable').remove();
+                	$('#ajaxToBuyTable').empty();
                 	var msg_data = '';
                 	$.each(data,function(index,value){
                 		console.log(value);

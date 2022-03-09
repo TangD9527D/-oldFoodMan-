@@ -167,7 +167,7 @@ public class ShoppingCartController {
 		Integer memberId = member.getId();
 		List<ShoppingCart> carts = new LinkedList<ShoppingCart>();
 		
-		  //使用JSONArrayt處理json字符串
+		//使用JSONArrayt處理json字串
 		JSONArray jsonArr = new JSONArray(jsonPara);
 		String productId = "";
 		for (int i = 0; i < jsonArr.length(); i++) {
