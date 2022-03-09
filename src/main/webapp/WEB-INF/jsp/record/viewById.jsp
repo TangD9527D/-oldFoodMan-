@@ -222,10 +222,13 @@ width:500px;
 				<br>
 				<br>
 
+				<span style="background-color: yellow;" id="memberId"><c:out value="${foodrecordById.member_id.id}" /></span>
 				<button id="submitBtn" style="float: right; margin: 5px">發佈</button>
 				<input id="myMessage" style="width: 500px; border-color: lightgray; float: right; border-radius: 10px;"
 					placeholder="留言..."></input> <br>
 				<br>
+				
+				
 				
 		
 <!--  ---看留言---------------------------------------------------- -->	
@@ -237,11 +240,12 @@ width:500px;
 						<p id="editId" class="card-text">
 						<a class="btn btn-primary" id="deleteBtn"  onclick="return confirm('確認刪除?')" >刪除</a> 
 						<a class="btn btn-primary" id="editBtn">修改</a>
+<!-- 						<button style="visibility: visible" class="btn btn-primary" id="sendBtn">送出</button><br> -->
+						<button style="display: none" class="btn btn-primary" id="sendBtn">送出</button><br>
+						<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">
+						<br><c:out value="${msg.text}" />
 						<p id="msgId"><c:out value="${msg.id}" /></p><br>
-						<p id="memberId"><c:out value="${msg.member_id.id}" /></p><br>
-					    <c:out value="${msg.text}" />
 					    
-						
 						
 					</div>
 					</c:forEach>
@@ -271,8 +275,6 @@ width:500px;
 				var dtoJsonString = JSON.stringify(dtoObject); //將物件轉成JSON。用stringify才能將物件轉成JSON的字串
 								console.log("dtoJsonString = "+dtoJsonString);
 				var memberId = document.getElementById("memberId").innerText;
-				
-				
 								
 								
 
@@ -289,16 +291,19 @@ width:500px;
 					var msg_data = '';
 					$.each(result, function(index, value){     
 						
+						msg_data += '<div class="card">'
 						msg_data += '<div class="card-header">'
 						msg_data += '<span>'+"會員ID :"+memberId +'</span>'
 						msg_data += '<span style="float:right">'+"時間 : "+value.added +'</span>'+'</div>'
 						msg_data += '<p class="card-text">'
 						msg_data += '<a id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" class="btn btn-primary">'+'刪除'+'</a>'
+						msg_data += '<a class="btn btn-primary" id="editBtn">'+" 修改 "+'</a>'
 						msg_data += '<br>'+"會員ID:"+memberId
 						msg_data += '<br>'+"留言ID:"+value.id
 			            msg_data += '<br>'+value.text   
 			            msg_data += '</p>'
-			            msg_data += '<br>'	           
+			            msg_data += '<br>'	
+			            msg_data += '</div>'
 			        })
 						$('#ajaxMsg').append(msg_data)
 					},
@@ -336,6 +341,7 @@ width:500px;
 						msg_data += '<span style="float:right">'+"時間 : "+value.added +'</span>'+'</div>'
 						msg_data += '<p class="card-text">'
 						msg_data += '<a id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" class="btn btn-primary">'+'刪除'+'</a>'
+						msg_data += '<a class="btn btn-primary" id="editBtn">'+" 修改 "+'</a>'
 						msg_data += '<br>'+"會員ID:"+memberId
 						msg_data += '<br>'+"留言ID:"+value.id
 			            msg_data += '<br>'+value.text   
@@ -351,9 +357,9 @@ width:500px;
 				})
 			})
 			
-			//編輯留言
+			//編輯留言(先顯示出留言)
 			$('#editBtn').click(function(){
-				var inputText = document.getElementById('editId').innerText; //先抓到Input內的資料， 並給他一個變數
+				var inputText = document.getElementById('inputMsg').innerText; //先抓到Input內的資料， 並給他一個變數
 						console.log("inputText = "+inputText);
 				var editObject = {"message" : inputText} //將inputText放到一個物件內 {"Dto的Key": 值(就是前面的inputText)}，這時還是一個物件
 						console.log("editObject = "+editObject);
@@ -369,12 +375,13 @@ width:500px;
 				$.ajax({
 					url:'http://localhost:8080/oldFoodMan/updateMsg/'+msgId,
 					contentType:'application/json; charset=UTF-8', //送過去的格式
-					data:editJsonString, //送去server的資料
+					data: editJsonString, //送去server的資料
 					dataType:'JSON',//傳回前端的格式
 					method: 'post', //get or post
 					
-					success : function(){ //成功送到伺服器端後要做的事
-						alert('Hello');
+					success :function() {
+						$('#inputMsg').show()
+						$('#sendBtn').show()
 					},
 					error : function(err){  //發生錯誤時要做的事
 						console.log(err)
