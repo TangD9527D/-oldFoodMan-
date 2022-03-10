@@ -170,7 +170,7 @@
                         <span class="reviewer-status__nickname">
                             <strong class="reviewer-nickname fs18"><c:out value="${memberPage.memberName}"/></strong>
                         </span>
-                        <span class="reviewer-status__attr">(30歲出頭-女性-花蓮縣)</span>
+                        <span class="reviewer-status__attr">(${bdd}-<c:out value="${memberPage.city}"/>)</span>
                     </p>
                     <p class="reviewer-status__occupation"><c:out value="${reviewerPage.reviewer_occupation}"/></p>
                 </div>
@@ -180,7 +180,7 @@
                     </span>
                     <span class="comment-prof__more">
                         <a class="c-link-arrow" href="${contextRoot}/reviewerPageIntro">
-                            "read more"
+                            read more
                         </a>
                     </span>
                 </div>

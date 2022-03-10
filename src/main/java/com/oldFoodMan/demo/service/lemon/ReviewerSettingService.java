@@ -1,5 +1,8 @@
 package com.oldFoodMan.demo.service.lemon;
 
+
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,8 +52,51 @@ public class ReviewerSettingService {
 		return null;
 	}
 	
-//	public String getAgeByMember(Integer id ) {
-//		
-//	}
+	public String getAgeByMember(Date birthday) {
+		Calendar cal = Calendar.getInstance();
+		Calendar bir = Calendar.getInstance();
+		bir.setTime(birthday);
+		if(cal.before(birthday)) {
+			throw new IllegalArgumentException("The birthday is before Now,It's unbelievable");
+		}
+		Integer yearNow = cal.get(Calendar.YEAR);
+		Integer monthNow = cal.get(Calendar.MONTH);
+		Integer dayNow = cal.get(Calendar.DAY_OF_MONTH);
+		
+		Integer yearBirth = bir.get(Calendar.YEAR);
+		Integer monthBirth = bir.get(Calendar.MONTH);
+		Integer dayBirth = bir.get(Calendar.DAY_OF_MONTH);
+		
+		Integer age = yearNow-yearBirth;
+		if(monthNow<monthBirth||(monthNow==monthBirth && dayNow<dayBirth)) {
+			age--;
+		}
+		
+		String outputAge = "";
+		
+		Integer agee = age/10;
+		switch(agee) {
+		case 1:
+			outputAge = "十歲年代";
+			break;
+		case 2:
+			outputAge = "二十歲年代";
+			break;
+		case 3:
+			outputAge = "三十歲年代";
+			break;
+		case 4:
+			outputAge = "四十歲年代";
+			break;
+		case 5:
+			outputAge = "五十歲年代";
+			break;
+		default:
+			outputAge = "年齡是秘密";
+			break;
+		}
+		
+		return outputAge;
+	}
 	
 }
