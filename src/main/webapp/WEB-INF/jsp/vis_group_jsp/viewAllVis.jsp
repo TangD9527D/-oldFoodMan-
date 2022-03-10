@@ -43,8 +43,7 @@
                 <th>時間</th>
                 <th>店名</th>
                 <th>地址</th>
-                <th>人數</th>
-                <th>備註</th>
+
                 <th>操作</th>
             </tr>
         </thead>
@@ -57,14 +56,17 @@
                     <td class="table-light">${viewallvis.vis_time}</td>
                     <td class="table-light">${viewallvis.vis_res_name}</td>
                     <td class="table-light">${viewallvis.vis_location}</td>
-                    <td class="table-light">${viewallvis.vis_num}</td>
-                    <td class="table-light">${viewallvis.vis_condition}</td>
+
                         <td class="table-light"><a
-							href="${contextRoot}/editFoodVis?id=${viewallvis.vis_id}"><input
+							href="${contextRoot}/findOneVisdetail?id=${viewallvis.vis_id}"><input
+								type="submit" value="查看" class="btn btn-info"></a>
+							
+							<a href="${contextRoot}/editFoodVis?id=${viewallvis.vis_id}"><input
 								type="submit" value="編輯" class="btn btn-secondary"></a> <a
 							href="${contextRoot}/deleteFoodVis?id=${viewallvis.vis_id}"><input
 								type="submit" value="刪除" class="btn btn-danger"
 								onclick="return confirm('確定是否刪除？');"></a></td>
+
                             
             
             </tr>
