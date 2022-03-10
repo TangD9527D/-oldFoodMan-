@@ -38,6 +38,10 @@
       <li class="nav-item">
         <a class="nav-link" href="${contextRoot}/totalRecord">食記總表</a>
       </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="${contextRoot}/RecordManagement">食記後台</a>
+      </li>
 
    
     </ul>

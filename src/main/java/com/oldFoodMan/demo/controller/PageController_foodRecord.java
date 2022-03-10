@@ -56,6 +56,17 @@ public class PageController_foodRecord {
 		return mav;
 	}
 	
+	//食記管理page
+		@GetMapping("/RecordManagement")   //查詢全部的轉頁(第1頁)controler
+		public ModelAndView RecordManagement(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber) {
+			
+			mav.setViewName("record/RecordManagement");
+			Page<FoodRecord> page = service.findByPage(pageNumber);
+			
+			mav.getModel().put("page", page);
+			return mav;
+		}
+	
 	
 	//看剛寫好的食記
 	@GetMapping("/theLastestRecord")

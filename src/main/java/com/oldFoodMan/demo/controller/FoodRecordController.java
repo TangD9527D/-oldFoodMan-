@@ -212,7 +212,7 @@ public class FoodRecordController {
 	@GetMapping(value = "/deleteData")
 	public ModelAndView deleteRecord(ModelAndView mav, @RequestParam(name = "id") Integer id) {
 		service.deleteByID(id);
-		mav.setViewName("redirect:/totalRecord"); // redirect到viewMessages這個Controller
+		mav.setViewName("redirect:/RecordManagement"); // redirect到viewMessages這個Controller
 		return mav;
 	}
 	

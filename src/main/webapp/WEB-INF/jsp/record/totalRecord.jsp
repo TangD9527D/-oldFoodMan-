@@ -36,7 +36,7 @@
   <c:forEach var="foodRecord" items="${page.content}">  
     <tr>
     
-	  <td scope="row"><c:out value="${foodRecord.id}"/>
+	  <td scope="row">
 	  <td><a href="${contextRoot}/viewById?id=${foodRecord.id}"><c:out value="${foodRecord.title}"/></a>
       <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss EEEE" value="${foodRecord.added}" /></td>
 	  <td><c:out value="${foodRecord.shopName}"/>
