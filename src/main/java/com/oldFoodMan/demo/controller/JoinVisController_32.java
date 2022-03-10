@@ -65,16 +65,16 @@ public class JoinVisController_32 {
 		mav.setViewName("redirect:/ajaxFoodVis");
 		return mav;
 	}
-	
+	@ResponseBody
 	@GetMapping(value="deleteMyJoinVis")
-	public ModelAndView deleteMyJoinVis(ModelAndView mav,@RequestParam(name="member_id") Integer member_id,@RequestParam(name="my_food_vis_id") Integer my_food_vis_id) {
-	
+	public ModelAndView deleteMyJoinVis(ModelAndView mav ,@RequestParam(name="my_food_vis_id") Integer my_food_vis_id , HttpSession hs) {
+		Member member = (Member)hs.getAttribute("member");
 		System.out.println("看看有沒有: "+my_food_vis_id);
 		
-		
+		Integer member_id=member.getId();
 		jvservice.deleteJoinVis(member_id, my_food_vis_id);
 		
-		mav.setViewName("redirect:ajaxFoodVis");
+		mav.setViewName("redirect:/ajaxFoodVis");
 		return mav;
 	}
 	

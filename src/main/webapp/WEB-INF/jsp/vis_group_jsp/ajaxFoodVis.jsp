@@ -54,7 +54,7 @@ background-color: white;
     padding: 30px;
     box-shadow: 5px 5px 5px gray;
 	border-radius: 20px;
-    border:2px outset gray;
+    border:2px outset #FDE4DE;
 	
 }
 .div05_32 {
@@ -67,9 +67,18 @@ background-color: white;
     padding: 30px;
     box-shadow: 5px 5px 5px gray;
 	border-radius: 20px;
-    border:2px outset gray;
-	
+    border:2px outset #F5EDE4;
+	background-color:white;
 }
+
+.div05-2{
+height:40px;
+background-color:#FDE4DE;
+border-radius: 10px;
+text-align:center;
+margin-bottom:10px;
+}
+
 
 #myadd{
 width:90%;
@@ -141,6 +150,7 @@ text-align:center;
 font-size:20px;
 border:2px solid #8F4586;
 background:#8F4586;
+color:#B87070; 
 }
 .fc-unthemed td.fc-sat{
 /* background :#EBD6D6; */
@@ -158,7 +168,7 @@ color:#B87070;
 .testi{
 font-size:23px;
 color:gray;
-float:right;
+float:right;	
 margin-right:5px;
 
 }
@@ -185,11 +195,6 @@ font-weight:bolder;
 transform: scale(1.05);
 }
 
-.hover{
-
-}
-
-
 
 
 
@@ -214,6 +219,16 @@ color:#778899;
 text-decoration:none;
 }
 
+.btnadd{
+background-color:#FDE4DE;
+font-weight:bolder;
+
+}
+.pink{
+
+background-color:#FDE4DE;
+
+}
 
 </style>
 
@@ -279,7 +294,9 @@ text-decoration:none;
 		</div>
 		
 		<div  class="div05_32">
+		<div  class="div05-2">
 		<h2>${ofmid.memberName} 參加的揪團Eat</h2>
+		</div>
 		<div id="myadd">
 		
 		
@@ -288,9 +305,13 @@ text-decoration:none;
 
 
 		</div>
+		
 		</div>
 		<div  class="div05_32">
-		<h2>${ofmid.memberName} 發起的揪團Eat</h2>
+		 <div class="div05-2" >
+    		<h2>${ofmid.memberName} 發起的揪團Eat</h2>
+  		</div>
+	
 		<div id="myvis">
 		
 		
@@ -326,9 +347,9 @@ text-decoration:none;
 	<form:form class="form" action="${contextRoot}/ajaxFoodVis"
 							modelAttribute="ofmid" method="post" >
 							
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-9">
 			
-				<h4>舉辦者： ${ofmid.memberName}</h4> 
+				<h4>舉辦者：${ofmid.memberName}</h4> 
 
 			</div>					
 							
@@ -393,18 +414,18 @@ text-decoration:none;
 <section class="section">
 <!-- <div class="viewtable"> -->
 
-		<button type="button"  class="btn btn btn-info btn-lg" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
+		<button type="button"  class="btn btn  btn-lg btnadd" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
 		<p>
 		<c:forEach var="viewallvis" items="${page.content}">
 		<div id="table_id" class="card text-center">
-  		<h4 class="card-header text-white bg-dark">
+  		<h4 class="card-header text-dark pink">
     		${viewallvis.vis_res_name}
   		</h4>
   		<div class="card-body">
    		<h5 class="card-title"><i class="fa-regular fa-clock">${viewallvis.vis_date}&nbsp;&nbsp; ${viewallvis.vis_time}</i></h5>
    		
     	<p class="card-text"><i class="fa-solid fa-location-dot">${viewallvis.vis_location}</i></p>
-    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}" id="joinvis" class="btn btn-secondary">加入</a>
+    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}" id="joinvis" class="btn pink">加入</a>
   		</div>
   		<div class="card-footer text-muted">
     		建立時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
@@ -488,7 +509,7 @@ text-decoration:none;
 
 						</c:when>
 						<c:otherwise>
-							 <li class="page-item active"  aria-current="page"><span class="page-link"><c:out value="${pageNumber} " /></span></li>
+							 <li class="page-item active "  aria-current="page"><span class="page-link"><c:out value="${pageNumber} " /></span></li>
 						</c:otherwise>
 
 					</c:choose>
@@ -571,8 +592,9 @@ var tdate=new Date();
 											title : value.vis_res_name,
 											start : date,
 											url : visurl,
-											backgroundColor:"#deb887",
-											borderColor:"#deb887"
+											backgroundColor:"#FDE4DE",
+											borderColor:"#FDE4DE",
+											textColor: 'black'
 													});
 
 												});
@@ -613,7 +635,10 @@ var tdate=new Date();
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp2" style="background-color: #faf0e6; text-align: center">'+ value.vis_res_name +'</h3></a>'
 						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  + '</h5>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/deleteMyJoinVis?member_id='+value.member_id+'&my_food_vis_id='+value.vis_id+'"><i class="fa-regular fa-trash-can testii" id="testii"></i></a>'
+						msg_data+= '<a type="submit" id="deletemyjoin" value='+value.vis_id+' "><i class="fa-regular fa-trash-can testii" ></i></a>'
+						
+						
+// 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/deleteMyJoinVis?member_id='+value.member_id+'&my_food_vis_id='+value.vis_id+'"><i class="fa-regular fa-trash-can testii" id="testii"></i></a>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -781,16 +806,40 @@ var tdate=new Date();
 	
 	
 	
-	document.getElementById("testii").onclick = function(){
-		
-		Swal.fire(
-				  '新增成功',
-				  '返回頁面',
-				  'success'
-				)
-		
-		
-	};
+	$(document).on('click', '#deletemyjoin', function (){  //用一般的.click會有氣泡事件問題
+		var id = $(this).attr("value");
+
+		$.ajax({
+			type : "get",
+			url : "http://localhost:8080/oldFoodMan/deleteMyJoinVis?my_food_vis_id="+id,
+			success : function(data) {
+				Swal.fire({
+					  title: '確定刪除?',
+					  text: "",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Yes!'
+					}).then((result) => {
+					  if (result.isConfirmed) {
+					    Swal.fire({
+					    title:'已刪除!',
+					    text:'',
+					    icon:'success'
+					       
+					    }).then((result) => {
+							location.reload();
+						})
+					    
+					  }else{
+						  return ;
+					  }
+					})
+				
+			},
+		});
+	})
 	
 </script>
 
