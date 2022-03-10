@@ -216,5 +216,13 @@ public class FoodRecordController {
 		return mav;
 	}
 	
+	//模糊搜尋
+	@GetMapping(value = "/fuzzySearch")
+	public ModelAndView fuzzySearch(ModelAndView mav,@RequestParam(name = "member_id")Integer member_id) {
+		service.fuzzySearch(member_id);
+		System.out.println("執行模糊搜尋");
+		mav.setViewName("redirect:/RecordManagement");
+		return mav;
+	}
 }
 
