@@ -4,28 +4,25 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Blob;
-import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.http.MediaType;
 
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
@@ -58,9 +55,13 @@ public class ReviewerSettingController {
 	public ModelAndView reviewerMainPage(ModelAndView mav,HttpSession hs) {
 		Member memberData = (Member)hs.getAttribute("member");
 		Integer memberId = memberData.getId();
+		Date birthday = memberData.getBirth();
+		String bdd = service.getAgeByMember(birthday);
+		
 		Member memberBean = memberService.findById(memberId);
 		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
 		
+		mav.getModel().put("bdd", bdd);
 		mav.getModel().put("reviewerPage", reviewerBean);
 		mav.getModel().put("memberPage", memberBean);
 		mav.setViewName("/lemon/reviewerMainPage");
@@ -90,7 +91,7 @@ public class ReviewerSettingController {
 		preview = rsr.findByMember(memberId);
 		mav.getModel().put("rvwrSet", rvwrs);
 		mav.getModel().put("preview", preview);
-		
+		rsr.deletequeryMemberId(memberId);
 		return mav;
 	}
 	
@@ -105,7 +106,7 @@ public class ReviewerSettingController {
 		
 		Integer memberId = service.checkMemberId();
 		Integer queryId = rsr.queryMemberId(memberId);
-		rsr.deletequeryMemberId(memberId);
+		
 		if(queryId==null) {
 			MultipartFile coverImage = rvwrs.getCoverImage();
 			String originalFilename = coverImage.getOriginalFilename();
