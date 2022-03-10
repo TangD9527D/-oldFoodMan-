@@ -136,7 +136,7 @@ html, body {
 	font-weight: 300px;
 	color: black;
 	border-radius: 10px;
-	background: #bebab3;
+	background: #FDE4DE;
 	text-align: center;
 }
 
@@ -172,12 +172,14 @@ html, body {
 	border: 0.5px solid transparent;
 	text-align: justify;
 	width: 100%;
+	display:inline;
 }
 
 #range1 {
 	border: 0.5px solid transparent;
 	text-align: justify;
 	width: 100%;
+	
 }
 
 #p1 {
@@ -218,7 +220,7 @@ html, body {
 }
 
 #location {
-	border: 5px solid pink;
+	border: 5px solid #FDE4DE;
 	float: right;
 	width: 14%;
 	height: 50%;
@@ -310,7 +312,7 @@ html, body {
 						style="width: 250px; height: 220px" class="card-img-top" alt="...">
 					<div id="box" class="card-body">
 						<h3 id="p" class="card-title"
-							style="background-color: #bebab3; text-align: center">${maps.title}</h3>
+							style="background-color: #FDE4DE; text-align: center">${maps.title}</h3>
 						<h5 id="p" class="card-text">${maps.content}</h5>
 						<a
 							href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
