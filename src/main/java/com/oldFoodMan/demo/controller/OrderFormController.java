@@ -14,11 +14,9 @@ public class OrderFormController {
 	
 	private OrderFormService service;
 	
-//	@GetMapping("/myOrder")
-//	public String orderPage(Model model) {
-//		service.
-//		model.addAttribute("allProducts", products);
-//		return "myOrderPage";
-//	}
+	@GetMapping("/myOrder")
+	public String orderPage(Model model) {
+		return "myOrderPage";
+	}
 	
 }
