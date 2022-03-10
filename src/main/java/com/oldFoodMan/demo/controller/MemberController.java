@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,26 +40,18 @@ public class MemberController {
 	@Autowired
 	ServletContext servletContext;
 
+	@ResponseBody
 	@PostMapping("/newMember")
-	public ModelAndView newMember(ModelAndView mav, @Valid @ModelAttribute Member member, BindingResult rs) {
+	public void newMember(@RequestBody Member mb) {
 
-		if (!rs.hasErrors()) {
-			String memberPwd = member.getMemberPwd();
+			String memberPwd = mb.getMemberPwd();
 
 			String pwd = EncrytedPasswordUtils.encrytePassword(memberPwd);
 
-			member.setMemberPwd(pwd);
+			mb.setMemberPwd(pwd);
 
-			service.insert(member);
+			service.insert(mb);
 	
-			
-
-			mav.getModel().put("member", member);
-		}
-
-		mav.setViewName("maps");
-
-		return mav;
 	}
 
 	@GetMapping("/editMember")
