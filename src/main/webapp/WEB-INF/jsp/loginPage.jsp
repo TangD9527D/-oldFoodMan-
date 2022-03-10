@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="${contextRoot}/css/account.css">
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <link
 	href="https://fonts.googleapis.com/css2?family=Norican&display=swap"
@@ -17,7 +18,7 @@
 <script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 <style>
 .body_13 {
-	background-image: url("images/44737597.jpg");
+	background-color: #f8eae6;
 }
 
 .out_div_13 {
@@ -83,6 +84,16 @@
 	border-bottom: black 3.5px solid;
 	text-align: center;
 }
+
+.la2 {
+	width: 100px;
+	text-align: right;
+	float: left;
+}
+
+.modal-header {
+	background-color: #defaa2e8;
+}
 </style>
 </head>
 
@@ -105,6 +116,10 @@
 							<label class="lab">密碼:&nbsp;</label> <input type="password"
 								id="pwd" name="password">
 						</div>
+						<!-- /login?error=true -->
+						<c:if test="${param.error == 'true'}">
+							<span class="login_fail">Login Failed!!!</span>
+						</c:if>
 						<br>
 						<div class="under_13">
 							<span id="new_account"> <a
@@ -112,8 +127,7 @@
 							<!-- Button trigger modal -->
 							<button type="button" class="btn btn-primary" data-toggle="modal"
 								data-target="#exampleModal">新增帳號</button>
-							<span id="log_in"> <a href="${contextRoot}/newAccount">新增帳號</a>
-							</span>&emsp;&emsp;<span id="log_in">
+							&emsp;&emsp; <span id="log_in">
 								<button name="submit" type="submit" value="submit"
 									class="btn btn-primary">登入</button>
 							</span>
@@ -132,38 +146,30 @@
 									</button>
 								</div>
 								<div class="modal-body">
-									<fieldset class="field_13">
-										<legend> 新增帳號 </legend>
-										<form:form class="form" action="${contextRoot}/newMember"
-											modelAttribute="member" method="post">
-											<div class="newPwd_13">
-												<form:label class="la1" path="memberName">姓名:&nbsp;</form:label>
-												<form:input type="text" id="names" class="inPut"
-													name="names" path="memberName" />
-												<p class="txtP">&nbsp;</p>
-											</div>
-											<div class="newAccount_13">
-												<form:label class="la1" path="account">帳號(email):&nbsp;</form:label>
-												<form:input type="text" id="account" class="inPut"
-													name="account" path="account" />
-												<p class="txtP">&nbsp;</p>
-											</div>
-											<div class="newPwd_13">
-												<form:label class="la1" path="memberPwd">密碼:&nbsp;</form:label>
-												<form:input type="password" id="pwd" class="inPut"
-													name="pwd" path="memberPwd" />
-												<p class="txtP">&nbsp;</p>
-											</div>
-											<div class="sub">
-												<input name="submit" type="submit" value="送出" class="inPut">
-											</div>
-										</form:form>
-									</fieldset>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary"
-										data-dismiss="modal">關閉</button>
-									<button type="button" class="btn btn-primary">新增</button>
+									<form class="form">
+										<div class="newPwd_13">
+											<label class="la2">姓名:&nbsp;</label> <input type="text"
+												id="newName" class="inPut" name="names" />
+											<p class="txtP">&nbsp;</p>
+										</div>
+										<div class="newAccount_13">
+											<label class="la2">帳號(email):&nbsp;</label> <input
+												type="text" id="newAccount" class="inPut" name="account" />
+											<p class="txtP">&nbsp;</p>
+										</div>
+										<div class="newPwd_13">
+											<label class="la2">密碼:&nbsp;</label> <input type="password"
+												id="newPwd" class="inPut" name="pwd" />
+											<p class="txtP">&nbsp;</p>
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">關閉</button>
+											<button type="submit" type="submit" class="btn btn-primary"
+												data-dismiss="modal" id="newMbr">送出</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -178,6 +184,30 @@
 			</div>
 		</div>
 	</div>
-</body>
+	<script>
+		$(document).on('click', '#newMbr', function() {
 
+			var memberName = document.getElementById('newName').value;
+			var account = document.getElementById('newAccount').value;
+			var memberPwd = document.getElementById('newPwd').value;
+
+			var Object = {
+				"memberName" : memberName,
+				"account" : account,
+				"memberPwd" : memberPwd
+			}
+			var JsonString = JSON.stringify(Object);
+
+			$.ajax({
+				url : "http://localhost:8080/oldFoodMan/newMember",
+				contentType : "application/json; charset=UTF-8", // 送過去的格式
+				method : "post",
+				data : JsonString,
+				success : function() {
+				}
+
+			})
+		})
+	</script>
+</body>
 </html>

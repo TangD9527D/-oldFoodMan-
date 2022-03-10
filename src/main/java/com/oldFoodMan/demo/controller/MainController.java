@@ -46,16 +46,8 @@ public class MainController {
     }
 
 	@GetMapping(value = "/login")
-    public ModelAndView loginPage(ModelAndView mav) {
-		
-		Member mb = new Member();
-
-		mav.getModel().put("member", mb);
-		
-		
-		mav.setViewName("loginPage");
-		
-        return mav;
+    public String loginPage() {	
+        return "loginPage";
     }
 
 	@GetMapping(value = "/logout")
@@ -68,16 +60,7 @@ public class MainController {
         return "redirect:/";
     }
 
-//	@PostMapping(value = "/logout")
-//    public String logoutSuccessfulPages(HttpServletRequest request, HttpServletResponse response,Model model) {
-//		Authentication auth = SecurityContextHolder.getContext().getAuthentication();  
-//        if (auth != null){      
-//           new SecurityContextLogoutHandler().logout(request, response, auth);  
-//        }  
-//        model.addAttribute("title", "Logout");
-//        return "redirect:/";
-//    }
-	
+
 	@GetMapping(value = "/userInfo")
     public String userInfo(Model model, Principal principal) {
 
