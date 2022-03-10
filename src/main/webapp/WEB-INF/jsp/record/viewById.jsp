@@ -238,8 +238,8 @@ width:500px;
 											 <span style="float:right">時間 :<c:out value="${msg.added}" /></span></div>
 					<div class="card-body">
 						<p id="editId" class="card-text">
-						<a class="btn btn-primary" id="deleteBtn"  onclick="return confirm('確認刪除?')" >刪除</a> 
-						<a class="btn btn-primary" id="editBtn">修改</a>
+						<button class="btn btn-primary" id="deleteBtn"  onclick="return confirm('確認刪除?')" >刪除</button> 
+						<button class="btn btn-primary" id="editBtn">修改</button>
 						<button style="display: none" class="btn btn-primary" id="sendBtn">送出</button><br>
 						<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">
 						<br><c:out value="${msg.text}" />
@@ -253,6 +253,7 @@ width:500px;
 <!--  ---Ajax顯示留言---------------------------------------------------- -->
 				
 				<div id="ajaxMsg" class="card">	
+				
 				</div>
 <!--  ------------------------------------------------------- -->		
 
@@ -296,8 +297,8 @@ width:500px;
 						msg_data += '<span style="float:right">'+"時間 : "+value.added +'</span>'+'</div>'
 						msg_data += '<div class="card-body">'
 						msg_data += '<p id="editId" class="card-text">'
-						msg_data += '<a id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" class="btn btn-primary">'+' 刪除 '+'</a>'
-						msg_data += '<a class="btn btn-primary" id="editBtn">'+" 修改 "+'</a>'
+						msg_data += '<button class="btn btn-primary" onclick="return confirm('+"ajax 確認刪除?"+')" id="deleteBtn">'+'刪除'+'</button>'
+						msg_data += '<button class="btn btn-primary" id="editBtn">'+'修改'+'</button>'
 						msg_data += '<button style="display: none" class="btn btn-primary" id="sendBtn">'+'送出'+'</button>'+'<br>'
 						msg_data += '<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">'
 						msg_data += '<br>'+"留言ID:"+value.id
@@ -307,48 +308,55 @@ width:500px;
 			            msg_data += '<br>'	
 						msg_data += '</div>'
 			            msg_data += '</div>'
-			        })
+			        });
 						$('#ajaxMsg').append(msg_data)
 					},
 					error : function(err) {
 						console.log(err)
 						alert('新增留言發生錯誤')
 					}
-				})
-			})
+				});
+			});
 			
 		
 			//刪除留言
-			$('#deleteBtn').click(function() {		
+			$('#deleteBtn').click(function(){		
 				
 				var memberId = document.getElementById("memberId").innerText; 
 				var msgId = document.getElementById("msgId").innerText; 	  //文章id		
-				var typeOf = typeof(msgId);  //目前為字串
-				// alert("msgId = "+msgId);
-				// alert("typeOf = "+typeOf);
+
 				
 				$.ajax({
 					url : 'http://localhost:8080/oldFoodMan/deleteMsg/'+msgId,
 					contentType : 'application/json; charset=UTF-8', // 送過去的格式
 					dataType : 'json', // 傳回來的
 					method : 'post',
-					success : function(result) { //成功送過去後
+					success : function(result){ //成功送過去後
 						 $('#showMsg').remove()
 						  $('#ajaxMsg').empty()
-						console.log(result);
-						var msg_data = '';
+// 						console.log(result);
+						var msg_data ='';
 						$.each(result, function(index, value){     
-						
+							
+						console.log("要被刪除的msgId = "+msgId);
+						msg_data += '<div id="showMsg" class="card">'
 						msg_data += '<div class="card-header">'
 						msg_data += '<span>'+"會員ID :"+memberId +'</span>'
 						msg_data += '<span style="float:right">'+"時間 : "+value.added +'</span>'+'</div>'
-						msg_data += '<p class="card-text">'
-						msg_data += '<a id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" class="btn btn-primary">'+'刪除'+'</a>'
-						msg_data += '<a class="btn btn-primary" id="editBtn">'+" 修改 "+'</a>'
-						msg_data += '<br>'+"留言ID:"+value.id
+						msg_data += '<div class="card-body">'
+						msg_data += '<p id="editId" class="card-text">'
+						msg_data += '<button class="btn btn-primary" onclick=\"return confirm('+"delete ajax確認刪除?"+')"\ id="deleteBtn">'+'刪除'+'</button>'
+						msg_data += '<button  id="editBtn" class="btn btn-primary" >'+'修改'+'</button>'
+						msg_data += '<button style="display: none" class="btn btn-primary" id="sendBtn">'+'送出'+'</button>'+'<br>'
+						msg_data += '<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">'
+						msg_data += '<br>'+"delete ajax 留言ID:"+value.id
 			            msg_data += '<br>'+value.text   
+			            msg_data += '<p id="msgId">'
 			            msg_data += '</p>'
-			            msg_data += '<br>'  
+			            msg_data += '<br>'	
+						msg_data += '</div>'
+			            msg_data += '</div>'
+			            console.log("刪除留言");
 			      	  })
 					  $('#ajaxMsg').append(msg_data)
 					}, 
@@ -362,8 +370,7 @@ width:500px;
 			//編輯留言(先顯示出留言)
 			$('#editBtn').click(function(){
 
-				var memberId = document.getElementById("memberId").innerText; 
-				
+				var memberId = document.getElementById("memberId").innerText;
 				var msgId = document.getElementById("msgId").innerText; 	  //文章id		
 				var typeOf = typeof(msgId);  //目前為字串
 				console.log("msgId = "+msgId);
@@ -414,18 +421,23 @@ width:500px;
 					var msg_data = '';
 					$.each(result, function(index, value){     
 						
-						msg_data += '<div class="card">'
-						msg_data += '<div class="card-header">'
-						msg_data += '<span>'+"會員ID :"+memberId +'</span>'
-						msg_data += '<span style="float:right">'+"時間 : "+value.added +'</span>'+'</div>'
-						msg_data += '<p class="card-text">'
-						msg_data += '<a id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" class="btn btn-primary">'+'刪除'+'</a>'
-						msg_data += '<a class="btn btn-primary" id="editBtn">'+" 修改 "+'</a>'
-						msg_data += '<br>'+"留言ID:"+value.id
-			            msg_data += '<br>'+value.text   
-			            msg_data += '</p>'
-			            msg_data += '<br>'	
-			            msg_data += '</div>'
+					msg_data += '<div id="showMsg" class="card">'
+					msg_data += '<div class="card-header">'
+					msg_data += '<span>'+"會員ID :"+memberId +'</span>'
+					msg_data += '<span style="float:right">'+"時間 : "+value.added +'</span>'+'</div>'
+					msg_data += '<div class="card-body">'
+					msg_data += '<p id="editId" class="card-text">'
+					msg_data += '<button class="btn btn-primary" onclick="return confirm('+"確認刪除?"+')" id="deleteBtn">'+'刪除'+'</button>'
+					msg_data += '<button class="btn btn-primary" id="editBtn">'+'修改'+'</button>'
+					msg_data += '<button style="display: none" class="btn btn-primary" id="sendBtn">'+'送出'+'</button>'+'<br>'
+					msg_data += '<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">'
+					msg_data += '<br>'+"留言ID:"+value.id
+		            msg_data += '<br>'+value.text   
+		            msg_data += '<p id="msgId">'
+		            msg_data += '</p>'
+		            msg_data += '<br>'	
+					msg_data += '</div>'
+		            msg_data += '</div>'
 			        })
 						$('#ajaxMsg').append(msg_data)
 					},
