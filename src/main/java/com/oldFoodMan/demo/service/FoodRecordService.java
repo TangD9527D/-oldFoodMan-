@@ -71,6 +71,11 @@ public class FoodRecordService {
 		return frDao.findAll(pgb);
 		
 	}
+	
+	//模糊搜尋
+	public void fuzzySearch(Integer member_id) {
+		frDao.inquire(member_id);
+	}
 
 	
 }
