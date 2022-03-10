@@ -32,11 +32,7 @@ public class CollectionsService {
 		
 		clotdao.save(insert);
 		
-	}
-	
-	
-	
-	
+	}	
 	
 	public List<Collections> findClotById(Member member){		
 		

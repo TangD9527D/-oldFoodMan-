@@ -34,7 +34,7 @@
 <style>
 #allpage {
 	width: 70%;
-	height: 70%;
+	height: 80%;
 	margin: 10px auto;
 	/* float: left; */
 }
@@ -166,27 +166,50 @@ html, body {
 #allrange {
 	text-align: justify;
 	width: 100%;
+	/*   	display: flex;   */
+	height: 170%;
+	background-image:;
+	background-position: center;
 }
 
 #range {
 	border: 0.5px solid transparent;
-	text-align: justify;
 	width: 100%;
+	text-align: justify;
+	justify-content: center;
 }
 
 #range1 {
 	border: 0.5px solid transparent;
 	text-align: justify;
 	width: 100%;
+	align-items: center;
 }
 
-
+#xxx {
+	
+}
 
 #p1 {
 	float: left;
-	margin: 15px 15px;
-	justify-content: space-between;
+	margin-top: 25px;
+	margin-left: 8%;
+	/* 	justify-content: space-between; */
+	/* 	width: 100%; */
+	background-image:
+		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg");
+	background-position: 100px 250px;;
+}
+
+#p2 {
+	float: left;
+	margin-top: 25px;
+	margin-left: 8%;
+	/* 	justify-content: space-between; */
 	width: 100%;
+	background-image:
+		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg");
+	background-position: 100px 250px;;
 }
 
 #img {
@@ -245,6 +268,16 @@ html, body {
 	white-space: normal;
 	text-align: justify;
 }
+
+.test1 {
+	width: 100%;
+	margin: 0px auto;
+}
+
+.test2 {
+	width: 100%;
+	margin: 0px auto;
+}
 </style>
 
 
@@ -298,34 +331,74 @@ html, body {
 
 
 		<div id="allrange">
-			<span id="rangetype"></span>
-			<div id="range1" class=""></div>
-	
+			<div class="test2">
+				<div id="xxx">
+					<span id="rangetype"></span>
 
+					<div id="range1" class=""></div>
 
-		<div id="range" class="">
-			<c:forEach var="maps" items="${page.content}">
-				<div class="card" id="p1" style="width: 8cm;">
-					<img id="img" src="<c:url value='/getPicture/${maps.id}'/>"
-						style="width: 250px; height: 220px" class="card-img-top" alt="...">
-					<div id="box" class="card-body">
-						<h3 id="p" class="card-title"
-							style="background-color: #FDE4DE; text-align: center">${maps.title}</h3>
-						<h5 id="p" class="card-text">${maps.content}</h5>
-						<a
-							href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
-							class="btn btn-secondary"
-							style="position: absolute; bottom: 15px">繼續閱讀</a>
-						<div id="right">
-							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
-								value="${maps.added}" />
-						</div>
-					</div>
 				</div>
-			</c:forEach>
-		</div>
-	</div>
+			</div>
 
+			<div class="test1">
+				<div id="xxx">
+					<div id="range" class="">
+				
+						<c:forEach var="maps" items="${page.content}">
+							<div class="card" id="p2" style="width: 8cm;">
+								<img id="img" src="<c:url value='/getPicture/${maps.id}'/>"
+									style="width: 250px; height: 220px" class="card-img-top"
+									alt="...">
+								<div id="box" class="card-body">
+									<h3 id="p" class="card-title"
+										style="background-color: #FDE4DE; text-align: center">${maps.title}</h3>
+									<h5 id="p" class="card-text">${maps.content}</h5>
+									<a
+										href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
+										class="btn btn-secondary"
+										style="position: absolute; bottom: 15px">繼續閱讀</a>
+
+									<div id="right">
+										<fmt:formatDate pattern="yyyy/MM/dd" value="${maps.added}" />
+									</div>
+
+								</div>
+							</div>
+						</c:forEach>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- 分頁頁碼 -->
+
+		<div>
+			<div class="pagination">
+				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
+
+					<c:choose>
+
+						<c:when test="${page.number != pageNumber -1}">
+
+							<li class="page-item"><a class="page-link"
+								href="${contextRoot}/main?p=${pageNumber}"><c:out
+										value="${pageNumber} "></c:out></a></li>
+
+						</c:when>
+						<c:otherwise>
+							<li class="page-item active" aria-current="page"><span
+								class="page-link"><c:out value="${pageNumber} " /></span></li>
+						</c:otherwise>
+
+					</c:choose>
+					<c:if test="${pageNumber != page.totalPages}">
+
+					</c:if>
+				</c:forEach>
+
+			</div>
+		</div>
 
 	</div>
 
@@ -447,7 +520,7 @@ html, body {
      }
 
      // Sets the map on all markers in the array.
-     function setMapOnAll(map) {
+     function setMapOnAll(map) {	
          for (let i = 0; i < markers.length; i++) {
              markers[i].setMap(map);
          }
@@ -639,7 +712,7 @@ if (code == 13) { //Enter keycode
 						})
 						
 						let strObj=new String(["[您所搜尋有關於]"]);
-						let strObj1=new String(["的食記"]);
+						let strObj1=new String(["  的食記"]);
 						$('#rangetype').append(strObj +inputResName + strObj1 )
 						$('#range1').append(msg_data)
 
