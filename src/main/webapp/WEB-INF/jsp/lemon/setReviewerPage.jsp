@@ -381,7 +381,7 @@
                                 </label>
                             </th>
                             <td>
-                                <form:textarea name="user_view[answers][1]" id="user_view[answers][1]" class="c-textfield c-textfield--full c-textfield--textarea" maxlength="250" rows="3" cols="47" path="reviewer_camera"></form:textarea>
+                                <form:textarea name="user_view[answers][1]" id="user_view_camera" class="c-textfield c-textfield--full c-textfield--textarea" maxlength="250" rows="3" cols="47" path="reviewer_camera"></form:textarea>
                             </td>
                         </tr>
                         <tr>
@@ -417,13 +417,13 @@
 </div> 
 
 <script>
-
-//var str = $('#user_view_my_page_name').val();
-//$('#txt').val("Set Lbl Value"); 
-//文字框，文字區域：
-//$("#text_id").attr("value",'');//清空內容
-$("#user_view_my_page_name").attr("value",'<c:out value="${preview.reviewer_title}" />');// 填充內容
-
+$(document).ready(function(){
+	$("#user_view_my_page_name").attr("value",'<c:out value="${preview.reviewer_title}" />');
+	$("#user_view_my_page_sub_title").attr("value",'<c:out value="${preview.reviewer_subtitle}" />');
+	
+	$("#user_view_camera").val('<c:out value="${preview.reviewer_camera}" />');
+	$("#user_profile_occupation").attr("value",'<c:out value="${preview.reviewer_occupation}" />');
+});
 </script>
 
 </body>

@@ -689,7 +689,7 @@
                         </p>
                     </div>
                 </div>
-                <p class="side-camera__nothing">沒有登錄的相機</p>
+                <p class="side-camera__nothing" value="沒有使用中相機"><c:out value="${reviewerPage.reviewer_camera}"/></p>
             </div>
         </div>
         <!--side * end -->
