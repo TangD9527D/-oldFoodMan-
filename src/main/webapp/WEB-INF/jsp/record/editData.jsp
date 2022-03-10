@@ -153,12 +153,16 @@ legend {
 				<label class="lab">類型:</label>
 				<form:select path="shopType" id="type" onchange="selectType()">
 					<option value="">請選擇</option>
-					<option value="早餐">早餐</option>
-					<option value="午餐">午餐</option>
+					<option value="火鍋">火鍋</option>
+					<option value="燒烤">燒烤</option>
+					<option value="日式">日式</option>
+					<option value="西式">美式</option>
+					<option value="泰式">泰式</option>
+					<option value="小吃">小吃</option>
+					<option value="餐酒館">餐酒館</option>
+					<option value="居酒屋">居酒屋</option>
 					<option value="早午餐">早午餐</option>
-					<option value="下午茶">下午茶</option>
-					<option value="晚餐">晚餐</option>
-					<option value="宵夜">宵夜</option>
+			
 				</form:select>
 			</div>
 			<div class="st1">
@@ -193,25 +197,21 @@ legend {
 				<br>
 			</div>
 			<div class="st1">
-				<label class="lab">營業時間:</label>
+				<label class="lab">用餐日:</label>
 				<form:select path="businessHours" id="day" onchange="selectDay()">
 					<option value="">請選擇</option>
-					<option value="Mon">星期一</option>
-					<option value="Tue">星期二</option>
-					<option value="Wed">星期三</option>
-					<option value="Thu">星期四</option>
-					<option value="Fri">星期五</option>
-					<option value="Sat">星期六</option>
-					<option value="Sun">星期日</option>
+					<option value="星期一">星期一</option>
+					<option value="星期二">星期二</option>
+					<option value="星期三">星期三</option>
+					<option value="星期四">星期四</option>
+					<option value="星期五">星期五</option>
+					<option value="星期六">星期六</option>
+					<option value="星期日">星期日</option>
 				</form:select>
 			</div>
 					
 					
-				<div class="st1">
-					<label class="lab">標籤:</label>
-					<form:input path="tag" type="text"></form:input>
-					<br>
-				</div>
+					
 
 				</form>
 				<br>
@@ -250,8 +250,9 @@ legend {
 				<br>
 
 
-
-				<input type="submit" name="submit" />
+				<div class="btn">
+					<input class="sendBtn" type="submit" value="新增">
+				</div>
 			</form>
 		</div>
 		</form>
