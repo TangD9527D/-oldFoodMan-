@@ -136,7 +136,7 @@ html, body {
 	font-weight: 300px;
 	color: black;
 	border-radius: 10px;
-	background: #bebab3;
+	background: #FDE4DE;
 	text-align: center;
 }
 
@@ -180,6 +180,8 @@ html, body {
 	width: 100%;
 }
 
+
+
 #p1 {
 	float: left;
 	margin: 15px 15px;
@@ -218,7 +220,7 @@ html, body {
 }
 
 #location {
-	border: 5px solid pink;
+	border: 5px solid #FDE4DE;
 	float: right;
 	width: 14%;
 	height: 50%;
@@ -253,7 +255,7 @@ html, body {
 		<h4 style="text-align: center; padding-top: 20px">
 			收藏的地點<i class="fa-regular fa-star"></i>
 		</h4>
-		<hr style="color: pink; border: 5px solid pink">
+		<hr style="color: #FDE4DE; border: 5px solid #FDE4DE">
 		<div id="location1"></div>
 
 		<form:form class="form" action="${contextRoot}/main"
@@ -298,9 +300,7 @@ html, body {
 		<div id="allrange">
 			<span id="rangetype"></span>
 			<div id="range1" class=""></div>
-		</div>
-
-
+	
 
 
 		<div id="range" class="">
@@ -310,7 +310,7 @@ html, body {
 						style="width: 250px; height: 220px" class="card-img-top" alt="...">
 					<div id="box" class="card-body">
 						<h3 id="p" class="card-title"
-							style="background-color: #bebab3; text-align: center">${maps.title}</h3>
+							style="background-color: #FDE4DE; text-align: center">${maps.title}</h3>
 						<h5 id="p" class="card-text">${maps.content}</h5>
 						<a
 							href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
@@ -327,7 +327,7 @@ html, body {
 	</div>
 
 
-
+	</div>
 
 
 
