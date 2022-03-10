@@ -12,13 +12,16 @@ import com.oldFoodMan.demo.model.OrderFormRepository;
 public class OrderFormService {
 	
 	@Autowired
-	private OrderFormRepository oDao;
+	private OrderFormRepository orderDao;
 	
-	public List<OrderForm> FindAllMyOrder(){
-		return oDao.findAll();
+	public void insertForm(OrderForm form) {
+		orderDao.save(form);
 	}
 	
-	public void insertNewOrder(OrderForm OrderForm) {
-		oDao.save(OrderForm);
+	public List<OrderForm> findByOrderMemberId(Integer memberId){
+		return orderDao.findByOrderMemberId(memberId);
 	}
+	
+	
+	
 }
