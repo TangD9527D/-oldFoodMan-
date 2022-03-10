@@ -24,6 +24,8 @@ public class Product {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "productId")
 	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "detailProductId")
+	private Set<OrderDetail> orderDetail = new LinkedHashSet<OrderDetail>();
 	
 	private String product_number;
 	
