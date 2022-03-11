@@ -8,6 +8,7 @@
 
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" type="image/png" href="css/1646984828.ico" >
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <style>
 * {
@@ -26,6 +27,26 @@
 
 .menu{
 	box-shadow: -4px 22px 14px -20px #cfcfcf;
+}
+
+.tititle{
+	margin: 0px auto;
+	margin-left: 800px;
+}
+
+.tititle{
+	margin: 0px auto;
+	margin-left: 800px;
+}
+
+.tititle{
+	margin: 0px auto;
+	margin-left: 800px;
+}
+
+.tititle{
+	margin: 0px auto;
+	margin-left: 800px;
 }
 </style>
 </head>
