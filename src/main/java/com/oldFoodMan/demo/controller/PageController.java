@@ -47,4 +47,9 @@ public class PageController {
 	public String forgotMail() {
 		return "forgotMail";
 	}
+	
+	@GetMapping("/lo")
+	public String frame() {
+		return "frame";
+	}
 }
