@@ -8,7 +8,6 @@
 
 <head>
 <meta charset="UTF-8">
-<link rel="shortcut icon" type="image/png" href="css/1646984828.ico" >
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <style>
 * {
@@ -28,21 +27,14 @@
 .menu{
 	box-shadow: -4px 22px 14px -20px #cfcfcf;
 }
-
-.tititle{
-	margin: 0px auto;
-	margin-left: 800px;
-}
 </style>
 </head>
 
 <body>
 	<div class="container">
-		<nav class="navbar fixed-top navbar-light menu " style="background-color: #f6f5f3">
-			<div class="tititle">
-			<a class="navbar-brand " href="${contextRoot}/main"><img src="css/background.png"
-				width="90" height="50" alt=""></a>
-			</div>
+		<nav class="navbar fixed-top navbar-light menu" style="background-color: #feffee">
+			<a class="navbar-brand" href="${contextRoot}/main"><img src="imgDon/noPhoto.png"
+				width="30" height="30" alt=""> OldFoodMan</a>
 			<ul class="nav justify-content-end">
 				<c:if test="${pageContext.request.userPrincipal != null}">
 					<li class="nav-item"><a class="nav-link"
@@ -107,9 +99,9 @@
 			</div>
 
 		</nav>
+		<div class="spaceBottom"></div>
 	</div>
 </body>
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
 <script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
-
 </html>
