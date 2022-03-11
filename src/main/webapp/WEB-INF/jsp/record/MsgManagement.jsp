@@ -19,40 +19,27 @@
 <body>
 <p>
 <div class="container">
-
 <table id="table_id" class="display">
     <thead>
         <tr>
             <th>刪除</th>
         	<th>會員ID</th>
             <th>食記ID</th>
-            <th>標題</th>
+            <th>留言</th>
             <th>時間</th>
-            <th>餐廳</th>
-            <th>城市</th>
-            <th>類型</th>
-            <th>圖片</th>
-            <th>美味</th>
-            <th>氣氛</th>
-            <th>西批值</th>
+  
             
         </tr>
     </thead>
     <tbody>
-    <c:forEach var="foodRecord" items="${page}">  
+    <c:forEach var="msg" items="${MSG}">  
         <tr>
-            <td><a onclick="return confirm('確認刪除?')" href="${contextRoot}/deleteData?id=${foodRecord.id}">刪除</a></td>
-            <td><c:out value="${foodRecord.member_id.id}"/>
-            <td><c:out value="${foodRecord.id}"/>
-            <td><c:out value="${foodRecord.title}"/>
-            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss EEEE" value="${foodRecord.added}" />
-            <td><c:out value="${foodRecord.shopName}"/>
-            <td><c:out value="${foodRecord.city}"/>
-            <td><c:out value="${foodRecord.shopType}"/>
-            <td><img width="80" height="70" src="<c:url value='/getPicture/${foodRecord.id}'/>">
-            <td><c:out value="${foodRecord.gender}"/>
-            <td><c:out value="${foodRecord.gender1}"/>
-            <td><c:out value="${foodRecord.gender2}"/>
+            <td><a onclick="return confirm('確認刪除?')" href="${contextRoot}/deleteMsg?id=${msg.id}">刪除</a></td>
+            <td><c:out value="${msg.member_id.id}"/>
+            <td><c:out value="${msg.id}"/>
+            <td><c:out value="${msg.text}"/>
+            <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss EEEE" value="${msg.added}" />
+       
             
       
         </tr>
@@ -97,8 +84,7 @@
 			  "autoWidth": true
 			} );
 		
-		
-	
+
 		
 		</script>
 

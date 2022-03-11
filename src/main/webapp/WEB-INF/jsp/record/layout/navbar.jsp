@@ -42,6 +42,17 @@
       <li class="nav-item">
         <a class="nav-link" href="${contextRoot}/RecordManagement">食記後台</a>
       </li>
+      
+      
+      <li class="nav-item dropdown">
+      			<a
+				class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+				role="button" data-toggle="dropdown" aria-expanded="false"> 後台
+			</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item"  href="${contextRoot}/RecordManagement">食記</a> 
+					<a class="dropdown-item"  href="${contextRoot}/MsgManagement">留言</a> 
+				</div></li>
 
    
     </ul>
