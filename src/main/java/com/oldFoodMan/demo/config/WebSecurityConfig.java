@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+
 		// 關閉CSRF(跨站請求偽造)攻擊的防護，這樣才不會拒絕外部直接對API 發出的請求，例如Postman 與前端
 		http.csrf().disable();
 		
@@ -55,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          .anyRequest().permitAll()
          .and()
          .formLogin()
+         	.permitAll()
          	.loginProcessingUrl("/j_spring_security_check")
          	.loginPage("/login")
          	.defaultSuccessUrl("/main")
@@ -63,13 +64,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          	.passwordParameter("password")
          .and()
          .oauth2Login()
+         	.permitAll()
 		 	.loginPage("/login")
 		 	.defaultSuccessUrl("/google")
 		 .and()
 		 .logout()// Config for Logout Page
 		 .permitAll()
 		 .logoutSuccessUrl("/");//登出成功時導向頁面
-		 
+
 	}
-	
+
 }

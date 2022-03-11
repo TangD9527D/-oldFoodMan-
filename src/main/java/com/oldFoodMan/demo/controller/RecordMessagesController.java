@@ -139,7 +139,7 @@ public class RecordMessagesController {
 
 		
 
-		//刪除留言
+		//刪除留言(page)
 		@ResponseBody  //從後端傳資料到前端AJAX
 		@PostMapping(value = "/deleteMsg/{id}")	
 		public List<RecordMessages> deleteMsg(HttpServletResponse resp,@PathVariable(name="id") Integer id) {
@@ -151,5 +151,12 @@ public class RecordMessagesController {
 			return list;
 		}
 		
+		//刪除食記
+		@GetMapping(value = "/deleteMsg")
+		public ModelAndView deleteMsg(ModelAndView mav, @RequestParam(name = "id") Integer id) {
+			msgService.deleteByID(id);
+			mav.setViewName("redirect:/MsgManagement"); // redirect到viewMessages這個Controller
+			return mav;
+		}
 		
 }
