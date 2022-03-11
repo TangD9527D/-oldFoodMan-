@@ -47,10 +47,26 @@
 }
 
 /* Optional: Makes the sample page fill the window. */
-html, body {
+html {
 	height: 100%;
 	/* margin: 0;
     padding: 0; */
+}
+
+body {
+	height: 100%;
+/* 	background-color: #ffefcd; */
+/* 	border: 1px solid #e6d6b4; */
+/*  	background-image: -o-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%);  */
+/* /* 	background-image: -moz-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%); */ */
+/* 	background-image: -webkit-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%);  */
+/* /* 	background-image: -ms-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%); */ */
+/* /* 	background-image: linear-gradient(to bottom, #ffffe6 0%, #ffefcd 100%); */ */
+/*  	-webkit-box-shadow: inset 0 1px 0 #ffffff;  */
+/*  	-moz-box-shadow: inset 0 1px 0 #ffffff;  */
+/*  	box-shadow: inset 0 1px 0 #ffffff;  */
+/*  	text-shadow: 0 1px 0 #ffffff;  */
+/* /* 	color: #e6d6b4; */ */
 }
 
 #description {
@@ -196,9 +212,9 @@ html, body {
 	margin-left: 8%;
 	/* 	justify-content: space-between; */
 	/* 	width: 100%; */
-	background-image:
-		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg");
-	background-position: 100px 250px;;
+	/* 	background-image: */
+	/* 		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg"); */
+	/* 	background-position: 100px 250px;; */
 }
 
 #p2 {
@@ -207,9 +223,21 @@ html, body {
 	margin-left: 8%;
 	/* 	justify-content: space-between; */
 	width: 100%;
-	background-image:
-		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg");
-	background-position: 100px 250px;;
+	/* 	background-image: */
+	/* 		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg"); */
+	/* 	background-position: 100px 250px;; */
+	background-color: #ecd8d8;
+	border: 1px solid #b8b7a6;
+	background-image: -o-linear-gradient(bottom,  #ecd8d8 0%, #d1d0bf 100%);
+	background-image: -moz-linear-gradient(bottom,  #ecd8d8 0%, #d1d0bf 100%);
+	background-image: -webkit-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%);
+	/* 	background-image: -ms-linear-gradient(bottom, #eae9d8 0%, #d1d0bf 100%); */
+	/* 	background-image: linear-gradient(to bottom, #eae9d8 0%, #d1d0bf 100%); */
+	/* 	-webkit-box-shadow: inset 0 1px 0 #fffff1; */
+	/* 	-moz-box-shadow: inset 0 1px 0 #fffff1; */
+	/* 	box-shadow: inset 0 1px 0 #fffff1; */
+	/* 	text-shadow: 0 1px 0 #fffff1; */
+	/* 	color: #b8b7a6; */
 }
 
 #img {
@@ -343,7 +371,7 @@ html, body {
 			<div class="test1">
 				<div id="xxx">
 					<div id="range" class="">
-				
+
 						<c:forEach var="maps" items="${page.content}">
 							<div class="card" id="p2" style="width: 8cm;">
 								<img id="img" src="<c:url value='/getPicture/${maps.id}'/>"
