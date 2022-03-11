@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="layout/navbar.jsp" />
+<jsp:include page="../menu.jsp" />
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
 
 <style>
 .allpage{
-width:80%;
+width:75%;
 
 margin:10px auto;
 
@@ -40,7 +40,7 @@ margin:10px auto;
     line-height:2em;
 }
 .aside {
-    width:30%;
+    width:40%;
     float:right; 
     position:position;
     top:400px
@@ -48,9 +48,10 @@ margin:10px auto;
 
 .div04_32 {
 background-color: white;
-	width:100%;
+	width:85%;
+	
  	float:left; 
- 	margin: 50px auto; 
+ 	margin: 15px auto; 
     padding: 30px;
     box-shadow: 5px 5px 5px gray;
 	border-radius: 20px;
@@ -59,9 +60,10 @@ background-color: white;
 }
 .div05_32 {
 background-color: white;
-	width:100%;
+	width:85%;
 	float:left;
-	margin-top: 50px ;
+	margin-top: 10px ;
+	
 	margin-right:100px;
 	
     padding: 30px;
@@ -89,7 +91,9 @@ margin:0 auto;
 
 #p1{
 float:left;
-margin:6px 8px;
+margin:2px 2px;
+
+
 }
 .viewtable{
 	width:38%;
@@ -220,13 +224,63 @@ text-decoration:none;
 }
 
 .btnadd{
-background-color:#FDE4DE;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#febbbb+0,fe9090+46,ff6868+100 */
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,f1f1f1+50,e1e1e1+51,f6f6f6+100;White+Gloss+%231 */
+background: #ffffff; /* Old browsers */
+background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+
+
 font-weight:bolder;
+
+}
+
+.btnadd:hover{
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffeded+32,edcece+51,edcece+61,edcece+73,fde4de+100 */
+background: #ffeded; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #ffeded 32%, #edcece 51%, #edcece 61%, #edcece 73%, #fde4de 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #ffeded 32%,#edcece 51%,#edcece 61%,#edcece 73%,#fde4de 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #ffeded 32%,#edcece 51%,#edcece 61%,#edcece 73%,#fde4de 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', endColorstr='#fde4de',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+
+}
+
+.btncen{
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f6f8+0,d8e1e7+50,b5c6d0+51,e0eff9+100;Grey+Gloss+%232 */
+background: #f2f6f8; /* Old browsers */
+background: -moz-linear-gradient(top,  #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=0 ); /* IE6-9 */
+
+}
+
+.btncen:hover{
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e0eff9+0,b5c6d0+51,f2f6f8+99 */
+background: #e0eff9; /* Old browsers */
+background: -moz-linear-gradient(top,  #e0eff9 0%, #b5c6d0 51%, #f2f6f8 99%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #e0eff9 0%,#b5c6d0 51%,#f2f6f8 99%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #e0eff9 0%,#b5c6d0 51%,#f2f6f8 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0eff9', endColorstr='#f2f6f8',GradientType=0 ); /* IE6-9 */
+
 
 }
 .pink{
 
-background-color:#FDE4DE;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffeded+32,edcece+51,edcece+61,edcece+73,fde4de+100 */
+background: #ffeded; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #ffeded 32%, #edcece 51%, #edcece 61%, #edcece 73%, #fde4de 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #ffeded 32%,#edcece 51%,#edcece 61%,#edcece 73%,#fde4de 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #ffeded 32%,#edcece 51%,#edcece 61%,#edcece 73%,#fde4de 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', endColorstr='#fde4de',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+
+
 
 }
 
@@ -278,7 +332,7 @@ background-color:#FDE4DE;
 <body>
 <div class="allpage">
 	<div id="content">
-	<div class="header1"><i style="font-size:50px" class="fa-solid fa-utensils"></i><span style="font-size:40px">揪團Eat</span></div>
+	<div class="header1" ><i style="font-size:50px" class="fa-solid fa-utensils"></i><span style="font-size:40px">揪團Eat</span></div>
 	<article class="article">
 <!-- 	<button type="button" id="star" onclick="">test</button> -->
 	
@@ -396,9 +450,9 @@ background-color:#FDE4DE;
 			
 		</div>
 						<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
+						<button type="button" class="btn btncen"
 							data-dismiss="modal">Close</button>
-						<button type="button" id="checksubmit" class="btn btn btn-info" >確定新增</button>
+						<button type="button" id="checksubmit" class="btn btn btnadd " >確定新增</button>
 <!-- 						onclick="confirm('確定送出？'); return insertdata();" -->
 					</div>	
 							
@@ -418,14 +472,14 @@ background-color:#FDE4DE;
 		<p>
 		<c:forEach var="viewallvis" items="${page.content}">
 		<div id="table_id" class="card text-center">
-  		<h4 class="card-header text-dark pink">
+  		<h4 style="font-weight:bolder" class="card-header text-dark pink">
     		${viewallvis.vis_res_name}
   		</h4>
   		<div class="card-body">
    		<h5 class="card-title"><i class="fa-regular fa-clock">${viewallvis.vis_date}&nbsp;&nbsp; ${viewallvis.vis_time}</i></h5>
    		
     	<p class="card-text"><i class="fa-solid fa-location-dot">${viewallvis.vis_location}</i></p>
-    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}" id="joinvis" class="btn pink">加入</a>
+    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}"  style="font-weight:bolder" id="joinvis" class="btn pink">加入</a>
   		</div>
   		<div class="card-footer text-muted">
     		建立時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
@@ -604,6 +658,42 @@ var tdate=new Date();
 								}
 
 						});
+								
+// 								$.ajax({
+// 									url: 'http://localhost:8080/oldFoodMan/getMyJoin?member_id='+id ,
+// 									contentType: 'application/json; charset=UTF-8',			
+// 									method: 'get',
+// 									success: function (result) {
+// 									console.log("result " + result)
+// 										var events = [];
+// 										var msg_data='';
+// 										$.each(result,function(index,value){
+											
+
+// 												})
+
+// 												$('#myadd').append(msg_data)
+// 										},
+										
+// 									error : function(err) {
+// 											console.log(err)
+// //						  					window.onload=function(){
+// //						 						Swal.fire({
+// //						 							  icon: 'error',
+// //						 							  title: '請登入會員',
+// //						 							  footer: '<a href="http://localhost:8080/oldFoodMan/">返回首頁</a>'
+// //						 							})
+												
+// //						 					}
+// 											alert('請登入會員')
+// 											location.href=${contextRoot}/
+// 										}
+								
+								
+								
+// 								});		
+								
+								
 					}
 				});
 
@@ -628,17 +718,15 @@ var tdate=new Date();
 				var msg_data='';
 				$.each(result,function(index,value){
 					
-						msg_data+= '<div id="p1" class="card" style="width: 7cm;">'
+						msg_data+= '<div id="p1" class="card" style="width: 4.6cm;">'
 //  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 					
 						msg_data+= '<div class="card-body">'		
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp2" style="background-color: #faf0e6; text-align: center">'+ value.vis_res_name +'</h3></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp2" style="background-color: #faf0e6; font-size:21px ;text-align: center">'+ value.vis_res_name +'</h3></a>'
 						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  + '</h5>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
 						msg_data+= '<a type="submit" id="deletemyjoin" value='+value.vis_id+' "><i class="fa-regular fa-trash-can testii" ></i></a>'
-						
-						
-// 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/deleteMyJoinVis?member_id='+value.member_id+'&my_food_vis_id='+value.vis_id+'"><i class="fa-regular fa-trash-can testii" id="testii"></i></a>'
+
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -681,13 +769,15 @@ var tdate=new Date();
 				var msg_data='';
 				$.each(result,function(index,value){
 					
-						msg_data+= '<div id="p1" class="card" style="width: 7cm;">'
+						msg_data+= '<div id="p1" class="card" style="width: 4.6cm;">'
 					
 						msg_data+= '<div class="card-body">'		
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp1" style="background-color: #faebd7; text-align: center";>'+ value.vis_res_name +'</h3></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp1" style="background-color: #faebd7;font-size:21px ; text-align: center"; >'+ value.vis_res_name +'</h3></a>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_date  +'</h5>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/deleteMyFoodVis?id='+ value.vis_id +'"><i class="fa-regular fa-trash-can testii" id="testii"></i></a>'
+						msg_data+= '<a type="submit" id="deleteMyFoodVis" value='+value.vis_id+' "><i class="fa-regular fa-trash-can testii" ></i></a>'
+// 							<a href="http://localhost:8080/oldFoodMan/deleteMyFoodVis?id='+ value.vis_id +'">
+									
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/editFoodVis?id='+ value.vis_id +'"><i class="fa-solid fa-pen-to-square testi"  ></i></a>'
 
 						msg_data+= '</div>'
@@ -814,7 +904,42 @@ var tdate=new Date();
 			url : "http://localhost:8080/oldFoodMan/deleteMyJoinVis?my_food_vis_id="+id,
 			success : function(data) {
 				Swal.fire({
-					  title: '確定刪除?',
+					  title: '確定取消參加此團?',
+					  text: "",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Yes!'
+					}).then((result) => {
+					  if (result.isConfirmed) {
+					    Swal.fire({
+					    title:'已刪除!',
+					    text:'',
+					    icon:'success'
+					       
+					    }).then((result) => {
+							location.reload();
+						})
+					    
+					  }else{
+						  return ;
+					  }
+					})
+				
+			},
+		});
+	})
+	
+		$(document).on('click', '#deleteMyFoodVis', function (){  //用一般的.click會有氣泡事件問題
+		var id = $(this).attr("value");
+
+		$.ajax({
+			type : "get",
+			url : "http://localhost:8080/oldFoodMan/deleteMyFoodVis?id="+id,
+			success : function(data) {
+				Swal.fire({
+					  title: '確定刪除此團?',
 					  text: "",
 					  icon: 'warning',
 					  showCancelButton: true,
