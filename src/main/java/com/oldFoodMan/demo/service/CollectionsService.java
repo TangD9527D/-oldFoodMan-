@@ -51,6 +51,17 @@ public class CollectionsService {
 		clotdao.delete(delclot);
 	}
 	
+	public List<Collections> findByMemberIdAndRecordId(Member member,FoodRecord record){
+		
+		Integer member_id=member.getId();
+		Integer record_id=record.getId();
+		
+		List<Collections> likeclot=clotdao.findByMemberIdAndRecordId(member_id, record_id);
+		
+		return likeclot ;
+		
+	}
+	
 	
 	public FoodRecord findByRecordId(Integer record) {
 		
