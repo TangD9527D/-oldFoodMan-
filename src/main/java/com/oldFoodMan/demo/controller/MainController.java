@@ -113,10 +113,16 @@ public class MainController {
 	            service.insert(newUser); 
 	            
 	            hs.setAttribute("member", newUser);
+	            
+	            service.loadUserByUsername(email);
+	            System.out.println("0000000000000000000000000000000");
 	                        
 	        }else {
+	        	
 	        	hs.setAttribute("member", member);
 	        	
+	        	service.loadUserByUsername(email);
+	        	System.out.println("111111111111111111111111111111111");
 	        }
 	        
 		mav.setViewName("redirect:/main");
