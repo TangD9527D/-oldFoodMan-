@@ -14,28 +14,50 @@
 </head> 
 <body>
 	<div class="container">
-	<div class="accordion" id="accordionExample">
-	   <c:forEach var="forms" items="${forms}">
-		<div class="card">
-			<div class="card-header" id="headingOne">
-				<h2 class="mb-0">
-					<button class="btn btn-link btn-block text-left" type="button"
-						data-toggle="collapse" data-target="#collapseOne"
-						aria-expanded="true" aria-controls="collapseOne">
-						${forms.orderNumber}</button>
-				</h2>
-			</div>
-			<div id="collapseOne" class="collapse show"
-				aria-labelledby="headingOne" data-parent="#accordionExample">
-				<div class="card-body">
-					sss
+	
+	  
+
+		<div class="accordion" id="accordionExample">
+		<c:forEach var="forms" items="${forms}">
+			<div class="card">
+				<div class="card-header" id="heading${forms.orderNumber}">
+					<h2 class="mb-0">
+						<button class="btn btn-link btn-block text-left" type="button"
+							data-toggle="collapse" data-target="#collapse${forms.orderNumber}"
+							aria-expanded="true" aria-controls="collapse${forms.orderNumber}" id="Btn_see" value="${forms.orderNumber}">
+							<h3>總金額: ${forms.orderTotal}    訂購時間: ${forms.orderTime}</h3></button>
+					</h2>
+				</div>
+
+				<div id="collapse${forms.orderNumber}" class="collapse"
+					aria-labelledby="heading${forms.orderNumber}" data-parent="#accordionExample">
+					<div class="card-body">
+						${forms.orderNumber}
+						
+						
+					</div>
 				</div>
 			</div>
+		</c:forEach>
+			
 		</div>
-	   </c:forEach>
-	</div>
-	</div>
 
+	</div>
+	
+	<script>
+	/*
+	$(document).on('click', '#Btn_see', function(){
+			var orderNumber = $(this).attr("value");
+			$.ajax({
+				url:"" + orderNumber,
+				type: "post",
+				success: function(){
+					//寫CONTROLLER和這邊的AJAX新增TABLE到card-body的DIV裡
+				}
+			})
+		})
+	*/
+	</script>
 
 
 	<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
