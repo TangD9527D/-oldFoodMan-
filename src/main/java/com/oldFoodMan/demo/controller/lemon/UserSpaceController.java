@@ -1,3 +1,4 @@
+
 //package com.oldFoodMan.demo.controller.lemon;
 //
 //import java.util.List;
@@ -30,6 +31,7 @@
 //	 * @param optType
 //	 * @return
 //	 */
+
 //	@GetMapping("#")
 //	public ModelAndView follows(
 //		@RequestParam(value="async",required = false)boolean async,
@@ -53,6 +55,7 @@
 //		
 //		return new ModelAndView(async==true?"#":"#");
 //	}
+
 //	
 //	/*
 //	 * 我的粉絲列表
@@ -60,6 +63,7 @@
 //	 * @param optType
 //	 * @return
 //	 */
+
 //	@GetMapping("#")
 //	public ModelAndView fans(
 //		@RequestParam(value="async",required=false)boolean async,
@@ -67,7 +71,9 @@
 //		@RequestParam(value="size",defaultValue="1",required=false)Integer size,
 //		Model model) {
 //		User user = new User();
+
 //		PageRequest pageRequest = new PageRequest(page-1,size,);
 //		
 //	}
 //}
+

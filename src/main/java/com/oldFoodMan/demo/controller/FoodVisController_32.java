@@ -110,13 +110,25 @@ public class FoodVisController_32 {
 		return mav;
 	}
 	
-	@GetMapping(value="deleteMyFoodVis")
+	@GetMapping(value="deleteMyFoodVis11")
 	public ModelAndView deleteMyVis(ModelAndView mav,@RequestParam(name="id") Integer id) {
 		ofmservice.delete(id);
 
-		mav.setViewName("redirect:ajaxFoodVis");
+		mav.setViewName("redirect:/ajaxFoodVis");
 		return mav;
 	}
+	
+	@ResponseBody
+	@GetMapping(value="deleteMyFoodVis")
+	public ModelAndView deleteMyJoinVis(ModelAndView mav ,@RequestParam(name="id") Integer id ) {
+		
+		ofmservice.delete(id);
+		
+		mav.setViewName("redirect:/ajaxFoodVis");
+		return mav;
+	}
+	
+	
 	
 	@ResponseBody
 	@PostMapping("/api/postFoodVis")
