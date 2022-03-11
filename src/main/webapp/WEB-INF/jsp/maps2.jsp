@@ -55,6 +55,7 @@ html {
 
 body {
 	height: 100%;
+/* 	background-image:url("http://localhost:8080/oldFoodMan/images/oldfoodman.png"); */
 /* 	background-color: #ffefcd; */
 /* 	border: 1px solid #e6d6b4; */
 /*  	background-image: -o-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%);  */
@@ -225,19 +226,22 @@ body {
 	width: 100%;
 	/* 	background-image: */
 	/* 		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg"); */
-	/* 	background-position: 100px 250px;; */
+	/* 	background-position: 100px 250px; */
 	background-color: #ecd8d8;
-	border: 1px solid #b8b7a6;
-	background-image: -o-linear-gradient(bottom,  #ecd8d8 0%, #d1d0bf 100%);
-	background-image: -moz-linear-gradient(bottom,  #ecd8d8 0%, #d1d0bf 100%);
-	background-image: -webkit-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%);
-	/* 	background-image: -ms-linear-gradient(bottom, #eae9d8 0%, #d1d0bf 100%); */
-	/* 	background-image: linear-gradient(to bottom, #eae9d8 0%, #d1d0bf 100%); */
-	/* 	-webkit-box-shadow: inset 0 1px 0 #fffff1; */
-	/* 	-moz-box-shadow: inset 0 1px 0 #fffff1; */
-	/* 	box-shadow: inset 0 1px 0 #fffff1; */
-	/* 	text-shadow: 0 1px 0 #fffff1; */
+	border: 1px solid #ecd8d8;
+ 	background-image: -o-linear-gradient(bottom,  #ecd8d8 0%, #d1d0bf 100%); 
+ 	background-image: -moz-linear-gradient(bottom,  #ecd8d8 0%, #d1d0bf 100%); 
+ 	background-image: -webkit-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%); 
+	background-image: -ms-linear-gradient(bottom, #eae9d8 0%, #d1d0bf 100%); 
+	background-image: linear-gradient(to bottom, #eae9d8 0%, #d1d0bf 100%); 
+	 	-webkit-box-shadow: inset 0 1px 0 #fffff1;
+	 	-moz-box-shadow: inset 0 1px 0 #fffff1; 
+	 	box-shadow: inset 0 1px 0 #fffff1; 
+	/* 	text-shadow: 0 1px 0 #fffff1; 
 	/* 	color: #b8b7a6; */
+	background-image:url("http://localhost:8080/oldFoodMan/images/oldfoodman.png");
+	background-position:230px 150px ;
+/* 	opacity: 1.5; */
 }
 
 #img {

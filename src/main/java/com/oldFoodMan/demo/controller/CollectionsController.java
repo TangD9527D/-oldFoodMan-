@@ -23,7 +23,7 @@ public class CollectionsController {
 	CollectionsService service ;
 	
 	
-	@PostMapping(value="/likeCollections")
+	@PostMapping(value="/likeCollections")//會員收藏文章功能 	
 	public void insertCollections(Integer record ,HttpSession hs) {
 		
 		Member mid = (Member)hs.getAttribute("member");
@@ -32,20 +32,22 @@ public class CollectionsController {
 		service.insert(id, mid);
 		
 	}
-		
+	
+	
 	@GetMapping(value="/likeCollections")  //查收藏的文章
-	public ModelAndView likeCollections(ModelAndView mav,HttpSession hs) {
+	public ModelAndView likeCollections(ModelAndView mav,HttpSession hs,@RequestParam(name="record_id") Integer record) {
 		
 		Member mid = (Member)hs.getAttribute("member");
 		Integer id=mid.getId();
 		
+		FoodRecord record_id=service.findByRecordId(record);
 		
 		System.out.println("id:"+id);
 		
-		List<Collections> list=service.findClotById(mid);				
+		List<Collections> list=service.findByMemberIdAndRecordId(mid, record_id);
 		
 		mav.getModel().put("likeCollections", list);			
-		mav.setViewName("");
+		mav.setViewName("viewById");
 		return mav ;		
 		
 	}

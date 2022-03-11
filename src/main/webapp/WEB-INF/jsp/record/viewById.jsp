@@ -14,6 +14,7 @@
 #rateLL {
 	display: flex;
 }
+
 #topTitleLL {
 	/* border: solid lightblue thin; */
 	width: 700px;
@@ -22,18 +23,21 @@
 	/* align-items: center;
             justify-content: center; */
 }
+
 #mainTitleLL, #rateLL, #arthurLL, #shareLL {
 	position: static;
 	width: 300px;
 	margin: auto;
 	text-align: center;
 }
-#h1{
+
+#h1 {
 	position: static;
 	width: 800px;
 	margin: auto;
 	text-align: center;
 }
+
 figure {
 	/* border: thin #c0c0c0 solid; */
 	display: flex;
@@ -44,38 +48,47 @@ figure {
 	margin: auto;
 	overflow: hidden;
 }
+
 #likeBar {
 	display: flex;
 	justify-content: center;
-	margin-top:20px;
+	margin-top: 20px;
 }
+
 #article {
 	display: flex;
 	justify-content: center;
 	margin: 50px;
 }
+
 #left {
 	/* border: thin lightblue solid; */
 	width: 300px;
 }
+
 #right {
 	/* border: thin lightblue solid; */
 	width: 700px;
 }
+
 #taste, #air, #cpValue, #left #share {
 	border-top: solid thin lightcoral;
 	margin: 15px;
 }
+
 #left #title {
 	margin: 15px;
 }
+
 #right {
 	justify-content: center;
 }
+
 #articleDinning p {
 	width: 500px;
 	line-height: 1.5;
 }
+
 #articleDinning p::first-letter {
 	color: black;
 	/* background-color: black; */
@@ -86,16 +99,19 @@ figure {
 	margin-right: 6px;
 	float: left;
 }
+
 #articleDinning {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
+
 #articleDinning img {
 	width: 500px;
 	margin: 15px;
 }
+
 #articleDinning h6 {
 	width: 500px;
 	display: flex;
@@ -103,13 +119,15 @@ figure {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+
 #icon {
 	margin: 10px;
 	width: 30px;
 }
-.msg_id{
-height:20px;
-width:500px;
+
+.msg_id {
+	height: 20px;
+	width: 500px;
 }
 </style>
 </head>
@@ -117,28 +135,28 @@ width:500px;
 	<br>
 	<div id="main">
 		<div id="topTitleLL">
-			
-				<h1 id="h1">
-					<c:out value="${foodrecordById.title}" />
-				</h1>
-		<div id="mainTitleLL" style="padding:30px" >
-				<img style="width: 50px; margin-right:20px" id="tastyId">
-				<img style="width: 50px; margin-right:20px" id="atmosphereId">
-				<img style="width: 50px; margin-right:20px" id="cpId">
+
+			<h1 id="h1">
+				<c:out value="${foodrecordById.title}" />
+			</h1>
+			<div id="mainTitleLL" style="padding: 30px">
+				<img style="width: 50px; margin-right: 20px" id="tastyId"> <img
+					style="width: 50px; margin-right: 20px" id="atmosphereId"> <img
+					style="width: 50px; margin-right: 20px" id="cpId">
 			</div>
-			<div id="arthurLL">
-		
-			</div>
-			
+			<div id="arthurLL"></div>
+
 		</div>
-		<div id="topTitleLL" style="width: 450px; height: 300px;display: flex;justify-content: center; align-items: center;" >
-		<figure>
-			<img src="<c:url value='/getPicture/${foodrecordById.id}'/>">
-		</figure>
+		<div id="topTitleLL"
+			style="width: 450px; height: 300px; display: flex; justify-content: center; align-items: center;">
+			<figure>
+				<img src="<c:url value='/getPicture/${foodrecordById.id}'/>">
+			</figure>
 		</div>
 		<div id="likeBar">
 			<img id="icon" src="images/like.png"> <img id="icon"
 				src="images/chat.png"> <img id="icon" src="images/badoo.png">
+			<button id="btn">測試收藏文章</button>
 		</div>
 		<div id="article">
 			<div id="left">
@@ -165,10 +183,12 @@ width:500px;
 				</div>
 				<div id="taste">
 					<h3>美味</h3>
-					<h6 >
+					<h6>
 						<c:out value="${foodrecordById.tasty}" />
 					</h6>
-					<h6  style="display: none" id="score"><c:out value="${foodrecordById.gender}" /></h6>
+					<h6 style="display: none" id="score">
+						<c:out value="${foodrecordById.gender}" />
+					</h6>
 					<img style="width: 50px;" id="tastyId2">
 				</div>
 				<div id="air">
@@ -176,7 +196,9 @@ width:500px;
 					<h6>
 						<c:out value="${foodrecordById.atmosphere}" />
 					</h6>
-					<h6  style="display: none" id="score1"><c:out value="${foodrecordById.gender1}" /></h6>
+					<h6 style="display: none" id="score1">
+						<c:out value="${foodrecordById.gender1}" />
+					</h6>
 					<img style="width: 50px;" id="atmosphereId2">
 				</div>
 				<div id="cpValue">
@@ -184,12 +206,14 @@ width:500px;
 					<h6>
 						<c:out value="${foodrecordById.cp}" />
 					</h6>
-					<h6  style="display: none" id="score2"><c:out value="${foodrecordById.gender2}" /></h6>
+					<h6 style="display: none" id="score2">
+						<c:out value="${foodrecordById.gender2}" />
+					</h6>
 					<img style="width: 50px;" id="cpId2">
 				</div>
 				<div id="share">
-				
-				
+
+
 					<h3>分享</h3>
 					<div id="shareLL">
 						<div class="line-it-button" data-lang="zh_Hant"
@@ -203,7 +227,7 @@ width:500px;
 
 						<img id="icon" title="Facebook分享" src="images/facebook.png">
 					</div>
-					
+
 				</div>
 			</div>
 			<div id="right">
@@ -219,46 +243,51 @@ width:500px;
 					</h6>
 
 				</div>
-				<br>
-				<br>
-
-				<span style="background-color: yellow;" id="memberId"><c:out value="${foodrecordById.member_id.id}" /></span>
+				<br> <br> <span style="background-color: yellow;"
+					id="memberId"><c:out value="${foodrecordById.member_id.id}" /></span>
 				<button id="submitBtn" style="float: right; margin: 5px">發佈</button>
-				<input id="myMessage" style="width: 500px; border-color: lightgray; float: right; border-radius: 10px;"
-					placeholder="留言..."></input> <br>
-				<br>
-				
-				
-				
-		
-<!--  ---看留言---------------------------------------------------- -->	
+				<input id="myMessage"
+					style="width: 500px; border-color: lightgray; float: right; border-radius: 10px;"
+					placeholder="留言..."></input> <br> <br>
+
+
+
+
+				<!--  ---看留言---------------------------------------------------- -->
 				<div id="showMsg" class="card">
-					<c:forEach var="msg" items="${msg_page.content}"> 
-					<div class="card-header"><span>會員ID : <c:out value="${msg.member_id.id}" /></span>
-											 <span style="float:right">時間 :<c:out value="${msg.added}" /></span></div>
-					<div class="card-body">
-						<p id="editId" class="card-text">
-						<button class="btn btn-primary" id="deleteBtn"  onclick="return confirm('確認刪除?')" >刪除</button> 
-						<button class="btn btn-primary" id="editBtn">修改</button>
-						<button style="display: none" class="btn btn-primary" id="sendBtn">送出</button><br>
-						<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">
-						<br><c:out value="${msg.text}" />
-						<p id="msgId"><c:out value="${msg.id}" /></p><br>
-					    
-						
-					</div>
+					<c:forEach var="msg" items="${msg_page.content}">
+						<div class="card-header">
+							<span>會員ID : <c:out value="${msg.member_id.id}" /></span> <span
+								style="float: right">時間 :<c:out value="${msg.added}" /></span>
+						</div>
+						<div class="card-body">
+							<p id="editId" class="card-text">
+								<button class="btn btn-primary" id="deleteBtn"
+									onclick="return confirm('確認刪除?')">刪除</button>
+								<button class="btn btn-primary" id="editBtn">修改</button>
+								<button style="display: none" class="btn btn-primary"
+									id="sendBtn">送出</button>
+								<br> <input style="display: none; width: 600px"
+									id="inputMsg" type="text" value="<c:out value="${msg.text}" />">
+								<br>
+								<c:out value="${msg.text}" />
+							<p id="msgId">
+								<c:out value="${msg.id}" />
+							</p>
+							<br>
+
+
+						</div>
 					</c:forEach>
 				</div>
-				
-<!--  ---Ajax顯示留言---------------------------------------------------- -->
-				
-				<div id="ajaxMsg" class="card">	
-				
-				</div>
-<!--  ------------------------------------------------------- -->		
 
+				<!--  ---Ajax顯示留言---------------------------------------------------- -->
+
+				<div id="ajaxMsg" class="card"></div>
+				<!--  ------------------------------------------------------- -->
+
+			</div>
 		</div>
-	</div>
 	</div>
 
 	<script>
@@ -489,7 +518,88 @@ width:500px;
 	
 	</script>
 
+	<!-- Eddie -->
+	<script>
+	
 
+		function likeCollections() {
+
+		var inputResName = document.getElementById('input').value;
+		var Member_id=document.getElementById('member_id').value;
+		console.log(input);
+		console.log(Member_id);
+// 		var dtoObject = {
+// 			"likelocations" : inputResName,
+// 			"member_id":Member_id,
+// 			}
+// 		var dtoJsonString = JSON.stringify(dtoObject);	
+// 			console.log(dtoJsonString);		
+		$.ajax({
+			url : 'http://localhost:8080/oldFoodMan/likeCollections',
+			contentType : 'application/json; charset=UTF-8',
+			dataType : 'json',
+			method : 'post',
+			data : dtoJsonString,
+			
+			success : function(result) {	
+				
+				console.log(result)				
+														
+				var msg_data='';
+				$.each(result,function(index,value){
+					
+					msg_data = '<li id="li" class="list-group-item list-group-item-info">'+ inputResName +'</li>'
+					
+				})
+			
+			
+				
+				$('#location1').append(msg_data)	
+		
+			},
+			error : function(err) {
+			console.log(err)
+			alert('發生錯誤')
+			}
+
+		})
+	
+		 		
+		}
+		
+		var Member_id2=document.getElementById('member_id2').value;
+		console.log("ID: "+Member_id2)
+			$.ajax({
+				url : 'http://localhost:8080/oldFoodMan/likeloc?member_id='+ Member_id2,
+				contentType : 'application/json ; charset=UTF-8',
+				dataType : 'json',
+				method : 'get',
+//	 			data : dtoJsonString,
+				success : function(result) {
+				
+					var msg_data='';
+					$.each(result,function(index,value){
+						msg_data += '<li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li>'
+					})
+
+					$('#location1').append(msg_data)
+
+					
+				},
+				error : function(err) {
+					console.log(err)
+					alert('發生錯誤')
+				}
+
+			})
+	
+
+
+
+
+
+
+	</script>
 
 
 </body>
