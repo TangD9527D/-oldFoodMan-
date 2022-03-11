@@ -68,7 +68,7 @@ public class MemberServiceImpl implements UserDetailsService {
             }
         }
         
-        UserDetails userDetails = (UserDetails) new User(option.get().getAccount(), //
+        UserDetails userDetails = (UserDetails) new User(option.get().getAccount(),
                 option.get().getMemberPwd(), grantList);
 		
 		return userDetails;
