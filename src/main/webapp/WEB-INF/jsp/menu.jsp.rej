@@ -1,0 +1,9 @@
+diff a/src/main/webapp/WEB-INF/jsp/menu.jsp b/src/main/webapp/WEB-INF/jsp/menu.jsp	(rejected hunks)
+@@ -8,7 +8,6 @@
+ 
+ <head>
+ <meta charset="UTF-8">
+-<link rel="shortcut icon" type="image/png" href="css/1646984828.ico" >
+ <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
+ <style>
+ * {
