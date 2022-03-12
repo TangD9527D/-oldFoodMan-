@@ -10,181 +10,103 @@
 <head>
 <meta charset="UTF-8">
 <title>揪團資料</title>
+<link rel="stylesheet" href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
 <div class="container">
 		<p />
-		<div class="row justify-content-center">
-
-			<div class="col-6">
-				<div class="card">
-					<div class="card-header text-white bg-dark ">揪團資訊</div>
-					<div class="card-body">
-					
-						<form:form class="form" action="${contextRoot}/findOneVis"
-							modelAttribute="ofm"   method="post">
-
-							<h2>開團者： ${ofmid.memberName}</h2>
-							<form:input type="hidden" path="vis_id"/>
-							<form:input type="hidden" path="added"/>
-
-
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="inputEmail4">日期</label>
-									<input type="date" value="${ofm.vis_date}" disabled class="form-control" />
- 	
-								</div>
-								<div class="form-group col-md-6">
-									<label for="inputEmail4">時間</label>
-									<input type="time" value="${ofm.vis_time}" disabled class="form-control" />
-
-								</div>
-								
-
-							</div>
-							<div class="form-group">
-								<label for="inputAddress2">店名</label> 
-								<input type="text" value="${ofm.vis_res_name}" disabled class="form-control" />
-							</div>
-							<div class="form-group">
-								<label for="inputAddress2">地址</label> 
-								<input type="text" value="${ofm.vis_location}" disabled class="form-control" />
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="inputEmail4">人數上限</label> 
-									<input type="number" value="${ofm.vis_num}" disabled  class="form-control" />
-								</div>
-								<div class="form-group col-md-6">
-									<label for="inputPassword4">備註</label> 
-									<input type="text" value
-									="${ofm.vis_condition}" disabled class="form-control" />
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label for="inputAddress2">參加者</label> 
-								<c:forEach var="joinofm" items="${joinofm}">
-								<input type="text" value="${joinofm.memberName}" disabled class="form-control" />
-									</c:forEach>
-							</div>
-						
-						</form:form>
-						
-					</div>
-				</div>
-			</div>
-			
-		</div>
 		
-				<div class="row justify-content-center">
+		 <div class="container py-4">
+    <header class="pb-3 mb-4 border-bottom">
+     
+       <div>
+        <h1 class=" fw-bold font-weight-bold">揪團資訊</h1>
+        </div>
+     
+    </header>
 
-			<div class="col-6">
-				<div class="card">
-					<div class="card-header text-white bg-dark ">加入</div>
-					<div class="card-body">
-						
-							<form:form class="form" action="${contextRoot}/addjoinvis/${ofm.vis_id} "
+<form:form class="form" action="${contextRoot}/findOneVis" modelAttribute="ofm"  method="post" >
+
+    <form:input type="hidden"  path="vis_id"/>
+<form:input type="hidden"  path="added"/>
+ </form:form>
+    
+
+    <div class="row align-items-md-stretch">
+    
+
+    <div class="col-md-4">
+    
+        <div class="h-100 p-5 bg-light border rounded-3">
+         <h2 class="display-5 fw-bold font-weight-bold card-title">${ofm.vis_res_name}</h2>
+         
+         <hr>
+         <h5 class="col-md-12"><i class="fa-solid fa-calendar-days"></i> &nbsp;&nbsp;${ofm.vis_date}</h5>
+         <p>
+        <h5 class="col-md-12 "><i class="fa-solid fa-clock"></i> &nbsp;&nbsp;${ofm.vis_time}</h5>
+        <p>
+        <h5 class="col-md-12  "><i class="fa-solid fa-location-dot"></i> &nbsp;&nbsp;${ofm.vis_location}</h5>
+        <p>
+        <h5 class="col-md-12  "><i class="fa-solid fa-user-group"></i> &nbsp;&nbsp;${ofm.vis_num}人</h5>
+        <p>
+        <h5 class="col-md-12  "> &nbsp;&nbsp;${ofm.vis_condition}</h5>	
+        <hr>
+          <h3 class="display-5 fw-bold font-weight-bold card-title">舉辦人： </h3>
+           <h3 class="display-5 fw-bold font-weight-bold card-title">${ofmid.memberName}</h3>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="h-100 p-5 text-white bg-dark rounded-3">
+          <h2>目前參加者</h2>
+          <hr>
+          <c:forEach var="joinofm" items="${joinofm}">
+          <p class="col-md-8 fs-4 "> ${joinofm.memberName}</p>
+          </c:forEach>
+        </div>
+      </div>
+     
+      <div class="col-md-4">
+        <div class="h-100 p-5 bg-light border rounded-3">
+        <form:form class="form" action="${contextRoot}/addjoinvis/${ofm.vis_id} "
 							modelAttribute="ofm" method="post">
+          <h2 class="display-5 fw-bold font-weight-bold card-title">加入揪團Eat</h2>
+          <hr>
+          <div class="form-group">
+          
+          <p >加入原因</p>
+          <input type="text"  name="add_condition" class="form-control" />
+          </div>
+          <button class="btn btn-outline-secondary" type="submit" id="checkaddvis">確定加入</button>
+        </form:form>
+        </div>
+      </div>
+    </div>
+    </div>
 
-							
-							<input  type="hidden"  class="form-control" value="" />
-							<div class="form-group">
-								<label for="inputAddress2">加入原因</label> 
-								<input type="text"  name="add_condition" class="form-control" />
-							</div>
+    <footer class="pt-3 mt-4 text-muted border-top">
+      &copy; 2021
+    </footer>
+  </div>
+		
+<script>
 
-						<button type="submit" class="btn btn-outline-dark" >加入</button>
-						</form:form>
-					</div>
-				</div>
-			</div>
-			
-		</div>
+
+
+
+
+</script>		
 		
 
-		</div>
-		<!-- dialog視窗 -->
 
-		<div >
-		<div class="modal fade" id="exampleModal" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-					<div class="card-header text-white bg-dark " id="exampleModalLabel">揪團資訊</div>
-						
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form>
-<!-- 							<div class="form-row"> -->
-<!-- 			<div class="form-group col-md-6"> -->
-<!-- 				<label for="inputEmail4">發起人</label> <input id="vis_name" -->
-<!-- 					type="text" class="form-control " required> -->
-<!-- 			</div> -->
-<!-- 			<div class="form-group col-md-6"> -->
-<!-- 				<label for="inputEmail4">Email</label> <input id="vis_email" -->
-<!-- 					type="text" class="form-control" required> -->
-
-<!-- 			</div> -->
-<!-- 		</div> -->
-							<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="inputEmail4">日期</label> <input type="date" id="vis_date"
-					class="form-control" required>
-
-			</div>
-			<div class="form-group col-md-6">
-				<label for="inputEmail4">時間</label> <input type="time" id="vis_time"
-					class="form-control" required>
-
-			</div>
-
-
-		</div>
-		<div class="form-group">
-			<label for="inputAddress2">店名</label> <input type="text"
-				id="vis_res_name" class="form-control" required>
-		</div>
-		<div class="form-group">
-			<label for="inputAddress2">地址</label> <input type="text"
-				id="vis_location" class="form-control" required>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-6">
-				<label for="inputEmail4">人數上限</label> <input type="number"
-					id="vis_num" class="form-control" required>
-			</div>
-			<div class="form-group col-md-6">
-				<label for="inputPassword4">備註</label> <input type="text"
-					id="vis_condition" class="form-control" >
-			</div>
-			<div class="form-group col-md-6">
-				<label for="inputPassword4">memberid</label> <input type="text"
-					id="member_id" class="form-control" required>
-			</div>
-		</div>
-						<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn btn-info" onclick="confirm('確定送出？'); return insertdata();">確定新增</button>
-						
-					</div>	
-							
-							
-						</form>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-</div>
-</div>
 </body>
 </html>
