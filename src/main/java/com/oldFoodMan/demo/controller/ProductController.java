@@ -177,4 +177,15 @@ public class ProductController {
 		return "productsPage";
 	}
 	
+	@ResponseBody
+	@PostMapping("/searchProduct/{inputVal}")
+	public List<Product> searchProduct(@PathVariable(name = "inputVal") String inputVal){
+		return proService.searchProduct(inputVal);
+	}
+	
+	@ResponseBody
+	@PostMapping("/searchAllProduct")
+	public List<Product> searchAllProduct(){
+		return proService.discount();
+	}
 }

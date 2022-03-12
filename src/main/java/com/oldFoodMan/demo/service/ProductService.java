@@ -58,5 +58,7 @@ public class ProductService {
 		dao.UpdateStock(product_amount, product_id);
 	}
 	
-	
+	public List<Product> searchProduct(String inputVal){
+		return dao.searchProduct(inputVal);
+	}
 }
