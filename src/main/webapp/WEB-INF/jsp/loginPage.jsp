@@ -1,57 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${contextRoot}/css/account.css">
+<link rel="shortcut icon" type="image/png" href="css/1647002131.ico">
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
-<link
-	href="https://fonts.googleapis.com/css2?family=Norican&display=swap"
-	rel="stylesheet" />
-<title>Login</title>
-<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
-<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Norican&family=Sriracha&display=swap" rel="stylesheet">
+<title>Insert title here</title>
 <style>
-.body_13 {
-	background-color: #f8eae6;
+body {
+	background-color: #fbf3f3;
 }
 
-.out_div_13 {
-	margin: 200px auto;
-	width: 1000px;
+.left {
+	position: absolute;
+	top: 220px;
+	left: 100px;
+	/* border: 2px solid red; */
+	width: 600px;
+	height: 300px;
+}
+
+.right {
+	position: absolute;
+	top: 120px;
+	right: 200px;
+	border: 5px solid #444444;
+	width: 500px;
 	height: 500px;
-	border: solid 15px rgb(165, 88, 241);
-	background-color: rgba(248, 158, 56, 0.924);
+	border-radius: 30px;
 }
 
 .login_13 {
-	margin: 90px auto;
-	width: 500px;
+	margin: 30px auto;
+	width: 450px;
 	height: 300px;
-	border: inset 5px #000000;
-	border-radius: 3%;
 }
 
-.account_13 {
-	margin-top: 30px;
+.formLogin {
 	font-weight: 900;
 	font-size: x-large;
 	/* background-color: red; */
-}
-
-.pwd_13 {
-	font-size: x-large;
-	font-weight: 900;
-	/* background-color: red; */
+	text-align: center;
 }
 
 #account, #pwd {
-	font-size: x-large;
+	font-size: xx-large;
 }
 
 .under_13 {
@@ -78,11 +79,9 @@
 }
 
 .mark {
-	font-size: xx-large;
 	font-family: 'Norican', cursive;
-	border-radius: 6px 6px 0px 0px;
-	border-bottom: black 3.5px solid;
 	text-align: center;
+	background-color: #fbf3f3;
 }
 
 .la2 {
@@ -91,99 +90,168 @@
 	float: left;
 }
 
-.modal-header {
-	background-color: #defaa2e8;
+.login_title {
+	margin: 10px auto;
+	border-bottom: solid 2px #444444;
+	width: 450px;
+	font-size: xx-large;
+	font-weight: 700;
+}
+
+.googleLogin {
+	position: absolute;
+	bottom: 60px;
+	right: 0px;
+	width: 450px;
+	margin: 0px auto;
+	font-weight: 700;
+	font-size: larger;
+}
+
+.googleImg {
+	position: relative;
+	top: 10px;
+	left: 50px;
+}
+
+.modal.left .modal-dialog {
+	position:fixed;
+	top: 0;
+	right: 0;
+	margin: auto;
+	width: 400px;
+	height: 100%;
+	-webkit-transform: translate3d(0%, 0, 0);
+	-ms-transform: translate3d(0%, 0, 0);
+	-o-transform: translate3d(0%, 0, 0);
+	transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content {
+	height: 100%;
+	overflow-y: auto;
+}
+
+.modal.right .modal-body {
+	padding: 15px 15px 80px;
+}
+
+.modal.right.fade .modal-dialog {
+	left: -320px;
+	-webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+	-moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+	-o-transition: opacity 0.3s linear, left 0.3s ease-out;
+	transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal.right.fade.show .modal-dialog {
+	right: 0;
 }
 </style>
+
 </head>
 
-<body class="body_13">
+<body>
 	<div class="container">
-		<div class="outside">
-			<div class="out_div_13">
-				<div class="login_13">
-					<form:form action="/oldFoodMan/j_spring_security_check"
-						method="POST" lass="login_table">
-						<div class="mark">
-							<span>oldFoodMan</span>
-						</div>
-						<div class="account_13">
-							<label class="lab">帳號:&nbsp;</label> <input type="text"
-								id="account" name="account">
-						</div>
-						<br>
-						<div class="pwd_13">
-							<label class="lab">密碼:&nbsp;</label> <input type="password"
-								id="pwd" name="password">
-						</div>
-						<!-- /login?error=true -->
-						<c:if test="${param.error == 'true'}">
-							<span class="login_fail">Login Failed!!!</span>
-						</c:if>
-						<br>
-						<div class="under_13">
-							<span id="new_account"> <a
-								href="${contextRoot}/forgotMail">忘記密碼</a></span>&emsp;&emsp;
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#exampleModal">新增帳號</button>
-							&emsp;&emsp; <span id="log_in">
-								<button name="submit" type="submit" value="submit"
-									class="btn btn-primary">登入</button>
-							</span>
-						</div>
-					</form:form>
-					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1"
-						aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h2 class="modal-title" id="exampleModalLabel">新增帳號</h2>
-									<button type="button" class="close" data-dismiss="modal"
-										aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-									<form class="form">
-										<div class="newPwd_13">
-											<label class="la2">姓名:&nbsp;</label> <input type="text"
-												id="newName" class="inPut" name="names" />
-											<p class="txtP">&nbsp;</p>
-										</div>
-										<div class="newAccount_13">
-											<label class="la2">帳號(email):&nbsp;</label> <input
-												type="text" id="newAccount" class="inPut" name="account" />
-											<p class="txtP">&nbsp;</p>
-										</div>
-										<div class="newPwd_13">
-											<label class="la2">密碼:&nbsp;</label> <input type="password"
-												id="newPwd" class="inPut" name="pwd" />
-											<p class="txtP">&nbsp;</p>
-										</div>
+		<div class="left">
+			<div class="mark">
+				<h1 class="display-1">
+					<img src="${contextRoot}/css/oldFoodMan06.png"
+						style="width: 100px; height: 100px;">&nbsp;oldFoodMan
+				</h1>
+				<br>
+				<h3 class="h2" style="font-family: 'Sriracha', cursive;">old
+					foodMan know the food,</h3>
+				<h3 class="h2" style="font-family: 'Sriracha', cursive;">old
+					people know the world.</h3>
+			</div>
+		</div>
+		<div class="right">
+			<div class="login_title">
+				登入&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span
+					style="font-size: small; text-align: left;">*為必填資訊</span>
+			</div>
+			<div class="login_13">
+				<form:form action="/oldFoodMan/j_spring_security_check"
+					method="POST" lass="login_table">
 
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary"
-												data-dismiss="modal">關閉</button>
-											<button type="submit" type="submit" class="btn btn-primary"
-												data-dismiss="modal" id="newMbr">送出</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
+					<div class="formLogin">
+						<div style="font-size: large; text-align: left;">&emsp;&emsp;信箱*</div>
+						<input type="text" id="account" name="account"> <span>&nbsp;</span>
 					</div>
+					<br>
+					<div class="formLogin">
+						<div style="font-size: large; text-align: left;">&emsp;&emsp;密碼*</div>
+						<input type="password" id="pwd" name="password"> <span>&nbsp;</span>
+					</div>
+					<!-- /login?error=true -->
+					<c:if test="${param.error == 'true'}">
+						<span class="login_fail">Login Failed!!!</span>
+					</c:if>
+					<br>
+					<div class="under_13">
+						<span id="new_account"> <a href="${contextRoot}/forgotMail">忘記密碼?</a></span>&emsp;&emsp;
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-dark" data-toggle="modal"
+							data-target="#exampleModal">新增帳號</button>
+						&emsp;&emsp; <span id="log_in">
+							<button name="submit" type="submit" value="submit"
+								class="btn btn-dark">登入</button>
+						</span>
+					</div>
+				</form:form>
+			</div>
+			<div class="googleLogin">
+				<span>——————————or——————————</span>
+				<div class="googleImg">
+					<a href="${contextRoot}/oauth2/authorization/google"><img
+						src="${contextRoot}/css/google.png" width="300px" height="60px"></a>
 				</div>
-				<div>
-					<h4>
-						<a href="${contextRoot}/oauth2/authorization/google">Sign-in
-							Google</a>
-					</h4>
+			</div>
+		</div>
+
+		<div class="modal left fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">Menu</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form class="form">
+							<div class="newPwd_13">
+								<label class="la2">姓名:&nbsp;</label> <input type="text"
+									id="newName" class="inPut" name="names" />
+								<p class="txtP">&nbsp;</p>
+							</div>
+							<div class="newAccount_13">
+								<label class="la2">帳號(email):&nbsp;</label> <input
+									type="text" id="newAccount" class="inPut" name="account" />
+								<p class="txtP">&nbsp;</p>
+							</div>
+							<div class="newPwd_13">
+								<label class="la2">密碼:&nbsp;</label> <input type="password"
+									id="newPwd" class="inPut" name="pwd" />
+								<p class="txtP">&nbsp;</p>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">關閉</button>
+								<button type="submit" type="submit" class="btn btn-primary"
+									data-dismiss="modal" id="newMbr">送出</button>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 	<script>
 		$(document).on('click', '#newMbr', function() {
 
@@ -210,4 +278,5 @@
 		})
 	</script>
 </body>
+
 </html>

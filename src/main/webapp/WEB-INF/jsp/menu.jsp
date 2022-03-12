@@ -85,6 +85,13 @@
 	 text-decoration:none;
 }
 
+.topImg{
+	text-align: center
+}
+
+.login7{
+	width: 180px;
+}
 </style>
 </head>
 
@@ -92,13 +99,15 @@
 	<div class="container">
 		<nav class="navbar fixed-top navbar-light menu"
 			style="background-color: #fff2f2">
-			<div class="btn btn-demo" data-toggle="modal" data-target="#myModal">
+			<div class="btn btn-demo" data-toggle="modal" data-target="#myModal7">
 				<span class="menu7"><img class="menuLine7"
 					src="css\menuLines.png" width="20px" height="20px">&ensp;Menu</span>
 			</div>
-
-			<a class="navbar-brand" href="${contextRoot}/main"><img
+			<div class="topImg">
+				<a class="navbar-brand" href="${contextRoot}/main"><img
 				src="css/logo.png" width="144" height="81" alt=""></a>
+			</div>
+			<div class="login7">
 			<ul class="nav justify-content-end">
 				<c:if test="${pageContext.request.userPrincipal != null}">
 					<li class="nav-item"><a class="nav-link"
@@ -114,10 +123,10 @@
 						href="${contextRoot}/logout">Logout</a></li>
 				</c:if>
 			</ul>
-
+			</div>
 		</nav>
 		<!-- Modal -->
-		<div class="modal left fade" id="myModal" tabindex="-1" role="dialog"
+		<div class="modal left fade" id="myModal7" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -174,8 +183,8 @@
 		<div class="spaceBottom"></div>
 	</div>
 
-</body>
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
 <script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 
+</body>
 </html>
