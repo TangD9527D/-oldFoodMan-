@@ -18,4 +18,7 @@ public class OrderDetailService {
 		detailDao.save(detail);
 	}
 	
+	public List<OrderDetail> findmyDetail(int detailNumber){
+		return detailDao.findByDetailNumber(detailNumber);
+	}
 }

@@ -54,5 +54,9 @@ public class ProductService {
 		return b;
 	}
 	
+	public void updateStock(int product_amount, int product_id) {
+		dao.UpdateStock(product_amount, product_id);
+	}
+	
 	
 }

@@ -32,10 +32,22 @@
 				<div id="collapse${forms.orderNumber}" class="collapse"
 					aria-labelledby="heading${forms.orderNumber}" data-parent="#accordionExample">
 					<div class="card-body">
-						${forms.orderNumber}
-						
-						
-					</div>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th scope="col">商品名稱</th>
+										<th scope="col">圖片</th>
+										<th scope="col">售價</th>
+										<th scope="col">數量</th>
+									</tr>
+								</thead>
+								<tbody id="ajaxTable${forms.orderNumber}">
+									
+								</tbody>
+							</table>
+
+
+						</div>
 				</div>
 			</div>
 		</c:forEach>
@@ -45,18 +57,36 @@
 	</div>
 	
 	<script>
-	/*
+	
 	$(document).on('click', '#Btn_see', function(){
 			var orderNumber = $(this).attr("value");
 			$.ajax({
-				url:"" + orderNumber,
+				url:"http://localhost:8080/oldFoodMan/myorder/" + orderNumber,
 				type: "post",
-				success: function(){
+				success: function(data){
 					//寫CONTROLLER和這邊的AJAX新增TABLE到card-body的DIV裡
+					$('#ajaxTable'+orderNumber).empty();
+					var msg_data = "";
+					$.each(data, function(index, value){
+						
+						msg_data += '<tr><td>' + value.detailProductId.product_name + '</td>'
+						msg_data += '<td><img src="' + value.detailProductId.product_image + '" width="100" /></td>'
+						msg_data += '<td>' + Number(value.detailProductId.product_discount)*Number(value.detailProductId.product_price) + '</td>'
+						msg_data += '<td>' + value.detailProductAmount + '</td></tr>'
+					})
+					
+					$('#ajaxTable'+orderNumber).append(msg_data);
+					/*
+					<tr>
+					<td>Mark</td>
+					<td>Otto</td>
+					<td>@mdo</td>
+				    </tr>
+					*/
 				}
 			})
 		})
-	*/
+	
 	</script>
 
 

@@ -29,6 +29,7 @@ import com.oldFoodMan.demo.model.ShoppingCart;
 import com.oldFoodMan.demo.service.CouponService;
 import com.oldFoodMan.demo.service.OrderDetailService;
 import com.oldFoodMan.demo.service.OrderFormService;
+import com.oldFoodMan.demo.service.ProductService;
 import com.oldFoodMan.demo.service.ShoppingCartService;
 
 @Controller
@@ -36,6 +37,9 @@ public class ShoppingCartController {
 	
 	@Autowired
 	private ShoppingCartService service;
+	
+	@Autowired
+	private ProductService proService;
 	
 	@Autowired
 	private OrderFormService formService;
@@ -257,8 +261,15 @@ public class ShoppingCartController {
 			detail.setDetailProductId(product);
 			detail.setDetailProductTotal(shouldPay);
 			detailService.insertDetail(detail);
-				
-			service.deleteFromCart(product, member);   //結帳後刪除購物車內已購買物品
+			
+			//結帳後刪除購物車內已購買物品
+			service.deleteFromCart(product, member);   
+			
+			//結帳後更新商品庫存
+			Product pro = proService.FindById(product_Id); 
+			int oldStock = pro.getProduct_stock();
+			int newStock = oldStock - ProductAmount;
+			proService.updateStock(newStock , product_Id);
 			
 			//餐券序號製作塞表
 			for(int index = 0; index < ProductAmount; index++) {
@@ -268,11 +279,11 @@ public class ShoppingCartController {
 				UUID uuid = UUID.randomUUID();
 
 				// 得到物件產生的ID
-				String a = uuid.toString();
+				String couponNumber = uuid.toString();
 				// 轉換為大寫
-				a = a.toUpperCase();
+				couponNumber = couponNumber.toUpperCase();
 				
-				coupon.setCouponNumber(a);
+				coupon.setCouponNumber(couponNumber);
 				
 				couponService.insertCoupon(coupon);
 			}

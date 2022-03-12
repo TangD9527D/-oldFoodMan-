@@ -14,29 +14,37 @@
 </head> 
 <body>
 	<p>
-	<div class="container">
+	
+	
+
+
+
+
 		<div class="row row-cols-1 row-cols-md-3">
 			<c:forEach var="allProducts" items="${allProducts}">
-			<div class="col mb-4">
-				<div class="card h-100">
-					<img src="${allProducts.product_image}"  class="card-img-top" alt="...">
-					<div class="card-body">
-						<h1 class="card-title">${allProducts.product_name}</h1>
-						<p class="card-text">
-						<h3>售價:$${allProducts.product_newPrice}</h3><br>
-						<h4 style="text-decoration:line-through">原價:$${allProducts.product_price}</h4>
-						限時優惠!!${allProducts.product_remark}!!<br>
-						</p>
-						
-						<button type="button" onclick="addCart(${allProducts.product_id})" id="addCart">加入購物車</button>
-						
+				<div class="col mb-4">
+					<div class="card h-100">
+						<img src="${allProducts.product_image}" class="card-img-top"
+							alt="...">
+						<div class="card-body">
+							<h1 class="card-title">${allProducts.product_name}</h1>
+							<p class="card-text">
+							<h3>售價:$${allProducts.product_newPrice}</h3>
+							<br>
+							<h4 style="text-decoration: line-through">原價:$${allProducts.product_price}</h4>
+							限時優惠!!${allProducts.product_remark}!!<br>
+							</p>
+
+							<button type="button"
+								onclick="addCart(${allProducts.product_id})" id="addCart">加入購物車</button>
+
+						</div>
 					</div>
 				</div>
-			</div>
 			</c:forEach>
 		</div>
 	</div>
-	
+
 	<script>
 		function addCart(id){ //商品加入購物車
 			$.ajax({                                         
