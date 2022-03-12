@@ -34,20 +34,6 @@
 	margin-left: 800px;
 }
 
-.tititle{
-	margin: 0px auto;
-	margin-left: 800px;
-}
-
-.tititle{
-	margin: 0px auto;
-	margin-left: 800px;
-}
-
-.tititle{
-	margin: 0px auto;
-	margin-left: 800px;
-}
 </style>
 </head>
 
