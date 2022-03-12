@@ -8,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oldFoodMan.demo.model.Member;
+import com.oldFoodMan.demo.model.OrderDetail;
 import com.oldFoodMan.demo.model.OrderForm;
 import com.oldFoodMan.demo.service.CouponService;
 import com.oldFoodMan.demo.service.OrderDetailService;
@@ -34,5 +38,11 @@ public class OrderController {
 		List<OrderForm> forms = formService.findByOrderMemberId(memberId);
 		model.addAttribute("forms", forms);
 		return "myOrderPage";
+	}
+	
+	@ResponseBody
+	@PostMapping("/myorder/{orderNumber}")
+	public List<OrderDetail> findDetail(@PathVariable int orderNumber){
+		 return detailService.findmyDetail(orderNumber);
 	}
 }

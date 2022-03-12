@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "orderdetail")
@@ -26,6 +28,7 @@ public class OrderDetail {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "detailNumber")
+	@JsonIgnore
 	private OrderForm detailNumber;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
