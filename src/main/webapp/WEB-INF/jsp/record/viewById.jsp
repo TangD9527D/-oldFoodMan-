@@ -129,6 +129,36 @@ figure {
 	height: 20px;
 	width: 500px;
 }
+/* eddie */
+
+.crange{
+
+border:3px solid black;
+width:100px;
+height:100px;
+tablindex:0;
+background-color:lightblue;
+
+}
+
+.crange:hover{
+
+background-color:pink;
+
+
+}
+
+.like{
+
+color:red;
+
+}
+
+.unlike{
+
+background-color:lightblue;
+
+}
 </style>
 </head>
 <body>
@@ -156,7 +186,10 @@ figure {
 		<div id="likeBar">
 			<img id="icon" src="images/like.png"> <img id="icon"
 				src="images/chat.png"> <img id="icon" src="images/badoo.png">
-			<button id="btn">測試收藏文章</button>
+			
+			<button onclick="likeCollections();" id="btn">測試收藏文章</button>
+			<div id="range" class="crange" onclick="likeCollections();">收藏文章</div>
+			<input type="hidden" value="${foodrecordById.id}" id="clot">
 		</div>
 		<div id="article">
 			<div id="left">
@@ -522,12 +555,58 @@ figure {
 	<script>
 	
 
-		function likeCollections() {
+	function likeCollections() {  //收藏食記
 
-		var inputResName = document.getElementById('input').value;
-		var Member_id=document.getElementById('member_id').value;
-		console.log(input);
-		console.log(Member_id);
+		var record_id = document.getElementById("clot").value;
+		
+	
+	
+// 		var dtoObject = {
+// 			"likelocations" : inputResName,
+// 			"member_id":Member_id,
+// 			}
+// 		var dtoJsonString = JSON.stringify(dtoObject);	
+ 					
+		$.ajax({
+			url : 'http://localhost:8080/oldFoodMan/likeCollections?record_id='+ record_id,
+			contentType : 'application/json; charset=UTF-8',
+// 			dataType : 'json',
+			method : 'post',
+// 			data : dtoJsonString,
+			
+			success : function(data) {
+				
+				console.log(data.record_id);
+				if(data.record_id == null ){
+					$("btn").addClass("like");
+					alert('已收藏成功');
+					
+				}else{
+					
+					alert('已刪除收藏');
+					
+				}
+				
+				
+				
+				
+		
+			}	
+
+		})
+	
+		 		
+		}
+	</script>
+
+	<script>
+	
+	function deleteCollections() {  //刪除食記
+
+		var record_id = document.getElementById("clot").value;
+		
+	
+		console.log(memberId);
 // 		var dtoObject = {
 // 			"likelocations" : inputResName,
 // 			"member_id":Member_id,
@@ -535,71 +614,38 @@ figure {
 // 		var dtoJsonString = JSON.stringify(dtoObject);	
 // 			console.log(dtoJsonString);		
 		$.ajax({
-			url : 'http://localhost:8080/oldFoodMan/likeCollections',
+			url : 'http://localhost:8080/oldFoodMan/deleteCollections?record_id='+ record_id,
 			contentType : 'application/json; charset=UTF-8',
-			dataType : 'json',
-			method : 'post',
-			data : dtoJsonString,
+// 			dataType : 'json',
+			method : 'get',
+// 			data : dtoJsonString,
 			
 			success : function(result) {	
 				
 				console.log(result)				
-														
-				var msg_data='';
-				$.each(result,function(index,value){
-					
-					msg_data = '<li id="li" class="list-group-item list-group-item-info">'+ inputResName +'</li>'
-					
-				})
-			
-			
-				
-				$('#location1').append(msg_data)	
+				alert('已刪除收藏');
 		
-			},
-			error : function(err) {
-			console.log(err)
-			alert('發生錯誤')
-			}
+			}	
 
 		})
 	
 		 		
 		}
-		
-		var Member_id2=document.getElementById('member_id2').value;
-		console.log("ID: "+Member_id2)
-			$.ajax({
-				url : 'http://localhost:8080/oldFoodMan/likeloc?member_id='+ Member_id2,
-				contentType : 'application/json ; charset=UTF-8',
-				dataType : 'json',
-				method : 'get',
-//	 			data : dtoJsonString,
-				success : function(result) {
-				
-					var msg_data='';
-					$.each(result,function(index,value){
-						msg_data += '<li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li>'
-					})
-
-					$('#location1').append(msg_data)
-
-					
-				},
-				error : function(err) {
-					console.log(err)
-					alert('發生錯誤')
-				}
-
-			})
 	
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	</script>
+
+
+
 
 
 </body>
