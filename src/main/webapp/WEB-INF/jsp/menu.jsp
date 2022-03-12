@@ -8,7 +8,7 @@
 
 <head>
 <meta charset="UTF-8">
-<link rel="shortcut icon" type="image/png" href="css/1646984828.ico" >
+<link rel="shortcut icon" type="image/png" href="css/1647002131.ico">
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <style>
 * {
@@ -21,45 +21,89 @@
 	padding: 0px;
 }
 
-.spaceBottom{
+.spaceBottom {
 	height: 120px;
 }
 
-.menu{
+.menu {
 	box-shadow: -4px 22px 14px -20px #cfcfcf;
 }
 
-.tititle{
+.tititle {
 	margin: 0px auto;
 	margin-left: 800px;
 }
 
-.tititle{
-	margin: 0px auto;
-	margin-left: 800px;
+.modal.left .modal-dialog {
+	position: fixed;
+	margin: auto;
+	width: 320px;
+	height: 100%;
+	-webkit-transform: translate3d(0%, 0, 0);
+	-ms-transform: translate3d(0%, 0, 0);
+	-o-transform: translate3d(0%, 0, 0);
+	transform: translate3d(0%, 0, 0);
 }
 
-.tititle{
-	margin: 0px auto;
-	margin-left: 800px;
+.modal.left .modal-content {
+	height: 100%;
+	overflow-y: auto;
 }
 
-.tititle{
-	margin: 0px auto;
-	margin-left: 800px;
+.modal.left .modal-body {
+	padding: 15px 15px 80px;
 }
+
+.modal.left.fade .modal-dialog {
+	left: -320px;
+	-webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+	-moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+	-o-transition: opacity 0.3s linear, left 0.3s ease-out;
+	transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal.left.fade.show .modal-dialog {
+	left: 0;
+}
+
+.menu7 {
+	display: inline;
+	line-height: 50px;
+	font-size: x-large;
+}
+
+.menuLine7 {
+	padding-bottom: 2px;
+}
+
+.menu_link7{
+	color: rgb(93, 91, 91);
+	font-weight: 600;
+}
+
+.menu_link7:hover{
+	 text-decoration:none;
+}
+
 </style>
 </head>
 
 <body>
 	<div class="container">
-		<nav class="navbar fixed-top navbar-light menu" style="background-color: #feffee">
-			<a class="navbar-brand" href="${contextRoot}/main"><img src="imgDon/noPhoto.png"
-				width="30" height="30" alt=""> OldFoodMan</a>
+		<nav class="navbar fixed-top navbar-light menu"
+			style="background-color: #fff2f2">
+			<div class="btn btn-demo" data-toggle="modal" data-target="#myModal">
+				<span class="menu7"><img class="menuLine7"
+					src="css\menuLines.png" width="20px" height="20px">&ensp;Menu</span>
+			</div>
+
+			<a class="navbar-brand" href="${contextRoot}/main"><img
+				src="css/logo.png" width="144" height="81" alt=""></a>
 			<ul class="nav justify-content-end">
 				<c:if test="${pageContext.request.userPrincipal != null}">
 					<li class="nav-item"><a class="nav-link"
-						href="${contextRoot}/reviewerMainPage">${pageContext.request.userPrincipal.name}</a></li>
+						href="${contextRoot}/reviewerMainPage">${pageContext.request.userPrincipal.name}</a>
+					</li>
 				</c:if>
 				<c:if test="${pageContext.request.userPrincipal == null}">
 					<li class="nav-item"><a class="nav-link"
@@ -70,39 +114,44 @@
 						href="${contextRoot}/logout">Logout</a></li>
 				</c:if>
 			</ul>
-			<div class="spaceTop">
-				<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #feffe200">
-					<button class="navbar-toggler" type="button" data-toggle="collapse"
-						data-target="#navbarNav" aria-controls="navbarNav"
-						aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarNav">
-						<ul class="navbar-nav">
-							<li class="nav-item"><a class="nav-link"
+
+		</nav>
+		<!-- Modal -->
+		<div class="modal left fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">Menu</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/userInfo">User Info</a></li>
-							<li class="nav-item"><a class="nav-link"
+							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/admin">Admin</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="${contextRoot}/newAccount">新增</a></li>
-
-							<li class="nav-item"><a class="nav-link"
+							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/productsPage">餐券商城</a></li>
-
-							<li class="nav-item"><a class="nav-link"
+							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/shoppingCart">我的購物車</a></li>
-							<li class="nav-item"><a class="nav-link"
+							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/myOrder">我的訂單</a></li>
-							<li class="nav-item"><a class="nav-link"
+							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/productsBackStagePage">商城後台</a></li>
-							<li class="nav-item"><a class="nav-link"
+							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/createData">食記</a></li>
-							<li class="nav-item"><a class="nav-link"
+							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/ajaxFoodVis">揪團Eat</a></li>
-							<li class="nav-item"><a class="nav-link"
+							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/viewMember">帳號test</a></li>
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+							<li class="list-group-item dropdown"><a
+								class="menu_link7 dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-expanded="false">
 									食記分類 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -113,16 +162,20 @@
 									<a class="dropdown-item" href="#"><button
 											class="btn btn-secondary" value="日式" onclick="collet11()">日式</button></a>
 								</div></li>
-
 						</ul>
 					</div>
-				</nav>
-			</div>
 
-		</nav>
+				</div>
+				<!-- modal-content -->
+			</div>
+			<!-- modal-dialog -->
+		</div>
+		<!-- modal -->
 		<div class="spaceBottom"></div>
 	</div>
+
 </body>
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
 <script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
+
 </html>
