@@ -52,4 +52,9 @@ public class PageController {
 	public String frame() {
 		return "frame";
 	}
+	
+	@GetMapping("/frame2")
+	public String frame2() {
+		return "frame2";
+	}
 }

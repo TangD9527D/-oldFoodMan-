@@ -22,6 +22,7 @@ import com.oldFoodMan.demo.model.Role;
 import com.oldFoodMan.demo.model.RoleRepository;
 import com.oldFoodMan.demo.model.UserRole;
 import com.oldFoodMan.demo.model.UserRoleRepository;
+import com.oldFoodMan.demo.utils.EncrytedPasswordUtils;
 
 @Service
 public class MemberServiceImpl implements UserDetailsService {
@@ -117,15 +118,37 @@ public class MemberServiceImpl implements UserDetailsService {
 		return null;
 	}
 	
-	public void processOAuthPostLogin(String username) {
-        Optional<Member> existUser = memberDao.findByAccount(username);
-        Member member = existUser.get();
-        if (member == null) {
+	public void processOAuthPostLogin(String name, String email) {
+		
+        Optional<Member> User = memberDao.findByAccount(email);
+        
+        if (User.isEmpty()) {
+        	
             Member newUser = new Member();
-            newUser.setMemberName(username);
-            newUser.setAuthProvider(Provider.GOOGLE);          
+            newUser.setMemberName(name);
+            newUser.setAccount(email);
+            
+            String pd = EncrytedPasswordUtils.encrytePassword("google");
+            newUser.setMemberPwd(pd);
+            
+            newUser.setAuthProvider(Provider.GOOGLE);  
+            
+            Role role = roleDao.getById(1);
+    		
+    		UserRole user = new UserRole();
+    		user.setUser_id(newUser);
+    		user.setRole_id(role);
              
-            memberDao.save(newUser);        
+    		userDao.save(user);  
+    		
+    		hs.setAttribute("member", newUser);
+    		
+        }else {
+        	
+        	Member member = User.get();
+        	
+        	hs.setAttribute("member", member);
+        	
         }
          
     }

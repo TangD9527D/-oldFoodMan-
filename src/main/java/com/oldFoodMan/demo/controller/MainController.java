@@ -94,39 +94,20 @@ public class MainController {
 
         return "403Page";
     }
-
+	
 	@GetMapping(value = "/google")
-	public ModelAndView user(ModelAndView mav, HttpSession hs, Principal principal, @AuthenticationPrincipal OAuth2User prinaipal2) {
+	public ModelAndView user(ModelAndView mav, Principal principal, @AuthenticationPrincipal OAuth2User prinaipal2) {
 		
 		String email = prinaipal2.getAttribute("email");
 		String name = prinaipal2.getAttribute("name");
 		
 		System.out.println("email: " + email + "    " + "name: " + name);
 		
-		 Member member = service.findByAccount(email);
-		 System.out.println("memeber:" + member);
-	        if (member == null) {
-	        	Member newUser = new Member();
-	            newUser.setMemberName(name);
-	            newUser.setAccount(email);         
-	            newUser.setMemberPwd("google");
-	            service.insert(newUser); 
-	            
-	            hs.setAttribute("member", newUser);
-	            
-	            service.loadUserByUsername(email);
-	            System.out.println("0000000000000000000000000000000");
-	                        
-	        }else {
-	        	
-	        	hs.setAttribute("member", member);
-	        	
-	        	service.loadUserByUsername(email);
-	        	System.out.println("111111111111111111111111111111111");
-	        }
-	        
+		service.processOAuthPostLogin(name, email);
+		
 		mav.setViewName("redirect:/main");
 		
 		return mav;
 	}
+
 }
