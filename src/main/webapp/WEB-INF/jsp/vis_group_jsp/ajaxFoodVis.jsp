@@ -89,6 +89,15 @@ margin:0 auto;
 
 }
 
+#p{
+
+	overflow:hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+
+
+}
+
 #p1{
 float:left;
 margin:2px 2px;
@@ -108,7 +117,7 @@ margin:0 auto;
 
 }
 
-	.btn:hover {
+  .btn:hover {
     /* :hover 代表滑鼠移到元素上時的狀態 */ 
     transform: scale(1.05);
   }
@@ -284,6 +293,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 
 }
 
+.joinhead{
+
+background: #ffeded; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #ffeded 32%, #edcece 51%, #edcece 61%, #edcece 73%, #fde4de 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #ffeded 32%,#edcece 51%,#edcece 61%,#edcece 73%,#fde4de 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #ffeded 32%,#edcece 51%,#edcece 61%,#edcece 73%,#fde4de 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', endColorstr='#fde4de',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.joinheadn{
+color:black;
+font-weight:bolder;
+font-size:35px;
+
+}
+.vishead{
+
+background: #ffeded; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #ffeded 32%, #edcece 51%, #edcece 61%, #edcece 73%, #fde4de 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #ffeded 32%,#edcece 51%,#edcece 61%,#edcece 73%,#fde4de 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #ffeded 32%,#edcece 51%,#edcece 61%,#edcece 73%,#fde4de 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', endColorstr='#fde4de',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+
 </style>
 
 
@@ -349,7 +383,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		
 		<div  class="div05_32">
 		<div  class="div05-2">
-		<h2>${ofmid.memberName} 參加的揪團Eat</h2>
+		<h3 class="joinhead"><span class="joinheadn">${ofmid.memberName}</span> 參加的揪團Eat</h3>
 		</div>
 		<div id="myadd">
 		
@@ -363,8 +397,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		</div>
 		<div  class="div05_32">
 		 <div class="div05-2" >
-    		<h2>${ofmid.memberName} 發起的揪團Eat</h2>
+    		<h3 class="vishead"><span class="joinheadn">${ofmid.memberName}</span> 發起的揪團Eat</h3>
   		</div>
+	
 	
 		<div id="myvis">
 		
@@ -403,7 +438,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 							
 			<div class="form-group col-md-9">
 			
-				<h4>舉辦者：${ofmid.memberName}</h4> 
+				<h4><i class="fa-solid fa-user-group"></i>舉辦者：${ofmid.memberName}</h4> 
 
 			</div>					
 							
@@ -444,7 +479,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 			</div>
 			
 			<div class="form-group col-md-6">
-				<input type="text"
+				<input type="hidden"
 					id="member_id" value="${ofmid.id}" class="form-control" required>
 			</div>
 			
@@ -722,7 +757,7 @@ var tdate=new Date();
 //  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 					
 						msg_data+= '<div class="card-body">'		
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp2" style="background-color: #faf0e6; font-size:21px ;text-align: center">'+ value.vis_res_name +'</h3></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +' " ><h3 id="p" class="card-title tp2" style="background-color: #faf0e6; font-size:21px ;text-align: center">'+ value.vis_res_name +'</h3></a>'
 						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  + '</h5>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
 						msg_data+= '<a type="submit" id="deletemyjoin" value='+value.vis_id+' "><i class="fa-regular fa-trash-can testii" ></i></a>'
