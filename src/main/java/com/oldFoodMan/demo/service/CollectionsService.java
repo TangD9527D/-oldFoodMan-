@@ -3,8 +3,6 @@ package com.oldFoodMan.demo.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,17 +49,47 @@ public class CollectionsService {
 		clotdao.delete(delclot);
 	}
 	
-	public List<Collections> findByMemberIdAndRecordId(Member member,FoodRecord record){
+	public Collections findByMemberIdAndRecordId(Member member,FoodRecord record){
 		
 		Integer member_id=member.getId();
 		Integer record_id=record.getId();
 		
-		List<Collections> likeclot=clotdao.findByMemberIdAndRecordId(member_id, record_id);
+		Collections likeclot=clotdao.findByMemberIdAndRecordId(member_id, record_id);
+		
+		System.out.println("!!有啥: " +likeclot);
+		
+		
+		if(likeclot == null) {
+		System.out.println("like了啦:"+likeclot);
+		Collections clot=new Collections();
+		clot.setMember_id(member);
+		clot.setRecord_id(record);
+		clotdao.save(clot);
+			
+		}else {
+
+			Collections clot=new Collections();
+			clot.setMember_id(member);
+			clot.setRecord_id(record);
+			clotdao.delete(clot);
+			
+		}
 		
 		return likeclot ;
 		
 	}
 	
+	public List<Collections>findRecord(Member member,FoodRecord record){
+		
+		Integer member_id=member.getId();
+		Integer record_id=record.getId();
+		
+		List<Collections> list= clotdao.findRecord(member_id, record_id);
+		
+		return list ;
+		
+		
+	}
 	
 	public FoodRecord findByRecordId(Integer record) {
 		

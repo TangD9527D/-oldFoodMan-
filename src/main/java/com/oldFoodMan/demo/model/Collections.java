@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "collections")
 @IdClass(CollectionsBoth.class)
@@ -16,6 +18,7 @@ public class Collections {
 	@Id
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = ("member_id"))
+	@JsonIgnore
 	private Member member_id;
 
 	@Id
