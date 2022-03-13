@@ -39,22 +39,22 @@ public class CollectionsController {
 		
 	}
 	
-	
+	@ResponseBody
 	@GetMapping(value="/findCollections")  //查收藏的文章
-	public ModelAndView likeCollections(ModelAndView mav,HttpSession hs,@RequestParam(name="record_id") Integer record) {
+	public Collections likeCollections(ModelAndView mav,HttpSession hs,@RequestParam(name="record_id") Integer record) {
 		
 		Member mid = (Member)hs.getAttribute("member");
 		Integer id=mid.getId();
-		
+		System.out.println("mid:::"+mid);
 		FoodRecord record_id=service.findByRecordId(record);
 		
 		System.out.println("id:"+id);
 		
-		List<Collections> list=service.findRecord(mid, record_id);
+		Collections list=service.findRecord(mid, record_id);
 		
 		mav.getModel().put("likeCollections", list);			
 		mav.setViewName("viewById");
-		return mav ;		
+		return list ;		
 		
 	}
 	
