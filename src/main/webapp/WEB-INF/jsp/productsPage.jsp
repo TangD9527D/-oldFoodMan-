@@ -20,21 +20,22 @@
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-ride="carousel">
 			<ol class="carousel-indicators">
-				<li data-target="#carouselExampleIndicators" data-slide-to="0"
-					class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
 			</ol>
 			<div class="carousel-inner">
+			
 				<div class="carousel-item active">
-					<img src="<c:url value='product_img/2022/03/12/7dc262c0-702f-4f92-ae7a-7fcc90a98bf3.jpg'/>" width="100px" class="d-block w-100" alt="...">
+					<img src="<c:url value='${advertise.product_image}'/>" width="100px" class="d-block w-100" alt="...">
 				</div>
+			  <c:forEach var="advertises" items="${advertises}">
 				<div class="carousel-item">
-					<img src="<c:url value='product_img/2022/03/12/d7bf5f4e-3f52-41b7-a863-7523496fb5c7.jpg'/>" width="100px" class="d-block w-100" alt="...">
+					<img src="<c:url value='${advertises.product_image}'/>" width="100px" class="d-block w-100" alt="...">
 				</div>
-				<div class="carousel-item">
-					<img src="<c:url value='product_img/2022/03/12/ea982f9b-7001-46e9-bb47-d0004ecb838c.jpg'/>" width="100px" class="d-block w-100" alt="...">
-				</div>
+			  </c:forEach>
 			</div>
 			<button class="carousel-control-prev" type="button"
 				data-target="#carouselExampleIndicators" data-slide="prev">
@@ -164,7 +165,7 @@
 								msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
 								msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
 								msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
-								msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product__remark + '!<br></p>';
+								msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product_remark + '!<br></p>';
 								msg_data += '<div>';
 								msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">商品詳情</button>';
 								msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
@@ -197,7 +198,7 @@
 							msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
 							msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
 							msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
-							msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product__remark + '!<br></p>';
+							msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product_remark + '!<br></p>';
 							msg_data += '<div>';
 							msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">商品詳情</button>';
 							msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
@@ -225,7 +226,7 @@
 						msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
 						msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
 						msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
-						msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product__remark + '!<br></p>';
+						msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product_remark + '!<br></p>';
 						msg_data += '<div>';
 						msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">商品詳情</button>';
 						msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
