@@ -22,4 +22,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	
 	@Query(value = "select * from product where product_name LIKE %:inputVal% or product_category LIKE %:inputVal%", nativeQuery = true)
 	public List<Product> searchProduct(@Param(value = "inputVal") String inputVal);
+	
+	@Query(value = "select top 4 * from product where product_id < (SELECT MAX (product_id) FROM product) order by product_id DESC", nativeQuery = true)
+	public List<Product> advertiseDisplay();
+	
+	@Query(value = "select top 1 * from product order by product_id DESC", nativeQuery = true)
+	public Product advertiseDisplayTop();
 }

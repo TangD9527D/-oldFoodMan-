@@ -70,6 +70,13 @@ public class ProductController {
 	 @ResponseBody
 	 @RequestMapping("/InsertProductPhoto")
 	 public String fileUpload(MultipartFile file,HttpServletRequest request){
+	  
+	  //使用者未輸入圖片則預設圖片路徑
+	  if(file == null) { 
+		  this.returnUrl ="product_img/noImage/noProductImage.png";
+		  return returnUrl;
+	  }
+		 
 	  String time = formatter.format(new Date());
 	  //圖片上傳伺服器後所在的資料夾
 	  String realPath = request.getServletContext().getRealPath("/product_img") + time;
@@ -96,10 +103,7 @@ public class ProductController {
 	   
 	  } catch (IOException e) {
 	   e.printStackTrace();
-	  }finally {
-		
 	  }
-
 	  return null;
 	 }
 	
@@ -174,6 +178,12 @@ public class ProductController {
 	public String allFrontProducts(Model model) {
 		List<Product> products = proService.discount();
 		model.addAttribute("allProducts", products);
+		
+		List<Product> advertises = proService.advertiseDisplayOther();
+		model.addAttribute("advertises", advertises);
+		
+		Product advertise = proService.advadvertiseDisplayTop();
+		model.addAttribute("advertise", advertise);
 		return "productsPage";
 	}
 	
@@ -188,4 +198,5 @@ public class ProductController {
 	public List<Product> searchAllProduct(){
 		return proService.discount();
 	}
+	
 }

@@ -61,4 +61,12 @@ public class ProductService {
 	public List<Product> searchProduct(String inputVal){
 		return dao.searchProduct(inputVal);
 	}
+	
+	public List<Product> advertiseDisplayOther(){
+		return dao.advertiseDisplay();
+	}
+	
+	public Product advadvertiseDisplayTop(){
+		return dao.advertiseDisplayTop();
+	}
 }

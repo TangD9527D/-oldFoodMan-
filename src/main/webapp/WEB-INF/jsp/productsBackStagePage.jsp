@@ -186,7 +186,7 @@
 			        { data: 'product_remark',title: "備註" },
 			        { data: null ,title: "操作功能",  // 這邊是欄位
 			            render: function (data, type, row) {
-			              return '<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#UpdateModal" onclick="updateDialog(' + data.product_id + ')">編輯</button> ' +
+			              return '<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#UpdateModal"  value="' + data.product_id + '" id="updateDialog">編輯</button> ' +
 			                      '<button type="button" class="btn btn-danger btn-sm" id="deleteOne"  value="' + data.product_id + '" >刪除</button>'
 			                      
 			              }
@@ -242,7 +242,11 @@
 	
 		
 		//修改對話框
-		function updateDialog(id){
+		var upRow = null;
+		$(document).on('click', '#updateDialog', function(){
+			let id = $(this).attr('value');
+			upRow = $(this).closest('tr');
+			console.log(id);
 			$.ajax({
 				method:'post',
 				url:'http://localhost:8080/oldFoodMan/updateDiolog/' + id,
@@ -258,7 +262,8 @@
 					
 				}
 			})
-		}
+		})
+		
 		
 		//修改
 		$(document).on('click', '#Btn_update', function(){
@@ -289,7 +294,6 @@
             var dtoObject = {'product_number':inputNumber, 'product_name':inputName, 'product_category':inputCategory, 'product_stock':inputStock, 'product_discount':inputDiscount,'product_price':inputPrice,'product_remark':inputRemark};
             var id = $('#Uproduct_id').val();
             var dtoJsonString = JSON.stringify(dtoObject);
-            upRow = $(this).closest('tr');
             
             $.ajax({                                         //更新表格資料
                 url:'http://localhost:8080/oldFoodMan/updateProduct/' + id,
@@ -299,7 +303,9 @@
                 method: 'post',
                 data: dtoJsonString,
                 success:function(result){    
-                	$("#tableAjax").DataTable().row(upRow).data(result).draw(false);  //有問題!!!!!!!!!!!!!!!!!!記得改
+                	$("#tableAjax").DataTable().row(upRow).data(result).draw(false);
+      
+                	console.log(result)
                 },
                 error:function(err){
                     console.log(err);

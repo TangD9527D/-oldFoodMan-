@@ -46,6 +46,7 @@
 		</table><br>
 		<p></p>
 		<div>
+			<button type="button" class="btn btn-danger btn-sm" id="selectAll">全選/取消全選</button>
 			<button type="button" class="btn btn-danger btn-sm" id="deleteSelect">多筆刪除</button>
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BuyModal" id="toBuy" style="float:right">去結帳</button>
 		</div>
@@ -304,6 +305,23 @@
                 }
 			})
 		})
+		
+		
+		$(document).ready(function(){
+ 			$("#selectAll").click(function(){
+ 				if($("[name=checkbox]").prop("checked")){
+ 					$("[name=checkbox]").prop("checked",false);
+ 				}else{
+ 					$("[name=checkbox]").prop("checked",true);
+ 				}
+   				
+
+  			})
+ 		})
+		
+		
+		
+		
 		
 		//按下去結帳會先跳確認勾選項目資訊
 		$('#toBuy').click(function(){
