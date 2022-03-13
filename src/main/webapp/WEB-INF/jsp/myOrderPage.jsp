@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>餐券商城</title>
+<title>購買紀錄</title>
 	<c:set var='contextRoot' value='${pageContext.request.contextPath}'/>
 	<link rel='stylesheet' href='${contextRoot}/css/bootstrap.min.css'/>
 </head> 
@@ -25,7 +25,7 @@
 						<button class="btn btn-link btn-block text-left" type="button"
 							data-toggle="collapse" data-target="#collapse${forms.orderNumber}"
 							aria-expanded="true" aria-controls="collapse${forms.orderNumber}" id="Btn_see" value="${forms.orderNumber}">
-							<h3>總金額: ${forms.orderTotal}    訂購時間: ${forms.orderTime}</h3></button>
+							<h3>總金額: $${forms.orderTotal}    訂購時間: ${forms.orderTime}</h3></button>
 					</h2>
 				</div>
 
