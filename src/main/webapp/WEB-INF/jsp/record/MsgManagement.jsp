@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="layout/navbar.jsp" />
+<jsp:include page="../menu.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +23,9 @@
     <thead>
         <tr>
             <th>刪除</th>
+            <th>留言ID</th>
         	<th>會員ID</th>
-            <th>食記ID</th>
+            <th>食記名稱</th>
             <th>留言</th>
             <th>時間</th>
   
@@ -35,10 +36,12 @@
     <c:forEach var="msg" items="${MSG}">  
         <tr>
             <td><a onclick="return confirm('確認刪除?')" href="${contextRoot}/deleteMsg?id=${msg.id}">刪除</a></td>
-            <td><c:out value="${msg.member_id.id}"/>
             <td><c:out value="${msg.id}"/>
+            <td><c:out value="${msg.member_id.id}"/>
+            <td><a href="${contextRoot}/viewById?id=${msg.record_id.id}"><c:out value="${msg.record_id.title}"/></a>
             <td><c:out value="${msg.text}"/>
             <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss EEEE" value="${msg.added}" />
+            
        
             
       

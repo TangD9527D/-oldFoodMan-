@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="layout/navbar.jsp" />
+<jsp:include page="../menu.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +44,7 @@
             <td><a onclick="return confirm('確認刪除?')" href="${contextRoot}/deleteData?id=${foodRecord.id}">刪除</a></td>
             <td><c:out value="${foodRecord.member_id.id}"/>
             <td><c:out value="${foodRecord.id}"/>
-            <td><c:out value="${foodRecord.title}"/>
+            <td><a href="${contextRoot}/viewById?id=${foodRecord.id}"><c:out value="${foodRecord.title}"/></a>
             <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss EEEE" value="${foodRecord.added}" />
             <td><c:out value="${foodRecord.shopName}"/>
             <td><c:out value="${foodRecord.city}"/>
