@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oldFoodMan.demo.model.Coupon;
+import com.oldFoodMan.demo.model.CouponMailDao;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OrderDetail;
 import com.oldFoodMan.demo.model.OrderForm;
@@ -49,6 +50,9 @@ public class ShoppingCartController {
 	
 	@Autowired
 	private CouponService couponService;
+	
+	@Autowired
+    private CouponMailDao mailUtils; //寄信用
 	
 	
 	@GetMapping("/shoppingCart")
@@ -287,6 +291,13 @@ public class ShoppingCartController {
 				
 				couponService.insertCoupon(coupon);
 			}
+			
+			mailUtils.sendHtmlMail("c7416706@gmail.com","老食人餐券",
+	                "<div style=\"text-align: center;position: absolute;\" >\n"
+	                        +"<h3>\"一封html測試郵件\"</h3>\n"
+	                        + "<div>這是您的餐券序號" + 56789 + "</div>\n"
+	                        + "</div>");
+	        System.out.println("有寄出去了!!!!!!!!!!!!");
 			
 			
 	    }
