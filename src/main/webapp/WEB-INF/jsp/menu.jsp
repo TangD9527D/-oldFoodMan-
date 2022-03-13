@@ -153,8 +153,19 @@
 								href="${contextRoot}/myOrder">我的訂單</a></li>
 							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/productsBackStagePage">商城後台</a></li>
-							<li class="list-group-item"><a class="menu_link7"
-								href="${contextRoot}/createData">食記</a></li>
+							 <li class="nav-item dropdown">
+						      			<a
+										class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+										role="button" data-toggle="dropdown" aria-expanded="false"> 食記
+										</a>
+											<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+												<a class="dropdown-item"  href="${contextRoot}/createData">新增食記</a>
+												<a class="dropdown-item"  href="${contextRoot}/MemberRecordList">個人食記List</a>
+												<a class="dropdown-item"  href="${contextRoot}/totalRecord">全部食記</a>
+												<a class="dropdown-item"  href="${contextRoot}/RecordManagement">食記後台</a> 
+												<a class="dropdown-item"  href="${contextRoot}/MsgManagement">留言後台</a> 
+											</div>						
+							 </li>
 							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/ajaxFoodVis">揪團Eat</a></li>
 							<li class="list-group-item"><a class="menu_link7"

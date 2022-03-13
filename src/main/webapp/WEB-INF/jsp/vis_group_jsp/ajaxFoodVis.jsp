@@ -366,7 +366,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 <body>
 <div class="allpage">
 	<div id="content">
-	<div class="header1" ><i style="font-size:50px" class="fa-solid fa-utensils"></i><span style="font-size:40px">揪團Eat</span></div>
+	<div class="header1" ><i style="font-size:30px" class="fa-solid fa-utensils"></i><span style="font-size:30px">揪團美食Eat</span></div>
 	<article class="article">
 <!-- 	<button type="button" id="star" onclick="">test</button> -->
 	

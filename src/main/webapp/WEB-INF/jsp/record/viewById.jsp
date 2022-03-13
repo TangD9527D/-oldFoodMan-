@@ -4,12 +4,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="layout/navbar.jsp" />
+<jsp:include page="../menu.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
 <style>
 #rateLL {
 	display: flex;
@@ -130,35 +132,15 @@ figure {
 	width: 500px;
 }
 /* eddie */
-
-.crange{
-
-border:3px solid black;
-width:100px;
-height:100px;
-tablindex:0;
-background-color:lightblue;
-
+.crange:hover {
+	background-color: pink;
 }
 
-.crange:hover{
-
-background-color:pink;
-
-
+.test {
+	color: yellow;
 }
 
-.like{
 
-color:red;
-
-}
-
-.unlike{
-
-background-color:lightblue;
-
-}
 </style>
 </head>
 <body>
@@ -186,9 +168,9 @@ background-color:lightblue;
 		<div id="likeBar">
 			<img id="icon" src="images/like.png"> <img id="icon"
 				src="images/chat.png"> <img id="icon" src="images/badoo.png">
-			
-			<button onclick="likeCollections();" id="btn">測試收藏文章</button>
-			<div id="range" class="crange" onclick="likeCollections();">收藏文章</div>
+			<div id="range" class="crange" onclick="likeCollections();">
+				<i id="test" class="fa-solid fa-star" style="font-size:30px"></i>
+			</div>
 			<input type="hidden" value="${foodrecordById.id}" id="clot">
 		</div>
 		<div id="article">
@@ -553,6 +535,47 @@ background-color:lightblue;
 
 	<!-- Eddie -->
 	<script>
+// 	網頁載入分辨是否有資料給予樣式
+	$(document).ready(function() {
+		
+
+
+		
+	var record_id = document.getElementById("clot").value;
+	
+	$.ajax({
+		url : 'http://localhost:8080/oldFoodMan/findCollections?record_id='+ record_id,
+		contentType : 'application/json ; charset=UTF-8',
+	
+		method : 'get',
+		success : function(data) {
+			console.log(data);
+//				
+			
+			if(data.record_id == null ){
+				
+				$("#test").css("color","white");
+				
+				
+			}else{
+				$("#test").css("color","yellow");
+				
+				
+			}
+
+							
+		},
+		error : function(err) {
+			console.log(err)
+			alert('發生錯誤')
+		}
+
+	})
+	})
+	</script>
+
+
+	<script>
 	
 
 	function likeCollections() {  //收藏食記
@@ -578,11 +601,12 @@ background-color:lightblue;
 				
 				console.log(data.record_id);
 				if(data.record_id == null ){
-					$("btn").addClass("like");
+					
+					$("#test").css("color","yellow");
 					alert('已收藏成功');
 					
 				}else{
-					
+					$("#test").css("color","white");
 					alert('已刪除收藏');
 					
 				}
@@ -606,7 +630,7 @@ background-color:lightblue;
 		var record_id = document.getElementById("clot").value;
 		
 	
-		console.log(memberId);
+// 		console.log(memberId);
 // 		var dtoObject = {
 // 			"likelocations" : inputResName,
 // 			"member_id":Member_id,
@@ -622,7 +646,7 @@ background-color:lightblue;
 			
 			success : function(result) {	
 				
-				console.log(result)				
+// 				console.log(result)				
 				alert('已刪除收藏');
 		
 			}	
@@ -630,20 +654,9 @@ background-color:lightblue;
 		})
 	
 		 		
-		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		}	
 	
 	</script>
-
 
 
 
