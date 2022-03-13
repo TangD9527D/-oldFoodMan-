@@ -16,16 +16,17 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
 	<style>
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-    }
-    input[type="number"]{
-        -moz-appearance: textfield;
-    }
-</style>
+    	input::-webkit-outer-spin-button,
+    	input::-webkit-inner-spin-button {
+        	-webkit-appearance: none;
+    	}
+    	input[type="number"]{
+        	-moz-appearance: textfield;
+    	}
+	</style>
 	
 	
 </head>
@@ -406,7 +407,7 @@
                 		deleteRow = $('#checkbox'+value).closest('tr');
                 		$("#tableAjax2").DataTable().row(deleteRow).remove().draw(false);
                 	});
-                	alert("已結帳完成!餐券將於3~5分鐘寄至您於本站註冊之會員信箱!")
+                	swal("已結帳完成!餐券將於3~5分鐘寄至您於本站註冊之會員信箱!", "You clicked the button!", "success");
                 }
 			})
 		})
