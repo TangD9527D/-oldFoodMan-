@@ -31,12 +31,10 @@ public class MailController {
 		
 		Member mb = memberService.findByAccount(email);
 		Integer id = mb.getId();
-
-		String message = "http://localhost:8080/oldFoodMan/resetPassword/" + id;
 		
-		mailService.prepareAndSend(email, message);
+		mailService.prepareAndSend(email, id);
 		
-		return "哪次不成功??????";
+		return "如果您有客戶帳戶，系統會向您發送一封電子郵件以創建新密碼。";
 	}
 	
 	
