@@ -6,24 +6,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import lombok.Data;
+
+@Data
 @Entity
+@Table(name="reviewer_user")
 public class User implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	private String username;
-	
-	private Integer followSize=0;
-	private Integer fanSize=0;
-	
+	private String member_account;
+	private Integer follow_size=0;
+	private Integer fan_size=0;
 	@Transient
-	private Integer isFriend=0;
+	private Integer is_friend=0;
 	
 	public User() {
+	}
+
+	public Integer getFollow_size() {
+		return follow_size;
+	}
+
+	public void setFollow_size(Integer follow_size) {
+		this.follow_size = follow_size;
+	}
+
+	public Integer getFan_size() {
+		return fan_size;
+	}
+
+	public void setFan_size(Integer fan_size) {
+		this.fan_size = fan_size;
 	}
 
 	public Integer getId() {
@@ -34,37 +52,22 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getMember_account() {
+		return member_account;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setMember_account(String member_account) {
+		this.member_account = member_account;
 	}
 
-	public Integer getFollowSize() {
-		return followSize;
+	public Integer getIs_friend() {
+		return is_friend;
 	}
 
-	public void setFollowSize(Integer followSize) {
-		this.followSize = followSize;
+	public void setIs_friend(Integer is_friend) {
+		this.is_friend = is_friend;
 	}
 
-	public Integer getFanSize() {
-		return fanSize;
-	}
-
-	public void setFanSize(Integer fanSize) {
-		this.fanSize = fanSize;
-	}
-
-	public Integer getIsFriend() {
-		return isFriend;
-	}
-
-	public void setIsFriend(Integer isFriend) {
-		this.isFriend = isFriend;
-	}
 	
 	
 }

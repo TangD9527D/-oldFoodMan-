@@ -4,9 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 @Entity
 @IdClass(RelationshipPK.class)
+@Table(name="reviewer_relationship")
 public class Relationship {
 	private Integer fromUserId;
 	private Integer toUserId;
