@@ -50,12 +50,20 @@
             <td><c:out value="${foodRecord.city}"/>
             <td><c:out value="${foodRecord.shopType}"/>
             <td><img width="80" height="70" src="<c:url value='/getPicture/${foodRecord.id}'/>">
-            <td><c:out value="${foodRecord.gender}"/>
-            <td><c:out value="${foodRecord.gender1}"/>
-            <td><c:out value="${foodRecord.gender2}"/>
-            
-      
+            <td><h6 style="display: none" id="score">
+					<c:out value="${foodRecord.gender}" />
+				</h6>
+					<img style="width: 30px;" id="tastyId2">
+            <td><h6 style="display: none" id="score1">
+					<c:out value="${foodRecord.gender1}" />
+				</h6>
+					<img style="width: 30px;" id="atmosphereId2">
+            <td><h6 style="display: none" id="score2">
+					<c:out value="${foodRecord.gender2}" />
+				</h6>
+					<img style="width: 30px;" id="cpId2">
         </tr>
+        
          </c:forEach>
     </tbody>
 </table>
@@ -97,10 +105,28 @@
 			  "autoWidth": true
 			} );
 		
+
+		function setScore3() {
+			var score=document.getElementById("score").innerText;  //得到評分1-5
+			console.log("score = "+score);
+			document.getElementById("tastyId2").src="images/scoreImages/"+${'score'}+".png"; 
+			}
+		function setScore4() {
+			var score1=document.getElementById("score1").innerText;  //得到評分1-5
+			document.getElementById("atmosphereId2").src="images/scoreImages/"+${'score1'}+".png"; 
+			}
+		function setScore5() {
+			var score2=document.getElementById("score2").innerText;  //得到評分1-5
+			document.getElementById("cpId2").src="images/scoreImages/"+${'score2'}+".png"; 
+			}
 		
+		setScore3();
+		setScore4();
+		setScore5();
 	
 		
 		</script>
 
+		
 </body>
 </html>
