@@ -79,12 +79,12 @@ public class CollectionsService {
 		
 	}
 	
-	public List<Collections>findRecord(Member member,FoodRecord record){
+	public Collections findRecord(Member member,FoodRecord record){
 		
 		Integer member_id=member.getId();
 		Integer record_id=record.getId();
 		
-		List<Collections> list= clotdao.findRecord(member_id, record_id);
+		Collections list= clotdao.findByMemberIdAndRecordId(member_id, record_id);
 		
 		return list ;
 		

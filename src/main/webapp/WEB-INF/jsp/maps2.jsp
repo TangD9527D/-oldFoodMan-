@@ -406,30 +406,30 @@ body {
 		<!-- 分頁頁碼 -->
 
 		<div>
-			<div class="pagination">
-				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
+<!-- 			<div class="pagination"> -->
+<%-- 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}"> --%>
 
-					<c:choose>
+<%-- 					<c:choose> --%>
 
-						<c:when test="${page.number != pageNumber -1}">
+<%-- 						<c:when test="${page.number != pageNumber -1}"> --%>
 
-							<li class="page-item"><a class="page-link"
-								href="${contextRoot}/main?p=${pageNumber}"><c:out
-										value="${pageNumber} "></c:out></a></li>
+<!-- 							<li class="page-item"><a class="page-link" -->
+<%-- 								href="${contextRoot}/main?p=${pageNumber}"><c:out --%>
+<%-- 										value="${pageNumber} "></c:out></a></li> --%>
 
-						</c:when>
-						<c:otherwise>
-							<li class="page-item active" aria-current="page"><span
-								class="page-link"><c:out value="${pageNumber} " /></span></li>
-						</c:otherwise>
+<%-- 						</c:when> --%>
+<%-- 						<c:otherwise> --%>
+<!-- 							<li class="page-item active" aria-current="page"><span -->
+<%-- 								class="page-link"><c:out value="${pageNumber} " /></span></li> --%>
+<%-- 						</c:otherwise> --%>
 
-					</c:choose>
-					<c:if test="${pageNumber != page.totalPages}">
+<%-- 					</c:choose> --%>
+<%-- 					<c:if test="${pageNumber != page.totalPages}"> --%>
 
-					</c:if>
-				</c:forEach>
+<%-- 					</c:if> --%>
+<%-- 				</c:forEach> --%>
 
-			</div>
+<!-- 			</div> -->
 		</div>
 
 	</div>
