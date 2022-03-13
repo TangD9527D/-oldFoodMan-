@@ -3,6 +3,8 @@ package com.oldFoodMan.demo.model;
 
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +22,11 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	@Modifying
 	@Query(value="SELECT * FROM foodRecord f WHERE f.member_id like CONCAT('%',:member_id,'%')",nativeQuery=true)
 	public void inquire(@Param("member_id")Integer member_id);
-
+	
+	@Transactional
+	@Modifying
+	@Query(value="SELECT*FROM foodRecord f WHERE f.member_id= :member_id ORDER BY f.create_at DESC",nativeQuery=true)
+	public List<FoodRecord> memberRecordList(@Param("member_id")Integer member_id);
+	
 
 }

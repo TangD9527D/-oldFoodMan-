@@ -216,5 +216,13 @@ public class FoodRecordController {
 		return mav;
 	}
 	
+	//刪除食記
+		@GetMapping(value = "/deleteData2")
+		public ModelAndView deleteRecord2(ModelAndView mav, @RequestParam(name = "id") Integer id) {
+			service.deleteByID(id);
+			mav.setViewName("redirect:/MemberRecordList"); // redirect到viewMessages這個Controller
+			return mav;
+		}
+	
 }
 

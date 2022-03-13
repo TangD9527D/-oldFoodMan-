@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.FoodRecord;
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.RecordMessages;
 import com.oldFoodMan.demo.service.FoodRecordService;
 import com.oldFoodMan.demo.service.RecordMessageService;
@@ -43,8 +45,14 @@ public class PageController_foodRecord {
 	
 	//會員食記List
 	@GetMapping("/MemberRecordList")
-	public ModelAndView MemberRecordList(ModelAndView mav) {
+	public ModelAndView MemberRecordList(ModelAndView mav,HttpSession session) {
 		mav.setViewName("record/MemberRecordList");
+		Member member = (Member)session.getAttribute("member"); //session.getAttribute("member")是個物件，所以轉型別為Member的型別
+		Integer member_id = member.getId();
+		System.out.println("member_id = "+member_id);
+		List<FoodRecord> mfl = service.memFoodRecords(member_id);
+		System.out.println("mfl = "+mfl);
+		mav.getModel().put("mfl", mfl);
 		return mav;
 	}
 	

@@ -256,16 +256,16 @@ body {
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">新增帳號</h4>
+						<h4 class="modal-title" id="myModalLabel">忘記密碼</h4>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">
-						<form id="form">
-							<label>帳號:&nbsp;</label> 
-							<input type="text" id="account" name="account">
+					<div class="modal-body" id="emailBody">
+						<form id="form1">
+							<label>信箱:&nbsp;</label> 
+							<input type="text" id="emailSend" name="account">
 							<button type="button" id="btn77">送出</button>
 						</form>
 					</div>
@@ -301,14 +301,22 @@ body {
 		})
 
 		$(document).on('click', '#btn77', function(){ 
-		var email = $("#account").val();
+		var email = $("#emailSend").val();
 		console.log(email);
-		$("#form").remove();
+		$("#form1").remove();
 		$.ajax({
 			method:"post",
 			url:"http://localhost:8080/oldFoodMan/mail/" + email,
-			success:function(data){
-				$("#out").append(data);
+			success:function(){
+				$("#emailBody").append("<div style='text-align: center;'>" + 
+							"<div><img src='${contextRoot}/css/forgot.jpg' style='height: 200px; width: 200px;'></div>" +
+								"<p class='h6' style='font-weight: 800;'>如果您有客戶帳戶，</p>" +
+								"<p class='h6' style='font-weight: 800;'>系統會向您發送一封電子郵件以創建新密碼。</p>" +
+								"<br>" +
+								"<button type='button' class='btn btn-dark' data-dismiss='modal' aria-label='Close'>" +
+								"<span aria-hidden='true'>回到登入畫面</span>" +
+								"</button>" +		
+							"</div>");
 			}
 		})
 	})
