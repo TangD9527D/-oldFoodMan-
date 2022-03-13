@@ -70,6 +70,7 @@ public class OldFoodManBean implements Serializable{
 	
 //	@ManyToOne(fetch = FetchType.EAGER)
 //	@JoinColumn(name = "member_id")
+	@JsonIgnore
 	private Integer member_id;
 	
 	

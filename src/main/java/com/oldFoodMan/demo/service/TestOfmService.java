@@ -23,6 +23,22 @@ public class TestOfmService {
 	private TestOfmRepository dao;
 
 	
+	public void insert(TestOFM ofm) {
+		dao.save(ofm);
+
+	}
+	
+	public TestOFM findById(Integer id) {
+		Optional<TestOFM> op = dao.findById(id);
+
+		if (op.isPresent()) {
+			return op.get();
+		}
+
+		return null;
+	}
+	
+	
 
 	public void delete(Integer id) {
 
@@ -60,5 +76,7 @@ public class TestOfmService {
 		List<TestOFM> ofmforfull=dao.findMyFoodVisByMemberID(id);
 		return ofmforfull;
 	}
+	
+	
 
 }

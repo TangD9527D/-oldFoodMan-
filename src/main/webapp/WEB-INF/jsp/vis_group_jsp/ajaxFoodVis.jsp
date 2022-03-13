@@ -22,6 +22,10 @@ margin:10px auto;
 
 }
 
+.active1{
+color:black;
+
+}
 #content {
     width:100%;
     overflow:auto;
@@ -73,10 +77,25 @@ background-color: white;
 	background-color:white;
 }
 
+.div06_32 {
+background-color: white;
+	width:85%;
+	float:left;
+	margin-top: 30px ;
+	
+	margin-right:100px;
+	
+    padding: 30px;
+    box-shadow: 5px 5px 5px gray;
+	border-radius: 20px;
+    border:2px outset #F5EDE4;
+	background-color:white;
+}
+
 .div05-2{
 height:40px;
 background-color:#FDE4DE;
-border-radius: 10px;
+/* border-radius: 10px;  */
 text-align:center;
 margin-bottom:10px;
 }
@@ -289,8 +308,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 
 
 
-
-
 }
 
 .joinhead{
@@ -308,6 +325,7 @@ font-weight:bolder;
 font-size:35px;
 
 }
+
 .vishead{
 
 background: #ffeded; /* Old browsers */
@@ -395,7 +413,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		</div>
 		
 		</div>
-		<div  class="div05_32">
+		<div  class="div06_32">
 		 <div class="div05-2" >
     		<h3 class="vishead"><span class="joinheadn">${ofmid.memberName}</span> 發起的揪團Eat</h3>
   		</div>
@@ -499,6 +517,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 			</div>
 		</div>
 </div>
+
+
+
+
+
+
+
+
 <aside class="aside">
 <section class="section">
 <!-- <div class="viewtable"> -->
@@ -537,43 +563,82 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-					<div class="card-header text-white bg-dark " id="exampleModalLabel">加入揪團</div>
+					<div class="card-header text-white bg-dark " id="exampleModalLabel">編輯揪團資訊</div>
 						
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">
-						
+										<div class="modal-body">
+						<form>
+	<form:form class="form" action="${contextRoot}/ajaxFoodVis"
+							modelAttribute="ofmid" method="post" >
+							
+			<div class="form-group col-md-9">
+			
+				<h4><i class="fa-solid fa-user-group"></i>舉辦者：${ofmid.memberName}</h4> 
 
+			</div>					
+							
+							
+							
 			<div class="form-row">
+						
 			<div class="form-group col-md-6">
-				<label for="inputEmail4">加入原因</label> <input type="text" id="add_condition" name="add_condition"
+			
+				<label for="inputEmail4">日期</label> 
+				
+				<input type="hidden" id="vis_idedit"
+					 class="form-control" required>
+				<input type="hidden" id="member_idedit"
+					 class="form-control" required>
+					 
+				<input type="date" id="vis_dateedit"
+					 class="form-control" required>
+
+			</div>
+			<div class="form-group col-md-6">
+				<label for="inputEmail4">時間</label> <input type="time" id="vis_timeedit"
 					class="form-control" required>
 
 			</div>
-			
+
+
 		</div>
-		
+		<div class="form-group">
+			<label for="inputAddress2">店名</label> <input type="text"
+				id="vis_res_nameedit" class="form-control" required>
+		</div>
+		<div class="form-group">
+			<label for="inputAddress2">地址</label> <input type="text"
+				id="vis_locationedit" class="form-control" required>
+		</div>
 		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="inputEmail4">希望人數</label> <input type="number"
+					id="vis_numedit" max="50" min="0" class="form-control" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="inputPassword4">備註</label> <input type="text"
+					id="vis_conditionedit" class="form-control" >
+			</div>
 			
 			<div class="form-group col-md-6">
-				<input type="text"
+				<input type="hidden"
 					id="member_id" value="${ofmid.id}" class="form-control" required>
-					${viewallvis.vis_res_name}
 			</div>
 			
 		</div>
 						<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
+						<button type="button" class="btn btncen"
 							data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn btn-info" onclick="confirm('確定加入？');return addjoin()">加入</button>
-						
+						<button type="button" id="editbutton"  class="btn btn btnadd " >送出</button>
+<!-- 						onclick="confirm('確定送出？'); return insertdata();" -->
 					</div>	
 							
-							
-						
+						</form:form>	
+						</form>
 					</div>
 					
 				</div>
@@ -598,7 +663,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 
 						</c:when>
 						<c:otherwise>
-							 <li class="page-item active "  aria-current="page"><span class="page-link"><c:out value="${pageNumber} " /></span></li>
+							 <li class="page-item "  aria-current="page"><span class="page-link active1"><c:out value="${pageNumber} " /></span></li>
 						</c:otherwise>
 
 					</c:choose>
@@ -693,40 +758,7 @@ var tdate=new Date();
 								}
 
 						});
-								
-// 								$.ajax({
-// 									url: 'http://localhost:8080/oldFoodMan/getMyJoin?member_id='+id ,
-// 									contentType: 'application/json; charset=UTF-8',			
-// 									method: 'get',
-// 									success: function (result) {
-// 									console.log("result " + result)
-// 										var events = [];
-// 										var msg_data='';
-// 										$.each(result,function(index,value){
-											
 
-// 												})
-
-// 												$('#myadd').append(msg_data)
-// 										},
-										
-// 									error : function(err) {
-// 											console.log(err)
-// //						  					window.onload=function(){
-// //						 						Swal.fire({
-// //						 							  icon: 'error',
-// //						 							  title: '請登入會員',
-// //						 							  footer: '<a href="http://localhost:8080/oldFoodMan/">返回首頁</a>'
-// //						 							})
-												
-// //						 					}
-// 											alert('請登入會員')
-// 											location.href=${contextRoot}/
-// 										}
-								
-								
-								
-// 								});		
 								
 								
 					}
@@ -734,10 +766,96 @@ var tdate=new Date();
 
 	},
 	
-		
+	
+	
+	
+	
 	
 	
 	);
+	
+	$(document).ready(function fullcalendar2(){
+		$("#example").fullCalendar(
+							{// 參數設定[註1]
+											
+							header : { // 頂部排版
+												
+							left : "prev,next today", // 左邊放置上一頁、下一頁和今天
+							center : "title", // 中間放置標題
+							right : "month,basicWeek,basicDay" // 右邊放置月、周、天
+							},
+							monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],				
+							//dayNames: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+							dayNamesShort: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+
+							defaultDate : tdate, // 起始日期
+							weekends : true, // 顯示星期六跟星期日
+							editable : true, // 啟動拖曳調整日期
+							
+							events : function(start, end,timezone, callback) {
+								var id=document.getElementById('member_id').value;
+								$.ajax({
+									url: 'http://localhost:8080/oldFoodMan/getMyJoin?member_id='+id ,
+									contentType: 'application/json; charset=UTF-8',
+									dataType : 'json',
+									method : 'get',
+									
+									success: function (result) {
+									console.log("result " + result)
+										var events = [];
+										
+										$.each(result,function(index,value) {
+											var newDate = new Date(Date.parse(value.vis_date))
+//												var idt = value.vis_id
+//												console.log("id:"+ idt)
+											var date = moment(newDate).format('YYYY-MM-DD')
+//												var visurl = "http://localhost:8080/oldFoodMan/findOneVis?id="+ value.vCis_id
+
+												console.log("嘿嘿")
+											events.push({
+											title : value.vis_res_name,
+											start : date,
+//												url : visurl,
+											backgroundColor:"#FDE4DE",
+											borderColor:"#FDE4DE",
+											textColor: 'black'
+													});
+
+												});
+
+												
+												
+												callback(events);
+										},
+										
+									error : function(err) {
+											console.log(err)
+												window.onload=function(){
+													Swal.fire({
+														  icon: 'error',
+														  title: '請登入會員',
+														  footer: '<a href="http://localhost:8080/oldFoodMan/">返回首頁</a>'
+														})
+												
+												}
+											alert('請登入會員')
+											location.href=${contextRoot}/
+										}
+								
+								
+								
+								});	
+
+								
+								
+					}
+				});
+
+	});
+	
+	
+
+	
 	
 	$(document).ready(function viewMyJoindata(){
 		var id=document.getElementById('member_id').value;
@@ -812,9 +930,10 @@ var tdate=new Date();
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
 						msg_data+= '<a type="submit" id="deleteMyFoodVis" value='+value.vis_id+' "><i class="fa-regular fa-trash-can testii" ></i></a>'
 // 							<a href="http://localhost:8080/oldFoodMan/deleteMyFoodVis?id='+ value.vis_id +'">
-									
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/editFoodVis?id='+ value.vis_id +'"><i class="fa-solid fa-pen-to-square testi"  ></i></a>'
-
+								
+						msg_data+= '<a type="button" onclick="editVisView('+value.vis_id+');"  data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo" id="geteditdata"><i class="fa-solid fa-pen-to-square testi"  ></i></a>'
+						
+// <a id="geteditdata" href="http://localhost:8080/oldFoodMan/editFoodVis?id='+ value.vis_id +'"></a>
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -880,6 +999,7 @@ var tdate=new Date();
 				dataType : 'json',
 				method : 'post',
 				data : dtoJsonString,
+// 				async:false
 				success : function(data) {
 					
 					location.reload();		
@@ -895,7 +1015,96 @@ var tdate=new Date();
 		
 	}
 
+	function editVisView(id){
+// 		var id=document.getElementById('geteditid').value;
+// 		console.log("別鬧: "+id);
+		$.ajax({
+			url : 'http://localhost:8080/oldFoodMan/editFoodVisview?id='+ id ,
+			contentType : 'application/json; charset=UTF-8',
+			dataType : 'json',
+			method : 'get',
+			
+			success : function(data) {
+				
+				$('#vis_idedit').val(data.vis_id)
+				$('#vis_dateedit').val(data.vis_date);
+				$('#vis_timeedit').val(data.vis_time);
+				$('#vis_locationedit').val(data.vis_location);
+				$('#vis_res_nameedit').val(data.vis_res_name);
+				$('#vis_numedit').val(data.vis_num);
+				$('#vis_conditionedit').val(data.vis_condition);
+				$('#member_idedit').val(data.member_id);
+				
+						
+				
+			},
+			error : function(err) {
+				console.log(err)
+				alert('發生錯誤')
+			}
+
+		})
+		
+		
+		
+		
+		
+	}
 	
+	function editsubmit() {
+
+		var updateVisId = document.getElementById('vis_idedit').value;
+		var updateResName = document.getElementById('vis_res_nameedit').value;
+		var updateDate = document.getElementById('vis_dateedit').value;
+
+		var updateTime = document.getElementById('vis_timeedit').value;
+		var updateLocation = document.getElementById('vis_locationedit').value;
+		var updateNum = document.getElementById('vis_numedit').value;
+		var updateCondition = document.getElementById('vis_conditionedit').value;
+		var updateMember_id=document.getElementById('member_idedit').value;
+		
+		var dtoObject = {
+
+			"vis_res_name" : updateResName,
+			"vis_date" : updateDate,
+			"vis_time" : updateTime,
+			"vis_location" : updateLocation,
+			"vis_num" : updateNum,
+			"vis_condition" : updateCondition,
+			"member_id": updateMember_id
+		}
+		var dtoJsonString = JSON.stringify(dtoObject);
+		
+		if(updateDate==""|| updateTime==""|| updateResName==""){
+
+			alert("尚有欄位未輸入!!");
+			
+			return ;
+	
+		
+		}else {
+			
+		$.ajax({
+			url : 'http://localhost:8080/oldFoodMan/editFoodVis?id=' + updateVisId ,
+			contentType : 'application/json; charset=UTF-8',
+			dataType : 'json',
+			method : 'post',
+			async:false,
+			data : dtoJsonString,
+			success : function(data) {
+				
+				location.reload();		
+				
+			},
+			error : function(err) {
+				console.log(err)
+				alert('發生錯誤')
+			}
+
+		})
+	}
+	
+}
 	
 	
 	
@@ -927,6 +1136,36 @@ var tdate=new Date();
 				})
 				
 			}
+		});
+	
+	document.getElementById("editbutton").addEventListener("click",function(){
+		var updateVisId = document.getElementById('vis_idedit').value;
+		var updateResName = document.getElementById('vis_res_nameedit').value;
+		var updateDate = document.getElementById('vis_dateedit').value;
+
+		var updateTime = document.getElementById('vis_timeedit').value;
+		var updateLocation = document.getElementById('vis_locationedit').value;
+		var updateNum = document.getElementById('vis_numedit').value;
+		var updateCondition = document.getElementById('vis_conditionedit').value;
+		var updateMember_id=document.getElementById('member_idedit').value;
+		if(updateDate==""|| updateTime==""|| updateResName==""){
+			
+			Swal.fire(
+					  '請輸入完整資料',
+					  ' ',
+					  'error'
+					)
+	
+		}else if(updateDate!=""|| updateTime!=""|| updateResName!=""){	
+			Swal.fire(
+				  '修改成功',
+				  '返回頁面',
+				  'success'
+				).then((value) => {
+					editsubmit();
+				})
+				
+		}
 		});
 	
 	
