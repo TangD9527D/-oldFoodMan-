@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.dto.FoodVisDto;
+import com.oldFoodMan.demo.dto.ProductDto;
 import com.oldFoodMan.demo.model.JoinVis;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OldFoodManBean;
+import com.oldFoodMan.demo.model.Product;
 import com.oldFoodMan.demo.model.TestOFM;
 import com.oldFoodMan.demo.service.JoinVisService;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
@@ -38,8 +41,6 @@ public class FoodVisController_32 {
 	
 	@Autowired
 	private MemberServiceImpl memberservice;
-	
-	
 
 	@Autowired
 	private JoinVisService joinservice;
@@ -64,16 +65,9 @@ public class FoodVisController_32 {
 		return mav;
 	}
 	
-	
-	
-//	@ResponseBody
-//	@GetMapping(value="messages/lastest")
-//	public OldFoodManBean getLastest() {
-//		
-//		return ofmservice.getLastest();
-//	}
 
-	@GetMapping(value="editFoodVis")
+
+	@GetMapping(value="editFoodViss")
 	public ModelAndView editFoodVis(ModelAndView mav,@RequestParam(name="id") Integer id) {
 		OldFoodManBean ofm=ofmservice.findById(id);
 		mav.getModel().put("ofm", ofm);
@@ -84,8 +78,18 @@ public class FoodVisController_32 {
 		
 	}
 	
+	@ResponseBody
+	@GetMapping(value="editFoodVisview")
+	public TestOFM editFoodVisview(ModelAndView mav,@RequestParam(name="id") Integer id) {
+		TestOFM ofm=testservice.findById(id);
+
+		System.out.println("哈哈: "+ofm);
+		return ofm;
+		
+		
+	}
 	
-	@PostMapping("/editFoodVis")
+	@PostMapping("/editFoodViss")
 	public ModelAndView editFoodVis(ModelAndView mav, @Valid @ModelAttribute(name="ofm") OldFoodManBean ofm, BindingResult result) {
 		
 		mav.setViewName("vis_group_jsp/editFoodVis");
@@ -99,6 +103,36 @@ public class FoodVisController_32 {
 		return mav;
 		
 		
+	}
+	
+	
+	@ResponseBody
+	@PostMapping("/editFoodVis")
+	public TestOFM editFoodVisupdate(@RequestBody FoodVisDto dto, @RequestParam(name="id") Integer vis_id){
+		String vis_res_name=dto.getVis_res_name();
+		Date vis_date=dto.getVis_date();
+
+		String vis_time=dto.getVis_time();
+		String vis_location=dto.getVis_location();
+		String vis_num=dto.getVis_num();
+		String vis_condition=dto.getVis_condition();
+		Integer member_id=dto.getMember_id();
+		
+		TestOFM ofmVis=testservice.findById(vis_id);
+
+
+
+		ofmVis.setVis_res_name(vis_res_name);
+		ofmVis.setVis_date(vis_date);
+
+		ofmVis.setVis_time(vis_time);
+		ofmVis.setVis_location(vis_location);
+		ofmVis.setVis_num(vis_num);
+		ofmVis.setVis_condition(vis_condition);
+		ofmVis.setMember_id(member_id);
+		System.out.println("想睡覺: "+ofmVis); 
+		testservice.insert(ofmVis);
+		return ofmVis;
 	}
 	
 	@GetMapping(value="deleteFoodVis")
@@ -171,6 +205,7 @@ public class FoodVisController_32 {
 		return list;
 		
 	}
+	
 	
 
 	@ResponseBody
