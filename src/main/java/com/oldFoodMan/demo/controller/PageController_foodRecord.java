@@ -34,21 +34,23 @@ public class PageController_foodRecord {
 	}
 	
 	@GetMapping("/createData")
-	public ModelAndView createDataPage(ModelAndView mav) {    //只能去到createData的頁面，還不能post資料
-		
+	public ModelAndView createDataPage(ModelAndView mav) {    //只能去到createData的頁面，還不能post資料	
 		mav.setViewName("record/createData");  //回傳view的位置
-		
 		FoodRecord rf = new FoodRecord();  //再將rf回傳回去
-		
 		mav.getModel().put("foodRecord", rf);  //因為是個map,所以要使用put。put()內放的是key&value的值:key隨便放(幫value命名)，value放想放的物件
-		
+		return mav;
+	}
+	
+	//會員食記List
+	@GetMapping("/MemberRecordList")
+	public ModelAndView MemberRecordList(ModelAndView mav) {
+		mav.setViewName("record/MemberRecordList");
 		return mav;
 	}
 	
 	//食記page
 	@GetMapping("/totalRecord")   //查詢全部的轉頁(第1頁)controler
-	public ModelAndView totalRecordPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber) {
-		
+	public ModelAndView totalRecordPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber) {	
 		mav.setViewName("record/totalRecord");
 		Page<FoodRecord> page = service.findByPage(pageNumber);
 		
@@ -58,8 +60,7 @@ public class PageController_foodRecord {
 	
 	//食記管理page
 		@GetMapping("/RecordManagement")   //查詢全部的轉頁(第1頁)controler
-		public ModelAndView RecordManagement(ModelAndView mav) {
-			
+		public ModelAndView RecordManagement(ModelAndView mav) {		
 			mav.setViewName("record/RecordManagement");
 			List<FoodRecord> page = service.findAllRecord();
 			mav.getModel().put("page", page);
