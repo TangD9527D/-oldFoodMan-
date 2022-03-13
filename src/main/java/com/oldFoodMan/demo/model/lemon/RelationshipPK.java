@@ -4,10 +4,24 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
-
+/*
+ID Class必須:
+1. 實作java.io.Serializable介面
+2. 定義預設建構子
+3. 定義複合主鍵的所有組成欄位，並為這些欄位準備Getter/Setter
+4. Override hashCode()與equals()方法 
+*/
 public class RelationshipPK implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Integer fromUserId;
 	private Integer toUserId;
+	
+	public RelationshipPK() {
+	}
 	
 	@Column(name="from_user_id",nullable=false)
 	@Id

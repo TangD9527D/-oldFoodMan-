@@ -63,14 +63,14 @@ public class RelationshipServiceImpl implements RelationshipService {
 	@Override
 	public void updateFollowSize(Integer userId) {
 		User user = userRepository.findById(userId).get();
-		user.setFollowSize(relationshipRepository.countByFromUserId(userId));
+		user.setFollow_size(relationshipRepository.countByFromUserId(userId));
 		userRepository.save(user);
 	}
 
 	@Override
 	public void updateFanSize(Integer userId) {
 		User user = userRepository.findById(userId).get();
-		user.setFanSize(relationshipRepository.countByToUserId(userId));
+		user.setFan_size(relationshipRepository.countByToUserId(userId));
 		userRepository.save(user);
 	}
 
