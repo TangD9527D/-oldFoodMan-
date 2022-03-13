@@ -136,9 +136,9 @@ figure {
 	background-color: pink;
 }
 
-.test {
-	color: yellow;
-}
+/* .test { */
+/* 	color: yellow; */
+/* } */
 
 
 </style>
@@ -169,7 +169,7 @@ figure {
 			<img id="icon" src="images/like.png"> <img id="icon"
 				src="images/chat.png"> <img id="icon" src="images/badoo.png">
 			<div id="range" class="crange" onclick="likeCollections();">
-				<i id="test" class="fa-solid fa-star" style="font-size:30px"></i>
+				<i id="test" class="fa-regular fa-star" style="font-size:30px"></i>
 			</div>
 			<input type="hidden" value="${foodrecordById.id}" id="clot">
 		</div>
@@ -538,9 +538,6 @@ figure {
 // 	網頁載入分辨是否有資料給予樣式
 	$(document).ready(function() {
 		
-
-
-		
 	var record_id = document.getElementById("clot").value;
 	
 	$.ajax({
@@ -554,12 +551,12 @@ figure {
 			
 			if(data.record_id == null ){
 				
-				$("#test").css("color","white");
-				
+// 				$("#test").css("color","white");
+				$("#test").addClass("fa-regular fa-star");
 				
 			}else{
-				$("#test").css("color","yellow");
-				
+// 				$("#test").css("color","black");
+				$("#test").addClass("fa-solid fa-star");
 				
 			}
 
@@ -580,9 +577,7 @@ figure {
 
 	function likeCollections() {  //收藏食記
 
-		var record_id = document.getElementById("clot").value;
-		
-	
+		var record_id = document.getElementById("clot").value;	
 	
 // 		var dtoObject = {
 // 			"likelocations" : inputResName,
@@ -602,13 +597,14 @@ figure {
 				console.log(data.record_id);
 				if(data.record_id == null ){
 					
-					$("#test").css("color","yellow");
+// 					$("#test").css("color","black");
+					$("#test").addClass("fa-solid fa-star");
 					alert('已收藏成功');
 					
 				}else{
-					$("#test").css("color","white");
-					
-					
+// 					$("#test").css("color","white");
+					$("#test").addClass("fa-regular fa-star");
+					alert('已刪除成功');
 				}
 				
 				

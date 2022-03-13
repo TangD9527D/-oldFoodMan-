@@ -55,6 +55,7 @@ html {
 
 body {
 	height: 100%;
+	background-color:#fbf3f3;
 /* 	background-image:url("http://localhost:8080/oldFoodMan/images/oldfoodman.png"); */
 /* 	background-color: #ffefcd; */
 /* 	border: 1px solid #e6d6b4; */
