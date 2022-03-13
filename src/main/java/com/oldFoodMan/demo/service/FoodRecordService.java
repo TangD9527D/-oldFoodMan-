@@ -76,6 +76,12 @@ public class FoodRecordService {
 	public void fuzzySearch(Integer member_id) {
 		frDao.inquire(member_id);
 	}
+	
+	//會員食記List
+	public List<FoodRecord> memFoodRecords(Integer member_id) {
+		 List<FoodRecord> mrl = frDao.memberRecordList(member_id);
+		 return mrl;
+	}
 
 	
 }
