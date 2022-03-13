@@ -22,7 +22,7 @@
 	position:fixed;
 	right: 0;
 	margin: auto;
-	width: 320px;
+	width: 400px;
 	height: 100%;
 	-webkit-transform: translate3d(0%, 0, 0);
 	-ms-transform: translate3d(0%, 0, 0);
@@ -56,32 +56,20 @@
 </head>
 
 <body>
-	<div class="container demo">
-		<div class="text-center">
-			<button type="button" class="btn btn-demo" data-toggle="modal" data-target="#exampleModal">
-			 Sidebar Modal
-			</button>
+	<div style="border: 2px; border-style: solid;  border-color: black; width: 755px;">
+		<div style="background-color: #fbf3f3; width: 750px;">
+			<img src="${contextRoot}/css\logo.png" style="height: 117px; width: 208px;"><font size="7">&emsp;oldFoodMan(老食人)</font>
+		<br>
 		</div>
-		<div class="modal left fade" id="exampleModal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-body">
-						<div class="nav flex-sm-column flex-row">
-							<a class="nav-item nav-link active" href="#">Home</a>
-							<a href="#" class="nav-item nav-link">Link</a>
-							<a href="#" class="nav-item nav-link">Link</a>
-							<a href="#" class="nav-item nav-link">Link</a>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		<h4>您好:</h4>	
+		<h4>如果不是您申請忘記密碼，請忽略此信件</h4>
+		<br>
+		<h4>若您忘記密碼請點以下連結</h4>
+		<h4><a href="http://localhost:8080/oldFoodMan/resetPassword/7">請點連結</a></h4>
+		<br>
+		<h4>祝你使用愉快!!</h4>	
+		<h4>老食人團隊敬上</h4>	
 	</div>
-	<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
-	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
