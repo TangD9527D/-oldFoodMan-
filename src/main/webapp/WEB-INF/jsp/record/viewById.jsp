@@ -607,7 +607,7 @@ figure {
 					
 				}else{
 					$("#test").css("color","white");
-					alert('已刪除收藏');
+					
 					
 				}
 				
