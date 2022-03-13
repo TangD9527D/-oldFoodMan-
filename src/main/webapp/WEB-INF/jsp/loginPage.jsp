@@ -190,7 +190,8 @@ body {
 					</c:if>
 					<br>
 					<div class="under_13">
-						<span id="new_account"> <a href="${contextRoot}/forgotMail">忘記密碼?</a></span>&emsp;&emsp;
+						<span id="new_account" data-toggle="modal"
+						data-target="#exampleModal2">忘記密碼?</span>&emsp;&emsp;
 						<!-- Button trigger modal -->
 						<button type="button" class="btn btn-dark" data-toggle="modal"
 							data-target="#exampleModal">新增帳號</button>
@@ -214,7 +215,7 @@ body {
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">Menu</h4>
+						<h4 class="modal-title" id="myModalLabel">新增帳號</h4>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -222,13 +223,14 @@ body {
 					</div>
 					<div class="modal-body">
 						<form class="form">
+							<p></p>
 							<div class="newPwd_13">
 								<label class="la2">姓名:&nbsp;</label> <input type="text"
 									id="newName" class="inPut" name="names" />
 								<p class="txtP">&nbsp;</p>
 							</div>
 							<div class="newAccount_13">
-								<label class="la2">帳號(email):&nbsp;</label> <input
+								<label class="la2">信箱:&nbsp;</label> <input
 									type="text" id="newAccount" class="inPut" name="account" />
 								<p class="txtP">&nbsp;</p>
 							</div>
@@ -244,6 +246,27 @@ body {
 								<button type="submit" type="submit" class="btn btn-primary"
 									data-dismiss="modal" id="newMbr">送出</button>
 							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal left fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">新增帳號</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="form">
+							<label>帳號:&nbsp;</label> 
+							<input type="text" id="account" name="account">
+							<button type="button" id="btn77">送出</button>
 						</form>
 					</div>
 				</div>
@@ -276,6 +299,19 @@ body {
 
 			})
 		})
+
+		$(document).on('click', '#btn77', function(){ 
+		var email = $("#account").val();
+		console.log(email);
+		$("#form").remove();
+		$.ajax({
+			method:"post",
+			url:"http://localhost:8080/oldFoodMan/mail/" + email,
+			success:function(data){
+				$("#out").append(data);
+			}
+		})
+	})
 	</script>
 </body>
 
