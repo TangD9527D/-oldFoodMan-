@@ -11,6 +11,7 @@
 <title>餐券商城</title>
 	<c:set var='contextRoot' value='${pageContext.request.contextPath}'/>
 	<link rel='stylesheet' href='${contextRoot}/css/bootstrap.min.css'/>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head> 
 <body>
 	<p>
@@ -85,8 +86,8 @@
 							${allProducts.product_remark}!<br>
 							</p>
 							<div>
-							<button type="button" onclick="addCart(${allProducts.product_id})" id="addCart">商品詳情</button>
-							<button type="button" onclick="addCart(${allProducts.product_id})" id="addCart">加入購物車</button>
+							<button type="button" class="btn btn-success" onclick="addCart(${allProducts.product_id})" id="addCart">商品詳情</button>
+							<button type="button" class="btn btn-primary" onclick="addCart(${allProducts.product_id})" id="addCart">加入購物車</button>
 							</div>
 						</div>
 					</div>
@@ -106,12 +107,10 @@
                 //dataType: 'json',
                 method: 'post',
                 success:function(result){
-                	alert('已成功加入購物車!!')
-           
+                	 swal("已成功加入購物車!", "You clicked the button!", "success");
                 },
                 error:function(err){
-                    console.log(err);
-                    alert('購物車已有此商品!!');
+                	swal("商品已存在購物車!", "You clicked the button!", "error");
                 }
             })
 		}
@@ -137,10 +136,10 @@
 									msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
 									msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
 									msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
-									msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product__remark + '!<br></p>';
+									msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product_remark + '!<br></p>';
 									msg_data += '<div>';
-									msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">商品詳情</button>';
-									msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
+									msg_data += '<button type="button" class="btn btn-success" onclick="addCart(' + value.product_id + ')" id="addCart">商品詳情</button>';
+									msg_data += '<button type="button" class="btn btn-primary" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
 									msg_data += '</div></div></div></div>';
 								
 								})
@@ -228,8 +227,8 @@
 						msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
 						msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product_remark + '!<br></p>';
 						msg_data += '<div>';
-						msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">商品詳情</button>';
-						msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
+						msg_data += '<button type="button" class="btn btn-success" onclick="addCart(' + value.product_id + ')" id="addCart">商品詳情</button>';
+						msg_data += '<button type="button" class="btn btn-primary" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
 						msg_data += '</div></div></div></div>';
 					
 					})
