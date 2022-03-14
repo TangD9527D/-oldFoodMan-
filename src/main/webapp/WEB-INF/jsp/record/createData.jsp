@@ -18,6 +18,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+
 <style>
 /*         * { */
 /*             margin: 0px; */
@@ -129,7 +130,7 @@ legend {
 					</div>
 					<div class="st1">
 						<label class="lab">上傳圖片:</label>
-						<form:input path="productImage" type='file' />
+						<form:input id="image" path="productImage" type='file' />
 
 						<div>
 							<img class="imgDiv" />
@@ -267,7 +268,6 @@ legend {
 
 	<script>
 
-	
 	//快速輸入
 	$("#fastInput").click(function(){  
         $("#title").val("[食記] 台北 教父牛排 Danny's Steakhouse");
@@ -312,7 +312,7 @@ legend {
 
 			const fr = new FileReader();
 			fr.onload = function(e) {
-				$('img').attr('src', e.target.result);
+				$('.imgDiv').attr('src', e.target.result);
 			};
 
 			// 使用 readAsDataURL 將圖片轉成 Base64

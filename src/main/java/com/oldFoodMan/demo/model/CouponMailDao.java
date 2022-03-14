@@ -1,10 +1,13 @@
 package com.oldFoodMan.demo.model;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -33,6 +36,9 @@ public class CouponMailDao {
             //第二個引數：格式是否為html
             helper.setText(content, true);
             mailSender.send(message);
+            
+			
+			
         }catch (MessagingException e){
         	e.printStackTrace();
             System.out.println("傳送郵件時發生異常！");

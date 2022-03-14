@@ -103,10 +103,18 @@
 				<span class="menu7"><img class="menuLine7"
 					src="css\menuLines.png" width="20px" height="20px">&ensp;Menu</span>
 			</div>
-			<div class="topImg">
+			<c:if test="${pageContext.request.userPrincipal == null}">
+					<div class="topImg">
+				<a class="navbar-brand" href="${contextRoot}/"><img
+				src="css/logo.png" width="144" height="81" alt=""></a>
+			</div>
+				</c:if>
+				<c:if test="${pageContext.request.userPrincipal != null}">
+					<div class="topImg">
 				<a class="navbar-brand" href="${contextRoot}/main"><img
 				src="css/logo.png" width="144" height="81" alt=""></a>
 			</div>
+				</c:if>
 			<div class="login7">
 			<ul class="nav justify-content-end">
 				<c:if test="${pageContext.request.userPrincipal != null}">
@@ -161,7 +169,6 @@
 											<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 												<a class="dropdown-item"  href="${contextRoot}/createData">新增食記</a>
 												<a class="dropdown-item"  href="${contextRoot}/MemberRecordList">個人食記List</a>
-												<a class="dropdown-item"  href="${contextRoot}/totalRecord">全部食記</a>
 												<a class="dropdown-item"  href="${contextRoot}/RecordManagement">食記後台</a> 
 												<a class="dropdown-item"  href="${contextRoot}/MsgManagement">留言後台</a> 
 											</div>						

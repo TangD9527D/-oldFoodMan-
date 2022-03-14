@@ -23,13 +23,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.Member;
+import com.oldFoodMan.demo.model.ScheduleBean;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
 import com.oldFoodMan.demo.model.lemon.ReviewerSettingRepository;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
+import com.oldFoodMan.demo.service.ScheduleService;
 import com.oldFoodMan.demo.service.lemon.ReviewerSettingService;
 
 @Controller
@@ -53,6 +57,7 @@ public class ReviewerSettingController {
 	@Autowired
 	private MemberServiceImpl memberService;
 	
+
 	@GetMapping("/follower")
 	public String tester(Model model) {
 		List<Member> list = memberService.getAllmember();
@@ -61,6 +66,13 @@ public class ReviewerSettingController {
 		model.addAttribute("reviewers",list2);
 		return "/lemon/reviewerFollower";
 	}
+
+
+	//Eddie
+	@Autowired
+	private ScheduleService sbService ; 
+
+
 	
 	@GetMapping("/reviewerMainPage")
 	public ModelAndView reviewerMainPage(ModelAndView mav,HttpSession hs) {
@@ -222,4 +234,37 @@ public class ReviewerSettingController {
 		return b;
 	}
 	
+	
+//	Eddie
+	
+	@ResponseBody
+	@GetMapping("/likeloctest")
+	public List<ScheduleBean> mapsAjax(ModelAndView mav,@RequestParam(value="member_id")Integer id,HttpSession hs ) {
+
+		Member mid = (Member)hs.getAttribute("member");
+		Integer idd=mid.getId();
+		System.out.println("當下的: "+id);
+		List<ScheduleBean> list = sbService.findByIdlike(id);
+
+		return list;
+
+	}
+	
+	
+	@GetMapping("/eddietest")
+	public ModelAndView reviewerMainPage11(ModelAndView mav,HttpSession hs) {
+		Member memberData = (Member)hs.getAttribute("member");
+		Integer memberId = memberData.getId();
+		Date birthday = memberData.getBirth();
+		String bdd = service.getAgeByMember(birthday);
+		
+		Member memberBean = memberService.findById(memberId);
+		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
+		
+		mav.getModel().put("bdd", bdd);
+		mav.getModel().put("reviewerPage", reviewerBean);
+		mav.getModel().put("memberPage", memberBean);
+		mav.setViewName("/lemon/eddietest");
+		return mav;
+	}
 }

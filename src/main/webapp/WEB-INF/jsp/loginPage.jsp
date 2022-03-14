@@ -211,6 +211,7 @@ body {
 			</div>
 		</div>
 
+		<!-- newAccount-dialog -->
 		<div class="modal left fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -262,6 +263,7 @@ body {
 			</div>
 		</div>
 
+		<!-- forget-dialog -->
 		<div class="modal left fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -274,14 +276,59 @@ body {
 					</div>
 					<div class="modal-body" id="emailBody">
 						<form id="form1">
-							<label>信箱:&nbsp;</label> 
+							<div style="text-align: center;">
+								<img src="${contextRoot}/css/search.png" style="height: 200px; width: 200px;">
+							</div>
+							<p></p>
+							&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<label>信箱:&nbsp;</label> 
 							<input type="text" id="emailSend" name="account">
-							<button type="button" id="btn77">送出</button>
+							<span>&nbsp;</span><br>
+							<br>
+							<div style="text-align: center;"><button type="button" id="btn77" class="btn btn-primary">送出</button></div>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<!-- backend control-dialog -->
+		<div class="modal left fade" id="exampleModal77" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">後臺管理者登入</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="emailBody">
+						<div style="text-align: center;">
+							<img src="${contextRoot}/css/glass.png" style="height: 200px; width: 200px;">
+						</div>
+						<br>
+						<form id="form22">
+							<div class="newAccount_13">
+								<label class="la2">信箱:&nbsp;</label> <input
+									type="text" id="backendAccount" class="inPut" name="account" />
+								<p class="txtP" id="backAccount7" >&nbsp;</p>
+							</div>
+							<div class="newPwd_13">
+								<label class="la2">密碼:&nbsp;</label> <input type="password"
+									id="backendPwd" class="inPut" name="pwd" />
+								<p class="txtP">&nbsp;</p>
+							</div>
+							<div style="text-align: right;"><button id="backendLogin"
+								class="btn btn-dark">登入</button></div>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="position: absolute; right: 0px; bottom: 0px;"><button type="button" class="btn btn-info" data-toggle="modal"
+							data-target="#exampleModal77">後臺登入</button></div>
+		
 	</div>
 	<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
 	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
@@ -312,7 +359,39 @@ body {
 				}
 
 			})
-		})
+		})	
+
+		$(document).on('click', '#backendLogin', function () {
+
+				var account = document.getElementById('backendAccount').value;
+				var memberPwd = document.getElementById('backendPwd').value;
+
+				var Object = {
+					"account" : account,
+					"memberPwd": memberPwd,
+				}
+				var JsonString = JSON.stringify(Object);
+
+				$.ajax({
+					url: "http://localhost:8080/oldFoodMan/backStage/login",
+					contentType: "application/json; charset=UTF-8", // 送過去的格式
+					method: "post",
+					data: JsonString,
+					success: function (data) {
+
+						if(data == "flag1"){
+							
+							window.location = "http://localhost:8080/oldFoodMan/backStage/account";
+
+						}else{
+							$('#backAccount7').append("帳號密碼輸入錯誤!!")
+						}
+
+					}
+
+				})
+			})
+
 
 		$(document).on('click', '#btn77', function(){ 
 		var email = $("#emailSend").val();

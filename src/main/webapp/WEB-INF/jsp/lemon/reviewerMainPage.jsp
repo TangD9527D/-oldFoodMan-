@@ -276,13 +276,13 @@
                     </a>
                 </li>
                 <li id="reviewer-navi-matome" class="reviewer-navi__item reviewer-navi__item--matome is-disabled">
-                    <div class="reviewer-navi__target">
-                        <sapn class="reviewer-navi__menu-wrap">
+                     <a class="reviewer-navi__target" href="http://localhost:8080/oldFoodMan/eddietest">                    
+                        <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">0</span>
                             <span class="reviewer-navi__menu">小口袋</span>
-                        </sapn>
-                    </div>
-                </li>
+                        </span>
+                    </a>
+                </li>                
                 <li id="reviewer-navi-follow" class="reviewer-navi__item reviewer-navi__item--follow">
                     <a class="reviewer-navi__target" href="#">
                         <span class="reviewer-navi__menu-wrap">
@@ -312,10 +312,13 @@
         <!-- main * start-->
         <div id="column-main" class="layout1-main">
             <div class="recommend-wrap">
+               
                 <h2 class="recommend-title gly-b-crown">
                     Recommended Restaurant
                 </h2>
-            
+            <input type="hidden" id="member_id2" value="${member.id}"
+					class="form-control" required>
+					
                 <p class="reco-lead"></p>
                 <div class="reco-text-wrap">
                     <div class="reco-tx js-rvw-contents clearfix">
@@ -330,7 +333,8 @@
                                     </span>
                                 </span>
                                 <div class="reco-tx__info-wrap">
-                                    <div class="reco-tx__info-wrap">
+                                
+                               <div  class="reco-tx__info-wrap">
                                         <div class="tx-rstname">
                                             <a class="tx-rstname__target" href="#">西華飯店</a>
                                         </div>
@@ -461,18 +465,22 @@
                             </div>
                             <p class="tx-rvwttl">
                                 <a href="#">好想吃吃看哦</a>
-                            </p>
+                            </p>                      
+                                                       
                         </div>
+                        
                         <div class="tx-right">
                             <p class="rating">
                                 <span class="subject">rating</span>
                                 <!-- <img src=""> -->
                                 <strong>3.7</strong>
                             </p>
+                            
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="tryy"></div>
             <section></section>
         </div>
         <!-- main * end-->
@@ -610,6 +618,10 @@
     })
 
 </script>
+
+
+
+
 
 </body>
 </html>

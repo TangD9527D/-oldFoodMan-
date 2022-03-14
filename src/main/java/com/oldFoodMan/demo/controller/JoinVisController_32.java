@@ -65,6 +65,7 @@ public class JoinVisController_32 {
 		mav.setViewName("redirect:/ajaxFoodVis");
 		return mav;
 	}
+	
 	@ResponseBody
 	@GetMapping(value="deleteMyJoinVis")
 	public ModelAndView deleteMyJoinVis(ModelAndView mav ,@RequestParam(name="my_food_vis_id") Integer my_food_vis_id , HttpSession hs) {

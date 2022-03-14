@@ -25,4 +25,9 @@ public interface OfmRepository extends JpaRepository<OldFoodManBean, Integer> {
 	@Query(value = "Select * from my_food_vis where member_id=:member_id",nativeQuery = true)
 	public List<OldFoodManBean> findMyFoodVisByMemberID(@Param(value = "member_id") Integer member_id);
 	
+	@Query(value="  select*from my_food_vis join Member on member.id=my_food_vis.member_id",nativeQuery=true)
+	public List<OldFoodManBean> findAllAndMember();
+	
+
+	
 }

@@ -47,7 +47,7 @@ public class MainController {
 
 	@GetMapping(value = "/login")
     public String loginPage() {	
-        return "loginPage";
+       return "loginPage";
     }
 
 	@GetMapping(value = "/logout")
@@ -108,6 +108,6 @@ public class MainController {
 		mav.setViewName("redirect:/main");
 		
 		return mav;
-	}
+	} 
 
 }

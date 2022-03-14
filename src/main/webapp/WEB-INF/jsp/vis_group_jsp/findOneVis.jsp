@@ -108,10 +108,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f7f9', end
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-light  rounded-3">
           <h2>目前參加者</h2>
+          
           <hr>
           <c:forEach var="joinofm" items="${joinofm}">
-          <h5 class="col-md-12  "><i class="fa-solid fa-user-group"></i> &nbsp;&nbsp;${joinofm.memberName}</h5>
+          <h5 id="joinpeople" class="col-md-12 "><i class="fa-solid fa-user-group"></i> &nbsp;&nbsp; ${joinofm.memberName}</h5>
+          
           </c:forEach>
+          <h5 id="joinnull" class="col-md-12 font-weight-bold " style="text-align:center"></h5>
         </div>
       </div>
      
@@ -134,13 +137,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f7f9', end
     </div>
 
     <footer class="pt-3 mt-4 text-muted border-top">
-      &copy; 2021
+      &copy; 2022
     </footer>
   </div>
 		
 <script>
 
+var peoname= $('#joinpeople').text();
+console.log(peoname)
 
+if (peoname==""){
+	$('#joinnull').text("尚無參加者");
+	console.log("hihi")
+	
+}
 
 
 

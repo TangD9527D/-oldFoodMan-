@@ -198,5 +198,6 @@ public class ProductController {
 	public List<Product> searchAllProduct(){
 		return proService.discount();
 	}
+
 	
 }

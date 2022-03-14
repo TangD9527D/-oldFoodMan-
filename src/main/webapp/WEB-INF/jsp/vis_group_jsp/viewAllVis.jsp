@@ -27,27 +27,36 @@
 
 		<h1>所有揪團eat</h1>
 		<table id="table_id" class="table table-hover" >
+
         <thead class="thead-dark">
             <tr>
-<!--                 <th>發起人</th> -->
-<!--                 <th>E-mail</th> -->
+              	<th>會員ID</th>
                 <th>日期</th>
                 <th>時間</th>
                 <th>店名</th>
                 <th>地址</th>
+                <th>備註</th>
+                <th>新增時間</th>
                 <th>操作</th>
             </tr>
         </thead>
         
         <tbody>
-        <c:forEach var="viewallvis" items="${list}">
-            <tr>
-
+        
+ 		
+        <c:forEach var="viewallvis" items="${list}" >
+         
+            <tr>	
+   					
+   					<td class="table-light" id="memberid">${viewallvis.member_id}</td>
                     <td class="table-light">${viewallvis.vis_date}</td>
+                    
                     <td class="table-light">${viewallvis.vis_time}</td>
                     <td class="table-light">${viewallvis.vis_res_name}</td>
                     <td class="table-light">${viewallvis.vis_location}</td>
-
+ 					<td class="table-light">${viewallvis.vis_condition}</td>
+ 					<td class="table-light"><fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
+								value="${viewallvis.added}" /></td>
                         <td class="table-light"><a
 							href="${contextRoot}/findOneVisdetail?id=${viewallvis.vis_id}"><input
 								type="submit" value="查看" class="btn btn-info"></a>
@@ -57,9 +66,11 @@
 							href="${contextRoot}/deleteFoodVis?id=${viewallvis.vis_id}"><input
 								type="submit" value="刪除" class="btn btn-danger"
 								onclick="return confirm('確定是否刪除？');"></a></td>
- 
+			
             </tr>
+           
             </c:forEach>
+            
         </tbody>
     
     </table>

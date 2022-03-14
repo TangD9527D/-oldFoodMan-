@@ -59,9 +59,6 @@ public class RecordMessagesController {
 			
 			List<RecordMessages> mlbri = msgService.MsgListByRecordId(RecordId);
 			System.out.println("mlbri = "+mlbri);
-
-//			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件
-//			List<RecordMessages> list = msg_page.getContent();    //page物件需要用getContent()方法才能拿到List
 			
 			return mlbri;
 		}
@@ -121,7 +118,7 @@ public class RecordMessagesController {
 		public List<RecordMessages> updateMsg(@PathVariable(name="id") Integer id,@RequestBody RecordMessageDto editMsg, HttpSession session){
 			Member member = (Member)session.getAttribute("member");     //拿Member的Id
 			FoodRecord sessionRecordId = (FoodRecord)session.getAttribute("sessionRecordId"); //拿食記的Id
-					
+			Integer RecordId = sessionRecordId.getId();		
 			RecordMessages saveId = msgService.findById(id);
 			System.out.println("留言Id的Bean = "+saveId);
 			
@@ -136,10 +133,10 @@ public class RecordMessagesController {
 			msgService.insertMessage(saveId);
 			System.out.println("新寫進去的留言bean = "+saveId);
 			
-			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件
-			List<RecordMessages> list = msg_page.getContent();    //page物件需要用getContent()方法才能拿到List
+			List<RecordMessages> mlbri = msgService.MsgListByRecordId(RecordId);
+			System.out.println("mlbri = "+mlbri);
 			
-			return list;
+			return mlbri;
 			
 		}
 

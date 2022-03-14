@@ -132,9 +132,14 @@ figure {
 	width: 500px;
 }
 /* eddie */
-.crange:hover {
-	background-color: pink;
-}
+.absolute1 {
+	position: fixed;
+	top: 490px;
+	right:25%;
+	width: 25px;
+	height: 25px;
+
+}	
 
 /* .test { */
 /* 	color: yellow; */
@@ -168,8 +173,8 @@ figure {
 		<div id="likeBar">
 			<img id="icon" src="images/like.png"> <img id="icon"
 				src="images/chat.png"> <img id="icon" src="images/badoo.png">
-			<div id="range" class="crange" onclick="likeCollections();">
-				<i id="test" class="fa-regular fa-star" style="font-size:30px"></i>
+			<div id="range" class="crange absolute1" onclick="likeCollections();">
+				<button  class="btn"><i id="test" class="fa-star fa-regular " style="font-size:30px"></i></button>				
 			</div>
 			<input type="hidden" value="${foodrecordById.id}" id="clot">
 		</div>
@@ -325,8 +330,6 @@ figure {
 				var memberId = document.getElementById("memberId").innerText;
 				var reocrdId = document.getElementById("RecordId").innerText;	
 								console.log("reocrdId = "+reocrdId);
-				
-				
 								
 
 				$.ajax({
@@ -372,12 +375,18 @@ figure {
 			
 		
 			//刪除留言
-			$('#deleteBtn').click(function(){		
-				
+			$(document).on('click','#deleteBtn',function(){
 				var memberId = document.getElementById("memberId").innerText; 
-				var msgId = document.getElementById("msgId").innerText; 	  //文章id		
-
+				console.log("memberId = "+memberId);
+				var msgId = document.getElementById("msgId").innerText; 	  //留言id		
+				var reocrdId = document.getElementById("RecordId").innerText;		
+				console.log("reocrdId = "+reocrdId);
+				var delBtn = $("#editBtn").attr("value");
 				
+				
+				
+				console.log("delBtn = "+delBtn);
+		
 				$.ajax({
 					url : 'http://localhost:8080/oldFoodMan/deleteMsg/'+msgId,
 					contentType : 'application/json; charset=UTF-8', // 送過去的格式
@@ -397,11 +406,12 @@ figure {
 						msg_data += '<span style="float:right">'+"時間 : "+value.added +'</span>'+'</div>'
 						msg_data += '<div class="card-body">'
 						msg_data += '<p id="editId" class="card-text">'
-						msg_data += '<button class="btn btn-primary" onclick=\"return confirm('+"delete ajax確認刪除?"+')"\ id="deleteBtn">'+'刪除'+'</button>'
+						msg_data += '<button  class="btn btn-primary" onclick=\"return confirm('+"delete ajax確認刪除?"+')"\ id="deleteBtn" value="' + value.id +'">'+'刪除'+'</button>'
 						msg_data += '<button  id="editBtn" class="btn btn-primary" >'+'修改'+'</button>'
 						msg_data += '<button style="display: none" class="btn btn-primary" id="sendBtn">'+'送出'+'</button>'+'<br>'
 						msg_data += '<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">'
 						msg_data += '<br>'+"delete ajax 留言ID:"+value.id
+						msg_data += '<br>'+"食記ID:"+reocrdId
 			            msg_data += '<br>'+value.text   
 			            msg_data += '<p id="msgId">'
 			            msg_data += '</p>'
@@ -418,6 +428,7 @@ figure {
 						}
 				})
 			})
+			
 			
 			//編輯留言(先顯示出留言)
 			$('#editBtn').click(function(){
@@ -455,7 +466,9 @@ figure {
 					console.log("editJsonString = "+editJsonString);
 				var memberId = document.getElementById("memberId").innerText; 
 				var msgId = document.getElementById("msgId").innerText; 	  //文章id		
-				
+				var reocrdId = document.getElementById("RecordId").innerText;	
+				console.log("reocrdId = "+reocrdId);
+
 				
 				$.ajax({
 					url:'http://localhost:8080/oldFoodMan/saveNewMsg/'+msgId,
@@ -484,6 +497,7 @@ figure {
 					msg_data += '<button style="display: none" class="btn btn-primary" id="sendBtn">'+'送出'+'</button>'+'<br>'
 					msg_data += '<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">'
 					msg_data += '<br>'+"留言ID:"+value.id
+					msg_data += '<br>'+"食記ID:"+reocrdId
 		            msg_data += '<br>'+value.text   
 		            msg_data += '<p id="msgId">'
 		            msg_data += '</p>'
@@ -560,11 +574,11 @@ figure {
 			if(data.record_id == null ){
 				
 // 				$("#test").css("color","white");
-				$("#test").addClass("fa-regular fa-star");
+				$("#test").addClass("fa-star fa-regular ");
 				
 			}else{
 // 				$("#test").css("color","black");
-				$("#test").addClass("fa-solid fa-star");
+				$("#test").addClass("fa-star fa-solid ");
 				
 			}
 
@@ -606,13 +620,13 @@ figure {
 				if(data.record_id == null ){
 					
 // 					$("#test").css("color","black");
-					$("#test").addClass("fa-solid fa-star");
+					$("#test").addClass("fa-star fa-solid ");
 					alert('已收藏成功');
 					
 				}else{
 // 					$("#test").css("color","white");
-					$("#test").addClass("fa-regular fa-star");
-					alert('已刪除成功');
+					$("#test").removeClass("fa-star fa-solid ").addClass('fa-star fa-regular');
+					
 				}
 				
 				
