@@ -4,15 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OfmRepository;
 import com.oldFoodMan.demo.model.OldFoodManBean;
+import com.oldFoodMan.demo.model.addVisRepository;
 
 
 @Service
@@ -20,6 +21,9 @@ public class OfmService {
 	@Autowired
 	private OfmRepository dao;
 
+	@Autowired
+	private addVisRepository addDao;
+	
 	public void insert(OldFoodManBean ofm) {
 		dao.save(ofm);
 
@@ -43,9 +47,23 @@ public class OfmService {
 
 	public List<OldFoodManBean> findAll() {
 
-		List<OldFoodManBean> messages = dao.findAll();
+		List<OldFoodManBean> ofmfull = dao.findAll();
 		
-		return messages;
+		return ofmfull;
+	}
+	
+	public List<OldFoodManBean> findAllAndMember() {
+
+		List<OldFoodManBean> ofmfull = dao.findAllAndMember();
+		
+		return ofmfull;
+	}
+	
+	public List<Member> findAllAndMemberId() {
+
+		List<Member> ofmfull = addDao.findAllAndMemberId();
+		
+		return ofmfull;
 	}
 
 	public List<OldFoodManBean> findByID(Integer id){

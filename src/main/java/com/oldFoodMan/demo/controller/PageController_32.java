@@ -59,24 +59,19 @@ public class PageController_32 {
 		return mav;
 	}
 	
-//	@GetMapping("/viewAllVis")
-//	public ModelAndView viewAllVisPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber) {
-//		mav.setViewName("vis_group_jsp/viewAllVis");
-//		
-//		Page<OldFoodManBean> page =serviceOfm.findByPage(pageNumber);
-//		mav.getModel().put("page", page);
-//		
-//		return mav;
-//	}
+
 	
 	@GetMapping("/viewAllVis")
 	public ModelAndView viewAllVisPage(ModelAndView mav) {
 		mav.setViewName("vis_group_jsp/viewAllVis");
 		
-		List<OldFoodManBean>list  =serviceOfm.findAll();
+		List<OldFoodManBean>list  =serviceOfm.findAllAndMember();
+		List<Member> listmember=serviceOfm.findAllAndMemberId();
+		System.out.println("想看看有啥: "+list);
 		
 		mav.getModel().put("list", list);
-		
+		mav.getModel().put("listmember", listmember);
+
 		return mav;
 	}
 	
