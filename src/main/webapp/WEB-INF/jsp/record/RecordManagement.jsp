@@ -50,17 +50,11 @@
             <td><c:out value="${foodRecord.city}"/>
             <td><c:out value="${foodRecord.shopType}"/>
             <td><img width="80" height="70" src="<c:url value='/getPicture/${foodRecord.id}'/>">
-            <td><h6 style="display: none" id="score">
-					<c:out value="${foodRecord.gender}" />
-				</h6>
+            <td><h6 style="display: none"  id="score" class="score"><c:out value="${foodRecord.gender}" /></h6>
 					<img style="width: 30px;" id="tastyId2">
-            <td><h6 style="display: none" id="score1">
-					<c:out value="${foodRecord.gender1}" />
-				</h6>
+            <td><h6 style="display: none" id="score1"><c:out value="${foodRecord.gender1}" /></h6>
 					<img style="width: 30px;" id="atmosphereId2">
-            <td><h6 style="display: none" id="score2">
-					<c:out value="${foodRecord.gender2}" />
-				</h6>
+            <td><h6 style="display: none" id="score2"><c:out value="${foodRecord.gender2}" /></h6>
 					<img style="width: 30px;" id="cpId2">
         </tr>
         
@@ -107,10 +101,18 @@
 		
 
 		function setScore3() {
+			var scorelen=document.getElementsByClassName("score");  //共有HTMLCloection物件
+			for (var i = 0 ; i < scorelen.length ; i++){
+				console.log(scorelen[i]);
+			}
 			var score=document.getElementById("score").innerText;  //得到評分1-5
-			console.log("score = "+score);
+			console.log(score);
 			document.getElementById("tastyId2").src="images/scoreImages/"+${'score'}+".png"; 
 			}
+		
+		
+		
+		
 		function setScore4() {
 			var score1=document.getElementById("score1").innerText;  //得到評分1-5
 			document.getElementById("atmosphereId2").src="images/scoreImages/"+${'score1'}+".png"; 
