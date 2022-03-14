@@ -274,7 +274,8 @@ figure {
 
 				<!--  ---看留言---------------------------------------------------- -->
 				<div id="showMsg" class="card">
-					<c:forEach var="msg" items="${msg_page.content}">
+<%-- 					<c:forEach var="msg" items="${msg_page.content}"> --%>
+					<c:forEach var="msg" items="${mlbri}">
 						<div class="card-header">
 							<span>會員ID : <c:out value="${msg.member_id.id}" /></span> <span
 								style="float: right">時間 :<c:out value="${msg.added}" /></span>
@@ -294,7 +295,6 @@ figure {
 							<p>食記ID:<c:out value="${msg.record_id.id}" />
 							</p>
 							<br>
-
 
 						</div>
 					</c:forEach>
