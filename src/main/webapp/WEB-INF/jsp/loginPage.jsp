@@ -239,6 +239,16 @@ body {
 									id="newPwd" class="inPut" name="pwd" />
 								<p class="txtP">&nbsp;</p>
 							</div>
+							<div class="newPwd_13">
+								<label class="la2">暱稱:&nbsp;</label> <input type="text"
+									id="newNickName" class="inPut" name="nickName" />
+								<p class="txtP">&nbsp;</p>
+							</div>
+							<div class="newPwd_13">
+								<label class="la2">生日:&nbsp;</label> <input type="date"
+									id="birth" class="inPut" name="birth" />
+								<p class="txtP">&nbsp;</p>
+							</div>
 
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
@@ -281,11 +291,15 @@ body {
 			var memberName = document.getElementById('newName').value;
 			var account = document.getElementById('newAccount').value;
 			var memberPwd = document.getElementById('newPwd').value;
+			var nickName = document.getElementById('newNickName').value;
+			var birth = document.getElementById('birth').value;
 
 			var Object = {
 				"memberName" : memberName,
 				"account" : account,
-				"memberPwd" : memberPwd
+				"memberPwd" : memberPwd,
+				"nickName" : nickName,
+				"birth" : birth
 			}
 			var JsonString = JSON.stringify(Object);
 
