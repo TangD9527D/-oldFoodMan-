@@ -258,8 +258,12 @@ figure {
 					</h6>
 
 				</div>
-				<br> <br> <span style="background-color: yellow;"
-					id="memberId"><c:out value="${foodrecordById.member_id.id}" /></span>
+				<br> 
+				<br> 
+				<span style="background-color: yellow;" id="memberId"><c:out value="${foodrecordById.member_id.id}" /></span>
+				<br>
+				<span style="background-color: yellow;" id="RecordId"><c:out value="${foodrecordById.id}" /></span>
+				<br>
 				<button id="submitBtn" style="float: right; margin: 5px">發佈</button>
 				<input id="myMessage"
 					style="width: 500px; border-color: lightgray; float: right; border-radius: 10px;"
@@ -286,8 +290,8 @@ figure {
 									id="inputMsg" type="text" value="<c:out value="${msg.text}" />">
 								<br>
 								<c:out value="${msg.text}" />
-							<p id="msgId">
-								<c:out value="${msg.id}" />
+							<p id="msgId"><c:out value="${msg.id}" />
+							<p>食記ID:<c:out value="${msg.record_id.id}" />
 							</p>
 							<br>
 
@@ -319,7 +323,10 @@ figure {
 				var dtoJsonString = JSON.stringify(dtoObject); //將物件轉成JSON。用stringify才能將物件轉成JSON的字串
 								console.log("dtoJsonString = "+dtoJsonString);
 				var memberId = document.getElementById("memberId").innerText;
-								
+				var reocrdId = document.getElementById("RecordId").innerText;	
+								console.log("reocrdId = "+reocrdId);
+				
+				
 								
 
 				$.ajax({
@@ -346,6 +353,7 @@ figure {
 						msg_data += '<button style="display: none" class="btn btn-primary" id="sendBtn">'+'送出'+'</button>'+'<br>'
 						msg_data += '<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">'
 						msg_data += '<br>'+"留言ID:"+value.id
+						msg_data += '<br>'+"食記ID:"+reocrdId
 			            msg_data += '<br>'+value.text   
 			            msg_data += '<p id="msgId">'
 			            msg_data += '</p>'
