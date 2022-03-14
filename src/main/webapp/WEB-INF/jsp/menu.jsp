@@ -161,7 +161,6 @@
 											<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 												<a class="dropdown-item"  href="${contextRoot}/createData">新增食記</a>
 												<a class="dropdown-item"  href="${contextRoot}/MemberRecordList">個人食記List</a>
-												<a class="dropdown-item"  href="${contextRoot}/totalRecord">全部食記</a>
 												<a class="dropdown-item"  href="${contextRoot}/RecordManagement">食記後台</a> 
 												<a class="dropdown-item"  href="${contextRoot}/MsgManagement">留言後台</a> 
 											</div>						
