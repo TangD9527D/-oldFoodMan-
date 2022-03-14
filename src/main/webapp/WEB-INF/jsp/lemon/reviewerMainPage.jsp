@@ -253,7 +253,7 @@
         <div class="reviewer-navi reviewer-navi--l">
             <ul class="reviewer-navi__list">
                 <li class="reviewer-navi__item reviewer-navi__item--log is-selected">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerMainPage">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__menu reviewer-navi__menu--top">首頁</span>
                         </span>
@@ -292,7 +292,7 @@
                     </a>
                 </li>
                 <li id="reviewer-navi-follower" class="reviewer-navi__item reviewer-navi__item--follower">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/follower">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">22157</span>
                             <span class="reviewer-navi__menu">追隨者</span>

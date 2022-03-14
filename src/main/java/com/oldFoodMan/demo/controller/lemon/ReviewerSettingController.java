@@ -51,6 +51,11 @@ public class ReviewerSettingController {
 	@Autowired
 	private MemberServiceImpl memberService;
 	
+	@GetMapping("/follower")
+	public String tester() {
+		return "/lemon/reviewerFollower";
+	}
+	
 	@GetMapping("/reviewerMainPage")
 	public ModelAndView reviewerMainPage(ModelAndView mav,HttpSession hs) {
 		Member memberData = (Member)hs.getAttribute("member");
