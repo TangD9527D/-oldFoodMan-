@@ -57,4 +57,11 @@ public class PageController {
 	public String frame2() {
 		return "frame2";
 	}
+	
+	@GetMapping("/backStage/account")
+	public String index() {
+		return "backStage/account";
+	}
+	
+	
 }
