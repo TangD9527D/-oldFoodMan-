@@ -88,18 +88,7 @@ public class RecordMessagesController {
 		
 		
 		
-//		//留言List
-//		@GetMapping("/MsgListByRecordId")
-//		public ModelAndView MsgListByRecordId(ModelAndView mav,HttpSession session) {
-//			mav.setViewName("record/MsgListByRecordId");
-//			FoodRecord recordId = (FoodRecord)session.getAttribute("sessionRecordId");
-//			Integer RecordId = recordId.getId();
-//			System.out.println("RecordId = "+RecordId);
-//			List<RecordMessages> mlbri = msgService.MsgListByRecordId(RecordId);
-//			System.out.println("mlbri = "+mlbri);
-//			mav.getModel().put("mlbri", mlbri);
-//			return mav;
-//		}
+
 		
 		
 //--------------------------------------------------------------------------------------------------------------------------
