@@ -58,15 +58,39 @@ public class ReviewerSettingController {
 	private MemberServiceImpl memberService;
 	
 
+	@GetMapping("/getreviewer/{id}")
+	public ModelAndView idMainPage(ModelAndView mav,@PathVariable int id) {
+		Member memberBean = memberService.findById(id);
+		Date birthday = memberBean.getBirth();
+		String bdd = service.getAgeByMember(birthday);
+		mav.getModel().put("bdd", bdd);
+		mav.getModel().put("member", memberBean);
+		mav.setViewName("/lemon/idMainPage");
+		return mav;
+	}
+	
 	@GetMapping("/follower")
-	public String tester(Model model) {
+	public String follower(Model model,HttpSession hs) {
+		Member memberData = (Member)hs.getAttribute("member");
+		Integer memberId = memberData.getId();
+		Date birthday = memberData.getBirth();
+		String bdd = service.getAgeByMember(birthday);
+		Member memberBean = memberService.findById(memberId);
 		List<Member> list = memberService.getAllmember();
-		List<ReviewerSetting>list2 = service.findAll();
+		model.addAttribute("bdd", bdd);
 		model.addAttribute("members",list);
-		model.addAttribute("reviewers",list2);
+		model.addAttribute("member",memberBean);
 		return "/lemon/reviewerFollower";
 	}
 
+	
+	@GetMapping("/reviewerAll")
+	public String reviewerAll(Model model,HttpSession hs) {
+//		Member memberData = (Member)hs.getAttribute("member");
+		List<Member> list = memberService.getAllmember();
+		model.addAttribute("members",list);
+		return "/lemon/reviewerAll";
+	}
 
 	//Eddie
 	@Autowired
@@ -137,7 +161,7 @@ public class ReviewerSettingController {
 				
 			service.insert(rvwrs);
 			
-			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
+//			String ext = originalFilename.substring(originalFilename.lastIndexOf("."));
 			String rootDirectory = servletContext.getRealPath("/");
 			try {
 				File imageFolder = new File(rootDirectory,"imgLemon");
@@ -170,23 +194,23 @@ public class ReviewerSettingController {
 		byte[] media = null;
 		HttpHeaders headers = new HttpHeaders();
 		String filename="";
-		Integer len = 0;
+//		Integer len = 0;
 		String cover_filename = rsr.fileNamequeryMemberId(memberId);
 		
-		System.out.println("~~~~~~~~~~~~file name~~~~~~~~"+cover_filename);
-		System.out.println("~~~~~~~~~~~~file path~~~~~~~~"+filePath);
+//		System.out.println("~~~~~~~~~~~~file name~~~~~~~~"+cover_filename);
+//		System.out.println("~~~~~~~~~~~~file path~~~~~~~~"+filePath);
 		
 		if(cover_filename != null) {
 			filePath = "imgLemon/"+cover_filename;
 			media = toByteArray(filePath);
 			filename = filePath;
-			System.out.println("~~~~~~~~~~~~if true file name~~~~~~~~"+filename);
-			System.out.println("~~~~~~~~~~~~if true file path~~~~~~~~"+filePath);	
+//			System.out.println("~~~~~~~~~~~~if true file name~~~~~~~~"+filename);
+//			System.out.println("~~~~~~~~~~~~if true file path~~~~~~~~"+filePath);	
 		} else {
 			media = toByteArray(filePath);
 			filename = filePath;
-			System.out.println("~~~~~~~~~~~~if false file name~~~~~~~~"+filename);
-			System.out.println("~~~~~~~~~~~~if false file path~~~~~~~~"+filePath);
+//			System.out.println("~~~~~~~~~~~~if false file name~~~~~~~~"+filename);
+//			System.out.println("~~~~~~~~~~~~if false file path~~~~~~~~"+filePath);
 		}
 		
 //		if(rvwrs!=null) {
