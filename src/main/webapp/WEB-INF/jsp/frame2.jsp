@@ -56,20 +56,33 @@
 </head>
 
 <body>
-	<div style="border: 2px; border-style: solid;  border-color: black; width: 755px;">
-		<div style="background-color: #fbf3f3; width: 750px;">
-			<img src="${contextRoot}/css\logo.png" style="height: 117px; width: 208px;"><font size="7">&emsp;oldFoodMan(老食人)</font>
-		<br>
+<div class="container">
+	<button type="button" class="btn btn-dark" data-toggle="modal"
+							data-target="#exampleModal2">新增帳號</button>
+							
+	<div class="modal left fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">忘記密碼</h4>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="emailBody">
+						<form id="form1">
+							<label>信箱:&nbsp;</label> 
+							<input type="text" id="emailSend" name="account">
+							<button type="button" id="btn77">送出</button>
+						</form>
+					</div>
+				</div>
+			</div>
 		</div>
-		<h4>您好:</h4>	
-		<h4>如果不是您申請忘記密碼，請忽略此信件</h4>
-		<br>
-		<h4>若您忘記密碼請點以下連結</h4>
-		<h4><a href="http://localhost:8080/oldFoodMan/resetPassword/7">請點連結</a></h4>
-		<br>
-		<h4>祝你使用愉快!!</h4>	
-		<h4>老食人團隊敬上</h4>	
-	</div>
+</div>
+<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
