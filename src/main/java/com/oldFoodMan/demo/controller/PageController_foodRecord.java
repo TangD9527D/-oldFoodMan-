@@ -56,6 +56,7 @@ public class PageController_foodRecord {
 		return mav;
 	}
 	
+	
 	//食記page
 	@GetMapping("/totalRecord")   //查詢全部的轉頁(第1頁)controler
 	public ModelAndView totalRecordPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber) {	
@@ -129,10 +130,10 @@ public class PageController_foodRecord {
 		session.setAttribute("sessionRecordId", frById);
 		Page<RecordMessages> msg_page = msgService.findByPage(pageNumberMsg);  //回傳一個Page泛型的物件
 		mav.getModel().put("msg_page", msg_page);   //再將這個Page傳回去  →"msg_page"是JSP會拿到的名字，JSP要讀這個page的物件
-
 		return mav;
 	}	
-
+	
+	
 
 
 }

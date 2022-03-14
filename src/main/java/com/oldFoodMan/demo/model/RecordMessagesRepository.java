@@ -1,5 +1,7 @@
 package com.oldFoodMan.demo.model;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,5 +23,11 @@ public interface RecordMessagesRepository extends JpaRepository<RecordMessages, 
 	@Modifying
 	@Query(value="SELECT id,added,texts,member_id FROM record_messages WHERE record_id =? ORDER BY added DESC",nativeQuery=true)
 	public void msgByIdOredrByDate(@Param("id")Integer id);
+	
+	@Transactional
+	@Modifying
+	@Query(value="SELECT*FROM record_messages M  WHERE M.record_id= :record_id ORDER BY added DESC",nativeQuery=true)
+	public List<RecordMessages> MsgListByRecordId(@Param("record_id")Integer record_id);
+	
 
 }
