@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,7 @@ import com.oldFoodMan.demo.model.lemon.User;
 import com.oldFoodMan.demo.model.lemon.UserRepository;
 import com.oldFoodMan.demo.service.lemon.RelationshipService;
 
-@RequestMapping("/manage")
+
 @Controller
 public class UserSpaceController {
 
@@ -119,31 +120,54 @@ public class UserSpaceController {
 	 * @optType
 	 * @return
 	 */
-	@PostMapping("/relationships")
-	public ResponseEntity<Response> followUser(Integer userId,String optType,HttpSession hs){
+	@PostMapping("/relationship/follow/{memberId}")
+	public String followUser(@PathVariable Integer memberId,HttpSession hs){
 		Member memberData = (Member)hs.getAttribute("member");
-		String memberAccount = memberData.getAccount();
-		User user = userRepository.findByMemberAccount(memberAccount);
-		//判斷用戶存在
-		User temp = userRepository.findById(userId).get();
-		if(temp==null) {
-			return ResponseEntity.ok().body(new Response(false,"no account"));
-		}
-		//判斷關注還是取消關注
+		System.out.println(memberData.getId()+"~~~~~~~~~~~~~~~~~~~~~~~~~~~"+memberId);
+		Relationship rr = new Relationship();
+
+		rr.setFromUserId(memberData.getId());
+		rr.setToUserId(memberId);
 		//關注
-		if("follow".equals(optType)) {
-			relationshipService.saveRelationship(new Relationship(user.getId(),userId));
-		} else if("notfollow".equals(optType)) {
-		//取消關注
-			relationshipService.removerRelationship(new Relationship(user.getId(),userId));
-		} else {	
-		//非法操作
-			return ResponseEntity.ok().body(new Response(false,"不可操作"));
-		}
-		
-		Integer fanSize = userRepository.findById(userId).get().getFan_size();
-		return ResponseEntity.ok().body(new Response(true,"操作完成",fanSize));
+		relationshipService.saveRelationship(rr); //自己對方
+		Integer fanSize = userRepository.findById(memberId).get().getFan_size();
+//        return ResponseEntity.ok().body(new Response(true, "操作成功",fanSize));
+		return "redirect:getreviwer/"+memberId;
 	}
 	
+	@PostMapping("/relationship/unfollow")
+	public void unfollow(Integer memberId,HttpSession hs) {
+		Member memberData = (Member)hs.getAttribute("member");
+		//取消關注
+		
+//		relationshipService.removerRelationship(new Relationship(user.getId(),userId));
+		
+	}	
+
+	
+	
 }
+
+/*
+ * //1、判断用户是否存在
+        User temp = userRepository.findById(userId).get();
+        if (temp == null) {
+            return ResponseEntity.ok().body(new Response(false, "用户不存在"));
+        }
+        //2、判断是关注还是取消关注
+        //关注
+        if ("follow".equals(optType)) {
+            relationshipService.saveRelationship(new Relationship(user.getId(), userId));
+        } else if ("notfollow".equals(optType)) {
+            //取消关注
+            relationshipService.removeRelationship(new Relationship(user.getId(), userId));
+        } else {
+            //非法操作
+            return ResponseEntity.ok().body(new Response(false, "非法操作"));
+        }
+        Integer fanSize = userRepository.findById(userId).get().getFanSize();
+        return ResponseEntity.ok().body(new Response(true, "操作成功",fanSize));
+    }
+
+ */
 
