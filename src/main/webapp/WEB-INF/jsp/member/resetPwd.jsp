@@ -9,42 +9,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Norican&family=Sriracha&display=swap" rel="stylesheet">
+<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 <style>
-.body_13 {
-	background-image: url("images/44737597.jpg");
+body {
+	background-color: #fbf3f3;
 }
 
-.out_div_13 {
-	margin: 200px auto;
-	width: 1000px;
+.left {
+	position: absolute;
+	top: 220px;
+	left: 100px;
+	/* border: 2px solid red; */
+	width: 600px;
+	height: 300px;
+}
+
+.right {
+	position: absolute;
+	top: 120px;
+	right: 200px;
+	border: 5px solid #444444;
+	width: 500px;
 	height: 500px;
-	border: solid 15px rgb(165, 88, 241);
-	background-color: rgba(248, 158, 56, 0.924);
+	border-radius: 30px;
 }
 
 .login_13 {
-	margin: 90px auto;
-	width: 500px;
+	margin: 30px auto;
+	width: 450px;
 	height: 300px;
-	border: inset 5px #000000;
-	border-radius: 3%;
 }
 
-.account_13 {
-	margin-top: 30px;
+.formLogin {
 	font-weight: 900;
 	font-size: x-large;
 	/* background-color: red; */
-}
-
-.pwd_13 {
-	font-size: x-large;
-	font-weight: 900;
-	/* background-color: red; */
+	text-align: center;
 }
 
 #account, #pwd {
-	font-size: x-large;
+	font-size: xx-large;
 }
 
 .under_13 {
@@ -64,48 +71,79 @@
 	text-align: right;
 }
 
+.login_fail {
+	font-size: larger;
+	color: rgb(255, 0, 0);
+	font-weight: 600;
+}
+
 .mark {
-	font-size: xx-large;
 	font-family: 'Norican', cursive;
-	border-radius: 6px 6px 0px 0px;
-	border-bottom: black 3.5px solid;
 	text-align: center;
+	background-color: #fbf3f3;
+}
+
+.la2 {
+	width: 100px;
+	text-align: right;
+	float: left;
+}
+
+.login_title {
+	margin: 10px auto;
+	border-bottom: solid 2px #444444;
+	width: 450px;
+	font-size: xx-large;
+	font-weight: 700;
+}
+
+.lab{
+
 }
 </style>
 </head>
-<body class="body_13">
-	<div class="container">
-		<div class="outside">
-			<div class="out_div_13">
-				<div class="login_13">
-					<form:form modelAttribute="member"
-						action="${contextRoot}/resetPassword" method="POST"
-						lass="login_table">
-						<div class="mark">
-							<span>oldFoodMan</span>
-						</div>
-						<form:input style="display: none;" path="id" />
-						<form:input style="display: none;" path="memberName" />
-						<form:input style="display: none;" path="phone" />
-						<form:input style="display: none;" path="account" />
-						<form:input style="display: none;" path="nickName" />
-						<form:input style="display: none;" path="birth" />
-						<form:input style="display: none;" path="city" />
-						<form:input style="display: none;" path="createDate" />
-						<form:input style="display: none;" path="fileNames" />
-						<form:input style="display: none;" path="authProvider" />
-						<br>
-						<div class="pwd_13">
-							<label class="lab">密碼:&nbsp;</label> <form:input type="password"
-								id="pwd" name="password" path="memberPwd"/>
-						</div>
-						<button name="submit" type="submit" value="submit"
-							class="btn btn-primary">送出</button>
-						<br>
-					</form:form>
-				</div>
-			</div>
+<div class="container">
+	<div class="left">
+		<div class="mark">
+			<h1 class="display-1">
+				<img src="${contextRoot}/css/oldFoodMan06.png"
+					style="width: 100px; height: 100px;">&nbsp;oldFoodMan
+			</h1>
+			<br>
+			<h3 class="h2" style="font-family: 'Sriracha', cursive;">old
+				foodMan know the food,</h3>
+			<h3 class="h2" style="font-family: 'Sriracha', cursive;">old
+				people know the world.</h3>
 		</div>
 	</div>
+	<div class="right">
+		<div class="login_title">
+			忘記密碼
+		</div>
+		<div class="login_13 container">
+			<form:form modelAttribute="member" action="${contextRoot}/resetPassword" method="POST" lass="login_table">
+				<form:input style="display: none;" path="id" />
+				<form:input style="display: none;" path="memberName" />
+				<form:input style="display: none;" path="phone" />
+				<form:input style="display: none;" path="account" />
+				<form:input style="display: none;" path="nickName" />
+				<form:input style="display: none;" path="birth" />
+				<form:input style="display: none;" path="city" />
+				<form:input style="display: none;" path="createDate" />
+				<form:input style="display: none;" path="fileNames" />
+				<form:input style="display: none;" path="authProvider" />
+				<div class="pwd_13">
+					<h3>請輸入新密碼:</h3>
+					<form:input type="password" id="pwd" name="password" path="memberPwd" />
+				</div>
+				<p>&nbsp;</p>
+				<div style="width: 450px;">
+				<button name="submit" type="submit" value="submit" class="btn btn-primary">送出</button>
+				</div>
+			</form:form>
+		</div>
+
+	</div>
+</div>
 </body>
 </html>
