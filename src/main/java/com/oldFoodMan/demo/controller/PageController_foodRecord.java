@@ -56,6 +56,7 @@ public class PageController_foodRecord {
 		return mav;
 	}
 	
+	
 	//食記page
 	@GetMapping("/totalRecord")   //查詢全部的轉頁(第1頁)controler
 	public ModelAndView totalRecordPage(ModelAndView mav,@RequestParam(name="p",defaultValue = "1") Integer pageNumber) {	
@@ -117,22 +118,28 @@ public class PageController_foodRecord {
 	}
 	
 	
-	
-	//依食記ID看食記，顯示該食記的留言
+	//顯示該食記的留言
 	@GetMapping("/viewById")
-	public ModelAndView viewOneRecord(ModelAndView mav, @RequestParam(name = "id") Integer id,@RequestParam(name="p", defaultValue = "1") Integer pageNumberMsg,HttpSession session){
+	public ModelAndView MsgListByRecordId(ModelAndView mav, @RequestParam(name = "id") Integer id,@RequestParam(name="p", defaultValue = "1") Integer pageNumberMsg,HttpSession session){
 		mav.setViewName("record/viewById");	
+		System.out.println("viewById+MsgListByRecordId的混合");
 		FoodRecord fr = new FoodRecord();
 		FoodRecord frById = service.findById(id);
 		mav.getModel().put("foodRecord", fr);
 		mav.getModel().put("foodrecordById", frById);
 		session.setAttribute("sessionRecordId", frById);
-		Page<RecordMessages> msg_page = msgService.findByPage(pageNumberMsg);  //回傳一個Page泛型的物件
-		mav.getModel().put("msg_page", msg_page);   //再將這個Page傳回去  →"msg_page"是JSP會拿到的名字，JSP要讀這個page的物件
+		
+		FoodRecord recordId = (FoodRecord)session.getAttribute("sessionRecordId");
+		Integer RecordId = recordId.getId();
+		System.out.println("RecordId = "+RecordId);
+		List<RecordMessages> mlbri = msgService.MsgListByRecordId(RecordId);
+		System.out.println("mlbri = "+mlbri);
+		mav.getModel().put("mlbri", mlbri);
 
 		return mav;
-	}	
-
+	}		
+	
+	
 
 
 }

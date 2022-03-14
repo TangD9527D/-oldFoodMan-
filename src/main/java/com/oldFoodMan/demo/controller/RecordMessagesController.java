@@ -34,7 +34,7 @@ public class RecordMessagesController {
 	private RecordMessageService msgService;
 	
 	
-	//api 0309 orignial
+	//api
 		@ResponseBody   //因為是要回傳json所以要用@ResopnseBody (ModelAndView 是回傳一個View)
 		@PostMapping("/api/postMessage")		
 		public List<RecordMessages> postMessageApi(@RequestBody RecordMessageDto dto,HttpSession session){  //@RequestBody RecordMessageDto 請求的本體(送進來的) ；List<RecordMessages>回傳回去的
@@ -55,13 +55,12 @@ public class RecordMessagesController {
 			foodMsg.setRecord_id(sessionRecordId);
 			System.out.println("食記ID = "+sessionRecordId);	
 			
-			msgService.insertMessage(foodMsg); //先存食記
+			msgService.insertMessage(foodMsg); //存留言資料
 			
-	
-			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件
-			List<RecordMessages> list = msg_page.getContent();    //page物件需要用getContent()方法才能拿到List
+			List<RecordMessages> mlbri = msgService.MsgListByRecordId(RecordId);
+			System.out.println("mlbri = "+mlbri);
 			
-			return list;
+			return mlbri;
 		}
 		
 	
@@ -83,6 +82,10 @@ public class RecordMessagesController {
 			return mav;
 			
 		}
+		
+		
+		
+
 		
 		
 //--------------------------------------------------------------------------------------------------------------------------
@@ -115,7 +118,7 @@ public class RecordMessagesController {
 		public List<RecordMessages> updateMsg(@PathVariable(name="id") Integer id,@RequestBody RecordMessageDto editMsg, HttpSession session){
 			Member member = (Member)session.getAttribute("member");     //拿Member的Id
 			FoodRecord sessionRecordId = (FoodRecord)session.getAttribute("sessionRecordId"); //拿食記的Id
-					
+			Integer RecordId = sessionRecordId.getId();		
 			RecordMessages saveId = msgService.findById(id);
 			System.out.println("留言Id的Bean = "+saveId);
 			
@@ -130,10 +133,10 @@ public class RecordMessagesController {
 			msgService.insertMessage(saveId);
 			System.out.println("新寫進去的留言bean = "+saveId);
 			
-			Page<RecordMessages> msg_page = msgService.findByPage(1);  // 回傳前N個資料,1表示第一頁。 會回傳一個page的物件
-			List<RecordMessages> list = msg_page.getContent();    //page物件需要用getContent()方法才能拿到List
+			List<RecordMessages> mlbri = msgService.MsgListByRecordId(RecordId);
+			System.out.println("mlbri = "+mlbri);
 			
-			return list;
+			return mlbri;
 			
 		}
 

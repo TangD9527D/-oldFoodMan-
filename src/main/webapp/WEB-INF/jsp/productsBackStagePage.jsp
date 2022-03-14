@@ -74,7 +74,8 @@
 							</div>
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">備註:</label> 
-								<input type="text" class="form-control" name="product_remark" id="product_remark">
+						<!--  		<input type="text" class="form-control" name="product_remark" id="product_remark">-->
+								<textarea rows="" cols="" class="form-control" name="product_remark" id="product_remark"></textarea>
 							</div>
 						</form>
 					</div>
@@ -137,7 +138,7 @@
 							</div>
 							<div class="form-group">
 								<label for="message-text" class="col-form-label">備註:</label> 
-								<input type="text" class="form-control" name="Uproduct_remark" id="Uproduct_remark">
+								<textarea rows="" cols="" class="form-control" name="Uproduct_remark" id="Uproduct_remark"></textarea>
 							</div>
 							<div class="form-group">
 								

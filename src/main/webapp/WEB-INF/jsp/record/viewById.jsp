@@ -263,8 +263,12 @@ figure {
 					</h6>
 
 				</div>
-				<br> <br> <span style="background-color: yellow;"
-					id="memberId"><c:out value="${foodrecordById.member_id.id}" /></span>
+				<br> 
+				<br> 
+				<span style="background-color: yellow;" id="memberId"><c:out value="${foodrecordById.member_id.id}" /></span>
+				<br>
+				<span style="background-color: yellow;" id="RecordId"><c:out value="${foodrecordById.id}" /></span>
+				<br>
 				<button id="submitBtn" style="float: right; margin: 5px">發佈</button>
 				<input id="myMessage"
 					style="width: 500px; border-color: lightgray; float: right; border-radius: 10px;"
@@ -275,7 +279,8 @@ figure {
 
 				<!--  ---看留言---------------------------------------------------- -->
 				<div id="showMsg" class="card">
-					<c:forEach var="msg" items="${msg_page.content}">
+<%-- 					<c:forEach var="msg" items="${msg_page.content}"> --%>
+					<c:forEach var="msg" items="${mlbri}">
 						<div class="card-header">
 							<span>會員ID : <c:out value="${msg.member_id.id}" /></span> <span
 								style="float: right">時間 :<c:out value="${msg.added}" /></span>
@@ -291,11 +296,10 @@ figure {
 									id="inputMsg" type="text" value="<c:out value="${msg.text}" />">
 								<br>
 								<c:out value="${msg.text}" />
-							<p id="msgId">
-								<c:out value="${msg.id}" />
+							<p id="msgId"><c:out value="${msg.id}" />
+							<p>食記ID:<c:out value="${msg.record_id.id}" />
 							</p>
 							<br>
-
 
 						</div>
 					</c:forEach>
@@ -324,7 +328,8 @@ figure {
 				var dtoJsonString = JSON.stringify(dtoObject); //將物件轉成JSON。用stringify才能將物件轉成JSON的字串
 								console.log("dtoJsonString = "+dtoJsonString);
 				var memberId = document.getElementById("memberId").innerText;
-								
+				var reocrdId = document.getElementById("RecordId").innerText;	
+								console.log("reocrdId = "+reocrdId);
 								
 
 				$.ajax({
@@ -351,6 +356,7 @@ figure {
 						msg_data += '<button style="display: none" class="btn btn-primary" id="sendBtn">'+'送出'+'</button>'+'<br>'
 						msg_data += '<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">'
 						msg_data += '<br>'+"留言ID:"+value.id
+						msg_data += '<br>'+"食記ID:"+reocrdId
 			            msg_data += '<br>'+value.text   
 			            msg_data += '<p id="msgId">'
 			            msg_data += '</p>'
@@ -369,12 +375,18 @@ figure {
 			
 		
 			//刪除留言
-			$('#deleteBtn').click(function(){		
-				
+			$(document).on('click','#deleteBtn',function(){
 				var memberId = document.getElementById("memberId").innerText; 
-				var msgId = document.getElementById("msgId").innerText; 	  //文章id		
-
+				console.log("memberId = "+memberId);
+				var msgId = document.getElementById("msgId").innerText; 	  //留言id		
+				var reocrdId = document.getElementById("RecordId").innerText;		
+				console.log("reocrdId = "+reocrdId);
+				var delBtn = $("#editBtn").attr("value");
 				
+				
+				
+				console.log("delBtn = "+delBtn);
+		
 				$.ajax({
 					url : 'http://localhost:8080/oldFoodMan/deleteMsg/'+msgId,
 					contentType : 'application/json; charset=UTF-8', // 送過去的格式
@@ -394,11 +406,12 @@ figure {
 						msg_data += '<span style="float:right">'+"時間 : "+value.added +'</span>'+'</div>'
 						msg_data += '<div class="card-body">'
 						msg_data += '<p id="editId" class="card-text">'
-						msg_data += '<button class="btn btn-primary" onclick=\"return confirm('+"delete ajax確認刪除?"+')"\ id="deleteBtn">'+'刪除'+'</button>'
+						msg_data += '<button  class="btn btn-primary" onclick=\"return confirm('+"delete ajax確認刪除?"+')"\ id="deleteBtn" value="' + value.id +'">'+'刪除'+'</button>'
 						msg_data += '<button  id="editBtn" class="btn btn-primary" >'+'修改'+'</button>'
 						msg_data += '<button style="display: none" class="btn btn-primary" id="sendBtn">'+'送出'+'</button>'+'<br>'
 						msg_data += '<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">'
 						msg_data += '<br>'+"delete ajax 留言ID:"+value.id
+						msg_data += '<br>'+"食記ID:"+reocrdId
 			            msg_data += '<br>'+value.text   
 			            msg_data += '<p id="msgId">'
 			            msg_data += '</p>'
@@ -415,6 +428,7 @@ figure {
 						}
 				})
 			})
+			
 			
 			//編輯留言(先顯示出留言)
 			$('#editBtn').click(function(){
@@ -452,7 +466,9 @@ figure {
 					console.log("editJsonString = "+editJsonString);
 				var memberId = document.getElementById("memberId").innerText; 
 				var msgId = document.getElementById("msgId").innerText; 	  //文章id		
-				
+				var reocrdId = document.getElementById("RecordId").innerText;	
+				console.log("reocrdId = "+reocrdId);
+
 				
 				$.ajax({
 					url:'http://localhost:8080/oldFoodMan/saveNewMsg/'+msgId,
@@ -481,6 +497,7 @@ figure {
 					msg_data += '<button style="display: none" class="btn btn-primary" id="sendBtn">'+'送出'+'</button>'+'<br>'
 					msg_data += '<input style="display: none; width: 600px" id="inputMsg"  type="text" value="<c:out value="${msg.text}" />">'
 					msg_data += '<br>'+"留言ID:"+value.id
+					msg_data += '<br>'+"食記ID:"+reocrdId
 		            msg_data += '<br>'+value.text   
 		            msg_data += '<p id="msgId">'
 		            msg_data += '</p>'

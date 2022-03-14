@@ -56,9 +56,11 @@ public class ReviewerSettingController {
 	@Autowired
 	private MemberServiceImpl memberService;
 	
+
 	//Eddie
 	@Autowired
 	private ScheduleService sbService ; 
+
 	
 	@GetMapping("/reviewerMainPage")
 	public ModelAndView reviewerMainPage(ModelAndView mav,HttpSession hs) {

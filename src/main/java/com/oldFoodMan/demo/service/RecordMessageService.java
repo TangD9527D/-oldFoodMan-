@@ -71,6 +71,14 @@ public class RecordMessageService {
 		return dao.findAll(pgb);
 		
 	}
+	
+	//各食記內的留言
+	public List<RecordMessages> MsgListByRecordId(Integer record_id){
+		List<RecordMessages> mlbri = dao.MsgListByRecordId(record_id);
+		return mlbri;
+	}
+	
+		
 
 	
 }

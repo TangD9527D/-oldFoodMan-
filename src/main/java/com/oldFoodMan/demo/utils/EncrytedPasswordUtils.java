@@ -1,5 +1,8 @@
 package com.oldFoodMan.demo.utils;
 
+import java.io.File;
+
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class EncrytedPasswordUtils {
@@ -33,10 +36,11 @@ public class EncrytedPasswordUtils {
 						 + "<h4>老食人團隊敬上</h4>"
 						 + "</div>";
 		
-
+		File file = new File("");
+        File pop = new File(file.getAbsolutePath() + "\\src\\main\\webapp\\css\\logo.png");
 		
 		System.out.println("Encryted Password: " + encrytedPassword);
-		System.out.println(message2);
+		System.out.println(pop);
 	}
 
 }
