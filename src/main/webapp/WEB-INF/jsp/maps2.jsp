@@ -55,20 +55,24 @@ html {
 
 body {
 	height: 100%;
-	background-color:#fbf3f3;
-/* 	background-image:url("http://localhost:8080/oldFoodMan/images/oldfoodman.png"); */
-/* 	background-color: #ffefcd; */
-/* 	border: 1px solid #e6d6b4; */
-/*  	background-image: -o-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%);  */
-/* /* 	background-image: -moz-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%); */ */
-/* 	background-image: -webkit-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%);  */
-/* /* 	background-image: -ms-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%); */ */
-/* /* 	background-image: linear-gradient(to bottom, #ffffe6 0%, #ffefcd 100%); */ */
-/*  	-webkit-box-shadow: inset 0 1px 0 #ffffff;  */
-/*  	-moz-box-shadow: inset 0 1px 0 #ffffff;  */
-/*  	box-shadow: inset 0 1px 0 #ffffff;  */
-/*  	text-shadow: 0 1px 0 #ffffff;  */
-/* /* 	color: #e6d6b4; */ */
+	background-color: #fbf3f3;
+	/* 	background-image:url("http://localhost:8080/oldFoodMan/images/oldfoodman.png"); */
+	/* 	background-color: #ffefcd; */
+	/* 	border: 1px solid #e6d6b4; */
+	/*  	background-image: -o-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%);  */
+	/* /* 	background-image: -moz-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%); */
+	*/
+	/* 	background-image: -webkit-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%);  */
+	/* /* 	background-image: -ms-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%); */
+	*/
+	/* /* 	background-image: linear-gradient(to bottom, #ffffe6 0%, #ffefcd 100%); */
+	*/
+	/*  	-webkit-box-shadow: inset 0 1px 0 #ffffff;  */
+	/*  	-moz-box-shadow: inset 0 1px 0 #ffffff;  */
+	/*  	box-shadow: inset 0 1px 0 #ffffff;  */
+	/*  	text-shadow: 0 1px 0 #ffffff;  */
+	/* /* 	color: #e6d6b4; */
+	*/
 }
 
 #description {
@@ -230,19 +234,20 @@ body {
 	/* 	background-position: 100px 250px; */
 	background-color: #ecd8d8;
 	border: 1px solid #ecd8d8;
- 	background-image: -o-linear-gradient(bottom,  #ecd8d8 0%, #d1d0bf 100%); 
- 	background-image: -moz-linear-gradient(bottom,  #ecd8d8 0%, #d1d0bf 100%); 
- 	background-image: -webkit-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%); 
-	background-image: -ms-linear-gradient(bottom, #eae9d8 0%, #d1d0bf 100%); 
-	background-image: linear-gradient(to bottom, #eae9d8 0%, #d1d0bf 100%); 
-	 	-webkit-box-shadow: inset 0 1px 0 #fffff1;
-	 	-moz-box-shadow: inset 0 1px 0 #fffff1; 
-	 	box-shadow: inset 0 1px 0 #fffff1; 
+	background-image: -o-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%);
+	background-image: -moz-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%);
+	background-image: -webkit-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%);
+	background-image: -ms-linear-gradient(bottom, #eae9d8 0%, #d1d0bf 100%);
+	background-image: linear-gradient(to bottom, #eae9d8 0%, #d1d0bf 100%);
+	-webkit-box-shadow: inset 0 1px 0 #fffff1;
+	-moz-box-shadow: inset 0 1px 0 #fffff1;
+	box-shadow: inset 0 1px 0 #fffff1;
 	/* 	text-shadow: 0 1px 0 #fffff1; 
 	/* 	color: #b8b7a6; */
-	background-image:url("http://localhost:8080/oldFoodMan/images/oldfoodman.png");
-	background-position:230px 150px ;
-/* 	opacity: 1.5; */
+	background-image:
+		url("http://localhost:8080/oldFoodMan/images/oldfoodman.png");
+	background-position: 230px 150px;
+	/* 	opacity: 1.5; */
 }
 
 #img {
@@ -311,6 +316,11 @@ body {
 	width: 100%;
 	margin: 0px auto;
 }
+
+.display {
+	display: none;
+}
+
 </style>
 
 
@@ -364,11 +374,13 @@ body {
 
 
 		<div id="allrange">
+			<a href="http://localhost:8080/oldFoodMan/main"><div
+					class="btn btn-outline-secondary">最新文章</div></a>
 			<div class="test2">
 				<div id="xxx">
-					<span id="rangetype"></span>
+					<span id="rangetype" class="btn btn-outline-primary display"  ></span>
 
-					<div id="range1" class=""></div>
+					<div id="range1" ></div>
 
 				</div>
 			</div>
@@ -376,7 +388,6 @@ body {
 			<div class="test1">
 				<div id="xxx">
 					<div id="range" class="">
-
 						<c:forEach var="maps" items="${page.content}">
 							<div class="card" id="p2" style="width: 8cm;">
 								<img id="img" src="<c:url value='/getPicture/${maps.id}'/>"
@@ -407,30 +418,30 @@ body {
 		<!-- 分頁頁碼 -->
 
 		<div>
-<!-- 			<div class="pagination"> -->
-<%-- 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}"> --%>
+			<!-- 			<div class="pagination"> -->
+			<%-- 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}"> --%>
 
-<%-- 					<c:choose> --%>
+			<%-- 					<c:choose> --%>
 
-<%-- 						<c:when test="${page.number != pageNumber -1}"> --%>
+			<%-- 						<c:when test="${page.number != pageNumber -1}"> --%>
 
-<!-- 							<li class="page-item"><a class="page-link" -->
-<%-- 								href="${contextRoot}/main?p=${pageNumber}"><c:out --%>
-<%-- 										value="${pageNumber} "></c:out></a></li> --%>
+			<!-- 							<li class="page-item"><a class="page-link" -->
+			<%-- 								href="${contextRoot}/main?p=${pageNumber}"><c:out --%>
+			<%-- 										value="${pageNumber} "></c:out></a></li> --%>
 
-<%-- 						</c:when> --%>
-<%-- 						<c:otherwise> --%>
-<!-- 							<li class="page-item active" aria-current="page"><span -->
-<%-- 								class="page-link"><c:out value="${pageNumber} " /></span></li> --%>
-<%-- 						</c:otherwise> --%>
+			<%-- 						</c:when> --%>
+			<%-- 						<c:otherwise> --%>
+			<!-- 							<li class="page-item active" aria-current="page"><span -->
+			<%-- 								class="page-link"><c:out value="${pageNumber} " /></span></li> --%>
+			<%-- 						</c:otherwise> --%>
 
-<%-- 					</c:choose> --%>
-<%-- 					<c:if test="${pageNumber != page.totalPages}"> --%>
+			<%-- 					</c:choose> --%>
+			<%-- 					<c:if test="${pageNumber != page.totalPages}"> --%>
 
-<%-- 					</c:if> --%>
-<%-- 				</c:forEach> --%>
+			<%-- 					</c:if> --%>
+			<%-- 				</c:forEach> --%>
 
-<!-- 			</div> -->
+			<!-- 			</div> -->
 		</div>
 
 	</div>
@@ -700,13 +711,15 @@ $("#input").bind("keypress", {}, keypressInBox);
 function keypressInBox(e) {
 var code = (e.keyCode ? e.keyCode : e.which);
 if (code == 13) { //Enter keycode
-	collet11();
+	$("#range").addClass("display");
+	$("#rangetype").removeClass("display");
+	collet11();	
 }
 
 }
 
 </script>
-	<!-- 	模糊搜尋站內食記的方法   看要不要用enterdown input -->
+	<!-- 	模糊搜尋站內食記的方法   -->
 	<script>
 
 		function collet11(){		
@@ -744,8 +757,8 @@ if (code == 13) { //Enter keycode
 						msg_data+= '</div>'
 						})
 						
-						let strObj=new String(["[您所搜尋有關於]"]);
-						let strObj1=new String(["  的食記"]);
+						let strObj=new String(["您所搜尋有關於 [ "]);
+						let strObj1=new String(["  ] 的食記"]);
 						$('#rangetype').append(strObj +inputResName + strObj1 )
 						$('#range1').append(msg_data)
 

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.oldFoodMan.demo.dto.ColletDto;
 import com.oldFoodMan.demo.dto.ScheduleDto;
+import com.oldFoodMan.demo.model.FoodRecord;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.ScheduleBean;
 import com.oldFoodMan.demo.service.ScheduleService;
@@ -23,7 +23,7 @@ import com.oldFoodMan.demo.service.ScheduleService;
 public class ScheduleController {
 	
 	@Autowired
-	ScheduleService scheduleservice;
+	ScheduleService service;
 	
 	@ResponseBody
 	@PostMapping("/locations")	
@@ -41,7 +41,7 @@ public class ScheduleController {
 		loc.setLikelocations(locations);
 		loc.setMember_id(id);
 		
-		scheduleservice.insert(loc);
+		service.insert(loc);
 		//回傳一個物件
 //		Page<ScheduleBean> page=scheduleservice.findByPage(1);
 //		List<ScheduleBean> list=page.getContent();
@@ -66,7 +66,7 @@ public class ScheduleController {
 		loc.setLikelocations(locations);
 		loc.setMember_id(id);
 		
-		scheduleservice.insert(loc);
+		service.insert(loc);
 		
 		return loc ;	
 	}
@@ -78,10 +78,22 @@ public class ScheduleController {
 		Member mid = (Member)hs.getAttribute("member");
 		Integer idd=mid.getId();
 		System.out.println("當下的: "+id);
-		List<ScheduleBean> list = scheduleservice.findByIdlike(id);
+		List<ScheduleBean> list = service.findByIdlike(id);
 
 		return list;
 
 	}
+	
+	
+	@GetMapping("/deleteSchedule")
+	public void deleteSchedule(@RequestParam(name="schedule_id") Integer schedule) {
+		
+		
+		service.delete(schedule);
+		
+	}
+	
+	
+	
 
 }
