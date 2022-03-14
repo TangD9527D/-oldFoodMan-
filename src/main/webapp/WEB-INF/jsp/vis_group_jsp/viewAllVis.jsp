@@ -48,7 +48,7 @@
          
             <tr>	
    					
-   					<td class="table-light" id="memberid">${viewallvis.member_id}</td>
+   					<td class="table-light" id="memberid">${viewallvis.membervis}</td>
                     <td class="table-light">${viewallvis.vis_date}</td>
                     
                     <td class="table-light">${viewallvis.vis_time}</td>
