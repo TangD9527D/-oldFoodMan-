@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,9 +58,20 @@ public class ReviewerSettingController {
 	private MemberServiceImpl memberService;
 	
 
+	@GetMapping("/follower")
+	public String tester(Model model) {
+		List<Member> list = memberService.getAllmember();
+		List<ReviewerSetting>list2 = service.findAll();
+		model.addAttribute("members",list);
+		model.addAttribute("reviewers",list2);
+		return "/lemon/reviewerFollower";
+	}
+
+
 	//Eddie
 	@Autowired
 	private ScheduleService sbService ; 
+
 
 	
 	@GetMapping("/reviewerMainPage")

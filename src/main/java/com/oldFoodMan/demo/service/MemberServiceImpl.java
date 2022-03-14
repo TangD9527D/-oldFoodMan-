@@ -152,4 +152,9 @@ public class MemberServiceImpl implements UserDetailsService {
         }
          
     }
+	
+	public List<Member> getAllmember(){
+		List<Member> members = memberDao.findAll();
+		return members;
+	}
 }
