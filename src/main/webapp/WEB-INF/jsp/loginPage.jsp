@@ -291,6 +291,7 @@ body {
 			</div>
 		</div>
 
+		<!-- backend control-dialog -->
 		<div class="modal left fade" id="exampleModal77" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -302,18 +303,22 @@ body {
 						</button>
 					</div>
 					<div class="modal-body" id="emailBody">
+						<div style="text-align: center;">
+							<img src="${contextRoot}/css/glass.png" style="height: 200px; width: 200px;">
+						</div>
+						<br>
 						<form id="form22">
 							<div class="newAccount_13">
 								<label class="la2">信箱:&nbsp;</label> <input
-									type="text" id="newAccount" class="inPut" name="account" />
-								<p class="txtP">&nbsp;</p>
+									type="text" id="backendAccount" class="inPut" name="account" />
+								<p class="txtP" id="backAccount7" >&nbsp;</p>
 							</div>
 							<div class="newPwd_13">
 								<label class="la2">密碼:&nbsp;</label> <input type="password"
-									id="newPwd" class="inPut" name="pwd" />
+									id="backendPwd" class="inPut" name="pwd" />
 								<p class="txtP">&nbsp;</p>
 							</div>
-							<div style="text-align: right;"><button name="submit" type="submit" value="submit"
+							<div style="text-align: right;"><button id="backendLogin"
 								class="btn btn-dark">登入</button></div>
 							
 						</form>
@@ -354,7 +359,39 @@ body {
 				}
 
 			})
-		})
+		})	
+
+		$(document).on('click', '#backendLogin', function () {
+
+				var account = document.getElementById('backendAccount').value;
+				var memberPwd = document.getElementById('backendPwd').value;
+
+				var Object = {
+					"account" : account,
+					"memberPwd": memberPwd,
+				}
+				var JsonString = JSON.stringify(Object);
+
+				$.ajax({
+					url: "http://localhost:8080/oldFoodMan/backStage/login",
+					contentType: "application/json; charset=UTF-8", // 送過去的格式
+					method: "post",
+					data: JsonString,
+					success: function (data) {
+
+						if(data == "flag1"){
+							
+							window.location = "http://localhost:8080/oldFoodMan/backStage/account";
+
+						}else{
+							$('#backAccount7').append("帳號密碼輸入錯誤!!")
+						}
+
+					}
+
+				})
+			})
+
 
 		$(document).on('click', '#btn77', function(){ 
 		var email = $("#emailSend").val();
