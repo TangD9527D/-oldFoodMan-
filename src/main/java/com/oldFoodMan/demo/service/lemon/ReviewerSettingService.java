@@ -56,9 +56,16 @@ public class ReviewerSettingService {
 		Calendar cal = Calendar.getInstance();
 		Calendar bir = Calendar.getInstance();
 		bir.setTime(birthday);
+		String outputAge = "";
+		
+		if(birthday==null) {
+			outputAge = "年齡是秘密";
+		}
+		
 		if(cal.before(birthday)) {
 			throw new IllegalArgumentException("The birthday is before Now,It's unbelievable");
 		}
+		
 		Integer yearNow = cal.get(Calendar.YEAR);
 		Integer monthNow = cal.get(Calendar.MONTH);
 		Integer dayNow = cal.get(Calendar.DAY_OF_MONTH);
@@ -71,9 +78,7 @@ public class ReviewerSettingService {
 		if(monthNow<monthBirth||(monthNow==monthBirth && dayNow<dayBirth)) {
 			age--;
 		}
-		
-		String outputAge = "";
-		
+	
 		Integer agee = age/10;
 		switch(agee) {
 		case 1:
