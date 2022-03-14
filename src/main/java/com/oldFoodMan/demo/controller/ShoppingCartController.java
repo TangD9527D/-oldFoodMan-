@@ -3,15 +3,19 @@ package com.oldFoodMan.demo.controller;
 
 
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +58,8 @@ public class ShoppingCartController {
 	@Autowired
     private CouponMailDao mailUtils; //寄信用
 	
+	@Resource
+    private JavaMailSender mailSender;
 	
 	@GetMapping("/shoppingCart")
 	public String myShoppingCart(Model model) {
@@ -243,7 +249,10 @@ public class ShoppingCartController {
 		
 		formService.insertForm(form);
 		System.out.println("test:    "  + form.getOrderNumber());
+		
 		//有了form之後就可以再把值塞進detail裡
+		String htmls = "";
+		int couponId = 0;
 		for (int i = 0; i < jsonArr.length(); i++) {
 			JSONObject jsonObject = (JSONObject) jsonArr.get(i);
 			productId = jsonObject.getString("productId");
@@ -257,6 +266,8 @@ public class ShoppingCartController {
 			ShoppingCart cart = service.findByProAndMemId(product_Id,memberId);
 			Integer ProductAmount = cart.getProductAmount();
 			double shouldPay = onePrice * ProductAmount;
+			//拿產品圖片寄信用
+			String productImg = product.getProduct_image();
 			
 			
 			OrderDetail detail = new OrderDetail();
@@ -276,9 +287,10 @@ public class ShoppingCartController {
 			proService.updateStock(newStock , product_Id);
 			
 			//餐券序號製作塞表
+			couponId = detail.getDetailId();
 			for(int index = 0; index < ProductAmount; index++) {
 				Coupon coupon = new Coupon();
-				coupon.setCouponId(detail.getDetailId());
+				coupon.setCouponId(couponId);
 				
 				UUID uuid = UUID.randomUUID();
 
@@ -292,16 +304,37 @@ public class ShoppingCartController {
 				couponService.insertCoupon(coupon);
 			}
 			
-			mailUtils.sendHtmlMail("c7416706@gmail.com","老食人餐券",
-	                "<div style=\"text-align: center;position: absolute;\" >\n"
-	                        +"<h3>\"一封html測試郵件\"</h3>\n"
-	                        + "<div>這是您的餐券序號" + 56789 + "</div>\n"
-	                        + "</div>");
-	        System.out.println("有寄出去了!!!!!!!!!!!!");
+			//拿到訂購的餐券序號，製作HTML
+			
+//            File file = new File("");
+//			FileSystemResource fileResource = new FileSystemResource(new File(file.getAbsolutePath() + "/src/main/webapp" + productImg));
+//			helper.addInline("oldimg", fileResource);
+			
+			
+			String htmlImg = "<img src=\"http://localhost:8080/oldFoodMan/" + productImg +"\"/>\n";
+			List<Coupon> myCoupons = couponService.findByCouponId(couponId);
+			for(Coupon c : myCoupons) {
+				String number = c.getCouponNumber();
+				String html = htmlImg + "<h3>餐券序號 : " + number + "<h3>\n";
+				htmls += html;
+			}
+			
+          
 			
 			
 	    }
 		
+		//寄出
+		mailUtils.sendHtmlMail("c7416706@gmail.com","老食人餐券",
+                "<div style=\"text-align: center;position: absolute;\" >\n"
+                        + "<h3>\"感謝您訂購老食人餐券\"</h3>\n"
+                		+ "<img src=\"https://miro.medium.com/max/676/1*XEgA1TTwXa5AvAdw40GFow.png\"/>\n"
+                        + "<img src=\"http://localhost:8080/oldFoodMan/product_img/2022/03/14/88840bd5-79cd-4cf6-b68a-aaf12e5af701.jpg\"/>\n"
+                        + "<p>以下為您的餐券序號:</p>\n"
+                        + htmls
+                        + "</div>");
+		
+        System.out.println("有寄出去了!!!!!!!!!!!!");
 		
 		
 		

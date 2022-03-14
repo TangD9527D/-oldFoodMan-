@@ -12,14 +12,15 @@
 	<c:set var='contextRoot' value='${pageContext.request.contextPath}'/>
 	<link rel='stylesheet' href='${contextRoot}/css/bootstrap.min.css'/>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+
 </head> 
 <body>
 	<p>
 	
-	<div class="container">  
+	<div class="container">
 		<div style="width:600px;margin:0 auto"> <!-- 廣告輪播 -->
-		<div id="carouselExampleIndicators" class="carousel slide"
-			data-ride="carousel">
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -83,10 +84,10 @@
 							<h3>售價:$${allProducts.product_newPrice}</h3>
 							<P style="text-decoration: line-through">原價:$${allProducts.product_price}</P>
 							尚餘${allProducts.product_stock}份<BR>
-							${allProducts.product_remark}!<br>
+							
 							</p>
 							<div>
-							<button type="button" class="btn btn-success" onclick="addCart(${allProducts.product_id})" id="addCart">商品詳情</button>
+							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="lookProduct" value="${allProducts.product_id}">商品詳情</button>
 							<button type="button" class="btn btn-primary" onclick="addCart(${allProducts.product_id})" id="addCart">加入購物車</button>
 							</div>
 						</div>
@@ -94,6 +95,37 @@
 				</div>
 			</c:forEach>
 		</div>
+		
+		
+		<div class="modal fade" id="exampleModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">商品資訊</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<p>
+					</div>
+					<div class="modal-body">
+						<div>
+							<img src="" width="450px" id="ajaxImg"/>
+							<hr>
+							<div>
+							<p id="pword"> </p>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
 		
 	</div>
 	
@@ -136,9 +168,9 @@
 									msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
 									msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
 									msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
-									msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product_remark + '!<br></p>';
+									msg_data += '尚餘' + value.product_stock + '份<BR></p>';
 									msg_data += '<div>';
-									msg_data += '<button type="button" class="btn btn-success" onclick="addCart(' + value.product_id + ')" id="addCart">商品詳情</button>';
+									msg_data += '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="lookProduct" value="' + value.product_id + '">商品詳情</button>';
 									msg_data += '<button type="button" class="btn btn-primary" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
 									msg_data += '</div></div></div></div>';
 								
@@ -156,6 +188,14 @@
 						success : function(data){
 							$('#ajaxCard').empty();
 							let msg_data = "";
+							
+							if(Object.keys(data).length === 0){ //如果data物件為空值則show無此商品照片
+								msg_data += '<div><img src="<c:url value="' + 'product_img/noImage/noProductImage3.png' + '"/>"/></div>'
+								$('#ajaxCard').append(msg_data);
+								return;
+							}               	
+							
+							
 							$.each(data, function(index, value){
 								console.log(value.product_name);
 								
@@ -164,10 +204,10 @@
 								msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
 								msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
 								msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
-								msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product_remark + '!<br></p>';
+								msg_data += '尚餘' + value.product_stock + '份<BR></p>';
 								msg_data += '<div>';
-								msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">商品詳情</button>';
-								msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
+								msg_data += '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="lookProduct" value="' + value.product_id + '">商品詳情</button>';
+								msg_data += '<button type="button" class="btn btn-primary" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
 								msg_data += '</div></div></div></div>';
 							
 							})
@@ -178,6 +218,26 @@
 			}
 		})
 		
+		//商品詳情
+		$(document).on('click', '#lookProduct', function(){
+			let id = $(this).attr('value');
+			$.ajax({
+				url:'http://localhost:8080/oldFoodMan/updateDiolog/' + id,
+				type: 'post',
+				dataType: 'json',
+				contentType: 'application/json;charset=UTF-8',
+				success:function(data){
+					
+					document.getElementById("pword").innerHTML=(data.product_remark).replaceAll(" ","<br>");
+					document.getElementById("ajaxImg").src=data.product_image;
+				}
+			})
+			
+			
+		})
+		
+		
+		/*
 		$('#searchProduct').click(function(){ //按搜尋按鈕觸發搜尋
 			let inputVal = $('#enter').val();
 			if(inputVal==''||inputVal==undefined||inputVal==null){
@@ -197,7 +257,7 @@
 							msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
 							msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
 							msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
-							msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product_remark + '!<br></p>';
+							msg_data += '尚餘' + value.product_stock + '份<BR></p>';
 							msg_data += '<div>';
 							msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">商品詳情</button>';
 							msg_data += '<button type="button" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
@@ -225,7 +285,7 @@
 						msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
 						msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
 						msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
-						msg_data += '尚餘' + value.product_stock + '份<BR>' + value.product_remark + '!<br></p>';
+						msg_data += '尚餘' + value.product_stock + '份<BR></p>';
 						msg_data += '<div>';
 						msg_data += '<button type="button" class="btn btn-success" onclick="addCart(' + value.product_id + ')" id="addCart">商品詳情</button>';
 						msg_data += '<button type="button" class="btn btn-primary" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
@@ -236,7 +296,7 @@
 				},
 			})
 		})
-	
+		*/
 	</script>
 
 	<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
