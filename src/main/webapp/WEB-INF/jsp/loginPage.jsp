@@ -13,6 +13,8 @@
 <link rel="shortcut icon" type="image/png" href="css/1647002131.ico">
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Norican&family=Sriracha&display=swap" rel="stylesheet">
+<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 <title>Insert title here</title>
 <style>
 body {
@@ -318,7 +320,7 @@ body {
 									id="backendPwd" class="inPut" name="pwd" />
 								<p class="txtP">&nbsp;</p>
 							</div>
-							<div style="text-align: right;"><button id="backendLogin"
+							<div style="text-align: right;"><button id="back77"
 								class="btn btn-dark">登入</button></div>
 							
 						</form>
@@ -330,8 +332,7 @@ body {
 							data-target="#exampleModal77">後臺登入</button></div>
 		
 	</div>
-	<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
-	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
+
 	<script>
 		$(document).on('click', '#newMbr', function() {
 
@@ -356,15 +357,19 @@ body {
 				method : "post",
 				data : JsonString,
 				success : function() {
+					console.log("讚")
 				}
 
 			})
 		})	
 
-		$(document).on('click', '#backendLogin', function () {
+		$(document).on('click', '#back77', function () {
 
-				var account = document.getElementById('backendAccount').value;
-				var memberPwd = document.getElementById('backendPwd').value;
+				var account = $("#backendAccount").val();
+				console.log(account);
+				
+				var memberPwd = $("#backendPwd").val();;
+				console.log(memberPwd);
 
 				var Object = {
 					"account" : account,
@@ -378,15 +383,12 @@ body {
 					method: "post",
 					data: JsonString,
 					success: function (data) {
-
-						if(data == "flag1"){
-							
+						if(data === 1){
 							window.location = "http://localhost:8080/oldFoodMan/backStage/account";
-
+							console.log("成功")
 						}else{
-							$('#backAccount7').append("帳號密碼輸入錯誤!!")
+							console.log("失敗")
 						}
-
 					}
 
 				})
