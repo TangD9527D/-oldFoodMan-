@@ -272,6 +272,14 @@ public class Member implements Serializable {
 		this.reviewersetting = reviewersetting;
 	}
 
+	public Set<Collections> getCollections() {
+		return collections;
+	}
+
+	public void setCollections(Set<Collections> collections) {
+		this.collections = collections;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

@@ -560,12 +560,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
    		<h5 class="card-title"><i class="fa-regular fa-clock">${viewallvis.vis_date}&nbsp;&nbsp; ${viewallvis.vis_time}</i></h5>
    		
     	<p class="card-text"><i class="fa-solid fa-location-dot">${viewallvis.vis_location}</i></p>
-    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}"  style="font-weight:bolder;width:120px;height:40px;border-radius:20px" id="joinvis" class="btn pink" >加入</a>
+<%--     	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}"  style="font-weight:bolder;width:120px;height:40px;border-radius:20px" id="joinvis"   class="btn pink" >加入</a> --%>
+  		<input type="button" onclick="location.href='${contextRoot}/findOneVis?id=${viewallvis.vis_id}'"  value="加入" style="font-weight:bolder;width:120px;height:40px;border-radius:20px" id="joinvis" class="btn pink"/>
+  		
+  		
   		</div>
   		<div class="card-footer text-muted">
     		建立時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
-								value="${viewallvis.added}" />
+								value="${viewallvis.added}" /> 
+								
   </div>
+  <input id="mymid'${viewallvis.member_id}'" class="conf" type=text value="${viewallvis.member_id}"/>
 </div>
 </c:forEach>
 <p>
@@ -729,15 +734,12 @@ var tdate=new Date();
 	$(document).ready(function fullcalendar(){
 		$("#example").fullCalendar(
 							{// 參數設定[註1]
-											
 							header : { // 頂部排版
-												
 							left : "prev,next today", // 左邊放置上一頁、下一頁和今天
 							center : "title", // 中間放置標題
 							right : "month,basicWeek,basicDay" // 右邊放置月、周、天
 							},
 							monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],				
-							//dayNames: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
 							dayNamesShort: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
 
 							defaultDate : tdate, // 起始日期
@@ -785,13 +787,7 @@ var tdate=new Date();
 				});
 
 	},
-	
-	
-	
-	
-	
-	
-	
+		
 	);
 	
 	$(document).ready(function fullcalendar2(){
@@ -1271,10 +1267,35 @@ var tdate=new Date();
 
 <script>
   $( function() {
-    $( "#vis_date" ).datepicker({ minDate: 0, maxDate: "+30D" });
+    $( "#vis_date" ).datepicker({ 
+    	minDate: 0, maxDate: "+30D",
+    	dateFormat: 'yy-mm-dd',
+    	appendText : "(西元年-月-日)",
+    
+    
+    });
   } );
   </script>
   
+  
+ <script>
+ var confCount = 0;
+	 $('.conf').each(function(){     
+	    confCount++; 
+ });
+	 
+ var id= document.getElementById("mymid'+myid+'").value;
+ var myid=document.getElementById("member_id").value;
+  
+ console.log("幾個ID: "+confCount)
+ if(id == myid){
+	 console.log("ha: "+id)
+	 $('#joinvis').attr('disabled','disabled')
+	 
+ }
+ 
+
+ </script> 
 </body>
 
 </html>
