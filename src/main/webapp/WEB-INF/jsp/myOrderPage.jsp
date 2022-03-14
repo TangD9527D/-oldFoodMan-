@@ -28,7 +28,7 @@
 							<h3>總金額: $${forms.orderTotal}    訂購時間: ${forms.orderTime}</h3></button>
 					</h2>
 				</div>
-
+				<hr>
 				<div id="collapse${forms.orderNumber}" class="collapse"
 					aria-labelledby="heading${forms.orderNumber}" data-parent="#accordionExample">
 					<div class="card-body">
