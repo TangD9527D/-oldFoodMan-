@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -122,5 +123,20 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		return b;
+	}
+	
+	@PostMapping("/backStage/account")
+	public ModelAndView findAllAccount(ModelAndView mav) {
+		
+		mav.setViewName("backStage/account");
+		
+		List<Member> member = service.getAllmember();
+		
+		System.out.println("777777");
+		
+		mav.getModel().put("mb", member);
+		
+		return mav;
+		
 	}
 }
