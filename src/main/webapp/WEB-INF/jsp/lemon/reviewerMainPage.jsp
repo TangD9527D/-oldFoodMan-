@@ -21,6 +21,10 @@
     <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
     <style>
         
+        .menu7{
+        line-height:0px;
+        }
+        
         .reviewer-navi.reviewer-navi--l .reviewer-navi__item.is-selected.is-selected.is-selected .reviewer-navi__target::after{
             width: 92%;
             margin-left: -46%;
@@ -129,15 +133,15 @@
             <div class="header-cover__actions">
                 <div class="reviewer-action-btns">
                     <div class="reviewer-action-btns__navi">
-                        <div class="p-follow-btn reviewer-action-btns__navi-item">
-                            <div class="js-follow-btn-wrap" data-rvwr-id="2778702">
-                                <div class="js-follow-btn">
-                                    <p class="p-follow-btn__target p-follow-btn__target--l reviewer-action-btns__navi-item-target" data-proc="follow">
-                                        <span class="p-follow-btn__text">follow</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+<!--                         <div class="p-follow-btn reviewer-action-btns__navi-item"> -->
+<!--                             <div class="js-follow-btn-wrap" data-rvwr-id="2778702"> -->
+<!--                                 <div class="js-follow-btn"> -->
+<!--                                     <p class="p-follow-btn__target p-follow-btn__target--l reviewer-action-btns__navi-item-target" data-proc="follow"> -->
+<!--                                         <span class="p-follow-btn__text">follow</span> -->
+<!--                                     </p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
                     </div>
                     <div class="reviewer-action-btns__block">
                         <div class="reviewer-block-btn">
@@ -285,7 +289,7 @@
                     </a>
                 </li>                
                 <li id="reviewer-navi-follow" class="reviewer-navi__item reviewer-navi__item--follow">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/relationships/follows">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">62</span>
                             <span class="reviewer-navi__menu">追蹤</span>
@@ -293,7 +297,7 @@
                     </a>
                 </li>
                 <li id="reviewer-navi-follower" class="reviewer-navi__item reviewer-navi__item--follower">
-                    <a class="reviewer-navi__target" href="${contextRoot}/follower">
+                    <a class="reviewer-navi__target" href="${contextRoot}/relationships/fans">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">22157</span>
                             <span class="reviewer-navi__menu">追隨者</span>

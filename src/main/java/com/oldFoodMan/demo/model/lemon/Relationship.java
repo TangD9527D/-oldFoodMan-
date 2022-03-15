@@ -10,35 +10,35 @@ import javax.persistence.Table;
 @IdClass(RelationshipPK.class)
 @Table(name="reviewer_relationship")
 public class Relationship {
-	private Integer fromUserId;
-	private Integer toUserId;
+	private Integer from_user_id;
+	private Integer to_user_id;
 	
 	public Relationship() {
 	}
 	
 	public Relationship(Integer fromUserId,Integer toUserId) {
-		this.fromUserId = fromUserId;
-		this.toUserId = toUserId;
+		this.from_user_id = fromUserId;
+		this.to_user_id = toUserId;
 	}
 	
 	@Id
 	@Column(name = "from_user_id",nullable=false)
 	public Integer getFromUserId() {
-		return fromUserId;
+		return from_user_id;
 	}
 	
 	public void setFromUserId(Integer fromUserId) {
-		this.fromUserId = fromUserId;
+		this.from_user_id = fromUserId;
 	}
 	
 	@Id
 	@Column(name = "to_user_id",nullable=false)
 	public Integer getToUserId() {
-		return toUserId;
+		return to_user_id;
 	}
 	
 	public void setToUserId(Integer toUserId) {
-		this.toUserId = toUserId;
+		this.to_user_id = toUserId;
 	}
 	
 	@Override
@@ -48,16 +48,16 @@ public class Relationship {
 		
 		Relationship that = (Relationship)o;
 		
-		if(fromUserId!=null?!fromUserId.equals(that.fromUserId):that.fromUserId!=null)return false;
-		if(toUserId!=null?!toUserId.equals(that.toUserId):that.toUserId!=null)return false;
+		if(from_user_id!=null?!from_user_id.equals(that.from_user_id):that.from_user_id!=null)return false;
+		if(to_user_id!=null?!to_user_id.equals(that.to_user_id):that.to_user_id!=null)return false;
 		
 		return true;
 	}
 	
 	@Override
 	public int hashCode() {
-		int result = fromUserId != null ? fromUserId.hashCode():0;
-		result = 31* result+(toUserId!=null?toUserId.hashCode():0);
+		int result = from_user_id != null ? from_user_id.hashCode():0;
+		result = 31* result+(to_user_id!=null?to_user_id.hashCode():0);
 		return result;
 	}
 }

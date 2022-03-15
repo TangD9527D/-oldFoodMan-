@@ -3,8 +3,6 @@ package com.oldFoodMan.demo.service.lemon.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.oldFoodMan.demo.model.lemon.Relationship;
@@ -21,20 +19,6 @@ public class RelationshipServiceImpl implements RelationshipService {
 	
 	@Autowired
 	private UserRepository userRepository;
-	
-	@Override
-	public Page<User> listFollows(Integer userId, Pageable pageable) {
-		List<Integer> relationshipList = relationshipRepository.findByFromUserId(userId);
-		Page<User> userPage = userRepository.findByIdIn(relationshipList, pageable);
-		return userPage;
-	}
-
-	@Override
-	public Page<User> listFans(Integer userId, Pageable pageable) {
-		List<Integer>relationshipList = relationshipRepository.findByToUserId(userId);
-		Page<User>userPage=userRepository.findByIdIn(relationshipList, pageable);
-		return userPage;
-	}
 
 	@Override
 	public List<Integer> listFriends(Integer userId) {
@@ -47,8 +31,8 @@ public class RelationshipServiceImpl implements RelationshipService {
 		//添加關注
 		relationshipRepository.save(relationship);
 		//更新關注數和粉絲數
-		updateFollowSize(relationship.getFromUserId());
-		updateFanSize(relationship.getToUserId());
+//		updateFollowSize(relationship.getFromUserId());
+//		updateFanSize(relationship.getToUserId());
 	}
 
 	@Override
@@ -56,8 +40,8 @@ public class RelationshipServiceImpl implements RelationshipService {
 		//刪除關係
 		relationshipRepository.delete(relationship);
 		//更新數量
-		updateFollowSize(relationship.getFromUserId());
-		updateFanSize(relationship.getToUserId());
+//		updateFollowSize(relationship.getFromUserId());
+//		updateFanSize(relationship.getToUserId());
 	}
 
 	@Override
@@ -72,6 +56,18 @@ public class RelationshipServiceImpl implements RelationshipService {
 		User user = userRepository.findById(userId).get();
 		user.setFan_size(relationshipRepository.countByToUserId(userId));
 		userRepository.save(user);
+	}
+
+	@Override
+	public List<Integer> listFollows(Integer userId) {
+		List<Integer>relationshipList = relationshipRepository.findByFromUserId(userId);
+		return relationshipList;
+	}
+
+	@Override
+	public List<Integer> listFans(Integer userId) {
+		List<Integer>relationshipList = relationshipRepository.findByToUserId(userId);
+		return relationshipList;
 	}
 
 }

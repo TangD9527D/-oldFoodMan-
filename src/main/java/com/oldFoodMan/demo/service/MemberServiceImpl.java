@@ -1,6 +1,7 @@
 package com.oldFoodMan.demo.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -131,7 +132,12 @@ public class MemberServiceImpl implements UserDetailsService {
             String pd = EncrytedPasswordUtils.encrytePassword("google");
             newUser.setMemberPwd(pd);
             
-            newUser.setAuthProvider(Provider.GOOGLE);  
+            newUser.setNickName("章魚燒");
+            
+            newUser.setAuthProvider(Provider.GOOGLE);
+            
+            Date createDate = new Date();
+            newUser.setBirth(createDate);
             
             Role role = roleDao.getById(1);
     		
