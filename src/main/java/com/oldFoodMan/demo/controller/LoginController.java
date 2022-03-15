@@ -23,27 +23,10 @@ import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.utils.WebUtils;
 
 @Controller
-public class MainController {
+public class LoginController {
 	
 	@Autowired
 	private MemberServiceImpl service;
-
-	@GetMapping(value = "/admin")
-    public String adminPage(Model model, Principal principal,HttpSession hs) {
-        
-        User loginedUser = (User)((Authentication) principal).getPrincipal();
-        
-        String userInfo = WebUtils.toString(loginedUser);
-        model.addAttribute("userInfo", userInfo);
-        model.addAttribute("title", "admin");
-        
-         Member member = (Member)hs.getAttribute("member");
-         
-         System.out.println("拿到httpSession!!" + member.getId());
-         
-         
-        return "adminPage";
-    }
 
 	@GetMapping(value = "/login")
     public String loginPage() {	
@@ -58,22 +41,6 @@ public class MainController {
         }  
         model.addAttribute("title", "Logout");
         return "redirect:/";
-    }
-
-
-	@GetMapping(value = "/userInfo")
-    public String userInfo(Model model, Principal principal) {
-
-        String userName = principal.getName();
-
-        System.out.println("User Name: " + userName);
-
-        User loginedUser = (User) ((Authentication) principal).getPrincipal();
-
-        String userInfo = WebUtils.toString(loginedUser);
-        model.addAttribute("userInfo", userInfo);
-
-        return "userInfoPage";
     }
 
 	@GetMapping(value = "/403")
@@ -109,5 +76,17 @@ public class MainController {
 		
 		return mav;
 	} 
+	
+	@GetMapping(value = "menu/")
+	public ModelAndView menu(ModelAndView mav, HttpSession hs) {
+		
+		Member mb = (Member)hs.getAttribute("member");
+		
+		mav.getModel().put("member", mb);
+		
+		mav.setViewName("menu");
+		
+		return mav;
+	}
 
 }

@@ -41,6 +41,8 @@ public class MailController {
 		
 		Member mb = memberService.findById(id);
 		
+		mb.setMemberPwd("");
+		
 		mav.getModel().put("member", mb);
 		
 		mav.setViewName("member/resetPwd");

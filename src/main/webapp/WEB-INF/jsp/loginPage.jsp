@@ -24,16 +24,16 @@ body {
 .left {
 	position: absolute;
 	top: 220px;
-	left: 100px;
-	/* border: 2px solid red; */
-	width: 600px;
+	left: 10px;
+	border: 30px solid rgba(255, 0, 0, 0);
+	width: 800px;
 	height: 300px;
 }
 
 .right {
 	position: absolute;
 	top: 120px;
-	right: 200px;
+	right: 100px;
 	border: 5px solid #444444;
 	width: 500px;
 	height: 500px;
@@ -149,25 +149,38 @@ body {
 .modal.right.fade.show .modal-dialog {
 	right: 0;
 }
+
+.ofm{
+	color: #000;
+}
+
+.ofm:hover{
+	text-decoration: none;
+	color: #000;
+}
+
 </style>
 
 </head>
 
 <body>
 	<div class="container">
-		<div class="left">
-			<div class="mark">
-				<h1 class="display-1">
-					<img src="${contextRoot}/css/oldFoodMan06.png"
-						style="width: 100px; height: 100px;">&nbsp;oldFoodMan
-				</h1>
-				<br>
-				<h3 class="h2" style="font-family: 'Sriracha', cursive;">old
+		<a href="${contextRoot}/" class="ofm">
+			<div class="left">
+				<img src="${contextRoot}/css/oldFoodMan06.png"
+						style="width: 250px; height: 250px; float: left;">
+				<div class="mark">
+					<h1 class="display-1">
+					&nbsp;oldFoodMan
+					</h1>
+					<br>
+					<h3 class="h2" style="font-family: 'Sriracha', cursive;">old
 					foodMan know the food,</h3>
-				<h3 class="h2" style="font-family: 'Sriracha', cursive;">old
+					<h3 class="h2" style="font-family: 'Sriracha', cursive;">old
 					people know the world.</h3>
+				</div>
 			</div>
-		</div>
+		</a>
 		<div class="right">
 			<div class="login_title">
 				登入&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span
@@ -309,7 +322,6 @@ body {
 							<img src="${contextRoot}/css/glass.png" style="height: 200px; width: 200px;">
 						</div>
 						<br>
-						<form id="form22">
 							<div class="newAccount_13">
 								<label class="la2">信箱:&nbsp;</label> <input
 									type="text" id="backendAccount" class="inPut" name="account" />
@@ -322,8 +334,6 @@ body {
 							</div>
 							<div style="text-align: right;"><button id="back77"
 								class="btn btn-dark">登入</button></div>
-							
-						</form>
 					</div>
 				</div>
 			</div>
@@ -383,7 +393,7 @@ body {
 					method: "post",
 					data: JsonString,
 					success: function (data) {
-						if(data === 1){
+						if(data == 1){
 							window.location = "http://localhost:8080/oldFoodMan/backStage/account";
 							console.log("成功")
 						}else{
