@@ -40,7 +40,7 @@ public class CollectionsController {
 	}
 	
 	@ResponseBody
-	@GetMapping(value="/findCollections")  //查收藏的文章
+	@GetMapping(value="/findCollections")  //ajax查看是否有收藏的文章
 	public Collections likeCollections(ModelAndView mav,HttpSession hs,@RequestParam(name="record_id") Integer record) {
 		
 		Member mid = (Member)hs.getAttribute("member");
