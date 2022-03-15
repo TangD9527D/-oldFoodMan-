@@ -135,7 +135,7 @@ figure {
 .absolute1 {
 	position: fixed;
 	top: 490px;
-	right:25%;
+	right:5%;
 	width: 25px;
 	height: 25px;
 

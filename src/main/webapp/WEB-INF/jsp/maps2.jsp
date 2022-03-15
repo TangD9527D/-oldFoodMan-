@@ -284,7 +284,7 @@ body {
 	border: 5px solid #FDE4DE;
 	float: right;
 	width: 14%;
-/* 	height: 50%; */
+	/* 	height: 50%; */
 	margin: 50px auto;
 	border-radius: 15px;
 }
@@ -320,7 +320,6 @@ body {
 .display {
 	display: none;
 }
-
 </style>
 
 
@@ -378,9 +377,9 @@ body {
 					class="btn btn-outline-secondary">最新文章</div></a>
 			<div class="test2">
 				<div id="xxx">
-					<span id="rangetype" class="btn btn-outline-primary display"  ></span>
+					<span id="rangetype" class="btn btn-outline-primary display"></span>
 
-					<div id="range1" ></div>
+					<div id="range1"></div>
 
 				</div>
 			</div>
@@ -398,7 +397,7 @@ body {
 										style="background-color: #FDE4DE; text-align: center">${maps.title}</h3>
 									<h5 id="p" class="card-text">${maps.content}</h5>
 									<a
-										href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
+										href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id} "
 										class="btn btn-secondary"
 										style="position: absolute; bottom: 15px">繼續閱讀</a>
 
@@ -414,13 +413,12 @@ body {
 
 				</div>
 			</div>
-			
-			
 		</div>
 		<!-- 分頁頁碼 -->
 
 		<div>
-			<!-- 			<div class="pagination"> -->
+			<!-- 			<div class="pagination"
+			> -->
 			<%-- 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}"> --%>
 
 			<%-- 					<c:choose> --%>
@@ -445,9 +443,6 @@ body {
 
 			<!-- 			</div> -->
 		</div>
-		
-		
-		
 
 	</div>
 
@@ -626,7 +621,7 @@ body {
 					var msg_data='';
 					$.each(result,function(index,value){
 						
-						msg_data = '<li id="li" class="list-group-item list-group-item-info">'+ inputResName +'</li>'
+						msg_data = '<button onclick="deletelike('+value.id +')" class="btn"><li id="li" class="list-group-item list-group-item-info">'+ inputResName +'</li></button>'
 						
 					})
 				
@@ -657,7 +652,7 @@ body {
  				
  					var msg_data='';
  					$.each(result,function(index,value){
- 						msg_data += '<button class="btn"><li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li></button>'
+ 						msg_data += '<button onclick="deletelike('+value.id +')" class="btn"><li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li></button>'
  					})
 
  					$('#location1').append(msg_data)
@@ -670,6 +665,26 @@ body {
  				}
 
  			})
+ 			
+ 			
+ 			function deletelike(id) { //刪除收藏地點
+
+		// 			var record_id = document.getElementById("clot").value;
+
+		$.ajax({
+					url : 'http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id='
+							+ id,
+					contentType : 'application/json; charset=UTF-8',
+					method : 'get',
+					success : function(result) {
+						console.log(member_id2)
+						alert('已成功刪除');
+						location.reload();
+					}
+
+				})
+
+	}
 </script>
 	<!--綁定按鍵sweetalert2並執行收藏地點方法 -->
 	<script>
@@ -757,7 +772,7 @@ if (code == 13) { //Enter keycode
 						msg_data+= '<div id="box" class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-outline-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀"/></a>'			
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'" class="btn btn-outline-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀"/></a>'			
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -799,7 +814,7 @@ function collet22(){
 						msg_data+= '<div id="box1" class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary" ><c:out value="繼續閱讀..."/></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'" class="btn btn-primary" ><c:out value="繼續閱讀..."/></a>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})

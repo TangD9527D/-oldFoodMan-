@@ -24,13 +24,29 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String member_account;
+	private String member_id;
 	private Integer follow_size=0;
 	private Integer fan_size=0;
 	@Transient
 	private Integer is_friend=0;
 	
 	public User() {
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
 	public Integer getFollow_size() {
@@ -49,22 +65,6 @@ public class User implements Serializable {
 		this.fan_size = fan_size;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getMember_account() {
-		return member_account;
-	}
-
-	public void setMember_account(String member_account) {
-		this.member_account = member_account;
-	}
-
 	public Integer getIs_friend() {
 		return is_friend;
 	}
@@ -72,6 +72,8 @@ public class User implements Serializable {
 	public void setIs_friend(Integer is_friend) {
 		this.is_friend = is_friend;
 	}
+
+	
 
 	
 	

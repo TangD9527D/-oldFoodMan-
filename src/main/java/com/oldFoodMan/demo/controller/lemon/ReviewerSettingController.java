@@ -28,10 +28,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oldFoodMan.demo.model.Collections;
+import com.oldFoodMan.demo.model.FoodRecord;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.ScheduleBean;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
 import com.oldFoodMan.demo.model.lemon.ReviewerSettingRepository;
+import com.oldFoodMan.demo.service.CollectionsService;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.service.ScheduleService;
 import com.oldFoodMan.demo.service.lemon.ReviewerSettingService;
@@ -56,6 +59,12 @@ public class ReviewerSettingController {
 	
 	@Autowired
 	private MemberServiceImpl memberService;
+	
+	//Eddie
+	@Autowired
+	private ScheduleService sbService ; 
+	@Autowired
+	CollectionsService cService ;
 	
 
 	@GetMapping("/getreviewer/{id}")
@@ -82,7 +91,7 @@ public class ReviewerSettingController {
 		model.addAttribute("member",memberBean);
 		return "/lemon/reviewerFollower";
 	}
-
+	
 	
 	@GetMapping("/reviewerAll")
 	public String reviewerAll(Model model,HttpSession hs) {
@@ -92,9 +101,7 @@ public class ReviewerSettingController {
 		return "/lemon/reviewerAll";
 	}
 
-	//Eddie
-	@Autowired
-	private ScheduleService sbService ; 
+
 
 
 	
@@ -132,13 +139,22 @@ public class ReviewerSettingController {
 	public ModelAndView setReviewerPage(ModelAndView mav,HttpSession hs) {
 		Member memberData = (Member)hs.getAttribute("member");
 		Integer memberId = memberData.getId();
+
 		mav.setViewName("/lemon/setReviewerPage");
 		ReviewerSetting rvwrs = new ReviewerSetting();
 		ReviewerSetting preview = new ReviewerSetting();
 		preview = rsr.findByMember(memberId);
+		
+		Member mb = memberService.findById(memberId);
+		
+		mav.getModel().put("member", mb);
 		mav.getModel().put("rvwrSet", rvwrs);
 		mav.getModel().put("preview", preview);
+		
 		rsr.deletequeryMemberId(memberId);
+		
+		System.out.println("171777771717771717117" + mb.getMemberName());
+		
 		return mav;
 	}
 	
@@ -291,6 +307,27 @@ public class ReviewerSettingController {
 		mav.setViewName("/lemon/eddietest");
 		return mav;
 	}
+	
+	@ResponseBody
+	@GetMapping(value="/findCollections11")  //查全部收藏的文章
+	public List<Collections> likeCollections(ModelAndView mav,HttpSession hs) {
+		
+		Member mid = (Member)hs.getAttribute("member");
+		Integer id=mid.getId();
+		System.out.println("mid:::"+mid);
+
+		
+		System.out.println("id:"+id);
+		
+		List<Collections> list=cService.findClotById(mid);
+		
+		System.out.println(" ˋ_ˊ "+list);
+		mav.getModel().put("likeCollections", list);			
+		mav.setViewName("viewById");
+		return list ;		
+		
+	}
+	
 	
 	
 	

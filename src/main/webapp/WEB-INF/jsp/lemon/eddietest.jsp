@@ -25,6 +25,8 @@
 <link rel="stylesheet"
 	href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
 .reviewer-navi.reviewer-navi--l .reviewer-navi__item.is-selected.is-selected.is-selected .reviewer-navi__target::after
 	{
@@ -100,8 +102,7 @@ html {
 
 .like {
 	font-size: 20px;
-	text-align:center;
-	
+	text-align: center;
 }
 </style>
 </head>
@@ -358,11 +359,21 @@ html {
 			<div id="column-main" class="layout1-main">
 				<div class="recommend-wrap">
 
-					<h1 class="recommend-title gly-b-crown like"><i class="fa-solid fa-star"></i>已收藏的地點</h1>
+					<h1 class="recommend-title gly-b-crown like">
+						<i class="fa-solid fa-star"></i>已收藏的地點<i
+							class="fa-solid fa-location-dot" style="color: red"></i>
+					</h1>
 					<input type="hidden" id="member_id2" value="${member.id}"
 						class="form-control" required>
 
 					<div id="tryy"></div>
+					<br> <br> <br>
+					<h1 class="recommend-title gly-b-crown like">
+						<i class="fa-solid fa-star"></i>已收藏的食記<i
+							class="fa-solid fa-utensils" style="color: gray"></i>
+					</h1>
+					<div id="tryyy"></div>
+					<br> <br> <br>
 					<%-- 			<c:forEach var="collections" items="${page.content}">	 --%>
 					<!-- 					<p class="reco-lead"></p> -->
 					<!-- 					<div class="reco-text-wrap"> -->
@@ -431,6 +442,9 @@ html {
 
 	<!--   Eddie  -->
 	<script>
+	
+// 	進入網頁後載入你所收藏的地點
+
 		var Member_id2 = document.getElementById('member_id2').value;
 
 		console.log("ID: " + Member_id2)
@@ -443,14 +457,18 @@ html {
 					method : 'get',
 					//			data : dtoJsonString,
 					success : function(result) {
-
 						var msg_data = '';
-						$.each(	result,function(index, value) {
+						$
+								.each(
+										result,
+										function(index, value) {
 											console.log("IDID: " + value.id)
 											msg_data += '<div class="tx-rstname">'
 											msg_data += '<input type="hidden" id="sid" value='+value.id+'>'
-											msg_data += '<a class="like" >'+ value.likelocations + '</a>'
-											msg_data += '<a type="button" onclick="deletelike('+value.id+');" class="right"><i class="fa-regular fa-trash-can"></i></a>'
+											msg_data += '<a class="like" >'
+													+ value.likelocations
+													+ '</a>'
+											msg_data += '<a type="submit" id="deleteLocation" value="'+value.id+'" class="right"><i class="fa-regular fa-trash-can"></i></a>'
 											msg_data += '</div>'
 
 										})
@@ -465,87 +483,182 @@ html {
 
 				})
 
-		function deletelike(id) { //刪除收藏地點
+// 		function deletelike(id) { //刪除收藏地點
 
-// 			var record_id = document.getElementById("clot").value;
+// 			// 			var record_id = document.getElementById("clot").value;
+
+// 			$.ajax({
+// 						url : 'http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id='
+// 								+ id,
+// 						contentType : 'application/json; charset=UTF-8',
+// 						method : 'get',
+// 						success : function(result) {
+// 							console.log(member_id2)
+// 							alert('已成功刪除');
+// 							location.reload();
+// 						}
+
+// 					})
+
+// 		}
+
 		
-		
-				$.ajax({
-						url : 'http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id='+ id,
-						contentType : 'application/json; charset=UTF-8',
-						method : 'get',
-						success : function(result) {
-							console.log(member_id2)
-							alert('已成功刪除');
+//			 	進入網頁後載入你所收藏的食記
+		var Member_id2 = document.getElementById('member_id2').value;
+		console.log("ID: " + Member_id2)
+		$
+				.ajax({
+					url : 'http://localhost:8080/oldFoodMan/findCollections11?member_id='+ Member_id2,
+					contentType : 'application/json ; charset=UTF-8',
+					dataType : 'json',
+					method : 'get',
+					//			data : dtoJsonString,
+					success : function(result) {
+
+						var msg_data = '';
+						$.each(	result,
+										function(index, value) {
+
+											console.log("IDIDff: "
+													+ value.record_id)
+											msg_data += '<div class="tx-rstname">'
+											msg_data += '<input type="hidden" id="sid" value='+value.id+'>'
+											msg_data += '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.record_id.id +'" class="like" >'
+													+ value.record_id.title
+													+ '</a>'
+											msg_data += '<a type="submit" id="deleteFoodRecord" value="'+ value.record_id.id +'" class="right"><i class="fa-regular fa-trash-can"></i></a>'
+											msg_data += '</div>'
+
+										})
+
+						$('#tryyy').append(msg_data)
+
+					}
+				// 					,
+				// 					error : function(err) {
+				// 						console.log(err)
+				// 						alert('發生錯誤')
+				// 					}
+
+				})
+
+// 		function deleteCollections(id) { //刪除食記
+
+// 			// 			var record_id = document.getElementById("clot").value;
+
+// 			// 		console.log(memberId);
+// 			// 		var dtoObject = {
+// 			// 			"likelocations" : inputResName,
+// 			// 			"member_id":Member_id,
+// 			// 			}
+// 			// 		var dtoJsonString = JSON.stringify(dtoObject);	
+// 			// 			console.log(dtoJsonString);	
+
+// 			console.log(id)
+
+// 			$.ajax({
+// 				url : 'http://localhost:8080/oldFoodMan/deleteCollections?record_id='+ id,
+// 						contentType : 'application/json; charset=UTF-8',
+// 						// 			dataType : 'json',
+// 						method : 'get',
+// 						// 			data : dtoJsonString,
+
+// 						success : function(result) {
+
+// 							// 				console.log(result)				
+// 							alert('已刪除收藏');
+// 							location.reload();
+
+// 						}
+
+// 					})
+
+// 		}
+	</script>
+	
+<!-- 	AJAX區	 -->
+	<script>
+	
+// 	刪除收藏
+	$(document).on('click', '#deleteLocation', function (){  //用一般的.click會有氣泡事件問題
+		var id = $(this).attr("value");
+
+		$.ajax({
+			type : "get",
+			url : "http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id="+id,
+			success : function(data) {
+				Swal.fire({
+					  title: '確定刪除收藏?',
+					  text: "",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Yes!'
+					}).then((result) => {
+					  if (result.isConfirmed) {
+					    Swal.fire({
+					    title:'已刪除 !!',
+					    text:'',
+					    icon:'success'
+					       
+					    }).then((result) => {
 							location.reload();
-						}
-
+						})
+					    
+					  }else{
+						  return ;
+					  }
 					})
-
-		}
-
-		// 		var Member_id2 = document.getElementById('member_id2').value;
-		// 		console.log("ID: " + Member_id2)
-		// 		$
-		// 				.ajax({
-		// 					url : 'http://localhost:8080/oldFoodMan/likeloctest?member_id='
-		// 							+ Member_id2,
-		// 					contentType : 'application/json ; charset=UTF-8',
-		// 					dataType : 'json',
-		// 					method : 'get',
-		// 					//			data : dtoJsonString,
-		// 					success : function(result) {
-
-		// 						var msg_data = '';
-		// 						$
-		// 								.each(
-		// 										result,
-		// 										function(index, value) {
-
-		// 											msg_data += '<div class="reco-tx js-rvw-contents clearfix">'
-		// 											msg_data += '<div class="tx-left">'
-		// 											msg_data += '<div class="tx-rst">'
-		// 											msg_data += '<span class="reco-tx__ranking-no">'
-		// 											msg_data += '<span class="c-ranking-badge">'
-		// 											msg_data += '<span class="c-ranking-badge__no c-ranking-badge__no--no1">'
-		// 											msg_data += '<i class="c-ranking-badge__contents u-text-num"></i>'
-		// 											msg_data += '</span>'
-		// 											msg_data += '</span>'
-		// 											msg_data += '</span>'
-		// 											msg_data += '<div class="reco-tx__info-wrap">'
-		// 											msg_data += '<div class="reco-tx__info-wrap">'
-		// 											msg_data += '<div class="tx-rstname">'
-		// 											msg_data += '<a class="tx-rstname__target" href="#">西華飯店</a>'
-		// 											msg_data += '</div>'
-		// 											msg_data += '<span class="tx-pref">台北市</span>'
-		// 											msg_data += '<span class="tx-area">松山區 / 簡餐</span>'
-		// 											msg_data += '</div>'
-		// 											msg_data += '</div>'
-		// 											msg_data += '</div>'
-		// 											msg_data += '<p class="tx-rvwttl">'
-		// 											msg_data += '<a href="#">意外的深夜牛肉麵(永久停業)</a>'
-		// 											msg_data += '</p>'
-		// 											msg_data += '</div>'
-		// 											msg_data += '<div class="tx-right">'
-		// 											msg_data += '<p class="rating">'
-		// 											msg_data += '<span class="subject">rating</span>'
-		// 											msg_data += '<strong>4.2</strong>'
-		// 											msg_data += '</p>'
-		// 											msg_data += '</div>'
-		// 											msg_data += '</div>'
-
-		// 										})
-
-		// 						$('#tryy').append(msg_data)
-
-		// 					}
-		// 			,
-		// 			error : function(err) {
-		// 				console.log(err)
-		// 				alert('發生錯誤')
-		// 			}
-
-		// 				})
+				
+			},
+		});
+	})
+	
+	
+// 	刪除食記	
+	$(document).on('click', '#deleteFoodRecord', function (){  //用一般的.click會有氣泡事件問題
+		var id = $(this).attr("value");
+		console.log("哈哈 "+id)
+		$.ajax({
+			type : "get",
+			url : "http://localhost:8080/oldFoodMan/deleteCollections?record_id=" + id,
+			success : function(data) {
+				Swal.fire({
+					  title: '確定刪除食記?',
+					  text: "",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Yes!'
+					}).then((result) => {
+					  if (result.isConfirmed) {
+					    Swal.fire({
+					    title:'已刪除 !!',
+					    text:'',
+					    icon:'success'
+					       
+					    }).then((result) => {
+							location.reload();
+						})
+					    
+					  }else{
+						  return ;
+					  }
+					})
+				
+			},
+		});
+	})
+	
+	
+	
+	
+	
+	
+	
+	
 	</script>
 
 
