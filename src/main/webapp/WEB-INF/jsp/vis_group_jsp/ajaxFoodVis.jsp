@@ -384,6 +384,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.1/fullcalendar.print.css"
 	rel="stylesheet" media="print">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
 <link rel="stylesheet" href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.1/fullcalendar.min.js"></script>
@@ -394,7 +396,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script src="sweetalert2.all.min.js"></script> -->
@@ -497,8 +499,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 
 			</div>
 			<div class="form-group col-md-6">
-				<label for="inputEmail4">時間</label> <input type="time" id="vis_time"
-					class="form-control" required>
+				<label for="inputEmail4">時間</label> <input type="text" id="vis_time"
+					class="form-control " required>
 
 			</div>
 
@@ -570,7 +572,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 								value="${viewallvis.added}" /> 
 								
   </div>
-  <input id="mymid'${viewallvis.member_id}'" class="conf" type=text value="${viewallvis.member_id}"/>
+<%--   <input id="mymid'${viewallvis.member_id}'" class="conf" type=text value="${viewallvis.member_id}"/> --%>
 </div>
 </c:forEach>
 <p>
@@ -619,13 +621,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 				<input type="hidden" id="member_idedit"
 					 class="form-control" required>
 					 
-				<input type="date" id="vis_dateedit"
+				<input type="text" id="vis_dateedit"
 					 class="form-control" required>
 
 			</div>
 			<div class="form-group col-md-6">
-				<label for="inputEmail4">時間</label> <input type="time" id="vis_timeedit"
-					class="form-control" required>
+				<label for="inputEmail4">時間</label> <input type="text" id="vis_timeedit"
+					class="form-control timepicker" required>
 
 			</div>
 
@@ -754,7 +756,7 @@ var tdate=new Date();
 										method : 'get',
 										success : function(result) {
 										console.log("2:"+ result)
-
+										
 										var events = [];
 										$.each(result,function(index,value) {
 											var newDate = new Date(Date.parse(value.vis_date))
@@ -1275,24 +1277,46 @@ var tdate=new Date();
     
     });
   } );
+  
+  $( function() {
+	    $( "#vis_dateedit" ).datepicker({ 
+	    	minDate: 0, maxDate: "+30D",
+	    	dateFormat: 'yy-mm-dd',
+	    	appendText : "(西元年-月-日)",
+	    
+	    
+	    });
+	  } );
+  
+  $('.timepicker').timepicker({
+	    timeFormat: 'h:mm p',
+	    interval: 60,
+	    minTime: '10',
+	    maxTime: '6:00pm',
+	    defaultTime: '11',
+	    startTime: '10:00',
+	    dynamic: false,
+	    dropdown: true,
+	    scrollbar: true
+	});
   </script>
   
   
  <script>
- var confCount = 0;
-	 $('.conf').each(function(){     
-	    confCount++; 
- });
+//  var confCount = 0;
+// 	 $('.conf').each(function(){     
+// 	    confCount++; 
+//  });
 	 
- var id= document.getElementById("mymid'+myid+'").value;
- var myid=document.getElementById("member_id").value;
+//  var id= document.getElementById("mymid'+myid+'").value;
+//  var myid=document.getElementById("member_id").value;
   
- console.log("幾個ID: "+confCount)
- if(id == myid){
-	 console.log("ha: "+id)
-	 $('#joinvis').attr('disabled','disabled')
+//  console.log("幾個ID: "+confCount)
+//  if(id == myid){
+// 	 console.log("ha: "+id)
+// 	 $('#joinvis').attr('disabled','disabled')
 	 
- }
+//  }
  
 
  </script> 
