@@ -84,12 +84,12 @@ public class ScheduleController {
 
 	}
 	
-	
+	@ResponseBody
 	@GetMapping("/deleteSchedule")
-	public void deleteSchedule(@RequestParam(name="schedule_id") Integer schedule) {
+	public void deleteSchedule(@RequestParam(name="schedule_id") Integer id) {
 		
 		
-		service.delete(schedule);
+		service.delete(id);
 		
 	}
 	
