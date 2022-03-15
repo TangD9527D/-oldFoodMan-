@@ -101,18 +101,18 @@
 			style="background-color: #fff2f2">
 			<div class="btn btn-demo" data-toggle="modal" data-target="#myModal7">
 				<span class="menu7"><img class="menuLine7"
-					src="css\menuLines.png" width="20px" height="20px">&ensp;Menu</span>
+					src="${contextRoot}/css\menuLines.png" width="20px" height="20px">&ensp;Menu</span>
 			</div>
 			<c:if test="${pageContext.request.userPrincipal == null}">
 					<div class="topImg">
 				<a class="navbar-brand" href="${contextRoot}/"><img
-				src="css/logo.png" width="144" height="81" alt=""></a>
+				src="${contextRoot}/css/logo.png" width="144" height="81" alt=""></a>
 			</div>
 				</c:if>
 				<c:if test="${pageContext.request.userPrincipal != null}">
 					<div class="topImg">
 				<a class="navbar-brand" href="${contextRoot}/main"><img
-				src="css/logo.png" width="144" height="81" alt=""></a>
+				src="${contextRoot}/css/logo.png" width="144" height="81" alt=""></a>
 			</div>
 				</c:if>
 			<div class="login7">

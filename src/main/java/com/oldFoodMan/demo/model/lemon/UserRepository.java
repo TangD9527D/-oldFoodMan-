@@ -27,6 +27,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	 */
 	List<User> findByIdIn(List<Integer>ids);
 	
-	@Query(value = "Select * from reviewer_user where member_account = :member_account",nativeQuery = true)
-	public User findByMemberAccount(@Param(value = "member_account") String memberAccount);
+	@Query(value = "Select * from reviewer_user where member_id = :member_id",nativeQuery = true)
+	public User findByMember(@Param(value = "member_id") Integer member_id);
 }

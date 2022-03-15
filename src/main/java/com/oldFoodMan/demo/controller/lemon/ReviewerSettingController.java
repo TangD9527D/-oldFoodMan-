@@ -91,7 +91,7 @@ public class ReviewerSettingController {
 		model.addAttribute("member",memberBean);
 		return "/lemon/reviewerFollower";
 	}
-
+	
 	
 	@GetMapping("/reviewerAll")
 	public String reviewerAll(Model model,HttpSession hs) {

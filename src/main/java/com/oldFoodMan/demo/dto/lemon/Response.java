@@ -17,4 +17,30 @@ public class Response implements Serializable {
 		rrText = this.rrText;
 		fanSize = this.fanSize;
 	}
+
+	public boolean isRrFlag() {
+		return rrFlag;
+	}
+
+	public void setRrFlag(boolean rrFlag) {
+		this.rrFlag = rrFlag;
+	}
+
+	public String getRrText() {
+		return rrText;
+	}
+
+	public void setRrText(String rrText) {
+		this.rrText = rrText;
+	}
+
+	public Integer getFanSize() {
+		return fanSize;
+	}
+
+	public void setFanSize(Integer fanSize) {
+		this.fanSize = fanSize;
+	}
+	
+	
 }

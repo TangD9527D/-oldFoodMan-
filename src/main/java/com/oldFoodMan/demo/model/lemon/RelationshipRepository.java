@@ -12,7 +12,7 @@ public interface RelationshipRepository extends JpaRepository<Relationship, Rela
 	 * @param fromUserId
 	 * @return
 	 */
-	@Query("select toUserId from Relationship where fromUserId=:fromUserId")
+	@Query(value="select to_user_id from reviewer_relationship where from_user_id=:fromUserId",nativeQuery = true)
 	List<Integer> findByFromUserId(@Param("fromUserId")Integer fromUserId);
 	
 	/*
