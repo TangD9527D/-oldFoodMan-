@@ -22,6 +22,8 @@
 	href="${contextRoot}/cssLemon/oldfoodPage01_contents_right.css">
 <link rel="stylesheet"
 	href="${contextRoot}/cssLemon/oldfoodPage01_base.css">
+<link rel="stylesheet"
+	href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
 <style>
 .reviewer-navi.reviewer-navi--l .reviewer-navi__item.is-selected.is-selected.is-selected .reviewer-navi__target::after
@@ -84,6 +86,22 @@ dt, span, dl, li, a, span, ul, div, h2, p, section {
 
 html {
 	font-size: 80%;
+}
+
+.right {
+	float: right;
+	font-size: 20px;
+	color: red;
+}
+
+.right:hover {
+	color: black;
+}
+
+.like {
+	font-size: 20px;
+	text-align:center;
+	
 }
 </style>
 </head>
@@ -340,56 +358,61 @@ html {
 			<div id="column-main" class="layout1-main">
 				<div class="recommend-wrap">
 
-					<h2 class="recommend-title gly-b-crown">Recommended Restaurant
-					</h2>
+					<h1 class="recommend-title gly-b-crown like"><i class="fa-solid fa-star"></i>已收藏的地點</h1>
 					<input type="hidden" id="member_id2" value="${member.id}"
 						class="form-control" required>
 
-					<p class="reco-lead"></p>
-					<div class="reco-text-wrap">
-						<div class="reco-tx js-rvw-contents clearfix">
-							<!--::before-->
-							<div class="tx-left">
-								<div class="tx-rst">
-									<span class="reco-tx__ranking-no"> <span
-										class="c-ranking-badge"> <span
-											class="c-ranking-badge__no c-ranking-badge__no--no1">
-												<i class="c-ranking-badge__contents u-text-num">1</i>
-										</span>
-									</span>
-									</span>
-									<div class="reco-tx__info-wrap">
+					<div id="tryy"></div>
+					<%-- 			<c:forEach var="collections" items="${page.content}">	 --%>
+					<!-- 					<p class="reco-lead"></p> -->
+					<!-- 					<div class="reco-text-wrap"> -->
+					<!-- 						<div class="reco-tx js-rvw-contents clearfix"> -->
+					<!-- 							::before -->
+					<!-- 							<div class="tx-left"> -->
+					<!-- 								<div class="tx-rst"> -->
+					<!-- 									<span class="reco-tx__ranking-no"> <span -->
+					<!-- 										class="c-ranking-badge"> <span -->
+					<!-- 											class="c-ranking-badge__no c-ranking-badge__no--no1"> -->
+					<!-- 												<i class="c-ranking-badge__contents u-text-num">1</i> -->
+					<!-- 										</span> -->
+					<!-- 									</span> -->
+					<!-- 									</span> -->
+					<!-- 									<div class="reco-tx__info-wrap"> -->
 
-										<div class="reco-tx__info-wrap">
-											<div class="tx-rstname">
-												<a class="tx-rstname__target"
-													href="#">西華飯店</a>
-											</div>
-											<span class="tx-pref">台北市</span> <span class="tx-area">松山區
-												/ 簡餐</span>
-										</div>
-									</div>
-								</div>
-								<p class="tx-rvwttl">
-									<a href="#">意外的深夜牛肉麵(永久停業)</a>
-								</p>
-							</div>
-							<div class="tx-right">
-								<p class="rating">
-									<span class="subject">rating</span>
-									<!-- <img src=""> -->
-									<strong>4.2</strong>
-								</p>
-							</div>
-						</div>
-					</div>
+					<!-- 										<div class="reco-tx__info-wrap"> -->
+					<!-- 											<div class="tx-rstname"> -->
+					<!-- 												<a class="tx-rstname__target" -->
+					<%-- 													href="#">${collections.shopName}</a> --%>
+					<!-- 											</div> -->
+					<%-- 											<span class="tx-pref">${collections.city}</span> <span class="tx-area">${collections.town} --%>
+					<!-- 												</span> -->
+					<!-- 										</div> -->
+					<!-- 									</div> -->
+					<!-- 								</div> -->
+					<!-- 								<p class="tx-rvwttl"> -->
+					<!-- 									<a href="#">意外的深夜牛肉麵(永久停業)</a> -->
+					<!-- 								</p> -->
+					<!-- 							</div> -->
+					<!-- 							<div class="tx-right"> -->
+					<!-- 								<p class="rating"> -->
+					<!-- 									<span class="subject">rating</span> -->
+					<!-- 									<img src=""> -->
+					<%-- 									<strong>${collections.gender}</strong> --%>
+
+
+					<!-- 								</p> -->
+					<!-- 							</div> -->
+					<!-- 						</div> -->
+					<!-- 					</div> -->
+					<%-- 					</c:forEach> --%>
+
 				</div>
-			<section></section>
+				<section></section>
 			</div>
 			<!-- main * end-->
 
 			<!-- side * start-->
-			
+
 			<!-- side * end-->
 		</div>
 		<!-- contents * end -->
@@ -409,6 +432,7 @@ html {
 	<!--   Eddie  -->
 	<script>
 		var Member_id2 = document.getElementById('member_id2').value;
+
 		console.log("ID: " + Member_id2)
 		$
 				.ajax({
@@ -421,123 +445,107 @@ html {
 					success : function(result) {
 
 						var msg_data = '';
-						$
-								.each(
-										result,
-										function(index, value) {
-
-											
-// 		msg_data += '<div class="reco-tx js-rvw-contents clearfix">'
-// 											msg_data += '<div class="tx-left">'
-// 											msg_data += '<div class="tx-rst">'
-// 											msg_data += '<span class="reco-tx__ranking-no">'
-// 											msg_data += '<span class="c-ranking-badge">'
-// 											msg_data += '<span class="c-ranking-badge__no c-ranking-badge__no--no1">'
-// 											msg_data += '<i class="c-ranking-badge__contents u-text-num">1</i>'
-// 											msg_data += '</span>'
-// 											msg_data += '</span>'
-// 											msg_data += '</span>'
-// 											msg_data += '<div class="reco-tx__info-wrap">'
-// 											msg_data += '<div class="reco-tx__info-wrap">'
-// 											msg_data += '<div class="tx-rstname">'
-// 											msg_data += '<a class="tx-rstname__target" href="#">西華飯店</a>'
-// 											// 					msg_data += '<a class="tx-rstname__target" href="#">' + value    +'</a>'
-// 											msg_data += '</div>'
-// 											msg_data += '<span class="tx-pref">台北市</span>'
-// 											msg_data += '<span class="tx-area">松山區 / 簡餐</span>'
-// 											msg_data += '</div>'
-// 											msg_data += '</div>'
-// 											msg_data += '</div>'
-// 											msg_data += '<p class="tx-rvwttl">'
-// 											msg_data += '<a href="#">意外的深夜牛肉麵(永久停業)</a>'
-// 											msg_data += '</p>'
-// 											msg_data += '</div>'
-// 											msg_data += '<div class="tx-right">'
-// 											msg_data += '<p class="rating">'
-// 											msg_data += '<span class="subject">rating</span>'
-// 											msg_data += '<strong>4.2</strong>'
-// 											msg_data += '</p>'
-// 											msg_data += '</div>'
-// 											msg_data += '</div>'
-
-										})
-
-						$('#tryy').append(msg_data)
-
-					}
-				// 			,
-				// 			error : function(err) {
-				// 				console.log(err)
-				// 				alert('發生錯誤')
-				// 			}
-
-				})
-	</script>
-
-	<!--   Eddie  -->
-	<script>
-		var Member_id2 = document.getElementById('member_id2').value;
-		console.log("ID: " + Member_id2)
-		$
-				.ajax({
-					url : 'http://localhost:8080/oldFoodMan/likeloctest?member_id='
-							+ Member_id2,
-					contentType : 'application/json ; charset=UTF-8',
-					dataType : 'json',
-					method : 'get',
-					//			data : dtoJsonString,
-					success : function(result) {
-
-						var msg_data = '';
-						$
-								.each(
-										result,
-										function(index, value) {
-
-											msg_data += '<div class="reco-tx js-rvw-contents clearfix">'
-											msg_data += '<div class="tx-left">'
-											msg_data += '<div class="tx-rst">'
-											msg_data += '<span class="reco-tx__ranking-no">'
-											msg_data += '<span class="c-ranking-badge">'
-											msg_data += '<span class="c-ranking-badge__no c-ranking-badge__no--no1">'
-											msg_data += '<i class="c-ranking-badge__contents u-text-num">1</i>'
-											msg_data += '</span>'
-											msg_data += '</span>'
-											msg_data += '</span>'
-											msg_data += '<div class="reco-tx__info-wrap">'
-											msg_data += '<div class="reco-tx__info-wrap">'
+						$.each(	result,function(index, value) {
+											console.log("IDID: " + value.id)
 											msg_data += '<div class="tx-rstname">'
-											msg_data += '<a class="tx-rstname__target" href="#">西華飯店</a>'
-											msg_data += '</div>'
-											msg_data += '<span class="tx-pref">台北市</span>'
-											msg_data += '<span class="tx-area">松山區 / 簡餐</span>'
-											msg_data += '</div>'
-											msg_data += '</div>'
-											msg_data += '</div>'
-											msg_data += '<p class="tx-rvwttl">'
-											msg_data += '<a href="#">意外的深夜牛肉麵(永久停業)</a>'
-											msg_data += '</p>'
-											msg_data += '</div>'
-											msg_data += '<div class="tx-right">'
-											msg_data += '<p class="rating">'
-											msg_data += '<span class="subject">rating</span>'
-											msg_data += '<strong>4.2</strong>'
-											msg_data += '</p>'
-											msg_data += '</div>'
+											msg_data += '<input type="hidden" id="sid" value='+value.id+'>'
+											msg_data += '<a class="like" >'+ value.likelocations + '</a>'
+											msg_data += '<a type="button" onclick="deletelike('+value.id+');" class="right"><i class="fa-regular fa-trash-can"></i></a>'
 											msg_data += '</div>'
 
 										})
 
 						$('#tryy').append(msg_data)
 
+					},
+					error : function(err) {
+						console.log(err)
+						alert('發生錯誤')
 					}
-				// 			,
-				// 			error : function(err) {
-				// 				console.log(err)
-				// 				alert('發生錯誤')
-				// 			}
 
 				})
+
+		function deletelike(id) { //刪除收藏地點
+
+// 			var record_id = document.getElementById("clot").value;
+		
+		
+				$.ajax({
+						url : 'http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id='+ id,
+						contentType : 'application/json; charset=UTF-8',
+						method : 'get',
+						success : function(result) {
+							console.log(member_id2)
+							alert('已成功刪除');
+							location.reload();
+						}
+
+					})
+
+		}
+
+		// 		var Member_id2 = document.getElementById('member_id2').value;
+		// 		console.log("ID: " + Member_id2)
+		// 		$
+		// 				.ajax({
+		// 					url : 'http://localhost:8080/oldFoodMan/likeloctest?member_id='
+		// 							+ Member_id2,
+		// 					contentType : 'application/json ; charset=UTF-8',
+		// 					dataType : 'json',
+		// 					method : 'get',
+		// 					//			data : dtoJsonString,
+		// 					success : function(result) {
+
+		// 						var msg_data = '';
+		// 						$
+		// 								.each(
+		// 										result,
+		// 										function(index, value) {
+
+		// 											msg_data += '<div class="reco-tx js-rvw-contents clearfix">'
+		// 											msg_data += '<div class="tx-left">'
+		// 											msg_data += '<div class="tx-rst">'
+		// 											msg_data += '<span class="reco-tx__ranking-no">'
+		// 											msg_data += '<span class="c-ranking-badge">'
+		// 											msg_data += '<span class="c-ranking-badge__no c-ranking-badge__no--no1">'
+		// 											msg_data += '<i class="c-ranking-badge__contents u-text-num"></i>'
+		// 											msg_data += '</span>'
+		// 											msg_data += '</span>'
+		// 											msg_data += '</span>'
+		// 											msg_data += '<div class="reco-tx__info-wrap">'
+		// 											msg_data += '<div class="reco-tx__info-wrap">'
+		// 											msg_data += '<div class="tx-rstname">'
+		// 											msg_data += '<a class="tx-rstname__target" href="#">西華飯店</a>'
+		// 											msg_data += '</div>'
+		// 											msg_data += '<span class="tx-pref">台北市</span>'
+		// 											msg_data += '<span class="tx-area">松山區 / 簡餐</span>'
+		// 											msg_data += '</div>'
+		// 											msg_data += '</div>'
+		// 											msg_data += '</div>'
+		// 											msg_data += '<p class="tx-rvwttl">'
+		// 											msg_data += '<a href="#">意外的深夜牛肉麵(永久停業)</a>'
+		// 											msg_data += '</p>'
+		// 											msg_data += '</div>'
+		// 											msg_data += '<div class="tx-right">'
+		// 											msg_data += '<p class="rating">'
+		// 											msg_data += '<span class="subject">rating</span>'
+		// 											msg_data += '<strong>4.2</strong>'
+		// 											msg_data += '</p>'
+		// 											msg_data += '</div>'
+		// 											msg_data += '</div>'
+
+		// 										})
+
+		// 						$('#tryy').append(msg_data)
+
+		// 					}
+		// 			,
+		// 			error : function(err) {
+		// 				console.log(err)
+		// 				alert('發生錯誤')
+		// 			}
+
+		// 				})
 	</script>
 
 

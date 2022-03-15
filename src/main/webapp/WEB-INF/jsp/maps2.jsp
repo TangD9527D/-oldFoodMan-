@@ -284,7 +284,7 @@ body {
 	border: 5px solid #FDE4DE;
 	float: right;
 	width: 14%;
-	height: 50%;
+/* 	height: 50%; */
 	margin: 50px auto;
 	border-radius: 15px;
 }
@@ -414,6 +414,8 @@ body {
 
 				</div>
 			</div>
+			
+			
 		</div>
 		<!-- 分頁頁碼 -->
 
@@ -443,6 +445,9 @@ body {
 
 			<!-- 			</div> -->
 		</div>
+		
+		
+		
 
 	</div>
 
