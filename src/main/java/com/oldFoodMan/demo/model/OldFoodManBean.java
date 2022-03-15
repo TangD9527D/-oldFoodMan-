@@ -70,7 +70,7 @@ public class OldFoodManBean implements Serializable{
 	
 //	@ManyToOne(fetch = FetchType.EAGER)
 //	@JoinColumn(name = "member_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Integer member_id;
 	
 	
@@ -211,8 +211,8 @@ public class OldFoodManBean implements Serializable{
 		this.member_id = member_id;
 	}
 	
-	@Transactional
-//	@JsonIgnore
+
+
 	public Set<Member> getMembervis() {
 		return membervis;
 	}

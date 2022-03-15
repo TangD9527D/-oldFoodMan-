@@ -45,4 +45,6 @@ public interface RelationshipRepository extends JpaRepository<Relationship, Rela
 	 * @return
 	 */
 	Integer countByToUserId(Integer toUserId);
+	
+	
 }

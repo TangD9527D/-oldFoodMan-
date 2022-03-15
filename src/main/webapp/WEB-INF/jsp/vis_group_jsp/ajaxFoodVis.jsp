@@ -110,7 +110,16 @@ margin:0 auto;
 
 #p{
 
-	overflow:hidden;
+overflow:hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+
+
+}
+
+#pp{
+
+overflow:hidden;
 white-space: nowrap;
 text-overflow: ellipsis;
 
@@ -310,6 +319,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 
 }
 
+.addpinkbtn{
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f6f8+0,d8e1e7+50,b5c6d0+51,e0eff9+100;Grey+Gloss+%232 */
+background: rgb(242,246,248); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(242,246,248,1) 0%, rgba(216,225,231,1) 50%, rgba(181,198,208,1) 51%, rgba(224,239,249,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(242,246,248,1) 0%,rgba(216,225,231,1) 50%,rgba(181,198,208,1) 51%,rgba(224,239,249,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(242,246,248,1) 0%,rgba(216,225,231,1) 50%,rgba(181,198,208,1) 51%,rgba(224,239,249,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=0 ); /* IE6-9 */
+
+
+
+
+
+
+}
+
 .joinhead{
 
 background: #ffeded; /* Old browsers */
@@ -384,7 +408,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 <body>
 <div class="allpage">
 	<div id="content">
-	<div class="header1" ><i style="font-size:30px" class="fa-solid fa-utensils"></i><span style="font-size:30px">揪團美食Eat</span></div>
+	<h3 class="header1 fw-bold font-weight-bold" ><i style="font-size:30px" class="fa-solid fa-utensils"></i> &nbsp;<span style="font-size:30px">揪團美食Eat</span></h3>
+	<hr>
 	<article class="article">
 <!-- 	<button type="button" id="star" onclick="">test</button> -->
 	
@@ -399,10 +424,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		<div id="example" ></div>
 		</div>
 		
-		<div  class="div05_32">
+		<div  class="div05_32" >
 		<div  class="div05-2">
-		<h3 class="joinhead"><span class="joinheadn">${ofmid.memberName}</span> 參加的揪團Eat</h3>
+		<h3 class="joinhead" ><span class="joinheadn">${ofmid.memberName}</span> 參加的揪團Eat</h3>
 		</div>
+		
 		<div id="myadd">
 		
 		
@@ -466,7 +492,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 						
 			<div class="form-group col-md-6">
 			
-				<label for="inputEmail4">日期</label> <input type="date" id="vis_date"
+				<label for="inputEmail4">日期</label> <input type="text" id="vis_date"
 					 class="form-control" required>
 
 			</div>
@@ -519,12 +545,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 </div>
 
 
-
-
-
-
-
-
 <aside class="aside">
 <section class="section">
 <!-- <div class="viewtable"> -->
@@ -540,12 +560,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
    		<h5 class="card-title"><i class="fa-regular fa-clock">${viewallvis.vis_date}&nbsp;&nbsp; ${viewallvis.vis_time}</i></h5>
    		
     	<p class="card-text"><i class="fa-solid fa-location-dot">${viewallvis.vis_location}</i></p>
-    	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}"  style="font-weight:bolder" id="joinvis" class="btn pink">加入</a>
+<%--     	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}"  style="font-weight:bolder;width:120px;height:40px;border-radius:20px" id="joinvis"   class="btn pink" >加入</a> --%>
+  		<input type="button" onclick="location.href='${contextRoot}/findOneVis?id=${viewallvis.vis_id}'"  value="加入" style="font-weight:bolder;width:120px;height:40px;border-radius:20px" id="joinvis" class="btn pink"/>
+  		
+  		
   		</div>
   		<div class="card-footer text-muted">
     		建立時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
-								value="${viewallvis.added}" />
+								value="${viewallvis.added}" /> 
+								
   </div>
+  <input id="mymid'${viewallvis.member_id}'" class="conf" type=text value="${viewallvis.member_id}"/>
 </div>
 </c:forEach>
 <p>
@@ -709,15 +734,12 @@ var tdate=new Date();
 	$(document).ready(function fullcalendar(){
 		$("#example").fullCalendar(
 							{// 參數設定[註1]
-											
 							header : { // 頂部排版
-												
 							left : "prev,next today", // 左邊放置上一頁、下一頁和今天
 							center : "title", // 中間放置標題
 							right : "month,basicWeek,basicDay" // 右邊放置月、周、天
 							},
 							monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],				
-							//dayNames: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
 							dayNamesShort: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
 
 							defaultDate : tdate, // 起始日期
@@ -765,13 +787,7 @@ var tdate=new Date();
 				});
 
 	},
-	
-	
-	
-	
-	
-	
-	
+		
 	);
 	
 	$(document).ready(function fullcalendar2(){
@@ -875,9 +891,10 @@ var tdate=new Date();
 //  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 					
 						msg_data+= '<div class="card-body">'		
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +' " ><h3 id="p" class="card-title tp2" style="background-color: #faf0e6; font-size:21px ;text-align: center">'+ value.vis_res_name +'</h3></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +' " ><h3 id="pp" class="card-title tp2" style="background-color: #faf0e6; font-size:21px ;text-align: center">'+ value.vis_res_name +'</h3></a>'
 						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  + '</h5>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
+// 						msg_data+= '<p id="isnull">'+value.vis_id+'</p>'
 						msg_data+= '<a type="submit" id="deletemyjoin" value='+value.vis_id+' "><i class="fa-regular fa-trash-can testii" ></i></a>'
 
 						msg_data+= '</div>'
@@ -926,8 +943,9 @@ var tdate=new Date();
 					
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp1" style="background-color: #faebd7;font-size:21px ; text-align: center"; >'+ value.vis_res_name +'</h3></a>'
-						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_date  +'</h5>'
-						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
+						msg_data+= '<h5 id="p" class="card-text" style=" text-align: center">'+ value.vis_date  +'</h5>'
+						msg_data+= '<h5 id="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
+// 						msg_data+= '<p id="isnull">'+value.vis_id+'</p>'
 						msg_data+= '<a type="submit" id="deleteMyFoodVis" value='+value.vis_id+' "><i class="fa-regular fa-trash-can testii" ></i></a>'
 // 							<a href="http://localhost:8080/oldFoodMan/deleteMyFoodVis?id='+ value.vis_id +'">
 								
@@ -1240,9 +1258,44 @@ var tdate=new Date();
 		});
 	})
 	
+
+	
+	
+	
+	
 </script>
 
+<script>
+  $( function() {
+    $( "#vis_date" ).datepicker({ 
+    	minDate: 0, maxDate: "+30D",
+    	dateFormat: 'yy-mm-dd',
+    	appendText : "(西元年-月-日)",
+    
+    
+    });
+  } );
+  </script>
+  
+  
+ <script>
+ var confCount = 0;
+	 $('.conf').each(function(){     
+	    confCount++; 
+ });
+	 
+ var id= document.getElementById("mymid'+myid+'").value;
+ var myid=document.getElementById("member_id").value;
+  
+ console.log("幾個ID: "+confCount)
+ if(id == myid){
+	 console.log("ha: "+id)
+	 $('#joinvis').attr('disabled','disabled')
+	 
+ }
+ 
 
+ </script> 
 </body>
 
 </html>

@@ -15,11 +15,28 @@
 	href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
+<style>
+.bcolor{
+
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2e5d2+0,bfa276+50,b29974+51,e8d7be+100 */
+background: #f2e5d2; /* Old browsers */
+background: -moz-linear-gradient(top,  #f2e5d2 0%, #bfa276 50%, #b29974 51%, #e8d7be 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #f2e5d2 0%,#bfa276 50%,#b29974 51%,#e8d7be 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #f2e5d2 0%,#bfa276 50%,#b29974 51%,#e8d7be 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2e5d2', endColorstr='#e8d7be',GradientType=0 ); /* IE6-9 */
+
+
+
+
+}
+
+</style>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
 
@@ -45,7 +62,7 @@
     <div class="row align-items-md-stretch">
     
 
-    <div class="col-md-6">
+    <div class="col-md-6 bcolor">
     
         <div class="h-100 p-5 bg-light border rounded-3">
          <h2 class="display-5 fw-bold font-weight-bold card-title">${ofm.vis_res_name}</h2>
@@ -65,12 +82,13 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="h-100 p-5 text-white bg-dark rounded-3">
+        <div class="h-100 p-5 bg-light border rounded-3">
           <h2>目前參加者</h2>
           <hr>
           <c:forEach var="joinofm" items="${joinofm}">
-          <p class="col-md-8 fs-4 "> ${joinofm.memberName}</p>
+          <h5 id="joinpeople" class="col-md-12  "><i class="fa-solid fa-user-group"></i> &nbsp;&nbsp; ${joinofm.memberName}</h5>
           </c:forEach>
+          <h5 id="joinnull" class="col-md-12 font-weight-bold " style="text-align:center"></h5>
         </div>
       </div>
      
@@ -79,13 +97,20 @@
     </div>
 
     <footer class="pt-3 mt-4 text-muted border-top">
-      &copy; 2021
+      &copy; 2022
     </footer>
   </div>
 		
 <script>
 
+var peoname= $('#joinpeople').text();
+console.log(peoname)
 
+if (peoname==""){
+	$('#joinnull').text("目前尚無參加者");
+	console.log("hihi")
+	
+}
 
 
 

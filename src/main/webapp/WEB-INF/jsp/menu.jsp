@@ -161,9 +161,9 @@
 								href="${contextRoot}/myOrder">我的訂單</a></li>
 							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/productsBackStagePage">商城後台</a></li>
-							 <li class="nav-item dropdown">
+							 <li class="list-group-item dropdown">
 						      			<a
-										class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+										class="dropdown-toggle menu_link7" id="navbarDropdown"
 										role="button" data-toggle="dropdown" aria-expanded="false"> 食記
 										</a>
 											<div class="dropdown-menu" aria-labelledby="navbarDropdown">

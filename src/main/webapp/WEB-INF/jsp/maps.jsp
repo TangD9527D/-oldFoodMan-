@@ -34,7 +34,7 @@
 <style>
 #allpage {
 	width: 70%;
-	height: 70%;
+	height: 80%;
 	margin: 10px auto;
 	/* float: left; */
 }
@@ -47,10 +47,28 @@
 }
 
 /* Optional: Makes the sample page fill the window. */
-html, body {
+html {
 	height: 100%;
 	/* margin: 0;
     padding: 0; */
+}
+
+body {
+	height: 100%;
+	background-color:#fbf3f3;
+/* 	background-image:url("http://localhost:8080/oldFoodMan/images/oldfoodman.png"); */
+/* 	background-color: #ffefcd; */
+/* 	border: 1px solid #e6d6b4; */
+/*  	background-image: -o-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%);  */
+/* /* 	background-image: -moz-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%); */ */
+/* 	background-image: -webkit-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%);  */
+/* /* 	background-image: -ms-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%); */ */
+/* /* 	background-image: linear-gradient(to bottom, #ffffe6 0%, #ffefcd 100%); */ */
+/*  	-webkit-box-shadow: inset 0 1px 0 #ffffff;  */
+/*  	-moz-box-shadow: inset 0 1px 0 #ffffff;  */
+/*  	box-shadow: inset 0 1px 0 #ffffff;  */
+/*  	text-shadow: 0 1px 0 #ffffff;  */
+/* /* 	color: #e6d6b4; */ */
 }
 
 #description {
@@ -166,27 +184,65 @@ html, body {
 #allrange {
 	text-align: justify;
 	width: 100%;
+	/*   	display: flex;   */
+	height: 170%;
+	background-image:;
+	background-position: center;
 }
 
 #range {
 	border: 0.5px solid transparent;
-	text-align: justify;
 	width: 100%;
-	display:inline;
+	text-align: justify;
+	justify-content: center;
 }
 
 #range1 {
 	border: 0.5px solid transparent;
 	text-align: justify;
 	width: 100%;
+	align-items: center;
+}
+
+#xxx {
 	
 }
 
 #p1 {
 	float: left;
-	margin: 15px 15px;
-	justify-content: space-between;
+	margin-top: 25px;
+	margin-left: 8%;
+	/* 	justify-content: space-between; */
+	/* 	width: 100%; */
+	/* 	background-image: */
+	/* 		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg"); */
+	/* 	background-position: 100px 250px;; */
+}
+
+#p2 {
+	float: left;
+	margin-top: 25px;
+	margin-left: 8%;
+	/* 	justify-content: space-between; */
 	width: 100%;
+	/* 	background-image: */
+	/* 		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg"); */
+	/* 	background-position: 100px 250px; */
+	background-color: #ecd8d8;
+	border: 1px solid #ecd8d8;
+ 	background-image: -o-linear-gradient(bottom,  #ecd8d8 0%, #d1d0bf 100%); 
+ 	background-image: -moz-linear-gradient(bottom,  #ecd8d8 0%, #d1d0bf 100%); 
+ 	background-image: -webkit-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%); 
+	background-image: -ms-linear-gradient(bottom, #eae9d8 0%, #d1d0bf 100%); 
+	background-image: linear-gradient(to bottom, #eae9d8 0%, #d1d0bf 100%); 
+	 	-webkit-box-shadow: inset 0 1px 0 #fffff1;
+	 	-moz-box-shadow: inset 0 1px 0 #fffff1; 
+	 	box-shadow: inset 0 1px 0 #fffff1; 
+	/* 	text-shadow: 0 1px 0 #fffff1; 
+	/* 	color: #b8b7a6; */
+	background-image:url("http://localhost:8080/oldFoodMan/images/oldfoodman.png");
+	background-position:230px 150px ;
+/* 	opacity: 1.5; */
 }
 
 #img {
@@ -219,14 +275,7 @@ html, body {
 	bottom: 53px;
 }
 
-#location {
-	border: 5px solid #FDE4DE;
-	float: right;
-	width: 14%;
-	height: 50%;
-	margin: 50px auto;
-	border-radius: 15px;
-}
+
 
 #location1 {
 	float: right;
@@ -245,31 +294,35 @@ html, body {
 	white-space: normal;
 	text-align: justify;
 }
+
+.test1 {
+	width: 100%;
+	margin: 0px auto;
+}
+
+.test2 {
+	width: 100%;
+	margin: 0px auto;
+}
 </style>
 
 
 </head>
 <body>
 
-<!-- 	<div id="location"> -->
-<!-- 		<h4 style="text-align: center; padding-top: 20px"> -->
-<!-- 			收藏的地點<i class="fa-regular fa-star"></i> -->
-<!-- 		</h4> -->
-<!-- 		<hr style="color: pink; border: 5px solid pink"> -->
-<!-- 		<div id="location1"></div> -->
+	<div id="location">
+			<form:form class="form" action="${contextRoot}/main"
+			modelAttribute="member" method="post">
+			<div class="form-group col-md-6">
+				<input type="hidden" id="member_id2" value="${member.id}"
+					class="form-control" required>
+			</div>
+		</form:form>
 
-<%-- 		<form:form class="form" action="${contextRoot}/main" --%>
-<%-- 			modelAttribute="member" method="post"> --%>
-<!-- 			<div class="form-group col-md-6"> -->
-<%-- 				<input type="hidden" id="member_id2" value="${member.id}" --%>
-<!-- 					class="form-control" required> -->
-<!-- 			</div> -->
-<%-- 		</form:form> --%>
+		<input type="hidden" id="member_id" value="${member_id}"
+			class="form-control" required>
 
-<%-- 		<input type="hidden" id="member_id" value="${member_id}" --%>
-<!-- 			class="form-control" required> -->
-
-<!-- 	</div> -->
+	</div>
 
 	<div id="allpage">
 		<!--整個頁面的65%-->
@@ -298,38 +351,76 @@ html, body {
 
 
 		<div id="allrange">
-			<span id="rangetype"></span>
-			<div id="range1" class=""></div>
-		</div>
+			<div class="test2">
+				<div id="xxx">
+					<span id="rangetype"></span>
 
+					<div id="range1" class=""></div>
 
-
-
-		<div id="range" class="">
-			<c:forEach var="maps" items="${page.content}">
-				<div class="card" id="p1" style="width: 8cm;">
-					<img id="img" src="<c:url value='/getPicture/${maps.id}'/>"
-						style="width: 250px; height: 220px" class="card-img-top" alt="...">
-					<div id="box" class="card-body">
-						<h3 id="p" class="card-title"
-							style="background-color: #FDE4DE; text-align: center">${maps.title}</h3>
-						<h5 id="p" class="card-text">${maps.content}</h5>
-						<a
-							href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
-							class="btn btn-secondary"
-							style="position: absolute; bottom: 15px">繼續閱讀</a>
-						<div id="right">
-							<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
-								value="${maps.added}" />
-						</div>
-					</div>
 				</div>
-			</c:forEach>
+			</div>
+
+			<div class="test1">
+				<div id="xxx">
+					<div id="range" class="">
+
+						<c:forEach var="maps" items="${page.content}">
+							<div class="card" id="p2" style="width: 8cm;">
+								<img id="img" src="<c:url value='/getPicture/${maps.id}'/>"
+									style="width: 250px; height: 220px" class="card-img-top"
+									alt="...">
+								<div id="box" class="card-body">
+									<h3 id="p" class="card-title"
+										style="background-color: #FDE4DE; text-align: center">${maps.title}</h3>
+									<h5 id="p" class="card-text">${maps.content}</h5>
+									<a
+										href="http://localhost:8080/oldFoodMan/viewById/?id=${maps.id} "
+										class="btn btn-secondary"
+										style="position: absolute; bottom: 15px">繼續閱讀</a>
+
+									<div id="right">
+										<fmt:formatDate pattern="yyyy/MM/dd" value="${maps.added}" />
+									</div>
+
+								</div>
+							</div>
+						</c:forEach>
+
+					</div>
+
+				</div>
+			</div>
 		</div>
+		<!-- 分頁頁碼 -->
+
+		<div>
+<!-- 			<div class="pagination"> -->
+<%-- 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}"> --%>
+
+<%-- 					<c:choose> --%>
+
+<%-- 						<c:when test="${page.number != pageNumber -1}"> --%>
+
+<!-- 							<li class="page-item"><a class="page-link" -->
+<%-- 								href="${contextRoot}/main?p=${pageNumber}"><c:out --%>
+<%-- 										value="${pageNumber} "></c:out></a></li> --%>
+
+<%-- 						</c:when> --%>
+<%-- 						<c:otherwise> --%>
+<!-- 							<li class="page-item active" aria-current="page"><span -->
+<%-- 								class="page-link"><c:out value="${pageNumber} " /></span></li> --%>
+<%-- 						</c:otherwise> --%>
+
+<%-- 					</c:choose> --%>
+<%-- 					<c:if test="${pageNumber != page.totalPages}"> --%>
+
+<%-- 					</c:if> --%>
+<%-- 				</c:forEach> --%>
+
+<!-- 			</div> -->
+		</div>
+
 	</div>
-
-
-
 
 
 
@@ -449,7 +540,7 @@ html, body {
      }
 
      // Sets the map on all markers in the array.
-     function setMapOnAll(map) {
+     function setMapOnAll(map) {	
          for (let i = 0; i < markers.length; i++) {
              markers[i].setMap(map);
          }
@@ -475,58 +566,87 @@ html, body {
     </script>
 	<!--收藏地點方法 -->
 	<script>
-	var Member_id=document.getElementById('member_id').value;
- 		function insertlocation() {
+// 	var Member_id=document.getElementById('member_id').value;
+//  		function insertlocation() {
 
-			var inputResName = document.getElementById('input').value;
+// 			var inputResName = document.getElementById('input').value;
 			
-			console.log(input);
-			console.log(Member_id);
-			var dtoObject = {
-				"likelocations" : inputResName,
-				"member_id":Member_id,
-				}
-			var dtoJsonString = JSON.stringify(dtoObject);	
-				console.log(dtoJsonString);
+// 			console.log(input);
+// 			console.log(Member_id);
+// 			var dtoObject = {
+// 				"likelocations" : inputResName,
+// 				"member_id":Member_id,
+// 				}
+// 			var dtoJsonString = JSON.stringify(dtoObject);	
+// 				console.log(dtoJsonString);
 			
 				
 				
 				
-			$.ajax({
-				url : 'http://localhost:8080/oldFoodMan/locations',
-				contentType : 'application/json; charset=UTF-8',
-				dataType : 'json',
-				method : 'post',
-				data : dtoJsonString,
+// 			$.ajax({
+// 				url : 'http://localhost:8080/oldFoodMan/locations',
+// 				contentType : 'application/json; charset=UTF-8',
+// 				dataType : 'json',
+// 				method : 'post',
+// 				data : dtoJsonString,
 				
-				success : function(result) {	
+// 				success : function(result) {	
 					
-					console.log(result)				
+// 					console.log(result)				
 															
-					var msg_data='';
-					$.each(result,function(index,value){
+// 					var msg_data='';
+// 					$.each(result,function(index,value){
 						
-						msg_data = '<li id="li" class="list-group-item list-group-item-info">'+ inputResName +'</li>'
+// 						msg_data = '<li id="li" class="list-group-item list-group-item-info">'+ inputResName +'</li>'
 						
-					})
+// 					})
 				
 				
 					
-					$('#location1').append(msg_data)	
+// 					$('#location1').append(msg_data)	
 			
-				}
-			})
+// 				},
+// 				error : function(err) {
+// 				console.log(err)
+// 				alert('發生錯誤')
+// 				}
+
+// 			})
 		
  		 		
- 		}
+//  		}
  		
+//  		var Member_id2=document.getElementById('member_id2').value;
+//  		console.log("ID: "+Member_id2)
+//  			$.ajax({
+//  				url : 'http://localhost:8080/oldFoodMan/likeloc?member_id='+ Member_id2,
+//  				contentType : 'application/json ; charset=UTF-8',
+//  				dataType : 'json',
+//  				method : 'get',
+// // 	 			data : dtoJsonString,
+//  				success : function(result) {
+ 				
+//  					var msg_data='';
+//  					$.each(result,function(index,value){
+//  						msg_data += '<li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li>'
+//  					})
 
-</script>
+//  					$('#location1').append(msg_data)
+
+ 					
+//  				},
+//  				error : function(err) {
+//  					console.log(err)
+//  					alert('發生錯誤')
+//  				}
+
+//  			})
+<!-- </script> -->
 	<!--綁定按鍵sweetalert2並執行收藏地點方法 -->
 	<script>
 
 document.getElementById("star").addEventListener("click",function(){
-	  swal("error!", "請先登入會員 !", "error").then(insertlocation());
+	  swal("Error !!", "請登入會員 !!", "error").then(insertlocation());
 	});
 	
 
@@ -534,19 +654,46 @@ document.getElementById("star").addEventListener("click",function(){
 </script>
 	<script>
 
+// //網頁接值
+// 		$(document).ready(function() {	
+// 			$.ajax({
+// 					url : 'http://localhost:8080/oldFoodMan/likeloc',
+// 					contentType : 'application/json ; charset=UTF-8',
+// 					dataType : 'json',
+// 					method : 'get',
+// 					success : function(result){
+// 						console.log("rs: "+result)
+// 						var msg_data='';
+// 						$.each(result,function(index,value){
+			
+// 							msg_data+= '<h5>'+value.likelocations +'</h5>'
+				
+// 						})
+// 						$('#location1').append(msg_data.likelocations)
 
-				$("#input").bind("keypress", {}, keypressInBox);
+					
+// 					},
+// 					error : function(err) {
+// 						console.log(err)
+// 						alert('發生錯誤')
+// 					}		
+		
+// 				});
+		
+// 			})
 
-					function keypressInBox(e) {
-						var code = (e.keyCode ? e.keyCode : e.which);
-						if (code == 13) { //Enter keycode
-							collet11();
-						}
+$("#input").bind("keypress", {}, keypressInBox);
 
-					}
+function keypressInBox(e) {
+var code = (e.keyCode ? e.keyCode : e.which);
+if (code == 13) { //Enter keycode
+	collet11();
+}
+
+}
 
 </script>
-	<!-- 	模糊搜尋站內食記的方法		-->
+	<!-- 	模糊搜尋站內食記的方法   看要不要用enterdown input -->
 	<script>
 
 		function collet11(){		
@@ -569,7 +716,7 @@ document.getElementById("star").addEventListener("click",function(){
 							
 				$.each(result,function(index,value){
 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-//  					msg_data+= '<img id="img" id="img" src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
+//  					msg_data+= '<img id="img" src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						console.log(value.uploadPicture)
 						console.log(value.create_at)
 						var image = value.uploadPicture
@@ -585,7 +732,7 @@ document.getElementById("star").addEventListener("click",function(){
 						})
 						
 						let strObj=new String(["[您所搜尋有關於]"]);
-						let strObj1=new String(["的食記"]);
+						let strObj1=new String(["  的食記"]);
 						$('#rangetype').append(strObj +inputResName + strObj1 )
 						$('#range1').append(msg_data)
 
@@ -601,12 +748,59 @@ document.getElementById("star").addEventListener("click",function(){
 	}
 		
 		
+function collet22(){		
+			
+			var inputResName = document.getElementById('bt1').attr;
+			var inputResName = document.getElementById('bt2').attr;
+			var inputResName = document.getElementById('bt3').attr;
+				$.ajax({
+						url : 'http://localhost:8080/oldFoodMan/collet?shopType='+inputResName ,
+						contentType : 'application/json ; charset=UTF-8',
+						dataType : 'json',
+						method : 'get',
+
+						success : function(result) {
+							console.log(result)
+						var msg_data='';
+				$.each(result,function(index,value){
+						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
+						msg_data+= '<img id="img" src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
+						msg_data+= '<div id="box1" class="card-body">'		
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
+						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-primary" ><c:out value="繼續閱讀..."/></a>'
+						msg_data+= '</div>'
+						msg_data+= '</div>'
+						})
+
+						$('#range1').append(msg_data)
+
+		
+						},
+						error : function(err) {
+							console.log(err)
+							alert('發生錯誤')
+						}
+
+				})
+
+	}
+
+
+
+</script>
+	<script>
+
+	
+	
+
+	
+
 
 
 
 
 </script>
-
 
 
 </body>
