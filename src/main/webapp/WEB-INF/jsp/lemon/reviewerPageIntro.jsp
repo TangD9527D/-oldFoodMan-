@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+<jsp:include page="../menu.jsp" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,8 +18,13 @@
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_left.css">
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_right.css">
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base">
+    
     <style>
-        #container{
+    	.menu7{
+        	line-height:0px;
+        }
+    
+        #containerr{
             position: relative;
             clear: both;
             margin: 0 auto 30px;
@@ -307,15 +313,15 @@
             <div class="header-cover__actions">
                 <div class="reviewer-action-btns">
                     <div class="reviewer-action-btns__navi">
-                        <div class="p-follow-btn reviewer-action-btns__navi-item">
-                            <div class="js-follow-btn-wrap" data-rvwr-id="2778702">
-                                <div class="js-follow-btn">
-                                    <p class="p-follow-btn__target p-follow-btn__target--l reviewer-action-btns__navi-item-target" data-proc="follow">
-                                        <span class="p-follow-btn__text">follow</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+<!--                         <div class="p-follow-btn reviewer-action-btns__navi-item"> -->
+<!--                             <div class="js-follow-btn-wrap" data-rvwr-id="2778702"> -->
+<!--                                 <div class="js-follow-btn"> -->
+<!--                                     <p class="p-follow-btn__target p-follow-btn__target--l reviewer-action-btns__navi-item-target" data-proc="follow"> -->
+<!--                                         <span class="p-follow-btn__text">follow</span> -->
+<!--                                     </p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
                     </div>
                     <div class="reviewer-action-btns__block">
                         <div class="reviewer-block-btn">
@@ -337,9 +343,9 @@
                         <div id="js-reviewer-image-display">
                             <img src="<c:url value='/getPhoto/${memberPage.id}' />" width="120" height="120">
                         </div>
-                            <a class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;" href="#">
-                            <button class="c-btn c-btn--s reviewer-image-box__reimage-btn">變更</button>
-                            </a>
+<!--                             <a class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;" href="#"> -->
+<!--                             <button class="c-btn c-btn--s reviewer-image-box__reimage-btn">變更</button> -->
+<!--                             </a> -->
                     </div>
                 </div>
             </div>
@@ -349,7 +355,7 @@
                         <span class="reviewer-status__nickname">
                             <strong class="reviewer-nickname fs18"><c:out value="${memberPage.memberName}"/></strong>
                         </span>
-                        <span class="reviewer-status__attr">(30歲出頭-女性-花蓮縣)</span>
+                        <span class="reviewer-status__attr">(${bdd}-<c:out value="${memberPage.city}"/>)</span>
                     </p>
                     <p class="reviewer-status__occupation"><c:out value="${reviewerPage.reviewer_occupation}"/></p>
                 </div>
@@ -359,7 +365,7 @@
                     </span>
                     <span class="comment-prof__more">
                         <a class="c-link-arrow" href="${contextRoot}/reviewerPageIntro">
-                            "read more"
+                            read more
                         </a>
                     </span>
                 </div>
@@ -432,14 +438,14 @@
         <div class="reviewer-navi reviewer-navi--l">
             <ul class="reviewer-navi__list">
                 <li class="reviewer-navi__item reviewer-navi__item--log is-selected">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerMainPage">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__menu reviewer-navi__menu--top">首頁</span>
                         </span>
                     </a>
                 </li>
                 <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerIttaomise">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">1478</span>
                             <span class="reviewer-navi__menu">拜訪店家</span>
@@ -447,7 +453,7 @@
                     </a>
                 </li>
                 <li id="reviewer-navi-interest" class="reviewer-navi__item reviewer-navi__item--interest">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerKoromi">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">156</span>
                             <span class="reviewer-navi__menu">喜愛店家</span>
@@ -455,15 +461,15 @@
                     </a>
                 </li>
                 <li id="reviewer-navi-matome" class="reviewer-navi__item reviewer-navi__item--matome is-disabled">
-                    <div class="reviewer-navi__target">
-                        <sapn class="reviewer-navi__menu-wrap">
+                     <a class="reviewer-navi__target" href="http://localhost:8080/oldFoodMan/eddietest">                    
+                        <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">0</span>
                             <span class="reviewer-navi__menu">小口袋</span>
-                        </sapn>
-                    </div>
-                </li>
+                        </span>
+                    </a>
+                </li>                
                 <li id="reviewer-navi-follow" class="reviewer-navi__item reviewer-navi__item--follow">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/relationships/follows">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">62</span>
                             <span class="reviewer-navi__menu">追蹤</span>
@@ -471,7 +477,7 @@
                     </a>
                 </li>
                 <li id="reviewer-navi-follower" class="reviewer-navi__item reviewer-navi__item--follower">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/relationships/fans">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">22157</span>
                             <span class="reviewer-navi__menu">追隨者</span>
@@ -487,12 +493,7 @@
 
 
 
-
-
-
-
-
-<div id="container">
+<div id="containerr">
     <!--contents * start-->
     <div id="contents" class="clearfix contexts-rvwr">
         <!--main * start-->

@@ -1,6 +1,7 @@
 
 package com.oldFoodMan.demo.controller.lemon;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,9 +26,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oldFoodMan.demo.dto.lemon.Response;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.lemon.Relationship;
+import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
+import com.oldFoodMan.demo.model.lemon.ReviewerSettingRepository;
 import com.oldFoodMan.demo.model.lemon.User;
 import com.oldFoodMan.demo.model.lemon.UserRepository;
+import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.service.lemon.RelationshipService;
+import com.oldFoodMan.demo.service.lemon.ReviewerSettingService;
 
 
 @Controller
@@ -39,10 +44,15 @@ public class UserSpaceController {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@GetMapping("/relationships")
-	public String relationships() {
-		return "forward:/manage/relationships/follows";
-	}
+	@Autowired
+	private ReviewerSettingRepository rsr;
+	
+	@Autowired
+	private ReviewerSettingService service;
+	
+	@Autowired
+	private MemberServiceImpl memberService;
+	
 	
 	/*
 	 * 我的關注列表
@@ -55,7 +65,15 @@ public class UserSpaceController {
 	public String getFollowsById(Model model,HttpSession hs) {
 		Member memberData = (Member)hs.getAttribute("member");
 		int memId = memberData.getId();
+		Date birthday = memberData.getBirth();
+		String bdd = service.getAgeByMember(birthday);
 		List<Integer> list = relationshipService.listFollows(memId);
+		Member memberBean = memberService.findById(memId);
+		ReviewerSetting reviewerBean = rsr.findByMember(memId);
+		
+		model.addAttribute("bdd", bdd);
+		model.addAttribute("reviewerPage", reviewerBean);
+		model.addAttribute("memberPage", memberBean);
 		model.addAttribute("ids",list);
 		return "/lemon/reviewerFollowing";
 		
@@ -100,7 +118,15 @@ public class UserSpaceController {
 	public String getFansById(Model model,HttpSession hs) {
 		Member memberData = (Member)hs.getAttribute("member");
 		int memId = memberData.getId();
+		Date birthday = memberData.getBirth();
+		String bdd = service.getAgeByMember(birthday);
 		List<Integer> list = relationshipService.listFans(memId);
+		Member memberBean = memberService.findById(memId);
+		ReviewerSetting reviewerBean = rsr.findByMember(memId);
+		
+		model.addAttribute("bdd", bdd);
+		model.addAttribute("reviewerPage", reviewerBean);
+		model.addAttribute("memberPage", memberBean);
 		model.addAttribute("ids",list);
 		return "/lemon/reviewerFollower";
 		

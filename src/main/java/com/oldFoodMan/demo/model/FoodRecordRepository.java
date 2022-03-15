@@ -28,5 +28,18 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	@Query(value="SELECT*FROM foodRecord f WHERE f.member_id= :member_id ORDER BY f.create_at DESC",nativeQuery=true)
 	public List<FoodRecord> memberRecordList(@Param("member_id")Integer member_id);
 	
-
+	//Lemon_START
+	@Query(value="select count( * ) as cc from foodRecord where :member_id=member_id",nativeQuery=true)
+	public Integer recordCounts(@Param("member_id")Integer member_id);
+	
+	@Query(value="select * from foodRecord where :member_id=member_id AND gender2 >= 4",nativeQuery=true)
+	public List<FoodRecord> recordFavorite(@Param("member_id")Integer member_id);
+	
+	@Query(value="select count( * ) as cc from foodRecord where :member_id=member_id AND gender2 >= 4",nativeQuery=true)
+	public Integer recordFavCounts(@Param("member_id")Integer member_id);
+	
+	@Query(value=" select * from foodRecord where :city = city AND member_id=:member_id",nativeQuery=true)
+	public List<FoodRecord> recordCitySort(@Param("city")String opt,@Param("member_id")Integer member_id);
+	//lemon_END
+	
 }
