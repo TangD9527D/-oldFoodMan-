@@ -119,7 +119,7 @@
 			<ul class="nav justify-content-end">
 				<c:if test="${pageContext.request.userPrincipal != null}">
 					<li class="nav-item"><a class="nav-link"
-						href="${contextRoot}/reviewerMainPage">${pageContext.request.userPrincipal.name}</a>
+						href="${contextRoot}/reviewerMainPage">${member.nickName}</a>
 					</li>
 				</c:if>
 				<c:if test="${pageContext.request.userPrincipal == null}">
@@ -149,10 +149,6 @@
 
 					<div class="modal-body">
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item"><a class="menu_link7"
-								href="${contextRoot}/userInfo">User Info</a></li>
-							<li class="list-group-item"><a class="menu_link7"
-								href="${contextRoot}/admin">Admin</a></li>
 							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/productsPage">餐券商城</a></li>
 							<li class="list-group-item"><a class="menu_link7"

@@ -139,13 +139,22 @@ public class ReviewerSettingController {
 	public ModelAndView setReviewerPage(ModelAndView mav,HttpSession hs) {
 		Member memberData = (Member)hs.getAttribute("member");
 		Integer memberId = memberData.getId();
+
 		mav.setViewName("/lemon/setReviewerPage");
 		ReviewerSetting rvwrs = new ReviewerSetting();
 		ReviewerSetting preview = new ReviewerSetting();
 		preview = rsr.findByMember(memberId);
+		
+		Member mb = memberService.findById(memberId);
+		
+		mav.getModel().put("member", mb);
 		mav.getModel().put("rvwrSet", rvwrs);
 		mav.getModel().put("preview", preview);
+		
 		rsr.deletequeryMemberId(memberId);
+		
+		System.out.println("171777771717771717117" + mb.getMemberName());
+		
 		return mav;
 	}
 	
