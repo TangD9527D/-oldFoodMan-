@@ -30,7 +30,7 @@
 
         <thead class="thead-dark">
             <tr>
-              	<th>會員ID</th>
+              	
                 <th>日期</th>
                 <th>時間</th>
                 <th>店名</th>
@@ -48,9 +48,8 @@
          
             <tr>	
    					
-   					<td class="table-light" id="memberid">${viewallvis.membervis}</td>
-                    <td class="table-light">${viewallvis.vis_date}</td>
-                    
+   					
+                    <td class="table-light">${viewallvis.vis_date}</td>                   
                     <td class="table-light">${viewallvis.vis_time}</td>
                     <td class="table-light">${viewallvis.vis_res_name}</td>
                     <td class="table-light">${viewallvis.vis_location}</td>

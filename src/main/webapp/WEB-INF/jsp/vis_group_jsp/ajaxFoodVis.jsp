@@ -11,19 +11,19 @@
 
 <head>
 <meta charset="UTF-8">
-<title>揪團eat</title>
+<title>揪團美食Eat</title>
 
 
 <style>
 .allpage{
-width:75%;
+	width:75%;
 
-margin:10px auto;
+	margin:10px auto;
 
 }
 
 .active1{
-color:black;
+	color:black;
 
 }
 #content {
@@ -51,7 +51,7 @@ color:black;
 }
 
 .div04_32 {
-background-color: white;
+	background-color: white;
 	width:85%;
 	
  	float:left; 
@@ -63,7 +63,7 @@ background-color: white;
 	
 }
 .div05_32 {
-background-color: white;
+	background-color: white;
 	width:85%;
 	float:left;
 	margin-top: 10px ;
@@ -78,7 +78,7 @@ background-color: white;
 }
 
 .div06_32 {
-background-color: white;
+	background-color: white;
 	width:85%;
 	float:left;
 	margin-top: 30px ;
@@ -93,42 +93,42 @@ background-color: white;
 }
 
 .div05-2{
-height:40px;
-background-color:#FDE4DE;
-/* border-radius: 10px;  */
-text-align:center;
-margin-bottom:10px;
+	height:40px;
+	background-color:#FDE4DE;
+	/* border-radius: 10px;  */
+	text-align:center;
+	margin-bottom:10px;
 }
 
 
 #myadd{
-width:90%;
-margin:0 auto;
+	width:90%;
+	margin:0 auto;
 
 
 }
 
 #p{
 
-overflow:hidden;
-white-space: nowrap;
-text-overflow: ellipsis;
+	overflow:hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 
 
 }
 
 #pp{
 
-overflow:hidden;
-white-space: nowrap;
-text-overflow: ellipsis;
+	overflow:hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 
 
 }
 
 #p1{
-float:left;
-margin:2px 2px;
+	float:left;
+	margin:2px 2px;
 
 
 }
@@ -139,8 +139,8 @@ margin:2px 2px;
 }
 
 #myvis{
-width:90%;
-margin:0 auto;
+	width:90%;
+	margin:0 auto;
 
 
 }
@@ -158,12 +158,12 @@ margin:0 auto;
 
 
 .header1{
-color:#deb887;
-width:100%;
+	color:#deb887;
+	width:100%;
 
-margin-bottom:5px;
-/* border:2px outset gray; */
-text-align:center;
+	margin-bottom:5px;
+	/* border:2px outset gray; */
+	text-align:center;
 }
 #table_id{
 	
@@ -350,6 +350,19 @@ font-size:35px;
 
 }
 
+.tjoinhead{
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fff4f4+0,e0a3a3+50,dda8a8+51,fcf0ef+100 */
+background: rgb(255,244,244); /* Old browsers */
+background: -moz-linear-gradient(45deg,  rgba(255,244,244,1) 0%, rgba(224,163,163,1) 50%, rgba(221,168,168,1) 51%, rgba(252,240,239,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg,  rgba(255,244,244,1) 0%,rgba(224,163,163,1) 50%,rgba(221,168,168,1) 51%,rgba(252,240,239,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg,  rgba(255,244,244,1) 0%,rgba(224,163,163,1) 50%,rgba(221,168,168,1) 51%,rgba(252,240,239,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff4f4', endColorstr='#fcf0ef',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+
+
+
+}
 .vishead{
 
 background: #ffeded; /* Old browsers */
@@ -396,11 +409,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script src="sweetalert2.all.min.js"></script> -->
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
 
 
@@ -428,7 +441,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		
 		<div  class="div05_32" >
 		<div  class="div05-2">
-		<h3 class="joinhead" ><span class="joinheadn">${ofmid.memberName}</span> 參加的揪團Eat</h3>
+		<h3 class="joinhead" ><span class="joinheadn">${ofmid.memberName}</span> 參加 <i class="fa-solid fa-user-plus " style="color:#eb5b59"></i></h3>
 		</div>
 		
 		<div id="myadd">
@@ -443,7 +456,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		</div>
 		<div  class="div06_32">
 		 <div class="div05-2" >
-    		<h3 class="vishead"><span class="joinheadn">${ofmid.memberName}</span> 發起的揪團Eat</h3>
+    		<h3 class="tjoinhead"><span class="joinheadn">${ofmid.memberName}</span> 發起 <i class="fa-solid fa-calendar-plus" style="color:#a13b3a"></i></h3>
   		</div>
 	
 	
@@ -499,8 +512,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 
 			</div>
 			<div class="form-group col-md-6">
-				<label for="inputEmail4">時間</label> <input type="text" id="vis_time"
-					class="form-control " required>
+				<label for="inputEmail4">時間</label> <input type="time" id="vis_time"
+					class="form-control timepicker" required>
 
 			</div>
 
@@ -516,7 +529,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label for="inputEmail4">人數上限</label> <input type="number"
+				<label for="inputEmail4">希望人數</label> <input type="number"
 					id="vis_num" max="50" min="0" class="form-control" required>
 			</div>
 			<div class="form-group col-md-6">
@@ -551,7 +564,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 <section class="section">
 <!-- <div class="viewtable"> -->
 
-		<button type="button"  class="btn btn  btn-lg btnadd" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增揪團</button>
+		<button type="button"  class="btn btn  btn-lg btnadd" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData"><i class="fa-solid fa-circle-plus"></i> 新增揪團</button>
 		<p>
 		<c:forEach var="viewallvis" items="${page.content}">
 		<div id="table_id" class="card text-center">
@@ -559,11 +572,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
     		${viewallvis.vis_res_name}
   		</h4>
   		<div class="card-body">
-   		<h5 class="card-title"><i class="fa-regular fa-clock">${viewallvis.vis_date}&nbsp;&nbsp; ${viewallvis.vis_time}</i></h5>
+   			<h5 class="card-title"><i class="fa-regular fa-clock">${viewallvis.vis_date}&nbsp;&nbsp; ${viewallvis.vis_time}</i></h5>
    		
-    	<p class="card-text"><i class="fa-solid fa-location-dot">${viewallvis.vis_location}</i></p>
+    		<p class="card-text"><i class="fa-solid fa-location-dot">${viewallvis.vis_location}</i></p>
 <%--     	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}"  style="font-weight:bolder;width:120px;height:40px;border-radius:20px" id="joinvis"   class="btn pink" >加入</a> --%>
-  		<input type="button" onclick="location.href='${contextRoot}/findOneVis?id=${viewallvis.vis_id}'"  value="加入" style="font-weight:bolder;width:120px;height:40px;border-radius:20px" id="joinvis" class="btn pink"/>
+  			<input type="button" onclick="location.href='${contextRoot}/findOneVis?id=${viewallvis.vis_id}'"  value="加入" style="font-weight:bolder;width:120px;height:40px;border-radius:20px" id="joinvis" class="btn pink"/>
   		
   		
   		</div>
@@ -571,7 +584,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
     		建立時間：<fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
 								value="${viewallvis.added}" /> 
 								
-  </div>
+  		</div>
 <%--   <input id="mymid'${viewallvis.member_id}'" class="conf" type=text value="${viewallvis.member_id}"/> --%>
 </div>
 </c:forEach>
@@ -626,7 +639,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 
 			</div>
 			<div class="form-group col-md-6">
-				<label for="inputEmail4">時間</label> <input type="text" id="vis_timeedit"
+				<label for="inputEmail4">時間</label> <input type="time" id="vis_timeedit"
 					class="form-control timepicker" required>
 
 			</div>
@@ -749,6 +762,7 @@ var tdate=new Date();
 							editable : true, // 啟動拖曳調整日期
 							
 							events : function(start, end,timezone, callback) {
+								var events = [];
 								$.ajax({
 										url : 'http://localhost:8080/oldFoodMan/api/getFoodVis',
 										contentType : 'application/json; charset=UTF-8',
@@ -757,7 +771,7 @@ var tdate=new Date();
 										success : function(result) {
 										console.log("2:"+ result)
 										
-										var events = [];
+										
 										$.each(result,function(index,value) {
 											var newDate = new Date(Date.parse(value.vis_date))
 											var idt = value.vis_id
@@ -777,11 +791,64 @@ var tdate=new Date();
 
 												});
 
-											callback(events);
+										callback(events);
 
 								}
 
 						});
+								
+								var id=document.getElementById('member_id').value;
+								$.ajax({
+									url: 'http://localhost:8080/oldFoodMan/getMyJoin?member_id='+id ,
+									contentType: 'application/json; charset=UTF-8',
+									dataType : 'json',
+									method : 'get',
+									
+									success: function (result) {
+									console.log("result " + result)
+										var events = [];
+										
+										$.each(result,function(index,value) {
+											var newDate = new Date(Date.parse(value.vis_date))
+//												var idt = value.vis_id
+//												console.log("id:"+ idt)
+											var date = moment(newDate).format('YYYY-MM-DD')
+//												var visurl = "http://localhost:8080/oldFoodMan/findOneVis?id="+ value.vCis_id
+
+												console.log("嘿嘿")
+											events.push({
+											title : value.vis_res_name,
+											start : date,
+//												url : visurl,
+											backgroundColor:"#FDE4DE",
+											borderColor:"#FDE4DE",
+											textColor: 'black'
+													});
+
+												});
+
+												
+// 										callback(events);
+												
+										},
+										
+									error : function(err) {
+											console.log(err)
+												window.onload=function(){
+													Swal.fire({
+														  icon: 'error',
+														  title: '請登入會員',
+														  footer: '<a href="http://localhost:8080/oldFoodMan/">返回首頁</a>'
+														})
+												
+												}
+											alert('請登入會員')
+											location.href=${contextRoot}/
+										}
+								
+								
+								
+								});			
 
 								
 								
@@ -890,34 +957,30 @@ var tdate=new Date();
 				$.each(result,function(index,value){
 					
 						msg_data+= '<div id="p1" class="card" style="width: 4.6cm;">'
-//  					msg_data+= '<img src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
-					
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +' " ><h3 id="pp" class="card-title tp2" style="background-color: #faf0e6; font-size:21px ;text-align: center">'+ value.vis_res_name +'</h3></a>'
 						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  + '</h5>'
 						msg_data+= '<h5 ip="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
 // 						msg_data+= '<p id="isnull">'+value.vis_id+'</p>'
 						msg_data+= '<a type="submit" id="deletemyjoin" value='+value.vis_id+' "><i class="fa-regular fa-trash-can testii" ></i></a>'
-
 						msg_data+= '</div>'
 						msg_data+= '</div>'
-						})
+					})
 
 						$('#myadd').append(msg_data)
 				},
 				
 			error : function(err) {
 					console.log(err)
-//  					window.onload=function(){
-// 						Swal.fire({
-// 							  icon: 'error',
-// 							  title: '請登入會員',
-// 							  footer: '<a href="http://localhost:8080/oldFoodMan/">返回首頁</a>'
-// 							})
-						
-// 					}
-					alert('請登入會員')
-					location.href=${contextRoot}/
+
+					Swal.fire({
+							icon: 'error',
+							title: '請登入會員',
+						    footer: '<a href="http://localhost:8080/oldFoodMan/">返回首頁</a>'
+							}).then((result) => {
+								location.reload();
+							})
+					
 				}
 		
 		
@@ -928,9 +991,7 @@ var tdate=new Date();
 	
 	$(document).ready(function viewMyVisdata(){
 		var id=document.getElementById('member_id').value;
-	
-		
-		
+
 	$.ajax({
 			url: 'http://localhost:8080/oldFoodMan/getMyVis?member_id='+id ,
 			contentType: 'application/json; charset=UTF-8',			
@@ -948,12 +1009,9 @@ var tdate=new Date();
 						msg_data+= '<h5 id="p" class="card-text" style=" text-align: center">'+ value.vis_date  +'</h5>'
 						msg_data+= '<h5 id="p" class="card-text" style=" text-align: center">'+ value.vis_time +'</h5>'
 // 						msg_data+= '<p id="isnull">'+value.vis_id+'</p>'
-						msg_data+= '<a type="submit" id="deleteMyFoodVis" value='+value.vis_id+' "><i class="fa-regular fa-trash-can testii" ></i></a>'
-// 							<a href="http://localhost:8080/oldFoodMan/deleteMyFoodVis?id='+ value.vis_id +'">
-								
+						msg_data+= '<a type="submit" id="deleteMyFoodVis" value='+value.vis_id+' "><i class="fa-regular fa-trash-can testii" ></i></a>'	
 						msg_data+= '<a type="button" onclick="editVisView('+value.vis_id+');"  data-toggle="modal" data-target="#exampleModal1" data-whatever="@mdo" id="geteditdata"><i class="fa-solid fa-pen-to-square testi"  ></i></a>'
 						
-// <a id="geteditdata" href="http://localhost:8080/oldFoodMan/editFoodVis?id='+ value.vis_id +'"></a>
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -1204,7 +1262,7 @@ var tdate=new Date();
 					  showCancelButton: true,
 					  confirmButtonColor: '#3085d6',
 					  cancelButtonColor: '#d33',
-					  confirmButtonText: 'Yes!'
+					  confirmButtonText: '確定取消參加'
 					}).then((result) => {
 					  if (result.isConfirmed) {
 					    Swal.fire({
@@ -1239,7 +1297,9 @@ var tdate=new Date();
 					  showCancelButton: true,
 					  confirmButtonColor: '#3085d6',
 					  cancelButtonColor: '#d33',
-					  confirmButtonText: 'Yes!'
+					  confirmButtonText: '確定取消揪團',
+					  closeOnConfirm: true
+
 					}).then((result) => {
 					  if (result.isConfirmed) {
 					    Swal.fire({
@@ -1286,19 +1346,21 @@ var tdate=new Date();
 	    
 	    
 	    });
+	    
+// 	    $(".timepicker").timepicker({
+// 	        timeFormat: "h:mm p", // 時間隔式
+// 	        interval: 30, //時間間隔
+// 	        minTime: "06", //最小時間
+// 	        maxTime: "23:55pm", //最大時間
+// 	        defaultTime: "06", //預設起始時間
+// 	        startTime: "01:00", // 開始時間
+// 	        dynamic: true, //是否顯示項目，使第一個項目按時間順序緊接在所選時間之後
+// 	        dropdown: true, //是否顯示時間條目的下拉列表
+// 	        scrollbar: false //是否顯示捲軸
+// 	      });
 	  } );
   
-  $('.timepicker').timepicker({
-	    timeFormat: 'h:mm p',
-	    interval: 60,
-	    minTime: '10',
-	    maxTime: '6:00pm',
-	    defaultTime: '11',
-	    startTime: '10:00',
-	    dynamic: false,
-	    dropdown: true,
-	    scrollbar: true
-	});
+
   </script>
   
   
@@ -1320,6 +1382,8 @@ var tdate=new Date();
  
 
  </script> 
+ 
+ 
 </body>
 
 </html>
