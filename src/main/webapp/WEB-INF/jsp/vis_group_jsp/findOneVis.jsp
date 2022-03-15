@@ -103,6 +103,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f7f9', end
         <hr>
           <h3 class="display-5 fw-bold font-weight-bold card-title">舉辦人： </h3>
            <h3 class="display-5 fw-bold font-weight-bold card-title">${ofmid.memberName}</h3>
+           <input id="nowmid" type="hidden" value="${nowmid.id}"/>
+           <input id="nowvismid" type="hidden" value="${ofm.member_id}"/>
+           
         </div>
       </div>
       <div class="col-md-4 ">
@@ -129,7 +132,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f7f9', end
           <p >加入原因</p>
           <input type="text"  name="add_condition" class="form-control" />
           </div>
-          <button class="btn btn-lg btnadd " type="submit" id="checkaddvis">確定加入</button>
+          <input  class="btn btn-lg btnadd "  type="submit" id="checkaddvis" value="確定加入"/>
+          <p>
+          <h6 id="tosay" class="display-5 fw-bold font-weight-bold card-title" style="color:#FF5151"></h6>
+          
         </form:form>
         </div>
       </div>
@@ -155,7 +161,23 @@ if (peoname==""){
 
 
 </script>		
-		
+<script>
+var mid=$('#nowmid').val();
+var vismid=$('#nowvismid').val();
+
+if(mid == vismid){
+	console.log('好累ㄋ')
+	$('#checkaddvis').attr('disabled','disabled')
+	$('#tosay').text('已經是舉辦人 無須加入')
+}else{
+	console.log('笨')
+	$('#checkaddvis').removeAttr('disabled','disabled')
+	
+}
+
+
+
+</script>
 
 
 </body>
