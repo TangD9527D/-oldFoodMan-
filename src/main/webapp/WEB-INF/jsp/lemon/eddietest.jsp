@@ -526,7 +526,7 @@ html {
 											msg_data += '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.record_id.id +'" class="like" >'
 													+ value.record_id.title
 													+ '</a>'
-											msg_data += '<a type="button" id="deleteFoodRecord" value="'+ value.id +'" class="right"><i class="fa-regular fa-trash-can"></i></a>'
+											msg_data += '<a type="submit" id="deleteFoodRecord" value="'+ value.record_id.id +'" class="right"><i class="fa-regular fa-trash-can"></i></a>'
 											msg_data += '</div>'
 
 										})
@@ -619,10 +619,10 @@ html {
 // 	刪除食記	
 	$(document).on('click', '#deleteFoodRecord', function (){  //用一般的.click會有氣泡事件問題
 		var id = $(this).attr("value");
-
+		console.log("哈哈 "+id)
 		$.ajax({
 			type : "get",
-			url : "http://localhost:8080/oldFoodMan/deleteCollections?record_id="+id,
+			url : "http://localhost:8080/oldFoodMan/deleteCollections?record_id=" + id,
 			success : function(data) {
 				Swal.fire({
 					  title: '確定刪除食記?',
