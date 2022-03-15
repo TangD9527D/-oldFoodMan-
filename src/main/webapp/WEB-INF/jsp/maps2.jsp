@@ -284,7 +284,7 @@ body {
 	border: 5px solid #FDE4DE;
 	float: right;
 	width: 14%;
-	height: 50%;
+/* 	height: 50%; */
 	margin: 50px auto;
 	border-radius: 15px;
 }
@@ -652,7 +652,7 @@ body {
  				
  					var msg_data='';
  					$.each(result,function(index,value){
- 						msg_data += '<li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li>'
+ 						msg_data += '<button class="btn"><li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li></button>'
  					})
 
  					$('#location1').append(msg_data)
