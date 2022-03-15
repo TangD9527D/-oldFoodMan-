@@ -22,6 +22,11 @@ public class OrderFormService {
 		return orderDao.findByOrderMemberId(memberId);
 	}
 	
+	public List<OrderForm> findPage(int pageNumber, int memberId){
+		return orderDao.findPage(pageNumber, memberId);
+	}
 	
-	
+	public int findCount(int memberId) {
+		return orderDao.findCount(memberId);
+	}
 }

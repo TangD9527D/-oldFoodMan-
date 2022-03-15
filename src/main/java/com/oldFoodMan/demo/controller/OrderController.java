@@ -31,18 +31,39 @@ public class OrderController {
 	@Autowired
 	private OrderFormService formService;
 	
-	@GetMapping("/myOrder")
-	public String toOrderPage(Model model, HttpSession session) {
-		Member member = (Member)session.getAttribute("member");
-		Integer memberId = member.getId();
-		List<OrderForm> forms = formService.findByOrderMemberId(memberId);
-		model.addAttribute("forms", forms);
-		return "myOrderPage";
-	}
+//	@GetMapping("/myOrder")
+//	public String toOrderPage(Model model, HttpSession session) {
+//		Member member = (Member)session.getAttribute("member");
+//		Integer memberId = member.getId();
+//		List<OrderForm> forms = formService.findByOrderMemberId(memberId);
+//		model.addAttribute("forms", forms);
+//		return "myOrderPage";
+//	}
 	
 	@ResponseBody
 	@PostMapping("/myorder/{orderNumber}")
 	public List<OrderDetail> findDetail(@PathVariable int orderNumber){
 		 return detailService.findmyDetail(orderNumber);
+	}
+	
+	@GetMapping("/myOrder")
+	public String findPage(Model model, HttpSession session){
+		Member member = (Member)session.getAttribute("member");
+		Integer memberId = member.getId();
+		List<OrderForm> page = formService.findPage(1, memberId);
+		int dataCount = formService.findCount(memberId);
+		int pagenum = dataCount / 5;
+		model.addAttribute("forms", page);
+		model.addAttribute("pagenum", pagenum);
+		return "myOrderPage";
+	}
+	
+	@ResponseBody
+	@PostMapping("/myOrderPage/{orderPage}")
+	public List<OrderForm> findNewPage(@PathVariable(value = "orderPage") int orderPage, HttpSession session){
+		Member member = (Member)session.getAttribute("member");
+		Integer memberId = member.getId();
+		List<OrderForm> page = formService.findPage(orderPage, memberId);
+		return page;
 	}
 }
