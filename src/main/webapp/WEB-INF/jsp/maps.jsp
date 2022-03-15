@@ -658,7 +658,7 @@ if (code == 13) { //Enter keycode
 						msg_data+= '<div id="box" class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById/?id='+ value.id +'" class="btn btn-outline-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀"/></a>'			
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'" class="btn btn-outline-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀"/></a>'			
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
