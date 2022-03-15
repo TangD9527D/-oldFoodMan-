@@ -34,7 +34,9 @@ public class CollectionsService {
 	
 	public List<Collections> findClotById(Member member){		
 		
-		return clotdao.findByMemberId(member);
+		
+		List<Collections> list =clotdao.findByMemberId(member);
+		return list;
 		
 	}
 	
