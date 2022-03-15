@@ -52,18 +52,20 @@ public class JoinVisController_32 {
 	public ModelAndView addVis(ModelAndView mav,@PathVariable Integer vis_id,JoinVis joinvis, HttpSession hs){
 		Member member = (Member)hs.getAttribute("member");
 
-
+	
 		OldFoodManBean ofmvis=ofmservice.findById(vis_id);
 		
-	//		JoinVis jv=jvservice.selectCountByVisId(vis_id);
-	//	
-	//		System.out.println("數量: "+jv);
-		jvservice.addJoinVis(joinvis,member,ofmvis); 
-
 		
-		mav.getModel().put("ofm", joinvis);
-		mav.setViewName("redirect:/ajaxFoodVis");
-		return mav;
+		
+		jvservice.addJoinVis(joinvis,member,ofmvis); 
+	
+			mav.getModel().put("ofm", joinvis);
+			mav.setViewName("redirect:/ajaxFoodVis");
+			return mav;	
+			
+		
+		
+		
 	}
 	
 	@ResponseBody

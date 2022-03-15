@@ -257,6 +257,7 @@ public class FoodVisController_32 {
 		mav.getModel().put("ofmid", fmid);
 		mav.getModel().put("ofm", ofm);
 		mav.getModel().put("joinofm", joinofm);
+		mav.getModel().put("nowmid", mid);
 		
 		System.out.println("有啥: "+joinofm);
 		mav.setViewName("vis_group_jsp/findOneVis");
