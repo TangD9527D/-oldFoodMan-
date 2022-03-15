@@ -38,7 +38,6 @@ public class CouponMailDao {
             mailSender.send(message);
             
 			
-			
         }catch (MessagingException e){
         	e.printStackTrace();
             System.out.println("傳送郵件時發生異常！");
