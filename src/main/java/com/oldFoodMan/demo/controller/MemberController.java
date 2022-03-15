@@ -50,18 +50,6 @@ public class MemberController {
 			mb.setMemberPwd(pwd);
 
 			service.insert(mb);
-	
-	}
-
-	@GetMapping("/editMember")
-	public ModelAndView viewMember(ModelAndView mav, @RequestParam(value = "id") Integer id) {
-
-		Member mb = service.findById(id);
-
-		mav.getModel().put("member", mb);
-		mav.setViewName("member/editMember");
-
-		return mav;
 	}
 
 	@PostMapping("/editMember")
@@ -87,7 +75,7 @@ public class MemberController {
 			throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
 		}
 
-		mav.setViewName("redirect:/viewMember");
+		mav.setViewName("redirect:/reviewerMainPage");
 
 		return mav;
 	}

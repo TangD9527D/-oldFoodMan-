@@ -137,15 +137,16 @@
                     <div class="reviewer-action-btns__navi">
                         <div class="p-follow-btn reviewer-action-btns__navi-item">
                             <div class="js-follow-btn-wrap" data-rvwr-id="2778702">
-                                <form id="followForm" action="${contextRoot}/relationship/follow/${member.id}" method="POST">
-                                <div class="js-follow-btn">
-
+                                
+                                <div class="js-follow-btn" id="followBtn">
+								
                                     <p class="p-follow-btn__target p-follow-btn__target--l reviewer-action-btns__navi-item-target" data-proc="follow">
-                                        <input type="submit" value="follow" class="p-follow-btn__text" id="followBtn"/>
-                                    </p>
+                                        <span class="p-follow-btn__text" id="followTarget">follow</span>
+                                        <input type="hidden" value="${member.id}" id="followValue"/>
+                                    </p>       
                                 
                                 </div>
-                                </form>
+                                
                             </div>
                         </div>
                     </div>
@@ -620,6 +621,7 @@
 
 
 <script type="Text/JavaScript">
+
     $(document).ready(function(){
         $('#reviewer-image').hover(function(){
             $('#hoverrr').css('display','block');
@@ -627,7 +629,43 @@
             $('#hoverrr').css('display','none');
         });
     })
+    
+    $('#followBtn').click(function(){
+    	var memberId= document.getElementById("followValue").value;
+    	console.log(memberId);
+    	
+    	$.ajax({
+    		url:'http://localhost:8080/oldFoodMan/relationship/follow/'+ memberId,
+    		contentType :'application/json; charset=UTF-8',
+    		method :'post',
 
+    		success:function(fanSize){
+    			var f=fanSize
+    			if(f=1){
+    				alert("O_O");
+    			}
+    		}
+    	})
+    })
+    
+//     $('#followBtn').click(function(){
+//     	var memberId= document.getElementById("followValue").value;
+//     	console.log(memberId);
+    	
+//     	$.ajax({
+//     		url:'http://localhost:8080/oldFoodMan/relationship/unfollow/'+ memberId,
+//     		contentType :'application/json; charset=UTF-8',
+//     		method :'post',
+
+//     		success:function(fanSize){
+//     			var f=fanSize
+//     			if(f=2){
+//     				alert("O_O");
+//     			}
+//     		}
+//     	})
+//     })
+    
 </script>
 
 

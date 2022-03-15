@@ -13,13 +13,13 @@ public interface RelationshipService {
 	 * 列出所有關注
 	 * @return
 	 */
-	Page<User> listFollows(Integer userId,Pageable pageable);
+	List<Integer> listFollows(Integer userId);
 	
 	/*
 	 * 列出所有粉絲
 	 * @return
 	 */
-	Page<User>listFans(Integer userId, Pageable pageable);
+	List<Integer> listFans(Integer userId);
 	
 	/*
 	 * 互相關注id
