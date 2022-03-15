@@ -12,15 +12,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
-<!-- DataTables CSS -->
-<link rel="stylesheet" type="text/css"
-href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
-<!-- jQuery -->
-<script type="text/javascript" charset="utf8" src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
-</script>
-<!-- DataTables -->
-<script type="text/javascript" charset="utf8"
-src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 <style>
 * {
 	margin: 0;
@@ -37,7 +28,7 @@ body {
 
 .leftSideMenu {
 	width: 400px;
-	height: 830px;
+	height: 865px;
 	background-color: #fcfcff;
 }
 
@@ -58,13 +49,6 @@ body {
 	font-weight: 700;
 }
 
-.body77{
-	height: 865px;
-	width: 1200px;
-	border: 3px solid red;
-	float: right;
-	text-align: center;
-}
 </style>
 </head>
 
@@ -80,34 +64,6 @@ body {
 				style="color: white;">&nbsp;老食人後臺管理系統</font></span>
 		</a>
 	</nav>
-	<div class="body77">
-		<div class="">
-			<table id="account7" class="table table-striped table-dark" style="width:100%">
-				<thead>
-					<tr>
-						<th>會員姓名</th>
-						<th>電話</th>
-						<th>帳號</th>
-						<th>暱稱</th>
-						<th>城市</th>
-						<th>創辦日期</th>
-					</tr>
-				</thead>
-				<c:forEach items="${mb}" var="member">
-
-				<tr>
-					<td>${member.memberName}</td>
-					<td>${member.phone}</td>
-					<td>${member.account}</td>
-					<td>${member.nickName}</td>
-					<td>${member.city}</td>
-					<td>${member.createDate}</td>
-				</tr>
-
-				</c:forEach>
-			</table>
-		</div>
-	</div>
 	<div class="leftSideMenu">
 		<div class="accordion" id="accordionExample">
 			<div class="card">
@@ -219,36 +175,8 @@ body {
 			</div>
 		</div>
 	</div>
-<script>
-	$(document).ready(function () {
-
-		$('#account7').DataTable({
-			"lengthMenu": [10, 20],
-			"language": {
-				"processing": "處理中...",
-				"loadingRecords": "載入中...",
-				"lengthMenu": "顯示 _MENU_ 項結果",
-				"zeroRecords": "沒有符合的結果",
-				"info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-				"infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-				"infoFiltered": "(從 _MAX_ 項結果中過濾)",
-				"infoPostFix": "",
-				"search": "搜尋:",
-				"paginate": {
-					"first": "第一頁",
-					"previous": "上一頁",
-					"next": "下一頁",
-					"last": "最後一頁"
-				},
-				"aria": {
-					"sortAscending": ": 升冪排列",
-					"sortDescending": ": 降冪排列"
-				}
-			}
-		});
-	})
-</script>
-	
+	<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
