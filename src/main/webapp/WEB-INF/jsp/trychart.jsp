@@ -8,10 +8,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-<<<<<<< HEAD
 
-=======
->>>>>>> 巡視code
 .chart{
 
 width:80;
@@ -25,7 +22,7 @@ width:80;
 <body>
 
 	<div>
-		<canvas calss="chart" id="myChart"></canvas>
+		<canvas class="chart" id="myChart"></canvas>
 	</div>
 
 
