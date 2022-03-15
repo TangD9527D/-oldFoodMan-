@@ -13,10 +13,10 @@
 	<link rel='stylesheet' href='${contextRoot}/css/bootstrap.min.css'/>
 </head> 
 <body>
+		
+	
 	<div class="container">
 	
-	  
-
 		<div class="accordion" id="accordionExample">
 		<c:forEach var="forms" items="${forms}">
 			<div class="card">
@@ -28,7 +28,7 @@
 							<h3>總金額: $${forms.orderTotal}    訂購時間: ${forms.orderTime}</h3></button>
 					</h2>
 				</div>
-				<hr>
+				<p>
 				<div id="collapse${forms.orderNumber}" class="collapse"
 					aria-labelledby="heading${forms.orderNumber}" data-parent="#accordionExample">
 					<div class="card-body">

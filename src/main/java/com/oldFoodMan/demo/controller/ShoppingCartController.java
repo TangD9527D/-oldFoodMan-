@@ -3,19 +3,20 @@ package com.oldFoodMan.demo.controller;
 
 
 
-import java.io.File;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-import javax.annotation.Resource;
+
+import javax.mail.MessagingException;
+
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.mail.javamail.JavaMailSender;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,8 +59,9 @@ public class ShoppingCartController {
 	@Autowired
     private CouponMailDao mailUtils; //寄信用
 	
-	@Resource
-    private JavaMailSender mailSender;
+	
+	
+	
 	
 	@GetMapping("/shoppingCart")
 	public String myShoppingCart(Model model) {
@@ -217,7 +219,7 @@ public class ShoppingCartController {
 	
 	@ResponseBody
 	@PostMapping("/Cart/confirmBuy")
-	public String confirmBuy(@RequestBody String jsonPara, HttpSession session) {
+	public String confirmBuy(@RequestBody String jsonPara, HttpSession session) throws MessagingException {
 		Member member = (Member) session.getAttribute("member");
 		Integer memberId = member.getId();
 		  //使用JSONArrayt處理json字符串
@@ -305,18 +307,15 @@ public class ShoppingCartController {
 			}
 			
 			//拿到訂購的餐券序號，製作HTML
-			
-//            File file = new File("");
-//			FileSystemResource fileResource = new FileSystemResource(new File(file.getAbsolutePath() + "/src/main/webapp" + productImg));
-//			helper.addInline("oldimg", fileResource);
-			
-			
-			String htmlImg = "<img src=\"http://localhost:8080/oldFoodMan/" + productImg +"\"/>\n";
+			String productName = product.getProduct_name();
+			htmls += "<h2>" + productName + "</h2>\n";
 			List<Coupon> myCoupons = couponService.findByCouponId(couponId);
+			int count = 1;
 			for(Coupon c : myCoupons) {
 				String number = c.getCouponNumber();
-				String html = htmlImg + "<h3>餐券序號 : " + number + "<h3>\n";
+				String html = "<h3>餐券序號" + count + " : " + number + "<h3>\n";
 				htmls += html;
+				count++;
 			}
 			
           
@@ -324,21 +323,21 @@ public class ShoppingCartController {
 			
 	    }
 		
-		//寄出
-		mailUtils.sendHtmlMail("c7416706@gmail.com","老食人餐券",
-                "<div style=\"text-align: center;position: absolute;\" >\n"
-                        + "<h3>\"感謝您訂購老食人餐券\"</h3>\n"
-                		+ "<img src=\"https://miro.medium.com/max/676/1*XEgA1TTwXa5AvAdw40GFow.png\"/>\n"
-                        + "<img src=\"http://localhost:8080/oldFoodMan/product_img/2022/03/14/88840bd5-79cd-4cf6-b68a-aaf12e5af701.jpg\"/>\n"
-                        + "<p>以下為您的餐券序號:</p>\n"
-                        + htmls
-                        + "</div>");
-		
-        System.out.println("有寄出去了!!!!!!!!!!!!");
-		
-		
-		
-		return "";
+	        
+			//寄出
+			mailUtils.sendHtmlMail("c7416706@gmail.com","老食人餐券",
+	                "<div style=\"text-align: center;position: absolute;\" >\n"
+	                        + "<h1>\"感謝您訂購老食人餐券\"</h1>\n"
+	                		+ "<img src=\"https://img.ruten.com.tw/s2/0/ef/d8/22020560000984_673.jpg\"/>\n"
+	                        + "<h2>以下為您的餐券序號:</h2>\n"
+	                        + htmls
+	                        + "</div>");
+			
+	        System.out.println("有寄出去了!");
+			
+			
+			
+			return "";
 		
 	}
 	
