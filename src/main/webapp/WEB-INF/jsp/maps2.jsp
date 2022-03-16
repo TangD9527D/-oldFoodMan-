@@ -32,7 +32,7 @@
 <!-- 改為老食人小圖 -->
 
 <style>
-#allpage {
+.allpage {
 	width: 70%;
 	height: 80%;
 	margin: 10px auto;
@@ -162,12 +162,12 @@ body {
 	text-align: center;
 }
 
-#inputdiv {
+.inputdiv {
 	width: 100%;
 	margin: 5px auto;
 }
 
-#inputdivv {
+.inputdivv {
 	width: 100%;
 	margin: 5px auto;
 	float: right;
@@ -185,7 +185,7 @@ body {
 	float: right;
 }
 
-#allrange {
+.allrange {
 	text-align: justify;
 	width: 100%;
 	/*   	display: flex;   */
@@ -208,9 +208,7 @@ body {
 	align-items: center;
 }
 
-#xxx {
-	
-}
+
 
 #p1 {
 	float: left;
@@ -323,8 +321,8 @@ body {
 }
 .imgsize{
 
-
 width: 230px; height: 220px
+
 }
 
 </style>
@@ -355,9 +353,9 @@ width: 230px; height: 220px
 
 	</div>
 
-	<div id="allpage">
+	<div class="allpage">
 		<!--整個頁面的65%-->
-		<div id="inputdiv">
+		<div class="inputdiv">
 			<!--allpage的65%-->
 			<input id="input" class="btn btn-secondary" type="search"
 				placeholder="Search Food & record" />
@@ -365,7 +363,7 @@ width: 230px; height: 220px
 
 		<div id="map"></div>
 
-		<div id="inputdivv">
+		<div class="inputdivv">
 			<input id="delete-markers" class="btn btn-outline-danger btn-sm"
 				type="button" value="DeleteMark" /> <input id="show-markers"
 				class="btn btn-outline-secondary btn-sm" type="button"
@@ -381,7 +379,7 @@ width: 230px; height: 220px
 		</div>
 
 
-		<div id="allrange">
+		<div class="allrange">
 			<a href="http://localhost:8080/oldFoodMan/main"><div
 					class="btn btn-outline-secondary">最新文章</div></a>
 			<div class="test2">

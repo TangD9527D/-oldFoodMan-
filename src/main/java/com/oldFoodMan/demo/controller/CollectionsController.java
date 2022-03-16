@@ -88,12 +88,27 @@ public class CollectionsController {
 	
 	@ResponseBody
 	@GetMapping("/chartsAllCollections")
-	public List<Collections> chartsAllCollections(){
+	public List<Collections> chartsAllCollections(ModelAndView mav){
 		
 		List<Collections> list=service.findAllCollections();
 		
 		System.out.println("都看看是誰" + list);
 		
+		for(Collections sss:list) {
+			
+			System.out.println("SSS是啥" +sss);
+		
+			String sssss=sss.getRecord_id().getShopName();
+			
+			
+			System.out.println("SSS是啥" +sssss);
+			
+			mav.getModel().put("QQQ", sssss);
+		
+			
+		}
+		
+	
 		return list; 
 		
 	}

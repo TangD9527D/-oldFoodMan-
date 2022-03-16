@@ -49,7 +49,7 @@
 								var labels = [], data = [];
 								for ( var Collections in results) {
 									labels.push((results[Collections]).record_id.city);
-									data.push((results[Collections].record_id.));
+									data.push((results[Collections].record_id));
 								}
 							console.log(data)
 								// 設定圖表的資料

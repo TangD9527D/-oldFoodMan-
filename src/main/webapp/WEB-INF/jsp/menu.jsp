@@ -76,20 +76,20 @@
 	padding-bottom: 2px;
 }
 
-.menu_link7{
+.menu_link7 {
 	color: rgb(93, 91, 91);
 	font-weight: 600;
 }
 
-.menu_link7:hover{
-	 text-decoration:none;
+.menu_link7:hover {
+	text-decoration: none;
 }
 
-.topImg{
+.topImg {
 	text-align: center
 }
 
-.login7{
+.login7 {
 	width: 180px;
 }
 </style>
@@ -104,33 +104,32 @@
 					src="${contextRoot}/css\menuLines.png" width="20px" height="20px">&ensp;Menu</span>
 			</div>
 			<c:if test="${pageContext.request.userPrincipal == null}">
-					<div class="topImg">
-				<a class="navbar-brand" href="${contextRoot}/"><img
-				src="${contextRoot}/css/logo.png" width="144" height="81" alt=""></a>
-			</div>
-				</c:if>
-				<c:if test="${pageContext.request.userPrincipal != null}">
-					<div class="topImg">
-				<a class="navbar-brand" href="${contextRoot}/main"><img
-				src="${contextRoot}/css/logo.png" width="144" height="81" alt=""></a>
-			</div>
-				</c:if>
+				<div class="topImg">
+					<a class="navbar-brand" href="${contextRoot}/"><img
+						src="${contextRoot}/css/logo.png" width="144" height="81" alt=""></a>
+				</div>
+			</c:if>
+			<c:if test="${pageContext.request.userPrincipal != null}">
+				<div class="topImg">
+					<a class="navbar-brand" href="${contextRoot}/main"><img
+						src="${contextRoot}/css/logo.png" width="144" height="81" alt=""></a>
+				</div>
+			</c:if>
 			<div class="login7">
-			<ul class="nav justify-content-end">
-				<c:if test="${pageContext.request.userPrincipal != null}">
-					<li class="nav-item"><a class="nav-link"
-						href="${contextRoot}/reviewerMainPage">${member.nickName}</a>
-					</li>
-				</c:if>
-				<c:if test="${pageContext.request.userPrincipal == null}">
-					<li class="nav-item"><a class="nav-link"
-						href="${contextRoot}/login">Login</a></li>
-				</c:if>
-				<c:if test="${pageContext.request.userPrincipal != null}">
-					<li class="nav-item"><a class="nav-link"
-						href="${contextRoot}/logout">Logout</a></li>
-				</c:if>
-			</ul>
+				<ul class="nav justify-content-end">
+					<c:if test="${pageContext.request.userPrincipal != null}">
+						<li class="nav-item"><a class="nav-link"
+							href="${contextRoot}/reviewerMainPage">${member.nickName}</a></li>
+					</c:if>
+					<c:if test="${pageContext.request.userPrincipal == null}">
+						<li class="nav-item"><a class="nav-link"
+							href="${contextRoot}/login">Login</a></li>
+					</c:if>
+					<c:if test="${pageContext.request.userPrincipal != null}">
+						<li class="nav-item"><a class="nav-link"
+							href="${contextRoot}/logout">Logout</a></li>
+					</c:if>
+				</ul>
 			</div>
 		</nav>
 		<!-- Modal -->
@@ -157,19 +156,17 @@
 								href="${contextRoot}/myOrder">我的訂單</a></li>
 							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/productsBackStagePage">商城後台</a></li>
-							 <li class="list-group-item dropdown">
-						      			<a
-										class="dropdown-toggle menu_link7" id="navbarDropdown"
-										role="button" data-toggle="dropdown" aria-expanded="false"> 食記
-										</a>
-											<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-												<a class="dropdown-item"  href="${contextRoot}/createData">新增食記</a>
-												<a class="dropdown-item"  href="${contextRoot}/MemberRecordList">個人食記List</a>
-												<a class="dropdown-item"  href="${contextRoot}/RecordManagement">食記後台</a> 
-												<a class="dropdown-item"  href="${contextRoot}/RecordAnalysis">食記分析</a> 
-												<a class="dropdown-item"  href="${contextRoot}/MsgManagement">留言後台</a> 
-											</div>						
-							 </li>
+							<li class="list-group-item dropdown"><a
+								class="dropdown-toggle menu_link7" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-expanded="false">
+									食記 </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="${contextRoot}/createData">新增食記</a>
+									<a class="dropdown-item" href="${contextRoot}/MemberRecordList">個人食記List</a>
+									<a class="dropdown-item" href="${contextRoot}/RecordManagement">食記後台</a>
+									<a class="dropdown-item" href="${contextRoot}/RecordAnalysis">食記分析</a>
+									<a class="dropdown-item" href="${contextRoot}/MsgManagement">留言後台</a>
+								</div></li>
 							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/ajaxFoodVis">揪團Eat</a></li>
 							<li class="list-group-item"><a class="menu_link7"
@@ -180,11 +177,11 @@
 									食記分類 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="#"><button
-											class="btn btn-secondary" value="火鍋" onclick="collet11()">火鍋</button></a>
+											class="btn btn-secondary" value="火鍋" onclick="()">火鍋</button></a>
 									<a class="dropdown-item" href="#"><button
-											class="btn btn-secondary" value="燒烤" onclick="collet11()">燒烤</button></a>
+											class="btn btn-secondary" value="燒烤" onclick="()">燒烤</button></a>
 									<a class="dropdown-item" href="#"><button
-											class="btn btn-secondary" value="日式" onclick="collet11()">日式</button></a>
+											class="btn btn-secondary" value="日式" onclick="()">日式</button></a>
 								</div></li>
 						</ul>
 					</div>
@@ -198,8 +195,8 @@
 		<div class="spaceBottom"></div>
 	</div>
 
-<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
-<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
+	<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
