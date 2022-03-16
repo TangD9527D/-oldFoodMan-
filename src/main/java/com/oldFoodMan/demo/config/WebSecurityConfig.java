@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/", "/login", "/logout", "/oauth2/**").permitAll();
 		
 		// 進入(/userInfo) 頁面時需登入，如未登入會重新導向到(/login)登入頁面
-		http.authorizeRequests().antMatchers("/ajaxFoodVis","/userInfo", "/productsPage" , "/productsBackStagePage").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+		http.authorizeRequests().antMatchers("/ajaxFoodVis","/userInfo", "/productsPage").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 		
 		//同上，但只有指定為ROLE_ADMIN才可以進入
 		http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");

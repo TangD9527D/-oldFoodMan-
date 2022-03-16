@@ -12,6 +12,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
 <style>
 * {
 	margin: 0;
@@ -28,18 +30,10 @@ body {
 
 .leftSideMenu {
 	width: 400px;
-	height: 865px;
+	height: 620px;
 	background-color: #fcfcff;
-	display: inline-block;
-}
-
-.card, .cardbody {
-	background-color: #fcfcff;
-	color: black;
-}
-
-.card-header{
-	border-bottom: solid 3px black;
+	border-right: 2px solid black;
+	float: left;
 }
 
 .card:hover {
@@ -47,9 +41,13 @@ body {
 }
 
 .list-group-item{
-	font-weight: 700;
+	font-size: large;
+	font-weight: 800;
 }
 
+.list-group{
+	border: solid 2px black;
+}
 </style>
 </head>
 
@@ -68,31 +66,31 @@ body {
 	<div class="leftSideMenu">
 		<div class="accordion" id="accordionExample">
 			<div class="card">
-				<div class="card-header" id="headingOne">
+				<div class="card-header" id="headingOne" style="border-bottom: solid 5px black;">
 					<h5 class="mb-0">
 						<button class="btn  collapsed" type="button" id="77"
 							data-toggle="collapse" data-target="#collapseOne"
-							aria-expanded="false" aria-controls="collapseOne">會員帳號管理</button>
+							aria-expanded="false" aria-controls="collapseOne"><span style="font-weight: 800; font-size: large;">會員帳號管理</span></button>
 					</h5>
 				</div>
 				<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
 					data-parent="#accordionExample">
 					<div class="card-body">
-						<div class="list-group">
+						<div class="list-group" style="border: solid 2px black;">
 							<button type="button"
 								class="list-group-item list-group-item-action">會員帳號編輯</button>
 							<button type="button"
-								class="list-group-item list-group-item-action">會員數據分析</button>
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">會員數據分析</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="card">
-				<div class="card-header" id="headingTwo">
+				<div class="card-header" id="headingTwo" style="border-bottom: solid 5px black;">
 					<h5 class="mb-0">
 						<button class="btn  collapsed" type="button" id="77"
 							data-toggle="collapse" data-target="#collapseTwo"
-							aria-expanded="false" aria-controls="collapseTwo">商城管理</button>
+							aria-expanded="false" aria-controls="collapseTwo"><span style="font-weight: 800; font-size: large;">商城管理</span></button>
 					</h5>
 				</div>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
@@ -103,18 +101,17 @@ body {
 							<button type="button"
 								class="list-group-item list-group-item-action">商城編輯</button></a>
 							<button type="button"
-								class="list-group-item list-group-item-action">商城數據分析</button>
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">商城數據分析</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="card">
-				<div class="card-header" id="headingThree">
+				<div class="card-header" id="headingThree" style="border-bottom: solid 5px black;">
 					<h5 class="mb-0">
 						<button class="btn  collapsed" type="button" id="77"
 							data-toggle="collapse" data-target="#collapseThree"
-							aria-expanded="false" aria-controls="collapseThree">
-							揪團管理</button>
+							aria-expanded="false" aria-controls="collapseThree"><span style="font-weight: 800; font-size: large;">揪團管理</span></button>
 					</h5>
 				</div>
 				<div id="collapseThree" class="collapse"
@@ -124,18 +121,17 @@ body {
 							<button type="button"
 								class="list-group-item list-group-item-action">揪團編輯</button>
 							<button type="button"
-								class="list-group-item list-group-item-action">揪團數據分析</button>
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">揪團數據分析</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="card">
-				<div class="card-header" id="headingFour">
+				<div class="card-header" id="headingFour" style="border-bottom: solid 5px black;">
 					<h5 class="mb-0">
 						<button class="btn  collapsed" type="button" id="77"
 							data-toggle="collapse" data-target="#collapseFour"
-							aria-expanded="false" aria-controls="collapseFour">
-							Collapsible Group Item #3</button>
+							aria-expanded="false" aria-controls="collapseFour"><span style="font-weight: 800; font-size: large;">???管理</span></button>
 					</h5>
 				</div>
 				<div id="collapseFour" class="collapse"
@@ -146,19 +142,18 @@ body {
 								class="list-group-item list-group-item-action">Dapibus
 								ac facilisis in</button>
 							<button type="button"
-								class="list-group-item list-group-item-action">Morbi
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">Morbi
 								leo risus</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="card">
-				<div class="card-header" id="headingFive">
+				<div class="card-header" id="headingFive" style="border-bottom: solid 5px black;">
 					<h5 class="mb-0">
 						<button class="btn  collapsed" type="button" id="77"
 							data-toggle="collapse" data-target="#collapseFive"
-							aria-expanded="false" aria-controls="collapseFive">
-							Collapsible Group Item #3</button>
+							aria-expanded="false" aria-controls="collapseFive"><span style="font-weight: 800; font-size: large;">???管理</span></button>
 					</h5>
 				</div>
 				<div id="collapseFive" class="collapse"
@@ -169,7 +164,7 @@ body {
 								class="list-group-item list-group-item-action">Dapibus
 								ac facilisis in</button>
 							<button type="button"
-								class="list-group-item list-group-item-action">Morbi
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">Morbi
 								leo risus</button>
 						</div>
 					</div>
