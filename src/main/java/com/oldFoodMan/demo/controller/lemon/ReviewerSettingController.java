@@ -29,11 +29,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.Collections;
+import com.oldFoodMan.demo.model.FoodRecordRepository;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.ScheduleBean;
+import com.oldFoodMan.demo.model.lemon.RelationshipRepository;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
 import com.oldFoodMan.demo.model.lemon.ReviewerSettingRepository;
+import com.oldFoodMan.demo.model.lemon.User;
+import com.oldFoodMan.demo.model.lemon.UserRepository;
 import com.oldFoodMan.demo.service.CollectionsService;
+import com.oldFoodMan.demo.service.FoodRecordService;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.service.ScheduleService;
 import com.oldFoodMan.demo.service.lemon.ReviewerSettingService;
@@ -50,6 +55,10 @@ public class ReviewerSettingController {
 		this.servletContext = servletContext;
 	}
 	
+	@Autowired UserRepository userRepository;
+	
+	@Autowired RelationshipRepository relationshipRepository;
+	
 	@Autowired
 	private ReviewerSettingRepository rsr;
 	
@@ -58,6 +67,12 @@ public class ReviewerSettingController {
 	
 	@Autowired
 	private MemberServiceImpl memberService;
+	
+	@Autowired
+	FoodRecordService foodRecordService;
+	
+	@Autowired
+	FoodRecordRepository foodRecordRepository;
 	
 	//Eddie
 	@Autowired
@@ -77,19 +92,19 @@ public class ReviewerSettingController {
 		return mav;
 	}
 	
-	@GetMapping("/follower")
-	public String follower(Model model,HttpSession hs) {
-		Member memberData = (Member)hs.getAttribute("member");
-		Integer memberId = memberData.getId();
-		Date birthday = memberData.getBirth();
-		String bdd = service.getAgeByMember(birthday);
-		Member memberBean = memberService.findById(memberId);
-		List<Member> list = memberService.getAllmember();
-		model.addAttribute("bdd", bdd);
-		model.addAttribute("members",list);
-		model.addAttribute("member",memberBean);
-		return "/lemon/reviewerFollower";
-	}
+//	@GetMapping("/follower")
+//	public String follower(Model model,HttpSession hs) {
+//		Member memberData = (Member)hs.getAttribute("member");
+//		Integer memberId = memberData.getId();
+//		Date birthday = memberData.getBirth();
+//		String bdd = service.getAgeByMember(birthday);
+//		Member memberBean = memberService.findById(memberId);
+//		List<Member> list = memberService.getAllmember();
+//		model.addAttribute("bdd", bdd);
+//		model.addAttribute("members",list);
+//		model.addAttribute("member",memberBean);
+//		return "/lemon/reviewerFollower";
+//	}
 	
 	
 	@GetMapping("/reviewerAll")
@@ -102,17 +117,34 @@ public class ReviewerSettingController {
 
 	@GetMapping("/reviewerMainPage")
 	public ModelAndView reviewerMainPage(ModelAndView mav,HttpSession hs) {
+		
+		//Member資料
 		Member memberData = (Member)hs.getAttribute("member");
 		Integer memberId = memberData.getId();
 		Date birthday = memberData.getBirth();
 		String bdd = service.getAgeByMember(birthday);
-		
 		Member memberBean = memberService.findById(memberId);
 		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
-		
 		mav.getModel().put("bdd", bdd);
 		mav.getModel().put("reviewerPage", reviewerBean);
 		mav.getModel().put("memberPage", memberBean);
+		
+		//拜訪店家 喜愛店家
+		Integer countAll = foodRecordRepository.recordCounts(memberId);
+		Integer countFav = foodRecordRepository.recordFavCounts(memberId);
+		mav.getModel().put("countFav", countFav);
+		mav.getModel().put("countAll", countAll);
+		
+		//追蹤 粉絲
+		User user = userRepository.findByMember(memberId);
+		Integer follows = relationshipRepository.countByFromUserId(memberId);
+		user.setFollow_size(follows);
+		Integer fans = relationshipRepository.countByToUserId(memberId);
+		user.setFan_size(fans);
+		userRepository.save(user);
+		mav.getModel().put("user",user);
+		
+		//視圖君
 		mav.setViewName("/lemon/reviewerMainPage");
 		return mav;
 	}

@@ -579,7 +579,7 @@ html {
                 <li id="reviewer-navi-follow" class="reviewer-navi__item reviewer-navi__item--follow">
                     <a class="reviewer-navi__target" href="${contextRoot}/relationships/follows">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">62</span>
+                            <span class="reviewer-navi__count"><c:out value="${user.follow_size}"/></span>
                             <span class="reviewer-navi__menu">追蹤</span>
                         </span>
                     </a>
@@ -587,7 +587,7 @@ html {
                 <li id="reviewer-navi-follower" class="reviewer-navi__item reviewer-navi__item--follower">
                     <a class="reviewer-navi__target" href="${contextRoot}/relationships/fans">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">22157</span>
+                            <span class="reviewer-navi__count"><c:out value="${user.fan_size}"/></span>
                             <span class="reviewer-navi__menu">追隨者</span>
                         </span>
                     </a>
