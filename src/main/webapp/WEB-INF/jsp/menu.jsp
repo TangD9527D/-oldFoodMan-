@@ -79,6 +79,7 @@
 .menu_link7{
 	color: rgb(93, 91, 91);
 	font-weight: 600;
+ 	text-decoration:none; 
 }
 
 .menu_link7:hover{

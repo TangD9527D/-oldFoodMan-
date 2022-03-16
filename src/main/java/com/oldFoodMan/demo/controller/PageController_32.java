@@ -92,6 +92,7 @@ public class PageController_32 {
 		
 		List<TestOFM>list  =tservice.findAllAndMember();
 
+		
 		System.out.println("想看看有啥: "+list);
 		
 
