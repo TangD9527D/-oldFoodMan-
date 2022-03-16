@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.Collections;
+import com.oldFoodMan.demo.model.FoodRecord;
 import com.oldFoodMan.demo.model.FoodRecordRepository;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.ScheduleBean;
@@ -41,6 +42,7 @@ import com.oldFoodMan.demo.service.CollectionsService;
 import com.oldFoodMan.demo.service.FoodRecordService;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.service.ScheduleService;
+import com.oldFoodMan.demo.service.lemon.ReviewerFoodRecordService;
 import com.oldFoodMan.demo.service.lemon.ReviewerSettingService;
 
 @Controller
@@ -54,6 +56,9 @@ public class ReviewerSettingController {
 		this.reviewerService = reviewerService;
 		this.servletContext = servletContext;
 	}
+	
+	@Autowired
+	private ReviewerFoodRecordService reviewerFoodRecordService;
 	
 	@Autowired UserRepository userRepository;
 	
@@ -143,6 +148,10 @@ public class ReviewerSettingController {
 		user.setFan_size(fans);
 		userRepository.save(user);
 		mav.getModel().put("user",user);
+		
+		//前五
+		List<FoodRecord> listTop = reviewerFoodRecordService.getTopFiveRating(memberId);
+		mav.getModel().put("listTop",listTop);
 		
 		//視圖君
 		mav.setViewName("/lemon/reviewerMainPage");
