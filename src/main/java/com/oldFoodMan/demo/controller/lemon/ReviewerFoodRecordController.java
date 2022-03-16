@@ -8,19 +8,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.FoodRecord;
 import com.oldFoodMan.demo.model.FoodRecordRepository;
 import com.oldFoodMan.demo.model.Member;
-import com.oldFoodMan.demo.model.lemon.Relationship;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
 import com.oldFoodMan.demo.model.lemon.ReviewerSettingRepository;
 import com.oldFoodMan.demo.service.FoodRecordService;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
+import com.oldFoodMan.demo.service.lemon.ReviewerFoodRecordService;
 import com.oldFoodMan.demo.service.lemon.ReviewerSettingService;
 
 @Controller
@@ -40,7 +37,6 @@ public class ReviewerFoodRecordController {
 	
 	@Autowired
 	private MemberServiceImpl memberService;
-	
 	
 	@GetMapping("/reviewerIttaomise")
 	public ModelAndView reviewerIttaomise(ModelAndView mav,HttpSession hs) {
