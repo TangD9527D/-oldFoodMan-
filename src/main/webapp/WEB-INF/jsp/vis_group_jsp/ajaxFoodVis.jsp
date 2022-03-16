@@ -82,6 +82,7 @@
 	width:85%;
 	float:left;
 	margin-top: 30px ;
+	margin-bottom:30px;
 	
 	margin-right:100px;
 	
@@ -717,7 +718,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		</section>
 		</aside>
 		</div>
-
+    <footer class="pt-3 mt-4 text-muted border-top">
+      <div style="margin:50px;">&copy; 2022</div>
+    </footer>
 		</div>
 		
 		
