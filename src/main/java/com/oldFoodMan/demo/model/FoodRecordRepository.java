@@ -36,6 +36,11 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	
 	
 	//Lemon_START
+	@Transactional
+	@Modifying
+	@Query(value="SELECT*FROM foodRecord WHERE record_id= :record_id",nativeQuery=true)
+	public FoodRecord recordIdRecord(@Param("record_id")Integer record_id);
+	
 	@Query(value="select count( * ) as cc from foodRecord where :member_id=member_id",nativeQuery=true)
 	public Integer recordCounts(@Param("member_id")Integer member_id);
 	
@@ -47,6 +52,12 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	
 	@Query(value=" select * from foodRecord where :city = city AND member_id=:member_id",nativeQuery=true)
 	public List<FoodRecord> recordCitySort(@Param("city")String opt,@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(uploadPicture) FROM foodRecord WHERE member_id=:member_id",nativeQuery=true)
+	public Integer picCounts(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) as 台北市 FROM foodRecord where city='臺北市'AND member_id=:member_id",nativeQuery=true)
+	public Integer taipeiCounts(@Param("member_id")Integer member_id);
 	//lemon_END
 	
 }

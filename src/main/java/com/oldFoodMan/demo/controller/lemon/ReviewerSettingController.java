@@ -34,6 +34,7 @@ import com.oldFoodMan.demo.model.FoodRecordRepository;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.ScheduleBean;
 import com.oldFoodMan.demo.model.lemon.RelationshipRepository;
+import com.oldFoodMan.demo.model.lemon.ReviewerSaveRating;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
 import com.oldFoodMan.demo.model.lemon.ReviewerSettingRepository;
 import com.oldFoodMan.demo.model.lemon.User;
@@ -104,21 +105,6 @@ public class ReviewerSettingController {
 		return mav;
 	}
 	
-//	@GetMapping("/follower")
-//	public String follower(Model model,HttpSession hs) {
-//		Member memberData = (Member)hs.getAttribute("member");
-//		Integer memberId = memberData.getId();
-//		Date birthday = memberData.getBirth();
-//		String bdd = service.getAgeByMember(birthday);
-//		Member memberBean = memberService.findById(memberId);
-//		List<Member> list = memberService.getAllmember();
-//		model.addAttribute("bdd", bdd);
-//		model.addAttribute("members",list);
-//		model.addAttribute("member",memberBean);
-//		return "/lemon/reviewerFollower";
-//	}
-	
-	
 	@GetMapping("/reviewerAll")
 	public String reviewerAll(Model model,HttpSession hs) {
 		List<Member> list = memberService.getAllmember();
@@ -133,10 +119,15 @@ public class ReviewerSettingController {
 		//Member資料
 		Member memberData = (Member)hs.getAttribute("member");
 		Integer memberId = memberData.getId();
+		//生日
 		Date birthday = memberData.getBirth();
 		String bdd = service.getAgeByMember(birthday);
-		Member memberBean = memberService.findById(memberId);
+		//資料欄
 		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
+		Member memberBean = memberService.findById(memberId);
+		//照片
+		Integer picCounts = foodRecordRepository.picCounts(memberId);
+		mav.getModel().put("picCounts", picCounts);
 		mav.getModel().put("bdd", bdd);
 		mav.getModel().put("reviewerPage", reviewerBean);
 		mav.getModel().put("memberPage", memberBean);
@@ -157,8 +148,17 @@ public class ReviewerSettingController {
 		mav.getModel().put("user",user);
 		
 		//前五
-		List<FoodRecord> listTop = reviewerFoodRecordService.getTopFiveRating(memberId);
-		mav.getModel().put("listTop",listTop);
+//		ReviewerSaveRating rsr = reviewerFoodRecordService.findByMember(memberId);
+		FoodRecord fr01 = foodRecordRepository.getById(4);
+		FoodRecord fr02 = foodRecordRepository.getById(5);
+		mav.getModel().put("fr01",fr01);
+		mav.getModel().put("fr02",fr02);
+		
+		//拜訪區域
+		//taipei
+		Integer taipei = foodRecordRepository.taipeiCounts(memberId);
+		
+		mav.getModel().put("taipei", taipei);
 		
 		//視圖君
 		mav.setViewName("/lemon/reviewerMainPage");

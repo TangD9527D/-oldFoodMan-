@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_navi.css">
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_left.css">
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_right.css">
-    <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base">
+    <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base.css">
     <script src="/js/jquery-3.6.0.min.js"></script>
     <style>
 
@@ -1055,7 +1055,7 @@
                                 <div class="simple-rvw__rst-data">
                                     <div class="simple-rvw__rst-name simple-rvw__rst-name--mypage">
                                         <h3>
-                                            <a class="simple-rvw__rst-name-target" target="_blank" href="#">
+                                            <a class="simple-rvw__rst-name-target" target="_blank" href="savingTop/${frd.id}">
                                                 <c:out value="${frd.shopName}"/>        
                                             </a>
                                         </h3>
@@ -1078,10 +1078,9 @@
                                         </p>
                                         <p class="simple-rvw__rvw-count">
                                             <span class="simple-rvw__rvw-count-subject gly-b-reviw">
-                                                <a class="simple-rvw__rvw-count-target" href="#">
-                                                    <em>186</em>
-                                                    件
-                                                </a>
+                                         
+<%--                                                     <input type="button" value="${frd.id}" id="followValue"/> --%>
+                                              
                                             </span>
                                         </p>
                                     </div>
@@ -1116,22 +1115,24 @@
     </div>
 
 <script type="Text/JavaScript">
-</select>
-	$("#Area").change(function(){
-	var opt=$("#myselect").val();
-		$.ajax({
-			url:'http://localhost:8080/oldFoodMan/reviewerIttaomise/area/'+ opt,
-			contentType :'application/json; charset=UTF-8',
-			method :'post',
+
+// $('#followValue').click(function(){
+// 	var record_id= document.getElementById("followValue").value;
+// 	console.log(record_id);
 	
-			success:function(fanSize){
-				var f=fanSize
-				if(f=1){
-					alert("O_O");
-				}
-			}
-		})
-	});
+// 	$.ajax({
+// 		url:'http://localhost:8080/oldFoodMan/savingTop'+ record_id,
+// 		contentType :'application/json; charset=UTF-8',
+// 		method :'post',
+
+// 		success:function(fanSize){
+// 			var f=fanSize
+// 			if(f=1){
+// 				alert("O_O");
+// 			}
+// 		}
+// 	})
+// })
 </script>
 
 </body>
