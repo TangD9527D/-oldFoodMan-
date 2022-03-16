@@ -50,7 +50,7 @@ public class FoodRecord implements Serializable {
 	@JsonIgnore
 	private Member member_id;
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "id")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "record_id",cascade = CascadeType.ALL)
 	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
 	
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "record_id")

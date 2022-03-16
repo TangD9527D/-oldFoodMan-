@@ -135,10 +135,10 @@ width:500px;
 			<img src="<c:url value='/getPicture/${lastestFoodRecord.id}'/>">
 		</figure>
 		</div>
-		<div id="likeBar">
-			<img id="icon" src="images/like.png"> <img id="icon"
-				src="images/chat.png"> <img id="icon" src="images/badoo.png">
-		</div>
+<!-- 		<div id="likeBar"> -->
+<!-- 			<img id="icon" src="images/like.png"> <img id="icon" -->
+<!-- 				src="images/chat.png"> <img id="icon" src="images/badoo.png"> -->
+<!-- 		</div> -->
 		<div id="article">
 			<div id="left">
 				<div id="title">
@@ -158,6 +158,8 @@ width:500px;
 						<c:out value="${lastestFoodRecord.shopAddress}" />
 						<br> <br> 用餐日<br>
 						<c:out value="${lastestFoodRecord.businessHours}" />
+						<br> <br> 餐廳<br>
+						<c:out value="${foodrecordById.shopName}" />
 						<br> <br> 電話<br>
 						<c:out value="${lastestFoodRecord.tel}" />
 					</p>
