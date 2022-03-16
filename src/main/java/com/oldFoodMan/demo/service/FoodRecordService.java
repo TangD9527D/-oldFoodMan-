@@ -82,6 +82,12 @@ public class FoodRecordService {
 		 List<FoodRecord> mrl = frDao.memberRecordList(member_id);
 		 return mrl;
 	}
+	
+	//類型篩選
+	public List<FoodRecord> typeFilter(){
+		 List<FoodRecord> type = frDao.typeFilter();
+		 return type;
+	}
 
 	
 }

@@ -28,6 +28,13 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	@Query(value="SELECT*FROM foodRecord f WHERE f.member_id= :member_id ORDER BY f.create_at DESC",nativeQuery=true)
 	public List<FoodRecord> memberRecordList(@Param("member_id")Integer member_id);
 	
+	
+	@Transactional
+	@Modifying
+	@Query(value="SELECT　shopType as 類型, COUNT(*) AS 次數 FROM foodRecord　GROUP BY shopType",nativeQuery=true)
+	public List<FoodRecord> typeFilter();
+	
+	
 	//Lemon_START
 	@Query(value="select count( * ) as cc from foodRecord where :member_id=member_id",nativeQuery=true)
 	public Integer recordCounts(@Param("member_id")Integer member_id);
