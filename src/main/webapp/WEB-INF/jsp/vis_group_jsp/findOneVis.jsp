@@ -206,6 +206,10 @@ if (peoname==""){
 	
 }
 
+$(document).on('click', '#checkaddvis', function (){
+	
+	location.reload();
+}
 
 
 </script>		
