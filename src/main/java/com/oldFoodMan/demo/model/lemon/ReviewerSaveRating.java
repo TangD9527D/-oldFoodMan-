@@ -22,42 +22,71 @@ public class ReviewerSaveRating implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Integer id;
-	private Integer recordId;
-	private Integer gender;
-	private Integer gender1;
-	private Integer gender2;
-	private Integer gendersum;
-	public Integer getRecordId() {
-		return recordId;
-	}
-	public void setRecordId(Integer recordId) {
-		this.recordId = recordId;
-	}
-	public Integer getGender() {
-		return gender;
-	}
-	public void setGender(Integer gender) {
-		this.gender = gender;
-	}
-	public Integer getGender1() {
-		return gender1;
-	}
-	public void setGender1(Integer gender1) {
-		this.gender1 = gender1;
-	}
-	public Integer getGender2() {
-		return gender2;
-	}
-	public void setGender2(Integer gender2) {
-		this.gender2 = gender2;
-	}
-	public Integer getGendersum() {
-		return gendersum;
-	}
-	public void setGendersum(Integer gendersum) {
-		this.gendersum = gendersum;
-	}
-	
-	
 
+	private Integer record_id;
+	private Integer member_id;
+	private Integer gender_sum;
+	private float gender_avg;
+	private String store_name;
+	private String store_city;
+	private String store_area;
+	private String store_type;
+	private String artical_title;
+	
+	public Integer getRecord_id() {
+		return record_id;
+	}
+	public void setRecord_id(Integer record_id) {
+		this.record_id = record_id;
+	}
+	public Integer getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(Integer member_id) {
+		this.member_id = member_id;
+	}
+	public Integer getGender_sum() {
+		return gender_sum;
+	}
+	public void setGender_sum(Integer gender_sum) {
+		this.gender_sum = gender_sum;
+	}
+	public float getGender_avg() {
+		return gender_avg;
+	}
+	public void setGender_avg(float gender_avg) {
+		this.gender_avg = gender_avg;
+	}
+	public String getStore_name() {
+		return store_name;
+	}
+	public void setStore_name(String store_name) {
+		this.store_name = store_name;
+	}
+	public String getStore_city() {
+		return store_city;
+	}
+	public void setStore_city(String store_city) {
+		this.store_city = store_city;
+	}
+	public String getStore_area() {
+		return store_area;
+	}
+	public void setStore_area(String store_area) {
+		this.store_area = store_area;
+	}
+	public String getStore_type() {
+		return store_type;
+	}
+	public void setStore_type(String store_type) {
+		this.store_type = store_type;
+	}
+	public String getArtical_title() {
+		return artical_title;
+	}
+	public void setArtical_title(String artical_title) {
+		this.artical_title = artical_title;
+	}
+	
+	
 }

@@ -34,7 +34,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	
 	@Transactional
-	@Modifying
+	@Modifying 
 	@Query(value = "INSERT INTO reviewer_user VALUES (:member_id,0,0,0)",nativeQuery = true)
-	public User insertByMember(@Param(value = "member_id") Integer member_id);
+	public void insertByMember(@Param(value = "member_id") Integer member_id);
 }

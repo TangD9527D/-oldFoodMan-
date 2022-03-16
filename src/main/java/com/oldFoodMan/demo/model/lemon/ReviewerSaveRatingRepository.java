@@ -10,12 +10,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface ReviewerSaveRatingRepository extends JpaRepository<ReviewerSaveRating, Integer> {
 	
+	
+	
+	@Query(value="SELECT TOP 5 * FROM reviewer_saveRating ORDER BY gender_sum DESC",nativeQuery = true)
+	public List<ReviewerSaveRating> topFiveRating();
+
 	@Transactional
 	@Modifying
-	@Query(value=" INSERT INTO reviewer_saveRating (recordId,gender,gender1,gender2,gendersum)VALUES(:recordId,:gender,:gender1,:gender2,:gendersum)",nativeQuery = true)
-	public void insertRating(@Param("recordId") Integer id,@Param("gender") Integer gender,@Param("gender") Integer gender1,@Param("gender") Integer gender2,@Param("gender") Integer gendersum);
+	@Query(value = "INSERT INTO reviewer_saveRating (member_id,gender_avg) VALUES (:member_id,0)",nativeQuery = true)
+	public void insertByMember(@Param(value = "member_id") Integer member_id);
+
+	@Query(value = "Select * from reviewer_saveRating where member_id = :member_id",nativeQuery = true)
+	public ReviewerSaveRating findByMember(@Param(value = "member_id") Integer member_id);
 	
-	@Query(value="SELECT TOP 5 * FROM reviewer_saveRating ORDER BY gendersum DESC",nativeQuery = true)
-	public List<ReviewerSaveRating> topFiveRating();
+	@Query(value = "Select * from reviewer_saveRating where record_id = :record_id",nativeQuery = true)
+	public ReviewerSaveRating findByRecord(@Param(value = "record_id") Integer record_id);
 
 }

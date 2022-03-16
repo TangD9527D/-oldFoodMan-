@@ -122,8 +122,8 @@
                 </div>
             </div>
             <div id="page-info" class="header-cover--info js-page-info">
-                <p class="page-name"><c:out value="${reviewerPage.reviewer_title}"/></p>
-                <p class="page-sub-title"><c:out value="${reviewerPage.reviewer_subtitle}"/></p>
+                <p class="page-name"><c:out value="${memberPage.reviewersetting.reviewer_title}"/></p>
+                <p class="page-sub-title"><c:out value="${memberPage.reviewersetting.reviewer_subtitle}"/></p>
             </div>
             <div class="header-cover__actions">
                 <div class="reviewer-action-btns">
@@ -172,11 +172,11 @@
                         </span>
                         <span class="reviewer-status__attr">(${bdd}-<c:out value="${memberPage.city}"/>)</span>
                     </p>
-                    <p class="reviewer-status__occupation"><c:out value="${reviewerPage.reviewer_occupation}"/></p>
+                    <p class="reviewer-status__occupation"><c:out value="${memberPage.reviewersetting.reviewer_occupation}"/></p>
                 </div>
                 <div class="comment-prof">
                     <span class="comment-prof__body">
-                        <c:out value="${reviewerPage.reviewer_intro}"/>
+                        <c:out value="${memberPage.reviewersetting.reviewer_intro}"/>
                     </span>
                     <span class="comment-prof__more">
                         <a class="c-link-arrow" href="${contextRoot}/reviewerPageIntro">
@@ -211,11 +211,11 @@
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
-                                <span class="reviewer-counter__data-num">473枚</span>
+                                <span class="reviewer-counter__data-num">${picCounts}枚</span>
                             </p>
-                            <p class="reviewer-counter__like-count">
-                                <span class="reviewer-counter__like-count-num">1,224</span>
-                            </p>
+<!--                             <p class="reviewer-counter__like-count"> -->
+<!--                                 <span class="reviewer-counter__like-count-num">1,224</span> -->
+<!--                             </p> -->
                         </dd>
                     </dl>
                     <dl class="reviewer-counter__item">
@@ -243,7 +243,7 @@
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__like-count">
-                                <span class="reviewer-counter__like-count-num">2,786</span>
+                                <span class="reviewer-counter__like-count-num">2,7</span>
                             </p>
                         </dd>
                     </dl>
@@ -496,8 +496,8 @@
                 <section class="ranking">
                     <div class="side-title ranking__title">
                         <h2>Ranking</h2>
-                        <p class="ranking__setting-area">松山區</p>
-                        <span class="ranking__prefecture">（台北市）</span>
+                        <p class="ranking__setting-area"><c:out value="${memberPage.city}"/></p>
+<!--                         <span class="ranking__prefecture">（台北市）</span> -->
                     </div>
                     <div class="ranking-contents">
                         <div class="ranking-contents__month">
@@ -510,7 +510,7 @@
                             <div class="ranking-contents__review">
                                 <div>喜愛餐廳數量</div>
                                 <div>
-                                    <span class="u-text-num ranking-contents__review-count">1</span>件
+                                    <span class="u-text-num ranking-contents__review-count"><c:out value="${countFav}"/></span>件
                                 </div>
                             </div>
                         </div>
@@ -525,7 +525,7 @@
                             <div class="ranking-contents__review">
                                 <div>喜愛餐廳數量</div>
                                 <div>
-                                    <span class="u-text-num ranking-contents__review-count">1</span>件
+                                    <span class="u-text-num ranking-contents__review-count"><c:out value="${countFav}"/></span>件
                                 </div>
                             </div>
                         </div>
@@ -554,7 +554,7 @@
                                 <a href="#">台北&nbsp;
                                     <span class="num">
                                         [
-                                        <em>1318</em>件
+                                        <em>${taipei}</em>件
                                         ]
                                     </span>
                                 </a>

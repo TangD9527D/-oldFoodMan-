@@ -8,11 +8,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.FoodRecord;
 import com.oldFoodMan.demo.model.FoodRecordRepository;
 import com.oldFoodMan.demo.model.Member;
+import com.oldFoodMan.demo.model.lemon.Relationship;
+import com.oldFoodMan.demo.model.lemon.ReviewerSaveRating;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
 import com.oldFoodMan.demo.model.lemon.ReviewerSettingRepository;
 import com.oldFoodMan.demo.service.FoodRecordService;
@@ -24,10 +29,13 @@ import com.oldFoodMan.demo.service.lemon.ReviewerSettingService;
 public class ReviewerFoodRecordController {
 
 	@Autowired
-	FoodRecordService foodRecordService;
+	private ReviewerFoodRecordService rfrService;
 	
 	@Autowired
-	FoodRecordRepository foodRecordRepository;
+	private FoodRecordService foodRecordService;
+	
+	@Autowired
+	private FoodRecordRepository foodRecordRepository;
 	
 	@Autowired
 	private ReviewerSettingRepository rsr;
@@ -78,16 +86,12 @@ public class ReviewerFoodRecordController {
 		return mav;
 	}
 	
-//	@ResponseBody
-//	@PostMapping("/reviewerIttaomise/area/{opt}")
-//	public int followUser(@PathVariable String opt,HttpSession hs){
-//		Member memberData = (Member)hs.getAttribute("member");
-//		Integer memberId = memberData.getId();
-//		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~"+opt);
-//		List<FoodRecord> frds = foodRecordRepository.recordCitySort(opt, memberId);
-//		mav.getModel().put("frds",frds);
-//		int Area= 1;
-//        return Area;
-//	}
+	@GetMapping("/savingTop/{record_id}")
+	public ModelAndView followUser(@PathVariable Integer record_id,ModelAndView mav){
+		ReviewerSaveRating rsr = rfrService.checkRsr(record_id);
+		rfrService.saveRatingg(record_id, rsr);
+		mav.setViewName("redirect:/reviewerMainPage");
+        return mav;
+	}
 	
 }
