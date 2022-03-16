@@ -20,7 +20,7 @@
     <script src="/js/jquery-3.6.0.min.js"></script>
     <style>
 
-            .reviewer-navi__item.reviewer-navi__item--review.is-selected .reviewer-navi__target::after{
+        .reviewer-navi__item.reviewer-navi__item--review.is-selected .reviewer-navi__target::after{
             position: absolute;
             left: 50%;
             bottom: 0;
@@ -330,6 +330,8 @@
             background-color: #fff;
             margin-top: 1.5rem;
         }
+        
+        
 
         .simple-rvw__rst-info{
             position: relative;
@@ -702,7 +704,7 @@
 </head>
 <body>
 
-    <!--Header * Start-->
+<!--Header * Start-->
 <div class="reviewer-header-wrap">
     <div class="reviewer-header">
         <div class="header-cover">
@@ -712,34 +714,36 @@
                 </div>
                 <div class="person-reviewer-cover-image">
                     <div class="oldcrop-frame" style="overflow: hidden; position: relative; width: 980px; height: 340px;">
-                        <img class="crop-img js-crop-img oldcrop-image" data-width:="980" data-top="-108" data-left="0" style="position:absolute; width:980px; left:0px; top:-108px; opacity: 0.1;" alt="reviewer's cover image"
-                        src="imgLemon/無留手02.jpg">
+                        <img class="crop-img js-crop-img oldcrop-image" data-width:="980" data-top="-108" data-left="0" style="position:absolute; width:980px; left:0px; top:-108px; opacity: 1;" alt="reviewer's cover image"
+                        src="<c:url value='/getPictureLemon/${memberPage.id}' />">
                         <!-- image size=1470*981 -->
                     </div>
                 </div>
             </div>
             <div id="page-info" class="header-cover--info js-page-info">
-                <p class="page-name">Alice's Tea Party</p>
-                <p class="page-sub-title">Just a cafe lover</p>
+                <p class="page-name"><c:out value="${reviewerPage.reviewer_title}"/></p>
+                <p class="page-sub-title"><c:out value="${reviewerPage.reviewer_subtitle}"/></p>
             </div>
             <div class="header-cover__actions">
                 <div class="reviewer-action-btns">
                     <div class="reviewer-action-btns__navi">
-                        <div class="p-follow-btn reviewer-action-btns__navi-item">
-                            <div class="js-follow-btn-wrap" data-rvwr-id="2778702">
-                                <div class="js-follow-btn">
-                                    <p class="p-follow-btn__target p-follow-btn__target--l reviewer-action-btns__navi-item-target" data-proc="follow">
-                                        <span class="p-follow-btn__text">follow</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+<!--                         <div class="p-follow-btn reviewer-action-btns__navi-item"> -->
+<!--                             <div class="js-follow-btn-wrap" data-rvwr-id="2778702"> -->
+<!--                                 <div class="js-follow-btn"> -->
+<!--                                     <p class="p-follow-btn__target p-follow-btn__target--l reviewer-action-btns__navi-item-target" data-proc="follow"> -->
+<!--                                         <span class="p-follow-btn__text">follow</span> -->
+<!--                                     </p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
                     </div>
                     <div class="reviewer-action-btns__block">
                         <div class="reviewer-block-btn">
+                        	<a href="${contextRoot}/setReviewerPage">
                             <p class="js-main-block-btn c-btn reviewer-block-btn__target">
                                 <span class="c-btn__text">s</span>
                             </p>
+                            </a>
                             <div></div>
                         </div>
                     </div>
@@ -750,9 +754,12 @@
             <div class="header-contents__img-wrap">
                 <div class="header-contents__img header-contents__img--l">
                     <div id="reviewer-image" class="reviewer-image-box reviewer-image-box--1 js-reviewer-image js-upload-icon-image">
-                        <a href="">
-                            <img alt src="imgLemon/半路04.jpg" width="120" height="120">
-                        </a>
+                        <div id="js-reviewer-image-display">
+                            <img src="<c:url value='/getPhoto/${memberPage.id}' />" width="120" height="120">
+                        </div>
+<!--                             <a class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;" href="#"> -->
+<!--                             <button class="c-btn c-btn--s reviewer-image-box__reimage-btn">變更</button> -->
+<!--                             </a> -->
                     </div>
                 </div>
             </div>
@@ -760,19 +767,19 @@
                 <div class="reviewer-status reviewer-status--top">
                     <p class="reviewer-status__item">
                         <span class="reviewer-status__nickname">
-                            <strong class="reviewer-nickname fs18">斉藤アリス</strong>
+                            <strong class="reviewer-nickname fs18"><c:out value="${memberPage.memberName}"/></strong>
                         </span>
-                        <span class="reviewer-status__attr">(30歲出頭-女性-花蓮縣)</span>
+                        <span class="reviewer-status__attr">(${bdd}-<c:out value="${memberPage.city}"/>)</span>
                     </p>
-                    <p class="reviewer-status__occupation">model & writer</p>
+                    <p class="reviewer-status__occupation"><c:out value="${reviewerPage.reviewer_occupation}"/></p>
                 </div>
                 <div class="comment-prof">
                     <span class="comment-prof__body">
-                        "出生於花蓮,三歲開始在七星潭..."
+                        <c:out value="${reviewerPage.reviewer_intro}"/>
                     </span>
                     <span class="comment-prof__more">
-                        <a class="c-link-arrow" href="">
-                            "read more"
+                        <a class="c-link-arrow" href="${contextRoot}/reviewerPageIntro">
+                            read more
                         </a>
                     </span>
                 </div>
@@ -781,7 +788,7 @@
                 <div class="reviewer-counter">
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject">
-                            <span class="reviewer-counter__label">ロコミ数</span>
+                            <span class="reviewer-counter__label">喜好店家</span>
                             <span class="c-icon-help c-icon-help--dark">
                                 <span class="c-icon-help__btn">?</span>
                                 <span class="c-icon-help__tooltip-frame reviewer-counter__help">
@@ -799,7 +806,7 @@
                     </dl>
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject reviewer-counter__subject--photo">
-                            <span class="reviewer-counter__label">写真</span>
+                            <span class="reviewer-counter__label">照片</span>
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
@@ -812,7 +819,7 @@
                     </dl>
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject reviewer-counter__subject--visitor">
-                            <span class="reviewer-counter__label">訪問者数</span>
+                            <span class="reviewer-counter__label">瀏覽次數</span>
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
@@ -823,7 +830,7 @@
                     </dl>
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject reviewer-counter__subject--visitor">
-                            <span class="reviewer-counter__label">いいね!</span>
+                            <span class="reviewer-counter__label">讚!</span>
                             <span class="c-icon-help c-icon-help--dark">
                                 <span class="c-icon-help__btn">?</span>
                                 <span class="c-icon-help__tooltip-frame reviewer-counter__help">
@@ -844,50 +851,50 @@
         </div>
         <div class="reviewer-navi reviewer-navi--l">
             <ul class="reviewer-navi__list">
-                <li class="reviewer-navi__item reviewer-navi__item--log">
+                <li class="reviewer-navi__item reviewer-navi__item--log is-selected">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerMainPage">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__menu reviewer-navi__menu--top">首頁</span>
                         </span>
                     </a>
                 </li>
-                <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review is-selected">
-                    <a class="reviewer-navi__target" href="#">
+                <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review">
+                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerIttaomise">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">1478</span>
-                            <span class="reviewer-navi__menu">have been to</span>
+                            <span class="reviewer-navi__menu">拜訪店家</span>
                         </span>
                     </a>
                 </li>
                 <li id="reviewer-navi-interest" class="reviewer-navi__item reviewer-navi__item--interest">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerKoromi">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">156</span>
-                            <span class="reviewer-navi__menu">favorite</span>
+                            <span class="reviewer-navi__menu">喜愛店家</span>
                         </span>
                     </a>
                 </li>
                 <li id="reviewer-navi-matome" class="reviewer-navi__item reviewer-navi__item--matome is-disabled">
-                    <div class="reviewer-navi__target">
-                        <sapn class="reviewer-navi__menu-wrap">
+                     <a class="reviewer-navi__target" href="http://localhost:8080/oldFoodMan/eddietest">                    
+                        <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">0</span>
-                            <span class="reviewer-navi__menu">brief</span>
-                        </sapn>
-                    </div>
-                </li>
+                            <span class="reviewer-navi__menu">小口袋</span>
+                        </span>
+                    </a>
+                </li>                
                 <li id="reviewer-navi-follow" class="reviewer-navi__item reviewer-navi__item--follow">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/relationships/follows">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">62</span>
-                            <span class="reviewer-navi__menu">following</span>
+                            <span class="reviewer-navi__menu">追蹤</span>
                         </span>
                     </a>
                 </li>
                 <li id="reviewer-navi-follower" class="reviewer-navi__item reviewer-navi__item--follower">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/relationships/fans">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">22157</span>
-                            <span class="reviewer-navi__menu">follower</span>
+                            <span class="reviewer-navi__menu">追隨者</span>
                         </span>
                     </a>
                 </li>
@@ -898,13 +905,7 @@
 
 <!--header end-->
 
-
-
-
-
-
-
-    
+   
     <div id="containerr">
         <div class="clearfix" id="contents">
             <div class="layout5-side rvwr-list-sidebar" id="column-side">
@@ -919,12 +920,12 @@
                         <div class="list-sidebar__item">
                             <div class="select-wrap">
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
-                                    <select class="list-sidebar__select" name="Area">
-                                        <option selected="selected" value="0">花蓮縣</option>
+                                    <select class="list-sidebar__select" name="Area" id="Area">
+                                        <option selected="selected" value="0">全部縣市</option>
                                         <option value="1">高雄市</option>
                                         <option value="2">台南市</option>
                                         <option value="3">宜蘭縣</option>
-                                        <option value="4">彰化縣</option>
+                                        <option value="4">花蓮縣</option>
                                         <option value="5">台北市</option>
                                     </select>
                                 </label>
@@ -956,7 +957,7 @@
                 </div>
                 <form action="#" accept-charset="UTF-8" method="get">
                     <div class="list-sidebar list-sidebar--modal-link">
-                        <h4 class="list-sidebar_sub-title list-sidebar_sub-title--condition">預算</h4>
+                        <h4 class="list-sidebar__sub-title list-sidebar__sub-title--condition">預算</h4>
                         <div class="list-sidebar__content">
                             <div class="list-sidebar__price u-clearfix">
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
@@ -1021,22 +1022,24 @@
                 </div>
                 <div class="rvw-page-count">
                     <p class="c-page-count">
-                        <span class="c-page-count__num">
-                            <strong>1</strong>
-                        </span>
-                        ~
-                        <span class="c-page-count__num">
-                            <strong>1</strong>
-                        </span>
-                        件表示
-                        <span class="c-page-count__line"> / </span>
+<!--                         <span class="c-page-count__num"> -->
+<!--                             <strong>1</strong> -->
+<!--                         </span> -->
+<!--                         ~ -->
+<!--                         <span class="c-page-count__num"> -->
+<!--                             <strong>1</strong> -->
+<!--                         </span> -->
+<!--                         件表示 -->
+<!--                         <span class="c-page-count__line"> / </span> -->
                         全
                         <span class="c-page-count__num">
-                            <strong>1</strong>
+                            <strong><c:out value="${count}"/></strong>
                         </span>
                         件
                     </p>
                 </div>
+                <!-- 食記AREA -->
+                <c:forEach var='frd' items='${frds}'>
                 <div class="js-bookmark js-done">
                     <div class="rvw-item rvw-item--simple rvw-item--rvwlst js-rvw-item">
                         <div class="simple-rvw simple-rvw--rstdata">
@@ -1048,14 +1051,16 @@
                                     <div class="simple-rvw__rst-name simple-rvw__rst-name--mypage">
                                         <h3>
                                             <a class="simple-rvw__rst-name-target" target="_blank" href="#">
-                                                吳留手        
+                                                <c:out value="${frd.shopName}"/>        
                                             </a>
                                         </h3>
                                     </div>
                                     <p class="simple-rvw__area-catg">
-                                        中山區
+                                    	<c:out value="${frd.city}"/>
+                                    	<span> / </span>
+                                        <c:out value="${frd.town}"/>
                                         <span> / </span>
-                                        餃子
+                                        <c:out value="${frd.shopType}"/>
                                     </p>
                                     <div class="simple-rvw__rate">
                                         <p class="c-rating simple-rvw__score-total c-rating--va135">
@@ -1077,7 +1082,7 @@
                                     </div>
                                     <div class="simple-rvw__rst-subdata">
                                         <p class="c-rating c-rating--s simple-rvw__budget">
-                                            <span class="c-rating__val">~$999</span>
+                                            <span class="c-rating__val">$<c:out value="${frd.priceScope}"/></span>
                                         </p>
                                     </div>
                                 </div>
@@ -1085,25 +1090,44 @@
                             <div class="p-preview-visit js-rvw-clickable-area p-preview-visit--score">
                                 <div class="p-preview-visit__favorite p-preview-visit__favorite--rating">
                                     <p class="c-rating-v2 p-preview-visit__bkm-rate">
-                                        <b class="c-rating-v2__val c-rating-v2__val--strong">4.0</b>
+                                        <b class="c-rating-v2__val c-rating-v2__val--strong"><c:out value="${frd.gender2}"/></b>
                                     </p>
                                 </div>
                                 <div class="p-preview-visit__favorite p-preview-visit__favorite--comment">
-                                     <p class="p-preview-visit__favorite-text">有點懷舊氣氛</p>
+                                     <p class="p-preview-visit__favorite-text"><c:out value="${frd.cp}"/></p>
                                 </div>
                                 <p class="p-preview-visit__rstdata">
-                                    <span class="p-preview-visit__visit-date">2022/02/29</span>
+                                    <span class="p-preview-visit__visit-date"><c:out value="${frd.added}"/></span>
                                 </p>
                             </div>
                             <div class="rvw-item__bkm-custom-wrap"></div>
                         </div>
                     </div>
                 </div>
-
+				</c:forEach>
+				<!-- 食記AREA結束 -->
             </div>
         </div>
     </div>
 
+<script type="Text/JavaScript">
+</select>
+	$("#Area").change(function(){
+	var opt=$("#myselect").val();
+		$.ajax({
+			url:'http://localhost:8080/oldFoodMan/reviewerIttaomise/area/'+ opt,
+			contentType :'application/json; charset=UTF-8',
+			method :'post',
+	
+			success:function(fanSize){
+				var f=fanSize
+				if(f=1){
+					alert("O_O");
+				}
+			}
+		})
+	});
+</script>
 
 </body>
 </html>

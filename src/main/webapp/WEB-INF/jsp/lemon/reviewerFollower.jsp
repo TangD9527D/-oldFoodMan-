@@ -409,27 +409,27 @@ html {
                 <div class="person-reviewer-cover-image">
                     <div class="oldcrop-frame" style="overflow: hidden; position: relative; width: 980px; height: 340px;">
                         <img class="crop-img js-crop-img oldcrop-image" data-width:="980" data-top="-108" data-left="0" style="position:absolute; width:980px; left:0px; top:-108px; opacity: 1;" alt="reviewer's cover image"
-                        src="<c:url value='/getPictureLemon/${member.id}' />">
+                        src="<c:url value='/getPictureLemon/${memberPage.id}' />">
                         <!-- image size=1470*981 -->
                     </div>
                 </div>
             </div>
             <div id="page-info" class="header-cover--info js-page-info">
-                <p class="page-name"><c:out value="${member.reviewersetting.reviewer_title}"/></p>
-                <p class="page-sub-title"><c:out value="${member.reviewersetting.reviewer_subtitle}"/></p>
+                <p class="page-name"><c:out value="${reviewerPage.reviewer_title}"/></p>
+                <p class="page-sub-title"><c:out value="${reviewerPage.reviewer_subtitle}"/></p>
             </div>
             <div class="header-cover__actions">
                 <div class="reviewer-action-btns">
                     <div class="reviewer-action-btns__navi">
-                        <div class="p-follow-btn reviewer-action-btns__navi-item">
-                            <div class="js-follow-btn-wrap" data-rvwr-id="2778702">
-                                <div class="js-follow-btn">
-                                    <p class="p-follow-btn__target p-follow-btn__target--l reviewer-action-btns__navi-item-target" data-proc="follow">
-                                        <span class="p-follow-btn__text">follow</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+<!--                         <div class="p-follow-btn reviewer-action-btns__navi-item"> -->
+<!--                             <div class="js-follow-btn-wrap" data-rvwr-id="2778702"> -->
+<!--                                 <div class="js-follow-btn"> -->
+<!--                                     <p class="p-follow-btn__target p-follow-btn__target--l reviewer-action-btns__navi-item-target" data-proc="follow"> -->
+<!--                                         <span class="p-follow-btn__text">follow</span> -->
+<!--                                     </p> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
                     </div>
                     <div class="reviewer-action-btns__block">
                         <div class="reviewer-block-btn">
@@ -449,11 +449,11 @@ html {
                 <div class="header-contents__img header-contents__img--l">
                     <div id="reviewer-image" class="reviewer-image-box reviewer-image-box--1 js-reviewer-image js-upload-icon-image">
                         <div id="js-reviewer-image-display">
-                            <img src="<c:url value='/getPhoto/${member.id}' />" width="120" height="120">
+                            <img src="<c:url value='/getPhoto/${memberPage.id}' />" width="120" height="120">
                         </div>
-                            <a class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;" href="#">
-                            <button class="c-btn c-btn--s reviewer-image-box__reimage-btn">變更</button>
-                            </a>
+<!--                             <a class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;" href="#"> -->
+<!--                             <button class="c-btn c-btn--s reviewer-image-box__reimage-btn">變更</button> -->
+<!--                             </a> -->
                     </div>
                 </div>
             </div>
@@ -461,15 +461,15 @@ html {
                 <div class="reviewer-status reviewer-status--top">
                     <p class="reviewer-status__item">
                         <span class="reviewer-status__nickname">
-                            <strong class="reviewer-nickname fs18"><c:out value="${member.memberName}"/></strong>
+                            <strong class="reviewer-nickname fs18"><c:out value="${memberPage.memberName}"/></strong>
                         </span>
-                        <span class="reviewer-status__attr">(${bdd}-<c:out value="${member.city}"/>)</span>
+                        <span class="reviewer-status__attr">(${bdd}-<c:out value="${memberPage.city}"/>)</span>
                     </p>
-                    <p class="reviewer-status__occupation"><c:out value="${member.reviewersetting.reviewer_occupation}"/></p>
+                    <p class="reviewer-status__occupation"><c:out value="${reviewerPage.reviewer_occupation}"/></p>
                 </div>
                 <div class="comment-prof">
                     <span class="comment-prof__body">
-                        <c:out value="${member.reviewersetting.reviewer_intro}"/>
+                        <c:out value="${reviewerPage.reviewer_intro}"/>
                     </span>
                     <span class="comment-prof__more">
                         <a class="c-link-arrow" href="${contextRoot}/reviewerPageIntro">
@@ -553,7 +553,7 @@ html {
                     </a>
                 </li>
                 <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerIttaomise">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">1478</span>
                             <span class="reviewer-navi__menu">拜訪店家</span>
@@ -561,7 +561,7 @@ html {
                     </a>
                 </li>
                 <li id="reviewer-navi-interest" class="reviewer-navi__item reviewer-navi__item--interest">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerKoromi">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">156</span>
                             <span class="reviewer-navi__menu">喜愛店家</span>
@@ -577,7 +577,7 @@ html {
                     </a>
                 </li>                
                 <li id="reviewer-navi-follow" class="reviewer-navi__item reviewer-navi__item--follow">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/relationships/follows">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">62</span>
                             <span class="reviewer-navi__menu">追蹤</span>
@@ -585,7 +585,7 @@ html {
                     </a>
                 </li>
                 <li id="reviewer-navi-follower" class="reviewer-navi__item reviewer-navi__item--follower">
-                    <a class="reviewer-navi__target" href="${contextRoot}/follower">
+                    <a class="reviewer-navi__target" href="${contextRoot}/relationships/fans">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">22157</span>
                             <span class="reviewer-navi__menu">追隨者</span>

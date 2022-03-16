@@ -24,11 +24,6 @@
         .menu7{
         line-height:0px;
         }
-        
-        .reviewer-navi.reviewer-navi--l .reviewer-navi__item.is-selected.is-selected.is-selected .reviewer-navi__target::after{
-            width: 92%;
-            margin-left: -46%;
-        }
 
         .reviewer-navi__item.is-selected.is-selected.is-selected .reviewer-navi__target::after{
             position: absolute;
@@ -163,9 +158,9 @@
                         <div id="js-reviewer-image-display">
                             <img src="<c:url value='/getPhoto/${memberPage.id}' />" width="120" height="120">
                         </div>
-                            <a class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;" href="#">
-                            <button class="c-btn c-btn--s reviewer-image-box__reimage-btn">變更</button>
-                            </a>
+<!--                             <a class="reviewer-image-box__reimage js-change-prof-image js-upload-icon-change" id="hoverrr" style="display: none;" href="#"> -->
+<!--                             <button class="c-btn c-btn--s reviewer-image-box__reimage-btn">變更</button> -->
+<!--                             </a> -->
                     </div>
                 </div>
             </div>
@@ -265,7 +260,7 @@
                     </a>
                 </li>
                 <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerIttaomise">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">1478</span>
                             <span class="reviewer-navi__menu">拜訪店家</span>
@@ -273,7 +268,7 @@
                     </a>
                 </li>
                 <li id="reviewer-navi-interest" class="reviewer-navi__item reviewer-navi__item--interest">
-                    <a class="reviewer-navi__target" href="#">
+                    <a class="reviewer-navi__target" href="${contextRoot}/reviewerKoromi">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count">156</span>
                             <span class="reviewer-navi__menu">喜愛店家</span>
