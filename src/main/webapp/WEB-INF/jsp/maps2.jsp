@@ -321,6 +321,11 @@ body {
 .display {
 	display: none;
 }
+.imgsize{
+
+
+width: 230px; height: 220px
+}
 
 </style>
 
@@ -396,7 +401,7 @@ body {
 								<a
 									href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id}"><img
 									id="img" src="<c:url value='/getPicture/${maps.id}'/>"
-									style="width: 230px; height: 220px" class="card-img-top"
+									 class="card-img-top imgsize"
 									alt="..."></a>
 								<div id="box" class="card-body">
 									<h3 id="p" class="card-title"
@@ -778,7 +783,7 @@ if (code == 13) { //Enter keycode
 						var image = value.uploadPicture
 						var ok = image.split('.').pop()
 						console.log(ok)
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"><img id="img"  src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>" style="width: 230px; height: 220px" class="card-img-top" alt="..."></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"><img id="img"  src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>"  class="card-img-top imgsize" alt="..."></a>'
 						msg_data+= '<div id="box" class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
