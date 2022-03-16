@@ -14,8 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.OldFoodManBean;
-
+import com.oldFoodMan.demo.model.TestOFM;
 import com.oldFoodMan.demo.service.OfmService;
+import com.oldFoodMan.demo.service.TestOfmService;
 
 
 @Controller
@@ -25,8 +26,18 @@ public class PageController_32 {
 	
 	@Autowired
 	private OfmService serviceOfm;
+	
+	@Autowired
+	private TestOfmService tservice;
+	
+	@GetMapping("/analyzeVis")
+	public ModelAndView ajaxPage(ModelAndView mav) {
 
+		mav.setViewName("/vis_group_jsp/analyzeVis");
 
+		return mav;
+	}
+	
 	@GetMapping("/addFoodVis")
 	public ModelAndView addFoodVisPage(ModelAndView mav,HttpSession hs) {
 		
@@ -75,5 +86,16 @@ public class PageController_32 {
 		return mav;
 	}
 	
+	@ResponseBody
+	@GetMapping("/api/viewAllAnalyze")
+	public List<TestOFM> viewAllVisPageAnalyze() {
+		
+		List<TestOFM>list  =tservice.findAllAndMember();
+
+		System.out.println("想看看有啥: "+list);
+		
+
+		return list;
+	}
 
 }

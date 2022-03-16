@@ -77,6 +77,11 @@ public class TestOfmService {
 		return ofmforfull;
 	}
 	
-	
+	public List<TestOFM> findAllAndMember() {
+
+		List<TestOFM> ofmfull = dao.findAllAndMember();
+		
+		return ofmfull;
+	}
 
 }

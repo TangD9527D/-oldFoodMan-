@@ -30,6 +30,7 @@ body {
 	width: 400px;
 	height: 865px;
 	background-color: #fcfcff;
+	display: inline-block;
 }
 
 .card, .cardbody {
