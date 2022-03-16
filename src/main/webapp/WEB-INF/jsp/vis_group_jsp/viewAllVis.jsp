@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="layout/navbar.jsp" />
+<jsp:include page="../backStage/model.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,15 +15,25 @@
 
 
 <link rel="stylesheet" type="text/css" href="${contextRoot}/css/jquery.dataTables.min.css">
+<style>
+.bsize{
+	height: 865px;
+	width: 1200px;
+	border: 3px solid red;
+	float: right;
+	text-align: center;
 
+}
+
+</style>
 </head>
 <body>
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 	<script type="text/javascript" charset="utf8" src="${contextRoot}/js/jquery.dataTables.min.js"></script>
 
-	<div class="container">
-		<p />
+	<div class=" bsize">
+		
 
 		<h1>所有揪團eat</h1>
 		<table id="table_id" class="table table-hover" >

@@ -16,7 +16,7 @@
 
 <style>
 .allpage{
-	width:75%;
+	width:88%;
 
 	margin:10px auto;
 
@@ -101,6 +101,16 @@
 	margin-bottom:10px;
 }
 
+.titlehead{
+
+font-weight:bolder;
+font-size:30px;
+width:155px;
+float:right;
+
+background-color: pink;
+border-radius:20px;
+}
 
 #myadd{
 	width:90%;
@@ -127,7 +137,7 @@
 
 }
 
-#p1{
+.p1{
 	float:left;
 	margin:2px 2px;
 
@@ -424,7 +434,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 <body>
 <div class="allpage">
 	<div id="content">
-	<h3 class="header1 fw-bold font-weight-bold" ><i style="font-size:30px" class="fa-solid fa-utensils"></i> &nbsp;<span style="font-size:30px">揪團美食Eat</span></h3>
+	<h3 class="header1 fw-bold font-weight-bold " style="margin-bottom:2px;"><i style="font-size:30px" class="fa-solid fa-utensils"></i> &nbsp;<span style="font-size:30px">揪團美食Eat</span></h3>
 	<hr>
 	<article class="article">
 <!-- 	<button type="button" id="star" onclick="">test</button> -->
@@ -565,7 +575,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 <section class="section">
 <!-- <div class="viewtable"> -->
 
-		<button type="button"  class="btn btn  btn-lg btnadd" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData"><i class="fa-solid fa-circle-plus"></i> 新增揪團</button>
+		<div><button type="button"  class="btn btn  btn-lg btnadd" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData"><i class="fa-solid fa-circle-plus"></i> 新增揪團</button> <span class="titlehead">&nbsp;&nbsp;所有揪團</span></div>
 		<p>
 		<c:forEach var="viewallvis" items="${page.content}">
 		<div id="table_id" class="card text-center">
@@ -959,7 +969,7 @@ var tdate=new Date();
 				var msg_data='';
 				$.each(result,function(index,value){
 					
-						msg_data+= '<div id="p1" class="card" style="width: 4.6cm;">'
+						msg_data+= '<div id="p'+value.vis_id+'" class="card p1" style="width: 4.6cm;">'
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +' " ><h3 id="pp" class="card-title tp2" style="background-color: #faf0e6; font-size:21px ;text-align: center">'+ value.vis_res_name +'</h3></a>'
 						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  + '</h5>'
@@ -1005,7 +1015,7 @@ var tdate=new Date();
 				var msg_data='';
 				$.each(result,function(index,value){
 					
-						msg_data+= '<div id="p1" class="card" style="width: 4.6cm;">'
+						msg_data+= '<div id="p'+value.vis_id+'" class="card p1" style="width: 4.6cm;">'
 					
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp1" style="background-color: #faebd7;font-size:21px ; text-align: center"; >'+ value.vis_res_name +'</h3></a>'
@@ -1274,7 +1284,7 @@ var tdate=new Date();
 					    icon:'success'
 					       
 					    }).then((result) => {
-							location.reload();
+					    	$('#p'+id+'').remove();
 						})
 					    
 					  }else{
@@ -1311,7 +1321,9 @@ var tdate=new Date();
 					    icon:'success'
 					       
 					    }).then((result) => {
-							location.reload();
+// 							location.reload();
+							$('#p'+id+'').remove();
+							
 						})
 					    
 					  }else{

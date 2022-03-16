@@ -213,7 +213,7 @@ public class FoodVisController_32 {
 	public List<TestOFM> getFoodVis(ModelAndView mav){
 		
 		List<TestOFM> listall =testservice.findAllNoMemberID();
-		System.out.println();
+
 		
 		
 		return listall;
