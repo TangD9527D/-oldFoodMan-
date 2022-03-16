@@ -21,4 +21,5 @@ public class CouponService {
 	public List<Coupon> findByCouponId(int couponId){
 		return dao.findByCouponId(couponId);
 	}
+	
 }

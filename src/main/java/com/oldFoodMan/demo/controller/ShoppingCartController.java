@@ -222,6 +222,7 @@ public class ShoppingCartController {
 	public String confirmBuy(@RequestBody String jsonPara, HttpSession session) throws MessagingException {
 		Member member = (Member) session.getAttribute("member");
 		Integer memberId = member.getId();
+		String email = member.getAccount();
 		  //使用JSONArrayt處理json字符串
 		JSONArray jsonArr = new JSONArray(jsonPara);
 		String productId = "";
@@ -325,7 +326,7 @@ public class ShoppingCartController {
 		
 	        
 			//寄出
-			mailUtils.sendHtmlMail("c7416706@gmail.com","老食人餐券",
+			mailUtils.sendHtmlMail(email,"老食人餐券",
 	                "<div style=\"text-align: center;position: absolute;\" >\n"
 	                        + "<h1>\"感謝您訂購老食人餐券\"</h1>\n"
 	                		+ "<img src=\"https://img.ruten.com.tw/s2/0/ef/d8/22020560000984_673.jpg\"/>\n"
