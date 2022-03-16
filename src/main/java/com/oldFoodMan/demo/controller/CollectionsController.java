@@ -68,6 +68,47 @@ public class CollectionsController {
 			
 	}
 	
+//	@ResponseBody
+	@GetMapping("/findAllCollections")
+	public ModelAndView findAllCollections(ModelAndView mav){
+		mav.setViewName("/findAllCollections");
+		
+		List<Collections> list=service.findAllCollections();
+		
+		System.out.println("list歷史特:" + list );
+		
+		mav.getModel().put("list", list);
+		
+		
+		
+		return mav ;
+			
+	}
+	
+	
+	@ResponseBody
+	@GetMapping("/chartsAllCollections")
+	public List<Collections> chartsAllCollections(){
+		
+		List<Collections> list=service.findAllCollections();
+		
+		System.out.println("都看看是誰" + list);
+		
+		return list; 
+		
+	}
+	
+	
+	@GetMapping("/chartBiao")
+	public ModelAndView AjaxAllCollections(ModelAndView mav) {
+		
+	
+		mav.setViewName("backStageAllCollections");
+		
+		return mav ;
+		
+	}
+	
 	
 
 }

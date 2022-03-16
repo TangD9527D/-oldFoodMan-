@@ -226,7 +226,7 @@ body {
 #p2 {
 	float: left;
 	margin-top: 25px;
-	margin-left: 8%;
+	margin-left: 7%;
 	/* 	justify-content: space-between; */
 	width: 100%;
 	/* 	background-image: */
@@ -284,11 +284,8 @@ body {
 	border: 5px solid #FDE4DE;
 	float: right;
 	width: 14%;
-<<<<<<< HEAD
-/* 	height: 50%; */
-=======
 	/* 	height: 50%; */
->>>>>>> a2cb00d23118c800c717fa126ad1a6110d206b0f
+	/* 	height: 50%; */
 	margin: 50px auto;
 	border-radius: 15px;
 }
@@ -324,12 +321,15 @@ body {
 .display {
 	display: none;
 }
+
 </style>
 
 
 </head>
 <body>
+	
 
+		
 	<div id="location">
 		<h4 style="text-align: center; padding-top: 20px">
 			收藏的地點<i class="fa-regular fa-star"></i>
@@ -392,10 +392,12 @@ body {
 				<div id="xxx">
 					<div id="range" class="">
 						<c:forEach var="maps" items="${page.content}">
-							<div class="card" id="p2" style="width: 8cm;">
-								<img id="img" src="<c:url value='/getPicture/${maps.id}'/>"
-									style="width: 250px; height: 220px" class="card-img-top"
-									alt="...">
+							<div class="card col-3" id="p2">
+								<a
+									href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id}"><img
+									id="img" src="<c:url value='/getPicture/${maps.id}'/>"
+									style="width: 230px; height: 220px" class="card-img-top"
+									alt="..."></a>
 								<div id="box" class="card-body">
 									<h3 id="p" class="card-title"
 										style="background-color: #FDE4DE; text-align: center">${maps.title}</h3>
@@ -447,6 +449,10 @@ body {
 
 			<!-- 			</div> -->
 		</div>
+
+		
+		<button type="button" class="btn btn-dark" data-toggle="modal"
+							data-target="#exampleModalMaps">新增帳號</button>
 
 	</div>
 
@@ -765,14 +771,14 @@ if (code == 13) { //Enter keycode
 							console.log(result)
 							
 				$.each(result,function(index,value){
-						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
+						msg_data+= '<div id="p1" class="card col-3" >'
 //  					msg_data+= '<img id="img" src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						console.log(value.uploadPicture)
 						console.log(value.create_at)
 						var image = value.uploadPicture
 						var ok = image.split('.').pop()
 						console.log(ok)
-						msg_data+= '<img id="img" src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>" style="width: 250px; height: 220px" class="card-img-top" alt="...">'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"><img id="img"  src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>" style="width: 230px; height: 220px" class="card-img-top" alt="..."></a>'
 						msg_data+= '<div id="box" class="card-body">'		
 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
@@ -782,7 +788,7 @@ if (code == 13) { //Enter keycode
 						})
 						
 						let strObj=new String(["您所搜尋有關於 [ "]);
-						let strObj1=new String(["  ] 的食記"]);
+						let strObj1=new String(["  ] 的食記,"]);
 						$('#rangetype').append(strObj +inputResName + strObj1 )
 						$('#range1').append(msg_data)
 

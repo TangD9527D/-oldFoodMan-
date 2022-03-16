@@ -101,4 +101,17 @@ public class CollectionsService {
 		
 	}
 	
+	public List<Collections> findAllCollections(){
+		
+		
+		List<Collections> list=clotdao.findAll();
+				
+		System.out.println("list歷史特"+list);
+		
+		return list ;
+		
+		
+		
+	}
+	
 }
