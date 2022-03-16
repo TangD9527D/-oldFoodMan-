@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<jsp:include page="menu.jsp" />
+<jsp:include page="backStage/model.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,8 +16,19 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+	<style>
+		.body77 {
+			height: 865px;
+			width: 1200px;
+			border: 3px solid red;
+			float: right;
+			text-align: center;
+		}
+</style>
+	
 </head>
 <body>
+	<div id="body77">
 	<p>
 	<div class="container">
 	<p>
@@ -161,7 +172,7 @@
 		<table id="tableAjax" class="table table-striped table-bordered" style="width:100%"></table>
 		<img src=""/>
 	</div>
-	
+</div>
 	<script>
 		$(document).ready( function () {
 			var table = $('#tableAjax').DataTable({

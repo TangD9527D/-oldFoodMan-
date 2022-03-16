@@ -98,8 +98,9 @@ body {
 					data-parent="#accordionExample">
 					<div class="card-body">
 						<div class="list-group">
+						<a href="${contextRoot}/productsBackStagePage">
 							<button type="button"
-								class="list-group-item list-group-item-action">商城編輯</button>
+								class="list-group-item list-group-item-action">商城編輯</button></a>
 							<button type="button"
 								class="list-group-item list-group-item-action">商城數據分析</button>
 						</div>
