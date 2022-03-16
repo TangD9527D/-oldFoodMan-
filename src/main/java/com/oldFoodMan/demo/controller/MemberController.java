@@ -125,18 +125,27 @@ public class MemberController {
 		return b;
 	}
 	
-	@PostMapping("/backStage/account")
+	@GetMapping("/backStage/account")
 	public ModelAndView findAllAccount(ModelAndView mav) {
 		
 		mav.setViewName("backStage/account");
 		
 		List<Member> member = service.getAllmember();
 		
-		System.out.println("777777");
+		System.out.println("78979879877897987989879889" + member);
 		
 		mav.getModel().put("mb", member);
 		
 		return mav;
 		
+	}
+	
+	@ResponseBody
+	@PostMapping("/backStage/mbrDelete/{id}")
+	public String deleteMember(@PathVariable(name = "id") int mbrId) {
+		
+		service.delete(mbrId);
+		
+		return "success";
 	}
 }

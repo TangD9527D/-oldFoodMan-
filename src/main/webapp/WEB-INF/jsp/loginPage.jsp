@@ -13,9 +13,9 @@
 <link rel="shortcut icon" type="image/png" href="css/1647002131.ico">
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Norican&family=Sriracha&display=swap" rel="stylesheet">
+<title>Insert title here</title>
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
 <script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
-<title>Insert title here</title>
 <style>
 body {
 	background-color: #fbf3f3;
@@ -160,7 +160,6 @@ body {
 }
 
 </style>
-
 </head>
 
 <body>
@@ -269,7 +268,7 @@ body {
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">關閉</button>
-								<button type="submit" type="submit" class="btn btn-primary"
+								<button type="button" class="btn btn-primary"
 									data-dismiss="modal" id="newMbr">送出</button>
 							</div>
 						</form>
@@ -346,11 +345,13 @@ body {
 	<script>
 		$(document).on('click', '#newMbr', function() {
 
-			var memberName = document.getElementById('newName').value;
-			var account = document.getElementById('newAccount').value;
-			var memberPwd = document.getElementById('newPwd').value;
-			var nickName = document.getElementById('newNickName').value;
-			var birth = document.getElementById('birth').value;
+			var memberName =  $("#newName").val();
+			var account =  $("#newAccount").val();
+			var memberPwd =  $("#newPwd").val();
+			var nickName =  $("#newNickName").val();
+			var birth =  $("#birth").val();
+
+			console.log(memberName + account + memberPwd + nickName +birth);
 
 			var Object = {
 				"memberName" : memberName,

@@ -87,10 +87,10 @@ public class Member implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
 	private Set<UserRole> userRole = new LinkedHashSet<UserRole>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "memberId")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "memberId", cascade = CascadeType.ALL)
 	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id", cascade = CascadeType.ALL)
 	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
 	
 
@@ -101,15 +101,15 @@ public class Member implements Serializable {
 //	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 //	private Set<OldFoodManBean> ofmid = new LinkedHashSet<OldFoodManBean>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id", cascade = CascadeType.ALL)
 	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
 	
 	
 	//Lemon
-	@OneToOne(mappedBy = "member")
+	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
 	private ReviewerSetting reviewersetting;
 	//Eddie
-	@OneToMany(fetch = FetchType.LAZY,mappedBy ="member_id")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy ="member_id", cascade = CascadeType.ALL)
 	private Set<Collections> collections =new LinkedHashSet<Collections>();
 	
 	public Member() {
