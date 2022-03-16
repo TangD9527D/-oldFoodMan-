@@ -76,6 +76,16 @@ public class PageController_foodRecord {
 			return mav;
 		}
 		
+	//食記分析page
+		@GetMapping("/RecordAnalysis")   //查詢全部的轉頁(第1頁)controler
+		public ModelAndView RecordAnalysis(ModelAndView mav) {		
+			mav.setViewName("record/RecordAnalysis");
+			List<FoodRecord> type = service.typeFilter();
+			System.out.println("type ="+type);
+			mav.getModel().put("type", type);
+			return mav;
+		}
+		
 	//看剛寫好的食記
 	@GetMapping("/theLastestRecord")
 	public ModelAndView theLastestRecord(ModelAndView mav) {
