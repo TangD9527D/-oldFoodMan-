@@ -38,6 +38,7 @@ public class RecordMessagesController {
 		@ResponseBody   //因為是要回傳json所以要用@ResopnseBody (ModelAndView 是回傳一個View)
 		@PostMapping("/api/postMessage")		
 		public List<RecordMessages> postMessageApi(@RequestBody RecordMessageDto dto,HttpSession session){  //@RequestBody RecordMessageDto 請求的本體(送進來的) ；List<RecordMessages>回傳回去的
+			
 			RecordMessages foodMsg = new RecordMessages();   //因為是新增資料，所以需要new
 			String text = dto.getMsg();     //從dto拿到值，這是一個String的text	
 			foodMsg.setText(text);    //然後把text送給foodMsg	
