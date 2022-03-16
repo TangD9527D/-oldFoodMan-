@@ -29,7 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.Collections;
-import com.oldFoodMan.demo.model.FoodRecord;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.ScheduleBean;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
@@ -95,16 +94,12 @@ public class ReviewerSettingController {
 	
 	@GetMapping("/reviewerAll")
 	public String reviewerAll(Model model,HttpSession hs) {
-//		Member memberData = (Member)hs.getAttribute("member");
 		List<Member> list = memberService.getAllmember();
 		model.addAttribute("members",list);
 		return "/lemon/reviewerAll";
 	}
 
 
-
-
-	
 	@GetMapping("/reviewerMainPage")
 	public ModelAndView reviewerMainPage(ModelAndView mav,HttpSession hs) {
 		Member memberData = (Member)hs.getAttribute("member");
@@ -157,12 +152,6 @@ public class ReviewerSettingController {
 		
 		return mav;
 	}
-	
-	@GetMapping("/reviewerIttaomise")
-	public String reviewerIttaomise(){
-		return "/lemon/reviewerIttaomise";
-	}
-	
 	
 	@PostMapping(value="/setReviewerPage")
 	public ModelAndView postSetting(ModelAndView mav,@ModelAttribute ReviewerSetting rvwrs) {
