@@ -52,7 +52,7 @@ $(document).ready(function drawLineChart() {
         for(var sensorRecord in results)
         {
             labels.push(new Date(results[sensorRecord].vis_date).formatMMDDYYYY());
-            data.push(results[sensorRecord].member_id);
+            data.push(results[sensorRecord].vis_num);
         }
 
         // 設定圖表的資料
@@ -88,7 +88,7 @@ $(document).ready(function drawLineChart() {
         ctx.height=9;                                  
         // 初始化一個新的雷達圖
         var myLineChart = new Chart(ctx, {
-            type: 'line', 
+            type: 'pie', 
             data: tempData,
             options: {
                 maintainAspectRatio: true,
