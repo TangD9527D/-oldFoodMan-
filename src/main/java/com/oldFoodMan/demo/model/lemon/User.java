@@ -24,7 +24,7 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String member_id;
+	private Integer member_id;
 	private Integer follow_size=0;
 	private Integer fan_size=0;
 	@Transient
@@ -41,11 +41,11 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getMember_id() {
+	public Integer getMember_id() {
 		return member_id;
 	}
 
-	public void setMember_id(String member_id) {
+	public void setMember_id(Integer member_id) {
 		this.member_id = member_id;
 	}
 

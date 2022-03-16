@@ -44,6 +44,7 @@ import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.service.ScheduleService;
 import com.oldFoodMan.demo.service.lemon.ReviewerFoodRecordService;
 import com.oldFoodMan.demo.service.lemon.ReviewerSettingService;
+import com.oldFoodMan.demo.service.lemon.UserService;
 
 @Controller
 public class ReviewerSettingController {
@@ -57,12 +58,18 @@ public class ReviewerSettingController {
 		this.servletContext = servletContext;
 	}
 	
+	
+	@Autowired
+	private UserService userService;
+	
 	@Autowired
 	private ReviewerFoodRecordService reviewerFoodRecordService;
 	
-	@Autowired UserRepository userRepository;
+	@Autowired
+	UserRepository userRepository;
 	
-	@Autowired RelationshipRepository relationshipRepository;
+	@Autowired
+	RelationshipRepository relationshipRepository;
 	
 	@Autowired
 	private ReviewerSettingRepository rsr;
@@ -141,7 +148,7 @@ public class ReviewerSettingController {
 		mav.getModel().put("countAll", countAll);
 		
 		//追蹤 粉絲
-		User user = userRepository.findByMember(memberId);
+		User user = userService.findByMember(memberId);
 		Integer follows = relationshipRepository.countByFromUserId(memberId);
 		user.setFollow_size(follows);
 		Integer fans = relationshipRepository.countByToUserId(memberId);
