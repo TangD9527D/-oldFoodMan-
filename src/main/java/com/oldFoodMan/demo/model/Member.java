@@ -27,6 +27,7 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
 
 
@@ -42,31 +43,38 @@ public class Member implements Serializable {
 	private Integer id;
 
 	@Column(name = "memberName")
+	@JsonProperty(value = "memberName")
 	private String memberName;
 	
 	@Column(name = "phone")
+	@JsonProperty(value = "phone")
 	private String phone; 
 	
 //	@Email(message = "帳號必須為電子信箱格式")
 	@NotBlank(message = "帳號不可為空")
 	@Column(name = "account")
+	@JsonProperty(value = "account")
 	private String account;
 	
 	@NotBlank(message = "密碼不可為空")
 //	@Pattern(regexp = "^(?=.*[a-z])(?=.*[0-9])[a-zA-Z]{1}[a-zA-Z0-9]{5,15}$", 
 //	 		 message = "密碼必須為6至16位英文及數字組成且首位字元為英文。")
 	@Column(name = "memberPwd")
+	@JsonProperty(value = "memberPwd")
 	private String memberPwd;
 	
 	@Column(name = "nickName")
+	@JsonProperty(value = "nickName")
 	private String nickName;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd") //給爪哇看
 	@Temporal(TemporalType.DATE)  //對應資料庫
 	@Column(name = "birth")
+	@JsonProperty(value = "birth")
 	private Date birth;
 	
 	@Column(name = "city")
+	@JsonProperty(value = "city")
 	private String city;
 	
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
@@ -84,32 +92,32 @@ public class Member implements Serializable {
 	@Transient
 	private MultipartFile MemberImage;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userId", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userId",cascade = CascadeType.ALL)
 	private Set<UserRole> userRole = new LinkedHashSet<UserRole>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "memberId", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "memberId",cascade = CascadeType.ALL)
 	private Set<ShoppingCart> shoppingCart = new LinkedHashSet<ShoppingCart>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
 	private Set<FoodRecord> foodRecord = new LinkedHashSet<FoodRecord>();
 	
 
 	
-	@ManyToMany(mappedBy = "membervis")
+	@ManyToMany(mappedBy = "membervis",cascade = CascadeType.ALL)
 	private Set<OldFoodManBean> ofm = new LinkedHashSet<OldFoodManBean>();
 	
 //	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id")
 //	private Set<OldFoodManBean> ofmid = new LinkedHashSet<OldFoodManBean>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "member_id",cascade = CascadeType.ALL)
 	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
 	
 	
 	//Lemon
-	@OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "member",cascade = CascadeType.ALL)
 	private ReviewerSetting reviewersetting;
 	//Eddie
-	@OneToMany(fetch = FetchType.LAZY,mappedBy ="member_id", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY,mappedBy ="member_id",cascade = CascadeType.ALL)
 	private Set<Collections> collections =new LinkedHashSet<Collections>();
 	
 	public Member() {

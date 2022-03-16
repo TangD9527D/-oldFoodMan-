@@ -192,11 +192,13 @@ body {
 					<div class="formLogin">
 						<div style="font-size: large; text-align: left;">&emsp;&emsp;信箱*</div>
 						<input type="text" id="account" name="account"> <span>&nbsp;</span>
+						<form:errors path="account" />
 					</div>
 					<br>
 					<div class="formLogin">
 						<div style="font-size: large; text-align: left;">&emsp;&emsp;密碼*</div>
 						<input type="password" id="pwd" name="password"> <span>&nbsp;</span>
+						<form:errors path="password" />
 					</div>
 					<!-- /login?error=true -->
 					<c:if test="${param.error == 'true'}">
@@ -237,7 +239,6 @@ body {
 						</button>
 					</div>
 					<div class="modal-body">
-						<form class="form">
 							<p></p>
 							<div class="newPwd_13">
 								<label class="la2">姓名:&nbsp;</label> <input type="text"
@@ -271,7 +272,6 @@ body {
 								<button type="button" class="btn btn-primary"
 									data-dismiss="modal" id="newMbr">送出</button>
 							</div>
-						</form>
 					</div>
 				</div>
 			</div>
@@ -289,7 +289,6 @@ body {
 						</button>
 					</div>
 					<div class="modal-body" id="emailBody">
-						<form id="form1">
 							<div style="text-align: center;">
 								<img src="${contextRoot}/css/search.png" style="height: 200px; width: 200px;">
 							</div>
@@ -299,7 +298,6 @@ body {
 							<span>&nbsp;</span><br>
 							<br>
 							<div style="text-align: center;"><button type="button" id="btn77" class="btn btn-primary">送出</button></div>
-						</form>
 					</div>
 				</div>
 			</div>
@@ -413,6 +411,7 @@ body {
 		$.ajax({
 			method:"post",
 			url:"http://localhost:8080/oldFoodMan/mail/" + email,
+			contentType: "application/json; charset=UTF-8",
 			success:function(){
 				$("#emailBody").append("<div style='text-align: center;'>" + 
 							"<div><img src='${contextRoot}/css/forgot.jpg' style='height: 200px; width: 200px;'></div>" +
