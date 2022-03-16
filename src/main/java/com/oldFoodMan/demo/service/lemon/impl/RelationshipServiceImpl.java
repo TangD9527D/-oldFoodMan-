@@ -30,18 +30,12 @@ public class RelationshipServiceImpl implements RelationshipService {
 	public void saveRelationship(Relationship relationship) {
 		//添加關注
 		relationshipRepository.save(relationship);
-		//更新關注數和粉絲數
-//		updateFollowSize(relationship.getFromUserId());
-//		updateFanSize(relationship.getToUserId());
 	}
 
 	@Override
 	public void removerRelationship(Relationship relationship) {
 		//刪除關係
 		relationshipRepository.delete(relationship);
-		//更新數量
-//		updateFollowSize(relationship.getFromUserId());
-//		updateFanSize(relationship.getToUserId());
 	}
 
 	@Override

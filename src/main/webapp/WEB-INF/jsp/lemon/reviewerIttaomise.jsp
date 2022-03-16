@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+<jsp:include page="../menu.jsp" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +20,10 @@
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base">
     <script src="/js/jquery-3.6.0.min.js"></script>
     <style>
+
+		.menu7{
+        	line-height:0px;
+        }
 
         .reviewer-navi__item.reviewer-navi__item--review.is-selected .reviewer-navi__target::after{
             position: absolute;
