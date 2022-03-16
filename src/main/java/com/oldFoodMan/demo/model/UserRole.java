@@ -18,12 +18,12 @@ import javax.persistence.Table;
 public class UserRole implements Serializable {
 	
 	@Id
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID")
 	private Member userId;
 	
 	@Id
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ROLE_ID")
 	private Role role_id;
 

@@ -14,13 +14,15 @@
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <!-- DataTables CSS -->
 <link rel="stylesheet" type="text/css"
-href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+	href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
 <!-- jQuery -->
-<script type="text/javascript" charset="utf8" src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+	
 </script>
 <!-- DataTables -->
 <script type="text/javascript" charset="utf8"
-src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+	src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 <style>
 * {
 	margin: 0;
@@ -46,7 +48,7 @@ body {
 	color: black;
 }
 
-.card-header{
+.card-header {
 	border-bottom: solid 3px black;
 }
 
@@ -54,11 +56,11 @@ body {
 	color: black;
 }
 
-.list-group-item{
+.list-group-item {
 	font-weight: 700;
 }
 
-.body77{
+.body77 {
 	height: 865px;
 	width: 1200px;
 	border: 3px solid red;
@@ -81,9 +83,9 @@ body {
 		</a>
 	</nav>
 	<div class="body77">
-		<div class="">
-			<table id="account7" class="table table-striped table-dark" style="width:100%">
-				<thead>
+			<table id="account7" class="table"
+				style="width: 100%">
+				<thead class="thead-dark">
 					<tr>
 						<th>會員姓名</th>
 						<th>電話</th>
@@ -91,23 +93,24 @@ body {
 						<th>暱稱</th>
 						<th>城市</th>
 						<th>創辦日期</th>
+						<th>修改/刪除</th>
 					</tr>
 				</thead>
 				<c:forEach items="${mb}" var="member">
 
-				<tr>
-					<td>${member.memberName}</td>
-					<td>${member.phone}</td>
-					<td>${member.account}</td>
-					<td>${member.nickName}</td>
-					<td>${member.city}</td>
-					<td>${member.createDate}</td>
-				</tr>
+					<tr>
+						<td>${member.memberName}</td>
+						<td>${member.phone}</td>
+						<td>${member.account}</td>
+						<td>${member.nickName}</td>
+						<td>${member.city}</td>
+						<td>${member.createDate}</td>
+						<td><button type="button" class="btn btn-danger" id="deleteMbr" value="${member.id}">刪除</button></td>
+					</tr>
 
 				</c:forEach>
 			</table>
 		</div>
-	</div>
 	<div class="leftSideMenu">
 		<div class="accordion" id="accordionExample">
 			<div class="card">
@@ -219,36 +222,57 @@ body {
 			</div>
 		</div>
 	</div>
-<script>
-	$(document).ready(function () {
+	<script>
+		
+		//table
+		$(document).ready(function() {
 
-		$('#account7').DataTable({
-			"lengthMenu": [10, 20],
-			"language": {
-				"processing": "處理中...",
-				"loadingRecords": "載入中...",
-				"lengthMenu": "顯示 _MENU_ 項結果",
-				"zeroRecords": "沒有符合的結果",
-				"info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-				"infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-				"infoFiltered": "(從 _MAX_ 項結果中過濾)",
-				"infoPostFix": "",
-				"search": "搜尋:",
-				"paginate": {
-					"first": "第一頁",
-					"previous": "上一頁",
-					"next": "下一頁",
-					"last": "最後一頁"
-				},
-				"aria": {
-					"sortAscending": ": 升冪排列",
-					"sortDescending": ": 降冪排列"
+			$('#account7').DataTable({
+				"lengthMenu" : [ 10, 20 ],
+				"language" : {
+					"processing" : "處理中...",
+					"loadingRecords" : "載入中...",
+					"lengthMenu" : "顯示 _MENU_ 項結果",
+					"zeroRecords" : "沒有符合的結果",
+					"info" : "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+					"infoEmpty" : "顯示第 0 至 0 項結果，共 0 項",
+					"infoFiltered" : "(從 _MAX_ 項結果中過濾)",
+					"infoPostFix" : "",
+					"search" : "搜尋:",
+					"paginate" : {
+						"first" : "第一頁",
+						"previous" : "上一頁",
+						"next" : "下一頁",
+						"last" : "最後一頁"
+					},
+					"aria" : {
+						"sortAscending" : ": 升冪排列",
+						"sortDescending" : ": 降冪排列"
+					}
 				}
+			});
+		})
+		
+		//刪除
+		$(document).on('click', '#deleteMbr', function(){  //用一般的.click會有氣泡事件問題
+			if(confirm("確認要刪除嗎?")){
+				alert("已經刪除！");
+			}else{
+				alert("已經取消刪除!");
+				return;
 			}
-		});
-	})
-</script>
-	
+			var id = $(this).attr("value");
+			dtRow = $(this).closest('tr');
+			$.ajax({
+				type : "post",
+				url : "http://localhost:8080/oldFoodMan/backStage/mbrDelete/" + id,
+				success : function(result) {
+					$("#account7").DataTable().row(dtRow).remove().draw(false);
+				},
+			});
+		})
+	</script>
+
 </body>
 
 </html>

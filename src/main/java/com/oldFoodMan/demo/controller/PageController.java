@@ -8,19 +8,6 @@ import com.oldFoodMan.demo.model.Member;
 
 @Controller
 public class PageController {
-
-	@GetMapping("/newAccount")
-	public ModelAndView newAccount(ModelAndView mav) {
-
-		mav.setViewName("member/newMember");
-
-		Member mb = new Member();
-
-		mav.getModel().put("member", mb);
-
-		return mav;
-	}
-
 	
 	@GetMapping("/forgotMail")
 	public String forgotMail() {
@@ -36,11 +23,5 @@ public class PageController {
 	public String frame2() {
 		return "frame2";
 	}
-	
-	@GetMapping("/backStage/account")
-	public String index() {
-		return "backStage/account";
-	}
-	
 	
 }
