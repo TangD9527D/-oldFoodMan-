@@ -29,4 +29,9 @@ public class OrderFormService {
 	public int findCount(int memberId) {
 		return orderDao.findCount(memberId);
 	}
+	
+	public List<OrderForm> searchByTimeOrMoney(String inputVal, int memberId){
+		return orderDao.searchOrder(inputVal, memberId);
+	}
+	
 }

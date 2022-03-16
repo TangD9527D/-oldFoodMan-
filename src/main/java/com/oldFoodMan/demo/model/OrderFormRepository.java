@@ -17,4 +17,7 @@ public interface OrderFormRepository extends JpaRepository<OrderForm, Integer> {
 	@Query(value = "SELECT COUNT(orderMemberId) FROM orderform where orderMemberId = :orderMemberId",nativeQuery = true)
 	public int findCount(@Param(value = "orderMemberId") int orderMemberId);
 	
+	@Query(value = "Select *from orderform where (orderTotal LIKE %:inputVal% or orderTime LIKE %:inputVal%) and orderMemberId = :orderMemberId order by orderTime desc", nativeQuery = true)
+	public List<OrderForm> searchOrder(@Param(value = "inputVal") String inputVal, @Param(value = "orderMemberId") int orderMemberId);
+	
 }
