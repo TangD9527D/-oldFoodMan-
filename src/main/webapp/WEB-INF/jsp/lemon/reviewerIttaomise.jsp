@@ -927,11 +927,27 @@
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
                                     <select class="list-sidebar__select" name="Area" id="Area">
                                         <option selected="selected" value="0">全部縣市</option>
-                                        <option value="1">高雄市</option>
-                                        <option value="2">台南市</option>
-                                        <option value="3">宜蘭縣</option>
-                                        <option value="4">花蓮縣</option>
-                                        <option value="5">台北市</option>
+                                        <option value="1">台北市</option>
+                                        <option value="2">新北市</option>
+                                        <option value="3">桃園市</option>
+                                        <option value="4">台中市</option>
+                                        <option value="5">台南市</option>
+                                        <option value="6">高雄市</option>
+                                        <option value="7">宜蘭縣</option>
+                                        <option value="8">新竹縣</option>
+                                        <option value="9">苗栗縣</option>
+                                        <option value="10">彰化縣</option>
+                                        <option value="11">南投縣</option>
+                                        <option value="12">雲林縣</option>
+                                        <option value="13">嘉義縣</option>
+                                        <option value="14">屏東縣</option>
+                                        <option value="15">花蓮縣</option>
+                                        <option value="16">台東縣</option>
+                                        <option value="17">澎湖縣</option>
+                                        <option value="18">基隆市</option>
+                                        <option value="19">新竹市</option>
+                                        <option value="20">嘉義市</option>
+                                        
                                     </select>
                                 </label>
                             </div>    
@@ -948,12 +964,16 @@
                             <div class="select-wrap">
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
                                     <select class="list-sidebar__select" name="Genre">
-                                        <option selected="selected" value="0">酒精</option>
-                                        <option value="1">燒肉</option>
-                                        <option value="2">日本料理</option>
-                                        <option value="3">海產</option>
-                                        <option value="4">小吃</option>
-                                        <option value="5">咖啡</option>
+                                        <option selected="selected" value="0">全部種類</option>
+                                        <option value="1">火鍋</option>
+                                        <option value="2">燒烤</option>
+                                        <option value="3">日式</option>
+                                        <option value="4">美式</option>
+                                        <option value="5">泰式</option>
+                                        <option value="6">小吃</option>
+                                        <option value="7">餐酒館</option>
+                                        <option value="8">居酒屋</option>
+                                        <option value="9">早午餐</option>
                                     </select>
                                 </label>
                             </div>    
@@ -968,22 +988,20 @@
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
                                     <select class="list-sidebar__select" name="LstCos">
                                         <option selected="selected" value="0">無下限</option>
-                                        <option value="1">200</option>
-                                        <option value="2">500</option>
-                                        <option value="3">1000</option>
-                                        <option value="4">1500</option>
-                                        <option value="5">2000</option>
+                                        <option value="1">$0</option>
+                                        <option value="2">$500</option>
+                                        <option value="3">$1000</option>
+                                        <option value="4">$3000</option>
                                     </select>
                                 </label>
                                 <span class="list-sidebar__price-between">~</span>
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
                                     <select class="list-sidebar__select" name="LstCosT">
                                         <option selected="selected" value="0">無上限</option>
-                                        <option value="1">200</option>
-                                        <option value="2">500</option>
-                                        <option value="3">1000</option>
-                                        <option value="4">1500</option>
-                                        <option value="5">2000</option>
+                                        <option value="1">$500</option>
+                                        <option value="2">$1000</option>
+                                        <option value="3">$3000</option>
+                                        <option value="4">$3000~</option>
                                     </select>            
                                 </label>
                             </div>

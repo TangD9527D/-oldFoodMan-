@@ -56,6 +56,7 @@ public class ReviewerFoodRecordController {
 		List<FoodRecord> frds = foodRecordService.memFoodRecords(memberId);
 		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
 		Member memberBean = memberService.findById(memberId);
+		
 		mav.getModel().put("bdd", bdd);
 		mav.getModel().put("reviewerPage", reviewerBean);
 		mav.getModel().put("memberPage", memberBean);
