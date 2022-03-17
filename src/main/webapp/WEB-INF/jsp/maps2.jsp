@@ -471,6 +471,7 @@ size:25px;
 	<script>
 	 let map;
      let markers = [];
+     $(document).ready(
      function initAutocomplete() {
          map = new google.maps.Map(document.getElementById("map"), {
              center: { lat: 25.033943646794558, lng: 121.54341199736278 },//設立資展國際中心為地圖中心點
@@ -557,7 +558,7 @@ size:25px;
              });
              map.fitBounds(bounds);
          });
-     }
+     })
 
 
 
