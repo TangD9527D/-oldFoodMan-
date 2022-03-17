@@ -527,7 +527,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 						
 			<div class="form-group col-md-6">
 			
-				<label for="inputEmail4">日期</label> <input type="text" id="vis_date"
+				<label for="inputEmail4">日期</label> <input type="text" autocomplete="off" id="vis_date"
 					 class="form-control" required>
 
 			</div>
@@ -655,7 +655,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 					 class="form-control" required>
 					 
 				<input type="text" id="vis_dateedit"
-					 class="form-control" required>
+					 autocomplete="off" class="form-control" required>
 
 			</div>
 			<div class="form-group col-md-6">
@@ -1145,10 +1145,7 @@ var tdate=new Date();
 
 		})
 		
-		
-		
-		
-		
+
 	}
 	
 	function editsubmit() {
