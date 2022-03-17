@@ -15,26 +15,36 @@
 
 
 <link rel="stylesheet" type="text/css" href="${contextRoot}/css/jquery.dataTables.min.css">
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" type="text/css"
+	href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+<!-- jQuery -->
+	<script type="text/javascript" charset="utf8"
+	src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+	
+	</script>
+<!-- DataTables -->
+	<script type="text/javascript" charset="utf8"
+	src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 <style>
 .bsize{
-	height: 865px;
-	width: 1200px;
-	border: 3px solid red;
+	margin-top: 20px;
+	margin-right: 10px;
+	width: 1110px;
 	float: right;
 	text-align: center;
-
 }
 
 </style>
 </head>
 <body>
-	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" charset="utf8" src="${contextRoot}/js/jquery.dataTables.min.js"></script>
+	
 
 	<div class=" bsize">
 		
-
+	<div class="container">
 		<h1>所有揪團eat</h1>
 		<table id="table_id" class="table table-hover" >
 
@@ -109,7 +119,7 @@
 
 <!-- 			</div> -->
 <!-- 		</div> -->
-
+	</div>
 	</div>
 	
 			<script>
