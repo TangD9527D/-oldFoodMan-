@@ -87,7 +87,7 @@ public class FoodRecordController {
 		            media = toByteArray(filePath);
 		            filename = filePath;
 	    	 } 
-	}else {
+	      }else {
 		        media = toByteArray(filePath);
 		        filename = filePath;
 		  }
@@ -192,17 +192,24 @@ public class FoodRecordController {
 	public ModelAndView showPreviousRecord(ModelAndView mav, @RequestParam(name = "id") Integer id) {
 		FoodRecord msg = service.findById(id);
 		mav.getModel().put("foodrecord", msg);
+		System.out.println("顯示食記");
 		mav.setViewName("record/editData");	
 		return mav;
 	}
 	
 	//修改食記(更新食記)
-	@PostMapping("/editData")
-	public ModelAndView updateRecord(ModelAndView mav, @Valid @ModelAttribute(name="foodrecord") FoodRecord msg, BindingResult result) {	
+	@PostMapping(value = "/editData")
+	public ModelAndView updateRecord(ModelAndView mav, @Valid @ModelAttribute(name="foodrecord") FoodRecord msg, BindingResult result,HttpSession session) {	
 		mav.setViewName("record/editData");	
+		FoodRecord sessionRecordId = (FoodRecord)session.getAttribute("sessionRecordId"); //拿食記的Id
+		Integer RecordId = sessionRecordId.getId();
+		FoodRecord currentRecord = service.findById(RecordId);
+		System.out.println("目前的食記內容 "+currentRecord);
 		if(!result.hasErrors()) {
+			System.out.println("更新食記");
 			 service.insertRF(msg);
-			 mav.setViewName("redirect:/totalRecord");
+			 System.out.println("成功存入");
+			 mav.setViewName("redirect:/theLastestRecord");
 		}	
 		return mav;	
 	}
