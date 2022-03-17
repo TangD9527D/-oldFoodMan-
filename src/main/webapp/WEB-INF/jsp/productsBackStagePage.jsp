@@ -17,10 +17,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 	<style>
-		.body77 {
-			height: 865px;
-			width: 1200px;
-			border: 3px solid red;
+		.body88 {
+			margin-top: 20px;
+			margin-right: 10px;
+			width: 1110px;
 			float: right;
 			text-align: center;
 		}
@@ -28,9 +28,9 @@
 	
 </head>
 <body>
-	<div id="body77">
+	<div class="body88">
 	<p>
-	<div class="container">
+	<div class="container" style="float:right;margin-right:150px">
 	<p>
 	<!-- 新增對話框 -->
 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增產品</button>
@@ -172,6 +172,7 @@
 		<table id="tableAjax" class="table table-striped table-bordered" style="width:100%"></table>
 		<img src=""/>
 	</div>
+	
 </div>
 	<script>
 		$(document).ready( function () {

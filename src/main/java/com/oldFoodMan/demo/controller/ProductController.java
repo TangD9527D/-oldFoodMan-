@@ -200,4 +200,17 @@ public class ProductController {
 	}
 
 	
+	//-----------------------------------------------------以下為商城分析
+	
+	@GetMapping("/productsBackAnalytics")
+	public String searchProduct(){
+		return "productsBackAnalytics";
+	}
+	
+	@ResponseBody
+	@PostMapping("/productAnalytics")
+	public List<Product> productAnalytics(){
+		List<Product> pros = proService.findAll();
+		return pros;
+	}
 }

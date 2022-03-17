@@ -4,52 +4,80 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="../menu.jsp"/>
+<jsp:include page="../backStage/model.jsp" />
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>食記分析</title>
-
-<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${contextRoot}/css/jquery.dataTables.min.css">
-<script type="text/javascript" charset="utf8" src="${contextRoot}/js/jquery.dataTables.min.js"></script>
-
-</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <body>
-<p>
-<div class="container">
 
-<table id="table_id" class="display">
+<button class="typeBtn">最熱門的類型</button>
+		
+				<div id="showMsg" class="card">
+					<c:forEach var="type" items="${type}">
+						<div class="card-header">
+						<c:out value="${type.類型}" /><br>
+						<c:out value="${type.次數}" />
+						</div>
+					</c:forEach>
+				</div>
 
 
- 	<thead>
-        <tr>
-            <th>類型</th>
-        	<th>次數</th>
-        </tr>
-    </thead>
-    	<tbody>
-    		<c:forEach var="shopType" items="${type}"> 
-    		 <tr>
-    		 <td><c:out value="${shopType.type}"/>
-             <td><c:out value="${shopType.Q'ty}"/>        
-          </tr>
-    		  </c:forEach>
-    	</tbody>
-    	
-</table>
-    
- 
-</div>
-		
-		
-		<script>
-		
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+$(document).on('click','.typeBtn',function(){
 	
+	$.ajax({
+		url : 'http://localhost:8080/oldFoodMan/RecordAnalysis',
+		contentType : 'application/json; charset=UTF-8', // 送過去的格式
+		dataType : 'json', // 傳回來的
+		method : 'post',
 		
-		</script>
+		var data = '';
+		success : function(result){
+			var data = '';
+			$.each(result, function(index, value){
+				data +=value.類型
+				data +=value.次數
+			})
+		},
+		error : function(err){
+			console.log(err)
+			alert('新增留言發生錯誤')
+		}
+		
+	}
+}//最熱門的類型
 
-		
+
+
+
+
+
+				var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+				var yValues = [55, 49, 44, 24, 15];
+				var barColors = ["red", "green","blue","orange","brown"];
+				
+				new Chart("myChart", {
+				  type: "bar",
+				  data: {
+				    labels: xValues,
+				    datasets: [{
+				      backgroundColor: barColors,
+				      data: yValues
+				    }]
+				  },
+				  options: {
+				    legend: {display: false},
+				    title: {
+				      display: true,
+				      text: "最熱門的類型"
+				    }
+				  }
+				});
+				
+</script>
+
 </body>
 </html>

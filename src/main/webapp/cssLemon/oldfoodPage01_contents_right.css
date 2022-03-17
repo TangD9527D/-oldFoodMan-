@@ -64,7 +64,7 @@
 
 .ranking-contents__month-ranking.ranking-contents__month-ranking--outof-ranking{
     display: flex;
-    padding: 0.9rem 0;
+    padding: 1rem 0;
     justify-content: center;
     align-items: center;
 }
@@ -161,24 +161,44 @@
     list-style: none;
 }
 
-#area-rank ul.rank-list{
-    width: 135px;
+#area-rank ul.rank-list1{
+    
+    float: left;
+   
 }
 
-#area-rank ul.rank-list li{
+#area-rank ul.rank-list1 li{
     padding-bottom: 2px;
     border-bottom: dotted thin lightblue;
 }
 
-#area-rank ul li.rank1 a{
-    background: url("皇冠圖") no-repeat left center;
-}
-
-#area-rank ul.rank-list li a{
+#area-rank ul.rank-list1 li a{
     display: block;
     padding: 4px 0 3px 17px;
     color: #595960;
     font-weight: bold;
+}
+
+#area-rank ul.rank-list2{
+    width: 135px;
+    float: right;
+   
+}
+
+#area-rank ul.rank-list2 li{
+    padding-bottom: 2px;
+    border-bottom: dotted thin lightblue;
+}
+
+#area-rank ul.rank-list2 li a{
+    display: block;
+    padding: 4px 0 3px 17px;
+    color: #595960;
+    font-weight: bold;
+}
+
+#area-rank ul li.rank1 a{
+    background: url("皇冠圖") no-repeat left center;
 }
 
 #area-rank ul li span.num{

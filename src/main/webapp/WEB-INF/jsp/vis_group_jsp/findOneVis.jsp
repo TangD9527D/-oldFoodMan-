@@ -155,7 +155,7 @@ font-weight:bolder;
       </div>
       <div class="col-md-4 ">
         <div class="h-100 p-5 bg-light  rounded-3">
-          <h2>目前參加者</h2>
+          <h2  class="fw-bold font-weight-bold">參加者</h2>
           
           <hr>
           <c:forEach var="joinofm" items="${joinofm}">
@@ -201,7 +201,7 @@ var peoname= $('#joinpeople').text();
 console.log(peoname)
 
 if (peoname==""){
-	$('#joinnull').text("尚無參加者");
+	$('#joinnull').text("目前尚無參加者");
 	console.log("hihi")
 	
 }
@@ -209,7 +209,7 @@ if (peoname==""){
 $(document).on('click', '#checkaddvis', function (){
 	
 	location.reload();
-}
+})
 
 
 </script>		
@@ -220,6 +220,7 @@ var vismid=$('#nowvismid').val();
 if(mid == vismid){
 	console.log('好累ㄋ')
 	$('#checkaddvis').attr('disabled','disabled')
+	$('#rs').attr('disabled','disabled')
 	$('#tosay').text('★已經是舉辦人 無須加入★')
 }else{
 	console.log('笨')

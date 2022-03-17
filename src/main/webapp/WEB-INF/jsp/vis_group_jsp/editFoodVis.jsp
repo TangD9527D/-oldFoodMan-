@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="../menu.jsp" />
+<jsp:include page="../backStage/model.jsp" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,30 +24,27 @@ font-weight:bolder
 
 }
 
+.bsize{
+	margin-top:30px;
+	margin-right: 10px;
+	width: 1110px;
+	float: right;
+	
+}
 </style>
 </head>
 <body>
-<div class="container">
+<div class="container bsize">
   <main>
-    <div class="py-5 text-center">
-<!--       <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-      <header class="pb-3 mb-4 border-bottom">
-     
-       <div>
-        <h1 class=" fw-bold font-weight-bold ">編輯揪團美食Eat</h1>
-        </div>
-     
-    </header>
-      
-    </div>
-		<p />
+   
+	
 		<div class="row justify-content-center">
 
 			<div class="col-9">
 				<div class="card">
-					<h3 class="card-header text-dark bg-dark pink ">我的揪團</h3>
+					<h3 class="card-header text-white bg-dark " style="text-align:center">編輯揪團資訊</h3>
 					<div class="card-body">
-						<form:form class="form" action="${contextRoot}/editFoodVis"
+						<form:form class="form" action="${contextRoot}/editFoodViss"
 							modelAttribute="ofm" method="post">
 							<form:input type="hidden" path="vis_id"/>
 							<form:input type="hidden" path="added"/>
@@ -110,18 +107,16 @@ font-weight:bolder
  
   </main>
 
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2017–2021 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer>
+<!--   <footer class="my-5 pt-5 text-muted text-center text-small"> -->
+<!--     <p class="mb-1">OldFoodMan老食人</p> -->
+<!--     <ul class="list-inline"> -->
+<!--       <li class="list-inline-item"><a href="#"></a></li> -->
+<!--       <li class="list-inline-item"><a href="#"></a></li> -->
+<!--       <li class="list-inline-item"><a href="#"></a></li> -->
+<!--     </ul> -->
+<!--   </footer> -->
 </div>
-<div class="container">
 
-		</div>
 
 </body>
 </html>

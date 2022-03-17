@@ -15,28 +15,41 @@
 
 
 <link rel="stylesheet" type="text/css" href="${contextRoot}/css/jquery.dataTables.min.css">
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" type="text/css"
+	href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+<!-- jQuery -->
+	<script type="text/javascript" charset="utf8"
+	src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+	
+	</script>
+<!-- DataTables -->
+	<script type="text/javascript" charset="utf8"
+	src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 <style>
 .bsize{
-	height: 865px;
-	width: 1200px;
-	border: 3px solid red;
+	margin-top: 20px;
+	margin-right: 10px;
+	width: 1110px;
 	float: right;
 	text-align: center;
-
 }
 
+.tableb{
+	background-color:white;
+}
 </style>
 </head>
 <body>
-	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" charset="utf8" src="${contextRoot}/js/jquery.dataTables.min.js"></script>
+	
 
 	<div class=" bsize">
 		
-
-		<h1>所有揪團eat</h1>
-		<table id="table_id" class="table table-hover" >
+	<div class="container">
+		<h4>所有揪團eat</h4>
+		<table id="table_id" class="table table-hover " >
 
         <thead class="thead-dark">
             <tr>
@@ -45,7 +58,7 @@
                 <th>時間</th>
                 <th>店名</th>
                 <th>地址</th>
-                <th>備註</th>
+                <th>人數</th>
                 <th>新增時間</th>
                 <th>操作</th>
             </tr>
@@ -70,7 +83,7 @@
 							href="${contextRoot}/findOneVisdetail?id=${viewallvis.vis_id}"><input
 								type="submit" value="查看" class="btn btn-info"></a>
 							
-							<a href="${contextRoot}/editFoodVis?id=${viewallvis.vis_id}"><input
+							<a href="${contextRoot}/editFoodViss?id=${viewallvis.vis_id}"><input
 								type="submit" value="編輯" class="btn btn-secondary"></a> <a
 							href="${contextRoot}/deleteFoodVis?id=${viewallvis.vis_id}"><input
 								type="submit" value="刪除" class="btn btn-danger"
@@ -84,35 +97,11 @@
     
     </table>
     
-    
-
-<!-- 		<div class="row justify-content-center"> -->
-<!-- 			<div class="col-9"> -->
-<%-- 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}"> --%>
-
-<%-- 					<c:choose> --%>
-<%-- 						<c:when test="${page.number != pageNumber -1}"> --%>
-
-<%-- 							<a href="${contextRoot}/viewAllVis?p=${pageNumber}"><c:out --%>
-<%-- 									value="${pageNumber} "></c:out></a> --%>
-
-<%-- 						</c:when> --%>
-<%-- 						<c:otherwise> --%>
-<%-- 							<c:out value="${pageNumber} " /> --%>
-<%-- 						</c:otherwise> --%>
-
-<%-- 					</c:choose> --%>
-<%-- 					<c:if test="${pageNumber != page.totalPages}"> --%>
-<!-- 			| -->
-<%-- 			</c:if> --%>
-<%-- 				</c:forEach> --%>
-
-<!-- 			</div> -->
-<!-- 		</div> -->
-
+   
+	</div>
 	</div>
 	
-			<script>
+		<script>
 		$(document).ready(function () {
 		    $('#table_id').DataTable();
 		});
