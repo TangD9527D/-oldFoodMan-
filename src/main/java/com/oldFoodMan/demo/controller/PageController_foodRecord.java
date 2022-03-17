@@ -98,7 +98,7 @@ public class PageController_foodRecord {
 	@GetMapping("/RecordAnalysis") 
 	public ModelAndView RecordAnalysis(ModelAndView mav) {		
 		mav.setViewName("record/RecordAnalysis");
-		List<FoodRecord> type = service.typeFilter();
+		List<String> type = service.typeFilter();
 		System.out.println("type ="+type);
 		mav.getModel().put("type", type);
 		return mav;

@@ -291,6 +291,8 @@ public class FoodRecord implements Serializable {
 		this.gender2 = gender2;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
