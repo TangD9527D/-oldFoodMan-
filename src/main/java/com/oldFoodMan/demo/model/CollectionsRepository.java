@@ -27,8 +27,8 @@ public interface CollectionsRepository extends JpaRepository<Collections, Collec
 	@Query(value = "Select * from collections where member_id = :member_id and record_id = :record_id ",nativeQuery = true)
 	public List<Collections> findRecord (@Param(value = "member_id")Integer member_id,@Param(value = "record_id")Integer record_id);	
 	
-	
-	
+	@Query(value=" select top 5 title,foodRecord.record_id ,count(*) as num from  foodRecord join collections on collections.record_id = foodrecord.record_id  group by title,foodRecord.record_id order by num desc",nativeQuery = true)
+	public List<String> findAllChart();
 	
 
 }
