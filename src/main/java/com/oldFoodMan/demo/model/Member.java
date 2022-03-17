@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -50,7 +51,7 @@ public class Member implements Serializable {
 	@JsonProperty(value = "phone")
 	private String phone; 
 	
-//	@Email(message = "帳號必須為電子信箱格式")
+	@Email(message = "帳號必須為電子信箱格式")
 	@NotBlank(message = "帳號不可為空")
 	@Column(name = "account")
 	@JsonProperty(value = "account")

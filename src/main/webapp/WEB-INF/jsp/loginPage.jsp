@@ -159,6 +159,10 @@ body {
 	color: #000;
 }
 
+.la2{
+	font-weight: 700;
+	font-size: larger;
+}
 </style>
 </head>
 
@@ -192,17 +196,15 @@ body {
 					<div class="formLogin">
 						<div style="font-size: large; text-align: left;">&emsp;&emsp;信箱*</div>
 						<input type="text" id="account" name="account"> <span>&nbsp;</span>
-						<form:errors path="account" />
 					</div>
 					<br>
 					<div class="formLogin">
 						<div style="font-size: large; text-align: left;">&emsp;&emsp;密碼*</div>
 						<input type="password" id="pwd" name="password"> <span>&nbsp;</span>
-						<form:errors path="password" />
 					</div>
 					<!-- /login?error=true -->
 					<c:if test="${param.error == 'true'}">
-						<span class="login_fail">Login Failed!!!</span>
+						&emsp;&emsp;<span class="login_fail">信箱或密碼輸入錯誤!!!</span>
 					</c:if>
 					<br>
 					<div class="under_13">
@@ -210,7 +212,7 @@ body {
 						data-target="#exampleModal2">忘記密碼?</span>&emsp;&emsp;
 						<!-- Button trigger modal -->
 						<button type="button" class="btn btn-dark" data-toggle="modal"
-							data-target="#exampleModal">新增帳號</button>
+							data-target="#exampleModal" id="newMbbr">新增帳號</button>
 						&emsp;&emsp; <span id="log_in">
 							<button name="submit" type="submit" value="submit"
 								class="btn btn-dark">登入</button>
@@ -232,7 +234,7 @@ body {
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">新增帳號</h4>
+						<h4 class="modal-title" id="myModalLabel" style="font-weight: 700;">新增帳號</h4>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -240,37 +242,36 @@ body {
 					</div>
 					<div class="modal-body">
 							<p></p>
-							<div class="newPwd_13">
+							<div class="newPwd_13 form-group">
 								<label class="la2">姓名:&nbsp;</label> <input type="text"
-									id="newName" class="inPut" name="names" />
-								<p class="txtP">&nbsp;</p>
+									id="newName" class="inPut " name="names" />
+								<p>&nbsp;<span id="txtP1" style="color: red; font-weight: 700;"></span></p>
 							</div>
 							<div class="newAccount_13">
 								<label class="la2">信箱:&nbsp;</label> <input
-									type="text" id="newAccount" class="inPut" name="account" />
-								<p class="txtP">&nbsp;</p>
+									type="text" id="newAccount" class="inPut" name="account" data-container="body" data-toggle="popover" data-placement="right" data-html="true" data-content="<em style='color='red''>不得空白</em>"/>
+								<p>&nbsp;<span id="txtP2" style="color: red; font-weight: 700;"></span></p> 
 							</div>
 							<div class="newPwd_13">
 								<label class="la2">密碼:&nbsp;</label> <input type="password"
-									id="newPwd" class="inPut" name="pwd" />
-								<p class="txtP">&nbsp;</p>
+									id="newPwd" class="inPut" name="pwd"  data-toggle="tooltip" data-placement="right" data-html="true" title="<em>不得空白</em>" />
+								<p>&nbsp;<span id="txtP3" style="color: red; font-weight: 700;"></span></p>
 							</div>
 							<div class="newPwd_13">
 								<label class="la2">暱稱:&nbsp;</label> <input type="text"
-									id="newNickName" class="inPut" name="nickName" />
-								<p class="txtP">&nbsp;</p>
+									id="newNickName" class="inPut" name="nickName"  data-toggle="tooltip" data-placement="right" data-html="true" title="<em>不得空白</em>" />
+								<p>&nbsp;<span id="txtP4" style="color: red; font-weight: 700;"></span></p>
 							</div>
 							<div class="newPwd_13">
 								<label class="la2">生日:&nbsp;</label> <input type="date"
-									id="birth" class="inPut" name="birth" />
-								<p class="txtP">&nbsp;</p>
+									id="birth" class="inPut" name="birth" style="width: 190px;"  data-toggle="tooltip" data-placement="right" data-html="true" title="<em>不得空白</em>" />
+								<p>&nbsp;<span id="txtP5" style="color: red; font-weight: 700;"></span></p>
 							</div>
 
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">關閉</button>
-								<button type="button" class="btn btn-primary"
-									data-dismiss="modal" id="newMbr">送出</button>
+								<button type="button" class="btn btn-primary" id="newMbr" >送出</button>
 							</div>
 					</div>
 				</div>
@@ -341,6 +342,73 @@ body {
 	</div>
 
 	<script>
+
+			document.getElementById("newName").addEventListener("blur", function () {
+
+					var memberName = $("#newName").val();
+
+					if (memberName == ""){
+						$('#txtP1').text("※不可空白※");
+					}
+					else{
+						$('#txtP1').text("");
+					}
+						
+
+				});
+
+				document.getElementById("newAccount").addEventListener("blur", function () {
+
+					var account = $("#newAccount").val();
+					console.log(account);
+					var re = /^.+@.+.+\..{2,3}$/;
+
+					if (account != "") {
+						if (!re.test(account)) {
+							$('#txtP2').text("※請輸入正確信箱※");
+						}
+						else {
+							$('#txtP2').text("");
+						}
+					} else {
+						$('#txtP2').text("※不可空白※");
+					}
+				});
+
+				document.getElementById("newPwd").addEventListener("blur", function () {
+
+					var newPwd = $("#newPwd").val();
+
+					if (newPwd == ""){
+						$('#txtP3').text("※不可空白※");
+					}else{
+						$('#txtP3').text("");
+					}
+				});
+
+				document.getElementById("newNickName").addEventListener("blur", function () {
+
+					var newNickName = $("#newNickName").val();
+
+					if (newNickName == ""){
+						$('#txtP4').text("※不可空白※");
+					}else{
+						$('#txtP4').text("");
+					}
+				});
+
+				document.getElementById("birth").addEventListener("blur", function () {
+
+					var birth = $("#birth").val();
+
+					if (birth == ""){
+						$('#txtP5').text("※不可空白※");
+					}else{
+						$('#txtP5').text("");
+					}
+				});
+
+
 		$(document).on('click', '#newMbr', function() {
 
 			var memberName =  $("#newName").val();
@@ -348,8 +416,43 @@ body {
 			var memberPwd =  $("#newPwd").val();
 			var nickName =  $("#newNickName").val();
 			var birth =  $("#birth").val();
+			var re = /^.+@.+.+\..{2,3}$/;
+			
+			if (memberName == "") {
+				$('#txtP1').text("※不可空白※");
+			}
+			else {
+				$('#txtP1').text("");
+			}
 
-			console.log(memberName + account + memberPwd + nickName +birth);
+			if (account != "") {
+				if (!re.test(account)) {
+					$('#txtP2').text("※請輸入正確信箱※");
+				}
+				else {
+					$('#txtP2').text("");
+				}
+			} else {
+				$('#txtP2').text("※不可空白※");
+			}
+
+			if (memberPwd == "") {
+				$('#txtP3').text("※不可空白※");
+			} else {
+				$('#txtP3').text("");
+			}
+			
+			if (nickName == "") {
+				$('#txtP4').text("※不可空白※");
+			} else {
+				$('#txtP4').text("");
+			}
+			
+			if (birth == "") {
+				$('#txtP5').text("※不可空白※");
+			} else {
+				$('#txtP5').text("");
+			}
 
 			var Object = {
 				"memberName" : memberName,
@@ -358,6 +461,7 @@ body {
 				"nickName" : nickName,
 				"birth" : birth
 			}
+
 			var JsonString = JSON.stringify(Object);
 
 			$.ajax({
@@ -366,7 +470,10 @@ body {
 				method : "post",
 				data : JsonString,
 				success : function() {
-					console.log("讚")
+					$('#exampleModal').modal('hide')
+				},
+				error : function(){
+					console.log(失敗)
 				}
 
 			})
