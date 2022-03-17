@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -95,4 +97,15 @@ public class ReviewerFoodRecordController {
         return mav;
 	}
 	
+	
+	@PostMapping("/ittaomise/search/city")
+	public ModelAndView articleSearch(@RequestParam(value="cityvalue")Integer cityValue,ModelAndView mav) {
+		System.out.println("~~~~~~~~~~~~");
+//		String city = cityValue;
+//		List<FoodRecord> frds = rfrService.cityTaipei1(city);
+//		mav.getModel().put("frds", frds);
+		mav.setViewName("/lemon/reviewerIttaomise");
+		return mav;
+		
+	}
 }

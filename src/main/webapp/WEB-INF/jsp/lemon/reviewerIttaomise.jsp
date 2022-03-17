@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_left.css">
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_right.css">
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base.css">
-    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
     <style>
 
 		.menu7{
@@ -915,11 +915,12 @@
         <div class="clearfix" id="contents">
             <div class="layout5-side rvwr-list-sidebar" id="column-side">
                 <div class="list-sidebar-wrap">
+                <form id="searchCityForm" name="searchCityForm" action="<c:url value='/ittaomise/search/city'/>" accept-charset="UTF-8" method="post">
                     <div class="list-sidebar list-sidebar--main">
                         <div class="list-sidebar__heading">
                             <p class="list-sidebar__title list-sidebar__title--area">
                                 <strong>區域</strong>
-                                尋找
+                                搜尋
                             </p>
                         </div>
                         <div class="list-sidebar__item">
@@ -947,12 +948,13 @@
                                         <option value="18">基隆市</option>
                                         <option value="19">新竹市</option>
                                         <option value="20">嘉義市</option>
-                                        
                                     </select>
                                 </label>
-                            </div>    
+                            </div>
+                            <input type="button" class="c-btn c-btn--success list-sidebar__btn js-analytics" style="margin-top:10px;" onclick="formCitySubmit()" value="送出條件"/>    
                         </div>
                     </div>
+                    </form> 
                     <div class="list-sidebar list-sidebar--main">
                         <div class="list-sidebar__heading">
                             <p class="list-sidebar__title list-sidebar__title--genre">
@@ -963,7 +965,7 @@
                         <div class="list-sidebar__item">
                             <div class="select-wrap">
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
-                                    <select class="list-sidebar__select" name="Genre">
+                                    <select class="list-sidebar__select" name="Genre" id="Type">
                                         <option selected="selected" value="0">全部種類</option>
                                         <option value="1">火鍋</option>
                                         <option value="2">燒烤</option>
@@ -980,13 +982,12 @@
                         </div>
                     </div>
                 </div>
-                <form action="#" accept-charset="UTF-8" method="get">
                     <div class="list-sidebar list-sidebar--modal-link">
                         <h4 class="list-sidebar__sub-title list-sidebar__sub-title--condition">預算</h4>
                         <div class="list-sidebar__content">
                             <div class="list-sidebar__price u-clearfix">
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
-                                    <select class="list-sidebar__select" name="LstCos">
+                                    <select class="list-sidebar__select" name="LstCos" id="lowPrice">
                                         <option selected="selected" value="0">無下限</option>
                                         <option value="1">$0</option>
                                         <option value="2">$500</option>
@@ -996,7 +997,7 @@
                                 </label>
                                 <span class="list-sidebar__price-between">~</span>
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
-                                    <select class="list-sidebar__select" name="LstCosT">
+                                    <select class="list-sidebar__select" name="LstCosT" id="highPrice">
                                         <option selected="selected" value="0">無上限</option>
                                         <option value="1">$500</option>
                                         <option value="2">$1000</option>
@@ -1007,10 +1008,9 @@
                             </div>
                         </div>
                         <div class="list-sidebar__content">
-                            <button class="c-btn c-btn--success list-sidebar__btn js-analytics" name="commit" type="submit" value="送出條件">送出條件</button>
+<!--                             <button class="c-btn c-btn--success list-sidebar__btn js-analytics" type="submit" onclick="formSubmit()">送出條件</button> -->
                         </div>
-                    </div>   
-                </form>    
+                   	</div>   
             </div>
             <div class="layout5-main rvwr-list-main js-rvwr-list-main" id="column-main">
                 <div class="search-condition">
@@ -1132,25 +1132,33 @@
         </div>
     </div>
 
-<script type="Text/JavaScript">
-
-// $('#followValue').click(function(){
-// 	var record_id= document.getElementById("followValue").value;
-// 	console.log(record_id);
+<script type="text/javascript">
+$(document).ready(function()  {
 	
-// 	$.ajax({
-// 		url:'http://localhost:8080/oldFoodMan/savingTop'+ record_id,
-// 		contentType :'application/json; charset=UTF-8',
-// 		method :'post',
-
-// 		success:function(fanSize){
-// 			var f=fanSize
-// 			if(f=1){
-// 				alert("O_O");
-// 			}
-// 		}
+// 	$("#select_id").change(function(){
+// 		var cityValue = ${"#Area"}.val();
+// 		${"#searchCityForm"}.submit();
 // 	})
-// })
+	
+	function formCitySubmit() {
+		var cityvalue = $("#Area").val();
+		
+		if( $("#Area").val() == null){ alert("null"); }
+		$("#searchCityForm").submit();
+	}
+
+// 	function formSubmit(){
+	
+// 		var typeValue = $({"#Type"}).val();
+// 		var priceLowValue = $({"#lowPrice"}).val;
+// 		var priceHighValue = $({"#highPrice"}).val;
+		
+// 		$({"#searchForm"}).submit();
+// 	}
+	
+	
+	
+})
 </script>
 
 </body>
