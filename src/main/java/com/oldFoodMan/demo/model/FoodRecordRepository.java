@@ -123,6 +123,10 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	//price4
 	@Query(value="SELECT COUNT(priceScope) FROM foodRecord WHERE priceScope LIKE '%$$$$%' AND member_id=:member_id",nativeQuery=true)
 	public Integer price4Counts(@Param("member_id")Integer member_id);
+	
+	//Sortcity
+	@Query(value="SELECT * FROM foodRecord where city='臺北市' AND member_id=:member_id",nativeQuery=true)
+	public List<FoodRecord> recordTaipei1(@Param("member_id")Integer member_id);
 	//lemon_END
 	
 }

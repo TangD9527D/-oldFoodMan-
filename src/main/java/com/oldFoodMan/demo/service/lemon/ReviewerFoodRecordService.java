@@ -100,7 +100,6 @@ public class ReviewerFoodRecordService {
 	}
 	
 	//CountStar
-	
 	public Integer countStr5(Integer member_id) {
 		Integer star0 = frr.star5CountsG0(member_id);
 		Integer star1 = frr.star5CountsG1(member_id);
@@ -132,7 +131,7 @@ public class ReviewerFoodRecordService {
 		Integer rr = star0+star1+star2;
 		return rr;
 	}
-	
+
 	public Integer countStr1(Integer member_id) {
 		Integer star0 = frr.star1CountsG0(member_id);
 		Integer star1 = frr.star1CountsG1(member_id);
@@ -142,7 +141,6 @@ public class ReviewerFoodRecordService {
 	}
 	
 	//CountConsume
-	
 	public Integer countPrice1(Integer member_id) {
 		Integer cp =frr.price1Counts(member_id);
 		return cp;
@@ -162,4 +160,11 @@ public class ReviewerFoodRecordService {
 		Integer cp =frr.price4Counts(member_id);
 		return cp;
 	}
+	
+	//citySort
+	public List<FoodRecord> cityTaipei1(Integer member_id){
+		List<FoodRecord> rr = frr.recordTaipei1(member_id);
+		return rr;
+	}
+	
 }
