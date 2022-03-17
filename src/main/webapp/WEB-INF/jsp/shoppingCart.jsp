@@ -106,11 +106,13 @@
 		    	},
 		    	
 		        "columns": [	                                      
-		        	{ data: null,title: "",
+		        	{ data: null,title: "挑選",
 			        	render: function(data, type, row){
+			        		if(data.productId.product_stock <= 0){
+			        			return '<p style="color:red;font-weight:bold">已售罄!<p>';
+			        		}
 			        		return '<input type="checkbox" id="checkbox' + data.productId.product_id + '" name="checkbox"></input>'
 			        	}	
-			        
 			        },
 			        { data: 'productId.product_name',title: "商品名稱" },
 			        { data: 'productId.product_image',title: "圖片",
@@ -130,6 +132,9 @@
 				    },
 			        { data: null,title: "數量",
 				    	render: function (data, type, row) {
+				    		  if(data.productId.product_stock <= 0){
+			        			 return '0'
+			        		  }
 				              return  '<button type="button" class="btn btn-warning btn-sm"  id="upOne"  value="' + data.productId.product_id + '" >增加</button> ' +
 				                      '<input type="number" value="'+ data.productAmount + '" class="autoNum" id="'+ data.productId.product_id + '" max="'+ data.productId.product_stock +'" min="1" size="1"></input>&nbsp' + 
 				                      '<button type="button" class="btn btn-danger btn-sm" id="deleteOne"  value="' + data.productId.product_id + '" >減少</button>'
@@ -308,6 +313,7 @@
 		})
 		
 		
+		//多選/取消多選
 		$(document).ready(function(){
  			$("#selectAll").click(function(){
  				if($("[name=checkbox]").prop("checked")){
@@ -315,8 +321,6 @@
  				}else{
  					$("[name=checkbox]").prop("checked",true);
  				}
-   				
-
   			})
  		})
 		

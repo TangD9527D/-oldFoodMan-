@@ -12,4 +12,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
 	@Query(value = "select * from orderdetail where detailNumber = :detailNumber", nativeQuery = true)
 	public List<OrderDetail> findByDetailNumber(@Param(value = "detailNumber") int detailNumber);
 	
+	@Query(value = "select SUM(detailProductAmount) from orderdetail group by detailProductId order by detailProductId", nativeQuery = true)
+	public Integer[] findProductAmount();
+	
 }

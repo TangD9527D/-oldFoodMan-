@@ -21,4 +21,8 @@ public class OrderDetailService {
 	public List<OrderDetail> findmyDetail(int detailNumber){
 		return detailDao.findByDetailNumber(detailNumber);
 	}
+	
+	public Integer[] findProductAmount() {
+		return detailDao.findProductAmount();
+	}
 }

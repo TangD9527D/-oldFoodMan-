@@ -234,7 +234,11 @@ public class ShoppingCartController {
 			productId = jsonObject.getString("productId");
 			Integer product_Id = Integer.parseInt(productId);
 			Product product = service.findProductByID(product_Id);
-			
+//			int stock = product.getProduct_stock();
+//			String productName = product.getProduct_name();
+//			if(stock <= 0) {
+//				return productName +"已售罄!結帳失敗!";
+//			}
 			
 			//將已購買商品加入訂單TABLE  
 			double onePrice = product.getProduct_price() * product.getProduct_discount();
