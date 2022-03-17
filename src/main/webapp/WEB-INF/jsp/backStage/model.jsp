@@ -29,7 +29,7 @@ body {
 }
 
 .leftSideMenu {
-	width: 400px;
+	width: 250px;
 	height: 620px;
 	background-color: #fcfcff;
 	border-right: 2px solid black;
@@ -131,19 +131,19 @@ body {
 					<h5 class="mb-0">
 						<button class="btn  collapsed" type="button" id="77"
 							data-toggle="collapse" data-target="#collapseFour"
-							aria-expanded="false" aria-controls="collapseFour"><span style="font-weight: 800; font-size: large;">???管理</span></button>
+							aria-expanded="false" aria-controls="collapseFour"><span style="font-weight: 800; font-size: large;">食記&留言管理</span></button>
 					</h5>
 				</div>
 				<div id="collapseFour" class="collapse"
 					aria-labelledby="headingFour" data-parent="#accordionExample">
 					<div class="card-body">
 						<div class="list-group">
+							<a href="${contextRoot}/RecordManagement"><button type="button"
+								class="list-group-item list-group-item-action">食記編輯</button></a>
+							<a href="${contextRoot}/MsgManagement"><button type="button"
+								class="list-group-item list-group-item-action">留言編輯</button></a>
 							<button type="button"
-								class="list-group-item list-group-item-action">Dapibus
-								ac facilisis in</button>
-							<button type="button"
-								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">Morbi
-								leo risus</button>
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">食記分析</button>
 						</div>
 					</div>
 				</div>
