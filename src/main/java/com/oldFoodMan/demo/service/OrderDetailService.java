@@ -1,6 +1,7 @@
 package com.oldFoodMan.demo.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,9 @@ public class OrderDetailService {
 	
 	public Integer[] findProductAmount() {
 		return detailDao.findProductAmount();
+	}
+	
+	public Map<Integer,Integer> findqqq(){
+		return detailDao.findProductAmount2();
 	}
 }

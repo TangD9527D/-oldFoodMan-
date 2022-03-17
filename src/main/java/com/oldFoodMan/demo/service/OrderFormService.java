@@ -34,4 +34,10 @@ public class OrderFormService {
 		return orderDao.searchOrder(inputVal, memberId);
 	}
 	
+	public List<OrderForm> findOneDayTime(String day) {
+		String orignal = day + " 00:00:00 AM";
+		String last = day + " 23:59:57 PM";
+		return orderDao.findOneDayTime(orignal,last);
+	}
+	
 }

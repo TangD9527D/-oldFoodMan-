@@ -20,4 +20,6 @@ public interface OrderFormRepository extends JpaRepository<OrderForm, Integer> {
 	@Query(value = "Select *from orderform where (orderTotal LIKE %:inputVal% or orderTime LIKE %:inputVal%) and orderMemberId = :orderMemberId order by orderTime desc", nativeQuery = true)
 	public List<OrderForm> searchOrder(@Param(value = "inputVal") String inputVal, @Param(value = "orderMemberId") int orderMemberId);
 	
+	@Query(value = "select *from orderform where orderTime >= :origin and orderTime <= :last", nativeQuery = true)
+	public List<OrderForm> findOneDayTime(@Param(value="origin") String origin, @Param(value="last") String last);
 }
