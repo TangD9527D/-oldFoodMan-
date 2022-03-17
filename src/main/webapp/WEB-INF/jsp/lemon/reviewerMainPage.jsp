@@ -321,6 +321,8 @@
 					
                 <p class="reco-lead"></p>
                 <div class="reco-text-wrap">
+                <!-- 食記AREA -->
+                <c:forEach var='rsr' items='${rsrs}'>
                     <div class="reco-tx js-rvw-contents clearfix">
                         <!--::before-->
                         <div class="tx-left">
@@ -328,7 +330,7 @@
                                 <span class="reco-tx__ranking-no">
                                     <span class="c-ranking-badge">
                                         <span class="c-ranking-badge__no c-ranking-badge__no--no1">
-                                            <i class="c-ranking-badge__contents u-text-num">1</i>
+                                            <i class="c-ranking-badge__contents u-text-num">${rsr.gender_sum}</i>
                                         </span>
                                     </span>
                                 </span>
@@ -336,148 +338,150 @@
                                 
                                <div  class="reco-tx__info-wrap">
                                         <div class="tx-rstname">
-                                            <a class="tx-rstname__target" href="#">西華飯店</a>
+                                            <a class="tx-rstname__target" href="#">${rsr.store_name}</a>
                                         </div>
-                                        <span class="tx-pref">台北市</span>
-                                        <span class="tx-area">松山區 / 簡餐</span>
+                                        <span class="tx-pref">${rsr.store_city}</span>
+                                        <span class="tx-area">${rsr.store_area} / ${rsr.store_type}</span>
                                     </div>
                                 </div>
                             </div>
                             <p class="tx-rvwttl">
-                                <a href="#">意外的深夜牛肉麵(永久停業)</a>
+                                <a href="#">${rsr.artical_title}</a>
                             </p>
                         </div>
                         <div class="tx-right">
                             <p class="rating">
                                 <span class="subject">rating</span>
                                 <!-- <img src=""> -->
-                                <strong>4.2</strong>
+                                <strong>${rsr.gender_avg}</strong>
                             </p>
                         </div>
                     </div>
-                    <div class="reco-tx js-rvw-contents clearfix">
-                        <div class="tx-left">
-                            <div class="tx-rst">
-                                <span class="reco-tx__ranking-no">
-                                    <span class="c-ranking-badge">
-                                        <span class="c-ranking-badge__no c-ranking-badge__no--no2">
-                                            <i class="c-ranking-badge__contents u-text-num">2</i>
-                                        </span>
-                                    </span>
-                                </span>
-                                <div class="reco-tx__info-wrap">
-                                    <div class="tx-rstname">
-                                        <a class="tx-rstname__target" href="#">兄弟飯店</a>
-                                    </div>
-                                    <span class="tx-pref">台北市</span>
-                                    <span class="tx-area">中山區 / 簡餐</span>
-                                </div>
-                            </div>
-                            <p class="tx-rvwttl">
-                                <a href="#">深夜簡單有效的口味</a>
-                            </p>
-                        </div>
-                        <div class="tx-right">
-                            <p class="rating">
-                                <span class="subject">rating</span>
-                                <!-- <img src=""> -->
-                                <strong>4.1</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="reco-tx js-rvw-contents clearfix">
-                        <div class="tx-left">
-                            <div class="tx-rst">
-                                <span class="reco-tx__ranking-no">
-                                    <span class="c-ranking-badge">
-                                        <span class="c-ranking-badge__no c-ranking-badge__no--no3">
-                                            <i class="c-ranking-badge__contents u-text-num">3</i>
-                                        </span>
-                                    </span>
-                                </span>
-                                <div class="reco-tx__info-wrap">
-                                    <div class="tx-rstname">
-                                        <a class="tx-rstname__target" href="#">麥當勞</a>
-                                    </div>
-                                    <span class="tx-pref">台北市</span>
-                                    <span class="tx-area">松山區 / 速食</span>
-                                </div>
-                            </div>
-                            <p class="tx-rvwttl">
-                                <a href="#">台灣第一家</a>
-                            </p>
-                        </div>
-                        <div class="tx-right">
-                            <p class="rating">
-                                <span class="subject">rating</span>
-                                <!-- <img src=""> -->
-                                <strong>3.9</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="reco-tx js-rvw-contents clearfix">
-                        <div class="tx-left">
-                            <div class="tx-rst">
-                                <span class="reco-tx__ranking-no">
-                                    <span class="c-ranking-badge">
-                                        <span class="c-ranking-badge__no c-ranking-badge__no--no4">
-                                            <i class="c-ranking-badge__contents u-text-num">4</i>
-                                        </span>
-                                    </span>
-                                </span>
-                                <div class="reco-tx__info-wrap">
-                                    <div class="tx-rstname">
-                                        <a class="tx-rstname__target" href="#">紅屋牛排</a>
-                                    </div>
-                                    <span class="tx-pref">台北市</span>
-                                    <span class="tx-area">松山區 / 牛排</span>
-                                </div>
-                            </div>
-                            <p class="tx-rvwttl">
-                                <a href="#">老派牛排</a>
-                            </p>
-                        </div>
-                        <div class="tx-right">
-                            <p class="rating">
-                                <span class="subject">rating</span>
-                                <!-- <img src=""> -->
-                                <strong>3.8</strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="reco-tx js-rvw-contents clearfix">
-                        <div class="tx-left">
-                            <div class="tx-rst">
-                                <span class="reco-tx__ranking-no">
-                                    <span class="c-ranking-badge">
-                                        <span class="c-ranking-badge__no c-ranking-badge__no--no5">
-                                            <i class="c-ranking-badge__contents u-text-num">5</i>
-                                        </span>
-                                    </span>
-                                </span>
-                                <div class="reco-tx__info-wrap">
-                                    <div class="tx-rstname">
-                                        <a class="tx-rstname__target" href="#">金湘玉手工酸辣粉</a>
-                                    </div>
-                                    <span class="tx-pref">台北市</span>
-                                    <span class="tx-area">大安區 / 小吃</span>
-                                </div>
-                            </div>
-                            <p class="tx-rvwttl">
-                                <a href="#">好想吃吃看哦</a>
-                            </p>                      
+                    </c:forEach>
+					<!-- 食記AREA結束 -->
+<!--                     <div class="reco-tx js-rvw-contents clearfix"> -->
+<!--                         <div class="tx-left"> -->
+<!--                             <div class="tx-rst"> -->
+<!--                                 <span class="reco-tx__ranking-no"> -->
+<!--                                     <span class="c-ranking-badge"> -->
+<!--                                         <span class="c-ranking-badge__no c-ranking-badge__no--no2"> -->
+<!--                                             <i class="c-ranking-badge__contents u-text-num">2</i> -->
+<!--                                         </span> -->
+<!--                                     </span> -->
+<!--                                 </span> -->
+<!--                                 <div class="reco-tx__info-wrap"> -->
+<!--                                     <div class="tx-rstname"> -->
+<!--                                         <a class="tx-rstname__target" href="#">兄弟飯店</a> -->
+<!--                                     </div> -->
+<!--                                     <span class="tx-pref">台北市</span> -->
+<!--                                     <span class="tx-area">中山區 / 簡餐</span> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <p class="tx-rvwttl"> -->
+<!--                                 <a href="#">深夜簡單有效的口味</a> -->
+<!--                             </p> -->
+<!--                         </div> -->
+<!--                         <div class="tx-right"> -->
+<!--                             <p class="rating"> -->
+<!--                                 <span class="subject">rating</span> -->
+<!--                                 <img src=""> -->
+<!--                                 <strong>4.1</strong> -->
+<!--                             </p> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div class="reco-tx js-rvw-contents clearfix"> -->
+<!--                         <div class="tx-left"> -->
+<!--                             <div class="tx-rst"> -->
+<!--                                 <span class="reco-tx__ranking-no"> -->
+<!--                                     <span class="c-ranking-badge"> -->
+<!--                                         <span class="c-ranking-badge__no c-ranking-badge__no--no3"> -->
+<!--                                             <i class="c-ranking-badge__contents u-text-num">3</i> -->
+<!--                                         </span> -->
+<!--                                     </span> -->
+<!--                                 </span> -->
+<!--                                 <div class="reco-tx__info-wrap"> -->
+<!--                                     <div class="tx-rstname"> -->
+<!--                                         <a class="tx-rstname__target" href="#">麥當勞</a> -->
+<!--                                     </div> -->
+<!--                                     <span class="tx-pref">台北市</span> -->
+<!--                                     <span class="tx-area">松山區 / 速食</span> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <p class="tx-rvwttl"> -->
+<!--                                 <a href="#">台灣第一家</a> -->
+<!--                             </p> -->
+<!--                         </div> -->
+<!--                         <div class="tx-right"> -->
+<!--                             <p class="rating"> -->
+<!--                                 <span class="subject">rating</span> -->
+<!--                                 <img src=""> -->
+<!--                                 <strong>3.9</strong> -->
+<!--                             </p> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div class="reco-tx js-rvw-contents clearfix"> -->
+<!--                         <div class="tx-left"> -->
+<!--                             <div class="tx-rst"> -->
+<!--                                 <span class="reco-tx__ranking-no"> -->
+<!--                                     <span class="c-ranking-badge"> -->
+<!--                                         <span class="c-ranking-badge__no c-ranking-badge__no--no4"> -->
+<!--                                             <i class="c-ranking-badge__contents u-text-num">4</i> -->
+<!--                                         </span> -->
+<!--                                     </span> -->
+<!--                                 </span> -->
+<!--                                 <div class="reco-tx__info-wrap"> -->
+<!--                                     <div class="tx-rstname"> -->
+<!--                                         <a class="tx-rstname__target" href="#">紅屋牛排</a> -->
+<!--                                     </div> -->
+<!--                                     <span class="tx-pref">台北市</span> -->
+<!--                                     <span class="tx-area">松山區 / 牛排</span> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <p class="tx-rvwttl"> -->
+<!--                                 <a href="#">老派牛排</a> -->
+<!--                             </p> -->
+<!--                         </div> -->
+<!--                         <div class="tx-right"> -->
+<!--                             <p class="rating"> -->
+<!--                                 <span class="subject">rating</span> -->
+<!--                                 <img src=""> -->
+<!--                                 <strong>3.8</strong> -->
+<!--                             </p> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <div class="reco-tx js-rvw-contents clearfix"> -->
+<!--                         <div class="tx-left"> -->
+<!--                             <div class="tx-rst"> -->
+<!--                                 <span class="reco-tx__ranking-no"> -->
+<!--                                     <span class="c-ranking-badge"> -->
+<!--                                         <span class="c-ranking-badge__no c-ranking-badge__no--no5"> -->
+<!--                                             <i class="c-ranking-badge__contents u-text-num">5</i> -->
+<!--                                         </span> -->
+<!--                                     </span> -->
+<!--                                 </span> -->
+<!--                                 <div class="reco-tx__info-wrap"> -->
+<!--                                     <div class="tx-rstname"> -->
+<!--                                         <a class="tx-rstname__target" href="#">金湘玉手工酸辣粉</a> -->
+<!--                                     </div> -->
+<!--                                     <span class="tx-pref">台北市</span> -->
+<!--                                     <span class="tx-area">大安區 / 小吃</span> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                             <p class="tx-rvwttl"> -->
+<!--                                 <a href="#">好想吃吃看哦</a> -->
+<!--                             </p>                       -->
                                                        
-                        </div>
+<!--                         </div> -->
                         
-                        <div class="tx-right">
-                            <p class="rating">
-                                <span class="subject">rating</span>
-                                <!-- <img src=""> -->
-                                <strong>3.7</strong>
-                            </p>
+<!--                         <div class="tx-right"> -->
+<!--                             <p class="rating"> -->
+<!--                                 <span class="subject">rating</span> -->
+<!--                                 <img src=""> -->
+<!--                                 <strong>3.7</strong> -->
+<!--                             </p> -->
                             
-                        </div>
-                    </div>
+<!--                         </div> -->
+<!--                     </div> -->
                 </div>
             </div>
             <div id="tryy"></div>
@@ -549,9 +553,9 @@
                         </ul>
                     </div>
                     <div id="area-rank" class="clearfix">
-                        <ul class="rank-list">
+                        <ul class="rank-list1">
                             <li class="rank1">
-                                <a href="#">台北&nbsp;
+                                <a href="#">台北市&nbsp;
                                     <span class="num">
                                         [
                                         <em>${taipei}</em>件
@@ -560,7 +564,7 @@
                                 </a>
                             </li>
                             <li class="rank2">
-                                <a href="#">高雄&nbsp;
+                                <a href="#">新北市&nbsp;
                                     <span class="num">
                                         [
                                         <em>1117</em>件
@@ -569,7 +573,7 @@
                                 </a>
                             </li>
                             <li class="rank3">
-                                <a href="#">台南&nbsp;
+                                <a href="#">桃園市&nbsp;
                                     <span class="num">
                                         [
                                         <em>992</em>件
@@ -578,7 +582,7 @@
                                 </a>
                             </li>
                             <li class="rank4">
-                                <a href="#">花蓮&nbsp;
+                                <a href="#">台中市&nbsp;
                                     <span class="num">
                                         [
                                         <em>773</em>件
@@ -587,7 +591,145 @@
                                 </a>
                             </li>
                             <li class="rank5">
-                                <a href="#">台中&nbsp;
+                                <a href="#">台南市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>337</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank6">
+                                <a href="#">高雄市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>337</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank7">
+                                <a href="#">宜蘭縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>337</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank8">
+                                <a href="#">新竹縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>337</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank9">
+                                <a href="#">苗栗縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>337</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank10">
+                                <a href="#">彰化縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>337</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <ul class="rank-list2">
+                            <li class="rank1">
+                                <a href="#">南投縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${taipei}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank2">
+                                <a href="#">雲林縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>1117</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank3">
+                                <a href="#">嘉義縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>992</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank4">
+                                <a href="#">屏東縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>773</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank5">
+                                <a href="#">花蓮縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>337</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank6">
+                                <a href="#">台東縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>337</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank7">
+                                <a href="#">澎湖縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>337</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank8">
+                                <a href="#">基隆市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>337</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank9">
+                                <a href="#">新竹市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>337</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="rank10">
+                                <a href="#">嘉義市&nbsp;
                                     <span class="num">
                                         [
                                         <em>337</em>件

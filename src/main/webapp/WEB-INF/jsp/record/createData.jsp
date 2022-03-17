@@ -3,16 +3,17 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<jsp:include page="../menu.jsp"/>
-
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
+<jsp:include page="../menu.jsp"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>新增食記</title>
 
-<script src="https://cdn.tiny.cloud/1/30adfco0hwtspaphkuspihs4pvm92w232kl2zllm251svqf1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script
+	src="https://cdn.tiny.cloud/1/30adfco0hwtspaphkuspihs4pvm92w232kl2zllm251svqf1/tinymce/5/tinymce.min.js"
+	referrerpolicy="origin"></script>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
@@ -291,11 +292,11 @@ legend {
     });
 	
 	
-    tinymce.init({
-      selector: 'textarea',
-      plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-      toolbar_mode: 'floating',
-    });
+//     tinymce.init({
+//       selector: 'textarea',
+//       plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+//       toolbar_mode: 'floating',
+//     });
 
 
 		//郵遞區號

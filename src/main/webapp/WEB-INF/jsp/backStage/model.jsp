@@ -30,9 +30,6 @@ body {
 
 .leftSideMenu {
 	width: 250px;
-	height: 620px;
-	background-color: #fcfcff;
- border-right: 2px solid black; 
 	float: left;
 }
 
@@ -48,12 +45,17 @@ body {
 .list-group{
 	border: solid 2px black;
 }
+
+.modelBottom{
+	height: 100px;
+	border: 2px solid red;
+}
 </style>
 </head>
 
 <body>
 	<!-- Image and text -->
-	<nav class="navbar navbar-light menu7"
+	<nav class="navbar navbar-light menu7 fixed-top"
 		style="background-color: #3e3cc2">
 
 		<a class="navbar-brand" href=""> <img id="glass"
@@ -63,7 +65,10 @@ body {
 				style="color: white;">&nbsp;老食人後臺管理系統</font></span>
 		</a>
 	</nav>
-	<div class="leftSideMenu">
+	<div class="modelBottom">
+
+	</div>
+	<div class="leftSideMenu position-fixed">
 		<div class="accordion" id="accordionExample">
 			<div class="card">
 				<div class="card-header" id="headingOne" style="border-bottom: solid 5px black;">
@@ -143,8 +148,8 @@ body {
 								class="list-group-item list-group-item-action">食記編輯</button></a>
 							<a href="${contextRoot}/MsgManagement"><button type="button"
 								class="list-group-item list-group-item-action">留言編輯</button></a>
-							<button type="button"
-								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">食記分析</button>
+							<a href="${contextRoot}/RecordAnalysis"><button type="button"
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">食記分析</button></a>
 						</div>
 					</div>
 				</div>

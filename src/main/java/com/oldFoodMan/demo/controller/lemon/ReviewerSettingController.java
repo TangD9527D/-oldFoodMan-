@@ -147,12 +147,9 @@ public class ReviewerSettingController {
 		userRepository.save(user);
 		mav.getModel().put("user",user);
 		
-		//前五
-//		ReviewerSaveRating rsr = reviewerFoodRecordService.findByMember(memberId);
-		FoodRecord fr01 = foodRecordRepository.getById(4);
-		FoodRecord fr02 = foodRecordRepository.getById(5);
-		mav.getModel().put("fr01",fr01);
-		mav.getModel().put("fr02",fr02);
+		//標記區域
+		List<ReviewerSaveRating> rsrs = reviewerFoodRecordService.findAll();
+		mav.getModel().put("rsrs",rsrs);
 		
 		//拜訪區域
 		//taipei
@@ -168,9 +165,55 @@ public class ReviewerSettingController {
 	@GetMapping("/reviewerPageIntro")
 	public ModelAndView reviewerPageIntro(ModelAndView mav,HttpSession hs) {
 		Member memberData = (Member)hs.getAttribute("member");
-		Integer memberId = memberData.getId();
-		Member memberBean = memberService.findById(memberId);
-		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
+		Integer member_id = memberData.getId();
+		Member memberBean = memberService.findById(member_id);
+		ReviewerSetting reviewerBean = rsr.findByMember(member_id);
+		
+		//starcounts
+		Integer kstar5 = reviewerFoodRecordService.countStr5(member_id);
+		Integer kstar4 = reviewerFoodRecordService.countStr4(member_id);
+		Integer kstar3 = reviewerFoodRecordService.countStr3(member_id);
+		Integer kstar2 = reviewerFoodRecordService.countStr2(member_id);
+		Integer kstar1 = reviewerFoodRecordService.countStr1(member_id);
+		
+		Float ksum = (float) (kstar5+kstar4+kstar3+kstar2+kstar1);
+		Integer kstar5Avg = Math.round(kstar5/ksum*100);
+		Integer kstar4Avg = Math.round(kstar4/ksum*100);
+		Integer kstar3Avg = Math.round(kstar3/ksum*100);
+		Integer kstar2Avg = Math.round(kstar2/ksum*100);
+		Integer kstar1Avg = Math.round(kstar1/ksum*100);
+		
+		mav.getModel().put("k5", kstar5);
+		mav.getModel().put("k4", kstar4);
+		mav.getModel().put("k3", kstar3);
+		mav.getModel().put("k2", kstar2);
+		mav.getModel().put("k1", kstar1);
+		mav.getModel().put("k5Avg", kstar5Avg);
+		mav.getModel().put("k4Avg", kstar4Avg);
+		mav.getModel().put("k3Avg", kstar3Avg);
+		mav.getModel().put("k2Avg", kstar2Avg);
+		mav.getModel().put("k1Avg", kstar1Avg);
+		
+		//consume price
+		Integer kprice1 = reviewerFoodRecordService.countPrice1(member_id);
+		Integer kprice2 = reviewerFoodRecordService.countPrice2(member_id);
+		Integer kprice3 = reviewerFoodRecordService.countPrice3(member_id);
+		Integer kprice4 = reviewerFoodRecordService.countPrice4(member_id);
+		
+		Float kpsum = (float) (kprice4+kprice3+kprice2+kprice1);
+		Integer kprice1Avg = Math.round(kprice1/kpsum*100);
+		Integer kprice2Avg = Math.round(kprice2/kpsum*100);
+		Integer kprice3Avg = Math.round(kprice3/kpsum*100);
+		Integer kprice4Avg = Math.round(kprice4/kpsum*100);
+		mav.getModel().put("kp1", kprice1);
+		mav.getModel().put("kp2", kprice2);
+		mav.getModel().put("kp3", kprice3);
+		mav.getModel().put("kp4", kprice4);
+		mav.getModel().put("kp1Avg", kprice1Avg);
+		mav.getModel().put("kp2Avg", kprice2Avg);
+		mav.getModel().put("kp3Avg", kprice3Avg);
+		mav.getModel().put("kp4Avg", kprice4Avg);
+		
 		
 		mav.getModel().put("reviewerPage", reviewerBean);
 		mav.getModel().put("memberPage", memberBean);

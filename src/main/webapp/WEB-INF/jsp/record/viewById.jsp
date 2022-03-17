@@ -26,12 +26,19 @@
             justify-content: center; */
 }
 
-#mainTitleLL, #rateLL, #arthurLL, #shareLL {
+#mainTitleLL, #rateLL, #arthurLL{
 	position: static;
 	width: 300px;
 	margin: auto;
 	text-align: center;
 }
+ #shareLL {
+ position: absolute;;
+	width: 300px;
+	margin: 0px  auto auto auto;
+	align: left;
+	
+ }
 
 #h1 {
 	position: static;
@@ -123,8 +130,9 @@ figure {
 }
 
 #icon {
-	margin: 10px;
+	margin: 0px 10px 10px 10px;
 	width: 30px;
+	align: top;
 }
 
 .msg_id {
@@ -181,6 +189,7 @@ button{
 			</figure>
 		</div>
 		
+
 <!--   霈的星星!!!!! -->
 
 		<div id="likeBar">
@@ -192,6 +201,7 @@ button{
 			<input type="hidden" value="${foodrecordById.id}" id="clot">
 		</div>
 <!--   霈的星星!!!!! -->
+
 
 
 		<div id="article">
@@ -264,8 +274,9 @@ button{
 						<script
 							src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js"
 							async="async" defer="defer"></script>
-
+						<a href="https://www.instagram.com/oldfoodman/"><img id="icon" title="老食人instagram" src="images/instagram.png"></a>
 						<img id="icon" title="Facebook分享" src="images/facebook.png">
+						
 					</div>
 
 				</div>

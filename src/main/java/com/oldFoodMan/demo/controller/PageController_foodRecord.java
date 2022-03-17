@@ -2,6 +2,7 @@ package com.oldFoodMan.demo.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oldFoodMan.demo.dto.RecordMessageDto;
 import com.oldFoodMan.demo.model.FoodRecord;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.RecordMessages;
@@ -76,16 +80,6 @@ public class PageController_foodRecord {
 			return mav;
 		}
 		
-	//食記分析page
-		@GetMapping("/RecordAnalysis")   //查詢全部的轉頁(第1頁)controler
-		public ModelAndView RecordAnalysis(ModelAndView mav) {		
-			mav.setViewName("record/RecordAnalysis");
-			List<FoodRecord> type = service.typeFilter();
-			System.out.println("type ="+type);
-			mav.getModel().put("type", type);
-			return mav;
-		}
-		
 	//看剛寫好的食記
 	@GetMapping("/theLastestRecord")
 	public ModelAndView theLastestRecord(ModelAndView mav) {
@@ -96,6 +90,17 @@ public class PageController_foodRecord {
 		mav.getModel().put("foodRecord", fr);  //是TotalRecord中c:out 的var
 		mav.getModel().put("lastestFoodRecord", lastestFr);
 		
+		return mav;
+	}
+	
+	//食記分析page
+	@ResponseBody
+	@GetMapping("/RecordAnalysis") 
+	public ModelAndView RecordAnalysis(ModelAndView mav) {		
+		mav.setViewName("record/RecordAnalysis");
+		List<FoodRecord> type = service.typeFilter();
+		System.out.println("type ="+type);
+		mav.getModel().put("type", type);
 		return mav;
 	}
 	

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="../menu.jsp" />
+<%-- <jsp:include page="../menu.jsp" /> --%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -530,11 +530,11 @@
                                     <p class="score">5</p>
                                     <p class="num">
                                         [
-                                        <strong>0</strong>
+                                        <strong>${k5}</strong>
                                         件]
                                     </p>
                                     <p class="bar">
-                                        <img width="70%" height="12" src="${contextRoot}/imgLemon/rating_border.gif">
+                                        <img width="${k5Avg}%" height="12" src="${contextRoot}/imgLemon/rating_border.gif">
                                     </p>
                                 </li>
                                 <li class="clearfix">
@@ -544,11 +544,11 @@
                                     <p class="score">4</p>
                                     <p class="num">
                                         [
-                                        <strong>0</strong>
+                                        <strong>${k4}</strong>
                                         件]
                                     </p>
                                     <p class="bar">
-                                        <img width="0%" height="12" src="#">
+                                        <img width="${k4Avg}%" height="12" src="${contextRoot}/imgLemon/rating_border.gif">
                                     </p>
                                 </li>
                                 <li class="clearfix">
@@ -558,11 +558,11 @@
                                     <p class="score">3</p>
                                     <p class="num">
                                         [
-                                        <strong>0</strong>
+                                        <strong>${k3}</strong>
                                         件]
                                     </p>
                                     <p class="bar">
-                                        <img width="0%" height="12" src="#">
+                                        <img width="${k3Avg}%" height="12" src="${contextRoot}/imgLemon/rating_border.gif">
                                     </p>
                                 </li>
                                 <li class="clearfix">
@@ -572,11 +572,11 @@
                                     <p class="score">2</p>
                                     <p class="num">
                                         [
-                                        <strong>0</strong>
+                                        <strong>${k2}</strong>
                                         件]
                                     </p>
                                     <p class="bar">
-                                        <img width="0%" height="12" src="#">
+                                        <img width="${k2Avg}%" height="12" src="${contextRoot}/imgLemon/rating_border.gif">
                                     </p>
                                 </li>
                                 <li class="clearfix">
@@ -586,11 +586,11 @@
                                     <p class="score">1</p>
                                     <p class="num">
                                         [
-                                        <strong>0</strong>
+                                        <strong>${k1}</strong>
                                         件]
                                     </p>
                                     <p class="bar">
-                                        <img width="0%" height="12" src="#">
+                                        <img width="${k1Avg}%" height="12" src="${contextRoot}/imgLemon/rating_border.gif">
                                     </p>
                                 </li>
                             </ul>
@@ -603,71 +603,50 @@
                         <div class="graph">
                             <ul class="clearfix">
                                 <li class="clearfix">
-                                    <p class="rate-price">~$199</p>
+                                    <p class="rate-price">0~500 $</p>
                                     <p class="num">
                                         [
-                                        <strong>0</strong>
+                                        <strong>${kp1}</strong>
                                         件]
                                     </p>
                                     <p class="bar">
-                                        <img width="0%" height="12" src="#">
+                                        <img width="${kp1Avg}%" height="12" src="${contextRoot}/imgLemon/rating_border.gif">
                                     </p>
                                 </li>
                                 <li class="clearfix">
-                                    <p class="rate-price">$200~$499</p>
+                                    <p class="rate-price">501~1000 $$</p>
                                     <p class="num">
                                         [
-                                        <strong>0</strong>
+                                        <strong>${kp2}</strong>
                                         件]
                                     </p>
                                     <p class="bar">
-                                        <img width="0%" height="12" src="#">
+                                        <img width="${kp2Avg}%" height="12" src="${contextRoot}/imgLemon/rating_border.gif">
                                     </p>
                                 </li>
                                 <li class="clearfix">
-                                    <p class="rate-price">$500~$999</p>
+                                    <p class="rate-price">1001~3000 $$$</p>
                                     <p class="num">
                                         [
-                                        <strong>0</strong>
+                                        <strong>${kp3}</strong>
                                         件]
                                     </p>
                                     <p class="bar">
-                                        <img width="0%" height="12" src="#">
+                                        <img width="${kp3Avg}%" height="12" src="${contextRoot}/imgLemon/rating_border.gif">
                                     </p>
                                 </li>
                                 <li class="clearfix">
-                                    <p class="rate-price">$1000~$1499</p>
+                                    <p class="rate-price">3000~ $$$$</p>
                                     <p class="num">
                                         [
-                                        <strong>0</strong>
+                                        <strong>${kp4}</strong>
                                         件]
                                     </p>
                                     <p class="bar">
-                                        <img width="0%" height="12" src="#">
+                                        <img width="${kp4Avg}%" height="12" src="${contextRoot}/imgLemon/rating_border.gif">
                                     </p>
                                 </li>
-                                <li class="clearfix">
-                                    <p class="rate-price">$1500~$1999</p>
-                                    <p class="num">
-                                        [
-                                        <strong>0</strong>
-                                        件]
-                                    </p>
-                                    <p class="bar">
-                                        <img width="0%" height="12" src="#">
-                                    </p>
-                                </li>
-                                <li class="clearfix">
-                                    <p class="rate-price">$2000~</p>
-                                    <p class="num">
-                                        [
-                                        <strong>0</strong>
-                                        件]
-                                    </p>
-                                    <p class="bar">
-                                        <img width="0%" height="12" src="#">
-                                    </p>
-                                </li>
+                                
                             </ul>
                         </div>
                     </div>

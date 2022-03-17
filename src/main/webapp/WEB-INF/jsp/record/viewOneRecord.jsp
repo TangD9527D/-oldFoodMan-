@@ -13,6 +13,7 @@
 #rateLL {
 	display: flex;
 }
+
 #topTitleLL {
 	/* border: solid lightblue thin; */
 	width: 700px;
@@ -21,60 +22,79 @@
 	/* align-items: center;
             justify-content: center; */
 }
-#mainTitleLL, #rateLL, #arthurLL, #shareLL {
+
+#mainTitleLL, #rateLL, #arthurLL{
 	position: static;
 	width: 300px;
 	margin: auto;
 	text-align: center;
 }
-#h1{
+ #shareLL {
+ position: absolute;;
+	width: 300px;
+	margin: 0px  auto auto auto;
+	align: left;
+	
+ }
+
+#h1 {
 	position: static;
 	width: 800px;
 	margin: auto;
 	text-align: center;
 }
+
 figure {
 	/* border: thin #c0c0c0 solid; */
 	display: flex;
 	flex-flow: column;
 	/* padding: 5px; */
-	max-width: 450px;
-	height: 450px;
+/* 	max-width: 600px; */
+/* 	height: 550px; */
 	margin: auto;
 	overflow: hidden;
 }
+
 #likeBar {
 	display: flex;
 	justify-content: center;
-	margin-top:20px;
+	margin-top: 20px;
 }
+
 #article {
 	display: flex;
 	justify-content: center;
 	margin: 50px;
 }
+
 #left {
 	/* border: thin lightblue solid; */
 	width: 300px;
 }
+
 #right {
 	/* border: thin lightblue solid; */
 	width: 700px;
 }
+
 #taste, #air, #cpValue, #left #share {
 	border-top: solid thin lightcoral;
 	margin: 15px;
 }
+
 #left #title {
 	margin: 15px;
 }
+
 #right {
 	justify-content: center;
 }
+
 #articleDinning p {
 	width: 500px;
 	line-height: 1.5;
 }
+
 #articleDinning p::first-letter {
 	color: black;
 	/* background-color: black; */
@@ -85,16 +105,19 @@ figure {
 	margin-right: 6px;
 	float: left;
 }
+
 #articleDinning {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
+
 #articleDinning img {
 	width: 500px;
 	margin: 15px;
 }
+
 #articleDinning h6 {
 	width: 500px;
 	display: flex;
@@ -102,13 +125,40 @@ figure {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
+
 #icon {
-	margin: 10px;
+	margin: 0px 10px 10px 10px;
 	width: 30px;
+	align: top;
 }
-.msg_id{
-height:20px;
-width:500px;
+
+.msg_id {
+	height: 20px;
+	width: 500px;
+}
+/* eddie */
+.absolute1 {
+	position: fixed;
+	top: 490px;
+	right:25%;
+	width: 25px;
+	height: 25px;
+
+}	
+
+/* .test { */
+/* 	color: yellow; */
+/* } */
+
+button{
+	width: 60px;
+	margin: 3px;
+	background-color: #46A3FF;
+	color: white;
+}
+
+.text{
+	margin: 5px;
 }
 </style>
 </head>
@@ -135,37 +185,36 @@ width:500px;
 			<img src="<c:url value='/getPicture/${lastestFoodRecord.id}'/>">
 		</figure>
 		</div>
-<!-- 		<div id="likeBar"> -->
-<!-- 			<img id="icon" src="images/like.png"> <img id="icon" -->
-<!-- 				src="images/chat.png"> <img id="icon" src="images/badoo.png"> -->
-<!-- 		</div> -->
+
 		<div id="article">
 			<div id="left">
 				<div id="title">
-					<h3>
+					<h3 style="font-weight:bold;">
 						類型:
 						<c:out value="${lastestFoodRecord.shopType}" />
 					</h3>
-					<h4>
+					<h4 style="font-weight:bold;">
 						適合:
 						<c:out value="${lastestFoodRecord.audience}" />
 					</h4>
 					<p>
-						<c:out value="${lastestFoodRecord.city}" />
+						<c:out value="${foodrecordById.city}" />
 						<br>
-						<c:out value="${lastestFoodRecord.town}" />
+						<c:out value="${foodrecordById.town}" />
 						<br>
-						<c:out value="${lastestFoodRecord.shopAddress}" />
-						<br> <br> 用餐日<br>
-						<c:out value="${lastestFoodRecord.businessHours}" />
-						<br> <br> 餐廳<br>
+						<c:out value="${foodrecordById.shopAddress}" />
+						<h5 style="font-weight:bold;"> 用餐日 </h5>
+						<c:out value="${foodrecordById.businessHours}" />
+						<br> <br>
+						<h5 style="font-weight:bold;"> 店名 </h5>
 						<c:out value="${foodrecordById.shopName}" />
-						<br> <br> 電話<br>
-						<c:out value="${lastestFoodRecord.tel}" />
+						<br> <br>
+						<h5 style="font-weight:bold;"> 電話 </h5>
+						<c:out value="${foodrecordById.tel}" />
 					</p>
 				</div>
 				<div id="taste">
-					<h3>美味</h3>
+					<h3 style="font-weight:bold;">美味</h3>
 					<h6 >
 						<c:out value="${lastestFoodRecord.tasty}" />
 					</h6>
@@ -173,7 +222,7 @@ width:500px;
 					<img style="width: 50px;" id="tastyId2">
 				</div>
 				<div id="air">
-					<h3>氣氛</h3>
+					<h3 style="font-weight:bold;">氣氛</h3>
 					<h6>
 						<c:out value="${lastestFoodRecord.atmosphere}" />
 					</h6>
@@ -181,7 +230,7 @@ width:500px;
 					<img style="width: 50px;" id="atmosphereId2">
 				</div>
 				<div id="cpValue">
-					<h3>西批值</h3>
+					<h3 style="font-weight:bold;">西批值</h3>
 					<h6>
 						<c:out value="${lastestFoodRecord.cp}" />
 					</h6>
@@ -191,7 +240,7 @@ width:500px;
 				<div id="share">
 				
 				
-					<h3>分享</h3>
+					<h3 style="font-weight:bold;">分享</h3>
 					<div id="shareLL">
 						<div class="line-it-button" data-lang="zh_Hant"
 							data-type="share-b" data-env="REAL"
@@ -201,8 +250,9 @@ width:500px;
 						<script
 							src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js"
 							async="async" defer="defer"></script>
-
+						<a href="https://www.instagram.com/oldfoodman/"><img id="icon" title="老食人instagram" src="images/instagram.png"></a>
 						<img id="icon" title="Facebook分享" src="images/facebook.png">
+						
 					</div>
 					
 				</div>
@@ -213,7 +263,7 @@ width:500px;
 						<c:out value="${lastestFoodRecord.content}" />
 					</p>
 
-					<h6>
+					<h6 style="font-weight:bold;">
 						日期:
 						<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss EEEE"
 							value="${lastestFoodRecord.added}" />
