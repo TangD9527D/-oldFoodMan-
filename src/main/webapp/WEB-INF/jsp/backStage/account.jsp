@@ -27,11 +27,11 @@
 <style>
 
 .body77 {
-	margin-top: 20px;
-	margin-right: 10px;
-	width: 1110px;
+	margin-top: 15px;
+	width: 1250px;
 	float: right;
 	text-align: center;
+	margin-bottom: 5px;
 }
 
 </style>
