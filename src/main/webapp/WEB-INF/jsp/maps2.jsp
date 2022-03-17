@@ -34,14 +34,14 @@
 <style>
 .allpage {
 	width: 70%;
-	height: 80%;
+	height: 100%;
 	margin: 10px auto;
 	/* float: left; */
 }
 
 #map {
 	width: 100%;
-	height: 85%;
+	height: 100%;
 	margin: 5px auto;
 	/* float: left; */
 }
@@ -214,46 +214,30 @@ body {
 	float: left;
 	margin-top: 25px;
 	margin-left: 2%;
-	/* 	justify-content: space-between; */
-	/* 	width: 100%; */
-	/* 	background-image: */
-	/* 		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg"); */
-	/* 	background-position: 100px 250px;; */
+	background-color:#fbf3f3;
+
 }
 
 #p2 {
 	float: left;
 	margin-top: 25px;
 	margin-left: 2%;
-	/* 	justify-content: space-between; */
 	width: 100%;
-	/* 	background-image: */
-	/* 		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg"); */
-	/* 	background-position: 100px 250px; */
-	background-color: #ecd8d8;
-	border: 1px solid #ecd8d8;
-	background-image: -o-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%);
-	background-image: -moz-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%);
-	background-image: -webkit-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%);
-	background-image: -ms-linear-gradient(bottom, #eae9d8 0%, #d1d0bf 100%);
-	background-image: linear-gradient(to bottom, #eae9d8 0%, #d1d0bf 100%);
-	-webkit-box-shadow: inset 0 1px 0 #fffff1;
-	-moz-box-shadow: inset 0 1px 0 #fffff1;
-	box-shadow: inset 0 1px 0 #fffff1;
-	/* 	text-shadow: 0 1px 0 #fffff1; 
-	/* 	color: #b8b7a6; */
-	background-image:
-		url("http://localhost:8080/oldFoodMan/images/oldfoodman.png");
-	background-position: 230px 150px;
-	/* 	opacity: 1.5; */
+	background-color:#fbf3f3;
+	overflow:hidden;
+	border: 3px solid #E6E6F2 ;
+	box-shadow: 2px 2px 5px #E6E6F2;
+
 }
 
-
+#img {
+	
+}
 
 #box {
 	width: 100%;
 	padding: 10px;
-	height: 130px;
+	height: 150px;
 	margin: 10px auto;
 }
 
@@ -279,8 +263,6 @@ body {
 	border: 5px solid #FDE4DE;
 	float: right;
 	width: 14%;
-	/* 	height: 50%; */
-	/* 	height: 50%; */
 	margin: 50px auto;
 	border-radius: 15px;
 }
@@ -318,19 +300,39 @@ body {
 }
 .imgsize{
 
-width: 13.5rem; 
+width: 13rem; 
 height: 14rem;
 display: block;
 margin: 25px auto;
 
 }
 
-.titlesize
-{
+.acolor{
 
-size:25px;
+color:black;
+text-decoration:none;
 
 }
+.acolor:hover{
+
+color:orange;
+
+
+}
+
+.imgsize 
+{
+
+transform:scale(1);transition: all 0.3s ease-in-out;
+
+}
+
+.imgsize:hover{
+
+transform:scale(1.2,1.2);
+
+}
+
 
 
 </style>
@@ -398,30 +400,33 @@ size:25px;
 				</div>
 			</div>
 
-	
+			<div class="test1">
+				<div id="xxx">
 					<div id="range" class="">
 						<c:forEach var="maps" items="${page.content}">
 							<div class="card " style="width:15rem" id="p2">
-								<a
-									href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id}"><img
+								<a   
+									href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id}"  ><img
 									id="img" src="<c:url value='/getPicture/${maps.id}'/>"
 									 class="card-img-top imgsize"
 									alt="..."></a>
 								<div id="box" class="card-body">
-									<a href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id} "><span  id="p" class="card-title"
-										style="background-color: #FDE4DE; text-align: center">${maps.title}</span></a>
+									<a	href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id} " title="${maps.title}" class="acolor"><span id="p" class="card-title"
+										style="background-color: #FFC2C3; text-align: center">${maps.title}</span></a>
 									<h5 id="p" class="card-text">${maps.content}</h5>
 									
 
 									<div id="right">
-										<span>發布日期：&nbsp&nbsp</span><fmt:formatDate pattern="yyyy/MM/dd" value="${maps.added}" />
+										<fmt:formatDate pattern="yyyy/MM/dd" value="${maps.added}" />
 									</div>
 
 								</div>
 							</div>
 						</c:forEach>
 
-				
+					</div>
+
+				</div>
 			</div>
 		</div>
 		<!-- 分頁頁碼 -->
@@ -453,8 +458,11 @@ size:25px;
 
 			<!-- 			</div> -->
 		</div>
-	
 
+		<footer class="pt-3 mt-4 text-muted border-top">
+      <div style="margin:50px;">&copy; 2022</div>
+    </footer>
+	
 	</div>
 
 
@@ -772,7 +780,7 @@ if (code == 13) { //Enter keycode
 							console.log(result)
 							
 				$.each(result,function(index,value){
-						msg_data+= '<div id="p1" class="card" style="width:15rem" >'
+						msg_data+= '<div id="p1" class="card col-3" >'
 //  					msg_data+= '<img id="img" src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						console.log(value.uploadPicture)
 						console.log(value.create_at)
@@ -781,8 +789,9 @@ if (code == 13) { //Enter keycode
 						console.log(ok)
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"><img id="img"  src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>"  class="card-img-top imgsize" alt="..."></a>'
 						msg_data+= '<div id="box" class="card-body">'		
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"<span id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</span></a>'
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'" class="btn btn-outline-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀"/></a>'			
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
@@ -803,44 +812,44 @@ if (code == 13) { //Enter keycode
 
 	}
 		
-		//暫無使用
-// function collet22(){		
+		
+function collet22(){		
 			
-// 			var inputResName = document.getElementById('bt1').attr;
-// 			var inputResName = document.getElementById('bt2').attr;
-// 			var inputResName = document.getElementById('bt3').attr;
-// 				$.ajax({
-// 						url : 'http://localhost:8080/oldFoodMan/collet?shopType='+inputResName ,
-// 						contentType : 'application/json ; charset=UTF-8',
-// 						dataType : 'json',
-// 						method : 'get',
+			var inputResName = document.getElementById('bt1').attr;
+			var inputResName = document.getElementById('bt2').attr;
+			var inputResName = document.getElementById('bt3').attr;
+				$.ajax({
+						url : 'http://localhost:8080/oldFoodMan/collet?shopType='+inputResName ,
+						contentType : 'application/json ; charset=UTF-8',
+						dataType : 'json',
+						method : 'get',
 
-// 						success : function(result) {
-// 							console.log(result)
-// 						var msg_data='';
-// 				$.each(result,function(index,value){
-// 						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-// 						msg_data+= '<img id="img" src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
-// 						msg_data+= '<div id="box1" class="card-body">'		
-// 						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
-// 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
-// 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'" class="btn btn-primary" ><c:out value="繼續閱讀..."/></a>'
-// 						msg_data+= '</div>'
-// 						msg_data+= '</div>'
-// 						})
+						success : function(result) {
+							console.log(result)
+						var msg_data='';
+				$.each(result,function(index,value){
+						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
+						msg_data+= '<img id="img" src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
+						msg_data+= '<div id="box1" class="card-body">'		
+						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
+						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'" class="btn btn-primary" ><c:out value="繼續閱讀..."/></a>'
+						msg_data+= '</div>'
+						msg_data+= '</div>'
+						})
 
-// 						$('#range1').append(msg_data)
+						$('#range1').append(msg_data)
 
 		
-// 						},
-// 						error : function(err) {
-// 							console.log(err)
-// 							alert('發生錯誤')
-// 						}
+						},
+						error : function(err) {
+							console.log(err)
+							alert('發生錯誤')
+						}
 
-// 				})
+				})
 
-// 	}
+	}
 
 
 
