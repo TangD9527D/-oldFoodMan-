@@ -64,7 +64,7 @@ $(document).ready(function drawLineChart() {
               label: "店名",
                 fill: true,
                 lineTension: 0.1,
-                backgroundColor: [ "#B87070", "	#0066FF", "#FF8888", "orange", "brown" ],
+                backgroundColor: [ "#4400B3", "	#0066FF", "#FF8888", "orange", "brown" ],
                 borderColor: "rgba(75,192,192,1)",
                 borderCapStyle: 'butt',
                 borderDash: [],
