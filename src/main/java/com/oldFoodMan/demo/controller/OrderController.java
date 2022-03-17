@@ -1,6 +1,7 @@
 package com.oldFoodMan.demo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -110,10 +111,31 @@ public class OrderController {
 	
 	@ResponseBody
 	@PostMapping("/findProductAmount")
-	public Integer[] findProductAmount(){
+	public Integer[] findProductAmount(){ //統計數量圖表
 		Integer[] amount = detailService.findProductAmount();
 		return amount;
 	}
 	
+	@ResponseBody
+	@PostMapping("/findOneDayTime/{year}/{month}/{day}")
+	public Map<Integer, Integer> findOneDayTime(@PathVariable(value="year") String year, @PathVariable(value="month") String month, @PathVariable(value="day") String day){ //統計數量圖表
+		String days = year + "/" + month + "/" + day;
+		System.out.println(days);
+		List<OrderForm> forms = formService.findOneDayTime(days);
+		int between [] = new int[2];
+		int last = forms.size();
+		OrderForm f1 = forms.get(0);
+		OrderForm flast = forms.get(last-1);
+		int n1 = f1.getOrderNumber();
+	    int n2 = flast.getOrderNumber();
+	    between[0] = n1;
+	    between[1] = n2;
+	    Map<Integer, Integer> a = detailService.findqqq();
+	    return a;
+	    
+		}
+		
+	}
+	
 
-}
+
