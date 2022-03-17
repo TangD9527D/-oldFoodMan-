@@ -16,7 +16,7 @@
 
 <style>
 .allpage{
-	width:83%;
+	width:84%;
 
 	margin:10px auto;
 
