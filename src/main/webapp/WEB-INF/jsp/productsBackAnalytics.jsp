@@ -25,6 +25,7 @@
 <body>
 	<div class="body88">
 		<canvas id="amount" style="width:100%;max-width:400px"></canvas>
+		<input type="date" id="day">
 		<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 	</div>
 
@@ -64,8 +65,27 @@
 				})
 			}
 		})
-		
-		
+		$('#day').change(function(){
+			var day = $('#day').val();
+			let year = day.substr(0,4);
+			let month = day.substr(5,2);
+			let date = day.substr(8,2);
+
+			
+	 		$.ajax({  //當日餐券額統計
+				url:'http://localhost:8080/oldFoodMan/findOneDayTime/' + year + "/" + month + "/" + date,
+				type:'post',
+				success: function(data){
+					console.log(data);
+// 					$.each(data, function(index, value){
+// 						console.log(value.orderTotal);
+					
+				
+				}
+			})
+			
+		})
+
 		
 		
 	
