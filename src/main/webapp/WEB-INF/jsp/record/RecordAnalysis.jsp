@@ -15,8 +15,8 @@
 				<div id="showMsg" class="card">
 					<c:forEach var="type" items="${type}">
 						<div class="card-header">
-						<c:out value="${type.類型}" /><br>
-						<c:out value="${type.次數}" />
+						<c:out value="${type.shopType}" /><br>
+						<c:out value="${type.COUNT(*)}" />
 						</div>
 					</c:forEach>
 				</div>
@@ -26,29 +26,29 @@
 <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 
 <script>
-$(document).on('click','.typeBtn',function(){
+// $(document).on('click','.typeBtn',function(){
 	
-	$.ajax({
-		url : 'http://localhost:8080/oldFoodMan/RecordAnalysis',
-		contentType : 'application/json; charset=UTF-8', // 送過去的格式
-		dataType : 'json', // 傳回來的
-		method : 'post',
+// 	$.ajax({
+// 		url : 'http://localhost:8080/oldFoodMan/RecordAnalysis',
+// 		contentType : 'application/json; charset=UTF-8', // 送過去的格式
+// 		dataType : 'json', // 傳回來的
+// 		method : 'post',
 		
-		var data = '';
-		success : function(result){
-			var data = '';
-			$.each(result, function(index, value){
-				data +=value.類型
-				data +=value.次數
-			})
-		},
-		error : function(err){
-			console.log(err)
-			alert('新增留言發生錯誤')
-		}
+// 		var data = '';
+// 		success : function(result){
+// 			var data = '';
+// 			$.each(result, function(index, value){
+// 				data +=value.類型
+// 				data +=value.次數
+// 			})
+// 		},
+// 		error : function(err){
+// 			console.log(err)
+// 			alert('新增留言發生錯誤')
+// 		}
 		
-	}
-}//最熱門的類型
+// 	}
+// }//最熱門的類型
 
 
 

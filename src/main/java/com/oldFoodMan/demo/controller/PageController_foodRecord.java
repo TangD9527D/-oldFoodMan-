@@ -2,6 +2,7 @@ package com.oldFoodMan.demo.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,17 +80,6 @@ public class PageController_foodRecord {
 			return mav;
 		}
 		
-	//食記分析page
-		@ResponseBody
-		@GetMapping("/RecordAnalysis") 
-		public ModelAndView RecordAnalysis(ModelAndView mav,@RequestBody FoodRecord foodRecord) {		
-			mav.setViewName("record/RecordAnalysis");
-			List<FoodRecord> type = service.typeFilter();
-//			System.out.println("type ="+type);
-			mav.getModel().put("type", type);
-			return mav;
-		}
-		
 	//看剛寫好的食記
 	@GetMapping("/theLastestRecord")
 	public ModelAndView theLastestRecord(ModelAndView mav) {
@@ -100,6 +90,17 @@ public class PageController_foodRecord {
 		mav.getModel().put("foodRecord", fr);  //是TotalRecord中c:out 的var
 		mav.getModel().put("lastestFoodRecord", lastestFr);
 		
+		return mav;
+	}
+	
+	//食記分析page
+	@ResponseBody
+	@GetMapping("/RecordAnalysis") 
+	public ModelAndView RecordAnalysis(ModelAndView mav) {		
+		mav.setViewName("record/RecordAnalysis");
+		List<FoodRecord> type = service.typeFilter();
+		System.out.println("type ="+type);
+		mav.getModel().put("type", type);
 		return mav;
 	}
 	
