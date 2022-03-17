@@ -97,7 +97,7 @@ public class FoodVisController_32 {
 		if(!result.hasErrors()) {
 			// https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.entity-persistence.saving-entites
 			ofmservice.insert(ofm);
-			 mav.setViewName("redirect:/ajaxFoodVis");
+			 mav.setViewName("redirect:/viewAllVis");
 		}
 		
 		return mav;

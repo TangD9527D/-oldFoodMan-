@@ -16,7 +16,7 @@
 
 <style>
 .allpage{
-	width:88%;
+	width:83%;
 
 	margin:10px auto;
 
@@ -33,15 +33,16 @@
 
 .article {
     width:60%;
-    float:left; 
+    float:left;
+
 }
 .section {
 	
-    background-color:#ffffff;
-    border-radius:5px;
-    margin:10px 0;
-    padding:20px 26px;
-    line-height:2em;
+/*     background-color:#ffffff; */
+/*     border-radius:5px; */
+/* /*     margin:5px 0; */ */
+/* /*     padding:5px 5px; */ */
+/*     line-height:2em; */
 }
 .aside {
     width:40%;
@@ -104,12 +105,12 @@
 .titlehead{
 
 font-weight:bolder;
-font-size:30px;
+font-size:27px;
 width:155px;
 float:right;
+text-align:center;
 
-background-color: pink;
-border-radius:20px;
+border-radius:25px;
 }
 
 #myadd{
@@ -434,22 +435,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 <body>
 <div class="allpage">
 	<div id="content">
-	<h3 class="header1 fw-bold font-weight-bold " style="margin-bottom:2px;"><i style="font-size:30px" class="fa-solid fa-utensils"></i> &nbsp;<span style="font-size:30px">揪團美食Eat</span></h3>
+	<h4 class="header1 fw-bold font-weight-bold " ><i style="font-size:30px" class="fa-solid fa-utensils"></i> &nbsp;<span style="font-size:30px">揪團美食Eat</span></h4>
 	<hr>
+
 	<article class="article">
 <!-- 	<button type="button" id="star" onclick="">test</button> -->
 	
 	<section class="section">
+<!-- 	<a href="#joinmark">參加列表</a> <a href="#addmark">揪團列表</a> -->
 	<div >
 <form:form class="form" action="${contextRoot}/ajaxFoodVis"
 							modelAttribute="ofmid" method="post" >
 <!-- 							<button type="button" id="checksubmittest"></button> -->
+				
+				
 							
 <!-- 		行事曆 -->
+	
 		<div class="div04_32">
-		<div id="example" ></div>
-		</div>
 		
+		<div id="example" ></div>
+		
+		</div>
+		<div id="joinmark">
 		<div  class="div05_32" >
 		<div  class="div05-2">
 		<h3 class="joinhead" ><span class="joinheadn">${ofmid.memberName}</span> 參加 <i class="fa-solid fa-user-plus " style="color:#eb5b59"></i></h3>
@@ -465,9 +473,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		</div>
 		
 		</div>
+		</div>
 		<div  class="div06_32">
 		 <div class="div05-2" >
-    		<h3 class="tjoinhead"><span class="joinheadn">${ofmid.memberName}</span> 發起 <i class="fa-solid fa-calendar-plus" style="color:#a13b3a"></i></h3>
+    		<h3 class="tjoinhead" id="addmark"><span class="joinheadn">${ofmid.memberName}</span> 發起 <i class="fa-solid fa-calendar-plus" style="color:#a13b3a"></i></h3>
   		</div>
 	
 	
@@ -575,7 +584,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 <section class="section">
 <!-- <div class="viewtable"> -->
 
-		<div><button type="button"  class="btn btn  btn-lg btnadd" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData"><i class="fa-solid fa-circle-plus"></i> 新增揪團</button> <span class="titlehead">&nbsp;&nbsp;所有揪團</span></div>
+		<div><button type="button"  class="btn btn  btn-lg btnadd" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData"><i class="fa-solid fa-circle-plus"></i> 新增揪團</button> <span class="titlehead pink">所有揪團</span></div>
 		<p>
 		<c:forEach var="viewallvis" items="${page.content}">
 		<div id="table_id" class="card text-center">
