@@ -59,6 +59,8 @@ public class OfmService {
 		return ofmfull;
 	}
 	
+
+	
 	public List<Member> findAllAndMemberId() {
 
 		List<Member> ofmfull = addDao.findAllAndMemberId();

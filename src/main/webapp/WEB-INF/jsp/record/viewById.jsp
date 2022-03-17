@@ -139,7 +139,8 @@ figure {
 	height: 20px;
 	width: 500px;
 }
-/* eddie */
+
+/* eddie的星星 */
 .absolute1 {
 	position: fixed;
 	top: 490px;
@@ -188,6 +189,21 @@ button{
 			</figure>
 		</div>
 		
+
+<!--   霈的星星!!!!! -->
+
+		<div id="likeBar">
+			<img id="icon" src="images/like.png"> <img id="icon"
+				src="images/chat.png"> <img id="icon" src="images/badoo.png">
+			<div id="range" class="crange absolute1" onclick="likeCollections();">
+				<button  class="btn"><i id="test" class="fa-star fa-regular " style="font-size:30px"></i></button>				
+			</div>
+			<input type="hidden" value="${foodrecordById.id}" id="clot">
+		</div>
+<!--   霈的星星!!!!! -->
+
+
+
 		<div id="article">
 			<div id="left">
 				<div id="title">

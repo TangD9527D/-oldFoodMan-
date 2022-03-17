@@ -1,33 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-<jsp:include page="layout/navbar.jsp" />
+<%-- <jsp:include page="../backStage/model.jsp" /> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>揪團eat</title>
-<link rel="stylesheet" href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
-
-
-
-<link rel="stylesheet" type="text/css" href="${contextRoot}/css/jquery.dataTables.min.css">
-
+<title>商城後台</title>
+	<c:set var='contextRoot' value='${pageContext.request.contextPath }'/>
+	<link rel='stylesheet' href='${contextRoot}/css/bootstrap.min.css'/>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<style>
+		.body88 {
+			margin-top: 20px;
+			margin-right: 10px;
+			width: 1110px;
+			float: right;
+			text-align: center;
+		}
+	</style>
+	
 </head>
 <body>
-	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript" charset="utf8" src="${contextRoot}/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-	<div class="container">
-		<p />
-		<div>
-		<canvas id="myChart" width="100%" height="100%"></canvas>
-		</div>
-
+	<div class="body88">
+		<canvas id="amount" style="width:100%;max-width:400px"></canvas>
+		<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 	</div>
 	
 	
@@ -46,13 +44,17 @@ $(document).ready(function drawLineChart() {
         url: 'http://localhost:8080/oldFoodMan/api/viewAllAnalyze',
         dataType: 'json',
       }).done(function (results) {
-
+		console.log(results)
         // 將獲取到的json資料分別存放到兩個陣列中
         var labels = [], data=[];
         for(var sensorRecord in results)
         {
-            labels.push(new Date(results[sensorRecord].vis_date).formatMMDDYYYY());
-            data.push(results[sensorRecord].vis_num);
+        	var image = results[sensorRecord]
+			var ok = image.split(',')[0]
+        	console.log("hhh: "+ok)
+        	
+            labels.push(results[sensorRecord].split(',')[0]);
+            data.push(results[sensorRecord].split(',').pop());
         }
 
         // 設定圖表的資料
@@ -62,7 +64,7 @@ $(document).ready(function drawLineChart() {
               label: "店名",
                 fill: true,
                 lineTension: 0.1,
-                backgroundColor: "rgba(75,192,192,0.4)",
+                backgroundColor: [ "#B87070", "	#0066FF", "#FF8888", "orange", "brown" ],
                 borderColor: "rgba(75,192,192,1)",
                 borderCapStyle: 'butt',
                 borderDash: [],
@@ -85,7 +87,7 @@ $(document).ready(function drawLineChart() {
         // 獲取所選canvas元素的內容
         var ctx = document.getElementById("myChart");
         //設定圖表高度
-        ctx.height=9;                                  
+//         ctx.height=20;                                  
         // 初始化一個新的雷達圖
         var myLineChart = new Chart(ctx, {
             type: 'pie', 
@@ -104,6 +106,6 @@ $(document).ready(function drawLineChart() {
 
 </script>
 			
-
+<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

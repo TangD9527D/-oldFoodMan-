@@ -83,5 +83,12 @@ public class TestOfmService {
 		
 		return ofmfull;
 	}
+	
+	public List<String> findvisdate(){
+		
+		List<String> ofmfull=dao.findvisdate();
+		return ofmfull;
+		
+	}
 
 }

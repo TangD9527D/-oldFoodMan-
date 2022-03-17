@@ -88,9 +88,9 @@ public class PageController_32 {
 	
 	@ResponseBody
 	@GetMapping("/api/viewAllAnalyze")
-	public List<TestOFM> viewAllVisPageAnalyze() {
+	public List<String> viewAllVisPageAnalyze() {
 		
-		List<TestOFM>list  =tservice.findAllAndMember();
+		List<String>list  =tservice.findvisdate();
 
 		
 		System.out.println("想看看有啥: "+list);
