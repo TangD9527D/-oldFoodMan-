@@ -51,13 +51,13 @@
             <td><c:out value="${foodRecord.shopType}"/>
             <td><img width="80" height="70" src="<c:url value='/getPicture/${foodRecord.id}'/>">
             
-            <td><div class="g1"><h6 style="display: none"  id="score" class="score"><c:out value="${foodRecord.gender}" /></h6>
-					<img style="width: 30px;" name="tastyId2" class="tastyId2" id="tastyId2" src=""></div>
+<%--             <td><div class="g1"><h6 style="display: none"  id="score" class="score"><c:out value="${foodRecord.gender}" /></h6> --%>
+<!-- 					<img style="width: 30px;" name="tastyId2" class="tastyId2" id="tastyId2" src=""></div> -->
            
-<%--             <td><h6 style="display: none" id="score1"><c:out value="${foodRecord.gender1}" /></h6> --%>
-<!-- 					<img style="width: 30px;" id="atmosphereId2"> -->
-<%--             <td><h6 style="display: none" id="score2"><c:out value="${foodRecord.gender2}" /></h6> --%>
-<!-- 					<img style="width: 30px;" id="cpId2"> -->
+            <td><h6 style="display: none" id="score1"><c:out value="${foodRecord.gender1}" /></h6>
+					<img style="width: 30px;" id="atmosphereId2">
+            <td><h6 style="display: none" id="score2"><c:out value="${foodRecord.gender2}" /></h6>
+					<img style="width: 30px;" id="cpId2">
         </tr>
         
          </c:forEach>
@@ -102,19 +102,19 @@
 			} );
 		
 
-		function setScore3() {
-			var scorelen=document.getElementsByClassName("score");  //共有HTMLCloection物件
+// 		function setScore3() {
+// 			var scorelen=document.getElementsByClassName("score");  //共有HTMLCloection物件
 // 			$(".score").each(function(index,element){
-			$(".score").each(function(){
-				console.log(index,element);
-				var scoreVal = $(this).text()  //取得評分1-5
-				console.log("scoreVal ="+scoreVal);
+// 			$(".score").each(function(){
+// 				console.log(index,element);
+// 				var scoreVal = $(this).text()  //取得評分1-5
+// 				console.log("scoreVal ="+scoreVal);
 				
 // 				document.getElementsByClassName("tastyId2").src="images/scoreImages/"+${'scoreVal'}+".png"; 
 // 				var tastyId2 = document.getElementsByClassName("tastyId2").src="images/scoreImages/"+${'scoreVal'}+".png"; 
 // 				console.log("test ="+test);
 				
-				$(".tastyId2").attr("src","images/scoreImages/"+${'scoreVal'}+".png");
+// 				$(".tastyId2").attr("src","images/scoreImages/"+${'scoreVal'}+".png");
 			})
 		}
 			
@@ -133,7 +133,7 @@
 			document.getElementById("cpId2").src="images/scoreImages/"+${'score2'}+".png"; 
 			}
 		
-		setScore3();
+// 		setScore3();
 		setScore4();
 		setScore5();
 	
