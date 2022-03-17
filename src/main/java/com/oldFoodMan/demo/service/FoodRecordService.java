@@ -84,8 +84,8 @@ public class FoodRecordService {
 	}
 	
 	//類型篩選
-	public List<FoodRecord> typeFilter(){
-		 List<FoodRecord> type = frDao.typeFilter();
+	public List<String> typeFilter(){
+		 List<String> type = frDao.typeFilter();
 		 return type;
 	}
 

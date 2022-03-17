@@ -44,12 +44,19 @@
 							})
 					.done(
 							function(results) {
-
+								console.log(results)
 								// 將獲取到的json資料分別存放到兩個陣列中
 								var labels = [], data = [];
 								for ( var Collections in results) {
-									labels.push((results[Collections]).record_id.city);
-									data.push((results[Collections].record_id));
+									
+									console.log(results[Collections].split(',')[0])
+									console.log(results[Collections].split(',')[1])
+									console.log(results[Collections].split(',')[2])
+									
+									labels.push((results[Collections].split(',')[0]));
+									data.push((results[Collections].split(',')[2]));
+									
+									
 								}
 							console.log(data)
 								// 設定圖表的資料
@@ -82,7 +89,7 @@
 								// 獲取所選canvas元素的內容
 								var ctx = document.getElementById("myChart");
 								//設定圖表高度
-								ctx.height = 9;
+								ctx.height = 50;
 								// 初始化一個新的雷達圖
 								var myLineChart = new Chart(ctx, {
 									type : 'line',

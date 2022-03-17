@@ -108,10 +108,28 @@ public class CollectionsService {
 				
 		System.out.println("list歷史特"+list);
 		
-		return list ;
+		return list ;	
 		
+	}
+	
+	
+	public List<String> findAllChart(){
+		
+		
+		List<String> chart=clotdao.findAllChart();
+		
+		
+		return chart ;		
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
