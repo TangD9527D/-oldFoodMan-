@@ -26,5 +26,9 @@ public interface TestOfmRepository extends JpaRepository<TestOFM, Integer> {
 	@Query(value="  select*from my_food_vis join Member on member.id=my_food_vis.member_id",nativeQuery=true)
 	public List<TestOFM> findAllAndMember();
 	
+	@Query(value="   select  top 3 vis_res_name ,count(*) as num from my_food_vis group by vis_res_name　order by num DESC",nativeQuery=true)
+	public List<String> findvisdate();
 	
+	@Query(value=" select count(*)as num from my_food_vis group by vis_res_name　order by vis_res_name" ,nativeQuery=true)
+	 public List<String> findvis();
 }
