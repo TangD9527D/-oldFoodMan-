@@ -74,7 +74,12 @@
 	</div>  <!-- 商品CARD -->
 		<div class="row row-cols-1 row-cols-md-3" id="ajaxCard">
 			<c:forEach var="allProducts" items="${allProducts}">
-				<div class="col mb-4">
+			<c:choose>
+				<c:when test="${allProducts.product_stock == 0}">
+					
+				</c:when>
+				<c:otherwise>
+					<div class="col mb-4">
 					<div class="card h-100">
 						<img src="${allProducts.product_image}" class="card-img-top"
 							alt="...">
@@ -93,6 +98,9 @@
 						</div>
 					</div>
 				</div>
+				</c:otherwise>
+			</c:choose>
+				
 			</c:forEach>
 		</div>
 		
@@ -161,18 +169,21 @@
 								$('#ajaxCard').empty();
 								let msg_data = "";
 								$.each(data, function(index, value){
-									console.log(value.product_name);
+									if(value.product_stock <= 0 ){
+										console.log('沒了')
+									}else{
+										msg_data += '<div class="col mb-4"><div class="card h-100">';
+										msg_data += '<img src="' + value.product_image + '" class="card-img-top" alt="...">';
+										msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
+										msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
+										msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
+										msg_data += '尚餘' + value.product_stock + '份<BR></p>';
+										msg_data += '<div>';
+										msg_data += '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="lookProduct" value="' + value.product_id + '">商品詳情</button>';
+										msg_data += '<button type="button" class="btn btn-primary" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
+										msg_data += '</div></div></div></div>';
+									}
 									
-									msg_data += '<div class="col mb-4"><div class="card h-100">';
-									msg_data += '<img src="' + value.product_image + '" class="card-img-top" alt="...">';
-									msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
-									msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
-									msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
-									msg_data += '尚餘' + value.product_stock + '份<BR></p>';
-									msg_data += '<div>';
-									msg_data += '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="lookProduct" value="' + value.product_id + '">商品詳情</button>';
-									msg_data += '<button type="button" class="btn btn-primary" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
-									msg_data += '</div></div></div></div>';
 								
 								})
 								$('#ajaxCard').append(msg_data);
@@ -197,18 +208,20 @@
 							
 							
 							$.each(data, function(index, value){
-								console.log(value.product_name);
-								
-								msg_data += '<div class="col mb-4"><div class="card h-100">';
-								msg_data += '<img src="' + value.product_image + '" class="card-img-top" alt="...">';
-								msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
-								msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
-								msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
-								msg_data += '尚餘' + value.product_stock + '份<BR></p>';
-								msg_data += '<div>';
-								msg_data += '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="lookProduct" value="' + value.product_id + '">商品詳情</button>';
-								msg_data += '<button type="button" class="btn btn-primary" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
-								msg_data += '</div></div></div></div>';
+								if(value.product_stock <= 0 ){
+									msg_data += '<div><img src="<c:url value="' + 'product_img/noImage/noProductImage3.png' + '"/>"/></div>'
+								}else{
+									msg_data += '<div class="col mb-4"><div class="card h-100">';
+									msg_data += '<img src="' + value.product_image + '" class="card-img-top" alt="...">';
+									msg_data += '<div class="card-body"><h1 class="card-title">' + value.product_name + '</h1>';
+									msg_data += '<p class="card-text"><h3>售價:$' + Number(value.product_price)*Number(value.product_discount) + '</h3>';
+									msg_data += '<P style="text-decoration: line-through">原價:$' + value.product_price + '</P>';
+									msg_data += '尚餘' + value.product_stock + '份<BR></p>';
+									msg_data += '<div>';
+									msg_data += '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" id="lookProduct" value="' + value.product_id + '">商品詳情</button>';
+									msg_data += '<button type="button" class="btn btn-primary" onclick="addCart(' + value.product_id + ')" id="addCart">加入購物車</button>';
+									msg_data += '</div></div></div></div>';
+								}
 							
 							})
 							$('#ajaxCard').append(msg_data);
@@ -237,7 +250,7 @@
 		})
 		
 		
-		/*
+		
 		$('#searchProduct').click(function(){ //按搜尋按鈕觸發搜尋
 			let inputVal = $('#enter').val();
 			if(inputVal==''||inputVal==undefined||inputVal==null){
@@ -296,7 +309,7 @@
 				},
 			})
 		})
-		*/
+		
 	</script>
 
 	<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>

@@ -108,5 +108,12 @@ public class OrderController {
         return "ok";
 	}
 	
+	@ResponseBody
+	@PostMapping("/findProductAmount")
+	public Integer[] findProductAmount(){
+		Integer[] amount = detailService.findProductAmount();
+		return amount;
+	}
+	
 
 }

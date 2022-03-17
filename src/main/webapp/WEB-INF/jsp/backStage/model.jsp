@@ -32,7 +32,7 @@ body {
 	width: 400px;
 	height: 620px;
 	background-color: #fcfcff;
-	border-right: 2px solid black;
+ border-right: 2px solid black; 
 	float: left;
 }
 
@@ -100,8 +100,9 @@ body {
 						<a href="${contextRoot}/productsBackStagePage">
 							<button type="button"
 								class="list-group-item list-group-item-action">商城編輯</button></a>
+							<a href="${contextRoot}/productsBackAnalytics">
 							<button type="button"
-								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">商城數據分析</button>
+								class="list-group-item list-group-item-action">商城分析</button></a>
 						</div>
 					</div>
 				</div>
