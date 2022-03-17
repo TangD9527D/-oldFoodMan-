@@ -31,6 +31,10 @@ public class ReviewerFoodRecordService {
 	@Autowired
 	private ReviewerSaveRatingRepository rsrr;
 	
+	public List<ReviewerSaveRating> findAll(){
+		List<ReviewerSaveRating> list = rsrr.findAll();
+		return list;
+	}
 	
 	public void saveRatingg(Integer record_id,ReviewerSaveRating rsr) {
 		
@@ -93,5 +97,69 @@ public class ReviewerFoodRecordService {
 			ReviewerSaveRating rsrReadyy = new ReviewerSaveRating(); 
 			return rsrReadyy;
 		}
+	}
+	
+	//CountStar
+	
+	public Integer countStr5(Integer member_id) {
+		Integer star0 = frr.star5CountsG0(member_id);
+		Integer star1 = frr.star5CountsG1(member_id);
+		Integer star2 = frr.star5CountsG2(member_id);
+		Integer rr = star0+star1+star2;
+		return rr;
+	}
+	
+	public Integer countStr4(Integer member_id) {
+		Integer star0 = frr.star4CountsG0(member_id);
+		Integer star1 = frr.star4CountsG1(member_id);
+		Integer star2 = frr.star4CountsG2(member_id);
+		Integer rr = star0+star1+star2;
+		return rr;
+	}
+	
+	public Integer countStr3(Integer member_id) {
+		Integer star0 = frr.star3CountsG0(member_id);
+		Integer star1 = frr.star3CountsG1(member_id);
+		Integer star2 = frr.star3CountsG2(member_id);
+		Integer rr = star0+star1+star2;
+		return rr;
+	}
+	
+	public Integer countStr2(Integer member_id) {
+		Integer star0 = frr.star2CountsG0(member_id);
+		Integer star1 = frr.star2CountsG1(member_id);
+		Integer star2 = frr.star2CountsG2(member_id);
+		Integer rr = star0+star1+star2;
+		return rr;
+	}
+	
+	public Integer countStr1(Integer member_id) {
+		Integer star0 = frr.star1CountsG0(member_id);
+		Integer star1 = frr.star1CountsG1(member_id);
+		Integer star2 = frr.star1CountsG2(member_id);
+		Integer rr = star0+star1+star2;
+		return rr;
+	}
+	
+	//CountConsume
+	
+	public Integer countPrice1(Integer member_id) {
+		Integer cp =frr.price1Counts(member_id);
+		return cp;
+	}
+	
+	public Integer countPrice2(Integer member_id) {
+		Integer cp =frr.price2Counts(member_id);
+		return cp;
+	}
+	
+	public Integer countPrice3(Integer member_id) {
+		Integer cp =frr.price3Counts(member_id);
+		return cp;
+	}
+	
+	public Integer countPrice4(Integer member_id) {
+		Integer cp =frr.price4Counts(member_id);
+		return cp;
 	}
 }

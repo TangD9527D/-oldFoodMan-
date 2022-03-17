@@ -1010,13 +1010,13 @@
                     <ul class="c-view-sort__list">
                         <li class="c-view-sort__item">
                             <a class="c-view-sort__target" href="#">
-                                <img src="/imgLemon/triangle_down.gif" width="11" height="11" alt="下三角">
+                                <img src="${contextRoot}/imgLemon/下三角.gif" width="11" height="11" alt="下三角">
                                 <strong>更新日順序</strong>
                             </a>
                         </li>
                         <li class="c-view-sort__item">
                             <a class="c-view-sort__target" href="#">
-                                <img src="/imgLemon/triangle_down.gif" width="11" height="11" alt="下三角">
+                                <img src="${contextRoot}/imgLemon/下三角.gif" width="11" height="11" alt="下三角">
                                 <span>評價順序</span>
                             </a>
                         </li>
@@ -1047,7 +1047,7 @@
                         <div class="simple-rvw simple-rvw--rstdata">
                             <div class="simple-rvw__rst-info js-rst-clickable-area">
                                 <p class="simple-rvw__rst-img">
-                                    <img width="90" height="90" alt="店名" src="/imgLemon/無留手02.jpg">
+                                    <img width="90" height="90" alt="店名" src="<c:url value='/getPicture/${frd.id}'/>">
                                 </p>
                                 <div class="simple-rvw__rst-data">
                                     <div class="simple-rvw__rst-name simple-rvw__rst-name--mypage">
