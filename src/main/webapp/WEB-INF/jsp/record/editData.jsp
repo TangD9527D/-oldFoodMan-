@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<jsp:include page="${contextRoot}/WEB-INF/jsp/menu.jsp" />
+<c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <jsp:include page="../menu.jsp"/>
 <!DOCTYPE html>
 <html>
@@ -118,15 +118,15 @@ legend {
 	<form class="sform2">
 		<br>
 		<div class="container">
-			<form class="sform1">
+
 				
-				<div class="st1">
-						<label class="lab">上傳圖片:</label>
-						<form:input path="productImage" type='file' />
-						<div>
-							<img class="imgDiv" />
-						</div>
-					</div>
+<!-- 				<div class="st1"> -->
+<!-- 						<label class="lab">上傳圖片:</label> -->
+<%-- 						<form:input path="productImage" type='file' /> --%>
+<!-- 						<div> -->
+<!-- 							<img class="imgDiv" /> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 				
 				<form:input type="hidden" path="id" />
 				<form:input type="hidden" path="added" />
@@ -144,7 +144,8 @@ legend {
 
 				<p class="link-top"></p>
 				
-				<legend>店家資訊</legend>
+				<legend>店家資訊
+				</legend>
 			<div class="st1">
 				<label class="lab">店名:</label>
 				<form:input path="shopName" type="text"></form:input>
@@ -213,7 +214,7 @@ legend {
 					
 					
 
-				</form>
+				
 				<br>
 				<p class="link-top"></p>
 
@@ -251,10 +252,9 @@ legend {
 
 
 				<div class="btn">
-					<input class="sendBtn" type="submit" value="新增">
+					<input class="sendBtn" type="submit" value="更新">
 				</div>
-			</form>
-		</div>
+			</div>
 		</form>
 	</form:form>
 
@@ -264,12 +264,12 @@ legend {
 
 
 	<script>
-		tinymce
-				.init({
-					selector : 'textarea',
-					plugins : 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-					toolbar_mode : 'floating',
-				});
+// 		tinymce
+// 				.init({
+// 					selector : 'textarea',
+// 					plugins : 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+// 					toolbar_mode : 'floating',
+// 				});
 
 		//郵遞區號
 		$("#twzipcode").twzipcode({
@@ -285,7 +285,7 @@ legend {
 
 			const fr = new FileReader();
 			fr.onload = function(e) {
-				$('img').attr('src', e.target.result);
+				$('#imgDiv').attr('src', e.target.result);
 			};
 
 			// 使用 readAsDataURL 將圖片轉成 Base64

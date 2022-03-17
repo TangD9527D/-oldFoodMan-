@@ -9,9 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oldFoodMan.demo.dto.RecordMessageDto;
 import com.oldFoodMan.demo.model.FoodRecord;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.RecordMessages;
@@ -77,11 +80,12 @@ public class PageController_foodRecord {
 		}
 		
 	//食記分析page
-		@GetMapping("/RecordAnalysis")   //查詢全部的轉頁(第1頁)controler
-		public ModelAndView RecordAnalysis(ModelAndView mav) {		
+		@ResponseBody
+		@GetMapping("/RecordAnalysis") 
+		public ModelAndView RecordAnalysis(ModelAndView mav,@RequestBody FoodRecord foodRecord) {		
 			mav.setViewName("record/RecordAnalysis");
 			List<FoodRecord> type = service.typeFilter();
-			System.out.println("type ="+type);
+//			System.out.println("type ="+type);
 			mav.getModel().put("type", type);
 			return mav;
 		}
