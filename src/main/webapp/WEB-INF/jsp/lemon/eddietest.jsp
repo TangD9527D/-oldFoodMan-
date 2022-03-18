@@ -374,48 +374,7 @@ html {
 					</h1>
 					<div id="tryyy"></div>
 					<br> <br> <br>
-					<%-- 			<c:forEach var="collections" items="${page.content}">	 --%>
-					<!-- 					<p class="reco-lead"></p> -->
-					<!-- 					<div class="reco-text-wrap"> -->
-					<!-- 						<div class="reco-tx js-rvw-contents clearfix"> -->
-					<!-- 							::before -->
-					<!-- 							<div class="tx-left"> -->
-					<!-- 								<div class="tx-rst"> -->
-					<!-- 									<span class="reco-tx__ranking-no"> <span -->
-					<!-- 										class="c-ranking-badge"> <span -->
-					<!-- 											class="c-ranking-badge__no c-ranking-badge__no--no1"> -->
-					<!-- 												<i class="c-ranking-badge__contents u-text-num">1</i> -->
-					<!-- 										</span> -->
-					<!-- 									</span> -->
-					<!-- 									</span> -->
-					<!-- 									<div class="reco-tx__info-wrap"> -->
-
-					<!-- 										<div class="reco-tx__info-wrap"> -->
-					<!-- 											<div class="tx-rstname"> -->
-					<!-- 												<a class="tx-rstname__target" -->
-					<%-- 													href="#">${collections.shopName}</a> --%>
-					<!-- 											</div> -->
-					<%-- 											<span class="tx-pref">${collections.city}</span> <span class="tx-area">${collections.town} --%>
-					<!-- 												</span> -->
-					<!-- 										</div> -->
-					<!-- 									</div> -->
-					<!-- 								</div> -->
-					<!-- 								<p class="tx-rvwttl"> -->
-					<!-- 									<a href="#">意外的深夜牛肉麵(永久停業)</a> -->
-					<!-- 								</p> -->
-					<!-- 							</div> -->
-					<!-- 							<div class="tx-right"> -->
-					<!-- 								<p class="rating"> -->
-					<!-- 									<span class="subject">rating</span> -->
-					<!-- 									<img src=""> -->
-					<%-- 									<strong>${collections.gender}</strong> --%>
-
-
-					<!-- 								</p> -->
-					<!-- 							</div> -->
-					<!-- 						</div> -->
-					<!-- 					</div> -->
-					<%-- 					</c:forEach> --%>
+					
 
 				</div>
 				<section></section>
