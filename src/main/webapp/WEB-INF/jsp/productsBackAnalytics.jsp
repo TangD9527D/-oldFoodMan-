@@ -15,7 +15,7 @@
 		.body88 {
 			margin-top: 20px;
 			margin-right: 10px;
-			width: 1110px;
+			width: 1400px;
 			float: right;
 			text-align: center;
 		}
@@ -24,9 +24,16 @@
 </head>
 <body>
 	<div class="body88">
-		<canvas id="amount" style="width:100%;max-width:400px"></canvas>
-		<input type="date" id="day">
-		<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+		<div style="width:400px;float:left">
+			<canvas id="amount" style="width:100%;max-width:500px"></canvas>
+		</div>
+		<p>
+		<div id="ajax" style="width:1000px">
+			<P>
+			<br>
+			<input type="date" id="day">
+			<canvas id="myChart" style="width:100%;max-width:600px;height:1000px"></canvas>
+		</div>
 	</div>
 
 	<script>
@@ -78,6 +85,9 @@
 				success: function(data){
 // 					console.log(data);
 // 					console.log(data[0])
+
+					$('#myChart').remove();
+					$('#ajax').append('<canvas id="myChart" style="width:100%;max-width:600px"></canvas>');
 					let proMomey = [];
 					let proName = [];
  					$.each(data, function(index, value){
@@ -102,9 +112,30 @@
 					    }
 					  }
 					});
-				
-				
-			}
+				},
+	 			error: function(err){
+	 				$('#myChart').remove();
+					$('#ajax').append('<canvas id="myChart" style="width:100%;max-width:600px"></canvas>');
+					
+					new Chart("myChart", {
+						  type: "bar",
+						  data: {
+						    labels: ["無"],
+						    datasets: [{
+						      backgroundColor: ["red", "green","blue","orange","brown"],
+						      
+						    }]
+						  },
+						  options: {
+						    legend: {display: false},
+						    title: {
+						      display: true,
+						      text: "當日餐券銷售額"
+						    }
+						  }
+						});
+	 			}
+	 		
 			
 		})
 
