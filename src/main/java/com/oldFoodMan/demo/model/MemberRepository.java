@@ -17,4 +17,6 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 	@Query(value="SELECT city as 城市,COUNT(*) as 次數 FROM member GROUP BY city",nativeQuery=true)
 	public List<String> countCity();
 	
+	@Query(value="SELECT MONTH(createDate) [Month], COUNT(1) [Months Count] FROM member GROUP BY YEAR(createDate), MONTH(createDate) ORDER BY 1",nativeQuery=true)
+	public List<String> countYrMth();
 }

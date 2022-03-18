@@ -32,7 +32,7 @@
 	right: 100px;
 	border: 2px solid rgb(0, 119, 255);
 	height: 500px;
-	width: 500px;
+	width: 800px;
 }
 </style>
 </head>
@@ -42,7 +42,7 @@
 		<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 	</div>
 	<div class="date7">
-
+		<canvas id="myChart2" style="width:100%;max-width:800px"></canvas>
 	</div>
 <script>
 
@@ -95,7 +95,42 @@
 		});
 		})
 
-		
+		$.ajax({
+			url: 'http://localhost:8080/oldFoodMan/backStage/countYrMth',
+			dataType: 'json',
+			type:'post',
+		}).done(function (data) {
+			console.log(data)
+			var xValues = ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"];
+			var yValues = [];
+			var barColors = ["#ADADAD", "#FF2D2D","#FF79BC","#FF77FF","#BE77FF","#9393FF","#80FFFF","#79FF79","#FFDC35","#B87070","#6FB7B7","#9999CC"];
+			
+			for (var months in data) {
+				var mth = data[months]
+				var mths = mth.split(',')[1];
+				console.log(mths)
+				yValues.push(mths)
+			}
+			
+
+			new Chart("myChart2", {
+				type: "bar",
+				data: {
+					labels: xValues,
+					datasets: [{
+						backgroundColor: barColors,
+						data: yValues
+					}]
+				},
+				options: {
+					legend: { display: false },
+					title: {
+						display: true,
+						text: "World Wine Production 2018"
+					}
+				}
+			});
+		})
 
 	});
 
