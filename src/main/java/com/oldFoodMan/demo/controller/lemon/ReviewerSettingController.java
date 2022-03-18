@@ -153,8 +153,7 @@ public class ReviewerSettingController {
 		
 		//拜訪區域
 		//taipei
-		Integer taipei = foodRecordRepository.taipeiCounts(memberId);
-		
+		Integer taipei = foodRecordRepository.countcity1(memberId);
 		mav.getModel().put("taipei", taipei);
 		
 		//視圖君
