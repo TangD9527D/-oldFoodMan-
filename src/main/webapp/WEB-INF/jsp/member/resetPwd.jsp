@@ -97,9 +97,6 @@ body {
 	font-weight: 700;
 }
 
-.lab{
-
-}
 </style>
 </head>
 <div class="container">
@@ -133,7 +130,7 @@ body {
 				<form:input style="display: none;" path="fileNames" />
 				<form:input style="display: none;" path="authProvider" />
 				<div class="pwd_13">
-					<h3>請輸入新密碼:</h3>
+					<h3 id="paswordd7">請輸入新密碼:</h3>
 					<form:input type="password" id="pwd" name="password" path="memberPwd" />
 				</div>
 				<p>&nbsp;</p>
@@ -145,5 +142,10 @@ body {
 
 	</div>
 </div>
+<script>
+	$(document).on('click', '#paswordd7', function(){ 
+		$('#pwd').val("oldfoodMan77");
+	});
+</script>
 </body>
 </html>

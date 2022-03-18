@@ -15,18 +15,30 @@
 		.body88 {
 			margin-top: 20px;
 			margin-right: 10px;
-			width: 1110px;
+			width: 1400px;
 			float: right;
 			text-align: center;
+			
 		}
 	</style>
 	
 </head>
 <body>
 	<div class="body88">
-		<canvas id="amount" style="width:100%;max-width:400px"></canvas>
-		<input type="date" id="day">
-		<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+		<div style="width:400px;float:left">
+			<p>
+			<h3>餐券銷售數量總額</h3>
+			<canvas id="amount" style="width:100%;max-width:500px"></canvas>
+		</div>
+		<div style="width:1000px;margin-left:300px">
+			<p>
+			<h3>當日各銷售額</h3>
+			請選擇:<input type="date" id="day" style="text-align:center">
+			<p>&nbsp;</p>
+			<div id="ajax" style="margin-left:250px">
+			<canvas id="myChart" style="width:100%;max-width:1000px;margin-left:600px"></canvas>
+			</div>
+		</div>
 	</div>
 
 	<script>
@@ -57,7 +69,7 @@
 							  options: {
 							    title: {
 							      display: true,
-							      text: "各餐券銷售數量"
+// 							      text: "各餐券銷售數量總額"
 							    }
 							  }
 							});
@@ -76,17 +88,63 @@
 				url:'http://localhost:8080/oldFoodMan/findOneDayTime/' + year + "/" + month + "/" + date,
 				type:'post',
 				success: function(data){
-					console.log(data);
-// 					$.each(data, function(index, value){
-// 						console.log(value.orderTotal);
+// 					console.log(data);
+// 					console.log(data[0])
+
+					$('#myChart').remove();
+					$('#ajax').append('<canvas id="myChart" style="width:100%;max-width:600px"></canvas>');
+					let proMomey = [];
+					let proName = [];
+ 					$.each(data, function(index, value){
+						console.log(value[0]);
+						proMomey.push(value[0]);
+						proName.push(value[1]);
+					})
+					new Chart("myChart", {
+					  type: "bar",
+					  data: {
+					    labels: proName,
+					    datasets: [{
+					      backgroundColor: ["red", "green","blue","orange","brown"],
+					      data: proMomey
+					    }]
+					  },
+					  options: {
+					    legend: {display: false},
+					    title: {
+					      display: true,
+// 					      text: "當日餐券銷售額"
+					    }
+					  }
+					});
+				},
+	 			error: function(err){
+	 				$('#myChart').remove();
+					$('#ajax').append('<canvas id="myChart" style="width:100%;max-width:600px"></canvas>');
 					
-				
-				}
-			})
+					new Chart("myChart", {
+						  type: "bar",
+						  data: {
+						    labels: ["無"],
+						    datasets: [{
+						      backgroundColor: ["red", "green","blue","orange","brown"],
+						      
+						    }]
+						  },
+						  options: {
+						    legend: {display: false},
+						    title: {
+						      display: true,
+// 						      text: "當日餐券銷售額"
+						    }
+						  }
+						});
+	 			}
+	 		
 			
 		})
 
-		
+		})
 		
 	
 

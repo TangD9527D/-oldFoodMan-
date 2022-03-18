@@ -96,16 +96,23 @@ public class PageController_foodRecord {
 	//食記分析page
 	@ResponseBody
 	@GetMapping("/RecordAnalysis") 
-	public ModelAndView RecordAnalysis(ModelAndView mav) {		
+	public List<String> RecordAnalysis(ModelAndView mav) {		
 		mav.setViewName("record/RecordAnalysis");
 		List<String> type = service.typeFilter();
 		System.out.println("type ="+type);
 		mav.getModel().put("type", type);
+		return type;
+	}
+	
+	@GetMapping("/RecordAnalysispage")
+	public ModelAndView ajaxPage(ModelAndView mav) {
+		System.out.println("執行RecordAnalysispage");
+		mav.setViewName("/record/RecordAnalysis");
+
 		return mav;
 	}
 	
-			
-	
+
 	
 	//----MSG page--------------
 	

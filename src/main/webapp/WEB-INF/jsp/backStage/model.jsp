@@ -84,8 +84,8 @@ body {
 						<div class="list-group" style="border: solid 2px black;">
 							<button type="button"
 								class="list-group-item list-group-item-action">會員帳號編輯</button>
-							<button type="button"
-								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">會員數據分析</button>
+							<a href="${contextRoot}/backStage/accountAnalysis"><button type="button"
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">會員數據分析</button></a>
 						</div>
 					</div>
 				</div>
@@ -124,10 +124,10 @@ body {
 					aria-labelledby="headingThree" data-parent="#accordionExample">
 					<div class="card-body">
 						<div class="list-group">
-							<button type="button"
-								class="list-group-item list-group-item-action">揪團編輯</button>
-							<button type="button"
-								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">揪團數據分析</button>
+							<a href="${contextRoot}/viewAllVis"><button type="button"
+								class="list-group-item list-group-item-action">揪團編輯</button></a>
+							<a href="${contextRoot}/analyzeVis"><button type="button"
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">揪團數據分析</button></a>
 						</div>
 					</div>
 				</div>
@@ -148,7 +148,7 @@ body {
 								class="list-group-item list-group-item-action">食記編輯</button></a>
 							<a href="${contextRoot}/MsgManagement"><button type="button"
 								class="list-group-item list-group-item-action">留言編輯</button></a>
-							<a href="${contextRoot}/RecordAnalysis"><button type="button"
+							<a href="${contextRoot}/RecordAnalysispage"><button type="button"
 								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">食記分析</button></a>
 						</div>
 					</div>

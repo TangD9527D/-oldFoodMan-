@@ -132,8 +132,6 @@ public class MemberController {
 		
 		List<Member> member = service.getAllmember();
 		
-		System.out.println("78979879877897987989879889" + member);
-		
 		mav.getModel().put("mb", member);
 		
 		return mav;
@@ -148,4 +146,16 @@ public class MemberController {
 		
 		return "success";
 	}
+	
+	@ResponseBody
+	@PostMapping("/backStage/countCity")
+	public List<String> countCity() {
+		
+		List<String> city = service.countCity();
+		System.out.println(city);
+		 
+		return city;
+		
+	}
+
 }

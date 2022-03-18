@@ -118,19 +118,16 @@ public class OrderController {
 	
 	@ResponseBody
 	@PostMapping("/findOneDayTime/{year}/{month}/{day}")
-	public Map<Integer, Integer> findOneDayTime(@PathVariable(value="year") String year, @PathVariable(value="month") String month, @PathVariable(value="day") String day){ //統計數量圖表
+	public List<List<String>> findOneDayTime(@PathVariable(value="year") String year, @PathVariable(value="month") String month, @PathVariable(value="day") String day){ //統計數量圖表
 		String days = year + "/" + month + "/" + day;
 		System.out.println(days);
 		List<OrderForm> forms = formService.findOneDayTime(days);
-		int between [] = new int[2];
 		int last = forms.size();
 		OrderForm f1 = forms.get(0);
 		OrderForm flast = forms.get(last-1);
 		int n1 = f1.getOrderNumber();
 	    int n2 = flast.getOrderNumber();
-	    between[0] = n1;
-	    between[1] = n2;
-	    Map<Integer, Integer> a = detailService.findqqq();
+	    List<List<String>> a = detailService.findqqq(n1,n2);
 	    return a;
 	    
 		}

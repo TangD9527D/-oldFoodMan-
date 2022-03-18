@@ -14,14 +14,9 @@ public class PageController {
 		return "forgotMail";
 	}
 	
-	@GetMapping("/frame")
-	public String frame() {
-		return "frame";
-	}
-	
-	@GetMapping("/frame2")
-	public String frame2() {
-		return "frame2";
+	@GetMapping("/backStage/accountAnalysis")
+	public String accountAnalysis() {
+		return "backStage/accountAnalysis";
 	}
 	
 }

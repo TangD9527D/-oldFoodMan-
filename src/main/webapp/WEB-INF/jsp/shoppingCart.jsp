@@ -49,7 +49,7 @@
 		<div>
 			<button type="button" class="btn btn-danger btn-sm" id="selectAll">全選/取消全選</button>
 			<button type="button" class="btn btn-danger btn-sm" id="deleteSelect">多筆刪除</button>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BuyModal" id="toBuy" style="float:right">去結帳</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BuyModal" id="toBuy" style="float:right" disabled="disabled">去結帳</button>
 		</div>
 	</div>
 	
@@ -111,7 +111,7 @@
 			        		if(data.productId.product_stock <= 0){
 			        			return '<p style="color:red;font-weight:bold">已售罄!<p>';
 			        		}
-			        		return '<input type="checkbox" id="checkbox' + data.productId.product_id + '" name="checkbox"></input>'
+			        		return '<input type="checkbox" id="checkbox' + data.productId.product_id + '" name="checkbox" class="checkboxQuery"></input>'
 			        	}	
 			        },
 			        { data: 'productId.product_name',title: "商品名稱" },
@@ -318,14 +318,25 @@
  			$("#selectAll").click(function(){
  				if($("[name=checkbox]").prop("checked")){
  					$("[name=checkbox]").prop("checked",false);
+ 					$('#toBuy').attr('disabled','disabled')
  				}else{
  					$("[name=checkbox]").prop("checked",true);
+ 					$('#toBuy').removeAttr('disabled');
  				}
   			})
  		})
-		
-		
-		
+		$(document).on('click', '.checkboxQuery', function(){
+			let checkboxes = document.querySelectorAll("[name=checkbox]");
+			for (var i = 0; i < checkboxes.length; i++) {
+				if (checkboxes[i].checked === true) {
+					$('#toBuy').removeAttr('disabled');
+					return;
+				}else{
+					$('#toBuy').attr('disabled','disabled')
+				}
+			}
+			
+		})
 		
 		
 		//按下去結帳會先跳確認勾選項目資訊
@@ -346,6 +357,11 @@
 				}
 			}
 			var dtoJsonString = JSON.stringify(buyArr); //轉Json
+			if(dtoJsonString == '[]'){ //如果空則不給按結帳細節
+				console.log('請挑轉商品');
+				return;	
+			}        
+			
 			
 			
 			$.ajax({
@@ -368,9 +384,7 @@
                         msg_data += '<td>' + value.productId.product_price + '</td>';
                         msg_data += '<td>' + value.productAmount + '</td>';
                         msg_data += '<td>' + Number(value.productAmount)* (Number(value.productId.product_price)*Number(value.productId.product_discount)) + '</td></tr>';
-                        
-                        
-                        
+                         
                         msg_totalPrice += Number(value.productAmount)* (Number(value.productId.product_price)*Number(value.productId.product_discount));
                         msg_num = Number(index);
                 	})
@@ -399,7 +413,6 @@
 				}
 			
 			var dtoJsonString = JSON.stringify(buyArr); //轉Json
-			console.log(dtoJsonString);
 			
 			$.ajax({
 				url:'http://localhost:8080/oldFoodMan/Cart/confirmBuy',

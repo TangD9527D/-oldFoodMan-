@@ -12,7 +12,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-									
+	
+	@Query(value = "select * from product order by product_id DESC", nativeQuery = true)
 	public List<Product> findAll();
 	
 	@Transactional

@@ -12,14 +12,18 @@
 .body06 {
 	margin-top: 20px;
 	margin-right: 10px;
-	width: 1110px;
+	width: 1250px;
 	float: right;
 	text-align: center;
+/* 	border:3px solid black; */
+}
+body{
+	background:white;
 }
 </style>
 <head>
 <meta charset="UTF-8">
-<title>食記管理</title>
+<title>留言管理</title>
 
 <script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${contextRoot}/css/jquery.dataTables.min.css">

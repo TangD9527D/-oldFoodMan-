@@ -199,15 +199,17 @@ public class FoodRecordController {
 	
 	//修改食記(更新食記)
 	@PostMapping(value = "/editData")
-	public ModelAndView updateRecord(ModelAndView mav, @Valid @ModelAttribute(name="foodrecord") FoodRecord msg, BindingResult result,HttpSession session) {	
+	public ModelAndView updateRecord(ModelAndView mav, @Valid @ModelAttribute(name="foodrecord") FoodRecord fr, BindingResult result,HttpSession session) {	
 		mav.setViewName("record/editData");	
+		Member member = (Member)session.getAttribute("member"); 
 		FoodRecord sessionRecordId = (FoodRecord)session.getAttribute("sessionRecordId"); //拿食記的Id
 		Integer RecordId = sessionRecordId.getId();
 		FoodRecord currentRecord = service.findById(RecordId);
 		System.out.println("目前的食記內容 "+currentRecord);
+		currentRecord.setMember_id(member);
 		if(!result.hasErrors()) {
 			System.out.println("更新食記");
-			 service.insertRF(msg);
+			 service.insertRF(fr);
 			 System.out.println("成功存入");
 			 mav.setViewName("redirect:/theLastestRecord");
 		}	
