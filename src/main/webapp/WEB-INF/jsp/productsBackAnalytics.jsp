@@ -18,6 +18,7 @@
 			width: 1400px;
 			float: right;
 			text-align: center;
+			
 		}
 	</style>
 	
@@ -25,14 +26,18 @@
 <body>
 	<div class="body88">
 		<div style="width:400px;float:left">
+			<p>
+			<h3>餐券銷售數量總額</h3>
 			<canvas id="amount" style="width:100%;max-width:500px"></canvas>
 		</div>
-		<p>
-		<div id="ajax" style="width:1000px">
-			<P>
-			<br>
-			<input type="date" id="day">
-			<canvas id="myChart" style="width:100%;max-width:600px;height:1000px"></canvas>
+		<div style="width:1000px;margin-left:300px">
+			<p>
+			<h3>當日各銷售額</h3>
+			請選擇:<input type="date" id="day" style="text-align:center">
+			<p>&nbsp;</p>
+			<div id="ajax" style="margin-left:250px">
+			<canvas id="myChart" style="width:100%;max-width:1000px;margin-left:600px"></canvas>
+			</div>
 		</div>
 	</div>
 
@@ -64,7 +69,7 @@
 							  options: {
 							    title: {
 							      display: true,
-							      text: "各餐券銷售數量總額"
+// 							      text: "各餐券銷售數量總額"
 							    }
 							  }
 							});
@@ -108,7 +113,7 @@
 					    legend: {display: false},
 					    title: {
 					      display: true,
-					      text: "當日餐券銷售額"
+// 					      text: "當日餐券銷售額"
 					    }
 					  }
 					});
@@ -130,7 +135,7 @@
 						    legend: {display: false},
 						    title: {
 						      display: true,
-						      text: "當日餐券銷售額"
+// 						      text: "當日餐券銷售額"
 						    }
 						  }
 						});

@@ -31,11 +31,11 @@
 			<div class="carousel-inner">
 			
 				<div class="carousel-item active">
-					<img src="<c:url value='${advertise.product_image}'/>" width="100px" class="d-block w-100" alt="...">
+					<img src="<c:url value='${advertise.product_image}'/>"   data-toggle="modal" data-target="#exampleModal"   id="lookProduct" value="${advertise.product_id}"   width="100px" class="d-block w-100" alt="...">
 				</div>
 			  <c:forEach var="advertises" items="${advertises}">
 				<div class="carousel-item">
-					<img src="<c:url value='${advertises.product_image}'/>" width="100px" class="d-block w-100" alt="...">
+					<img src="<c:url value='${advertises.product_image}'/>" data-toggle="modal" data-target="#exampleModal"   id="lookProduct" value="${advertises.product_id}"      width="100px" class="d-block w-100" alt="...">
 				</div>
 			  </c:forEach>
 			</div>
@@ -88,7 +88,7 @@
 							<p class="card-text">
 							<h3>售價:$${allProducts.product_newPrice}</h3>
 							<P style="text-decoration: line-through">原價:$${allProducts.product_price}</P>
-							尚餘${allProducts.product_stock}份<BR>
+							尚餘<h5 style="color:red">${allProducts.product_stock}份</h5><BR>
 							
 							</p>
 							<div>

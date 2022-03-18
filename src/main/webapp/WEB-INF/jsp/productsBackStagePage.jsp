@@ -24,6 +24,9 @@
 			float: right;
 			text-align: center;
 		}
+		.tecenter{
+			text-align:center
+		}
 </style>
 	
 </head>
@@ -51,15 +54,15 @@
 					<div class="modal-body">
 						<form>
 							<div class="form-group">
-								<label for="recipient-name" class="col-form-label">編號:</label> 
-								<input type="text" class="form-control" id="product_number" name="product_number">
+								<label for="recipient-name" class="col-form-label">編號 :</label> 
+								<input type="text" class="form-control tecenter" id="product_number" name="product_number" required="required">
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">品名:</label>
-								<input type="text" class="form-control" name="product_name" id="product_name"/>
+								<label for="message-text" class="col-form-label">品名 :</label>
+								<input type="text" class="form-control tecenter" name="product_name" id="product_name"/>
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">類型:</label> 
+								<label for="message-text" class="col-form-label">類型 :</label> 
 								<select id="product_category">
 									<option>燒烤</option>
 									<option>火鍋</option>
@@ -68,25 +71,25 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">庫存:</label>
-								<input type="text" class="form-control" name="product_stock" id="product_stock"/>
+								<label for="message-text" class="col-form-label">庫存 :</label>
+								<input type="text" class="form-control tecenter" name="product_stock" id="product_stock"/>
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">折扣:</label> 
-								<input type="text" class="form-control" name="product_discount" id="product_discount">
+								<label for="message-text" class="col-form-label">折扣 :</label> 
+								<input type="text" class="form-control tecenter" name="product_discount" id="product_discount">
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">原價:</label> 
-								<input type="text" class="form-control" name="product_price" id="product_price">
+								<label for="message-text" class="col-form-label">原價 :</label> 
+								<input type="text" class="form-control tecenter" name="product_price" id="product_price">
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">圖片:</label> 
-								<input type="file" class="form-control" name="product_image" id="product_image">
+								<label for="message-text" class="col-form-label">圖片 :</label> 
+								<input type="file" class="form-control tecenter" name="product_image" id="product_image">
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">備註:</label> 
+								<label for="message-text" class="col-form-label">備註 :</label> 
 						<!--  		<input type="text" class="form-control" name="product_remark" id="product_remark">-->
-								<textarea rows="" cols="" class="form-control" name="product_remark" id="product_remark"></textarea>
+								<textarea rows="" cols="" class="form-control" name="product_remark" id="product_remark" style="height:250px"></textarea>
 							</div>
 						</form>
 					</div>
@@ -115,15 +118,15 @@
 					<div class="modal-body">
 						<form>
 							<div class="form-group">
-								<label for="recipient-name" class="col-form-label">編號:</label> 
-								<input type="text" class="form-control" id="Uproduct_number" name="Uproduct_number">
+								<label for="recipient-name" class="col-form-label">編號 :</label> 
+								<input type="text" class="form-control tecenter" id="Uproduct_number" name="Uproduct_number">
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">品名:</label>
-								<input type="text" class="form-control" name="Uproduct_name" id="Uproduct_name"/>
+								<label for="message-text" class="col-form-label">品名 :</label>
+								<input type="text" class="form-control tecenter" name="Uproduct_name" id="Uproduct_name"/>
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">類型:</label> 
+								<label for="message-text" class="col-form-label">類型 :</label> 
 								<select id="Uproduct_category">
 									<option>燒烤</option>
 									<option>火鍋</option>
@@ -132,24 +135,24 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">庫存:</label>
-								<input type="text" class="form-control" name="Uproduct_stock" id="Uproduct_stock"/>
+								<label for="message-text" class="col-form-label">庫存 :</label>
+								<input type="text" class="form-control tecenter" name="Uproduct_stock" id="Uproduct_stock"/>
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">折扣:</label> 
-								<input type="text" class="form-control" name="Uproduct_discount" id="Uproduct_discount">
+								<label for="message-text" class="col-form-label">折扣 :</label> 
+								<input type="text" class="form-control tecenter" name="Uproduct_discount" id="Uproduct_discount">
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">原價:</label> 
-								<input type="text" class="form-control" name="Uproduct_price" id="Uproduct_price">
+								<label for="message-text" class="col-form-label">原價 :</label> 
+								<input type="text" class="form-control tecenter" name="Uproduct_price" id="Uproduct_price">
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">圖片:</label> 
-								<input type="file" class="form-control" name="Uproduct_image" id="Uproduct_image">
+								<label for="message-text" class="col-form-label">圖片 :</label> 
+								<input type="file" class="form-control tecenter" name="Uproduct_image" id="Uproduct_image">
 							</div>
 							<div class="form-group">
-								<label for="message-text" class="col-form-label">備註:</label> 
-								<textarea rows="" cols="" class="form-control" name="Uproduct_remark" id="Uproduct_remark"></textarea>
+								<label for="message-text" class="col-form-label">備註 :</label> 
+								<textarea rows="" cols="" class="form-control" name="Uproduct_remark" id="Uproduct_remark" style="height:250px"></textarea>
 							</div>
 							<div class="form-group">
 								
@@ -205,7 +208,7 @@
 			              }
 			        }
 		        ],
-		        "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]],
+		        "lengthMenu": [[5, 10, 25, -1], [5, 10, 15, "All"]],
 		        "language": {
 		            "lengthMenu": "顯示 _MENU_ 筆資料",
 		            "sProcessing": "處理中...",
@@ -272,7 +275,6 @@
 					$('#Uproduct_price').val(result.product_price);
 					$('#Uproduct_remark').val(result.product_remark);
 					$('#Uproduct_id').val(result.product_id);
-					
 				}
 			})
 		})
@@ -282,16 +284,16 @@
 		$(document).on('click', '#Btn_update', function(){
 			var file = $("#Uproduct_image")[0].files[0];    //獲取圖片路徑
 			var formData = new FormData();
+			var id = $('#Uproduct_id').val();
 			formData.append("file",file);
 			$.ajax({
 				method:"post",
 				async:false,
-				url:"http://localhost:8080/oldFoodMan/InsertProductPhoto",
+				url:"http://localhost:8080/oldFoodMan/updateProductPhoto/" + id,
 				processData:false,
 				contentType:false,
 				data:formData,
 				success:function (msg) {
-					
 				 //$("#url img").attr("src",msg);
 				}
 			})
@@ -305,7 +307,7 @@
             var inputPrice = $('#Uproduct_price').val();
             var inputRemark = $('#Uproduct_remark').val();
             var dtoObject = {'product_number':inputNumber, 'product_name':inputName, 'product_category':inputCategory, 'product_stock':inputStock, 'product_discount':inputDiscount,'product_price':inputPrice,'product_remark':inputRemark};
-            var id = $('#Uproduct_id').val();
+    
             var dtoJsonString = JSON.stringify(dtoObject);
             
             $.ajax({                                         //更新表格資料
@@ -378,13 +380,13 @@
 		
 		//一鍵輸入
 		$("#autoInsert").click(function(){
-			$('#product_number').val('1001');
-			$('#product_name').val('築間');
-			$('#product_category').val('火鍋');
+			$('#product_number').val('1005');
+			$('#product_name').val('藝奇');
+			$('#product_category').val('異國');
 			$('#product_stock').val('50');
 			$('#product_discount').val('0.8');
-			$('#product_price').val('500');
-			$('#product_remark').val('3/11~3/25');
+			$('#product_price').val('1200');
+			$('#product_remark').val('【餐券使用規定】 1.優惠期間：票券無使用期限，平假日皆可使用 2.適用時間、地點：依各分店營業時間及地址，請參考：王品WangSteak官網 3.本票券為專案採購，其面額不等同於GOMAJI售價，2021/10/25王品集團全面調漲，憑本券可點價值1450元品項套餐，若超過1450元的品項可補差額使用，參考官網菜單為主 4.貼心提醒：建議提前預約，避免久候 5.本票券已含服務費 ');
 		})
 		
 		

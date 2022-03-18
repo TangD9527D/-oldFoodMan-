@@ -145,6 +145,53 @@ public class ProductController {
 		return p;
 	}
 	
+	
+	
+	 @ResponseBody
+	 @RequestMapping("/updateProductPhoto/{id}")
+	 public String updatefileUpload(MultipartFile file,HttpServletRequest request, @PathVariable(value= "id") int id){
+	  
+	  //使用者未輸入圖片則傳回原圖
+	  if(file == null) { 
+		  this.returnUrl = null;
+		  Product p = proService.FindById(id);
+		  String url = p.getProduct_image();
+		  return url;
+	  }
+		 
+	  String time = formatter.format(new Date());
+	  //圖片上傳伺服器後所在的資料夾
+	  String realPath = request.getServletContext().getRealPath("/product_img") + time;
+	  File folder = new File(realPath);
+	  if(!folder.exists())
+	   folder.mkdirs();
+
+	  //修改圖片的名字（防止重複）
+	  String oldName = file.getOriginalFilename();
+	  String newName = UUID.randomUUID() + oldName.substring(oldName.lastIndexOf("."));
+
+	  try {
+	   //將檔案放到目標資料夾
+	   file.transferTo(new File(folder,newName));
+
+	   //返回圖片的URL
+	   //String returnUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img" + time + newName;
+	   this.returnUrl ="product_img" + time + newName;
+	   
+	   
+	   
+	   System.out.println("1:  " + returnUrl);
+	   return returnUrl;
+	   
+	  } catch (IOException e) {
+	   e.printStackTrace();
+	  }
+	  return null;
+	 }
+	
+	
+	
+	
 	@ResponseBody
 	@PostMapping("/updateProduct/{product_id}")
 	public Product ajaxUpdateData(@RequestBody ProductDto dto, @PathVariable(name = "product_id") int product_id){
@@ -166,7 +213,10 @@ public class ProductController {
 		p.setProduct_stock(stock);
 		p.setProduct_remark(remark);
 		p.setProduct_newPrice(new_price);
-		p.setProduct_image(returnUrl);
+		if(returnUrl != null) {
+			p.setProduct_image(returnUrl);
+		}
+//		p.setProduct_image(returnUrl);
 		proService.insertProduct(p);
 		return p;
 	}
