@@ -57,7 +57,7 @@
 							  options: {
 							    title: {
 							      display: true,
-							      text: "各餐券銷售數量"
+							      text: "各餐券銷售數量總額"
 							    }
 							  }
 							});
@@ -76,17 +76,39 @@
 				url:'http://localhost:8080/oldFoodMan/findOneDayTime/' + year + "/" + month + "/" + date,
 				type:'post',
 				success: function(data){
-					console.log(data);
-// 					$.each(data, function(index, value){
-// 						console.log(value.orderTotal);
-					
+// 					console.log(data);
+// 					console.log(data[0])
+					let proMomey = [];
+					let proName = [];
+ 					$.each(data, function(index, value){
+						console.log(value[0]);
+						proMomey.push(value[0]);
+						proName.push(value[1]);
+					})
+					new Chart("myChart", {
+					  type: "bar",
+					  data: {
+					    labels: proName,
+					    datasets: [{
+					      backgroundColor: ["red", "green","blue","orange","brown"],
+					      data: proMomey
+					    }]
+					  },
+					  options: {
+					    legend: {display: false},
+					    title: {
+					      display: true,
+					      text: "當日餐券銷售額"
+					    }
+					  }
+					});
 				
-				}
-			})
+				
+			}
 			
 		})
 
-		
+		})
 		
 	
 

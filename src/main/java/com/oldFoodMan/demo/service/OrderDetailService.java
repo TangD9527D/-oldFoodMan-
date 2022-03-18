@@ -27,7 +27,7 @@ public class OrderDetailService {
 		return detailDao.findProductAmount();
 	}
 	
-	public Map<Integer,Integer> findqqq(){
+	public List<List<Integer>> findqqq(){
 		return detailDao.findProductAmount2();
 	}
 }

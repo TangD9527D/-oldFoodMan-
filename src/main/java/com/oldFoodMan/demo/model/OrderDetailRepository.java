@@ -17,6 +17,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
 	public Integer[] findProductAmount();
 	
 	@Query(value = "select SUM(detailProductTotal),detailProductId from orderdetail where detailId between 1 and 8 group by detailProductId", nativeQuery = true)
-	public Map<Integer, Integer> findProductAmount2();
+	public List<List<Integer>> findProductAmount2();
 	
 }
