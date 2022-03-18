@@ -251,7 +251,7 @@ button{
 							src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js"
 							async="async" defer="defer"></script>
 						<a href="https://www.instagram.com/oldfoodman/"><img id="icon" title="老食人instagram" src="images/instagram.png"></a>
-						<img id="icon" title="Facebook分享" src="images/facebook.png">
+
 						
 					</div>
 					

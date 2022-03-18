@@ -161,8 +161,7 @@ legend {
 					<option value="泰式">泰式</option>
 					<option value="小吃">小吃</option>
 					<option value="餐酒館">餐酒館</option>
-					<option value="居酒屋">居酒屋</option>
-					<option value="早午餐">早午餐</option>
+
 			
 				</form:select>
 			</div>

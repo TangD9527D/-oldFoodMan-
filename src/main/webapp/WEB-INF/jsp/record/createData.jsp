@@ -21,10 +21,6 @@
 	src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
 
 <style>
-/*         * { */
-/*             margin: 0px; */
-/*             padding: 0px; */
-/*         } */
 textarea {
 	resize: none;
 }
@@ -112,7 +108,7 @@ legend {
 	border: 1px solid gray;
 	width: 150px;
 	height: 100px;
-	margin: 10px auto auto auto;
+	margin-top: 10px;
 }
 </style>
 </head>
@@ -167,12 +163,11 @@ legend {
 					<option value="火鍋">火鍋</option>
 					<option value="燒烤">燒烤</option>
 					<option value="日式">日式</option>
-					<option value="西式">美式</option>
+					<option value="美式">美式</option>
 					<option value="泰式">泰式</option>
 					<option value="小吃">小吃</option>
 					<option value="餐酒館">餐酒館</option>
-					<option value="居酒屋">居酒屋</option>
-					<option value="早午餐">早午餐</option>
+
 					
 			
 				</form:select>

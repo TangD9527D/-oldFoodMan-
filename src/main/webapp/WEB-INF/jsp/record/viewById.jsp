@@ -192,9 +192,9 @@ button{
 
 <!--   霈的星星!!!!! -->
 
-		<div id="likeBar">
-			<img id="icon" src="images/like.png"> <img id="icon"
-				src="images/chat.png"> <img id="icon" src="images/badoo.png">
+		<div id="likeBar" >
+<!-- 			<img id="icon" src="images/like.png"> <img id="icon" -->
+<!-- 				src="images/chat.png"> <img id="icon" src="images/badoo.png"> -->
 			<div id="range" class="crange absolute1" onclick="likeCollections();">
 				<button  class="btn"><i id="test" class="fa-star fa-regular " style="font-size:30px"></i></button>				
 			</div>
@@ -275,7 +275,7 @@ button{
 							src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js"
 							async="async" defer="defer"></script>
 						<a href="https://www.instagram.com/oldfoodman/"><img id="icon" title="老食人instagram" src="images/instagram.png"></a>
-						<img id="icon" title="Facebook分享" src="images/facebook.png">
+
 						
 					</div>
 

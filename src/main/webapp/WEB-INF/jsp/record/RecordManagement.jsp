@@ -11,9 +11,10 @@
 .body061 {
 	margin-top: 20px;
 	margin-right: 10px;
-	width: 1110px;
+	width: 1250px;
 	float: right;
 	text-align: center;
+/* 	border:3px solid black; */
 }
 </style>
 <head>
