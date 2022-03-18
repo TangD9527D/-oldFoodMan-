@@ -148,7 +148,7 @@ body {
 								class="list-group-item list-group-item-action">食記編輯</button></a>
 							<a href="${contextRoot}/MsgManagement"><button type="button"
 								class="list-group-item list-group-item-action">留言編輯</button></a>
-							<a href="${contextRoot}/RecordAnalysis"><button type="button"
+							<a href="${contextRoot}/RecordAnalysispage"><button type="button"
 								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">食記分析</button></a>
 						</div>
 					</div>
