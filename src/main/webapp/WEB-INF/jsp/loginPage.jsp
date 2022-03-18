@@ -185,7 +185,7 @@ body {
 			</div>
 		</a>
 		<div class="right">
-			<div class="login_title">
+			<div class="login_title" id="login_title7">
 				登入&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<span
 					style="font-size: small; text-align: left;">*為必填資訊</span>
 			</div>
@@ -194,7 +194,7 @@ body {
 					method="POST" lass="login_table">
 
 					<div class="formLogin">
-						<div style="font-size: large; text-align: left;">&emsp;&emsp;信箱*</div>
+						<div style="font-size: large; text-align: left;"><span id="lemonLogin">&emsp;&emsp;信箱*</span></div>
 						<input type="text" id="account" name="account"> <span>&nbsp;</span>
 					</div>
 					<br>
@@ -290,15 +290,17 @@ body {
 						</button>
 					</div>
 					<div class="modal-body" id="emailBody">
+						<form id="form1">
 							<div style="text-align: center;">
 								<img src="${contextRoot}/css/search.png" style="height: 200px; width: 200px;">
 							</div>
 							<p></p>
-							&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<label>信箱:&nbsp;</label> 
+							&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<label><span id="forgetEmail7">信箱:&nbsp;</span></label> 
 							<input type="text" id="emailSend" name="account">
 							<span>&nbsp;</span><br>
 							<br>
 							<div style="text-align: center;"><button type="button" id="btn77" class="btn btn-primary">送出</button></div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -309,7 +311,7 @@ body {
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">後臺管理者登入</h4>
+						<h4 class="modal-title" id="myModalLabel" style="font-weight: 700;">後臺管理者登入</h4>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -321,14 +323,14 @@ body {
 						</div>
 						<br>
 							<div class="newAccount_13">
-								<label class="la2">信箱:&nbsp;</label> <input
+								<label class="la2"><span id="backin7">信箱:&nbsp;</span></label> <input
 									type="text" id="backendAccount" class="inPut" name="account" />
 								<p class="txtP" id="backAccount7" >&nbsp;</p>
 							</div>
 							<div class="newPwd_13">
 								<label class="la2">密碼:&nbsp;</label> <input type="password"
 									id="backendPwd" class="inPut" name="pwd" />
-								<p class="txtP">&nbsp;</p>
+								<p class="txtP">&nbsp;<sapn id="backSpan" style="color: red; font-weight: 700;"></sapn></p>
 							</div>
 							<div style="text-align: right;"><button id="back77"
 								class="btn btn-dark">登入</button></div>
@@ -382,7 +384,11 @@ body {
 					if (newPwd == ""){
 						$('#txtP3').text("※不可空白※");
 					}else{
-						$('#txtP3').text("");
+						if(newPwd.length < 6){
+							$('#txtP3').text("※密碼須大於六位※");
+						}	
+						else
+							$('#txtP3').text("");
 					}
 				});
 
@@ -403,6 +409,7 @@ body {
 
 					if (birth == ""){
 						$('#txtP5').text("※不可空白※");
+						return;
 					}else{
 						$('#txtP5').text("");
 					}
@@ -439,7 +446,11 @@ body {
 			if (memberPwd == "") {
 				$('#txtP3').text("※不可空白※");
 			} else {
-				$('#txtP3').text("");
+				if (memberPwd.length < 6) {
+					$('#txtP3').text("※密碼須大於六位※");
+				}
+				else
+					$('#txtP3').text("");
 			}
 			
 			if (nickName == "") {
@@ -450,6 +461,7 @@ body {
 			
 			if (birth == "") {
 				$('#txtP5').text("※不可空白※");
+				return;
 			} else {
 				$('#txtP5').text("");
 			}
@@ -482,10 +494,10 @@ body {
 		$(document).on('click', '#back77', function () {
 
 				var account = $("#backendAccount").val();
-				console.log(account);
+				console.log(typeof account);
 				
 				var memberPwd = $("#backendPwd").val();;
-				console.log(memberPwd);
+				console.log(typeof memberPwd);
 
 				var Object = {
 					"account" : account,
@@ -503,7 +515,7 @@ body {
 							window.location = "http://localhost:8080/oldFoodMan/backStage/account";
 							console.log("成功")
 						}else{
-							console.log("失敗")
+							$('#backSpan').text("帳號密碼輸入錯誤")
 						}
 					}
 
@@ -532,6 +544,33 @@ body {
 			}
 		})
 	})
+
+	//新帳號表單登入
+	$(document).on('click', '#myModalLabel', function(){ 
+		$('#newName').val("老食人");
+		$('#newAccount').val("lemoonfantasy@gmail.com");
+		$('#newPwd').val("oldfoodMan");
+		$('#newNickName').val("老實的老食人");
+	});
+
+	//表單登入
+	$(document).on('click', '#lemonLogin', function(){ 
+		$('#account').val("lemoonfantasy@gmail.com");
+
+		//忘記密碼後的登入
+		$('#pwd').val("oldfoodMan77");
+	});
+
+	//忘記密碼
+	$(document).on('click', '#forgetEmail7', function(){ 
+		$('#emailSend').val("lemoonfantasy@gmail.com");
+	});
+
+	//後臺登入
+	$(document).on('click', '#backin7', function(){ 
+		$('#backendAccount').val("oldFoodMan");
+		$('#backendPwd').val("oldFoodMan");
+	});
 	</script>
 </body>
 

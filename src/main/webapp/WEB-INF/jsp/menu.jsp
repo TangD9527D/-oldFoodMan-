@@ -170,8 +170,6 @@
 								</div></li>
 							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/ajaxFoodVis">揪團Eat</a></li>
-							<li class="list-group-item"><a class="menu_link7"
-								href="${contextRoot}/viewMember">帳號test</a></li>
 							<li class="list-group-item dropdown"><a
 								class="menu_link7 dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-expanded="false">
