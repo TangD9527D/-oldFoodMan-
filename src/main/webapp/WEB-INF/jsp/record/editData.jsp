@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -8,76 +8,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>編輯食記</title>
-
-<script
-	src="https://cdn.tiny.cloud/1/30adfco0hwtspaphkuspihs4pvm92w232kl2zllm251svqf1/tinymce/5/tinymce.min.js"
-	referrerpolicy="origin"></script>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
 <style>
-textarea {
-	resize: none;
-}
-
-.lab {
-	width: 150px;
-	float: left;
-	text-align: right;
-	font-size: 18px;
-	margin-right: 20px;
-}
-
-.st1 {
-	width: 1000px;
-	/* border-bottom: 2px dashed lightgray; */
-	padding-bottom: 10px;
-	margin-bottom: 10px;
-}
-
-.sform1 {
-	width: 1000px;
-	/* border: 2px solid black; */
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 10px;
-	font-size: 18px;
-	padding: 10px;
-}
-
-.sform2 {
-	width: 1000px;
-	/* border: 2px solid black; */
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 20px;
-	font-size: 18px;
-}
-
-.sinputData {
-	width: 600px;
-}
-
-input {
-	font-size: 18px;
-}
-
-legend {
-	font-weight: 900;
-}
-
-.link-top {
-	width: 1000px;
-	height: 2px;
-	margin: auto;
-	padding-top: 20px;
-	border-top: 2px solid #626264;
-}
-
 .inputBtn {
 	line-height: 16px;
 	margin-left: 10px;
@@ -86,194 +22,245 @@ legend {
 	vertical-align: middle;
 }
 
-.btn {
-	width: 1000px;
-	margin: auto;
+textarea {
+	resize: none;
 }
-
-.sendBtn {
-	float: right;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-left: 20px;
-}
-
-#inputID {
-	width: 500px;
-	margin: auto;
-}
-
 .imgDiv {
 	border: 1px solid gray;
 	width: 150px;
 	height: 100px;
-	margin: 10px auto auto auto;
+	margin-top: 10px;
 }
+.shop{
+	width:550px;
+	border: 1px solid Transparent;
+	folat:left;
+}
+
 </style>
+
+<meta charset="UTF-8">
+<title>新增食記</title>
 </head>
-
 <body>
+<!-- <div class="form-group row" > -->
+<!--     <div class="col-sm-10"> -->
+<!--       <button id="fastInput" type="button" class="btn btn-primary">快速輸入</button> -->
+<!--     </div> -->
+<!--   </div> -->
 
-	<form:form class="form" action="${contextRoot}/editData" modelAttribute="foodrecord" method="post">
-	<form class="sform2">
-		<br>
-		<div class="container">
-
-				
-<!-- 				<div class="st1"> -->
-<!-- 						<label class="lab">上傳圖片:</label> -->
-<%-- 						<form:input path="productImage" type='file' /> --%>
-<!-- 						<div> -->
-<!-- 							<img class="imgDiv" /> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-				
-				<form:input type="hidden" path="id" />
-				<form:input type="hidden" path="added" />
-
-				<div class="st1">
-						<label class="lab">標題:</label>
-						<form:input path="title" type="text"></form:input>
-					</div>
-
-				<div class="st1">
-					<label class="lab">內文:</label>
-					<form:textarea path="content" cols="800" rows="4" id="inputID" />
+<div class="container" style="border: 1px solid Transparent;">
+<div class="shop"  style="float:left">
+	<form:form class="form" action="${contextRoot}/editData" modelAttribute="foodrecord" method="post" enctype="multipart/form-data">
+  <form>
+		  <form:input type="hidden" path="id" />
+		  <form:input type="hidden" path="added" />
+		  
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">上傳圖片</label>
+		    <div class="col-sm-10">
+		      <form:input type="file" class="form-control" id="image"  path="productImage" style="width:400px;"></form:input>
+		    	<div >
+					<img class="imgDiv" style="border:1px solid Transparent"/>
 				</div>
-
-
-				<p class="link-top"></p>
-				
-				<legend>店家資訊
-				</legend>
-			<div class="st1">
-				<label class="lab">店名:</label>
-				<form:input path="shopName" type="text"></form:input>
-			</div>
-			<div class="st1">
-				<label class="lab">類型:</label>
-				<form:select path="shopType" id="type" onchange="selectType()">
-					<option value="">請選擇</option>
-					<option value="火鍋">火鍋</option>
-					<option value="燒烤">燒烤</option>
-					<option value="日式">日式</option>
-					<option value="西式">美式</option>
-					<option value="泰式">泰式</option>
-					<option value="小吃">小吃</option>
-					<option value="餐酒館">餐酒館</option>
-
-			
-				</form:select>
-			</div>
-			<div class="st1">
-				<label class="lab">適合:</label>
-				<form:input path="audience" type="text"></form:input>
-			</div>
-
-			<div class="st1">
-				<label class="lab">價格區間:</label>
-				<form:select path="priceScope" id="price" onchange="selectPrice()">
-					<option value="">請選擇</option>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label for="inputEmail3" class="col-sm-2 col-form-label">標題</label>
+		    <div class="col-sm-10">
+		      <form:input type="text" class="form-control" id="title"  path="title" style="width:400px;"></form:input>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label for="inputPassword3" class="col-sm-2 col-form-label">文章</label>
+		    <div class="col-sm-10">
+		      <form:textarea type="text" class="form-control" id="content" rows="4"  path="content" style="width:400px;"></form:textarea>
+		    </div>
+		  </div>
+		  
+		    <div class="form-group row">
+		    <label for="inputPassword3" class="col-sm-2 col-form-label">類型</label>
+		    <div class="col-sm-10">
+		      <form:select class="form-control" path="shopType" id="shopType" onchange="selectType()" style="width:400px;">
+		    				<option value="">請選擇</option>
+							<option value="火鍋">火鍋</option>
+							<option value="燒烤">燒烤</option>
+							<option value="日式">日式</option>
+							<option value="美式">美式</option>
+							<option value="泰式">泰式</option>
+							<option value="小吃">小吃</option>
+							<option value="餐酒館">餐酒館</option>
+						</form:select>
+		    </div>
+		  </div>
+		  
+		   <div class="form-group row">
+		    <label for="inputPassword3" class="col-sm-2 col-form-label">適合</label>
+		    <div class="col-sm-10">
+		      <form:input type="text" class="form-control" id="audience"  path="audience" style="width:400px;"></form:input>
+		    </div>
+		  </div>
+		  
+		   <div class="form-group row">
+			    <label for="inputPassword3" class="col-sm-2 col-form-label">用餐日</label>
+			    <div class="col-sm-10">
+			      <form:select class="form-control" path="businessHours" id="day" onchange="selectDay()" style="width:400px;">
+			    				<option value="">請選擇</option>
+								<option value="星期一">星期一</option>
+								<option value="星期二">星期二</option>
+								<option value="星期三">星期三</option>
+								<option value="星期四">星期四</option>
+								<option value="星期五">星期五</option>
+								<option value="星期六">星期六</option>
+								<option value="星期日">星期日</option>
+							</form:select>
+			    </div>
+			  </div>
+</div>
+  
+  
+  <div class="shop" style="float:left">
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">店名</label>
+    <div class="col-sm-10">
+      <form:input type="text" class="form-control" id="shopName"  path="shopName" style="width:400px;"></form:input>
+    </div>
+  </div>
+  
+  
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">價格區間</label>
+    <div class="col-sm-10">
+      <form:select class="form-control" path="priceScope" id="price" onchange="selectPrice()" style="width:400px;">
+    				<option value="">請選擇</option>
 					<option value="$   0-500元">$ 0-500元</option>
 					<option value="$$   501-1000元">$$ 501-1000元</option>
 					<option value="$$$   1001-3000元">$$$ 1001-3000元</option>
 					<option value="$$$$   3000以上">$$$$ 3000以上</option>
 				</form:select>
-			</div>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">城市</label>
+    <div class="col-sm-10">
+      <div id="twzipcode"></div>
+    </div>
+  </div>
+  
+   <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">地址</label>
+    <div class="col-sm-10">
+      <form:input type="text" class="form-control" id="shopAddress"  path="shopAddress" style="width:400px;"></form:input>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">電話</label>
+    <div class="col-sm-10">
+      <form:input type="text" class="form-control" id="tel"  path="tel" style="width:400px;"></form:input>
+    </div>
+  </div>
+  </div>
+  
+  
+  <div class="shop" style="float:left">
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">美味</label>
+    <div class="col-sm-10">
+      <form:input type="text" class="form-control" path="tasty" id="tasty" style="width:400px;" ></form:input>
+        <input class="inputBtn" type="radio" name="gender" value="5" checked="checked">5
+		<input class="inputBtn" type="radio" name="gender" value="4">4
+		<input class="inputBtn" type="radio" name="gender" value="3">3
+		<input class="inputBtn" type="radio" name="gender" value="2">2
+		<input class="inputBtn" type="radio" name="gender" value="1">1
+    </div>
+  </div>
+  
+   <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">氣氛</label>
+    <div class="col-sm-10">
+      <form:input type="text" class="form-control" path="atmosphere" id="atmosphere" style="width:400px;"></form:input>
+        <input class="inputBtn" type="radio" name="gender1" value="5" checked="checked">5
+		<input class="inputBtn" type="radio" name="gender1" value="4">4
+		<input class="inputBtn" type="radio" name="gender1" value="3">3
+		<input class="inputBtn" type="radio" name="gender1" value="2">2
+		<input class="inputBtn" type="radio" name="gender1" value="1">1
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">西批值</label>
+    <div class="col-sm-10">
+      <form:input type="text" class="form-control" path="cp" id="cp" style="width:400px;"></form:input>
+        <input class="inputBtn" type="radio" name="gender2" value="5" checked="checked">5
+		<input class="inputBtn" type="radio" name="gender2" value="4">4
+		<input class="inputBtn" type="radio" name="gender2" value="3">3
+		<input class="inputBtn" type="radio" name="gender2" value="2">2
+		<input class="inputBtn" type="radio" name="gender2" value="1">1
+    </div>
+  </div>
+  
+  </div>
+  
+  
 
-			<div class="st1">
-				<label class="lab">城市:</label>
-				<div id="twzipcode"></div>
-			</div>
+  <div class="form-group row">
+    <div class="col-sm-10 offset-sm-2">
+      <div class="form-check">
+     
 
-			<div class="st1">
-				<label class="lab">地址:</label>
-				<form:input path="shopAddress" type="text"></form:input>
-				<br>
-			</div>
-			<div class="st1">
-				<label class="lab">電話:</label>
-				<form:input path="tel" type="text"></form:input>
-				<br>
-			</div>
-			<div class="st1">
-				<label class="lab">用餐日:</label>
-				<form:select path="businessHours" id="day" onchange="selectDay()">
-					<option value="">請選擇</option>
-					<option value="星期一">星期一</option>
-					<option value="星期二">星期二</option>
-					<option value="星期三">星期三</option>
-					<option value="星期四">星期四</option>
-					<option value="星期五">星期五</option>
-					<option value="星期六">星期六</option>
-					<option value="星期日">星期日</option>
-				</form:select>
-			</div>
-					
-					
-					
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary">送出</button>
+    </div>
+  </div>
+  </form>
+  </form:form>
 
-				
-				<br>
-				<p class="link-top"></p>
-
-
-				<div class="st2">
-					<label class="lab">美味:</label>
-					<form:input path="tasty" type="text" id="inputID"></form:input>
-					<input class="inputBtn" type="radio" name="gender" value="5">5
-					<input class="inputBtn" type="radio" name="gender" value="4">4
-					<input class="inputBtn" type="radio" name="gender" value="3">3
-					<input class="inputBtn" type="radio" name="gender" value="2">2
-					<input class="inputBtn" type="radio" name="gender" value="1">1
-				</div>
-				<br>
-				<div class="st2">
-					<label class="lab">氣氛:</label>
-					<form:input path="atmosphere" type="text" id="inputID"></form:input>
-					<input class="inputBtn" type="radio" name="gender1" value="5">5
-					<input class="inputBtn" type="radio" name="gender1" value="4">4
-					<input class="inputBtn" type="radio" name="gender1" value="3">3
-					<input class="inputBtn" type="radio" name="gender1" value="2">2
-					<input class="inputBtn" type="radio" name="gender1" value="1">1
-				</div>
-				<br>
-				<div class="st2">
-					<label class="lab">西批值:</label>
-					<form:input path="cp" type="text" id="inputID"></form:input>
-					<input class="inputBtn" type="radio" name="gender2" value="5">5
-					<input class="inputBtn" type="radio" name="gender2" value="4">4
-					<input class="inputBtn" type="radio" name="gender2" value="3">3
-					<input class="inputBtn" type="radio" name="gender2" value="2">2
-					<input class="inputBtn" type="radio" name="gender2" value="1">1
-				</div>
-				<br>
-
-
-				<div class="btn">
-					<input class="sendBtn" type="submit" value="更新">
-				</div>
-			</div>
-		</form>
-	</form:form>
-
-
-
-
+</div>
 
 
 	<script>
-// 		tinymce
-// 				.init({
-// 					selector : 'textarea',
-// 					plugins : 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-// 					toolbar_mode : 'floating',
-// 				});
+
+	//快速輸入
+	$("#fastInput").click(function(){  
+        $("#title").val("[食記] 台北 教父牛排 Danny's Steakhouse");
+        $("#content").val("久聞牛排教父鄧有葵的大名已久，可一直也沒什麼心思想吃，其實我很少會上牛排館吃牛排，因為我總認為牛排這種食物，只要食材本身好，廚師的手藝倒是其次。而且台灣中上價位的牛排館所使用的無非也是美國牛，美國牛去美福或Costco都能買到，回家後用平底鍋煎一下或烤箱烤一下，佐點海鹽沾著吃，一點也不輸外面一客一兩千的牛排。尤其吃過日本近江牛的美味後，美國牛的味道已經滿足不了我了。不過既然朋友想嘗試看看牛排教父的牛排，那便約來一試，嘗嘗也好。");
+        $("#shopName").val("教父牛排 Danny's Steakhouse");
+        var type=$("#shopType").val("西式");
+        console.log(type); 
+        $("#audience").val("朋友");
+        $("#price").val("$$$   1001-3000元");
+//         $("select[name='city']").val("台北市");
+//         console.log($("div > select[name]='city'")); 
+//         $("#twzipcode[name='town']").val("中山區");
+        $("#shopAddress").val("樂群三路58號");
+        $("#tel").val("02-8501-1838");
+        $("#day").val("星期三");
+        $("#tasty").val("細緻滑嫩，入口即化");
+        $("#atmosphere").val("高貴華麗，香氣四溢，非常乾淨");
+        $("#cp").val("價格較高，不能常常來");
+
+//          var city =$("select[name='city']").text(); //看全部的城市.
+//         $("select[name='city']").attr("value","台北市");
+// 		    var city =$("#twzipcode option:first").text();
+
+//          console.log(city); 
+    });
+	
+
+
 
 		//郵遞區號
 		$("#twzipcode").twzipcode({
 			zipcodeIntoDistrict : true, // 郵遞區號自動顯示在區別選單中
-			// 			css : [ "city form-control", "town form-control" ], // 自訂 "城市"、"地別" class 名稱 
+// 			css : [ "city form-control", "town form-control" ], // 自訂 "城市"、"地別" class 名稱 
 			countyName : "city", // 自訂城市 select 標籤的 name 值
 			districtName : "town" // 自訂區別 select 標籤的 name 值
 		});
@@ -284,19 +271,35 @@ legend {
 
 			const fr = new FileReader();
 			fr.onload = function(e) {
-				$('#imgDiv').attr('src', e.target.result);
+				$('.imgDiv').attr('src', e.target.result);
 			};
 
 			// 使用 readAsDataURL 將圖片轉成 Base64
 			fr.readAsDataURL(file);
 		});
+		
+		//類型
+		function selectType() {
+			var shopType = document.getElementById("shopType").value;
+// 			let selectType = document.getElementById("selectType");
+		}
+
+		//價格區間
+		function selectPriceType() {
+			var price = document.getElementById("price").value;
+// 			let selectPrice = document.getElementById("selectPrice");
+		}
+		
 
 		//營業日
 		function selectDay() {
-			var yearM = document.getElementById("day").value;
-			let spMonth = document.getElementById("selectDay");
-			let Month = spMonth.innerHTML = yearM + " 月 ";
+			var day = document.getElementById("day").value;
+// 			let selectDay = document.getElementById("selectDay");
+// 			let Month = spMonth.innerHTML = yearM + " 月 ";
 		}
 	</script>
+
+
+
 </body>
 </html>

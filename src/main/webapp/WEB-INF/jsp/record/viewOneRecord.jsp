@@ -198,19 +198,19 @@ button{
 						<c:out value="${lastestFoodRecord.audience}" />
 					</h4>
 					<p>
-						<c:out value="${foodrecordById.city}" />
+						<c:out value="${lastestFoodRecord.city}" />
 						<br>
-						<c:out value="${foodrecordById.town}" />
+						<c:out value="${lastestFoodRecord.town}" />
 						<br>
-						<c:out value="${foodrecordById.shopAddress}" />
+						<c:out value="${lastestFoodRecord.shopAddress}" />
 						<h5 style="font-weight:bold;"> 用餐日 </h5>
-						<c:out value="${foodrecordById.businessHours}" />
+						<c:out value="${lastestFoodRecord.businessHours}" />
 						<br> <br>
 						<h5 style="font-weight:bold;"> 店名 </h5>
-						<c:out value="${foodrecordById.shopName}" />
+						<c:out value="${lastestFoodRecord.shopName}" />
 						<br> <br>
 						<h5 style="font-weight:bold;"> 電話 </h5>
-						<c:out value="${foodrecordById.tel}" />
+						<c:out value="${lastestFoodRecord.tel}" />
 					</p>
 				</div>
 				<div id="taste">
