@@ -65,8 +65,8 @@
 									datasets : [ {
 										label : "區域",
 										fill : true,
-										lineTension : 0.1,
-										backgroundColor : "rgba(75,192,192,0.4)",
+										lineTension : 1,
+										backgroundColor : ["rgba(75,192,192,0.4)","red","pink","yellow","blue"],
 										borderColor : "rgba(75,192,192,1)",
 										borderCapStyle : 'butt',
 										borderDash : [],
@@ -92,10 +92,11 @@
 								ctx.height = 50;
 								// 初始化一個新的雷達圖
 								var myLineChart = new Chart(ctx, {
-									type : 'line',
+									type : 'bar',
 									data : tempData,
 									options : {
 										maintainAspectRatio : true,
+										beginAtZero:true,
 									}
 								});
 							});
