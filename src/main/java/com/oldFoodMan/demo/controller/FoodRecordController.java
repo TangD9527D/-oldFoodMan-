@@ -189,8 +189,11 @@ public class FoodRecordController {
 	
 	//修改食記(顯示之前的食記資料)
 	@GetMapping("/editData")
-	public ModelAndView showPreviousRecord(ModelAndView mav, @RequestParam(name = "id") Integer id) {
+	public ModelAndView showPreviousRecord(ModelAndView mav, @RequestParam(name = "id") Integer id,HttpSession session) {
 		FoodRecord msg = service.findById(id);
+		Member member = (Member)session.getAttribute("member"); 
+		Integer memberID = member.getId();
+		mav.getModel().put("memberID",memberID);
 		mav.getModel().put("foodrecord", msg);
 		System.out.println("顯示食記");
 		mav.setViewName("record/editData");	
@@ -201,12 +204,13 @@ public class FoodRecordController {
 	@PostMapping(value = "/editData")
 	public ModelAndView updateRecord(ModelAndView mav, @Valid @ModelAttribute(name="foodrecord") FoodRecord fr, BindingResult result,HttpSession session) {	
 		mav.setViewName("record/editData");	
-		Member member = (Member)session.getAttribute("member"); 
 		FoodRecord sessionRecordId = (FoodRecord)session.getAttribute("sessionRecordId"); //拿食記的Id
+		Member member = (Member)session.getAttribute("member"); 
 		Integer RecordId = sessionRecordId.getId();
 		FoodRecord currentRecord = service.findById(RecordId);
+//		Integer memberID = member.getId();
+		fr.setMember_id(member);
 		System.out.println("目前的食記內容 "+currentRecord);
-		currentRecord.setMember_id(member);
 		if(!result.hasErrors()) {
 			System.out.println("更新食記");
 			 service.insertRF(fr);

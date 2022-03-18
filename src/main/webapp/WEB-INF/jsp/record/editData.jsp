@@ -54,6 +54,7 @@ textarea {
 	<form:form class="form" action="${contextRoot}/editData" modelAttribute="foodrecord" method="post" enctype="multipart/form-data">
   <form>
 		  <form:input type="hidden" path="id" />
+		  <form:input type="hidden" path="member_id" />
 		  <form:input type="hidden" path="added" />
 		  
 		  <div class="form-group row">
