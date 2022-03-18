@@ -19,6 +19,9 @@
  	magin-left:500px;
  	
 }
+body{
+	background:white;
+}
 
 
 .type{
@@ -70,7 +73,7 @@ $(document).ready(function(){
               label: "店名",
                 fill: true,
                 lineTension: 0.1,
-                backgroundColor: [ "#FF6384", "#FF9F40", "#FFCD56", "#4BC0C0", "#36A2EB", "#9966FF", "#C9CBCF" ],
+                backgroundColor: [ "#FF6384", "#FF9F40", "#FFCD56", "#4BC0C0", "#36A2EB", "#9966FF", "#C07AB8" ],
                 borderColor: "rgba(0,0,0,0)",
                 borderCapStyle: 'butt',
                 borderDash: [],

@@ -16,6 +16,9 @@
 	text-align: center;
 /* 	border:3px solid black; */
 }
+body{
+	background:white;
+}
 </style>
 <head>
 <meta charset="UTF-8">

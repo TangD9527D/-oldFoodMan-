@@ -15,7 +15,10 @@
 	width: 1250px;
 	float: right;
 	text-align: center;
-	border:3px solid black;
+/* 	border:3px solid black; */
+}
+body{
+	background:white;
 }
 </style>
 <head>
