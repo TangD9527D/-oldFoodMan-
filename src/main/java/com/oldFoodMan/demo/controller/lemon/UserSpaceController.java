@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.oldFoodMan.demo.model.FoodRecord;
+import com.oldFoodMan.demo.model.FoodRecordRepository;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.lemon.Relationship;
 import com.oldFoodMan.demo.model.lemon.RelationshipRepository;
@@ -21,14 +24,25 @@ import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
 import com.oldFoodMan.demo.model.lemon.ReviewerSettingRepository;
 import com.oldFoodMan.demo.model.lemon.User;
 import com.oldFoodMan.demo.model.lemon.UserRepository;
+import com.oldFoodMan.demo.service.FoodRecordService;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.service.lemon.RelationshipService;
 import com.oldFoodMan.demo.service.lemon.ReviewerSettingService;
+import com.oldFoodMan.demo.service.lemon.UserService;
 
 
 @Controller
 public class UserSpaceController {
 
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private FoodRecordService foodRecordService;
+	
+	@Autowired
+	private FoodRecordRepository foodRecordRepository;
+	
 	@Autowired
 	private RelationshipService relationshipService;
 	
@@ -56,23 +70,54 @@ public class UserSpaceController {
 	 */
 
 	@GetMapping(value="/relationships/follows")
-	public String getFollowsById(Model model,HttpSession hs) {
-		Member memberData = (Member)hs.getAttribute("member");
-		int memId = memberData.getId();
-		Date birthday = memberData.getBirth();
-		String bdd = service.getAgeByMember(birthday);
-		List<Integer> list = relationshipService.listFollows(memId); 
+	public ModelAndView getFollowsById(ModelAndView mav,HttpSession hs) {
 		
-		User user = userRepository.findByMember(memId);
-		Member memberBean = memberService.findById(memId);
-		ReviewerSetting reviewerBean = rsr.findByMember(memId);
+		//Member資料
+				Member memberData = (Member)hs.getAttribute("member");
+				Integer memberId = memberData.getId();
+		//生日
+				Date birthday = memberData.getBirth();
+				String bdd = service.getAgeByMember(birthday);
+		//資料欄
+				ReviewerSetting reviewerBean = rsr.findByMember(memberId);
+				Member memberBean = memberService.findById(memberId);
+		//照片
+				Integer picCounts = foodRecordRepository.picCounts(memberId);
+				mav.getModel().put("picCounts", picCounts);
+				mav.getModel().put("bdd", bdd);
+				mav.getModel().put("reviewerPage", reviewerBean);
+				mav.getModel().put("memberPage", memberBean);
+				
+		//拜訪店家 喜愛店家
+				Integer countAll = foodRecordRepository.recordCounts(memberId);
+				Integer countFav = foodRecordRepository.recordFavCounts(memberId);
+				mav.getModel().put("countFav", countFav);
+				mav.getModel().put("countAll", countAll);
+				
+		//追蹤 粉絲
+				User user = userService.findByMember(memberId);
+				Integer follows = relationshipRepository.countByFromUserId(memberId);
+				user.setFollow_size(follows);
+				Integer fans = relationshipRepository.countByToUserId(memberId);
+				user.setFan_size(fans);
+				userRepository.save(user);
+				mav.getModel().put("user",user);
+				
+		//去過的店
+				Integer count = foodRecordRepository.recordCounts(memberId);
+				List<FoodRecord> frds = foodRecordService.memFoodRecords(memberId);
+				mav.getModel().put("count", count);
+				mav.getModel().put("frds", frds);
 		
-		model.addAttribute("user",user);
-		model.addAttribute("bdd", bdd);
-		model.addAttribute("reviewerPage", reviewerBean);
-		model.addAttribute("memberPage", memberBean);
-		model.addAttribute("ids",list);
-		return "/lemon/reviewerFollowing";
+		//追蹤的人
+		List<Integer> list = relationshipService.listFollows(memberId); 
+		User user1 = userRepository.findByMember(memberId);
+		mav.getModel().put("user",user1);
+		mav.getModel().put("ids",list);
+		
+		//視圖君
+		mav.setViewName("/lemon/reviewerFollowing");
+		return mav;
 		
 	}
 	
