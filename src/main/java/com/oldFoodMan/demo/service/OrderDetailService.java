@@ -27,7 +27,7 @@ public class OrderDetailService {
 		return detailDao.findProductAmount();
 	}
 	
-	public List<List<Integer>> findqqq(){
-		return detailDao.findProductAmount2();
+	public List<List<String>> findqqq(int ori, int last){
+		return detailDao.findProductAmount2(ori, last);
 	}
 }
