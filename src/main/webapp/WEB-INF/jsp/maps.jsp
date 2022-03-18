@@ -32,9 +32,9 @@
 <!-- 改為老食人小圖 -->
 
 <style>
-#allpage {
+.allpage {
 	width: 70%;
-	height: 80%;
+	height: 100%;
 	margin: 10px auto;
 	/* float: left; */
 }
@@ -56,23 +56,16 @@ html {
 body {
 	height: 100%;
 	background-color: #fbf3f3;
-	/* 	background-image:url("http://localhost:8080/oldFoodMan/images/oldfoodman.png"); */
-	/* 	background-color: #ffefcd; */
-	/* 	border: 1px solid #e6d6b4; */
-	/*  	background-image: -o-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%);  */
-	/* /* 	background-image: -moz-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%); */
-	*/
-	/* 	background-image: -webkit-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%);  */
-	/* /* 	background-image: -ms-linear-gradient(bottom, #ffffe6 0%, #ffefcd 100%); */
-	*/
-	/* /* 	background-image: linear-gradient(to bottom, #ffffe6 0%, #ffefcd 100%); */
-	*/
-	/*  	-webkit-box-shadow: inset 0 1px 0 #ffffff;  */
-	/*  	-moz-box-shadow: inset 0 1px 0 #ffffff;  */
-	/*  	box-shadow: inset 0 1px 0 #ffffff;  */
-	/*  	text-shadow: 0 1px 0 #ffffff;  */
-	/* /* 	color: #e6d6b4; */
-	*/
+	padding-bottom:50px;
+	
+}
+.footer{
+position:fixed;
+left:0px;
+bottom:0px;
+width:100%;
+height:50px;
+z-index:9999;
 }
 
 #description {
@@ -162,12 +155,12 @@ body {
 	text-align: center;
 }
 
-#inputdiv {
+.inputdiv {
 	width: 100%;
 	margin: 5px auto;
 }
 
-#inputdivv {
+.inputdivv {
 	width: 100%;
 	margin: 5px auto;
 	float: right;
@@ -185,7 +178,7 @@ body {
 	float: right;
 }
 
-#allrange {
+.allrange {
 	text-align: justify;
 	width: 100%;
 	/*   	display: flex;   */
@@ -208,57 +201,33 @@ body {
 	align-items: center;
 }
 
-#xxx {
-	
-}
+
 
 #p1 {
 	float: left;
 	margin-top: 25px;
-	margin-left: 8%;
-	/* 	justify-content: space-between; */
-	/* 	width: 100%; */
-	/* 	background-image: */
-	/* 		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg"); */
-	/* 	background-position: 100px 250px;; */
+	margin-left: 2%;
+	background-color:#fbf3f3;
+
 }
 
 #p2 {
 	float: left;
 	margin-top: 25px;
-	margin-left: 7%;
-	/* 	justify-content: space-between; */
+	margin-left: 2%;
 	width: 100%;
-	/* 	background-image: */
-	/* 		url("images/pngtree-cartoon-food-border-hot-dog-food-border-food-border-decorative-border-png-image_3804369.jpg"); */
-	/* 	background-position: 100px 250px; */
-	background-color: #ecd8d8;
-	border: 1px solid #ecd8d8;
-	background-image: -o-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%);
-	background-image: -moz-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%);
-	background-image: -webkit-linear-gradient(bottom, #ecd8d8 0%, #d1d0bf 100%);
-	background-image: -ms-linear-gradient(bottom, #eae9d8 0%, #d1d0bf 100%);
-	background-image: linear-gradient(to bottom, #eae9d8 0%, #d1d0bf 100%);
-	-webkit-box-shadow: inset 0 1px 0 #fffff1;
-	-moz-box-shadow: inset 0 1px 0 #fffff1;
-	box-shadow: inset 0 1px 0 #fffff1;
-	/* 	text-shadow: 0 1px 0 #fffff1; 
-	/* 	color: #b8b7a6; */
-	background-image:
-		url("http://localhost:8080/oldFoodMan/images/oldfoodman.png");
-	background-position: 230px 150px;
-	/* 	opacity: 1.5; */
+	background-color:#fbf3f3;
+	overflow:hidden;
+	border: 3px solid #E6E6F2 ;
+	box-shadow: 2px 2px 5px #E6E6F2;
+
 }
 
-#img {
-	display: block;
-	margin: 25px auto;
-}
 
 #box {
 	width: 100%;
 	padding: 10px;
-	height: 200px;
+	height: 150px;
 	margin: 10px auto;
 }
 
@@ -277,15 +246,13 @@ body {
 
 #right {
 	position: absolute;
-	bottom: 53px;
+	bottom: 3px;
 }
 
 #location {
 	border: 5px solid #FDE4DE;
 	float: right;
 	width: 14%;
-	/* 	height: 50%; */
-	/* 	height: 50%; */
 	margin: 50px auto;
 	border-radius: 15px;
 }
@@ -323,9 +290,51 @@ body {
 }
 .imgsize{
 
+width: 13rem; 
+height: 14rem;
+display: block;
+margin: 25px auto;
 
-width: 230px; height: 220px
 }
+
+.acolor{
+
+color:black;
+text-decoration:none;
+
+}
+.acolor:hover{
+
+color:orange;
+
+
+}
+
+.imgsize 
+{
+
+transform:scale(1);transition: all 0.3s ease-in-out;
+
+}
+
+.imgsize:hover{
+
+transform:scale(1.2,1.2);
+
+}
+
+
+.contant{
+  padding-bottom: 50px; /*避免文字超出瀏覽器時，內容區塊不會和footer打架*/
+
+}
+
+.spansize{
+
+font-size:50px;
+
+}
+
 
 </style>
 
@@ -337,9 +346,9 @@ width: 230px; height: 220px
 		
 	
 
-	<div id="allpage">
+	<div class="allpage">
 		<!--整個頁面的65%-->
-		<div id="inputdiv">
+		<div class="inputdiv">
 			<!--allpage的65%-->
 			<input id="input" class="btn btn-secondary" type="search"
 				placeholder="Search Food & record" />
@@ -347,7 +356,7 @@ width: 230px; height: 220px
 
 		<div id="map"></div>
 
-		<div id="inputdivv">
+		<div class="inputdivv">
 			<input id="delete-markers" class="btn btn-outline-danger btn-sm"
 				type="button" value="DeleteMark" /> <input id="show-markers"
 				class="btn btn-outline-secondary btn-sm" type="button"
@@ -363,9 +372,8 @@ width: 230px; height: 220px
 		</div>
 
 
-		<div id="allrange">
-			<a href="http://localhost:8080/oldFoodMan/"><div
-					class="btn btn-outline-secondary">最新文章</div></a>
+		<div class="allrange">
+			<div><a href="http://localhost:8080/oldFoodMan/main" class="btn btn-outline-secondary">最新文章</a></div>
 			<div class="test2">
 				<div id="xxx">
 					<span id="rangetype" class="btn btn-outline-primary display"></span>
@@ -379,20 +387,17 @@ width: 230px; height: 220px
 				<div id="xxx">
 					<div id="range" class="">
 						<c:forEach var="maps" items="${page.content}">
-							<div class="card col-3" id="p2">
-								<a
-									href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id}"><img
+							<div class="card " style="width:15rem" id="p2">
+								<a   
+									href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id}"  ><img
 									id="img" src="<c:url value='/getPicture/${maps.id}'/>"
 									 class="card-img-top imgsize"
 									alt="..."></a>
 								<div id="box" class="card-body">
-									<h3 id="p" class="card-title"
-										style="background-color: #FDE4DE; text-align: center">${maps.title}</h3>
+									<a	href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id} " title="${maps.title}" class="acolor"><span id="p" class="card-title"
+										style="background-color: #FFC2C3; text-align: center">${maps.title}</span></a>
 									<h5 id="p" class="card-text">${maps.content}</h5>
-									<a
-										href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id} "
-										class="btn btn-secondary"
-										style="position: absolute; bottom: 15px">繼續閱讀</a>
+									
 
 									<div id="right">
 										<fmt:formatDate pattern="yyyy/MM/dd" value="${maps.added}" />
@@ -436,13 +441,15 @@ width: 230px; height: 220px
 
 			<!-- 			</div> -->
 		</div>
-
 		
-		<button type="button" class="btn btn-dark" data-toggle="modal"
-							data-target="#exampleModalMaps">新增帳號</button>
-
-	</div>
-
+	
+		<div class=footer>
+		
+		<footer class="pt-3 mt-4 text-muted border-top ">
+      &copy; 2022
+    </footer>
+</div>
+</div>
 
 
 
@@ -457,7 +464,8 @@ width: 230px; height: 220px
 	<script>
 	 let map;
      let markers = [];
-     function initAutocomplete() {
+//      $(document).ready(
+    window.onload = function initAutocomplete() {
          map = new google.maps.Map(document.getElementById("map"), {
              center: { lat: 25.033943646794558, lng: 121.54341199736278 },//設立資展國際中心為地圖中心點
              zoom: 19, //數字越大，街道越明顯
@@ -544,6 +552,7 @@ width: 230px; height: 220px
              map.fitBounds(bounds);
          });
      }
+//      )
 
 
 
@@ -687,7 +696,7 @@ width: 230px; height: 220px
 	<script>
 
 document.getElementById("star").addEventListener("click",function(){
-	  swal("Error!!", "請先登入會員 !!", "error").then(insertlocation());
+	  swal("請先登入會員  !!", "請先登入會員 !!", "error").then(insertlocation());
 	});
 	
 
@@ -758,18 +767,16 @@ if (code == 13) { //Enter keycode
 							console.log(result)
 							
 				$.each(result,function(index,value){
-						msg_data+= '<div id="p1" class="card col-3" >'
+						msg_data+= '<div id="p1" class="card " style="width:15rem"" >'
 //  					msg_data+= '<img id="img" src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						console.log(value.uploadPicture)
-						console.log(value.create_at)
 						var image = value.uploadPicture
 						var ok = image.split('.').pop()
 						console.log(ok)
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"><img id="img"  src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>"  class="card-img-top imgsize" alt="..."></a>'
 						msg_data+= '<div id="box" class="card-body">'		
-						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"<span id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</span></a>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'" class="btn btn-outline-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀"/></a>'			
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})

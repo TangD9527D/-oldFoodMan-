@@ -41,7 +41,7 @@
 
 #map {
 	width: 100%;
-	height: 100%;
+	height: 68%;
 	margin: 5px auto;
 	/* float: left; */
 }
@@ -230,9 +230,7 @@ body {
 
 }
 
-#img {
-	
-}
+
 
 #box {
 	width: 100%;
@@ -242,6 +240,8 @@ body {
 }
 
 #p {
+	font-size:20px;
+	line-height:0.7cm;
 	overflow: hidden;
 	display: -webkit-box;
 	text-overflow: ellipsis;
@@ -257,6 +257,7 @@ body {
 #right {
 	position: absolute;
 	bottom: 3px;
+	color:	#ADADAD;
 }
 
 #location {
@@ -330,6 +331,11 @@ transform:scale(1);transition: all 0.3s ease-in-out;
 .imgsize:hover{
 
 transform:scale(1.2,1.2);
+
+}
+.spantime{
+
+/* background-color:#FA92B1; */
 
 }
 
@@ -417,7 +423,7 @@ transform:scale(1.2,1.2);
 									
 
 									<div id="right">
-										<fmt:formatDate pattern="yyyy/MM/dd" value="${maps.added}" />
+										<span class="spantime">上傳時間:&nbsp&nbsp&nbsp&nbsp&nbsp</span><fmt:formatDate pattern="yyyy/MM/dd" value="${maps.added}" />
 									</div>
 
 								</div>
@@ -782,18 +788,16 @@ if (code == 13) { //Enter keycode
 							console.log(result)
 							
 				$.each(result,function(index,value){
-						msg_data+= '<div id="p1" class="card col-3" >'
+						msg_data+= '<div id="p1" class="card " style="width:15rem"" >'
 //  					msg_data+= '<img id="img" src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						console.log(value.uploadPicture)
-						console.log(value.create_at)
 						var image = value.uploadPicture
 						var ok = image.split('.').pop()
 						console.log(ok)
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"><img id="img"  src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>"  class="card-img-top imgsize" alt="..."></a>'
 						msg_data+= '<div id="box" class="card-body">'		
-						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"<span id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</span></a>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'" class="btn btn-outline-primary" style="position: absolute; bottom: 15px"><c:out value="繼續閱讀"/></a>'			
 						msg_data+= '</div>'
 						msg_data+= '</div>'
 						})
