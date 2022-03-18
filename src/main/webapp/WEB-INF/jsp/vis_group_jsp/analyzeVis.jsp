@@ -54,7 +54,7 @@ $(document).ready(function drawLineChart() {
         	console.log("hhh: "+ok)
         	
             labels.push(results[sensorRecord].split(',')[0]);
-            data.push(results[sensorRecord].split(',').pop());
+            data.push(results[sensorRecord].split(',')[1]);
         }
 
         // 設定圖表的資料
