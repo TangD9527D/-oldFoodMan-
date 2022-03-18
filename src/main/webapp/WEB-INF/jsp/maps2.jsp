@@ -26,10 +26,12 @@
 <script
 	src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link rel="shortcut icon" href="/images/favicon.png" />
 <!-- 改為老食人小圖 -->
+
 
 <style>
 .allpage {
@@ -333,12 +335,26 @@ transform:scale(1);transition: all 0.3s ease-in-out;
 transform:scale(1.2,1.2);
 
 }
-.spantime{
 
-/* background-color:#FA92B1; */
-
+.back-to-top {
+  display: none; /* 默认是隐藏的，这样在第一屏才不显示 */
+  position: fixed; /* 位置是固定的 */
+  bottom: 20px; /* 显示在页面底部 */
+  right: 30px; /* 显示在页面的右边 */
+  z-index: 99; /* 确保不被其他功能覆盖 */
+  border: 1px solid #5cb85c; /* 显示边框 */
+  outline: none; /* 不显示外框 */
+  background-color: #fff; /* 设置背景背景颜色 */
+  color: #5cb85c; /* 设置文本颜色 */
+  cursor: pointer; /* 鼠标移到按钮上显示手型 */
+  padding: 10px 15px 15px 15px; /* 增加一些内边距 */
+  border-radius: 10px; /* 增加圆角 */
 }
 
+.back-to-top:hover {
+  background-color: #5cb85c; /* 鼠标移上去时，反转颜色 */
+  color: #fff;
+}
 
 
 </style>
@@ -368,8 +384,10 @@ transform:scale(1.2,1.2);
 			class="form-control" required>
 
 	</div>
-
+	
+<button class="js-back-to-top back-to-top" title="回到头部">︽</button>
 	<div class="allpage">
+	
 		<!--整個頁面的65%-->
 		<div class="inputdiv">
 			<!--allpage的65%-->
@@ -648,7 +666,7 @@ transform:scale(1.2,1.2);
 					var msg_data='';
 					$.each(result,function(index,value){
 						
-						msg_data = '<button onclick="deletelike('+value.id +')" class="btn"><li id="li" class="list-group-item list-group-item-info">'+ inputResName +'</li></button>'
+						msg_data = '<button id="schedule" value="'+ value.id +'" class="btn"><li id="li" class="list-group-item list-group-item-info schedule'+ value.id +'">'+ inputResName +'</li></button>'
 						
 					})
 				
@@ -679,7 +697,7 @@ transform:scale(1.2,1.2);
  				
  					var msg_data='';
  					$.each(result,function(index,value){
- 						msg_data += '<button onclick="deletelike('+value.id +')" class="btn"><li id="li" class="list-group-item list-group-item-info" style="">'+ value.likelocations +'</li></button>'
+ 						msg_data += '<button id="schedule" value="'+value.id+'" class="btn"><li id="li" class="list-group-item list-group-item-info schedule'+ value.id +'" style="">'+ value.likelocations +'</li></button>'
  					})
 
  					$('#location1').append(msg_data)
@@ -694,24 +712,102 @@ transform:scale(1.2,1.2);
  			})
  			
  			
- 			function deletelike(id) { //刪除收藏地點
+//  			function deletelike(id) { //刪除收藏地點
 
-		// 			var record_id = document.getElementById("clot").value;
+// 		// 			var record_id = document.getElementById("clot").value;
 
-		$.ajax({
-					url : 'http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id='
-							+ id,
-					contentType : 'application/json; charset=UTF-8',
-					method : 'get',
-					success : function(result) {
-						console.log(member_id2)
-						alert('已成功刪除');
-						location.reload();
-					}
+// 		$.ajax({
+// 					url : 'http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id='
+// 							+ id,
+// 					contentType : 'application/json; charset=UTF-8',
+// 					method : 'get',
+// 					success : function(result) {
+// 						console.log(member_id2)
+// 						alert('已成功刪除');
+// 						location.reload();
+// 					}
 
-				})
+// 				})
 
-	}
+// 	}
+ 		
+ 		
+ 		////new delete function
+ 		
+ 
+ 		$(document).on('click', '#schedule', function (){  //用一般的.click會有氣泡事件問題
+ 			
+ 		
+ 			var id = $(this).attr("value");
+ 			const swalWithBootstrapButtons = Swal.mixin({
+ 				  customClass: {
+ 				    confirmButton: 'btn btn-success',
+ 				    cancelButton: 'btn btn-danger'
+ 				  },
+ 				  buttonsStyling: false
+ 				})
+
+ 				swalWithBootstrapButtons.fire({
+ 				  title: 'Are you sure?',
+ 				  text: "You won't be able to revert this!",
+ 				  icon: 'warning',
+ 				  showCancelButton: true,
+ 				  confirmButtonText: 'Yes, delete it!',
+ 				  cancelButtonText: 'No, cancel!',
+ 				  reverseButtons: true
+ 				}).then((result) => {
+ 				  if (result.isConfirmed) {
+ 				    swalWithBootstrapButtons.fire(
+ 				      'Deleted!',
+ 				      'Your file has been deleted.',
+ 				      'success'
+ 				    )
+ 				    
+ 				   $.ajax({
+ 		 				type : "get",
+ 		 				url : "http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id="+id,
+ 		 				success : function(data) {	 							 						    
+ 		 						
+ 		 					location.reload();
+ 		 					
+ 		 				},
+ 		 			});
+ 				    
+ 				    
+ 				    
+ 				    
+ 				  } else if (
+ 				    /* Read more about handling dismissals below */
+ 				    result.dismiss === Swal.DismissReason.cancel
+ 				  ) {
+ 				    swalWithBootstrapButtons.fire(
+ 				      'Cancelled',
+ 				      'Your imaginary file is safe :)',
+ 				      'error'
+ 				    )
+ 				  }
+ 				})
+ 		
+ 		
+ 		})
+ 		
+ 		
+ 		
+ 		
+ 		
+
+ 			
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
 </script>
 	<!--綁定按鍵sweetalert2並執行收藏地點方法 -->
 	<script>

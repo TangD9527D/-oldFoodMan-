@@ -41,7 +41,7 @@
 
 #map {
 	width: 100%;
-	height: 100%;
+	height: 68%;
 	margin: 5px auto;
 	/* float: left; */
 }
@@ -443,12 +443,6 @@ font-size:50px;
 		</div>
 		
 	
-		<div class=footer>
-		
-		<footer class="pt-3 mt-4 text-muted border-top ">
-      &copy; 2022
-    </footer>
-</div>
 </div>
 
 
