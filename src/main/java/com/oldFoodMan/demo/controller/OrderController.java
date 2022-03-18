@@ -122,7 +122,6 @@ public class OrderController {
 		String days = year + "/" + month + "/" + day;
 		System.out.println(days);
 		List<OrderForm> forms = formService.findOneDayTime(days);
-		int between [] = new int[2];
 		int last = forms.size();
 		OrderForm f1 = forms.get(0);
 		OrderForm flast = forms.get(last-1);
