@@ -54,9 +54,6 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	@Query(value="SELECT COUNT(uploadPicture) FROM foodRecord WHERE member_id=:member_id",nativeQuery=true)
 	public Integer picCounts(@Param("member_id")Integer member_id);
 	
-	@Query(value="SELECT COUNT(city) as 台北市 FROM foodRecord where city='臺北市'AND member_id=:member_id",nativeQuery=true)
-	public Integer taipeiCounts(@Param("member_id")Integer member_id);
-	
 	//star5
 
 	@Query(value="SELECT COUNT(gender) AS star FROM foodRecord  WHERE gender=5 AND member_id=:member_id",nativeQuery=true)
@@ -124,9 +121,42 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	@Query(value="SELECT COUNT(priceScope) FROM foodRecord WHERE priceScope LIKE '%$$$$%' AND member_id=:member_id",nativeQuery=true)
 	public Integer price4Counts(@Param("member_id")Integer member_id);
 	
-	//Sortcity
+	//SortCity
 	@Query(value="SELECT * FROM foodRecord where city='臺北市' AND member_id=:member_id",nativeQuery=true)
-	public List<FoodRecord> recordTaipei1(@Param("member_id")Integer member_id);
+	public List<FoodRecord> recordcity1(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT * FROM foodRecord where city='花蓮縣' AND member_id=:member_id",nativeQuery=true)
+	public List<FoodRecord> recordcity15(@Param("member_id")Integer member_id);
+	
+	//CountCity
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='臺北市'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity1(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='花蓮縣'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity15(@Param("member_id")Integer member_id);
+	
+	//SortType
+	@Query(value="SELECT * FROM foodRecord where shopType='火鍋' AND member_id=:member_id",nativeQuery=true)
+	public List<FoodRecord> recordtype1(@Param("member_id")Integer member_id);
+	
+	//CountCity
+	@Query(value="SELECT COUNT(city) FROM foodRecord where shopType='火鍋' AND member_id=:member_id",nativeQuery=true)
+	public Integer counttype1(@Param("member_id")Integer member_id);
+	
+	//SortPrice
+	@Query(value=" SELECT * FROM foodRecord WHERE priceScope LIKE '%500%' AND member_id=member_id",nativeQuery=true)
+	public List<FoodRecord> recordprice11(@Param("member_id")Integer member_id);
+	
+	@Query(value="   SELECT * FROM foodRecord WHERE priceScope LIKE '%500%' OR priceScope LIKE '%1000%' AND member_id=:member_id",nativeQuery=true)
+	public List<FoodRecord> recordprice12(@Param("member_id")Integer member_id);
+	
+	//CountPrice
+	@Query(value=" SELECT COUNT(priceScope) FROM foodRecord WHERE priceScope LIKE '%500%' AND member_id=:member_id",nativeQuery=true)
+	public Integer countprice11(@Param("member_id")Integer member_id);
+	
+	@Query(value="  SELECT COUNT(*) FROM foodRecord WHERE priceScope LIKE '%500%' OR priceScope LIKE '%1000%' AND member_id=:member_id",nativeQuery=true)
+	public Integer countprice12(@Param("member_id")Integer member_id);
+	
 	//lemon_END
 	
 }

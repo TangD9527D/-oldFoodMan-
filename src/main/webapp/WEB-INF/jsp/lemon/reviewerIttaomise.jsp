@@ -705,7 +705,7 @@
             font-size: 80%;
         }
     </style>        
-    </style>
+    
 </head>
 <body>
 
@@ -726,8 +726,8 @@
                 </div>
             </div>
             <div id="page-info" class="header-cover--info js-page-info">
-                <p class="page-name"><c:out value="${reviewerPage.reviewer_title}"/></p>
-                <p class="page-sub-title"><c:out value="${reviewerPage.reviewer_subtitle}"/></p>
+                <p class="page-name"><c:out value="${memberPage.reviewersetting.reviewer_title}"/></p>
+                <p class="page-sub-title"><c:out value="${memberPage.reviewersetting.reviewer_subtitle}"/></p>
             </div>
             <div class="header-cover__actions">
                 <div class="reviewer-action-btns">
@@ -776,11 +776,11 @@
                         </span>
                         <span class="reviewer-status__attr">(${bdd}-<c:out value="${memberPage.city}"/>)</span>
                     </p>
-                    <p class="reviewer-status__occupation"><c:out value="${reviewerPage.reviewer_occupation}"/></p>
+                    <p class="reviewer-status__occupation"><c:out value="${memberPage.reviewersetting.reviewer_occupation}"/></p>
                 </div>
                 <div class="comment-prof">
                     <span class="comment-prof__body">
-                        <c:out value="${reviewerPage.reviewer_intro}"/>
+                        <c:out value="${memberPage.reviewersetting.reviewer_intro}"/>
                     </span>
                     <span class="comment-prof__more">
                         <a class="c-link-arrow" href="${contextRoot}/reviewerPageIntro">
@@ -805,7 +805,7 @@
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
-                                <span class="reviewer-counter__data-num">44件</span>
+                                <span class="reviewer-counter__data-num"><c:out value="${countFav}"/>件</span>
                             </p>
                         </dd>
                     </dl>
@@ -815,11 +815,11 @@
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
-                                <span class="reviewer-counter__data-num">473枚</span>
+                                <span class="reviewer-counter__data-num">${picCounts}枚</span>
                             </p>
-                            <p class="reviewer-counter__like-count">
-                                <span class="reviewer-counter__like-count-num">1,224</span>
-                            </p>
+<!--                             <p class="reviewer-counter__like-count"> -->
+<!--                                 <span class="reviewer-counter__like-count-num">1,224</span> -->
+<!--                             </p> -->
                         </dd>
                     </dl>
                     <dl class="reviewer-counter__item">
@@ -847,7 +847,7 @@
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__like-count">
-                                <span class="reviewer-counter__like-count-num">2,786</span>
+                                <span class="reviewer-counter__like-count-num">2,7</span>
                             </p>
                         </dd>
                     </dl>
@@ -866,7 +866,7 @@
                 <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerIttaomise">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">1478</span>
+                            <span class="reviewer-navi__count"><c:out value="${countAll}"/></span>
                             <span class="reviewer-navi__menu">拜訪店家</span>
                         </span>
                     </a>
@@ -874,7 +874,7 @@
                 <li id="reviewer-navi-interest" class="reviewer-navi__item reviewer-navi__item--interest">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerKoromi">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">156</span>
+                            <span class="reviewer-navi__count"><c:out value="${countFav}"/></span>
                             <span class="reviewer-navi__menu">喜愛店家</span>
                         </span>
                     </a>
@@ -890,7 +890,7 @@
                 <li id="reviewer-navi-follow" class="reviewer-navi__item reviewer-navi__item--follow">
                     <a class="reviewer-navi__target" href="${contextRoot}/relationships/follows">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">62</span>
+                            <span class="reviewer-navi__count"><c:out value="${user.follow_size}"/></span>
                             <span class="reviewer-navi__menu">追蹤</span>
                         </span>
                     </a>
@@ -898,7 +898,7 @@
                 <li id="reviewer-navi-follower" class="reviewer-navi__item reviewer-navi__item--follower">
                     <a class="reviewer-navi__target" href="${contextRoot}/relationships/fans">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">22157</span>
+                            <span class="reviewer-navi__count"><c:out value="${user.fan_size}"/></span>
                             <span class="reviewer-navi__menu">追隨者</span>
                         </span>
                     </a>
@@ -915,7 +915,7 @@
         <div class="clearfix" id="contents">
             <div class="layout5-side rvwr-list-sidebar" id="column-side">
                 <div class="list-sidebar-wrap">
-                <form id="searchCityForm" name="searchCityForm" action="<c:url value='/ittaomise/search/city'/>" accept-charset="UTF-8" method="post">
+                <form id="searchCityForm" name="searchCityForm" action="${contextRoot}/ittaomise/search/city" accept-charset="UTF-8" method="post">
                     <div class="list-sidebar list-sidebar--main">
                         <div class="list-sidebar__heading">
                             <p class="list-sidebar__title list-sidebar__title--area">
@@ -951,10 +951,12 @@
                                     </select>
                                 </label>
                             </div>
-                            <input type="button" class="c-btn c-btn--success list-sidebar__btn js-analytics" style="margin-top:10px;" onclick="formCitySubmit()" value="送出條件"/>    
+                            <input type="button" class="c-btn c-btn--success list-sidebar__btn js-analytics" style="margin-top:10px;" onclick="formCitySubmit();" value="送出條件"/>    
                         </div>
                     </div>
                     </form> 
+                    
+                    <form id="searchTypeForm" name="searchTypeForm" action="${contextRoot}/ittaomise/search/type" accept-charset="UTF-8" method="post">
                     <div class="list-sidebar list-sidebar--main">
                         <div class="list-sidebar__heading">
                             <p class="list-sidebar__title list-sidebar__title--genre">
@@ -965,7 +967,7 @@
                         <div class="list-sidebar__item">
                             <div class="select-wrap">
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
-                                    <select class="list-sidebar__select" name="Genre" id="Type">
+                                    <select class="list-sidebar__select" name="Genre" id="Genre">
                                         <option selected="selected" value="0">全部種類</option>
                                         <option value="1">火鍋</option>
                                         <option value="2">燒烤</option>
@@ -978,16 +980,20 @@
                                         <option value="9">早午餐</option>
                                     </select>
                                 </label>
-                            </div>    
+                            </div>
+                            <input type="button" class="c-btn c-btn--success list-sidebar__btn js-analytics" style="margin-top:10px;" onclick="formCity1Submit();" value="送出條件"/>    
                         </div>
                     </div>
+                    </form>
+                    
                 </div>
+                <form id="searchPriceForm" name="searchPriceForm" action="${contextRoot}/ittaomise/search/price" accept-charset="UTF-8" method="post">
                     <div class="list-sidebar list-sidebar--modal-link">
                         <h4 class="list-sidebar__sub-title list-sidebar__sub-title--condition">預算</h4>
                         <div class="list-sidebar__content">
                             <div class="list-sidebar__price u-clearfix">
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
-                                    <select class="list-sidebar__select" name="LstCos" id="lowPrice">
+                                    <select class="list-sidebar__select" name="lowPrice" id="lowPrice">
                                         <option selected="selected" value="0">無下限</option>
                                         <option value="1">$0</option>
                                         <option value="2">$500</option>
@@ -997,7 +1003,7 @@
                                 </label>
                                 <span class="list-sidebar__price-between">~</span>
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
-                                    <select class="list-sidebar__select" name="LstCosT" id="highPrice">
+                                    <select class="list-sidebar__select" name="highPrice" id="highPrice">
                                         <option selected="selected" value="0">無上限</option>
                                         <option value="1">$500</option>
                                         <option value="2">$1000</option>
@@ -1008,9 +1014,10 @@
                             </div>
                         </div>
                         <div class="list-sidebar__content">
-<!--                             <button class="c-btn c-btn--success list-sidebar__btn js-analytics" type="submit" onclick="formSubmit()">送出條件</button> -->
+                   		<button class="c-btn c-btn--success list-sidebar__btn js-analytics" type="submit" onclick="formCity2Submit()">送出條件</button>
                         </div>
-                   	</div>   
+                   	</div>
+                   	</form>  
             </div>
             <div class="layout5-main rvwr-list-main js-rvwr-list-main" id="column-main">
                 <div class="search-condition">
@@ -1096,9 +1103,7 @@
                                         </p>
                                         <p class="simple-rvw__rvw-count">
                                             <span class="simple-rvw__rvw-count-subject gly-b-reviw">
-                                         
-<%--                                                     <input type="button" value="${frd.id}" id="followValue"/> --%>
-                                              
+                                          <!-- 留言數量 -->         
                                             </span>
                                         </p>
                                     </div>
@@ -1133,12 +1138,6 @@
     </div>
 
 <script type="text/javascript">
-$(document).ready(function()  {
-	
-// 	$("#select_id").change(function(){
-// 		var cityValue = ${"#Area"}.val();
-// 		${"#searchCityForm"}.submit();
-// 	})
 	
 	function formCitySubmit() {
 		var cityvalue = $("#Area").val();
@@ -1146,19 +1145,23 @@ $(document).ready(function()  {
 		if( $("#Area").val() == null){ alert("null"); }
 		$("#searchCityForm").submit();
 	}
-
-// 	function formSubmit(){
 	
-// 		var typeValue = $({"#Type"}).val();
-// 		var priceLowValue = $({"#lowPrice"}).val;
-// 		var priceHighValue = $({"#highPrice"}).val;
+	function formCity1Submit() {
+		var cityvalue = $("#Genre").val();
 		
-// 		$({"#searchForm"}).submit();
-// 	}
+		if( $("#Genre").val() == null){ alert("null"); }
+		$("#searchTypeForm").submit();
+	}
 	
-	
-	
-})
+	function formCity2Submit() {
+		var priceLowValue = $("#lowPrice").val;
+		var priceHighValue = $("#highPrice").val;
+		
+		if( $("#lowPrice").val() == null){ alert("null"); }
+		if( $("#highPrice").val() == null){ alert("null"); }
+		$("#searchPriceForm").submit();
+	}
+
 </script>
 
 </body>

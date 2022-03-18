@@ -162,9 +162,181 @@ public class ReviewerFoodRecordService {
 	}
 	
 	//citySort
-	public List<FoodRecord> cityTaipei1(Integer member_id){
-		List<FoodRecord> rr = frr.recordTaipei1(member_id);
-		return rr;
+	public List<FoodRecord> citySortRecord(Integer member_id,Integer cityValue){
+		
+		switch(cityValue) {
+		
+		case 1:
+			List<FoodRecord> r1 = frr.recordcity1(member_id);
+			return r1;
+			
+		case 15:
+			List<FoodRecord> r15 = frr.recordcity15(member_id);
+			return r15;
+			
+		default:
+			List<FoodRecord> rr = frr.memberRecordList(member_id);
+			return rr;
+		}
+		
 	}
 	
+	//cityName
+	public String cityValueName(Integer cityValue) {
+		
+		switch(cityValue) {
+		
+		case 1:
+			String r1 = "台北市";
+			return r1;
+			
+		case 15:
+			String r15 = "花蓮縣";
+			return r15;
+		
+		default:	
+			String rr = "所有城市";
+			return rr;
+		}
+	}
+	
+	//cityCount
+	public Integer cityCount(Integer member_id,Integer cityValue) {
+		
+		switch(cityValue) {
+		
+		case 1:
+			Integer r1 = frr.countcity1(member_id);
+			return r1;
+			
+		case 15:
+			Integer r15 = frr.countcity15(member_id);
+			return r15;
+			
+		default:
+			Integer rr = frr.recordCounts(member_id);
+			return rr;
+		}
+	}
+	
+	//typeSortRecord
+	public List<FoodRecord> typeSortRecord(Integer member_id,Integer cityValue){
+			
+			switch(cityValue) {
+			
+			case 1:
+				List<FoodRecord> r1 = frr.recordtype1(member_id);
+				return r1;
+				
+			case 15:
+				List<FoodRecord> r15 = frr.recordcity15(member_id);
+				return r15;
+				
+			default:
+				List<FoodRecord> rr = frr.memberRecordList(member_id);
+				return rr;
+			}
+			
+		}
+	
+	//TypeName
+		public String typeValueName(Integer cityValue) {
+			
+			switch(cityValue) {
+			
+			case 1:
+				String r1 = "火鍋";
+				return r1;
+				
+			case 15:
+				String r15 = "花蓮縣";
+				return r15;
+			
+			default:	
+				String rr = "所有城市";
+				return rr;
+			}
+		}
+		
+		//TypeCount
+		public Integer typeCount(Integer member_id,Integer cityValue) {
+			
+			switch(cityValue) {
+			
+			case 1:
+				Integer r1 = frr.counttype1(member_id);
+				return r1;
+				
+			case 15:
+				Integer r15 = frr.countcity15(member_id);
+				return r15;
+				
+			default:
+				Integer rr = frr.recordCounts(member_id);
+				return rr;
+			}
+		}
+		
+		//priceSortRecord
+		public List<FoodRecord> priceSortRecord(Integer member_id,Integer lowPrice,Integer highPrice){
+				
+			if(lowPrice==1) {
+					
+				switch(highPrice) {
+				case 1:
+					List<FoodRecord> r11 = frr.recordprice11(member_id);
+					return r11;
+				
+				case 2:
+					List<FoodRecord> r12 = frr.recordprice12(member_id);
+					return r12;
+				}
+					
+			}
+				
+			List<FoodRecord> rr = frr.memberRecordList(member_id);
+			return rr;
+		}
+		
+		//priceName
+		public String priceValueName(Integer lowPrice,Integer highPrice) {
+			
+			if(lowPrice==1) {
+				
+				switch(highPrice){
+					case 1:
+						String r11 = "價錢區間 0-500";
+						return r11;
+						
+					case 2:
+						String r12 = "價錢區間 0-1000";
+						return r12;
+				}
+			}
+			
+			String rr = "所有價位";
+			return rr;
+		}
+		
+		//priceCount
+		public Integer priceCount(Integer member_id,Integer lowPrice,Integer highPrice) {
+			
+			if(lowPrice==1) {
+				
+				switch(highPrice) {
+				case 1:
+					Integer r11 = frr.countprice11(member_id);
+					return r11;
+					
+				case 2:
+					Integer r12 = frr.countprice12(member_id);
+					return r12;
+				}
+					
+			}
+				
+			Integer rr = frr.recordCounts(member_id);
+			return rr;
+					
+		}
 }
