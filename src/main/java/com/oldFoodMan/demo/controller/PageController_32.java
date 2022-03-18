@@ -98,5 +98,18 @@ public class PageController_32 {
 
 		return list;
 	}
+	
+	@ResponseBody
+	@GetMapping("/api/viewVisMemberAnalyze")
+	public List<String> viewVisMemberAnalyze() {
+		
+		List<String>list  =tservice.findVisMember();
+
+		
+		System.out.println("想看看有啥: "+list);
+		
+
+		return list;
+	}
 
 }

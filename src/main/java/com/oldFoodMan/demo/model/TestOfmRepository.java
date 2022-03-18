@@ -30,5 +30,8 @@ public interface TestOfmRepository extends JpaRepository<TestOFM, Integer> {
 	public List<String> findvisdate();
 	
 	@Query(value=" select count(*)as num from my_food_vis group by vis_res_name　order by vis_res_name" ,nativeQuery=true)
-	 public List<String> findvis();
+	public List<String> findvis();
+	
+	@Query(value="  select top 3 account ,member_id,count(*) as num from Member join my_food_vis on my_food_vis.member_id=member.id group by account,member_id order by num DESC",nativeQuery=true)
+	public List<String> findVisMemberTop3();
 }

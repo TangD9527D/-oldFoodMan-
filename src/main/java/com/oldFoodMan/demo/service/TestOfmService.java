@@ -91,4 +91,10 @@ public class TestOfmService {
 		
 	}
 
+	public List<String> findVisMember(){
+		
+		List<String> ofmfull=dao.findVisMemberTop3();
+		return ofmfull;
+		
+	}
 }

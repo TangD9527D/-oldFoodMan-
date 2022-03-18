@@ -30,8 +30,8 @@
 	src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 <style>
 .bsize{
-	margin-top: 20px;
-	margin-right: 10px;
+	margin-top: 10px;
+	margin-right: 120px;
 	width: 1110px;
 	float: right;
 	text-align: center;
