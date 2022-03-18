@@ -1283,8 +1283,8 @@ var tdate=new Date();
 			  text: "",
 			  icon: 'warning',
 			  showCancelButton: true,
-			  confirmButtonText: '是的',
-			  cancelButtonText: '放棄',
+			  confirmButtonText: '確定刪除',
+			  cancelButtonText: '取消刪除',
 			  reverseButtons: true
 			}).then((result) => {
 			  if (result.isConfirmed) {
@@ -1310,25 +1310,14 @@ var tdate=new Date();
 			    result.dismiss === Swal.DismissReason.cancel
 			  ) {
 			    swalWithBootstrapButtons.fire(
-			      '放棄刪除',
+			      '取消刪除',
 			      ':)',
 			      'error'
 			    )
 			  }
 			})
 	
-	
-	
-	
-	
 
-		
-		
-		
-		
-		
-		
-		
 		
 	})
 	
@@ -1345,18 +1334,18 @@ var tdate=new Date();
 			})
 
 			swalWithBootstrapButtons.fire({
-			  title: 'Are you sure?',
-			  text: "You won't be able to revert this!",
+			  title: '確定要刪除此筆揪團嗎?',
+			  text: "",
 			  icon: 'warning',
 			  showCancelButton: true,
-			  confirmButtonText: 'Yes, delete it!',
-			  cancelButtonText: 'No, cancel!',
+			  confirmButtonText: '確定刪除',
+			  cancelButtonText: '取消刪除',
 			  reverseButtons: true
 			}).then((result) => {
 			  if (result.isConfirmed) {
 			    swalWithBootstrapButtons.fire(
-			      'Deleted!',
-			      'Your file has been deleted.',
+			      '已刪除',
+			      '',
 			      'success'
 			    )
 			    
@@ -1374,8 +1363,8 @@ var tdate=new Date();
 			    result.dismiss === Swal.DismissReason.cancel
 			  ) {
 			    swalWithBootstrapButtons.fire(
-			      'Cancelled',
-			      'Your imaginary file is safe :)',
+			      '取消刪除!',
+			      ':)',
 			      'error'
 			    )
 			  }
