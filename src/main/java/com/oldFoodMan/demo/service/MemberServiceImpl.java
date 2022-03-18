@@ -163,4 +163,10 @@ public class MemberServiceImpl implements UserDetailsService {
 		List<Member> members = memberDao.findAll();
 		return members;
 	}
+	
+	public List<String> countCity(){
+		 List<String> city = memberDao.countCity();
+		
+		return city;
+	}
 }

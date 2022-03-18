@@ -14,7 +14,7 @@ public class EncrytedPasswordUtils {
 	}
 
 	public static void main(String[] args) {
-		String password = "don";
+		String password = "zxc";
 		String encrytedPassword = encrytePassword(password);
 		
 		String email = "tang8797@gmail.com";
