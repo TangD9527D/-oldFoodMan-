@@ -517,7 +517,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 							
 			<div class="form-group col-md-9">
 			
-				<h4><i class="fa-solid fa-user-group"></i>舉辦者：${ofmid.memberName}</h4> 
+				<h5><i class="fa-solid fa-user-group"></i>舉辦者：${ofmid.memberName} ( ${ofmid.nickName} )</h5> 
 
 			</div>					
 							

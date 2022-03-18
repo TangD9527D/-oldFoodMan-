@@ -124,10 +124,10 @@ body {
 					aria-labelledby="headingThree" data-parent="#accordionExample">
 					<div class="card-body">
 						<div class="list-group">
-							<button type="button"
-								class="list-group-item list-group-item-action">揪團編輯</button>
-							<button type="button"
-								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">揪團數據分析</button>
+							<a href="${contextRoot}/viewAllVis"><button type="button"
+								class="list-group-item list-group-item-action">揪團編輯</button></a>
+							<a href="${contextRoot}/analyzeVis"><button type="button"
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">揪團數據分析</button></a>
 						</div>
 					</div>
 				</div>

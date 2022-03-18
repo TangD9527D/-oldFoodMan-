@@ -26,7 +26,7 @@ font-weight:bolder
 
 .bsize{
 	margin-top:30px;
-	margin-right: 10px;
+	margin-right: 120px;
 	width: 1110px;
 	float: right;
 	
