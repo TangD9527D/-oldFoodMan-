@@ -1107,7 +1107,7 @@ var tdate=new Date();
 				},
 				error : function(err) {
 					console.log(err)
-					alert('發生錯誤')
+					alert('請登入會員')
 				}
 
 			})
@@ -1270,75 +1270,126 @@ var tdate=new Date();
 	$(document).on('click', '#deletemyjoin', function (){  //用一般的.click會有氣泡事件問題
 		var id = $(this).attr("value");
 
-		$.ajax({
-			type : "get",
-			url : "http://localhost:8080/oldFoodMan/deleteMyJoinVis?my_food_vis_id="+id,
-			success : function(data) {
-				Swal.fire({
-					  title: '確定取消參加此團?',
-					  text: "",
-					  icon: 'warning',
-					  showCancelButton: true,
-					  confirmButtonColor: '#3085d6',
-					  cancelButtonColor: '#d33',
-					  confirmButtonText: '確定取消參加'
-					}).then((result) => {
-					  if (result.isConfirmed) {
-					    Swal.fire({
-					    title:'已刪除!',
-					    text:'',
-					    icon:'success'
-					       
-					    }).then((result) => {
-					    	$('#p'+id+'').remove();
-						})
-					    
-					  }else{
-						  return ;
-					  }
-					})
-				
-			},
-		});
+		const swalWithBootstrapButtons = Swal.mixin({
+			  customClass: {
+			    confirmButton: 'btn btn-success',
+			    cancelButton: 'btn btn-danger'
+			  },
+			  buttonsStyling: false
+			})
+
+			swalWithBootstrapButtons.fire({
+			  title: '確定要刪除嗎？',
+			  text: "",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonText: '是的',
+			  cancelButtonText: '放棄',
+			  reverseButtons: true
+			}).then((result) => {
+			  if (result.isConfirmed) {
+			    swalWithBootstrapButtons.fire(
+			      '已取消參加',
+			      '',
+			      'success'
+			    )
+			    
+				$.ajax({
+					type : "get",
+					url : "http://localhost:8080/oldFoodMan/deleteMyJoinVis?my_food_vis_id="+id,
+					success : function(data) {
+						
+					$('#p'+id+'').remove();
+						
+						
+					},
+				});
+			    
+			  } else if (
+			    /* Read more about handling dismissals below */
+			    result.dismiss === Swal.DismissReason.cancel
+			  ) {
+			    swalWithBootstrapButtons.fire(
+			      '放棄刪除',
+			      ':)',
+			      'error'
+			    )
+			  }
+			})
+	
+	
+	
+	
+	
+
+		
+		
+		
+		
+		
+		
+		
+		
 	})
 	
 		$(document).on('click', '#deleteMyFoodVis', function (){  //用一般的.click會有氣泡事件問題
 		var id = $(this).attr("value");
 
-		$.ajax({
-			type : "get",
-			url : "http://localhost:8080/oldFoodMan/deleteMyFoodVis?id="+id,
-			success : function(data) {
-				Swal.fire({
-					  title: '確定刪除此團?',
-					  text: "",
-					  icon: 'warning',
-					  showCancelButton: true,
-					  confirmButtonColor: '#3085d6',
-					  cancelButtonColor: '#d33',
-					  confirmButtonText: '確定取消揪團',
-					  closeOnConfirm: true
+		
+		const swalWithBootstrapButtons = Swal.mixin({
+			  customClass: {
+			    confirmButton: 'btn btn-success',
+			    cancelButton: 'btn btn-danger'
+			  },
+			  buttonsStyling: false
+			})
 
-					}).then((result) => {
-					  if (result.isConfirmed) {
-					    Swal.fire({
-					    title:'已刪除!',
-					    text:'',
-					    icon:'success'
-					       
-					    }).then((result) => {
-// 							location.reload();
-							$('#p'+id+'').remove();
-							
-						})
-					    
-					  }else{
-						  return ;
-					  }
-					})
-				
-			},
-		});
+			swalWithBootstrapButtons.fire({
+			  title: 'Are you sure?',
+			  text: "You won't be able to revert this!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonText: 'Yes, delete it!',
+			  cancelButtonText: 'No, cancel!',
+			  reverseButtons: true
+			}).then((result) => {
+			  if (result.isConfirmed) {
+			    swalWithBootstrapButtons.fire(
+			      'Deleted!',
+			      'Your file has been deleted.',
+			      'success'
+			    )
+			    
+				$.ajax({
+					type : "get",
+					url : "http://localhost:8080/oldFoodMan/deleteMyFoodVis?id="+id,
+					success : function(data) {
+						$('#p'+id+'').remove();
+						
+					},
+				});
+			    
+			  } else if (
+			    /* Read more about handling dismissals below */
+			    result.dismiss === Swal.DismissReason.cancel
+			  ) {
+			    swalWithBootstrapButtons.fire(
+			      'Cancelled',
+			      'Your imaginary file is safe :)',
+			      'error'
+			    )
+			  }
+			})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
 	})
 	
 
@@ -1347,6 +1398,37 @@ var tdate=new Date();
 	
 	
 </script>
+
+
+
+<!-- 		Swal.fire({ -->
+<!-- 					  title: '確定刪除此團?', -->
+<!-- 					  text: "", -->
+<!-- 					  icon: 'warning', -->
+<!-- 					  showCancelButton: true, -->
+<!-- 					  confirmButtonColor: '#3085d6', -->
+<!-- 					  cancelButtonColor: '#d33', -->
+<!-- 					  confirmButtonText: '確定取消揪團', -->
+<!-- 					  closeOnConfirm: true -->
+
+<!-- 					}).then((result) => { -->
+<!-- 					  if (result.isConfirmed) { -->
+<!-- 					    Swal.fire({ -->
+<!-- 					    title:'已刪除!', -->
+<!-- 					    text:'', -->
+<!-- 					    icon:'success' -->
+					       
+<!-- 					    }).then((result) => { -->
+<!-- // 							location.reload(); -->
+<!-- 							$('#p'+id+'').remove(); -->
+							
+<!-- 						}) -->
+					    
+<!-- 					  }else{ -->
+<!-- 						  return ; -->
+<!-- 					  } -->
+<!-- 					}) -->
+
 
 <script>
   $( function() {

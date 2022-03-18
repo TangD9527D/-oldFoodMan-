@@ -17,6 +17,7 @@
 			margin-left: 320px;
  			width: 450px; 
  			float: left; 
+/*  			font-size:40px; */
 /* 			text-align: center; */
 		}
 	</style>
@@ -50,7 +51,7 @@ $(document).ready(function drawLineChart() {
         {
         	var image = results[sensorRecord]
 			var ok = image.split(',')[0]
-        	console.log("hhh: "+ok)
+        	console.log("hhh: "+results[sensorRecord])
         	
             labels.push(results[sensorRecord].split(',')[0]);
             data.push(results[sensorRecord].split(',')[1]);
