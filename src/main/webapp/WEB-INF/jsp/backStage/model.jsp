@@ -159,19 +159,17 @@ body {
 					<h5 class="mb-0">
 						<button class="btn  collapsed" type="button" id="77"
 							data-toggle="collapse" data-target="#collapseFive"
-							aria-expanded="false" aria-controls="collapseFive"><span style="font-weight: 800; font-size: large;">???管理</span></button>
+							aria-expanded="false" aria-controls="collapseFive"><span style="font-weight: 800; font-size: large;">收藏管理</span></button>
 					</h5>
 				</div>
 				<div id="collapseFive" class="collapse"
 					aria-labelledby="headingFive" data-parent="#accordionExample">
 					<div class="card-body">
 						<div class="list-group">
-							<button type="button"
-								class="list-group-item list-group-item-action">Dapibus
-								ac facilisis in</button>
-							<button type="button"
-								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">Morbi
-								leo risus</button>
+							<a href="${contextRoot}/findAllCollections"><button type="button"
+								class="list-group-item list-group-item-action">收藏列表管理</button></a>
+							<a href="${contextRoot}/chartBiao"><button type="button"
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">收藏食記分析</button></a>
 						</div>
 					</div>
 				</div>

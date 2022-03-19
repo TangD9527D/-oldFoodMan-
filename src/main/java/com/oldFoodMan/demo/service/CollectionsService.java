@@ -125,7 +125,14 @@ public class CollectionsService {
 	}
 	
 	
-	
+	public List<String> findMemberChart (){
+			
+		
+		List<String> memberchart=clotdao.findMemberChart();
+
+		return memberchart ;
+		
+	}
 	
 	
 	
