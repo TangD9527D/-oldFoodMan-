@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -193,24 +194,29 @@ public class FoodRecordController {
 		FoodRecord msg = service.findById(id);
 		Member member = (Member)session.getAttribute("member"); 
 		Integer memberID = member.getId();
+		System.out.println("member ="+member ) ;
 		mav.getModel().put("memberID",memberID);
 		mav.getModel().put("foodrecord", msg);
-		System.out.println("顯示食記");
+		System.out.println("顯示食記="+msg);
 		mav.setViewName("record/editData");	
 		return mav;
 	}
 	
 	//修改食記(更新食記)
 	@PostMapping(value = "/editData")
-	public ModelAndView updateRecord(ModelAndView mav, @Valid @ModelAttribute(name="foodrecord") FoodRecord fr, BindingResult result,HttpSession session) {	
+	public ModelAndView updateRecord(ModelAndView mav,@RequestParam(name = "id") Integer id, @Valid @ModelAttribute(name="foodrecord") FoodRecord fr, BindingResult result,HttpSession session) {	
 		mav.setViewName("record/editData");	
-		FoodRecord sessionRecordId = (FoodRecord)session.getAttribute("sessionRecordId"); //拿食記的Id
 		Member member = (Member)session.getAttribute("member"); 
-		Integer RecordId = sessionRecordId.getId();
-		FoodRecord currentRecord = service.findById(RecordId);
-//		Integer memberID = member.getId();
+//		FoodRecord sessionRecordId = (FoodRecord)session.getAttribute("sessionRecordId");
+//		System.out.println("sessionRecordId ="+sessionRecordId);
+		System.out.println("member ="+member);
+		FoodRecord currentRecord = service.findById(id);
+		Date time = currentRecord.getAdded();
 		fr.setMember_id(member);
-		System.out.println("目前的食記內容 "+currentRecord);
+		fr.setId(id);
+		fr.setAdded(time);
+		System.out.println("fr ="+fr);
+		System.out.println("目前的食記內容fr "+fr);
 		if(!result.hasErrors()) {
 			System.out.println("更新食記");
 			 service.insertRF(fr);

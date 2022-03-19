@@ -9,10 +9,8 @@
 <html>
 <head>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
 <style>
 .inputBtn {
 	line-height: 16px;
@@ -143,7 +141,7 @@ textarea {
   </div>
   
   <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">城市</label>
+    <label class="col-sm-2 col-form-label">城市</label>
     <div class="col-sm-10">
       <div id="twzipcode"></div>
     </div>
@@ -259,7 +257,7 @@ textarea {
 		//郵遞區號
 		$("#twzipcode").twzipcode({
 			zipcodeIntoDistrict : true, // 郵遞區號自動顯示在區別選單中
-// 			css : [ "city form-control", "town form-control" ], // 自訂 "城市"、"地別" class 名稱 
+	//			css : [ "city form-control", "town form-control" ], // 自訂 "城市"、"地別" class 名稱 
 			countyName : "city", // 自訂城市 select 標籤的 name 值
 			districtName : "town" // 自訂區別 select 標籤的 name 值
 		});
