@@ -346,7 +346,8 @@
                                 </div>
                             </div>
                             <p class="tx-rvwttl">
-                                <a href="#">${rsr.artical_title}</a>
+                                <a id="unfollowBtn">${rsr.artical_title}</a>
+                                <input type="hidden" value="<c:out value='${rsr.record_id}'/>" id="recordIdValue"/>
                             </p>
                         </div>
                         <div class="tx-right">
@@ -757,6 +758,26 @@
         },function(){
             $('#hoverrr').css('display','none');
         });
+    })
+    
+    //取消收藏
+    $('#unfollowBtn').click(function(){
+    	var memberId= document.getElementById("recordIdValue").value;
+    	if( $("#recordIdValue").val() == null){ alert("null"); }
+    	console.log(memberId);
+    	
+    	$.ajax({
+    		url:'http://localhost:8080/oldFoodMan/ittaomise/unsavingTop/'+ memberId,
+    		contentType :'application/json; charset=UTF-8',
+    		method :'post',
+
+    		success:function(fanSize){
+    			var f=fanSize
+    			if(f=1){
+    				alert("QAQ");
+    			}
+    		}
+    	})
     })
 
 </script>
