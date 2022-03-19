@@ -19,7 +19,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="${contextRoot}/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" type="text/css"
-	href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+	href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+	
 <!-- jQuery -->
 	<script type="text/javascript" charset="utf8"
 	src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
@@ -28,6 +29,8 @@
 <!-- DataTables -->
 	<script type="text/javascript" charset="utf8"
 	src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+	
+	
 <style>
 .bsize{
 	margin-top: 10px;
@@ -37,9 +40,7 @@
 	text-align: center;
 }
 
-.tableb{
-	background-color:white;
-}
+
 </style>
 </head>
 <body>
@@ -58,7 +59,7 @@
                 <th>時間</th>
                 <th>店名</th>
                 <th>地址</th>
-                <th>人數</th>
+                <th>需要人數</th>
                 <th>新增時間</th>
                 <th>操作</th>
             </tr>
@@ -76,12 +77,12 @@
                     <td class="table-light">${viewallvis.vis_time}</td>
                     <td class="table-light">${viewallvis.vis_res_name}</td>
                     <td class="table-light">${viewallvis.vis_location}</td>
- 					<td class="table-light">${viewallvis.vis_condition}</td>
+ 					<td class="table-light">${viewallvis.vis_num}</td>
  					<td class="table-light"><fmt:formatDate pattern="yyyy/MM/dd HH:mm:ss EEEE"
 								value="${viewallvis.added}" /></td>
-                        <td class="table-light"><a
-							href="${contextRoot}/findOneVisdetail?id=${viewallvis.vis_id}"><input
-								type="submit" value="查看" class="btn btn-info"></a>
+                        <td class="table-light">
+<%--                         <a href="${contextRoot}/findOneVisdetail?id=${viewallvis.vis_id}"><input --%>
+<!-- 								type="submit" value="查看" class="btn btn-info"></a> -->
 							
 							<a href="${contextRoot}/editFoodViss?id=${viewallvis.vis_id}"><input
 								type="submit" value="編輯" class="btn btn-secondary"></a> <a
