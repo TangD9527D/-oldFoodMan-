@@ -36,6 +36,11 @@ public class ReviewerFoodRecordService {
 		return list;
 	}
 	
+	public void deleteRatingg(Integer record_id) {
+		ReviewerSaveRating rsr = rsrr.findByRecord(record_id);
+		rsrr.delete(rsr);
+	}
+	
 	public void saveRatingg(Integer record_id,ReviewerSaveRating rsr) {
 		
 		FoodRecord frds = frs.findById(record_id);
