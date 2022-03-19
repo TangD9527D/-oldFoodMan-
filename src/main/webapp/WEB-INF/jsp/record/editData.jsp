@@ -43,16 +43,12 @@ textarea {
 <title>新增食記</title>
 </head>
 <body>
-<!-- <div class="form-group row" > -->
-<!--     <div class="col-sm-10"> -->
-<!--       <button id="fastInput" type="button" class="btn btn-primary">快速輸入</button> -->
-<!--     </div> -->
-<!--   </div> -->
 
+<form:form class="form" action="${contextRoot}/editData" modelAttribute="foodrecord" method="post" enctype="multipart/form-data">
+  <form>
 <div class="container" style="border: 1px solid Transparent;">
 <div class="shop"  style="float:left">
-	<form:form class="form" action="${contextRoot}/editData" modelAttribute="foodrecord" method="post" enctype="multipart/form-data">
-  <form>
+	
 		  <form:input type="hidden" path="id" />
 		  <form:input type="hidden" path="member_id" />
 		  <form:input type="hidden" path="added" />
@@ -118,12 +114,15 @@ textarea {
 								<option value="星期日">星期日</option>
 							</form:select>
 			    </div>
+			    
 			  </div>
+
 </div>
   
-  
+
   <div class="shop" style="float:left">
   <div class="form-group row">
+  
     <label for="inputPassword3" class="col-sm-2 col-form-label">店名</label>
     <div class="col-sm-10">
       <form:input type="text" class="form-control" id="shopName"  path="shopName" style="width:400px;"></form:input>
@@ -221,10 +220,9 @@ textarea {
       <button type="submit" class="btn btn-primary">送出</button>
     </div>
   </div>
-  </form>
-  </form:form>
-
 </div>
+ </form>
+  </form:form>
 
 
 	<script>
