@@ -8,7 +8,7 @@
 
 <head>
 <meta charset="UTF-8">
-<link rel="shortcut icon" type="image/png" href="css/1647002131.ico">
+<link rel="shortcut icon" type="image/png" href="${contextRoot}/css/1647002131.ico">
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <style>
 * {

@@ -10,7 +10,8 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="shortcut icon" type="image/png" href="${contextRoot}/css/1647002131.ico">
+<title>老食人後臺管理系統</title>
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
 	href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
