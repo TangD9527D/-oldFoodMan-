@@ -735,7 +735,7 @@ transform:scale(1.2,1.2);
  		////new delete function
  		
  
- 		$(document).on('click', '#schedule', function (){  //用一般的.click會有氣泡事件問題
+ 		$(document).on('click', '#schedule', function (){  //用一般的.click會有氣泡事件問題deleteLocation
  			
  		
  			var id = $(this).attr("value");
@@ -771,10 +771,8 @@ transform:scale(1.2,1.2);
  		 					location.reload();
  		 					
  		 				},
- 		 			});
- 				    
- 				    
- 				    
+ 		 			});    
+			     				    
  				    
  				  } else if (
  				    /* Read more about handling dismissals below */
@@ -790,24 +788,7 @@ transform:scale(1.2,1.2);
  		
  		
  		})
- 		
- 		
- 		
- 		
- 		
 
- 			
- 		
- 		
- 		
- 		
- 		
- 		
- 		
- 		
- 		
- 		
- 		
 </script>
 	<!--綁定按鍵sweetalert2並執行收藏地點方法 -->
 	<script>
