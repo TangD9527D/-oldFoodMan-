@@ -372,19 +372,47 @@ public class ReviewerSettingController {
 	
 	@GetMapping("/eddietest")
 	public ModelAndView reviewerMainPage11(ModelAndView mav,HttpSession hs) {
-		Member memberData = (Member)hs.getAttribute("member");
-		Integer memberId = memberData.getId();
-		Date birthday = memberData.getBirth();
-		String bdd = service.getAgeByMember(birthday);
-		
-		Member memberBean = memberService.findById(memberId);
-		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
-		
-		mav.getModel().put("bdd", bdd);
-		mav.getModel().put("reviewerPage", reviewerBean);
-		mav.getModel().put("memberPage", memberBean);
-		mav.setViewName("/lemon/eddietest");
-		return mav;
+				//Member資料
+				Member memberData = (Member)hs.getAttribute("member");
+				Integer memberId = memberData.getId();
+				//生日
+				Date birthday = memberData.getBirth();
+				String bdd = service.getAgeByMember(birthday);
+				//資料欄
+				ReviewerSetting reviewerBean = rsr.findByMember(memberId);
+				Member memberBean = memberService.findById(memberId);
+				//照片
+				Integer picCounts = foodRecordRepository.picCounts(memberId);
+				mav.getModel().put("picCounts", picCounts);
+				mav.getModel().put("bdd", bdd);
+				mav.getModel().put("reviewerPage", reviewerBean);
+				mav.getModel().put("memberPage", memberBean);
+				
+				//拜訪店家 喜愛店家
+				Integer countAll = foodRecordRepository.recordCounts(memberId);
+				Integer countFav = foodRecordRepository.recordFavCounts(memberId);
+				mav.getModel().put("countFav", countFav);
+				mav.getModel().put("countAll", countAll);
+				
+				//追蹤 粉絲
+				User user = userService.findByMember(memberId);
+				Integer follows = relationshipRepository.countByFromUserId(memberId);
+				user.setFollow_size(follows);
+				Integer fans = relationshipRepository.countByToUserId(memberId);
+				user.setFan_size(fans);
+				userRepository.save(user);
+				mav.getModel().put("user",user);
+				
+				//標記區域
+				List<ReviewerSaveRating> rsrs = reviewerFoodRecordService.findAll();
+				mav.getModel().put("rsrs",rsrs);
+				
+				//拜訪區域
+				//taipei
+				Integer taipei = foodRecordRepository.countcity1(memberId);
+				mav.getModel().put("taipei", taipei);
+				mav.setViewName("/lemon/eddietest");
+				return mav;
 	}
 	
 	@ResponseBody
