@@ -1347,17 +1347,19 @@ var tdate=new Date();
 			      '已刪除',
 			      '',
 			      'success'
-			    )
+			    ).then((value)=>{
 			    
 				$.ajax({
 					type : "get",
 					url : "http://localhost:8080/oldFoodMan/deleteMyFoodVis?id="+id,
 					success : function(data) {
-						location.reload();
 						
+						location.reload();
 					},
+					
+					
 				});
-			    
+			    })
 			  } else if (
 			    /* Read more about handling dismissals below */
 			    result.dismiss === Swal.DismissReason.cancel
