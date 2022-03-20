@@ -633,9 +633,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 	<form:form class="form" action="${contextRoot}/ajaxFoodVis"
 							modelAttribute="ofmid" method="post" >
 							
-			<div class="form-group col-md-9">
+			<div class="form-group col-md-12">
 			
-				<h4><i class="fa-solid fa-user-group"></i>舉辦者：${ofmid.memberName}</h4> 
+				<h4><i class="fa-solid fa-user-group"></i>舉辦者：${ofmid.memberName} ( ${ofmid.nickName} )</h4> 
 
 			</div>					
 							
