@@ -83,8 +83,8 @@ body {
 					data-parent="#accordionExample">
 					<div class="card-body">
 						<div class="list-group" style="border: solid 2px black;">
-							<button type="button"
-								class="list-group-item list-group-item-action">會員帳號編輯</button>
+							<a href="${contextRoot}/backStage/account"><button type="button"
+								class="list-group-item list-group-item-action">會員帳號編輯</button></a>
 							<a href="${contextRoot}/backStage/accountAnalysis"><button type="button"
 								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">會員數據分析</button></a>
 						</div>

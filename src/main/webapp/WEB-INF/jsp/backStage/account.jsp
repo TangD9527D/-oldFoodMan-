@@ -24,6 +24,7 @@
 <!-- DataTables -->
 <script type="text/javascript" charset="utf8"
 	src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
 
 .body77 {
@@ -102,21 +103,35 @@
 		
 		//刪除
 		$(document).on('click', '#deleteMbr', function(){  //用一般的.click會有氣泡事件問題
-			if(confirm("確認要刪除嗎?")){
-				alert("已經刪除！");
-			}else{
-				alert("已經取消刪除!");
-				return;
-			}
-			var id = $(this).attr("value");
-			dtRow = $(this).closest('tr');
-			$.ajax({
-				type : "post",
-				url : "http://localhost:8080/oldFoodMan/backStage/mbrDelete/" + id,
-				success : function(result) {
-					$("#account7").DataTable().row(dtRow).remove().draw(false);
-				},
-			});
+			Swal.fire({
+				title: '確定要刪除?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: '確認刪除!!',
+				cancelButtonText: '取消'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					Swal.fire(
+						'刪除成功!',
+						'success'
+					)
+
+					var id = $(this).attr("value");
+					dtRow = $(this).closest('tr');
+					$.ajax({
+						type: "post",
+						url: "http://localhost:8080/oldFoodMan/backStage/mbrDelete/" + id,
+						success: function (result) {
+							$("#account7").DataTable().row(dtRow).remove().draw(false);
+						},
+					});
+
+				}
+			})
+
+		
 		})
 	</script>
 
