@@ -41,7 +41,7 @@
 
 #map {
 	width: 100%;
-	height: 68%;
+	height: 73%;
 	margin: 5px auto;
 	/* float: left; */
 }
@@ -178,6 +178,10 @@ z-index:9999;
 	float: right;
 }
 
+#speedbtn{
+	float: right;
+
+}
 .allrange {
 	text-align: justify;
 	width: 100%;
@@ -394,7 +398,7 @@ color:gray;
 			<button id="star" onclick="" class="btn btn-outline-secondary btn-sm">
 				<i class="fa-solid fa-star"></i>收藏地點
 			</button>
-
+	<button id="speedbtn" class="btn btn-outline-secondary btn-sm">一鍵輸入牛</button>
 			<!--  -->
 
 		</div>
@@ -470,7 +474,9 @@ color:gray;
 			<!-- 			</div> -->
 		</div>
 		
-	
+			<footer class="pt-3 mt-4 text-muted border-top">
+      <div style="margin:50px;">&copy; 2022</div>
+    </footer>
 </div>
 
 
@@ -721,7 +727,11 @@ document.getElementById("star").addEventListener("click",function(){
 	  swal("請先登入會員  !!", "請先登入會員 !!", "error").then(insertlocation());
 	});
 	
-
+$("#speedbtn").click(function(){
+	
+	$("#input").val("牛排");
+	
+})
 
 </script>
 	<script>
