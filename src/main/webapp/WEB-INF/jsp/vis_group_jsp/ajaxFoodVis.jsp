@@ -977,7 +977,7 @@ var tdate=new Date();
 				var msg_data='';
 				$.each(result,function(index,value){
 					
-						msg_data+= '<div id="p'+value.vis_id+'" class="card p1" style="width: 4.6cm;">'
+						msg_data+= '<div id="p'+value.vis_id+'" class="card p1" style="width: 4.5cm;">'
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +' " ><h3 id="pp" class="card-title tp2" style="background-color: #faf0e6; font-size:21px ;text-align: center">'+ value.vis_res_name +'</h3></a>'
 						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  + '</h5>'
@@ -1023,7 +1023,7 @@ var tdate=new Date();
 				var msg_data='';
 				$.each(result,function(index,value){
 					
-						msg_data+= '<div id="p'+value.vis_id+'" class="card p1" style="width: 4.6cm;">'
+						msg_data+= '<div id="p'+value.vis_id+'" class="card p1" style="width: 4.5cm;">'
 					
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp1" style="background-color: #faebd7;font-size:21px ; text-align: center"; >'+ value.vis_res_name +'</h3></a>'
