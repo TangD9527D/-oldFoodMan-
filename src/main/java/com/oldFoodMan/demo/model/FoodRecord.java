@@ -53,7 +53,9 @@ public class FoodRecord implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "record_id",cascade = CascadeType.ALL)
 	private Set<RecordMessages> recordMessages = new LinkedHashSet<RecordMessages>();
 	
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "record_id")
+	
+	//Eddieㄉ關聯
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "record_id",cascade = CascadeType.ALL)
 	private Set<Collections> collections = new LinkedHashSet<Collections>();
 	
 	public FoodRecord() {

@@ -12,6 +12,12 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${contextRoot}/js/fontawesome-free-6.0.0-web/css/all.min.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 <style>
 #rateLL {
 	display: flex;
@@ -26,19 +32,19 @@
             justify-content: center; */
 }
 
-#mainTitleLL, #rateLL, #arthurLL{
+#mainTitleLL, #rateLL, #arthurLL {
 	position: static;
 	width: 300px;
 	margin: auto;
 	text-align: center;
 }
- #shareLL {
- position: absolute;;
+
+#shareLL {
+	position: absolute;;
 	width: 300px;
-	margin: 0px  auto auto auto;
+	margin: 0px auto auto auto;
 	align: left;
-	
- }
+}
 
 #h1 {
 	position: static;
@@ -52,8 +58,8 @@ figure {
 	display: flex;
 	flex-flow: column;
 	/* padding: 5px; */
-/* 	max-width: 600px; */
-/* 	height: 550px; */
+	/* 	max-width: 600px; */
+	/* 	height: 550px; */
 	margin: auto;
 	overflow: hidden;
 }
@@ -144,24 +150,22 @@ figure {
 .absolute1 {
 	position: fixed;
 	top: 490px;
-	right:13%;
+	right: 13%;
 	width: 25px;
 	height: 25px;
-
-}	
+}
 
 /* .test { */
 /* 	color: yellow; */
 /* } */
-
-button{
+button {
 	width: 60px;
 	margin: 3px;
 	background-color: #46A3FF;
 	color: white;
 }
 
-.text{
+.text {
 	margin: 5px;
 }
 </style>
@@ -188,30 +192,32 @@ button{
 				<img src="<c:url value='/getPicture/${foodrecordById.id}'/>">
 			</figure>
 		</div>
-		
 
-<!--   霈的星星!!!!! -->
 
-		<div id="likeBar" >
-<!-- 			<img id="icon" src="images/like.png"> <img id="icon" -->
-<!-- 				src="images/chat.png"> <img id="icon" src="images/badoo.png"> -->
+		<!--   霈的星星!!!!! -->
+
+		<div id="likeBar">
+			<!-- 			<img id="icon" src="images/like.png"> <img id="icon" -->
+			<!-- 				src="images/chat.png"> <img id="icon" src="images/badoo.png"> -->
 			<div id="range" class="crange absolute1" onclick="likeCollections();">
-				<button  class="btn"><i id="test" class="fa-star fa-regular " style="font-size:30px"></i></button>				
+				<button class="btn">
+					<i id="test" class="fa-star fa-regular " style="font-size: 30px"></i>
+				</button>
 			</div>
 			<input type="hidden" value="${foodrecordById.id}" id="clot">
 		</div>
-<!--   霈的星星!!!!! -->
+		<!--   霈的星星!!!!! -->
 
 
 
 		<div id="article">
 			<div id="left">
 				<div id="title">
-					<h3 style="font-weight:bold;">
+					<h3 style="font-weight: bold;">
 						類型:
 						<c:out value="${foodrecordById.shopType}" />
-					</h3 >
-					<h4 style="font-weight:bold;">
+					</h3>
+					<h4 style="font-weight: bold;">
 						適合:
 						<c:out value="${foodrecordById.audience}" />
 					</h4>
@@ -221,18 +227,18 @@ button{
 						<c:out value="${foodrecordById.town}" />
 						<br>
 						<c:out value="${foodrecordById.shopAddress}" />
-						<h5 style="font-weight:bold;"> 用餐日 </h5>
-						<c:out value="${foodrecordById.businessHours}" />
-						<br> <br>
-						<h5 style="font-weight:bold;"> 店名 </h5>
-						<c:out value="${foodrecordById.shopName}" />
-						<br> <br>
-						<h5 style="font-weight:bold;"> 電話 </h5>
-						<c:out value="${foodrecordById.tel}" />
+					<h5 style="font-weight: bold;">用餐日</h5>
+					<c:out value="${foodrecordById.businessHours}" />
+					<br> <br>
+					<h5 style="font-weight: bold;">店名</h5>
+					<c:out value="${foodrecordById.shopName}" />
+					<br> <br>
+					<h5 style="font-weight: bold;">電話</h5>
+					<c:out value="${foodrecordById.tel}" />
 					</p>
 				</div>
 				<div id="taste">
-					<h3 style="font-weight:bold;">美味</h3>
+					<h3 style="font-weight: bold;">美味</h3>
 					<h6>
 						<c:out value="${foodrecordById.tasty}" />
 					</h6>
@@ -242,7 +248,7 @@ button{
 					<img style="width: 50px;" id="tastyId2">
 				</div>
 				<div id="air">
-					<h3 style="font-weight:bold;">氣氛</h3>
+					<h3 style="font-weight: bold;">氣氛</h3>
 					<h6>
 						<c:out value="${foodrecordById.atmosphere}" />
 					</h6>
@@ -252,7 +258,7 @@ button{
 					<img style="width: 50px;" id="atmosphereId2">
 				</div>
 				<div id="cpValue">
-					<h3 style="font-weight:bold;">西批值</h3>
+					<h3 style="font-weight: bold;">西批值</h3>
 					<h6>
 						<c:out value="${foodrecordById.cp}" />
 					</h6>
@@ -264,7 +270,7 @@ button{
 				<div id="share">
 
 
-					<h3 style="font-weight:bold;">分享</h3>
+					<h3 style="font-weight: bold;">分享</h3>
 					<div id="shareLL">
 						<div class="line-it-button" data-lang="zh_Hant"
 							data-type="share-b" data-env="REAL"
@@ -274,9 +280,10 @@ button{
 						<script
 							src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js"
 							async="async" defer="defer"></script>
-						<a href="https://www.instagram.com/oldfoodman/"><img id="icon" title="老食人instagram" src="images/instagram.png"></a>
+						<a href="https://www.instagram.com/oldfoodman/"><img id="icon"
+							title="老食人instagram" src="images/instagram.png"></a>
 
-						
+
 					</div>
 
 				</div>
@@ -287,48 +294,54 @@ button{
 						<c:out value="${foodrecordById.content}" />
 					</p>
 
-					<h6 style="font-weight:bold;">
+					<h6 style="font-weight: bold;">
 						日期:
 						<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss EEEE"
 							value="${foodrecordById.added}" />
 					</h6>
 
 				</div>
-				<br> 
-				<br> 
-				<span style="color: white" id="memberId"><c:out value="${foodrecordById.member_id.id}" /></span>
-				<br>
-				<span style="display: none; background-color: yellow;" id="RecordId"><c:out value="${foodrecordById.id}" /></span>
-				<br>
-				
-				<div style="margin-bottom:20px">
-				<button id="submitBtn" style="float: right; margin: 5px">發佈</button>
-				<input id="myMessage"
-					style="width: 620px; border-color: lightgray; float: right; border-radius: 10px;"
-					placeholder="留言..."></input> <br><br>
-					
+				<br> <br> <span style="color: white" id="memberId"><c:out
+						value="${foodrecordById.member_id.id}" /></span> <br> <span
+					style="display: none; background-color: yellow;" id="RecordId"><c:out
+						value="${foodrecordById.id}" /></span> <br>
+
+				<div style="margin-bottom: 20px">
+					<button id="submitBtn" style="float: right; margin: 5px">發佈</button>
+					<input id="myMessage"
+						style="width: 620px; border-color: lightgray; float: right; border-radius: 10px;"
+						placeholder="留言..."></input> <br> <br>
+
 				</div>
 
-				
 
 
 
-		<!--  ---看留言---------------------------------------------------- -->
-				
+
+				<!--  ---看留言---------------------------------------------------- -->
+
 				<div id="showMsg" class="card">
 					<c:forEach var="msg" items="${mlbri}">
 						<div class="card-header">
-							<span>會員ID : <c:out value="${msg.member_id.id}" /></span> 
-							<span style="float: right">時間 :<c:out value="${msg.added}" /></span>
+							<span>會員ID : <c:out value="${msg.member_id.id}" /></span> <span
+								style="float: right">時間 :<c:out value="${msg.added}" /></span>
 						</div>
 						<div class="card-body">
-								<button class="deleteBtn" id="deleteBtn" onclick="return confirm('確認刪除?')" value="<c:out value="${msg.id}" />">刪除</button>
-								<button class="editBtn" id="editBtn" value="<c:out value="${msg.id}" />">修改</button>
-								<button style="display: none" class="sendBtn" id="sendBtn" value="<c:out value="${msg.id}" />">送出</button>
-								<input class="inputMsg" style="display: none; width: 600px"  type="text" value="<c:out value="${msg.text}" />">
-								<div class="text"><c:out value="${msg.text}" />
-							<p style="display: none" class="msgId"><c:out value="${msg.id}" />
-							<p style="display: none" ><c:out value="${msg.record_id.id}" />
+							<button class="deleteBtn" id="deleteBtn"
+								onclick="return confirm('確認刪除?')"
+								value="<c:out value="${msg.id}" />">刪除</button>
+							<button class="editBtn" id="editBtn"
+								value="<c:out value="${msg.id}" />">修改</button>
+							<button style="display: none" class="sendBtn" id="sendBtn"
+								value="<c:out value="${msg.id}" />">送出</button>
+							<input class="inputMsg" style="display: none; width: 600px"
+								type="text" value="<c:out value="${msg.text}" />">
+							<div class="text">
+								<c:out value="${msg.text}" />
+								<p style="display: none" class="msgId">
+									<c:out value="${msg.id}" />
+								<p style="display: none">
+									<c:out value="${msg.record_id.id}" />
 							</div>
 						</div>
 					</c:forEach>
@@ -616,7 +629,11 @@ button{
 		},
 		error : function(err) {
 			console.log(err)
-			alert('發生錯誤')
+		Swal.fire(
+  '登入會員了嗎?',
+  '若要收藏此篇貼文請先登入會員唷!!',
+  'question'
+)
 		}
 
 	})
@@ -648,10 +665,22 @@ button{
 				
 				console.log(data.record_id);
 				if(data.record_id == null ){
+					Swal.fire({
+						  title: '已成功收藏 ！！',
+						  showClass: {
+						    popup: 'animate__animated animate__fadeInDown'
+						  },
+						  hideClass: {
+						    popup: 'animate__animated animate__fadeOutUp'
+						  }
+						})
+					
+					
+					
 					
 // 					$("#test").css("color","black");
 					$("#test").addClass("fa-star fa-solid ");
-					alert('已收藏成功');
+// 					alert('已收藏成功');
 					
 				}else{
 // 					$("#test").css("color","white");
