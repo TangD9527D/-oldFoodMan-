@@ -21,6 +21,16 @@
     <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
     <style>
         
+        .collectionBBB {
+			width:10px;
+			height:10px; 
+		    background:#ccc; 
+		    border:0 none;
+			cursor:pointer;
+			border-radius: 50%;
+			color:#ccc;
+		}
+        
         .menu7{
         line-height:0px;
         }
@@ -231,7 +241,7 @@
                     </dl>
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject reviewer-counter__subject--visitor">
-                            <span class="reviewer-counter__label">讚!</span>
+                            <span class="reviewer-counter__label">收藏食記</span>
                             <span class="c-icon-help c-icon-help--dark">
                                 <span class="c-icon-help__btn">?</span>
                                 <span class="c-icon-help__tooltip-frame reviewer-counter__help">
@@ -243,7 +253,7 @@
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__like-count">
-                                <span class="reviewer-counter__like-count-num">2,7</span>
+                                <span class="reviewer-counter__like-count-num">${colleCounts}</span>
                             </p>
                         </dd>
                     </dl>
@@ -347,7 +357,8 @@
                             </div>
                             <p class="tx-rvwttl">
                                 <a id="unfollowBtn">${rsr.artical_title}</a>
-                                <input type="hidden" value="<c:out value='${rsr.record_id}'/>" id="recordIdValue"/>
+                                <input type="button" value="<c:out value='${rsr.record_id}'/>" onclick="ttt(this)" class="collectionBBB"/>移除
+<%--                                 <input type="hidden" value="<c:out value='${rsr.record_id}'/>" id="recordIdValue"/> --%>
                             </p>
                         </div>
                         <div class="tx-right">
@@ -760,11 +771,30 @@
         });
     })
     
-    //取消收藏
-    $('#unfollowBtn').click(function(){
-    	var memberId= document.getElementById("recordIdValue").value;
-    	if( $("#recordIdValue").val() == null){ alert("null"); }
-    	console.log(memberId);
+//     //取消收藏
+//     $('#unfollowBtn').click(function(){
+//     	var memberId= document.getElementById("recordIdValue").value;
+//     	if( $("#recordIdValue").val() == null){ alert("null"); }
+//     	console.log(memberId);
+    	
+//     	$.ajax({
+//     		url:'http://localhost:8080/oldFoodMan/ittaomise/unsavingTop/'+ memberId,
+//     		contentType :'application/json; charset=UTF-8',
+//     		method :'post',
+
+//     		success:function(fanSize){
+//     			var f=fanSize
+//     			if(f=1){
+//     				alert("QAQ");
+//     			}
+//     		}
+//     	})
+//     })
+    
+    //test
+     function ttt(o){
+    	var memberId = $(o).attr("value")
+		console.log(memberId);
     	
     	$.ajax({
     		url:'http://localhost:8080/oldFoodMan/ittaomise/unsavingTop/'+ memberId,
@@ -773,12 +803,14 @@
 
     		success:function(fanSize){
     			var f=fanSize
+    			location.reload();
     			if(f=1){
     				alert("QAQ");
     			}
+    			
     		}
     	})
-    })
+    }
 
 </script>
 

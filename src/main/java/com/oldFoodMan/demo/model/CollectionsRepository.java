@@ -30,5 +30,8 @@ public interface CollectionsRepository extends JpaRepository<Collections, Collec
 	@Query(value=" select top 5 title,foodRecord.record_id ,count(*) as num from  foodRecord join collections on collections.record_id = foodrecord.record_id  group by title,foodRecord.record_id order by num desc",nativeQuery = true)
 	public List<String> findAllChart();
 	
-
+	//Lemon CollectionCounts
+	@Query(value="SELECT COUNT(member_id) FROM collections where member_id=:member_id",nativeQuery = true)
+	public Integer colleCounts(@Param(value = "member_id") Integer member_id);
+	
 }
