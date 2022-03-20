@@ -1270,24 +1270,25 @@ var tdate=new Date();
 
 		const swalWithBootstrapButtons = Swal.mixin({
 			  customClass: {
-			    confirmButton: 'btn btn-success',
-			    cancelButton: 'btn btn-danger'
+			    confirmButton: 'btn btn-info',
+			    cancelButton: 'btn btn-danger',
+			    
 			  },
 			  buttonsStyling: false
 			})
 
 			swalWithBootstrapButtons.fire({
-			  title: '確定要刪除嗎？',
+			  title: '確定不參加了嗎？',
 			  text: "",
 			  icon: 'warning',
 			  showCancelButton: true,
-			  confirmButtonText: '確定刪除',
-			  cancelButtonText: '取消刪除',
+			  confirmButtonText: '確定',
+			  cancelButtonText: '取消',
 			  reverseButtons: true
 			}).then((result) => {
 			  if (result.isConfirmed) {
 			    swalWithBootstrapButtons.fire(
-			      '已取消參加',
+			      '已放棄參加',
 			      '',
 			      'success'
 			    )
@@ -1308,7 +1309,7 @@ var tdate=new Date();
 			    result.dismiss === Swal.DismissReason.cancel
 			  ) {
 			    swalWithBootstrapButtons.fire(
-			      '取消刪除',
+			      '先不取消囉!',
 			      ':)',
 			      'error'
 			    )
@@ -1325,7 +1326,7 @@ var tdate=new Date();
 		
 		const swalWithBootstrapButtons = Swal.mixin({
 			  customClass: {
-			    confirmButton: 'btn btn-success',
+			    confirmButton: 'btn btn-info',
 			    cancelButton: 'btn btn-danger'
 			  },
 			  buttonsStyling: false
