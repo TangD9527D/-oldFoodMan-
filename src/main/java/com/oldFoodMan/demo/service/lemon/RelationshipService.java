@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.lemon.Relationship;
 import com.oldFoodMan.demo.model.lemon.User;
 
@@ -13,7 +14,7 @@ public interface RelationshipService {
 	 * 列出所有關注
 	 * @return
 	 */
-	List<Integer> listFollows(Integer userId);
+	List<Member> listFollows(Integer userId);
 	
 	/*
 	 * 列出所有粉絲

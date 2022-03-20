@@ -154,12 +154,23 @@ public class ReviewerFoodRecordController {
 		return mav;
 	}
 	
-	@GetMapping("/savingTop/{record_id}")
-	public ModelAndView followUser(@PathVariable Integer record_id,ModelAndView mav){
-		ReviewerSaveRating rsr = rfrService.checkRsr(record_id);
-		rfrService.saveRatingg(record_id, rsr);
-		mav.setViewName("redirect:/reviewerMainPage");
-        return mav;
+	@ResponseBody
+	@PostMapping("/ittaomise/savingTop/{memberId}")
+	public int followUser(@PathVariable Integer memberId,ModelAndView mav,HttpSession hs){
+		ReviewerSaveRating rsrating = rfrService.checkRsr(memberId);
+		rfrService.saveRatingg(memberId, rsrating);
+		int fanSize= 1;
+        return fanSize;
+
+	}
+	
+	@ResponseBody
+	@PostMapping("/ittaomise/unsavingTop/{memberId}")
+	public int unfollowUser(@PathVariable Integer memberId,ModelAndView mav,HttpSession hs){
+		rfrService.deleteRatingg(memberId);
+		int fanSize= 1;
+        return fanSize;
+
 	}
 	
 	

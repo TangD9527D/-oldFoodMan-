@@ -2,6 +2,7 @@
 package com.oldFoodMan.demo.controller.lemon;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -60,7 +61,7 @@ public class UserSpaceController {
 	
 	@Autowired
 	private RelationshipRepository relationshipRepository;
-	
+	 
 	
 	/*
 	 * 我的關注列表
@@ -110,10 +111,8 @@ public class UserSpaceController {
 				mav.getModel().put("frds", frds);
 		
 		//追蹤的人
-		List<Integer> list = relationshipService.listFollows(memberId); 
-		User user1 = userRepository.findByMember(memberId);
-		mav.getModel().put("user",user1);
-		mav.getModel().put("ids",list);
+				List<Member> list = relationshipService.listFollows(memberId);
+				mav.getModel().put("ids",list);
 		
 		//視圖君
 		mav.setViewName("/lemon/reviewerFollowing");
@@ -130,31 +129,54 @@ public class UserSpaceController {
 	 */
 
 	@GetMapping(value="/relationships/fans")
-	public String getFansById(Model model,HttpSession hs) {
+	public ModelAndView getFansById(ModelAndView mav,HttpSession hs) {
+
+		//Member資料
 		Member memberData = (Member)hs.getAttribute("member");
-		int memId = memberData.getId();
+		Integer memberId = memberData.getId();
+		//生日
 		Date birthday = memberData.getBirth();
 		String bdd = service.getAgeByMember(birthday);
-		List<Integer> list = relationshipService.listFans(memId);
-		Member memberBean = memberService.findById(memId);
-		ReviewerSetting reviewerBean = rsr.findByMember(memId);
+		//資料欄
+		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
+		Member memberBean = memberService.findById(memberId);
+		//照片
+		Integer picCounts = foodRecordRepository.picCounts(memberId);
+		mav.getModel().put("picCounts", picCounts);
+		mav.getModel().put("bdd", bdd);
+		mav.getModel().put("reviewerPage", reviewerBean);
+		mav.getModel().put("memberPage", memberBean);
 		
-		User user = userRepository.findByMember(memId);
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~"+memId);
-		Integer follows = relationshipRepository.countByFromUserId(memId);
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~"+follows);
+		//拜訪店家 喜愛店家
+		Integer countAll = foodRecordRepository.recordCounts(memberId);
+		Integer countFav = foodRecordRepository.recordFavCounts(memberId);
+		mav.getModel().put("countFav", countFav);
+		mav.getModel().put("countAll", countAll);
+		
+		//追蹤 粉絲
+		User user = userService.findByMember(memberId);
+		Integer follows = relationshipRepository.countByFromUserId(memberId);
 		user.setFollow_size(follows);
-		Integer fans = relationshipRepository.countByToUserId(memId);
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~"+fans);
+		Integer fans = relationshipRepository.countByToUserId(memberId);
 		user.setFan_size(fans);
 		userRepository.save(user);
+		mav.getModel().put("user",user);
 		
-		model.addAttribute("user",user);
-		model.addAttribute("bdd", bdd);
-		model.addAttribute("reviewerPage", reviewerBean);
-		model.addAttribute("memberPage", memberBean);
-		model.addAttribute("ids",list);
-		return "/lemon/reviewerFollower";
+		//去過的店
+		Integer count = foodRecordRepository.recordCounts(memberId);
+		List<FoodRecord> frds = foodRecordService.memFoodRecords(memberId);
+		mav.getModel().put("count", count);
+		mav.getModel().put("frds", frds);
+
+		//追蹤的人
+		List<Integer> list = relationshipService.listFans(memberId); 
+		
+		mav.getModel().put("user",user);
+		mav.getModel().put("ids",list);
+		
+		//視圖君
+		mav.setViewName("/lemon/reviewerFollower");
+		return mav;
 		
 	}
 	

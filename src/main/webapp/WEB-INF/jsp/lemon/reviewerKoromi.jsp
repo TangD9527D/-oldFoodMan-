@@ -261,7 +261,7 @@
             vertical-align: middle;
             line-height: normal;
             appearance: none;
-            padding: 0.6rem 1.2rem;
+/*             padding: 0.6rem 1.2rem; */
             font-size: 1.2rem;
 
         }
@@ -909,32 +909,52 @@
 
 
 
-<div id="containerr">
+ <div id="containerr">
         <div class="clearfix" id="contents">
             <div class="layout5-side rvwr-list-sidebar" id="column-side">
                 <div class="list-sidebar-wrap">
+                <form id="searchCityForm" name="searchCityForm" action="${contextRoot}/ittaomise/search/city" accept-charset="UTF-8" method="post">
                     <div class="list-sidebar list-sidebar--main">
                         <div class="list-sidebar__heading">
                             <p class="list-sidebar__title list-sidebar__title--area">
                                 <strong>區域</strong>
-                                尋找
+                                無指定條件
                             </p>
                         </div>
                         <div class="list-sidebar__item">
                             <div class="select-wrap">
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
-                                    <select class="list-sidebar__select" name="Area">
-                                        <option selected="selected" value="0">花蓮縣</option>
-                                        <option value="1">高雄市</option>
-                                        <option value="2">台南市</option>
-                                        <option value="3">宜蘭縣</option>
-                                        <option value="4">彰化縣</option>
-                                        <option value="5">台北市</option>
+                                    <select class="list-sidebar__select" name="Area" id="Area">
+                                        <option selected="selected" value="0">全部縣市</option>
+                                        <option value="1">台北市</option>
+                                        <option value="2">新北市</option>
+                                        <option value="3">桃園市</option>
+                                        <option value="4">台中市</option>
+                                        <option value="5">台南市</option>
+                                        <option value="6">高雄市</option>
+                                        <option value="7">宜蘭縣</option>
+                                        <option value="8">新竹縣</option>
+                                        <option value="9">苗栗縣</option>
+                                        <option value="10">彰化縣</option>
+                                        <option value="11">南投縣</option>
+                                        <option value="12">雲林縣</option>
+                                        <option value="13">嘉義縣</option>
+                                        <option value="14">屏東縣</option>
+                                        <option value="15">花蓮縣</option>
+                                        <option value="16">台東縣</option>
+                                        <option value="17">澎湖縣</option>
+                                        <option value="18">基隆市</option>
+                                        <option value="19">新竹市</option>
+                                        <option value="20">嘉義市</option>
                                     </select>
                                 </label>
-                            </div>    
+                            </div>
+                            <input type="button" class="c-btn c-btn--success list-sidebar__btn js-analytics" style="margin-top:10px;" onclick="formCitySubmit();" value="送出條件"/>    
                         </div>
                     </div>
+                    </form> 
+                    
+                    <form id="searchTypeForm" name="searchTypeForm" action="${contextRoot}/ittaomise/search/type" accept-charset="UTF-8" method="post">
                     <div class="list-sidebar list-sidebar--main">
                         <div class="list-sidebar__heading">
                             <p class="list-sidebar__title list-sidebar__title--genre">
@@ -945,52 +965,57 @@
                         <div class="list-sidebar__item">
                             <div class="select-wrap">
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
-                                    <select class="list-sidebar__select" name="Genre">
-                                        <option selected="selected" value="0">酒精</option>
-                                        <option value="1">燒肉</option>
-                                        <option value="2">日本料理</option>
-                                        <option value="3">海產</option>
-                                        <option value="4">小吃</option>
-                                        <option value="5">咖啡</option>
+                                    <select class="list-sidebar__select" name="Genre" id="Genre">
+                                        <option selected="selected" value="0">全部種類</option>
+                                        <option value="1">火鍋</option>
+                                        <option value="2">燒烤</option>
+                                        <option value="3">日式</option>
+                                        <option value="4">美式</option>
+                                        <option value="5">泰式</option>
+                                        <option value="6">小吃</option>
+                                        <option value="7">餐酒館</option>
+                                        <option value="8">居酒屋</option>
+                                        <option value="9">早午餐</option>
                                     </select>
                                 </label>
-                            </div>    
+                            </div>
+                            <input type="button" class="c-btn c-btn--success list-sidebar__btn js-analytics" style="margin-top:10px;" onclick="formCity1Submit();" value="送出條件"/>    
                         </div>
                     </div>
+                    </form>
+                    
                 </div>
-                <form action="#" accept-charset="UTF-8" method="get">
+                	<form id="searchPriceForm" name="searchPriceForm" action="${contextRoot}/ittaomise/search/price" accept-charset="UTF-8" method="post">
                     <div class="list-sidebar list-sidebar--modal-link">
                         <h4 class="list-sidebar__sub-title list-sidebar__sub-title--condition">預算</h4>
                         <div class="list-sidebar__content">
                             <div class="list-sidebar__price u-clearfix">
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
-                                    <select class="list-sidebar__select" name="LstCos">
+                                    <select class="list-sidebar__select" name="lowPrice" id="lowPrice">
                                         <option selected="selected" value="0">無下限</option>
-                                        <option value="1">200</option>
-                                        <option value="2">500</option>
-                                        <option value="3">1000</option>
-                                        <option value="4">1500</option>
-                                        <option value="5">2000</option>
+                                        <option value="1">$0</option>
+                                        <option value="2">$500</option>
+                                        <option value="3">$1000</option>
+                                        <option value="4">$3000</option>
                                     </select>
                                 </label>
                                 <span class="list-sidebar__price-between">~</span>
                                 <label class="list-sidebar__select-wrap list-sidebar__select-wrap--price c-select">
-                                    <select class="list-sidebar__select" name="LstCosT">
+                                    <select class="list-sidebar__select" name="highPrice" id="highPrice">
                                         <option selected="selected" value="0">無上限</option>
-                                        <option value="1">200</option>
-                                        <option value="2">500</option>
-                                        <option value="3">1000</option>
-                                        <option value="4">1500</option>
-                                        <option value="5">2000</option>
+                                        <option value="1">$500</option>
+                                        <option value="2">$1000</option>
+                                        <option value="3">$3000</option>
+                                        <option value="4">$3000~</option>
                                     </select>            
                                 </label>
                             </div>
                         </div>
                         <div class="list-sidebar__content">
-                            <button class="c-btn c-btn--success list-sidebar__btn js-analytics" name="commit" type="submit" value="送出條件">送出條件</button>
+                        <button class="c-btn c-btn--success list-sidebar__btn js-analytics" type="submit" onclick="formCity2Submit()">送出條件</button>
                         </div>
-                    </div>   
-                </form>    
+                   	</div>
+                   	</form>   
             </div>
             <div class="layout5-main rvwr-list-main js-rvwr-list-main" id="column-main">
                 <div class="search-condition">
@@ -1002,7 +1027,7 @@
                     <div class="search-condition__body">
                         <p class="search-condition__words">
                             <span class="search-condition__word-item">
-                                無指定條件
+                                類型搜尋: ${typeName}
                             </span>
                         </p>
                     </div>
@@ -1053,7 +1078,7 @@
                                 <div class="simple-rvw__rst-data">
                                     <div class="simple-rvw__rst-name simple-rvw__rst-name--mypage">
                                         <h3>
-                                            <a class="simple-rvw__rst-name-target" target="_blank" href="#">
+                                            <a class="simple-rvw__rst-name-target" target="_blank" href="savingTop/${frd.id}">
                                                 <c:out value="${frd.shopName}"/>        
                                             </a>
                                         </h3>
@@ -1076,10 +1101,9 @@
                                         </p>
                                         <p class="simple-rvw__rvw-count">
                                             <span class="simple-rvw__rvw-count-subject gly-b-reviw">
-                                                <a class="simple-rvw__rvw-count-target" href="#">
-                                                    <em>186</em>
-                                                    件
-                                                </a>
+                                         
+<%--                                                     <input type="button" value="${frd.id}" id="followValue"/> --%>
+                                              
                                             </span>
                                         </p>
                                     </div>
@@ -1112,6 +1136,33 @@
             </div>
         </div>
     </div>
+
+<script type="text/javascript">
+	
+	function formCitySubmit() {
+		var cityvalue = $("#Area").val();
+		
+		if( $("#Area").val() == null){ alert("null"); }
+		$("#searchCityForm").submit();
+	}
+	
+	function formCity1Submit() {
+		var cityvalue = $("#Genre").val();
+		
+		if( $("#Genre").val() == null){ alert("null"); }
+		$("#searchTypeForm").submit();
+	}
+	
+	function formCity2Submit() {
+		var priceLowValue = $("#lowPrice").val;
+		var priceHighValue = $("#highPrice").val;
+		
+		if( $("#lowPrice").val() == null){ alert("null"); }
+		if( $("#highPrice").val() == null){ alert("null"); }
+		$("#searchPriceForm").submit();
+	}
+
+</script>
 
 
 </body>

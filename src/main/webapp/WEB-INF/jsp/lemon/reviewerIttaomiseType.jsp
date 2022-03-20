@@ -1080,9 +1080,11 @@
                                 <div class="simple-rvw__rst-data">
                                     <div class="simple-rvw__rst-name simple-rvw__rst-name--mypage">
                                         <h3>
-                                            <a class="simple-rvw__rst-name-target" target="_blank" href="savingTop/${frd.id}">
-                                                <c:out value="${frd.shopName}"/>        
+                                            <a class="simple-rvw__rst-name-target" target="_blank" id="followBtn">
+                                                <c:out value="${frd.shopName}"/>
                                             </a>
+                                            <input type="hidden" value="<c:out value='${frd.id}'/>" id="recordValue"/>     
+                                            
                                         </h3>
                                     </div>
                                     <p class="simple-rvw__area-catg">
@@ -1103,9 +1105,7 @@
                                         </p>
                                         <p class="simple-rvw__rvw-count">
                                             <span class="simple-rvw__rvw-count-subject gly-b-reviw">
-                                         
-<%--                                                     <input type="button" value="${frd.id}" id="followValue"/> --%>
-                                              
+                                          <!-- 留言數量 -->         
                                             </span>
                                         </p>
                                     </div>
@@ -1163,6 +1163,26 @@
 		if( $("#highPrice").val() == null){ alert("null"); }
 		$("#searchPriceForm").submit();
 	}
+	
+	//收藏
+    $('#followBtn').click(function(){
+    	var memberId= document.getElementById("recordValue").value;
+    	if( $("#recordValue").val() == null){ alert("null"); }
+    	console.log(memberId);
+    	
+    	$.ajax({
+    		url:'http://localhost:8080/oldFoodMan/ittaomise/savingTop/'+ memberId,
+    		contentType :'application/json; charset=UTF-8',
+    		method :'post',
+
+    		success:function(fanSize){
+    			var f=fanSize
+    			if(f=1){
+    				alert("O_O");
+    			}
+    		}
+    	})
+    })
 
 </script>
 

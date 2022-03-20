@@ -8,7 +8,7 @@
 
 <head>
 <meta charset="UTF-8">
-<link rel="shortcut icon" type="image/png" href="css/1647002131.ico">
+<link rel="shortcut icon" type="image/png" href="${contextRoot}/css/1647002131.ico">
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <style>
 * {
@@ -168,18 +168,9 @@
 								</div></li>
 							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/ajaxFoodVis">揪團Eat</a></li>
-							<li class="list-group-item dropdown"><a
-								class="menu_link7 dropdown-toggle" href="#" id="navbarDropdown"
-								role="button" data-toggle="dropdown" aria-expanded="false">
-									食記分類 </a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="#"><button
-											class="btn btn-secondary" value="火鍋" onclick="()">火鍋</button></a>
-									<a class="dropdown-item" href="#"><button
-											class="btn btn-secondary" value="燒烤" onclick="()">燒烤</button></a>
-									<a class="dropdown-item" href="#"><button
-											class="btn btn-secondary" value="日式" onclick="()">日式</button></a>
-								</div></li>
+								<li class="list-group-item"><a class="menu_link7"
+								href="${contextRoot}/AllRecord">全站食記</a></li>
+							
 						</ul>
 					</div>
 
