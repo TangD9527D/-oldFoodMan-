@@ -121,9 +121,9 @@ font-weight:bolder;
         <p>
         <h5 class="col-md-12  "><i class="fa-solid fa-user-group"></i> &nbsp;&nbsp;${ofm.vis_num}人</h5>
         <p>
-        <h5 class="col-md-12  "> &nbsp;&nbsp;${ofm.vis_condition}</h5>	
+        <h5 class="col-md-12  "><i class="fa-solid fa-comment-dots"></i> &nbsp;&nbsp;${ofm.vis_condition}</h5>	
         <hr>
-          <h3 class="display-5 fw-bold font-weight-bold card-title">舉辦人： ${ofmid.memberName}</h3>
+          <h3 class="display-5 fw-bold font-weight-bold card-title">舉辦人： ${ofmid.nickName}</h3>
         </div>
       </div>
       <div class="col-md-6">
@@ -131,7 +131,7 @@ font-weight:bolder;
           <h2>目前參加者</h2>
           <hr>
           <c:forEach var="joinofm" items="${joinofm}">
-          <h5 id="joinpeople" class="col-md-12  "><i class="fa-solid fa-user-group"></i> &nbsp;&nbsp; ${joinofm.memberName}</h5>
+          <h5 id="joinpeople" class="col-md-12  "><i class="fa-solid fa-user-group"></i> &nbsp;&nbsp; ${joinofm.nickName}</h5>
           </c:forEach>
           <h5 id="joinnull" class="col-md-12 font-weight-bold " style="text-align:center"></h5>
         </div>

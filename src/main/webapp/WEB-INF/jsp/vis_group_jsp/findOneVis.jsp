@@ -147,7 +147,7 @@ font-weight:bolder;
         <h5 class="col-md-12  "><i class="fa-solid fa-comment-dots"></i> &nbsp;&nbsp;${ofm.vis_condition}</h5>	
         <hr>
           <h3 class="display-5 fw-bold font-weight-bold card-title">舉辦人： </h3>
-           <h3 class="display-5 fw-bold font-weight-bold card-title">${ofmid.memberName}</h3>
+           <h3 class="display-5 fw-bold font-weight-bold card-title">${ofmid.nickName}</h3>
            <input id="nowmid" type="hidden" value="${nowmid.id}"/>
            <input id="nowvismid" type="hidden" value="${ofm.member_id}"/>
            
@@ -160,7 +160,7 @@ font-weight:bolder;
           
           <hr>
           <c:forEach var="joinofm" items="${joinofm}">
-          <h5 id="joinpeople" class="col-md-12 conf"><i class="fa-solid fa-user-group"></i> &nbsp;&nbsp; ${joinofm.memberName} </h5>
+          <h5 id="joinpeople" class="col-md-12 conf"><i class="fa-solid fa-user-group"></i> &nbsp;&nbsp; ${joinofm.nickName} </h5>
 <%--           <a href="mailto:${joinofm.account}">email</a> --%>
           </c:forEach>
           <h5 id="joinnull" class="col-md-12 font-weight-bold " style="text-align:center"></h5>

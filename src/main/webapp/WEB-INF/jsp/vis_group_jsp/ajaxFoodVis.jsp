@@ -461,7 +461,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		<div id="joinmark">
 		<div  class="div05_32" >
 		<div  class="div05-2">
-		<h3 class="joinhead" ><span class="joinheadn">${ofmid.memberName}</span> 參加 <i class="fa-solid fa-user-plus " style="color:#eb5b59"></i></h3>
+		<h3 class="joinhead" ><span class="joinheadn">${ofmid.nickName}</span> 參加 <i class="fa-solid fa-user-plus " style="color:#eb5b59"></i></h3>
 		</div>
 		
 		<div id="myadd">
@@ -477,7 +477,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		</div>
 		<div  class="div06_32">
 		 <div class="div05-2" >
-    		<h3 class="tjoinhead" id="addmark"><span class="joinheadn">${ofmid.memberName}</span> 發起 <i class="fa-solid fa-notes-medical" style="color:#a13b3a"></i></h3>
+    		<h3 class="tjoinhead" id="addmark"><span class="joinheadn">${ofmid.nickName}</span> 發起 <i class="fa-solid fa-notes-medical" style="color:#a13b3a"></i></h3>
   		</div>
 	
 	
@@ -518,7 +518,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 							
 			<div class="form-group col-md-12">
 			
-				<h4><i class="fa-solid fa-user-group"></i>&nbsp; 舉辦者：${ofmid.memberName} ( ${ofmid.nickName} )</h4> 
+				<h4><i class="fa-solid fa-user-group"></i>&nbsp; 舉辦者：${ofmid.nickName} </h4> 
 
 			</div>					
 							
@@ -587,7 +587,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 <section class="section">
 
 <!-- 載入所有列表 -->
-		<div><button type="button"  class="btn btn  btn-lg btnadd" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData"><i class="fa-solid fa-circle-plus"></i> 新增揪團</button> <span class="titlehead pink">所有揪團</span></div>
+<span class="titlehead pink">所有揪團</span>
+		<div><button type="button"  class="btn btn  btn-lg btnadd" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData"><i class="fa-solid fa-circle-plus"></i> 新增揪團</button> </div>
 		<p>
 		<c:forEach var="viewallvis" items="${page.content}">
 		<div id="table_id" class="card text-center">
@@ -635,7 +636,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 							
 			<div class="form-group col-md-12">
 			
-				<h4><i class="fa-solid fa-user-group"></i>舉辦者：${ofmid.memberName} ( ${ofmid.nickName} )</h4> 
+				<h4><i class="fa-solid fa-user-group"></i>舉辦者：${ofmid.nickName}</h4> 
 
 			</div>					
 							
@@ -1352,7 +1353,7 @@ var tdate=new Date();
 					type : "get",
 					url : "http://localhost:8080/oldFoodMan/deleteMyFoodVis?id="+id,
 					success : function(data) {
-						$('#p'+id+'').remove();
+						location.reload();
 						
 					},
 				});
