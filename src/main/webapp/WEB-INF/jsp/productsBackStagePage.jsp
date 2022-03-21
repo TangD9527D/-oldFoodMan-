@@ -36,8 +36,6 @@
 	<div class="container" style="float:right;margin-right:150px">
 	<p>
 	<!-- 新增對話框 -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增產品</button>
-		
 		<div class="modal fade" id="exampleModal" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -211,7 +209,7 @@
 			        }
 		        ],
 		        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-		            if(aData['product_stock'] <= 50){
+		            if(aData['product_stock'] <= 20){
 		                    $('td', nRow).css('background-color', '#FF7575')
 		            }
 		        },
@@ -325,7 +323,7 @@
                 method: 'post',
                 data: dtoJsonString,
                 success:function(result){
-                	if(result.product_stock > 50){
+                	if(result.product_stock >= 21){
                 		$('td', upRow).css('background-color', '#79FF79')
                 		$("#tableAjax").DataTable().row(upRow).data(result).draw(false);
                 	}else{
@@ -392,13 +390,12 @@
 		
 		//一鍵輸入
 		$("#autoInsert").click(function(){
-			$('#product_number').val('1005');
 			$('#product_name').val('藝奇');
 			$('#product_category').val('異國');
 			$('#product_stock').val('50');
 			$('#product_discount').val('0.8');
 			$('#product_price').val('1200');
-			$('#product_remark').val('【餐券使用規定】 1.優惠期間：票券無使用期限，平假日皆可使用 2.適用時間、地點：依各分店營業時間及地址，請參考：王品WangSteak官網 3.本票券為專案採購，其面額不等同於GOMAJI售價，2021/10/25王品集團全面調漲，憑本券可點價值1450元品項套餐，若超過1450元的品項可補差額使用，參考官網菜單為主 4.貼心提醒：建議提前預約，避免久候 5.本票券已含服務費 ');
+			$('#product_remark').val('【餐券使用規定】 1.優惠期間：票券無使用期限，平假日皆可使用 2.適用時間、地點：依各分店營業時間及地址，請參考：王品WangSteak官網 3.本票券為專案採購，2021/10/25王品集團全面調漲，憑本券可點價值1450元品項套餐，若超過1450元的品項可補差額使用，參考官網菜單為主 4.本票券已含服務費 ');
 		})
 		
 		

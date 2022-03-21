@@ -23,7 +23,7 @@ public class OrderDetailService {
 		return detailDao.findByDetailNumber(detailNumber);
 	}
 	
-	public Integer[] findProductAmount() {
+	public List<List<String>> findProductAmount() {
 		return detailDao.findProductAmount();
 	}
 	
