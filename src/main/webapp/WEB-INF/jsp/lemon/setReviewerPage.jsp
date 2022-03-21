@@ -422,7 +422,7 @@ html {
 							<tr>
 								<th><label class="setting-table__label"
 									for="user_view_my_page_name"> Title <i
-										class="p-input-form__th-option c-label c-label--s c-label--emphasis setting-table__label-icon">必須</i>
+										class="p-input-form__th-option c-label c-label--s c-label--emphasis setting-table__label-icon" onclick="oneclick()">必須</i>
 								</label></th>
 								<td>
 									<p class="u-text-notice setting-notice fs11">設定個人頁面標題</p>
@@ -453,7 +453,8 @@ html {
 								<th><label for="user_profile_profile"> 自我介紹 </label></th>
 								<td>
 									<p class="u-text-notice setting-notice fs11">
-										顯示在自己老食評論頁面的個人檔案</p> <form:textarea name="editor1" id="intro"
+										顯示在自己老食評論頁面的個人檔案</p> 
+										<form:textarea name="editor1" id="intro"
 										path="reviewer_intro"
 										class="c-textfield c-textfield--full c-textfield--textarea"
 										maxlength="1000" rows="3" cols="47"></form:textarea>
@@ -503,23 +504,23 @@ html {
 	</div>
 
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$("#user_view_my_page_name")
-									.attr("value",
-											'<c:out value="${preview.reviewer_title}" />');
-							$("#user_view_my_page_sub_title")
-									.attr("value",
-											'<c:out value="${preview.reviewer_subtitle}" />');
+// 		$(document)
+// 				.ready(
+// 						function() {
+// 							$("#user_view_my_page_name")
+// 									.attr("value",
+// 											'<c:out value="${preview.reviewer_title}" />');
+// 							$("#user_view_my_page_sub_title")
+// 									.attr("value",
+// 											'<c:out value="${preview.reviewer_subtitle}" />');
 
-							$("#user_view_camera")
-									.val(
-											'<c:out value="${preview.reviewer_camera}" />');
-							$("#user_profile_occupation")
-									.attr("value",
-											'<c:out value="${preview.reviewer_occupation}" />');
-						});
+// 							$("#user_view_camera")
+// 									.val(
+// 											'<c:out value="${preview.reviewer_camera}" />');
+// 							$("#user_profile_occupation")
+// 									.attr("value",
+// 											'<c:out value="${preview.reviewer_occupation}" />');
+// 						});
 		
 	$('#memberImage').on('change', function(e){      
       const file = this.files[0];
@@ -527,6 +528,14 @@ html {
       
       $('#seeImage').attr('src', objectURL);
     });
+	
+	function oneclick (){
+		$("#user_view_my_page_name").attr("value",'Dont Think, Eat');
+		$("#user_view_my_page_sub_title").attr("value",'尋找奔跑的炸排骨');
+		$("#intro").val("克里姆特在1907年完成《維也納大學天花板畫作系列》（Fakultätsbilder）後不久就開始創作《吻》。當他在進行《維也納大學天花板畫作系列》時曾經爆發醜聞，有人批評它是色情且墮落的証明。這個作品後來以反大眾化及反獨裁主義的觀點來重製。古斯塔夫·克里姆特則寫道「如果你無法以行動及藝術取悅每個人，那就取悅少數人」[2]。相反的是，他在完成《吻》後受到許多讚美，而且立刻找到買主[3]。古斯塔夫·克里姆特創作這幅畫時為45歲，當時他仍然跟母親及兩個尚未結婚的姐妹居住在一起。克里姆特成名之後與一些女性有染，他至少有三個非婚生子女。《吻》象徵他具有的性魅力。[來源請求]這幅畫有名的原因是：畫中的柔弱女性被幾何圖形緊緊纏繞，身體上的顏色與細節將克里姆特的一生抽象且出色的表現出來。[原創研究？]這位柔弱女性與克里姆特傳統畫作中的蛇蠍美人形象相去甚遠，她是一個愛情的主導者，不僅是欲望的化身。");
+		$("#user_view_camera").val("sony a6100");
+		$("#user_profile_occupation").attr("value",'漁夫');
+	}
 	</script>
 
 </body>
