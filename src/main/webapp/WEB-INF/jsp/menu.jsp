@@ -162,9 +162,6 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="${contextRoot}/createData">新增食記</a>
 									<a class="dropdown-item" href="${contextRoot}/MemberRecordList">個人食記List</a>
-									<a class="dropdown-item" href="${contextRoot}/RecordManagement">食記後台</a>
-									<a class="dropdown-item" href="${contextRoot}/RecordAnalysis">食記分析</a>
-									<a class="dropdown-item" href="${contextRoot}/MsgManagement">留言後台</a>
 								</div></li>
 							<li class="list-group-item"><a class="menu_link7"
 								href="${contextRoot}/ajaxFoodVis">揪團Eat</a></li>

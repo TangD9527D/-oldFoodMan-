@@ -288,7 +288,7 @@
                 <li id="reviewer-navi-matome" class="reviewer-navi__item reviewer-navi__item--matome is-disabled">
                      <a class="reviewer-navi__target" href="http://localhost:8080/oldFoodMan/eddietest">                    
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">0</span>
+                            <span class="reviewer-navi__count"><c:out value="${totalCollection}"/></span>
                             <span class="reviewer-navi__menu">小口袋</span>
                         </span>
                     </a>
@@ -503,11 +503,11 @@
 
         <!-- side * start-->
         <div id="column-side" class="layout1-side">
-            <p class="tra-banner-mypage u-mb">
-                <a href="#" class="tra-banner-mypage__target">
-                    <img width="300" height="120" alt="面對食物總是老實" src="/img/sidebanner.jpg">
-                </a>
-            </p>
+<!--             <p class="tra-banner-mypage u-mb"> -->
+<!--                 <a href="#" class="tra-banner-mypage__target"> -->
+<!--                     <img width="300" height="120" alt="面對食物總是老實" src="/img/sidebanner.jpg"> -->
+<!--                 </a> -->
+<!--             </p> -->
             <div id="column-side-inner">
                 <section class="ranking">
                     <div class="side-title ranking__title">
@@ -556,17 +556,17 @@
                     <h2 class="side-title">拜訪區域</h2>
                     <div id="area-map">
                         <div class="frame">
-                            <img src="/img/0130藍色的夢.jpg" width="280" height="210" alt="拜訪區域">
+<!--                             <img src="/img/0130藍色的夢.jpg" width="280" height="210" alt="拜訪區域"> -->
                         </div>
                         <ul>
-                            <li class="level15" id="tokyo">
-                                <img alt src="#">
+                            <li class="level1" id="taipei">
+<!--                                 <img alt src="#"> -->
                             </li>
                         </ul>
                     </div>
                     <div id="area-rank" class="clearfix">
                         <ul class="rank-list1">
-                            <li class="rank1">
+                            <li>
                                 <a href="#">台北市&nbsp;
                                     <span class="num">
                                         [
@@ -575,7 +575,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank2">
+                            <li>
                                 <a href="#">新北市&nbsp;
                                     <span class="num">
                                         [
@@ -584,7 +584,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank3">
+                            <li>
                                 <a href="#">桃園市&nbsp;
                                     <span class="num">
                                         [
@@ -593,7 +593,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank4">
+                            <li>
                                 <a href="#">台中市&nbsp;
                                     <span class="num">
                                         [
@@ -602,7 +602,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank5">
+                            <li>
                                 <a href="#">台南市&nbsp;
                                     <span class="num">
                                         [
@@ -611,7 +611,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank6">
+                            <li>
                                 <a href="#">高雄市&nbsp;
                                     <span class="num">
                                         [
@@ -620,7 +620,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank7">
+                            <li>
                                 <a href="#">宜蘭縣&nbsp;
                                     <span class="num">
                                         [
@@ -629,7 +629,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank8">
+                            <li>
                                 <a href="#">新竹縣&nbsp;
                                     <span class="num">
                                         [
@@ -638,7 +638,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank9">
+                            <li>
                                 <a href="#">苗栗縣&nbsp;
                                     <span class="num">
                                         [
@@ -647,7 +647,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank10">
+                            <li>
                                 <a href="#">彰化縣&nbsp;
                                     <span class="num">
                                         [
@@ -659,7 +659,7 @@
                             
                         </ul>
                         <ul class="rank-list2">
-                            <li class="rank1">
+                            <li>
                                 <a href="#">南投縣&nbsp;
                                     <span class="num">
                                         [
@@ -668,7 +668,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank2">
+                            <li>
                                 <a href="#">雲林縣&nbsp;
                                     <span class="num">
                                         [
@@ -677,7 +677,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank3">
+                            <li>
                                 <a href="#">嘉義縣&nbsp;
                                     <span class="num">
                                         [
@@ -686,7 +686,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank4">
+                            <li>
                                 <a href="#">屏東縣&nbsp;
                                     <span class="num">
                                         [
@@ -695,7 +695,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank5">
+                            <li>
                                 <a href="#">花蓮縣&nbsp;
                                     <span class="num">
                                         [
@@ -704,7 +704,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank6">
+                            <li>
                                 <a href="#">台東縣&nbsp;
                                     <span class="num">
                                         [
@@ -713,7 +713,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank7">
+                            <li>
                                 <a href="#">澎湖縣&nbsp;
                                     <span class="num">
                                         [
@@ -722,7 +722,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank8">
+                            <li>
                                 <a href="#">基隆市&nbsp;
                                     <span class="num">
                                         [
@@ -731,7 +731,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank9">
+                            <li>
                                 <a href="#">新竹市&nbsp;
                                     <span class="num">
                                         [
@@ -740,7 +740,7 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="rank10">
+                            <li>
                                 <a href="#">嘉義市&nbsp;
                                     <span class="num">
                                         [

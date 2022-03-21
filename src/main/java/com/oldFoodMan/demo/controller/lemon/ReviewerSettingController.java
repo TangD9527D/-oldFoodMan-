@@ -33,6 +33,7 @@ import com.oldFoodMan.demo.model.CollectionsRepository;
 import com.oldFoodMan.demo.model.FoodRecordRepository;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.ScheduleBean;
+import com.oldFoodMan.demo.model.ScheduleRepository;
 import com.oldFoodMan.demo.model.lemon.RelationshipRepository;
 import com.oldFoodMan.demo.model.lemon.ReviewerSaveRating;
 import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
@@ -93,7 +94,9 @@ public class ReviewerSettingController {
 	@Autowired
 	private ScheduleService sbService ; 
 	@Autowired
-	CollectionsService cService ;
+	private CollectionsService cService ;
+	@Autowired
+	private ScheduleRepository sbDao;
 	
 
 	@GetMapping("/getreviewer/{id}")
@@ -229,6 +232,14 @@ public class ReviewerSettingController {
 		user.setFan_size(fans);
 		userRepository.save(user);
 		mav.getModel().put("user",user);
+		
+		//小口袋加總
+		Integer location =sbDao.findScheduleMember(memberId);
+		Integer foodRecord =collectionRepository.colleCounts(memberId);				
+		Integer totalCollection = location+foodRecord;
+		mav.getModel().put("totalCollection", totalCollection);
+		System.out.println("這有啥:"+ totalCollection);
+		
 		
 		//標記區域
 		List<ReviewerSaveRating> rsrs = reviewerFoodRecordService.findAll();
@@ -556,11 +567,23 @@ public class ReviewerSettingController {
 				List<ReviewerSaveRating> rsrs = reviewerFoodRecordService.findAll();
 				mav.getModel().put("rsrs",rsrs);
 				
+				//小口袋加總
+				Integer location =sbDao.findScheduleMember(memberId);
+				Integer foodRecord =collectionRepository.colleCounts(memberId);				
+				Integer totalCollection = location+foodRecord;
+				mav.getModel().put("totalCollection", totalCollection);
+				System.out.println("這有啥:"+ totalCollection);
+				
+				
 				//拜訪區域
 				//taipei
 				Integer taipei = foodRecordRepository.countcity1(memberId);
 				mav.getModel().put("taipei", taipei);
 				mav.setViewName("/lemon/eddietest");
+				
+			
+				
+				
 				return mav;
 	}
 	

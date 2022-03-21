@@ -114,8 +114,6 @@ public class CollectionsController {
 	
 	
 	
-	
-	
 	@GetMapping("/chartBiao")
 	public ModelAndView AjaxAllCollections(ModelAndView mav) {
 		
