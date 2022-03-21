@@ -629,7 +629,7 @@ html {
 							<th scope="col">標題</th>
 							<th scope="col">副標題</th>
 							<th scope="col">區域</th>
-							<th scope="col">取消追蹤</th>
+							<th scope="col">移除粉絲</th>
 						</tr>
 					</thead>
 					<tbody>

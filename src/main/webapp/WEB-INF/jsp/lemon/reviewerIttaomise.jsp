@@ -21,7 +21,15 @@
     <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
     <style>
 
-		
+		.collectionBBB {
+			width:10px;
+			height:10px; 
+		    background:#ccc; 
+		    border:0 none;
+			cursor:pointer;
+			border-radius: 50%;
+			color:#ccc;
+		}
 	
 		.menu7{
         	line-height:0px;
@@ -1082,11 +1090,9 @@
                                 <div class="simple-rvw__rst-data">
                                     <div class="simple-rvw__rst-name simple-rvw__rst-name--mypage">
                                         <h3>
-                                            <a class="simple-rvw__rst-name-target" target="_blank" id="followBtn">
+                                           		<a class="simple-rvw__rst-name-target" target="_blank" id="followBtn">
                                                 <c:out value="${frd.shopName}"/>
-                                            </a>
-                                            <input type="hidden" value="<c:out value='${frd.id}'/>" id="recordValue"/>     
-                                            
+                                           		</a> 
                                         </h3>
                                     </div>
                                     <p class="simple-rvw__area-catg">
@@ -1107,13 +1113,18 @@
                                         </p>
                                         <p class="simple-rvw__rvw-count">
                                             <span class="simple-rvw__rvw-count-subject gly-b-reviw">
-                                          <!-- 留言數量 -->         
+												
                                             </span>
                                         </p>
                                     </div>
                                     <div class="simple-rvw__rst-subdata">
                                         <p class="c-rating c-rating--s simple-rvw__budget">
                                             <span class="c-rating__val">$<c:out value="${frd.priceScope}"/></span>
+                                        </p>
+                                    </div>
+                                    <div class="simple-rvw__rst-subdata">
+                                        <p class="c-rating c-rating--s simple-rvw__budget">
+                                            <input type="button" value="<c:out value='${frd.id}'/>" onclick="ttt(this)" class="collectionBBB"/>推薦
                                         </p>
                                     </div>
                                 </div>
@@ -1170,10 +1181,29 @@
 	
 	
 	//收藏
-    $('#followBtn').click(function(){
-    	var memberId= document.getElementById("recordValue").value;
-    	if( $("#recordValue").val() == null){ alert("null"); }
-    	console.log(memberId);
+//     $('#followBtn').click(function(){
+//     	var memberId= document.getElementById("recordValue").value;
+//     	if( $("#recordValue").val() == null){ alert("null"); }
+//     	console.log(memberId);
+    	
+//     	$.ajax({
+//     		url:'http://localhost:8080/oldFoodMan/ittaomise/savingTop/'+ memberId,
+//     		contentType :'application/json; charset=UTF-8',
+//     		method :'post',
+
+//     		success:function(fanSize){
+//     			var f=fanSize
+//     			if(f=1){
+//     				alert("O_O");
+//     			}
+//     		}
+//     	})
+//     })
+    
+    //test
+     function ttt(o){
+    	var memberId = $(o).attr("value")
+		console.log(memberId);
     	
     	$.ajax({
     		url:'http://localhost:8080/oldFoodMan/ittaomise/savingTop/'+ memberId,
@@ -1187,7 +1217,7 @@
     			}
     		}
     	})
-    })
+    }
 
 </script>
 

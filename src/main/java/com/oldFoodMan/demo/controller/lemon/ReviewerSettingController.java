@@ -29,7 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oldFoodMan.demo.model.Collections;
-import com.oldFoodMan.demo.model.FoodRecord;
+import com.oldFoodMan.demo.model.CollectionsRepository;
 import com.oldFoodMan.demo.model.FoodRecordRepository;
 import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.ScheduleBean;
@@ -59,6 +59,8 @@ public class ReviewerSettingController {
 		this.servletContext = servletContext;
 	}
 	
+	@Autowired
+	private CollectionsRepository collectionRepository;
 	
 	@Autowired
 	private UserService userService;
@@ -122,15 +124,18 @@ public class ReviewerSettingController {
 		//生日
 		Date birthday = memberData.getBirth();
 		String bdd = service.getAgeByMember(birthday);
+		mav.getModel().put("bdd", bdd);
 		//資料欄
 		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
 		Member memberBean = memberService.findById(memberId);
+		mav.getModel().put("reviewerPage", reviewerBean);
+		mav.getModel().put("memberPage", memberBean);
 		//照片
 		Integer picCounts = foodRecordRepository.picCounts(memberId);
 		mav.getModel().put("picCounts", picCounts);
-		mav.getModel().put("bdd", bdd);
-		mav.getModel().put("reviewerPage", reviewerBean);
-		mav.getModel().put("memberPage", memberBean);
+		//收藏
+		Integer colleCounts = collectionRepository.colleCounts(memberId);
+		mav.getModel().put("colleCounts",colleCounts);
 		
 		//拜訪店家 喜愛店家
 		Integer countAll = foodRecordRepository.recordCounts(memberId);
