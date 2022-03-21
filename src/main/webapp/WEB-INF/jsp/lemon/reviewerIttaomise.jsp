@@ -866,14 +866,14 @@
         </div>
         <div class="reviewer-navi reviewer-navi--l">
             <ul class="reviewer-navi__list">
-                <li class="reviewer-navi__item reviewer-navi__item--log is-selected">
+                <li class="reviewer-navi__item reviewer-navi__item--log">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerMainPage">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__menu reviewer-navi__menu--top">首頁</span>
                         </span>
                     </a>
                 </li>
-                <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review">
+                <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review is-selected">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerIttaomise">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count"><c:out value="${countAll}"/></span>
@@ -1047,13 +1047,13 @@
                 <div class="c-view-sort rvwr-view-sort">
                     <ul class="c-view-sort__list">
                         <li class="c-view-sort__item">
-                            <a class="c-view-sort__target" href="#">
+                            <a class="c-view-sort__target" href="${contextRoot}/reviewerIttaomise">
                                 <img src="${contextRoot}/imgLemon/下三角.gif" width="11" height="11" alt="下三角">
-                                <strong>更新日順序</strong>
+                                <span>更新日順序</span>
                             </a>
                         </li>
                         <li class="c-view-sort__item">
-                            <a class="c-view-sort__target" href="#">
+                            <a class="c-view-sort__target" href="${contextRoot}/reviewerIttaomise/rate">
                                 <img src="${contextRoot}/imgLemon/下三角.gif" width="11" height="11" alt="下三角">
                                 <span>評價順序</span>
                             </a>
@@ -1090,7 +1090,7 @@
                                 <div class="simple-rvw__rst-data">
                                     <div class="simple-rvw__rst-name simple-rvw__rst-name--mypage">
                                         <h3>
-                                           		<a class="simple-rvw__rst-name-target" target="_blank" id="followBtn">
+                                           		<a href="http://localhost:8080/oldFoodMan/viewById?id=${frd.id}" class="simple-rvw__rst-name-target" target="_blank" id="followBtn">
                                                 <c:out value="${frd.shopName}"/>
                                            		</a> 
                                         </h3>

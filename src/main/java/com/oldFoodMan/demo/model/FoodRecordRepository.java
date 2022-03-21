@@ -44,6 +44,9 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	@Query(value="SELECT*FROM foodRecord WHERE record_id= :record_id",nativeQuery=true)
 	public FoodRecord recordIdRecord(@Param("record_id")Integer record_id);
 	
+	@Query(value="SELECT*FROM foodRecord WHERE member_id=:member_id ORDER BY gender2 DESC",nativeQuery=true)
+	public List<FoodRecord> memberRecordListRate(@Param("member_id")Integer member_id);
+	
 	@Query(value="select count( * ) as cc from foodRecord where :member_id=member_id",nativeQuery=true)
 	public Integer recordCounts(@Param("member_id")Integer member_id);
 	
@@ -137,8 +140,62 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	@Query(value="SELECT COUNT(city) FROM foodRecord where city='臺北市'AND member_id=:member_id",nativeQuery=true)
 	public Integer countcity1(@Param("member_id")Integer member_id);
 	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='新北市'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity2(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='桃園市'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity3(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='台中市'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity4(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='台南市'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity5(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='高雄市'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity6(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='宜蘭縣'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity7(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='新竹縣'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity8(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='苗栗縣'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity9(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='彰化縣'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity10(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='南投縣'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity11(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='雲林縣'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity12(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='嘉義縣'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity13(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='屏東縣'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity14(@Param("member_id")Integer member_id);
+	
 	@Query(value="SELECT COUNT(city) FROM foodRecord where city='花蓮縣'AND member_id=:member_id",nativeQuery=true)
 	public Integer countcity15(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='台東縣'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity16(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='澎湖縣'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity17(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='基隆市'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity18(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='新竹市'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity19(@Param("member_id")Integer member_id);
+	
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='嘉義市'AND member_id=:member_id",nativeQuery=true)
+	public Integer countcity20(@Param("member_id")Integer member_id);
 	
 	//SortType
 	@Query(value="SELECT * FROM foodRecord where shopType='火鍋' AND member_id=:member_id",nativeQuery=true)

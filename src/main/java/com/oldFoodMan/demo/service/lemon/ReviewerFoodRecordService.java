@@ -83,13 +83,13 @@ public class ReviewerFoodRecordService {
 			rsrr.save(rsr);
 	}
 		
-	public ReviewerSaveRating findByMember(Integer memberId) {
-		ReviewerSaveRating rsrReady = rsrr.findByMember(memberId);
+	public List<ReviewerSaveRating> findByMember(Integer memberId) {
+		List<ReviewerSaveRating> rsrReady = rsrr.findByMember(memberId);
 		if(rsrReady!=null) {
 			return rsrReady;
 		} else {
 			rsrr.insertByMember(memberId);
-			ReviewerSaveRating rsrReadyy =  rsrr.findByMember(memberId);
+			List<ReviewerSaveRating> rsrReadyy =  rsrr.findByMember(memberId);
 			return rsrReadyy;
 		}
 	}
