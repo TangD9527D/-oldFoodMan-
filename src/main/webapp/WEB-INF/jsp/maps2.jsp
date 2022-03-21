@@ -188,13 +188,6 @@ body {
 }
 
 
-#speedbtn{
-	float: right;
-}
-
-#speedbtn1{
-	float: right;
-}
 
 
 .allrange {

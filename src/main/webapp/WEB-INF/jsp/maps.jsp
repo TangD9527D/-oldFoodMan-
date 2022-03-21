@@ -432,6 +432,7 @@ color:gray;
 									
 
 									<div id="right">
+									<span class="spantime">上傳時間:&nbsp&nbsp&nbsp&nbsp&nbsp</span>
 										<fmt:formatDate pattern="yyyy/MM/dd" value="${maps.added}" />
 									</div>
 
