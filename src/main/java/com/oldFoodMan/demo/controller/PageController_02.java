@@ -48,17 +48,14 @@ public class PageController_02 {
 
 	@GetMapping("AllRecord")
 	public ModelAndView map11(ModelAndView mav,
-			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber ,HttpSession hs) {
+			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber ) {
 		
-		Member mid = (Member)hs.getAttribute("member");
-		Integer idd=mid.getId();
-		
-		mav.setViewName("allRecord");
 
-		Page<FoodRecord> page = service.findByPage(pageNumber);
-		mav.getModel().put("member", mid);
-		mav.getModel().put("page", page);
+
+		Page<FoodRecord> page = service.findByPageAll(pageNumber);
 		
+		mav.getModel().put("page", page);
+		mav.setViewName("allRecord");
 		return mav ;
 	}
 

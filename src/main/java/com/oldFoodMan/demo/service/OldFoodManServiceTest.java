@@ -59,7 +59,13 @@ public class OldFoodManServiceTest {
 		
 	}
 	
-	
+public Page<FoodRecord> findByPageAll(Integer pageNumber){
+		
+		Pageable pgb =PageRequest.of(pageNumber-1, 8, Sort.Direction.DESC,"added");
+		
+		return dao.findAll(pgb);
+		
+	}
 	
 
 }
