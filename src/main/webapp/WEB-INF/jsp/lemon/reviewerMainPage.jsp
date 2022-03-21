@@ -556,11 +556,11 @@
                     <h2 class="side-title">拜訪區域</h2>
                     <div id="area-map">
                         <div class="frame">
-<!--                             <img src="/img/0130藍色的夢.jpg" width="280" height="210" alt="拜訪區域"> -->
+                            <img src="${contextRoot}/imgLemon/frame02.png" width="280" height="210" alt="拜訪區域">
                         </div>
                         <ul>
                             <li class="level1" id="taipei">
-<!--                                 <img alt src="#"> -->
+                                <img src="${contextRoot}/imgLemon/左上02.png">
                             </li>
                         </ul>
                     </div>
