@@ -292,7 +292,7 @@ html {
 			<div class="reviewer-navi reviewer-navi--l">
 				<ul class="reviewer-navi__list">
 					<li
-						class="reviewer-navi__item reviewer-navi__item--log is-selected">
+						class="reviewer-navi__item reviewer-navi__item--log">
 						<a class="reviewer-navi__target"
 						href="${contextRoot}/reviewerMainPage"> <span
 							class="reviewer-navi__menu-wrap"> <span
@@ -318,7 +318,7 @@ html {
 						</span>
 					</a></li>
 					<li id="reviewer-navi-matome"
-						class="reviewer-navi__item reviewer-navi__item--matome is-disabled">
+						class="reviewer-navi__item reviewer-navi__item--matome is-selected">
 						<a class="reviewer-navi__target"
 						href="http://localhost:8080/oldFoodMan/eddietest"> <span
 							class="reviewer-navi__menu-wrap"> <span

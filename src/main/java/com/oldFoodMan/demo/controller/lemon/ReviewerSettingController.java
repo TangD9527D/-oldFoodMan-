@@ -98,11 +98,89 @@ public class ReviewerSettingController {
 
 	@GetMapping("/getreviewer/{id}")
 	public ModelAndView idMainPage(ModelAndView mav,@PathVariable int id) {
-		Member memberBean = memberService.findById(id);
-		Date birthday = memberBean.getBirth();
-		String bdd = service.getAgeByMember(birthday);
-		mav.getModel().put("bdd", bdd);
-		mav.getModel().put("member", memberBean);
+		//Member資料
+				Member memberData = memberService.findById(id);
+				Integer memberId = id;
+				System.out.println("~~~~~~~~~~~"+memberId);
+				//生日
+				Date birthday = memberData.getBirth();
+				String bdd = service.getAgeByMember(birthday);
+				mav.getModel().put("bdd", bdd);
+				//資料欄
+				ReviewerSetting reviewerBean = rsr.findByMember(memberId);
+				Member memberBean = memberService.findById(memberId);
+				mav.getModel().put("reviewerPage", reviewerBean);
+				mav.getModel().put("memberPage", memberBean);
+				//照片
+				Integer picCounts = foodRecordRepository.picCounts(memberId);
+				mav.getModel().put("picCounts", picCounts);
+				//收藏
+				Integer colleCounts = collectionRepository.colleCounts(memberId);
+				mav.getModel().put("colleCounts",colleCounts);
+				
+				//拜訪店家 喜愛店家
+				Integer countAll = foodRecordRepository.recordCounts(memberId);
+				Integer countFav = foodRecordRepository.recordFavCounts(memberId);
+				mav.getModel().put("countFav", countFav);
+				mav.getModel().put("countAll", countAll);
+				
+				//追蹤 粉絲
+				User user = userService.findByMember(memberId);
+				Integer follows = relationshipRepository.countByFromUserId(memberId);
+				user.setFollow_size(follows);
+				Integer fans = relationshipRepository.countByToUserId(memberId);
+				user.setFan_size(fans);
+				userRepository.save(user);
+				mav.getModel().put("user",user);
+				
+				//標記區域
+				List<ReviewerSaveRating> rsrs = reviewerFoodRecordService.findByMember(memberId);
+				mav.getModel().put("rsrs",rsrs);
+				
+				//拜訪區域
+				//taipei
+				Integer taipei = foodRecordRepository.countcity1(memberId);
+				Integer newtaipei = foodRecordRepository.countcity2(memberId);
+				Integer taoyuan = foodRecordRepository.countcity3(memberId);
+				Integer taichung = foodRecordRepository.countcity4(memberId);
+				Integer tainan = foodRecordRepository.countcity5(memberId);
+				Integer kaohsiung = foodRecordRepository.countcity6(memberId);
+				Integer yilan = foodRecordRepository.countcity7(memberId);
+				Integer hsinchu = foodRecordRepository.countcity8(memberId);
+				Integer miaoli = foodRecordRepository.countcity9(memberId);
+				Integer changhua = foodRecordRepository.countcity10(memberId);
+				Integer nantou = foodRecordRepository.countcity11(memberId);
+				Integer yunlin = foodRecordRepository.countcity12(memberId);
+				Integer jiayi = foodRecordRepository.countcity13(memberId);
+				Integer pingtong = foodRecordRepository.countcity14(memberId);
+				Integer hualian = foodRecordRepository.countcity15(memberId);
+				Integer taitong = foodRecordRepository.countcity16(memberId);
+				Integer penghu = foodRecordRepository.countcity17(memberId);
+				Integer keelongcity = foodRecordRepository.countcity18(memberId);
+				Integer hsinchucity = foodRecordRepository.countcity19(memberId);
+				Integer jiayicity = foodRecordRepository.countcity20(memberId);
+				mav.getModel().put("taipei", taipei);
+				mav.getModel().put("newtaipei", newtaipei);
+				mav.getModel().put("taoyuan", taoyuan);
+				mav.getModel().put("taichung", taichung);
+				mav.getModel().put("tainan", tainan);
+				mav.getModel().put("kaohsiung", kaohsiung);
+				mav.getModel().put("yilan", yilan);
+				mav.getModel().put("hsinchu", hsinchu);
+				mav.getModel().put("miaoli", miaoli);
+				mav.getModel().put("changhua", changhua);
+				mav.getModel().put("nantou", nantou);
+				mav.getModel().put("yunlin", yunlin);
+				mav.getModel().put("jiayi", jiayi);
+				mav.getModel().put("pingtong", pingtong);
+				mav.getModel().put("hualian", hualian);
+				mav.getModel().put("taitong", taitong);
+				mav.getModel().put("penghu", penghu);
+				mav.getModel().put("keelongcity", keelongcity);
+				mav.getModel().put("hsinchucity", hsinchucity);
+				mav.getModel().put("jiayicity", jiayicity);
+		
+		//視圖君
 		mav.setViewName("/lemon/idMainPage");
 		return mav;
 	}
@@ -159,7 +237,45 @@ public class ReviewerSettingController {
 		//拜訪區域
 		//taipei
 		Integer taipei = foodRecordRepository.countcity1(memberId);
+		Integer newtaipei = foodRecordRepository.countcity2(memberId);
+		Integer taoyuan = foodRecordRepository.countcity3(memberId);
+		Integer taichung = foodRecordRepository.countcity4(memberId);
+		Integer tainan = foodRecordRepository.countcity5(memberId);
+		Integer kaohsiung = foodRecordRepository.countcity6(memberId);
+		Integer yilan = foodRecordRepository.countcity7(memberId);
+		Integer hsinchu = foodRecordRepository.countcity8(memberId);
+		Integer miaoli = foodRecordRepository.countcity9(memberId);
+		Integer changhua = foodRecordRepository.countcity10(memberId);
+		Integer nantou = foodRecordRepository.countcity11(memberId);
+		Integer yunlin = foodRecordRepository.countcity12(memberId);
+		Integer jiayi = foodRecordRepository.countcity13(memberId);
+		Integer pingtong = foodRecordRepository.countcity14(memberId);
+		Integer hualian = foodRecordRepository.countcity15(memberId);
+		Integer taitong = foodRecordRepository.countcity16(memberId);
+		Integer penghu = foodRecordRepository.countcity17(memberId);
+		Integer keelongcity = foodRecordRepository.countcity18(memberId);
+		Integer hsinchucity = foodRecordRepository.countcity19(memberId);
+		Integer jiayicity = foodRecordRepository.countcity20(memberId);
 		mav.getModel().put("taipei", taipei);
+		mav.getModel().put("newtaipei", newtaipei);
+		mav.getModel().put("taoyuan", taoyuan);
+		mav.getModel().put("taichung", taichung);
+		mav.getModel().put("tainan", tainan);
+		mav.getModel().put("kaohsiung", kaohsiung);
+		mav.getModel().put("yilan", yilan);
+		mav.getModel().put("hsinchu", hsinchu);
+		mav.getModel().put("miaoli", miaoli);
+		mav.getModel().put("changhua", changhua);
+		mav.getModel().put("nantou", nantou);
+		mav.getModel().put("yunlin", yunlin);
+		mav.getModel().put("jiayi", jiayi);
+		mav.getModel().put("pingtong", pingtong);
+		mav.getModel().put("hualian", hualian);
+		mav.getModel().put("taitong", taitong);
+		mav.getModel().put("penghu", penghu);
+		mav.getModel().put("keelongcity", keelongcity);
+		mav.getModel().put("hsinchucity", hsinchucity);
+		mav.getModel().put("jiayicity", jiayicity);
 		
 		//視圖君
 		mav.setViewName("/lemon/reviewerMainPage");
@@ -168,17 +284,47 @@ public class ReviewerSettingController {
 	
 	@GetMapping("/reviewerPageIntro")
 	public ModelAndView reviewerPageIntro(ModelAndView mav,HttpSession hs) {
+		
+		//Member資料
 		Member memberData = (Member)hs.getAttribute("member");
-		Integer member_id = memberData.getId();
-		Member memberBean = memberService.findById(member_id);
-		ReviewerSetting reviewerBean = rsr.findByMember(member_id);
+		Integer memberId = memberData.getId();
+		//生日
+		Date birthday = memberData.getBirth();
+		String bdd = service.getAgeByMember(birthday);
+		mav.getModel().put("bdd", bdd);
+		//資料欄
+		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
+		Member memberBean = memberService.findById(memberId);
+		mav.getModel().put("reviewerPage", reviewerBean);
+		mav.getModel().put("memberPage", memberBean);
+		//照片
+		Integer picCounts = foodRecordRepository.picCounts(memberId);
+		mav.getModel().put("picCounts", picCounts);
+		//收藏
+		Integer colleCounts = collectionRepository.colleCounts(memberId);
+		mav.getModel().put("colleCounts",colleCounts);
+				
+		//拜訪店家 喜愛店家
+		Integer countAll = foodRecordRepository.recordCounts(memberId);
+		Integer countFav = foodRecordRepository.recordFavCounts(memberId);
+		mav.getModel().put("countFav", countFav);
+		mav.getModel().put("countAll", countAll);
+				
+		//追蹤 粉絲
+		User user = userService.findByMember(memberId);
+		Integer follows = relationshipRepository.countByFromUserId(memberId);
+		user.setFollow_size(follows);
+		Integer fans = relationshipRepository.countByToUserId(memberId);
+		user.setFan_size(fans);
+		userRepository.save(user);
+		mav.getModel().put("user",user);
 		
 		//starcounts
-		Integer kstar5 = reviewerFoodRecordService.countStr5(member_id);
-		Integer kstar4 = reviewerFoodRecordService.countStr4(member_id);
-		Integer kstar3 = reviewerFoodRecordService.countStr3(member_id);
-		Integer kstar2 = reviewerFoodRecordService.countStr2(member_id);
-		Integer kstar1 = reviewerFoodRecordService.countStr1(member_id);
+		Integer kstar5 = reviewerFoodRecordService.countStr5(memberId);
+		Integer kstar4 = reviewerFoodRecordService.countStr4(memberId);
+		Integer kstar3 = reviewerFoodRecordService.countStr3(memberId);
+		Integer kstar2 = reviewerFoodRecordService.countStr2(memberId);
+		Integer kstar1 = reviewerFoodRecordService.countStr1(memberId);
 		
 		Float ksum = (float) (kstar5+kstar4+kstar3+kstar2+kstar1);
 		Integer kstar5Avg = Math.round(kstar5/ksum*100);
@@ -199,10 +345,10 @@ public class ReviewerSettingController {
 		mav.getModel().put("k1Avg", kstar1Avg);
 		
 		//consume price
-		Integer kprice1 = reviewerFoodRecordService.countPrice1(member_id);
-		Integer kprice2 = reviewerFoodRecordService.countPrice2(member_id);
-		Integer kprice3 = reviewerFoodRecordService.countPrice3(member_id);
-		Integer kprice4 = reviewerFoodRecordService.countPrice4(member_id);
+		Integer kprice1 = reviewerFoodRecordService.countPrice1(memberId);
+		Integer kprice2 = reviewerFoodRecordService.countPrice2(memberId);
+		Integer kprice3 = reviewerFoodRecordService.countPrice3(memberId);
+		Integer kprice4 = reviewerFoodRecordService.countPrice4(memberId);
 		
 		Float kpsum = (float) (kprice4+kprice3+kprice2+kprice1);
 		Integer kprice1Avg = Math.round(kprice1/kpsum*100);
@@ -218,9 +364,7 @@ public class ReviewerSettingController {
 		mav.getModel().put("kp3Avg", kprice3Avg);
 		mav.getModel().put("kp4Avg", kprice4Avg);
 		
-		
-		mav.getModel().put("reviewerPage", reviewerBean);
-		mav.getModel().put("memberPage", memberBean);
+		//視圖君
 		mav.setViewName("/lemon/reviewerPageIntro");
 		return mav;
 	}
