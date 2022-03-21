@@ -327,9 +327,9 @@ button {
 								style="float: right">時間 :<c:out value="${msg.added}" /></span>
 						</div>
 						<div class="card-body">
-							<button class="deleteBtn" id="deleteBtn"
-								onclick="return confirm('確認刪除?')"
-								value="<c:out value="${msg.id}" />">刪除</button>
+<!-- 							<button class="deleteBtn" id="deleteBtn" -->
+<!-- 								onclick="return confirm('確認刪除?')" -->
+<%-- 								value="<c:out value="${msg.id}" />">刪除</button> --%>
 							<button class="editBtn" id="editBtn"
 								value="<c:out value="${msg.id}" />">修改</button>
 							<button style="display: none" class="sendBtn" id="sendBtn"
@@ -394,7 +394,7 @@ button {
 						msg_data += '<span style="float: right">'+"時間 :"+value.added+'</span>'
 						msg_data += '</div>'
 						msg_data += '<div class="card-body">'
-						msg_data += '<button class="deleteBtn" id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" value="' + value.id +'">'+"刪除"+'</button>'
+// 						msg_data += '<button class="deleteBtn" id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" value="' + value.id +'">'+"刪除"+'</button>'
 						msg_data += '<button class="editBtn" id="editBtn" value="' + value.id +'">'+"修改"+'</button>'
 						msg_data += '<button style="display: none" class="sendBtn" id="sendBtn" value="' + value.id +'">'+"送出"+'</button>'
 						msg_data += '<br>'
@@ -480,7 +480,7 @@ button {
 						msg_data += '<span style="float: right">'+"時間 :"+value.added+'</span>'
 						msg_data += '</div>'
 						msg_data += '<div class="card-body">'
-						msg_data += '<button class="deleteBtn" id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" value="' + value.id +'">'+"刪除"+'</button>'
+// 						msg_data += '<button class="deleteBtn" id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" value="' + value.id +'">'+"刪除"+'</button>'
 						msg_data += '<button class="editBtn" id="editBtn" value="' + value.id +'">'+"修改"+'</button>'
 						msg_data += '<button style="display: none" class="sendBtn" id="sendBtn" value="' + value.id +'">'+"送出"+'</button>'
 						msg_data += '<br>'
@@ -504,52 +504,52 @@ button {
 		
 		
 		//刪除留言
-		$(document).on('click','.deleteBtn',function(){
-			var msgId = $(this).parent().find('.deleteBtn').val();  //取得目前的留言id
-			console.log("msgId = "+msgId);
+// 		$(document).on('click','.deleteBtn',function(){
+// 			var msgId = $(this).parent().find('.deleteBtn').val();  //取得目前的留言id
+// 			console.log("msgId = "+msgId);
 			
-			var memberId = document.getElementById("memberId").innerText; 
-			console.log("memberId = "+memberId);
-			var reocrdId = document.getElementById("RecordId").innerText;		
-			console.log("reocrdId = "+reocrdId);
+// 			var memberId = document.getElementById("memberId").innerText; 
+// 			console.log("memberId = "+memberId);
+// 			var reocrdId = document.getElementById("RecordId").innerText;		
+// 			console.log("reocrdId = "+reocrdId);
 			
-			$.ajax({
-				url : 'http://localhost:8080/oldFoodMan/deleteMsg/'+msgId,
-				contentType : 'application/json; charset=UTF-8', // 送過去的格式
-				dataType : 'json', // 傳回來的
-				method : 'post',
+// 			$.ajax({
+// 				url : 'http://localhost:8080/oldFoodMan/deleteMsg/'+msgId,
+// 				contentType : 'application/json; charset=UTF-8', // 送過去的格式
+// 				dataType : 'json', // 傳回來的
+// 				method : 'post',
 				
-				success : function(result){
-					$('#showMsg').remove()
-					  $('#ajaxMsg').empty()
-					var msg_data = '';
-					$.each(result, function(index, value){
-						msg_data += '<div id="showMsg" class="card">'
-						msg_data += '<div class="card-header">'
-						msg_data += '<span>'+"會員ID :"+memberId+'</span>' 
-						msg_data += '<span style="float: right">'+"時間 :"+value.added+'</span>'
-						msg_data += '</div>'
-						msg_data += '<div class="card-body">'
-						msg_data += '<button class="deleteBtn" id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" value="' + value.id +'">'+"刪除"+'</button>'
-						msg_data += '<button class="editBtn" id="editBtn" value="' + value.id +'">'+"修改"+'</button>'
-						msg_data += '<button style="display: none" class="sendBtn" id="sendBtn" value="' + value.id +'">'+"送出"+'</button>'
-						msg_data += '<br>'
-						msg_data += '<input class="inputMsg" style="display: none; width: 600px" id="' + value.id +'" type="text" value="<c:out value="${msg.text}" />">'				
-						msg_data += '<div class="text">'+value.text
-// 						msg_data += "留言ID:"+'<p class="msgId">'+value.id
-// 						msg_data += '<p>'+"食記ID:"+reocrdId
-						msg_data += '</div>'
-						msg_data += '</div>'
-						msg_data += '</div>'
-					})
-					$('#ajaxMsg').append(msg_data)
-				},
-				error : function(err){
-					console.log(err)
-					alert('刪除留言發生錯誤')
-					}
-			})
-		})   //刪除留言結束
+// 				success : function(result){
+// 					$('#showMsg').remove()
+// 					  $('#ajaxMsg').empty()
+// 					var msg_data = '';
+// 					$.each(result, function(index, value){
+// 						msg_data += '<div id="showMsg" class="card">'
+// 						msg_data += '<div class="card-header">'
+// 						msg_data += '<span>'+"會員ID :"+memberId+'</span>' 
+// 						msg_data += '<span style="float: right">'+"時間 :"+value.added+'</span>'
+// 						msg_data += '</div>'
+// 						msg_data += '<div class="card-body">'
+// 						msg_data += '<button class="deleteBtn" id="deleteBtn" onclick="return confirm('+"確認刪除?"+')" value="' + value.id +'">'+"刪除"+'</button>'
+// 						msg_data += '<button class="editBtn" id="editBtn" value="' + value.id +'">'+"修改"+'</button>'
+// 						msg_data += '<button style="display: none" class="sendBtn" id="sendBtn" value="' + value.id +'">'+"送出"+'</button>'
+// 						msg_data += '<br>'
+// 						msg_data += '<input class="inputMsg" style="display: none; width: 600px" id="' + value.id +'" type="text" value="<c:out value="${msg.text}" />">'				
+// 						msg_data += '<div class="text">'+value.text
+// // 						msg_data += "留言ID:"+'<p class="msgId">'+value.id
+// // 						msg_data += '<p>'+"食記ID:"+reocrdId
+// 						msg_data += '</div>'
+// 						msg_data += '</div>'
+// 						msg_data += '</div>'
+// 					})
+// 					$('#ajaxMsg').append(msg_data)
+// 				},
+// 				error : function(err){
+// 					console.log(err)
+// 					alert('刪除留言發生錯誤')
+// 					}
+// 			})
+// 		})   //刪除留言結束
 		
 
 	}) //document.ready

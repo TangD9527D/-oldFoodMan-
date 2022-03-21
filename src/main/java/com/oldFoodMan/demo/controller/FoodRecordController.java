@@ -189,72 +189,121 @@ public class FoodRecordController {
 
 	
 	//修改食記(顯示之前的食記資料)
-	@GetMapping("/editData")
-	public ModelAndView showPreviousRecord(ModelAndView mav, @RequestParam(name = "id") Integer id,HttpSession session) {
-		FoodRecord record = service.findById(id);
-		Member member = (Member)session.getAttribute("member"); 
-		Integer memberID = member.getId();
-		MultipartFile oriImage = record.getProductImage();
-		System.out.println("oriImage="+oriImage);
-		
-		Blob CoverImage = record.getCoverImage();
-		String UploadPicture = record.getUploadPicture();
-		System.out.println("CoverImage="+CoverImage);
-		System.out.println("UploadPicture="+UploadPicture);
-		
-		mav.getModel().put("CoverImage",CoverImage);
-		mav.getModel().put("UploadPicture",UploadPicture);
-		mav.getModel().put("memberID",memberID);
-		mav.getModel().put("foodrecord", record);
-		System.out.println("顯示食記="+record);
-		mav.setViewName("record/editData");	
-		return mav;
-	}
-	
-	//修改食記(更新食記)
-	@PostMapping(value = "/editData")
-	public ModelAndView updateRecord(ModelAndView mav,@RequestParam(name = "id") Integer id, @Valid @ModelAttribute(name="foodrecord") FoodRecord fr, BindingResult result,HttpSession session) {	
-		mav.setViewName("record/editData");	
-		Member member = (Member)session.getAttribute("member"); 
-		System.out.println("member ="+member);
-		FoodRecord currentRecord = service.findById(id);
-		Date time = currentRecord.getAdded();
-		
-		MultipartFile productImage = fr.getProductImage();
-		String originalFilename = productImage.getOriginalFilename();
-		fr.setUploadPicture(originalFilename);
-		//  建立Blob物件，交由 Hibernate 寫入資料庫
-		if (productImage != null && !productImage.isEmpty() ) {
-			try {
-				byte[] b = productImage.getBytes();    //轉成位元組陣列
-				Blob blob = new SerialBlob(b);    //new一個Serial Blob的物件
-				fr.setCoverImage(blob);
-			} catch(Exception e) {
-				e.printStackTrace();
-				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
-			}
-		}else {
-			Blob currentImage = currentRecord.getCoverImage();
-			String currentPicture = currentRecord.getUploadPicture();
-			System.out.println("currentImage "+currentImage);
-			System.out.println("currentPicture "+currentPicture);
-			fr.setCoverImage(currentImage);
-			fr.setUploadPicture(currentPicture);
+		@GetMapping("/editData")
+		public ModelAndView showPreviousRecord(ModelAndView mav, @RequestParam(name = "id") Integer id,HttpSession session) {
+			FoodRecord record = service.findById(id);
+			Member member = (Member)session.getAttribute("member"); 
+			Integer memberID = member.getId();
+			MultipartFile oriImage = record.getProductImage();
+			System.out.println("oriImage="+oriImage);
+			
+			Blob CoverImage = record.getCoverImage();
+			String UploadPicture = record.getUploadPicture();
+			String shopType = record.getShopType();
+			System.out.println("CoverImage="+CoverImage);
+			System.out.println("UploadPicture="+UploadPicture);
+			System.out.println("shopType="+shopType);
+			
+			mav.getModel().put("shopType",shopType);
+			mav.getModel().put("CoverImage",CoverImage);
+			mav.getModel().put("UploadPicture",UploadPicture);
+			mav.getModel().put("memberID",memberID);
+			mav.getModel().put("foodrecord", record);
+			System.out.println("顯示食記="+record);
+			mav.setViewName("record/editData");	
+			return mav;
 		}
 		
-		fr.setMember_id(member);
-		fr.setId(id);
-		fr.setAdded(time);
+		//修改食記(更新食記)
+		@PostMapping(value = "/editData")
+		public ModelAndView updateRecord(ModelAndView mav,@RequestParam(name = "id") Integer id, @Valid @ModelAttribute(name="foodrecord") FoodRecord fr, BindingResult result,HttpSession session) {	
+			mav.setViewName("record/editData");	
+			Member member = (Member)session.getAttribute("member"); 
+			System.out.println("member ="+member);
+			FoodRecord currentRecord = service.findById(id);
+			Date time = currentRecord.getAdded();
+//			String shopType = currentRecord.getShopType();		
+			
+			
+			MultipartFile productImage = fr.getProductImage();
+			String originalFilename = productImage.getOriginalFilename();
+			fr.setUploadPicture(originalFilename);
+			//  建立Blob物件，交由 Hibernate 寫入資料庫
+			if (productImage != null && !productImage.isEmpty() ) {
+				try {
+					byte[] b = productImage.getBytes();    //轉成位元組陣列
+					Blob blob = new SerialBlob(b);    //new一個Serial Blob的物件
+					fr.setCoverImage(blob);
+				} catch(Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+				}
+			}else {
+				Blob currentImage = currentRecord.getCoverImage();
+				String currentPicture = currentRecord.getUploadPicture();
+				System.out.println("currentImage "+currentImage);
+				System.out.println("currentPicture "+currentPicture);
+				fr.setCoverImage(currentImage);
+				fr.setUploadPicture(currentPicture);
+			}
+			
+			//存ShopType
+			String ShopType = fr.getShopType();
+			if(ShopType!= null && !ShopType.isEmpty()) {
+				fr.setShopType(ShopType);
+			}else {
+				String originalType = currentRecord.getShopType();
+				fr.setShopType(originalType);
+			}
+			//存priceScope
+			String priceScope = fr.getPriceScope();
+			if(priceScope!= null && !priceScope.isEmpty()) {
+				fr.setPriceScope(priceScope);
+			}else {
+				String originalpriceScope = currentRecord.getPriceScope();
+				fr.setPriceScope(originalpriceScope);
+			}
+			//存city
+			String city = fr.getCity();
+			if(city!= null && !city.isEmpty()) {
+				fr.setCity(city);
+			}else {
+				String originalCity = currentRecord.getCity();
+				fr.setCity(originalCity);
+			}
+			//存town
+			String town = fr.getTown();
+			if(town!= null && !town.isEmpty()) {
+				fr.setTown(town);
+			}else {
+				String originalTown = currentRecord.getTown();
+				fr.setTown(originalTown);
+			}
 
-		System.out.println("目前的食記內容fr "+fr);
-		if(!result.hasErrors()) {
-			System.out.println("更新食記");
-			 service.insertRF(fr);
-			 System.out.println("成功存入");
-			 mav.setViewName("redirect:/MemberRecordList");
-		}	
-		return mav;	
-	}
+			//存businessHours
+			String businessHours = fr.getBusinessHours();
+			if(businessHours!= null && !businessHours.isEmpty()) {
+				fr.setBusinessHours(businessHours);
+			}else {
+				String originalBusinessHours = currentRecord.getBusinessHours();
+				fr.setBusinessHours(originalBusinessHours);
+			}
+
+			
+			
+			fr.setMember_id(member);
+			fr.setId(id);
+			fr.setAdded(time);
+
+			System.out.println("目前的食記內容fr "+fr);
+			if(!result.hasErrors()) {
+				System.out.println("更新食記");
+				 service.insertRF(fr);
+				 System.out.println("成功存入");
+				 mav.setViewName("redirect:/MemberRecordList");
+			}	
+			return mav;	
+		}
 	
 
 	//刪除食記
