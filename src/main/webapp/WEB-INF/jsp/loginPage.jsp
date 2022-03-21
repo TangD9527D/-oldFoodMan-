@@ -102,7 +102,7 @@ body {
 
 .googleLogin {
 	position: absolute;
-	bottom: 60px;
+	bottom: 20px;
 	right: 0px;
 	width: 450px;
 	margin: 0px auto;
@@ -162,6 +162,10 @@ body {
 .la2{
 	font-weight: 700;
 	font-size: larger;
+}
+
+.button13147{
+	margin-top: 5px;
 }
 </style>
 </head>
@@ -225,6 +229,14 @@ body {
 				<div class="googleImg">
 					<a href="${contextRoot}/oauth2/authorization/google"><img
 						src="${contextRoot}/css/google.png" width="300px" height="60px"></a>
+				<div class="button13147">
+					&emsp;&nbsp;
+					<button id="ofm177" class="btn btn-secondary btn-sm">&nbsp;&nbsp;L&nbsp;&nbsp;</button>
+					<button id="ofm277" class="btn btn-secondary btn-sm">Jack</button>
+					<button id="ofm377" class="btn btn-secondary btn-sm">Rose</button>
+					<button id="ofm477" class="btn btn-secondary btn-sm">Su</button>
+					<button id="ofm577" class="btn btn-secondary btn-sm">Lemon</button>
+				</div>
 				</div>
 			</div>
 		</div>
@@ -570,6 +582,36 @@ body {
 	$(document).on('click', '#backin7', function(){ 
 		$('#backendAccount').val("oldFoodMan");
 		$('#backendPwd').val("oldFoodMan");
+	});
+	
+	//Rose
+	$(document).on('click', '#ofm377', function(){ 
+		$('#account').val("chan0425@gmail.com");
+		$('#pwd').val("000000");
+	});
+	
+	//Su
+	$(document).on('click', '#ofm477', function(){ 
+		$('#account').val("chan@gmail.com");
+		$('#pwd').val("000000");
+	});
+	
+	//Jack
+	$(document).on('click', '#ofm277', function(){ 
+		$('#account').val("c7416706@gmail.com");
+		$('#pwd').val("c7416706");
+	});
+	
+	//L
+	$(document).on('click', '#ofm177', function(){ 
+		$('#account').val("aiko@gmail.com");
+		$('#pwd').val("000000");
+	});
+	
+	//Lemon
+	$(document).on('click', '#ofm577', function(){ 
+		$('#account').val("Lemon@gmail.com");
+		$('#pwd').val("lemonn");
 	});
 	</script>
 </body>
