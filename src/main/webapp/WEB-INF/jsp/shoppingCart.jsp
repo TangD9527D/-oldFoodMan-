@@ -47,7 +47,7 @@
 		</table><br>
 		<p></p>
 		<div>
-			<button type="button" class="btn btn-danger btn-sm" id="selectAll">全選/取消全選</button>
+			<button type="button" class="btn btn-danger btn-sm" id="selectAll" >全選/取消全選</button>
 			<button type="button" class="btn btn-danger btn-sm" id="deleteSelect">多筆刪除</button>
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BuyModal" id="toBuy" style="float:right" disabled="disabled">去結帳</button>
 		</div>
@@ -279,53 +279,96 @@
 			});
 		})
 		//多筆刪除
-		$("#deleteSelect").click(function() {
-			var arr = [];
-			var dtRow = [];
-			let checkboxes = document.querySelectorAll("[name=checkbox]");
-			for (var i = 0; i < checkboxes.length; i++) {
-				if (checkboxes[i].checked === true) {
-
-					var str = (checkboxes[i].id).substring(8, 10);
-					
-					arr.push({"productId":str}); //要準備轉JSON
-		            
-					dtRow.push(str); //用來刪除多筆的陣列
-					console.log("dtRow:" + dtRow);
-				}
-			}
-			var dtoJsonString = JSON.stringify(arr); //轉Json
+		$(document).on('click', '#deleteSelect', function(){
 			
-			console.log(dtoJsonString);
-			$.ajax({
-				url:'http://localhost:8080/oldFoodMan/Cart/deleteSelected',
-                contentType: 'application/json;charset=UTF-8',
-                method: 'post',
-                data: dtoJsonString,
-                success:function(data){
-                	$.each(dtRow, function(index, value) {
-                		deleteRow = $('#checkbox'+value).closest('tr');
-                		$("#tableAjax2").DataTable().row(deleteRow).remove().draw(false);
-                	});
-      
-                }
+			swal({
+			    title: "Are you sure?",
+			    icon: "warning",
+			    buttons: true,
+			    dangerMode: true
+			  }).then(function (isConfirm) {
+				  if (isConfirm) {
+			            var arr = [];
+						var dtRow = [];
+						let checkboxes = document.querySelectorAll("[name=checkbox]");
+						for (var i = 0; i < checkboxes.length; i++) {
+							if (checkboxes[i].checked === true) {
+	
+								var str = (checkboxes[i].id).substring(8, 10);
+								
+								arr.push({"productId":str}); //要準備轉JSON
+					            
+								dtRow.push(str); //用來刪除多筆的陣列
+								console.log("dtRow:" + dtRow);
+							}
+							
+						}
+						var dtoJsonString = JSON.stringify(arr); //轉Json
+							
+						console.log(dtoJsonString);
+						$.ajax({
+							url:'http://localhost:8080/oldFoodMan/Cart/deleteSelected',
+			                contentType: 'application/json;charset=UTF-8',
+			                method: 'post',
+			                data: dtoJsonString,
+			                success:function(data){
+			                	$.each(dtRow, function(index, value) {
+			                		deleteRow = $('#checkbox'+value).closest('tr');
+			                		$("#tableAjax2").DataTable().row(deleteRow).remove().draw(false);
+			                	});
+			                	let checkboxes = document.querySelectorAll("[name=checkbox]");
+			                	let max = checkboxes.length;
+								if(max == 0){{
+									$('#toBuy').attr('disabled','disabled');
+								}}
+						}
+					})
+				 }
 			})
 		})
 		
-		
 		//多選/取消多選
-		$(document).ready(function(){
- 			$("#selectAll").click(function(){
- 				if($("[name=checkbox]").prop("checked")){
- 					$("[name=checkbox]").prop("checked",false);
- 					$('#toBuy').attr('disabled','disabled')
- 				}else{
- 					$("[name=checkbox]").prop("checked",true);
- 					$('#toBuy').removeAttr('disabled');
+		$(document).on('click', '#selectAll', function(){ 
+ 				let checkboxes = document.querySelectorAll("[name=checkbox]");
+ 				let count = 0;
+ 				let max = checkboxes.length;
+ 				for (var i = 0; i < max; i++) {
+ 					if (checkboxes[i].checked === true && max == 1) {
+ 						$('#toBuy').attr('disabled','disabled');
+ 						$("[name=checkbox]").prop("checked",false);
+ 					}else if(checkboxes[i].checked === true){
+ 						$('#toBuy').removeAttr('disabled');
+ 						$("[name=checkbox]").prop("checked",true);
+ 						count++;
+ 					}else if(checkboxes[i].checked === false && max == 1){
+ 						$('#toBuy').removeAttr('disabled');
+ 						$("[name=checkbox]").prop("checked",true);
+ 					}else if(checkboxes[i].checked === false){
+ 						$('#toBuy').attr('disabled','disabled')
+ 						$("[name=checkbox]").prop("checked",true);
+ 					}
+		
+ 					if (count === max && max != 1){
+ 						console.log('test')
+ 						$("[name=checkbox]").prop("checked",false);
+ 						$('#toBuy').attr('disabled','disabled')
+ 					}
  				}
+ 				
+ 				
+ 				
+ 				
+//  				if($("[name=checkbox]").prop("checked")){
+//  					$("[name=checkbox]").prop("checked",false);
+//  					$('#toBuy').attr('disabled','disabled')
+//  				}else{
+//  					$("[name=checkbox]").prop("checked",true);
+//  					$('#toBuy').removeAttr('disabled');
+//  				}
   			})
- 		})
-		$(document).on('click', '.checkboxQuery', function(){
+ 		
+ 		//購買可不可按
+		$(document).on('click', '.checkboxQuery', function(){ 
 			let checkboxes = document.querySelectorAll("[name=checkbox]");
 			for (var i = 0; i < checkboxes.length; i++) {
 				if (checkboxes[i].checked === true) {

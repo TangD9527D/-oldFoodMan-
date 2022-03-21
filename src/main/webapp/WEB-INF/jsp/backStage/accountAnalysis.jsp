@@ -11,38 +11,37 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>會員數據分析</title>
 <c:set var='contextRoot' value='${pageContext.request.contextPath }'/>
 <link rel='stylesheet' href='${contextRoot}/css/bootstrap.min.css'/>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <style>
-.city7{
+.date7{
 	position: absolute;
-	top: 150px;
+	top: 250px;
 	left: 350px;
-	border: 2px solid red;
-	height: 500px;
+	height: 300px;
 	width: 500px;
 }
 
-.date7{
+.city7{
 	position: absolute;
 	top: 150px;
 	right: 100px;
-	border: 2px solid rgb(0, 119, 255);
+	/* border: 2px solid rgb(0, 119, 255); */
 	height: 500px;
-	width: 800px;
+	width: 500px;
 }
 </style>
 </head>
 
 <body>
-	<div class="city7">
-		<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-	</div>
 	<div class="date7">
-		<canvas id="myChart2" style="width:100%;max-width:800px"></canvas>
+		<canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
+	</div>
+	<div class="city7">
+		<canvas id="myChart" style="width:100%;max-width:500px"></canvas>
 	</div>
 <script>
 
@@ -69,13 +68,29 @@
 			}
 
 			var barColors = [
-			"#b91d47",
-			"#00aba9",
-			"#2b5797",
-			"#e8c3b9",
-			"#1e7145",
-			"#2e7145"
-		];
+				"#AE0000",
+				"#D200D2",
+				"#6C6C6C",
+				"#F00078",
+				"#8600FF",
+				"#2828FF",
+				"#0072E3",
+				"#00CACA",
+				"#02DF82",
+				"#00DB00",
+				"#8CEA00",
+				"#C4C400",
+				"#D9B300",
+				"#FF8000",
+				"#F75000",
+				"#804040",
+				"#804040",
+				"#408080",
+				"#5A5AAD",
+				"#8F4586",
+				"#ECECFF",
+				"#272727"
+			];
 
 		new Chart("myChart", {
 			type: "doughnut",
@@ -126,7 +141,7 @@
 					legend: { display: false },
 					title: {
 						display: true,
-						text: "World Wine Production 2018"
+						text: "2022各月創辦人數"
 					}
 				}
 			});

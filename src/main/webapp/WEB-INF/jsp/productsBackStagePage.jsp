@@ -68,6 +68,7 @@
 									<option>火鍋</option>
 									<option>小吃</option>
 									<option>異國</option>
+									<option>自助餐</option>
 								</select>
 							</div>
 							<div class="form-group">
@@ -132,6 +133,7 @@
 									<option>火鍋</option>
 									<option>小吃</option>
 									<option>異國</option>
+									<option>自助餐</option>
 								</select>
 							</div>
 							<div class="form-group">
@@ -187,10 +189,10 @@
 		    	},
 		    	
 		        "columns": [	                                      
-		        	{ "data": 'product_number'},
+		        	{ "data": 'product_number',title: '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData">新增</button>'},
 			        { data: 'product_name',title: "品名" },
 			        { data: 'product_category',title: "類型"},
-			        { data: 'product_stock',title: "庫存" },
+			        { data: 'product_stock',title: "庫存"},
 			        { data: 'product_discount',title: "折扣" },
 			        { data: 'product_price',title: "原價" },
 			        { data: 'product_image',title: "圖片",
@@ -202,12 +204,17 @@
 			        { data: 'product_remark',title: "備註" },
 			        { data: null ,title: "操作功能",  // 這邊是欄位
 			            render: function (data, type, row) {
-			              return '<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#UpdateModal"  value="' + data.product_id + '" id="updateDialog">編輯</button> ' +
-			                      '<button type="button" class="btn btn-danger btn-sm" id="deleteOne"  value="' + data.product_id + '" >刪除</button>'
+			              return '<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#UpdateModal"  value="' + data.product_id + '" id="updateDialog">編輯</button> ' 
+// 			                     + '<button type="button" class="btn btn-danger btn-sm" id="deleteOne"  value="' + data.product_id + '" >刪除</button>'
 			                      
 			              }
 			        }
 		        ],
+		        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+		            if(aData['product_stock'] <= 50){
+		                    $('td', nRow).css('background-color', '#FF7575')
+		            }
+		        },
 		        "lengthMenu": [[5, 10, 25, -1], [5, 10, 15, "All"]],
 		        "language": {
 		            "lengthMenu": "顯示 _MENU_ 筆資料",
@@ -317,9 +324,14 @@
                 async:false,
                 method: 'post',
                 data: dtoJsonString,
-                success:function(result){    
-                	$("#tableAjax").DataTable().row(upRow).data(result).draw(false);
-      
+                success:function(result){
+                	if(result.product_stock > 50){
+                		$('td', upRow).css('background-color', '#79FF79')
+                		$("#tableAjax").DataTable().row(upRow).data(result).draw(false);
+                	}else{
+                		$('td', upRow).css('background-color', '#FF7575')
+                		$("#tableAjax").DataTable().row(upRow).data(result).draw(false);
+      				}
                 	console.log(result)
                 },
                 error:function(err){

@@ -114,7 +114,7 @@ legend {
 
 <body>
 
-	<form:form class="form" action="${contextRoot}/editData" modelAttribute="foodrecord" method="post">
+	<form:form class="form" action="${contextRoot}/editData" modelAttribute="foodrecord" method="post"  enctype="multipart/form-data">>
 	<form class="sform2">
 		<br>
 		<div class="container">

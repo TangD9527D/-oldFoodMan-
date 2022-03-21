@@ -187,6 +187,16 @@ body {
 	float: right;
 }
 
+
+#speedbtn{
+	float: right;
+}
+
+#speedbtn1{
+	float: right;
+}
+
+
 .allrange {
 	text-align: justify;
 	width: 100%;
@@ -210,14 +220,14 @@ body {
 	align-items: center;
 }
 
-
-
 #p1 {
 	float: left;
 	margin-top: 25px;
 	margin-left: 2%;
-	background-color:#fbf3f3;
-
+	background-color: #fbf3f3;
+	overflow: hidden;
+	border: 3px solid #E6E6F2;
+	box-shadow: 2px 2px 5px #E6E6F2;
 }
 
 #p2 {
@@ -225,14 +235,11 @@ body {
 	margin-top: 25px;
 	margin-left: 2%;
 	width: 100%;
-	background-color:#fbf3f3;
-	overflow:hidden;
-	border: 3px solid #E6E6F2 ;
+	background-color: #fbf3f3;
+	overflow: hidden;
+	border: 3px solid #E6E6F2;
 	box-shadow: 2px 2px 5px #E6E6F2;
-
 }
-
-
 
 #box {
 	width: 100%;
@@ -242,8 +249,8 @@ body {
 }
 
 #p {
-	font-size:20px;
-	line-height:0.7cm;
+	font-size: 20px;
+	line-height: 0.7cm;
 	overflow: hidden;
 	display: -webkit-box;
 	text-overflow: ellipsis;
@@ -259,7 +266,7 @@ body {
 #right {
 	position: absolute;
 	bottom: 3px;
-	color:	#ADADAD;
+	color: #ADADAD;
 }
 
 #location {
@@ -301,70 +308,65 @@ body {
 .display {
 	display: none;
 }
-.imgsize{
 
-width: 13rem; 
-height: 14rem;
-display: block;
-margin: 25px auto;
-
+.imgsize {
+	width: 13rem;
+	height: 14rem;
+	display: block;
+	margin: 25px auto;
+	transform: scale(1);
+	transition: all 0.3s ease-in-out;
 }
 
-.acolor{
-
-color:black;
-text-decoration:none;
-
-}
-.acolor:hover{
-
-color:orange;
-
-
+.imgsize:hover {
+	transform: scale(1.2, 1.2);
 }
 
-.imgsize 
-{
-
-transform:scale(1);transition: all 0.3s ease-in-out;
-
+.acolor {
+	color: black;
+	text-decoration: none;
 }
 
-.imgsize:hover{
+.acolor:hover {
+	color: orange;
+}
 
-transform:scale(1.2,1.2);
+.acolor1 {
+	color: black;
+	text-decoration: none;
+}
 
+.acolor1:hover {
+	color: gray;
 }
 
 .back-to-top {
-  display: none; /* 默认是隐藏的，这样在第一屏才不显示 */
-  position: fixed; /* 位置是固定的 */
-  bottom: 20px; /* 显示在页面底部 */
-  right: 30px; /* 显示在页面的右边 */
-  z-index: 99; /* 确保不被其他功能覆盖 */
-  border: 1px solid #5cb85c; /* 显示边框 */
-  outline: none; /* 不显示外框 */
-  background-color: #fff; /* 设置背景背景颜色 */
-  color: #5cb85c; /* 设置文本颜色 */
-  cursor: pointer; /* 鼠标移到按钮上显示手型 */
-  padding: 10px 15px 15px 15px; /* 增加一些内边距 */
-  border-radius: 10px; /* 增加圆角 */
+	display: none; /* 默認是隐藏的，這樣在喔開始才不顯示 */
+	position: fixed; /* 位置是固定的 */
+	bottom: 20px; /* 顯示在頁面底部 */
+	right: 30px; /* 顯示在页面的右邊 */
+	z-index: 99; /* 確保不被其他功能覆盖 */
+	border: 1px solid #5cb85c; /* 顯示邊框 */
+	outline: none; /* 不顯善逼框 */
+	background-color: #fff; /* 设置背景背景颜色 */
+	color: #5cb85c; /* 颜色 */
+	cursor: pointer; /* hover */
+	padding: 10px 15px 15px 15px;
+	border-radius: 10px;
 }
 
 .back-to-top:hover {
-  background-color: #5cb85c; /* 鼠标移上去时，反转颜色 */
-  color: #fff;
+	background-color: #5cb85c;
+	color: #fff;
 }
-
-
 </style>
 
 
 </head>
 <body>
-	
 
-		
+
+
 	<div id="location">
 		<h4 style="text-align: center; padding-top: 20px">
 			收藏的地點<i class="fa-regular fa-star"></i>
@@ -384,10 +386,10 @@ transform:scale(1.2,1.2);
 			class="form-control" required>
 
 	</div>
-	
-<button class="js-back-to-top back-to-top" title="回到头部">︽</button>
+
+
 	<div class="allpage">
-	
+
 		<!--整個頁面的65%-->
 		<div class="inputdiv">
 			<!--allpage的65%-->
@@ -407,14 +409,20 @@ transform:scale(1.2,1.2);
 			<button id="star" onclick="" class="btn btn-outline-secondary btn-sm">
 				<i class="fa-solid fa-star"></i>收藏地點
 			</button>
-
+			<button id="speedbtn" class="btn btn-outline-secondary btn-sm">一鍵輸入卡</button>
+			<button id="speedbtn1" class="btn btn-outline-secondary btn-sm">一鍵輸入牛</button>
+			
+			<button class="js-back-to-top back-to-top" title="回到头部">︽</button>
 			<!--  -->
 
 		</div>
 
 
 		<div class="allrange">
-			<div><a href="http://localhost:8080/oldFoodMan/main" class="btn btn-outline-secondary">最新文章</a></div>
+			<div>
+				<a href="http://localhost:8080/oldFoodMan/main"
+					class="btn btn-outline-secondary">最新文章</a>
+			</div>
 			<div class="test2">
 				<div id="xxx">
 					<span id="rangetype" class="btn btn-outline-primary display"></span>
@@ -428,20 +436,21 @@ transform:scale(1.2,1.2);
 				<div id="xxx">
 					<div id="range" class="">
 						<c:forEach var="maps" items="${page.content}">
-							<div class="card " style="width:15rem" id="p2">
-								<a   
-									href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id}"  ><img
+							<div class="card " style="width: 15rem" id="p2">
+								<a
+									href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id}"><img
 									id="img" src="<c:url value='/getPicture/${maps.id}'/>"
-									 class="card-img-top imgsize"
-									alt="..."></a>
+									class="card-img-top imgsize" alt="..."></a>
 								<div id="box" class="card-body">
-									<a	href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id} " title="${maps.title}" class="acolor"><span id="p" class="card-title"
+									<a
+										href="http://localhost:8080/oldFoodMan/viewById?id=${maps.id} "
+										title="${maps.title}" class="acolor"><span id="p"
+										class="card-title"
 										style="background-color: #FFC2C3; text-align: center">${maps.title}</span></a>
 									<h5 id="p" class="card-text">${maps.content}</h5>
-									
-
 									<div id="right">
-										<span class="spantime">上傳時間:&nbsp&nbsp&nbsp&nbsp&nbsp</span><fmt:formatDate pattern="yyyy/MM/dd" value="${maps.added}" />
+										<span class="spantime">上傳時間:&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+										<fmt:formatDate pattern="yyyy/MM/dd" value="${maps.added}" />
 									</div>
 
 								</div>
@@ -455,38 +464,11 @@ transform:scale(1.2,1.2);
 		</div>
 		<!-- 分頁頁碼 -->
 
-		<div>
-			<!-- 			<div class="pagination"
-			> -->
-			<%-- 				<c:forEach var="pageNumber" begin="1" end="${page.totalPages}"> --%>
-
-			<%-- 					<c:choose> --%>
-
-			<%-- 						<c:when test="${page.number != pageNumber -1}"> --%>
-
-			<!-- 							<li class="page-item"><a class="page-link" -->
-			<%-- 								href="${contextRoot}/main?p=${pageNumber}"><c:out --%>
-			<%-- 										value="${pageNumber} "></c:out></a></li> --%>
-
-			<%-- 						</c:when> --%>
-			<%-- 						<c:otherwise> --%>
-			<!-- 							<li class="page-item active" aria-current="page"><span -->
-			<%-- 								class="page-link"><c:out value="${pageNumber} " /></span></li> --%>
-			<%-- 						</c:otherwise> --%>
-
-			<%-- 					</c:choose> --%>
-			<%-- 					<c:if test="${pageNumber != page.totalPages}"> --%>
-
-			<%-- 					</c:if> --%>
-			<%-- 				</c:forEach> --%>
-
-			<!-- 			</div> -->
-		</div>
 
 		<footer class="pt-3 mt-4 text-muted border-top">
-      <div style="margin:50px;">&copy; 2022</div>
-    </footer>
-	
+			<div style="margin: 50px;">&copy; 2022</div>
+		</footer>
+
 	</div>
 
 
@@ -697,7 +679,7 @@ transform:scale(1.2,1.2);
  				
  					var msg_data='';
  					$.each(result,function(index,value){
- 						msg_data += '<button id="schedule" value="'+value.id+'" class="btn"><li id="li" class="list-group-item list-group-item-info schedule'+ value.id +'" style="">'+ value.likelocations +'</li></button>'
+ 						msg_data += '<button id="schedule" value="'+value.id+'" class="btn tryy'+value.id+'"><li id="li" class="list-group-item list-group-item-info schedule'+ value.id +'" style="">'+ value.likelocations +'</li></button>'
  					})
 
  					$('#location1').append(msg_data)
@@ -735,7 +717,7 @@ transform:scale(1.2,1.2);
  		////new delete function
  		
  
- 		$(document).on('click', '#schedule', function (){  //用一般的.click會有氣泡事件問題
+ 		$(document).on('click', '#schedule', function (){  //用一般的.click會有氣泡事件問題deleteLocation
  			
  		
  			var id = $(this).attr("value");
@@ -748,19 +730,19 @@ transform:scale(1.2,1.2);
  				})
 
  				swalWithBootstrapButtons.fire({
- 				  title: 'Are you sure?',
- 				  text: "You won't be able to revert this!",
- 				  icon: 'warning',
- 				  showCancelButton: true,
- 				  confirmButtonText: 'Yes, delete it!',
- 				  cancelButtonText: 'No, cancel!',
- 				  reverseButtons: true
+ 					title: '是否確定要刪除此收藏地點？',
+ 	 				  text: "您將無法還原此內容！",
+ 	 				  icon: 'warning',
+ 	 				  showCancelButton: true,
+ 	 				  confirmButtonText: '是，確認刪除！',
+ 	 				  cancelButtonText: '否，取消！',
+ 	 				  reverseButtons: true
  				}).then((result) => {
  				  if (result.isConfirmed) {
  				    swalWithBootstrapButtons.fire(
- 				      'Deleted!',
- 				      'Your file has been deleted.',
- 				      'success'
+ 				    	   '刪除！',
+ 	 				      '已完成刪除.',
+ 	 				      'success'
  				    )
  				    
  				   $.ajax({
@@ -768,46 +750,27 @@ transform:scale(1.2,1.2);
  		 				url : "http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id="+id,
  		 				success : function(data) {	 							 						    
  		 						
- 		 					location.reload();
+ 		 					$('.tryy'+ id +'').remove();
  		 					
  		 				},
- 		 			});
- 				    
- 				    
- 				    
+ 		 			});    
+			     				    
  				    
  				  } else if (
  				    /* Read more about handling dismissals below */
  				    result.dismiss === Swal.DismissReason.cancel
  				  ) {
  				    swalWithBootstrapButtons.fire(
- 				      'Cancelled',
- 				      'Your imaginary file is safe :)',
- 				      'error'
+ 				    		'取消刪除',
+ 	 		 				':)',
+ 	 				        'error'
  				    )
  				  }
  				})
  		
  		
  		})
- 		
- 		
- 		
- 		
- 		
 
- 			
- 		
- 		
- 		
- 		
- 		
- 		
- 		
- 		
- 		
- 		
- 		
 </script>
 	<!--綁定按鍵sweetalert2並執行收藏地點方法 -->
 	<script>
@@ -817,38 +780,25 @@ document.getElementById("star").addEventListener("click",function(){
 	});
 	
 
-
-</script>
-	<script>
-
-// //網頁接值
-// 		$(document).ready(function() {	
-// 			$.ajax({
-// 					url : 'http://localhost:8080/oldFoodMan/likeloc',
-// 					contentType : 'application/json ; charset=UTF-8',
-// 					dataType : 'json',
-// 					method : 'get',
-// 					success : function(result){
-// 						console.log("rs: "+result)
-// 						var msg_data='';
-// 						$.each(result,function(index,value){
-			
-// 							msg_data+= '<h5>'+value.likelocations +'</h5>'
-				
-// 						})
-// 						$('#location1').append(msg_data.likelocations)
-
-					
-// 					},
-// 					error : function(err) {
-// 						console.log(err)
-// 						alert('發生錯誤')
-// 					}		
-		
-// 				});
-		
-// 			})
-
+$(function() {
+	  var $win = $(window);
+	  var $backToTop = $('.js-back-to-top');
+	 //當用戶滾動到離頂部100px，出現回到頂部按鈕
+	  $win.scroll(function() {
+	    if ($win.scrollTop() > 100) {
+	      $backToTop.show();
+	    } else {
+	      $backToTop.hide();
+	    }
+	  });
+	 //當用戶點及按鈕時，通過動畫效果返回頂部
+	  $backToTop.click(function() {
+	    $('html, body').animate({
+	      scrollTop: 0
+	    }, 200);
+	  });
+	});
+	
 $("#input").bind("keypress", {}, keypressInBox);
 
 function keypressInBox(e) {
@@ -861,7 +811,20 @@ if (code == 13) { //Enter keycode
 
 }
 
+$("#speedbtn").click(function(){
+	
+	$("#input").val("台灣台北市內湖區成功路四段卡拉拉涮涮鍋");
+	
+})
+
+$("#speedbtn1").click(function(){
+	
+	$("#input").val("牛排");
+	
+})
+
 </script>
+
 	<!-- 	模糊搜尋站內食記的方法   -->
 	<script>
 
@@ -892,7 +855,7 @@ if (code == 13) { //Enter keycode
 						console.log(ok)
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"><img id="img"  src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>"  class="card-img-top imgsize" alt="..."></a>'
 						msg_data+= '<div id="box" class="card-body">'		
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"<span id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</span></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'" class="acolor1" ><span id="p" class="card-title" style="background-color: #FA92B1; text-align: center">'+ value.title +'</span></a>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
@@ -915,59 +878,11 @@ if (code == 13) { //Enter keycode
 	}
 		
 		
-function collet22(){		
-			
-			var inputResName = document.getElementById('bt1').attr;
-			var inputResName = document.getElementById('bt2').attr;
-			var inputResName = document.getElementById('bt3').attr;
-				$.ajax({
-						url : 'http://localhost:8080/oldFoodMan/collet?shopType='+inputResName ,
-						contentType : 'application/json ; charset=UTF-8',
-						dataType : 'json',
-						method : 'get',
-
-						success : function(result) {
-							console.log(result)
-						var msg_data='';
-				$.each(result,function(index,value){
-						msg_data+= '<div id="p1" class="card" style="width: 8cm;">'
-						msg_data+= '<img id="img" src="/getPicture/'+ value.id +' style="width: 250px; height: 220px" class="card-img-top" alt="..."/>"'
-						msg_data+= '<div id="box1" class="card-body">'		
-						msg_data+= '<h3 id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</h3>'
-						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'" class="btn btn-primary" ><c:out value="繼續閱讀..."/></a>'
-						msg_data+= '</div>'
-						msg_data+= '</div>'
-						})
-
-						$('#range1').append(msg_data)
-
-		
-						},
-						error : function(err) {
-							console.log(err)
-							alert('發生錯誤')
-						}
-
-				})
-
-	}
 
 
 
 </script>
-	<script>
 
-	
-	
-
-	
-
-
-
-
-
-</script>
 
 
 </body>

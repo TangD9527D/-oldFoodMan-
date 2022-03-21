@@ -10,7 +10,8 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="shortcut icon" type="image/png" href="${contextRoot}/css/1647002131.ico">
+<title>老食人後臺管理系統</title>
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
 	href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
@@ -82,8 +83,8 @@ body {
 					data-parent="#accordionExample">
 					<div class="card-body">
 						<div class="list-group" style="border: solid 2px black;">
-							<button type="button"
-								class="list-group-item list-group-item-action">會員帳號編輯</button>
+							<a href="${contextRoot}/backStage/account"><button type="button"
+								class="list-group-item list-group-item-action">會員帳號編輯</button></a>
 							<a href="${contextRoot}/backStage/accountAnalysis"><button type="button"
 								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">會員數據分析</button></a>
 						</div>
@@ -159,19 +160,17 @@ body {
 					<h5 class="mb-0">
 						<button class="btn  collapsed" type="button" id="77"
 							data-toggle="collapse" data-target="#collapseFive"
-							aria-expanded="false" aria-controls="collapseFive"><span style="font-weight: 800; font-size: large;">???管理</span></button>
+							aria-expanded="false" aria-controls="collapseFive"><span style="font-weight: 800; font-size: large;">收藏管理</span></button>
 					</h5>
 				</div>
 				<div id="collapseFive" class="collapse"
 					aria-labelledby="headingFive" data-parent="#accordionExample">
 					<div class="card-body">
 						<div class="list-group">
-							<button type="button"
-								class="list-group-item list-group-item-action">Dapibus
-								ac facilisis in</button>
-							<button type="button"
-								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">Morbi
-								leo risus</button>
+							<a href="${contextRoot}/findAllCollections"><button type="button"
+								class="list-group-item list-group-item-action">收藏列表管理</button></a>
+							<a href="${contextRoot}/chartBiao"><button type="button"
+								class="list-group-item list-group-item-action" style="border-top: solid 2px black;">收藏食記分析</button></a>
 						</div>
 					</div>
 				</div>

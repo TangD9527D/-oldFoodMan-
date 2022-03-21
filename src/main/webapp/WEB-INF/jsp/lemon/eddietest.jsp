@@ -26,6 +26,8 @@
 <link rel="stylesheet"
 	href="${contextRoot}/cssLemon/oldfoodPage01_base.css">
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 .menu7 {
 	line-height: 0px;
@@ -557,7 +559,7 @@ html {
 										result,
 										function(index, value) {
 											console.log("IDID: " + value.id)
-											msg_data += '<div class="tx-rstname">'
+											msg_data += '<div class="tx-rstname L'+value.id+'">'
 											msg_data += '<input type="hidden" id="sid" value='+value.id+'>'
 											msg_data += '<a class="like" >'
 													+ value.likelocations
@@ -615,7 +617,7 @@ html {
 
 											console.log("IDIDff: "
 													+ value.record_id)
-											msg_data += '<div class="tx-rstname">'
+											msg_data += '<div class="tx-rstname R'+value.record_id.id+'">'
 											msg_data += '<input type="hidden" id="sid" value='+value.id+'>'
 											msg_data += '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.record_id.id +'" class="like" >'
 													+ value.record_id.title
@@ -674,77 +676,55 @@ html {
 	<script>
 	
 // 	刪除收藏
-	$(document).on('click', '#deleteLocation', function (){  //用一般的.click會有氣泡事件問題
-		var id = $(this).attr("value");
+// 	$(document).on('click', '#deleteLocation', function (){  //用一般的.click會有氣泡事件問題
+// 		var id = $(this).attr("value");
 
-		$.ajax({
-			type : "get",
-			url : "http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id="+id,
-			success : function(data) {
-				Swal.fire({
-					  title: '確定刪除收藏?',
-					  text: "",
-					  icon: 'warning',
-					  showCancelButton: true,
-					  confirmButtonColor: '#3085d6',
-					  cancelButtonColor: '#d33',
-					  confirmButtonText: 'Yes!'
-					}).then((result) => {
-					  if (result.isConfirmed) {
-					    Swal.fire({
-					    title:'已刪除 !!',
-					    text:'',
-					    icon:'success'
-					       
-					    }).then((result) => {
-							location.reload();
-						})
-					    
-					  }else{
-						  return ;
-					  }
-					})
+// 		$.ajax({
+// 			type : "get",
+// 			url : "http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id="+id,
+// 			success : function(data) {
 				
-			},
-		});
-	})
+				
+// 			},
+// 		});
+// 	})
 	
 	
 // 	刪除食記	
-	$(document).on('click', '#deleteFoodRecord', function (){  //用一般的.click會有氣泡事件問題
-		var id = $(this).attr("value");
-		console.log("哈哈 "+id)
-		$.ajax({
-			type : "get",
-			url : "http://localhost:8080/oldFoodMan/deleteCollections?record_id=" + id,
-			success : function(data) {
-				Swal.fire({
-					  title: '確定刪除食記?',
-					  text: "",
-					  icon: 'warning',
-					  showCancelButton: true,
-					  confirmButtonColor: '#3085d6',
-					  cancelButtonColor: '#d33',
-					  confirmButtonText: 'Yes!'
-					}).then((result) => {
-					  if (result.isConfirmed) {
-					    Swal.fire({
-					    title:'已刪除 !!',
-					    text:'',
-					    icon:'success'
+// 	$(document).on('click', '#deleteFoodRecord', function (){  //用一般的.click會有氣泡事件問題
+// 		var id = $(this).attr("value");
+// 		console.log("哈哈 "+id)
+// 		$.ajax({
+// 			type : "get",
+// 			url : "http://localhost:8080/oldFoodMan/deleteCollections?record_id=" + id,
+// 			success : function(data) {
+// 				Swal.fire({
+// 					  title: '確定刪除食記?',
+// 					  text: "",
+// 					  icon: 'warning',
+// 					  showCancelButton: true,
+// 					  confirmButtonColor: '#3085d6',
+// 					  cancelButtonColor: '#d33',
+// 					  confirmButtonText: 'Yes!'
+// 					}).then((result) => {
+// 					  if (result.isConfirmed) {
+// 					    Swal.fire({
+// 					    title:'已刪除 !!',
+// 					    text:'',
+// 					    icon:'success'
 					       
-					    }).then((result) => {
-							location.reload();
-						})
+// 					    }).then((result) => {
+// 							location.reload();
+// 						})
 					    
-					  }else{
-						  return ;
-					  }
-					})
+// 					  }else{
+// 						  return ;
+// 					  }
+// 					})
 				
-			},
-		});
-	})
+// 			},
+// 		});
+// 	})
 	
 	
 	
@@ -756,10 +736,120 @@ html {
 	</script>
 
 
+	<script>
 
+//SweetAlert2刪除收藏地點
 
+$(document).on('click', '#deleteLocation', function (){  //用一般的.click會有氣泡事件問題deleteLocation
+ 			
+ 		
+ 			var id = $(this).attr("value");
+ 			const swalWithBootstrapButtons = Swal.mixin({
+ 				  customClass: {
+ 				    confirmButton: 'btn btn-success',
+ 				    cancelButton: 'btn btn-danger'
+ 				  },
+ 				  buttonsStyling: false
+ 				})
 
+ 				swalWithBootstrapButtons.fire({
+ 				  title: '是否確定要刪除此收藏地點？',
+ 				  text: "您將無法還原此內容！",
+ 				  icon: 'warning',
+ 				  showCancelButton: true,
+ 				  confirmButtonText: '是，確認刪除！',
+ 				  cancelButtonText: '否，取消！',
+ 				  reverseButtons: true
+ 				}).then((result) => {
+ 				  if (result.isConfirmed) {
+ 				    swalWithBootstrapButtons.fire(
+ 				      '刪除！',
+ 				      '已完成刪除.',
+ 				      'success'
+ 				    )
+ 				    
+ 				   $.ajax({
+ 		 				type : "get",
+ 		 				url : "http://localhost:8080/oldFoodMan/deleteSchedule?schedule_id="+id,
+ 		 				success : function(data) {	 							 						    
+ 		 						
+ 		 					$('.L'+id+'').remove();
+ 		 					
+ 		 				},
+ 		 			});    
+			     				    
+ 				    
+ 				  } else if (
+ 				    /* Read more about handling dismissals below */
+ 				    result.dismiss === Swal.DismissReason.cancel
+ 				  ) {
+ 				    swalWithBootstrapButtons.fire(
+ 				    	'取消刪除',
+ 		 				':)',
+ 				        'error'
+ 				    )
+ 				  }
+ 				})
+ 		
+ 		
+ 		})
 
+ 		
+ 		//SweetAlert2刪除收藏食記
+ 		$(document).on('click', '#deleteFoodRecord', function (){  //用一般的.click會有氣泡事件問題deleteLocation
+ 			
+ 		
+ 			var id = $(this).attr("value");
+ 			const swalWithBootstrapButtons = Swal.mixin({
+ 				  customClass: {
+ 				    confirmButton: 'btn btn-success',
+ 				    cancelButton: 'btn btn-danger'
+ 				  },
+ 				  buttonsStyling: false
+ 				})
+
+ 				swalWithBootstrapButtons.fire({
+ 					  title: '是否確定要刪除此收藏食記？',
+ 	 				  text: "您將無法還原此內容！",
+ 	 				  icon: 'warning',
+ 	 				  showCancelButton: true,
+ 	 				  confirmButtonText: '是，確認刪除！',
+ 	 				  cancelButtonText: '否，取消！',
+ 	 				  reverseButtons: true
+ 				}).then((result) => {
+ 				  if (result.isConfirmed) {
+ 				    swalWithBootstrapButtons.fire(
+ 				    		  '刪除！',
+ 		 				      '已完成刪除.',
+ 		 				      'success'
+ 				    )
+ 				    
+ 				   $.ajax({
+		 				type : "get",
+		 				url : "http://localhost:8080/oldFoodMan/deleteCollections?record_id=" + id,
+		 				success : function(data) {	 							 						    
+		 						
+		 					$('.R'+id+'').remove();
+		 					
+		 				},
+		 			});        
+ 				    
+ 				  } else if (
+ 				    /* Read more about handling dismissals below */
+ 				    result.dismiss === Swal.DismissReason.cancel
+ 				  ) {
+ 				    swalWithBootstrapButtons.fire(
+ 				      '取消刪除',
+ 				      ':)',
+ 				      'error'
+ 				    )
+ 				  }
+ 				})
+ 		
+ 		
+ 		})
+
+</script>
 
 </body>
 </html>
