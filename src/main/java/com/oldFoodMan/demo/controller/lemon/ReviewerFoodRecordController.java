@@ -123,6 +123,53 @@ public class ReviewerFoodRecordController {
 		return mav;
 	}
 	
+	@GetMapping("/reviewerIttaomise/rate")
+	public ModelAndView reviewerIttaomiseRate(ModelAndView mav,HttpSession hs) {
+		
+		//Member資料
+		Member memberData = (Member)hs.getAttribute("member");
+		Integer memberId = memberData.getId();
+		//生日
+		Date birthday = memberData.getBirth();
+		String bdd = service.getAgeByMember(birthday);
+		//資料欄
+		ReviewerSetting reviewerBean = rsr.findByMember(memberId);
+		Member memberBean = memberService.findById(memberId);
+		//照片
+		Integer picCounts = foodRecordRepository.picCounts(memberId);
+		mav.getModel().put("picCounts", picCounts);
+		mav.getModel().put("bdd", bdd);
+		mav.getModel().put("reviewerPage", reviewerBean);
+		mav.getModel().put("memberPage", memberBean);
+		
+		//拜訪店家 喜愛店家
+		Integer countAll = foodRecordRepository.recordCounts(memberId);
+		Integer countFav = foodRecordRepository.recordFavCounts(memberId);
+		mav.getModel().put("countFav", countFav);
+		mav.getModel().put("countAll", countAll);
+		
+		//追蹤 粉絲
+		User user = userService.findByMember(memberId);
+		Integer follows = relationshipRepository.countByFromUserId(memberId);
+		user.setFollow_size(follows);
+		Integer fans = relationshipRepository.countByToUserId(memberId);
+		user.setFan_size(fans);
+		userRepository.save(user);
+		mav.getModel().put("user",user);
+		
+		
+		//去過的店
+		Integer count = foodRecordRepository.recordCounts(memberId);
+		List<FoodRecord> frds = foodRecordRepository.memberRecordListRate(memberId);
+		mav.getModel().put("count", count);
+		mav.getModel().put("frds", frds);
+		
+		//視圖君
+		mav.setViewName("/lemon/reviewerIttaomise");
+		
+		return mav;
+	}
+	
 	@GetMapping("/reviewerKoromi")
 	public ModelAndView reviewerKoromi(ModelAndView mav,HttpSession hs) {
 		
@@ -195,7 +242,6 @@ public class ReviewerFoodRecordController {
         return fanSize;
 
 	}
-	
 	
 	@PostMapping("/ittaomise/search/city")
 	public ModelAndView articleCitySearch(@RequestParam(value="Area")Integer cityValue,ModelAndView mav,HttpSession hs) {

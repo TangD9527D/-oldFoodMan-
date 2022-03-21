@@ -532,7 +532,7 @@ html {
         </div>
         <div class="reviewer-navi reviewer-navi--l">
             <ul class="reviewer-navi__list">
-                <li class="reviewer-navi__item reviewer-navi__item--log is-selected">
+                <li class="reviewer-navi__item reviewer-navi__item--log">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerMainPage">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__menu reviewer-navi__menu--top">首頁</span>
@@ -563,7 +563,7 @@ html {
                         </span>
                     </a>
                 </li>                
-                <li id="reviewer-navi-follow" class="reviewer-navi__item reviewer-navi__item--follow">
+                <li id="reviewer-navi-follow" class="reviewer-navi__item reviewer-navi__item--follow  is-selected">
                     <a class="reviewer-navi__target" href="${contextRoot}/relationships/follows">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count"><c:out value="${user.follow_size}"/></span>

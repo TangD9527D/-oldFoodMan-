@@ -856,14 +856,14 @@
         </div>
         <div class="reviewer-navi reviewer-navi--l">
             <ul class="reviewer-navi__list">
-                <li class="reviewer-navi__item reviewer-navi__item--log is-selected">
+                <li class="reviewer-navi__item reviewer-navi__item--log">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerMainPage">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__menu reviewer-navi__menu--top">首頁</span>
                         </span>
                     </a>
                 </li>
-                <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review">
+                <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review is-selected">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerIttaomise">
                         <span class="reviewer-navi__menu-wrap">
                             <span class="reviewer-navi__count"><c:out value="${countAll}"/></span>

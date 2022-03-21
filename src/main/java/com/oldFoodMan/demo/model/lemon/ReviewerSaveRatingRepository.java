@@ -21,7 +21,7 @@ public interface ReviewerSaveRatingRepository extends JpaRepository<ReviewerSave
 	public void insertByMember(@Param(value = "member_id") Integer member_id);
 
 	@Query(value = "Select * from reviewer_saveRating where member_id = :member_id",nativeQuery = true)
-	public ReviewerSaveRating findByMember(@Param(value = "member_id") Integer member_id);
+	public List<ReviewerSaveRating> findByMember(@Param(value = "member_id") Integer member_id);
 	
 	@Query(value = "Select * from reviewer_saveRating where record_id = :record_id",nativeQuery = true)
 	public ReviewerSaveRating findByRecord(@Param(value = "record_id") Integer record_id);

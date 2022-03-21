@@ -334,7 +334,7 @@ html {
 								<td>
 									<p class="u-text-notice setting-notice fs11">※設定背景圖片</p> 
 									<form:input name="memberImage" id="memberImage" path="memberImage"
-										type="file" /><img id="seeImage" style="height: 90px; width: 90px;" />
+										type="file" /><img src="<c:url value='/getPhoto/${member.id}' />" id="seeImage" style="height: 90px; width: 90px;" />
 								</td>
 							</tr>
 							<tr>

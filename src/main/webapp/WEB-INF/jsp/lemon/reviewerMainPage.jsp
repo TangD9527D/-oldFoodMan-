@@ -348,7 +348,7 @@
                                 
                                <div  class="reco-tx__info-wrap">
                                         <div class="tx-rstname">
-                                            <a class="tx-rstname__target" href="#">${rsr.store_name}</a>
+                                            <a class="tx-rstname__target" href="http://localhost:8080/oldFoodMan/viewById?id=${rsr.record_id}">${rsr.store_name}</a>
                                         </div>
                                         <span class="tx-pref">${rsr.store_city}</span>
                                         <span class="tx-area">${rsr.store_area} / ${rsr.store_type}</span>
@@ -579,7 +579,7 @@
                                 <a href="#">新北市&nbsp;
                                     <span class="num">
                                         [
-                                        <em>1117</em>件
+                                        <em>${newtaipei}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -588,7 +588,7 @@
                                 <a href="#">桃園市&nbsp;
                                     <span class="num">
                                         [
-                                        <em>992</em>件
+                                        <em>${taoyuan}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -597,7 +597,7 @@
                                 <a href="#">台中市&nbsp;
                                     <span class="num">
                                         [
-                                        <em>773</em>件
+                                        <em>${taichung}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -606,7 +606,7 @@
                                 <a href="#">台南市&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${tainan}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -615,7 +615,7 @@
                                 <a href="#">高雄市&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${kaohsiung}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -624,7 +624,7 @@
                                 <a href="#">宜蘭縣&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${yilan}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -633,7 +633,7 @@
                                 <a href="#">新竹縣&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${hsinchu}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -642,7 +642,7 @@
                                 <a href="#">苗栗縣&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${miaoli}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -651,7 +651,7 @@
                                 <a href="#">彰化縣&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${changhua}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -663,7 +663,7 @@
                                 <a href="#">南投縣&nbsp;
                                     <span class="num">
                                         [
-                                        <em>${taipei}</em>件
+                                        <em>${nantou}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -672,7 +672,7 @@
                                 <a href="#">雲林縣&nbsp;
                                     <span class="num">
                                         [
-                                        <em>1117</em>件
+                                        <em>${yunlin}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -681,7 +681,7 @@
                                 <a href="#">嘉義縣&nbsp;
                                     <span class="num">
                                         [
-                                        <em>992</em>件
+                                        <em>${jiayi}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -690,7 +690,7 @@
                                 <a href="#">屏東縣&nbsp;
                                     <span class="num">
                                         [
-                                        <em>773</em>件
+                                        <em>${pingtong}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -699,7 +699,7 @@
                                 <a href="#">花蓮縣&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${hualian}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -708,7 +708,7 @@
                                 <a href="#">台東縣&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${taitong}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -717,7 +717,7 @@
                                 <a href="#">澎湖縣&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${penghu}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -726,7 +726,7 @@
                                 <a href="#">基隆市&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${keelongcity}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -735,7 +735,7 @@
                                 <a href="#">新竹市&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${hsinchucity}</em>件
                                         ]
                                     </span>
                                 </a>
@@ -744,7 +744,7 @@
                                 <a href="#">嘉義市&nbsp;
                                     <span class="num">
                                         [
-                                        <em>337</em>件
+                                        <em>${jiayicity}</em>件
                                         ]
                                     </span>
                                 </a>
