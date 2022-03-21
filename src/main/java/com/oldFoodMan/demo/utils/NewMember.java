@@ -77,7 +77,7 @@ public class NewMember {
 	        int max_mth = 12;
 	        
 	        int min_day = 1;
-	        int max_day = 31;
+	        int max_day = 28;
 	        
 	        ThreadLocalRandom tlr = ThreadLocalRandom.current();
 	        int mths = tlr.nextInt(min_mth, max_mth + 1);
