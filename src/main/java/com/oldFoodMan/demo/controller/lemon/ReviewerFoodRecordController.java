@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oldFoodMan.demo.model.CollectionsRepository;
 import com.oldFoodMan.demo.model.FoodRecord;
 import com.oldFoodMan.demo.model.FoodRecordRepository;
 import com.oldFoodMan.demo.model.Member;
+import com.oldFoodMan.demo.model.ScheduleRepository;
 import com.oldFoodMan.demo.model.lemon.Relationship;
 import com.oldFoodMan.demo.model.lemon.RelationshipRepository;
 import com.oldFoodMan.demo.model.lemon.ReviewerSaveRating;
@@ -25,6 +27,7 @@ import com.oldFoodMan.demo.model.lemon.ReviewerSetting;
 import com.oldFoodMan.demo.model.lemon.ReviewerSettingRepository;
 import com.oldFoodMan.demo.model.lemon.User;
 import com.oldFoodMan.demo.model.lemon.UserRepository;
+import com.oldFoodMan.demo.service.CollectionsService;
 import com.oldFoodMan.demo.service.FoodRecordService;
 import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.service.lemon.ReviewerFoodRecordService;
@@ -60,6 +63,11 @@ public class ReviewerFoodRecordController {
 	
 	@Autowired
 	private MemberServiceImpl memberService;
+
+	@Autowired
+	private ScheduleRepository sbDao;
+	@Autowired
+	private CollectionsRepository collectionRepository;
 	
 	@GetMapping("/reviewerIttaomise")
 	public ModelAndView reviewerIttaomise(ModelAndView mav,HttpSession hs) {
@@ -102,6 +110,13 @@ public class ReviewerFoodRecordController {
 		mav.getModel().put("count", count);
 		mav.getModel().put("frds", frds);
 		
+		//小口袋加總
+		Integer location =sbDao.findScheduleMember(memberId);
+		Integer foodRecord =collectionRepository.colleCounts(memberId);				
+		Integer totalCollection = location+foodRecord;
+		mav.getModel().put("totalCollection", totalCollection);
+		System.out.println("這有啥:"+ totalCollection);
+		
 		//視圖君
 		mav.setViewName("/lemon/reviewerIttaomise");
 		
@@ -141,6 +156,14 @@ public class ReviewerFoodRecordController {
 		user.setFan_size(fans);
 		userRepository.save(user);
 		mav.getModel().put("user",user);
+		
+		//小口袋加總
+		Integer location =sbDao.findScheduleMember(memberId);
+		Integer foodRecord =collectionRepository.colleCounts(memberId);				
+		Integer totalCollection = location+foodRecord;
+		mav.getModel().put("totalCollection", totalCollection);
+		System.out.println("這有啥:"+ totalCollection);
+		
 		
 		//喜愛的店
 		Integer count = foodRecordRepository.recordFavCounts(memberId);

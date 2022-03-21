@@ -14,5 +14,7 @@ public interface ScheduleRepository extends JpaRepository<ScheduleBean, Integer>
 	@Query(value="select * from schedule where member_id = :member_id ",nativeQuery = true)
 	public List<ScheduleBean> findByIdlike(@Param(value="member_id")Integer member_id);
 	
+	@Query(value="SELECT COUNT(member_id) FROM schedule where member_id=:member_id",nativeQuery = true)
+	public Integer findScheduleMember(@Param(value = "member_id") Integer member_id);
 		
 }

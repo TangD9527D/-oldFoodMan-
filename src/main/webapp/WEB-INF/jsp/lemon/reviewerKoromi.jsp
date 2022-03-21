@@ -879,7 +879,7 @@
                 <li id="reviewer-navi-matome" class="reviewer-navi__item reviewer-navi__item--matome is-disabled">
                      <a class="reviewer-navi__target" href="http://localhost:8080/oldFoodMan/eddietest">                    
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">0</span>
+                            <span class="reviewer-navi__count"><c:out value="${totalCollection}"/></span>
                             <span class="reviewer-navi__menu">小口袋</span>
                         </span>
                     </a>
