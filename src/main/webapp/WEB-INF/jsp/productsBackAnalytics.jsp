@@ -57,7 +57,7 @@
 				})
 				
 				
-				new Chart("myChart", {
+				new Chart("amount", {
 					  type: "pie",
 					  data: {
 					    labels: proName,
