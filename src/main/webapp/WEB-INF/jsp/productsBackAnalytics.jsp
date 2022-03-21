@@ -44,48 +44,48 @@
 
 	<script>
 		$.ajax({  //餐券數量統計
-			url:'http://localhost:8080/oldFoodMan/productAnalytics',
+			url:'http://localhost:8080/oldFoodMan/findProductAmount',
 			type:'post',
 			success:function(data){
 				let proName = [];
+				let proCount = [];
 				$.each(data, function(index, value){
-					proName.push(value.product_name);
+					console.log(value[0])
+					console.log(value[1])
+					proCount.push(value[0]);
+					proName.push(value[1]);
 				})
 				
 				
-				$.ajax({
-					url:'http://localhost:8080/oldFoodMan/findProductAmount',
-					type:'post',
-					success: function(datas){
-						console.log(datas);
-						new Chart("amount", {
-							  type: "pie",
-							  data: {
-							    labels: proName,
-							    datasets: [{
-							      backgroundColor: [ "red", "green", "blue", "orange", "brown","pink","purple","yellow" ],
-							      data: datas
-							    }]
-							  },
-							  options: {
-							    title: {
-							      display: true,
-// 							      text: "各餐券銷售數量總額"
-							    }
-							  }
-							});
-					}
-				})
+				new Chart("myChart", {
+					  type: "pie",
+					  data: {
+					    labels: proName,
+					    datasets: [{
+					      backgroundColor: [ "red", "green", "blue", "orange", "brown","pink","purple","yellow" ],
+					      data: proCount
+					    }]
+					  },
+					  options: {
+					    legend: {display: false},
+					    title: {
+					      display: true,
+// 					      text: "各餐券銷售總數"
+					    }
+					  }
+					});
+				
 			}
 		})
-		$('#day').change(function(){
+		
+		$('#day').change(function(){//當日餐券額統計
 			var day = $('#day').val();
 			let year = day.substr(0,4);
 			let month = day.substr(5,2);
 			let date = day.substr(8,2);
 
 			
-	 		$.ajax({  //當日餐券額統計
+	 		$.ajax({ 
 				url:'http://localhost:8080/oldFoodMan/findOneDayTime/' + year + "/" + month + "/" + date,
 				type:'post',
 				success: function(data){
@@ -97,7 +97,6 @@
 					let proMomey = [];
 					let proName = [];
  					$.each(data, function(index, value){
-						console.log(value[0]);
 						proMomey.push(value[0]);
 						proName.push(value[1]);
 					})

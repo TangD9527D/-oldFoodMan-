@@ -598,7 +598,7 @@ body {
 	
 	//Jack
 	$(document).on('click', '#ofm277', function(){ 
-		$('#account').val("c7416706@gamil.com");
+		$('#account').val("c7416706@gmail.com");
 		$('#pwd').val("c7416706");
 	});
 	

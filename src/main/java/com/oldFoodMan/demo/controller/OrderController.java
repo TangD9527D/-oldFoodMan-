@@ -111,8 +111,8 @@ public class OrderController {
 	
 	@ResponseBody
 	@PostMapping("/findProductAmount")
-	public Integer[] findProductAmount(){ //統計數量圖表
-		Integer[] amount = detailService.findProductAmount();
+	public List<List<String>> findProductAmount(){ //統計數量圖表
+		List<List<String>> amount = detailService.findProductAmount();
 		return amount;
 	}
 	
