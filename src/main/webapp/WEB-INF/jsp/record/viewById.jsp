@@ -189,7 +189,7 @@ button {
 		<div id="topTitleLL"
 			style="width: 600px; height: 500px; display: flex; justify-content: center; align-items: center;">
 			<figure>
-				<img src="<c:url value='/getPicture/${foodrecordById.id}'/>">
+				<img style="width: 600px; height: 500px;" src="<c:url value='/getPicture/${foodrecordById.id}'/>">
 			</figure>
 		</div>
 

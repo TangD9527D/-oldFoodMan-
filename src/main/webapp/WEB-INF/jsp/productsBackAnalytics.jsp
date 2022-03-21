@@ -25,18 +25,19 @@
 </head>
 <body>
 	<div class="body88">
-		<div style="width:400px;float:left">
+		<div style="width:400px;margin-left:250px;float:left">
 			<p>
 			<h3>餐券銷售數量總額</h3>
-			<canvas id="amount" style="width:100%;max-width:500px"></canvas>
+			<canvas id="amount" style="width:100%;max-width:400px"></canvas>
 		</div>
-		<div style="width:1000px;margin-left:300px">
+		<div style="width:1000px;margin-left:500px">
 			<p>
 			<h3>當日各銷售額</h3>
 			請選擇:<input type="date" id="day" style="text-align:center">
 			<p>&nbsp;</p>
 			<div id="ajax" style="margin-left:250px">
-			<canvas id="myChart" style="width:100%;max-width:1000px;margin-left:600px"></canvas>
+			<p>&nbsp;</p>
+			<canvas id="myChart" style="width:100%;max-width:800px;margin-left:600px"></canvas>
 			</div>
 		</div>
 	</div>
