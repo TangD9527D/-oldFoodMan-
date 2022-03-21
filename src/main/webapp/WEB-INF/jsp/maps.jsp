@@ -41,7 +41,7 @@
 
 #map {
 	width: 100%;
-	height: 68%;
+	height: 73%;
 	margin: 5px auto;
 	/* float: left; */
 }
@@ -178,6 +178,10 @@ z-index:9999;
 	float: right;
 }
 
+#speedbtn{
+	float: right;
+
+}
 .allrange {
 	text-align: justify;
 	width: 100%;
@@ -208,6 +212,9 @@ z-index:9999;
 	margin-top: 25px;
 	margin-left: 2%;
 	background-color:#fbf3f3;
+	overflow:hidden;
+	border: 3px solid #E6E6F2 ;
+	box-shadow: 2px 2px 5px #E6E6F2;
 
 }
 
@@ -334,6 +341,31 @@ transform:scale(1.2,1.2);
 font-size:50px;
 
 }
+.acolor{
+
+color:black;
+text-decoration:none;
+
+}
+.acolor:hover{
+
+color:orange;
+
+
+}
+
+.acolor1{
+
+color:black;
+text-decoration:none;
+
+}
+.acolor1:hover{
+
+color:gray;
+
+
+}
 
 
 </style>
@@ -366,14 +398,14 @@ font-size:50px;
 			<button id="star" onclick="" class="btn btn-outline-secondary btn-sm">
 				<i class="fa-solid fa-star"></i>收藏地點
 			</button>
-
+	<button id="speedbtn" class="btn btn-outline-secondary btn-sm">一鍵輸入牛</button>
 			<!--  -->
 
 		</div>
 
 
 		<div class="allrange">
-			<div><a href="http://localhost:8080/oldFoodMan/main" class="btn btn-outline-secondary">最新文章</a></div>
+			<div><a href="http://localhost:8080/oldFoodMan/" class="btn btn-outline-secondary">最新文章</a></div>
 			<div class="test2">
 				<div id="xxx">
 					<span id="rangetype" class="btn btn-outline-primary display"></span>
@@ -442,7 +474,9 @@ font-size:50px;
 			<!-- 			</div> -->
 		</div>
 		
-	
+			<footer class="pt-3 mt-4 text-muted border-top">
+      <div style="margin:50px;">&copy; 2022</div>
+    </footer>
 </div>
 
 
@@ -459,7 +493,7 @@ font-size:50px;
 	 let map;
      let markers = [];
 //      $(document).ready(
-    window.onload = function initAutocomplete() {
+	window.onload= function initAutocomplete() {
          map = new google.maps.Map(document.getElementById("map"), {
              center: { lat: 25.033943646794558, lng: 121.54341199736278 },//設立資展國際中心為地圖中心點
              zoom: 19, //數字越大，街道越明顯
@@ -693,7 +727,11 @@ document.getElementById("star").addEventListener("click",function(){
 	  swal("請先登入會員  !!", "請先登入會員 !!", "error").then(insertlocation());
 	});
 	
-
+$("#speedbtn").click(function(){
+	
+	$("#input").val("牛排");
+	
+})
 
 </script>
 	<script>
@@ -761,15 +799,15 @@ if (code == 13) { //Enter keycode
 							console.log(result)
 							
 				$.each(result,function(index,value){
-						msg_data+= '<div id="p1" class="card " style="width:15rem"" >'
+						msg_data+= '<div id="p1" class="card " style="width:15rem" >'
 //  					msg_data+= '<img id="img" src="...'+ value.uploadPicture +'" class="card-img-top" alt="...">'
 						console.log(value.uploadPicture)
 						var image = value.uploadPicture
 						var ok = image.split('.').pop()
 						console.log(ok)
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"><img id="img"  src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>"  class="card-img-top imgsize" alt="..."></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"><img id="img"  src=" <c:url value="'+'http://localhost:8080/oldFoodMan/images/' + value.id +'.'+ ok +'"/>"  class="card-img-top imgsize " alt="..."></a>'
 						msg_data+= '<div id="box" class="card-body">'		
-						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'"<span id="p" class="card-title" style="background-color: #FFCBB3; text-align: center">'+ value.title +'</span></a>'
+						msg_data+= '<a href="http://localhost:8080/oldFoodMan/viewById?id='+ value.id +'" class="acolor1" ><span id="p" class="card-title" style="background-color: #FA92B1; text-align: center">'+ value.title +'</span></a>'
 						msg_data+= '<h5 id="p" class="card-text">'+ value.content  +'</h5>'
 						msg_data+= '</div>'
 						msg_data+= '</div>'
@@ -781,12 +819,7 @@ if (code == 13) { //Enter keycode
 						$('#range1').append(msg_data)
 
 		
-						},
-						error : function(err) {
-							console.log(err)
-							alert('發生錯誤')
 						}
-
 				})
 
 	}

@@ -15,7 +15,7 @@
 		.body88 {
 			margin-top: 30px;
 			margin-left: 320px;
- 			width: 450px; 
+ 			width: 400px; 
  			float: left; 
 /*  			font-size:40px; */
 /* 			text-align: center; */

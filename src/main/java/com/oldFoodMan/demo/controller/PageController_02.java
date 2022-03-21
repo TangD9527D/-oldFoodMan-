@@ -46,11 +46,21 @@ public class PageController_02 {
 		this.servletContext = servletContext;
 	}
 
-//	@GetMapping("searchMaps")
-//	public String map11() {
-//
-//		return "maps";
-//	}
+	@GetMapping("AllRecord")
+	public ModelAndView map11(ModelAndView mav,
+			@RequestParam(name = "p", defaultValue = "1") Integer pageNumber ,HttpSession hs) {
+		
+		Member mid = (Member)hs.getAttribute("member");
+		Integer idd=mid.getId();
+		
+		mav.setViewName("allRecord");
+
+		Page<FoodRecord> page = service.findByPage(pageNumber);
+		mav.getModel().put("member", mid);
+		mav.getModel().put("page", page);
+		
+		return mav ;
+	}
 
 	@GetMapping("/ajaxMessages")
 	public ModelAndView ajaxPage(ModelAndView mav) {
