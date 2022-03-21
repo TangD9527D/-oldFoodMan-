@@ -50,7 +50,7 @@
 						<th>暱稱</th>
 						<th>城市</th>
 						<th>創辦日期</th>
-						<th>修改/刪除</th>
+						<th>刪除</th>
 					</tr>
 				</thead>
 				<c:forEach items="${mb}" var="member">
