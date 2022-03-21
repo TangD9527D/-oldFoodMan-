@@ -38,9 +38,11 @@
 
 <body>
 	<div class="date7">
+	<h2 style="text-align:center">各月份創辦人數</h2>
 		<canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
 	</div>
 	<div class="city7">
+	<h2 style="text-align:center">各縣市使用人數</h2>
 		<canvas id="myChart" style="width:100%;max-width:500px"></canvas>
 	</div>
 <script>
@@ -103,8 +105,7 @@
 			},
 			options: {
 				title: {
-					display: true,
-					text: "各縣市使用人數"
+					display: true
 				}
 			}
 		});
@@ -140,8 +141,7 @@
 				options: {
 					legend: { display: false },
 					title: {
-						display: true,
-						text: "2022各月創辦人數"
+						display: true
 					}
 				}
 			});

@@ -63,7 +63,7 @@
 							  data: {
 							    labels: proName,
 							    datasets: [{
-							      backgroundColor: [ "red", "green", "blue", "orange", "brown" ],
+							      backgroundColor: [ "red", "green", "blue", "orange", "brown","pink","purple","yellow" ],
 							      data: datas
 							    }]
 							  },
@@ -106,7 +106,7 @@
 					  data: {
 					    labels: proName,
 					    datasets: [{
-					      backgroundColor: ["red", "green","blue","orange","brown"],
+					      backgroundColor: [ "red", "green", "blue", "orange", "brown","pink","purple","yellow" ],
 					      data: proMomey
 					    }]
 					  },
@@ -128,7 +128,16 @@
 						  data: {
 						    labels: ["無"],
 						    datasets: [{
-						      backgroundColor: ["red", "green","blue","orange","brown"],
+						      backgroundColor: ["red", "green","blue","orange","brown","#D9B300",
+									"#FF8000",
+									"#F75000",
+									"#804040",
+									"#2F4F4F",
+									"#408080",
+									"#5A5AAD",
+									"#8F4586",
+									"#ECECFF",
+									"#272727"],
 						      
 						    }]
 						  },

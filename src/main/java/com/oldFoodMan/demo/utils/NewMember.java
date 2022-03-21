@@ -17,7 +17,7 @@ public class NewMember {
 
 	public static void main(String[] args) {
 		
-		for(int i=0 ; i<300 ;i++) {
+		for(int i=0 ; i<500 ;i++) {
 			
 			System.out.println("INSERT INTO member (memberName,phone,account,memberPwd,nickName,birth,city,createDate)");
 			
