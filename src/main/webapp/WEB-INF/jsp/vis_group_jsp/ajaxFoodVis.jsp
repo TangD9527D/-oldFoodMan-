@@ -299,12 +299,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 }
 
 .btncen{
-/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f2f6f8+0,d8e1e7+50,b5c6d0+51,e0eff9+100;Grey+Gloss+%232 */
-background: #f2f6f8; /* Old browsers */
-background: -moz-linear-gradient(top,  #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f8', endColorstr='#e0eff9',GradientType=0 ); /* IE6-9 */
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e2e2e2+0,dbdbdb+50,d1d1d1+51,fefefe+100;Grey+Gloss+%231 */
+background: rgb(226,226,226); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+
 
 }
 
@@ -460,7 +461,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		<div id="joinmark">
 		<div  class="div05_32" >
 		<div  class="div05-2">
-		<h3 class="joinhead" ><span class="joinheadn">${ofmid.memberName}</span> 參加 <i class="fa-solid fa-user-plus " style="color:#eb5b59"></i></h3>
+		<h3 class="joinhead" ><span class="joinheadn">${ofmid.nickName}</span> 參加 <i class="fa-solid fa-user-plus " style="color:#eb5b59"></i></h3>
 		</div>
 		
 		<div id="myadd">
@@ -476,7 +477,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 		</div>
 		<div  class="div06_32">
 		 <div class="div05-2" >
-    		<h3 class="tjoinhead" id="addmark"><span class="joinheadn">${ofmid.memberName}</span> 發起 <i class="fa-solid fa-calendar-plus" style="color:#a13b3a"></i></h3>
+    		<h3 class="tjoinhead" id="addmark"><span class="joinheadn">${ofmid.nickName}</span> 發起 <i class="fa-solid fa-notes-medical" style="color:#a13b3a"></i></h3>
   		</div>
 	
 	
@@ -495,7 +496,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 	</section>
 	</article>
 		
-<!-- dialog視窗 -->
+<!--新增揪團--- dialog視窗 -->
 
 		<div >
 		<div class="modal fade" id="exampleModal" tabindex="-1"
@@ -515,13 +516,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 	<form:form class="form" action="${contextRoot}/ajaxFoodVis"
 							modelAttribute="ofmid" method="post" >
 							
-			<div class="form-group col-md-9">
+			<div class="form-group col-md-12">
 			
-				<h5><i class="fa-solid fa-user-group"></i>舉辦者：${ofmid.memberName} ( ${ofmid.nickName} )</h5> 
+				<h4><i class="fa-solid fa-user-group"></i>&nbsp; 舉辦者：${ofmid.nickName} </h4> 
 
 			</div>					
 							
-							
+			<hr>				
 							
 			<div class="form-row">
 						
@@ -564,9 +565,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 			
 		</div>
 						<div class="modal-footer">
+						<button type="reset" class="btn btncen"
+							>清除</button>
 						<button type="button" class="btn btncen"
 							data-dismiss="modal">Close</button>
-						<button type="button" id="checksubmit" class="btn btn btnadd " >確定新增</button>
+						<button type="button" id="checksubmit"  style="font-weight:bolder;width:120px;" class="btn btn btnadd " ><i class="fa-solid fa-circle-plus"></i> 確定新增</button>
 <!-- 						onclick="confirm('確定送出？'); return insertdata();" -->
 					</div>	
 							
@@ -582,9 +585,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 
 <aside class="aside">
 <section class="section">
-<!-- <div class="viewtable"> -->
 
-		<div><button type="button"  class="btn btn  btn-lg btnadd" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData"><i class="fa-solid fa-circle-plus"></i> 新增揪團</button> <span class="titlehead pink">所有揪團</span></div>
+<!-- 載入所有列表 -->
+<span class="titlehead pink">所有揪團</span>
+		<div><button type="button"  class="btn btn  btn-lg btnadd" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="insertData"><i class="fa-solid fa-circle-plus"></i> 新增揪團</button> </div>
 		<p>
 		<c:forEach var="viewallvis" items="${page.content}">
 		<div id="table_id" class="card text-center">
@@ -592,7 +596,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
     		${viewallvis.vis_res_name}
   		</h4>
   		<div class="card-body">
-   			<h5 class="card-title"><i class="fa-regular fa-clock">${viewallvis.vis_date}&nbsp;&nbsp; ${viewallvis.vis_time}</i></h5>
+   			<h5 class="card-title"><i class="fa-regular fa-clock">${viewallvis.vis_date}&nbsp; ${viewallvis.vis_time}</i></h5>
    		
     		<p class="card-text"><i class="fa-solid fa-location-dot">${viewallvis.vis_location}</i></p>
 <%--     	<a href="${contextRoot}/findOneVis?id=${viewallvis.vis_id}"  style="font-weight:bolder;width:120px;height:40px;border-radius:20px" id="joinvis"   class="btn pink" >加入</a> --%>
@@ -610,13 +614,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 </c:forEach>
 <p>
 
-		
-		
 
-<!-- 分頁頁碼 -->
-		
-
-		<!-- dialog視窗 -->
+		<!-- 編輯揪團----dialog視窗 -->
 
 		<div class="modal fade" id="exampleModal1" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -635,9 +634,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffeded', end
 	<form:form class="form" action="${contextRoot}/ajaxFoodVis"
 							modelAttribute="ofmid" method="post" >
 							
-			<div class="form-group col-md-9">
+			<div class="form-group col-md-12">
 			
-				<h4><i class="fa-solid fa-user-group"></i>舉辦者：${ofmid.memberName}</h4> 
+				<h4><i class="fa-solid fa-user-group"></i>舉辦者：${ofmid.nickName}</h4> 
 
 			</div>					
 							
@@ -978,7 +977,7 @@ var tdate=new Date();
 				var msg_data='';
 				$.each(result,function(index,value){
 					
-						msg_data+= '<div id="p'+value.vis_id+'" class="card p1" style="width: 4.6cm;">'
+						msg_data+= '<div id="p'+value.vis_id+'" class="card p1" style="width: 4.5cm;">'
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +' " ><h3 id="pp" class="card-title tp2" style="background-color: #faf0e6; font-size:21px ;text-align: center">'+ value.vis_res_name +'</h3></a>'
 						msg_data+= '<h5 ip="p" class="card-text " style=" text-align: center">'+ value.vis_date  + '</h5>'
@@ -1024,7 +1023,7 @@ var tdate=new Date();
 				var msg_data='';
 				$.each(result,function(index,value){
 					
-						msg_data+= '<div id="p'+value.vis_id+'" class="card p1" style="width: 4.6cm;">'
+						msg_data+= '<div id="p'+value.vis_id+'" class="card p1" style="width: 4.5cm;">'
 					
 						msg_data+= '<div class="card-body">'		
 						msg_data+= '<a href="http://localhost:8080/oldFoodMan/findOneVisdetail?id='+ value.vis_id +'"><h3 id="p" class="card-title tp1" style="background-color: #faebd7;font-size:21px ; text-align: center"; >'+ value.vis_res_name +'</h3></a>'
@@ -1272,24 +1271,25 @@ var tdate=new Date();
 
 		const swalWithBootstrapButtons = Swal.mixin({
 			  customClass: {
-			    confirmButton: 'btn btn-success',
-			    cancelButton: 'btn btn-danger'
+			    confirmButton: 'btn btn-info',
+			    cancelButton: 'btn btn-danger',
+			    
 			  },
 			  buttonsStyling: false
 			})
 
 			swalWithBootstrapButtons.fire({
-			  title: '確定要刪除嗎？',
+			  title: '確定不參加了嗎？',
 			  text: "",
 			  icon: 'warning',
 			  showCancelButton: true,
-			  confirmButtonText: '是的',
-			  cancelButtonText: '放棄',
+			  confirmButtonText: '確定',
+			  cancelButtonText: '取消',
 			  reverseButtons: true
 			}).then((result) => {
 			  if (result.isConfirmed) {
 			    swalWithBootstrapButtons.fire(
-			      '已取消參加',
+			      '已放棄參加',
 			      '',
 			      'success'
 			    )
@@ -1310,25 +1310,14 @@ var tdate=new Date();
 			    result.dismiss === Swal.DismissReason.cancel
 			  ) {
 			    swalWithBootstrapButtons.fire(
-			      '放棄刪除',
+			      '先不取消囉!',
 			      ':)',
 			      'error'
 			    )
 			  }
 			})
 	
-	
-	
-	
-	
 
-		
-		
-		
-		
-		
-		
-		
 		
 	})
 	
@@ -1338,44 +1327,46 @@ var tdate=new Date();
 		
 		const swalWithBootstrapButtons = Swal.mixin({
 			  customClass: {
-			    confirmButton: 'btn btn-success',
+			    confirmButton: 'btn btn-info',
 			    cancelButton: 'btn btn-danger'
 			  },
 			  buttonsStyling: false
 			})
 
 			swalWithBootstrapButtons.fire({
-			  title: 'Are you sure?',
-			  text: "You won't be able to revert this!",
+			  title: '確定要刪除此筆揪團嗎?',
+			  text: "",
 			  icon: 'warning',
 			  showCancelButton: true,
-			  confirmButtonText: 'Yes, delete it!',
-			  cancelButtonText: 'No, cancel!',
+			  confirmButtonText: '確定刪除',
+			  cancelButtonText: '取消刪除',
 			  reverseButtons: true
 			}).then((result) => {
 			  if (result.isConfirmed) {
 			    swalWithBootstrapButtons.fire(
-			      'Deleted!',
-			      'Your file has been deleted.',
+			      '已刪除',
+			      '',
 			      'success'
-			    )
+			    ).then((value)=>{
 			    
 				$.ajax({
 					type : "get",
 					url : "http://localhost:8080/oldFoodMan/deleteMyFoodVis?id="+id,
 					success : function(data) {
-						$('#p'+id+'').remove();
 						
+						location.reload();
 					},
+					
+					
 				});
-			    
+			    })
 			  } else if (
 			    /* Read more about handling dismissals below */
 			    result.dismiss === Swal.DismissReason.cancel
 			  ) {
 			    swalWithBootstrapButtons.fire(
-			      'Cancelled',
-			      'Your imaginary file is safe :)',
+			      '取消刪除!',
+			      ':)',
 			      'error'
 			    )
 			  }
@@ -1400,36 +1391,6 @@ var tdate=new Date();
 </script>
 
 
-
-<!-- 		Swal.fire({ -->
-<!-- 					  title: '確定刪除此團?', -->
-<!-- 					  text: "", -->
-<!-- 					  icon: 'warning', -->
-<!-- 					  showCancelButton: true, -->
-<!-- 					  confirmButtonColor: '#3085d6', -->
-<!-- 					  cancelButtonColor: '#d33', -->
-<!-- 					  confirmButtonText: '確定取消揪團', -->
-<!-- 					  closeOnConfirm: true -->
-
-<!-- 					}).then((result) => { -->
-<!-- 					  if (result.isConfirmed) { -->
-<!-- 					    Swal.fire({ -->
-<!-- 					    title:'已刪除!', -->
-<!-- 					    text:'', -->
-<!-- 					    icon:'success' -->
-					       
-<!-- 					    }).then((result) => { -->
-<!-- // 							location.reload(); -->
-<!-- 							$('#p'+id+'').remove(); -->
-							
-<!-- 						}) -->
-					    
-<!-- 					  }else{ -->
-<!-- 						  return ; -->
-<!-- 					  } -->
-<!-- 					}) -->
-
-
 <script>
   $( function() {
     $( "#vis_date" ).datepicker({ 
@@ -1450,39 +1411,27 @@ var tdate=new Date();
 	    
 	    });
 	    
-// 	    $(".timepicker").timepicker({
-// 	        timeFormat: "h:mm p", // 時間隔式
-// 	        interval: 30, //時間間隔
-// 	        minTime: "06", //最小時間
-// 	        maxTime: "23:55pm", //最大時間
-// 	        defaultTime: "06", //預設起始時間
-// 	        startTime: "01:00", // 開始時間
-// 	        dynamic: true, //是否顯示項目，使第一個項目按時間順序緊接在所選時間之後
-// 	        dropdown: true, //是否顯示時間條目的下拉列表
-// 	        scrollbar: false //是否顯示捲軸
-// 	      });
+
 	  } );
   
 
   </script>
   
   
- <script>
-//  var confCount = 0;
-// 	 $('.conf').each(function(){     
-// 	    confCount++; 
-//  });
-	 
-//  var id= document.getElementById("mymid'+myid+'").value;
-//  var myid=document.getElementById("member_id").value;
   
-//  console.log("幾個ID: "+confCount)
-//  if(id == myid){
-// 	 console.log("ha: "+id)
-// 	 $('#joinvis').attr('disabled','disabled')
-	 
-//  }
- 
+  
+  
+ <script>
+
+//一鍵新增揪團
+	$(document).on('click', '#exampleModalLabel', function(){ 
+		$('#vis_date').val("2022-03-23");
+		$('#vis_time').val("18:30");
+		$('#vis_res_name').val("卡拉拉涮涮鍋");
+		$('#vis_location').val("台北市內湖區成功路四段205號");
+		$('#vis_num').val("5")
+		$('#vis_condition').val("想吃烤肉及火鍋都可以");
+	});
 
  </script> 
  

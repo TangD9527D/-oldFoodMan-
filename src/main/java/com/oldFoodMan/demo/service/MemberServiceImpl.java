@@ -169,4 +169,10 @@ public class MemberServiceImpl implements UserDetailsService {
 		
 		return city;
 	}
+	
+	public List<String> countYrMth(){
+		List<String> yrMth = memberDao.countYrMth();
+		
+		return yrMth;
+	}
 }

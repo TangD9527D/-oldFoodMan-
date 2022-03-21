@@ -1,14 +1,18 @@
 package com.oldFoodMan.demo.service.lemon.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.oldFoodMan.demo.model.Member;
 import com.oldFoodMan.demo.model.lemon.Relationship;
 import com.oldFoodMan.demo.model.lemon.RelationshipRepository;
 import com.oldFoodMan.demo.model.lemon.User;
 import com.oldFoodMan.demo.model.lemon.UserRepository;
+import com.oldFoodMan.demo.service.MemberServiceImpl;
 import com.oldFoodMan.demo.service.lemon.RelationshipService;
 
 @Service
@@ -19,6 +23,9 @@ public class RelationshipServiceImpl implements RelationshipService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private MemberServiceImpl memberService;
 
 	@Override
 	public List<Integer> listFriends(Integer userId) {
@@ -53,9 +60,16 @@ public class RelationshipServiceImpl implements RelationshipService {
 	}
 
 	@Override
-	public List<Integer> listFollows(Integer userId) {
+	public List<Member> listFollows(Integer userId) {
 		List<Integer>relationshipList = relationshipRepository.findByFromUserId(userId);
-		return relationshipList;
+		List<Member> memberList = new ArrayList<>();
+		Iterator<Integer> it = relationshipList.iterator();    //使用Iterator取值
+		while(it.hasNext()){
+        Member member = memberService.findById((Integer) it.next());
+        memberList.add(member);
+        }
+		
+		return memberList;
 	}
 
 	@Override

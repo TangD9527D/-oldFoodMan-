@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -189,29 +190,68 @@ public class FoodRecordController {
 	
 	//修改食記(顯示之前的食記資料)
 	@GetMapping("/editData")
-	public ModelAndView showPreviousRecord(ModelAndView mav, @RequestParam(name = "id") Integer id) {
-		FoodRecord msg = service.findById(id);
-		mav.getModel().put("foodrecord", msg);
-		System.out.println("顯示食記");
+	public ModelAndView showPreviousRecord(ModelAndView mav, @RequestParam(name = "id") Integer id,HttpSession session) {
+		FoodRecord record = service.findById(id);
+		Member member = (Member)session.getAttribute("member"); 
+		Integer memberID = member.getId();
+		MultipartFile oriImage = record.getProductImage();
+		System.out.println("oriImage="+oriImage);
+		
+		Blob CoverImage = record.getCoverImage();
+		String UploadPicture = record.getUploadPicture();
+		System.out.println("CoverImage="+CoverImage);
+		System.out.println("UploadPicture="+UploadPicture);
+		
+		mav.getModel().put("CoverImage",CoverImage);
+		mav.getModel().put("UploadPicture",UploadPicture);
+		mav.getModel().put("memberID",memberID);
+		mav.getModel().put("foodrecord", record);
+		System.out.println("顯示食記="+record);
 		mav.setViewName("record/editData");	
 		return mav;
 	}
 	
 	//修改食記(更新食記)
 	@PostMapping(value = "/editData")
-	public ModelAndView updateRecord(ModelAndView mav, @Valid @ModelAttribute(name="foodrecord") FoodRecord fr, BindingResult result,HttpSession session) {	
+	public ModelAndView updateRecord(ModelAndView mav,@RequestParam(name = "id") Integer id, @Valid @ModelAttribute(name="foodrecord") FoodRecord fr, BindingResult result,HttpSession session) {	
 		mav.setViewName("record/editData");	
 		Member member = (Member)session.getAttribute("member"); 
-		FoodRecord sessionRecordId = (FoodRecord)session.getAttribute("sessionRecordId"); //拿食記的Id
-		Integer RecordId = sessionRecordId.getId();
-		FoodRecord currentRecord = service.findById(RecordId);
-		System.out.println("目前的食記內容 "+currentRecord);
-		currentRecord.setMember_id(member);
+		System.out.println("member ="+member);
+		FoodRecord currentRecord = service.findById(id);
+		Date time = currentRecord.getAdded();
+		
+		MultipartFile productImage = fr.getProductImage();
+		String originalFilename = productImage.getOriginalFilename();
+		fr.setUploadPicture(originalFilename);
+		//  建立Blob物件，交由 Hibernate 寫入資料庫
+		if (productImage != null && !productImage.isEmpty() ) {
+			try {
+				byte[] b = productImage.getBytes();    //轉成位元組陣列
+				Blob blob = new SerialBlob(b);    //new一個Serial Blob的物件
+				fr.setCoverImage(blob);
+			} catch(Exception e) {
+				e.printStackTrace();
+				throw new RuntimeException("檔案上傳發生異常: " + e.getMessage());
+			}
+		}else {
+			Blob currentImage = currentRecord.getCoverImage();
+			String currentPicture = currentRecord.getUploadPicture();
+			System.out.println("currentImage "+currentImage);
+			System.out.println("currentPicture "+currentPicture);
+			fr.setCoverImage(currentImage);
+			fr.setUploadPicture(currentPicture);
+		}
+		
+		fr.setMember_id(member);
+		fr.setId(id);
+		fr.setAdded(time);
+
+		System.out.println("目前的食記內容fr "+fr);
 		if(!result.hasErrors()) {
 			System.out.println("更新食記");
 			 service.insertRF(fr);
 			 System.out.println("成功存入");
-			 mav.setViewName("redirect:/theLastestRecord");
+			 mav.setViewName("redirect:/MemberRecordList");
 		}	
 		return mav;	
 	}

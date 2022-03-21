@@ -22,13 +22,13 @@
 	href="${contextRoot}/cssLemon/oldfoodPage01_contents_left.css">
 <link rel="stylesheet"
 	href="${contextRoot}/cssLemon/oldfoodPage01_contents_right.css">
-<link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base">
+<link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<script src="/js/jquery-3.6.0.min.js"></script>
+<script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
 <style>
 #container {
 	position: relative;
@@ -402,8 +402,8 @@ html {
                 </div>
             </div>
             <div id="page-info" class="header-cover--info js-page-info">
-                <p class="page-name"><c:out value="${reviewerPage.reviewer_title}"/></p>
-                <p class="page-sub-title"><c:out value="${reviewerPage.reviewer_subtitle}"/></p>
+                <p class="page-name"><c:out value="${memberPage.reviewersetting.reviewer_title}"/></p>
+                <p class="page-sub-title"><c:out value="${memberPage.reviewersetting.reviewer_subtitle}"/></p>
             </div>
             <div class="header-cover__actions">
                 <div class="reviewer-action-btns">
@@ -452,11 +452,11 @@ html {
                         </span>
                         <span class="reviewer-status__attr">(${bdd}-<c:out value="${memberPage.city}"/>)</span>
                     </p>
-                    <p class="reviewer-status__occupation"><c:out value="${reviewerPage.reviewer_occupation}"/></p>
+                    <p class="reviewer-status__occupation"><c:out value="${memberPage.reviewersetting.reviewer_occupation}"/></p>
                 </div>
                 <div class="comment-prof">
                     <span class="comment-prof__body">
-                        <c:out value="${reviewerPage.reviewer_intro}"/>
+                        <c:out value="${memberPage.reviewersetting.reviewer_intro}"/>
                     </span>
                     <span class="comment-prof__more">
                         <a class="c-link-arrow" href="${contextRoot}/reviewerPageIntro">
@@ -481,7 +481,7 @@ html {
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
-                                <span class="reviewer-counter__data-num">44件</span>
+                                <span class="reviewer-counter__data-num"><c:out value="${countFav}"/>件</span>
                             </p>
                         </dd>
                     </dl>
@@ -491,11 +491,11 @@ html {
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
-                                <span class="reviewer-counter__data-num">473枚</span>
+                                <span class="reviewer-counter__data-num">${picCounts}枚</span>
                             </p>
-                            <p class="reviewer-counter__like-count">
-                                <span class="reviewer-counter__like-count-num">1,224</span>
-                            </p>
+<!--                             <p class="reviewer-counter__like-count"> -->
+<!--                                 <span class="reviewer-counter__like-count-num">1,224</span> -->
+<!--                             </p> -->
                         </dd>
                     </dl>
                     <dl class="reviewer-counter__item">
@@ -523,7 +523,7 @@ html {
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__like-count">
-                                <span class="reviewer-counter__like-count-num">2,786</span>
+                                <span class="reviewer-counter__like-count-num">2,7</span>
                             </p>
                         </dd>
                     </dl>
@@ -542,7 +542,7 @@ html {
                 <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerIttaomise">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">1478</span>
+                            <span class="reviewer-navi__count"><c:out value="${countAll}"/></span>
                             <span class="reviewer-navi__menu">拜訪店家</span>
                         </span>
                     </a>
@@ -550,7 +550,7 @@ html {
                 <li id="reviewer-navi-interest" class="reviewer-navi__item reviewer-navi__item--interest">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerKoromi">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">156</span>
+                            <span class="reviewer-navi__count"><c:out value="${countFav}"/></span>
                             <span class="reviewer-navi__menu">喜愛店家</span>
                         </span>
                     </a>
@@ -566,7 +566,7 @@ html {
                 <li id="reviewer-navi-follow" class="reviewer-navi__item reviewer-navi__item--follow">
                     <a class="reviewer-navi__target" href="${contextRoot}/relationships/follows">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">62</span>
+                            <span class="reviewer-navi__count"><c:out value="${user.follow_size}"/></span>
                             <span class="reviewer-navi__menu">追蹤</span>
                         </span>
                     </a>
@@ -574,7 +574,7 @@ html {
                 <li id="reviewer-navi-follower" class="reviewer-navi__item reviewer-navi__item--follower">
                     <a class="reviewer-navi__target" href="${contextRoot}/relationships/fans">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">22157</span>
+                            <span class="reviewer-navi__count"><c:out value="${user.fan_size}"/></span>
                             <span class="reviewer-navi__menu">追隨者</span>
                         </span>
                     </a>
@@ -586,7 +586,6 @@ html {
 
 <!--header end-->
 
-
 	<div id="container">
 		<!-- contents start -->
 		<div id="contents" class="clearfix">
@@ -595,7 +594,7 @@ html {
 				<div class="rvwr-heading1">
 					<h2 class="rvwr-heading1__title">
 						追蹤中 <strong class="rvwr-heading1__count"> <b
-							class="rvwr-heading1__num"> 2 </b> 人
+							class="rvwr-heading1__num"><c:out value="${user.follow_size}"/></b> 人
 						</strong>
 					</h2>
 				</div>
@@ -603,27 +602,34 @@ html {
 					<ul class="c-view-sort__list js-sort-list">
 						<li class="c-view-sort__item"><a
 							class="js-sort-by is-selected is-desc c-view-sort__target"
-							href="#"> 喜愛店家最新更新日 </a></li>
-						<li class="c-view-sort__item"><a
-							class="js-sort-by c-view-sort__target" href="#"> 追蹤日期 </a></li>
+							href="${contextRoot}/reviewerAll">別人點的看起來都比較好吃</a></li>
+<!-- 						<li class="c-view-sort__item"><a -->
+<!-- 							class="js-sort-by c-view-sort__target" href="#"> 追蹤日期 </a></li> -->
 					</ul>
 				</div>
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">#</th>
-							<th scope="col">First</th>
-							<th scope="col">Last</th>
-							<th scope="col">Handle</th>
+							<th scope="col">會員暱稱</th>
+							<th scope="col">標題</th>
+							<th scope="col">副標題</th>
+							<th scope="col">區域</th>
+							<th scope="col">取消追蹤</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var='id' items='${ids}'>
 						<tr>
-							<th scope="row"><c:out value="${id}"/></th>
-							<td>O_O</td>
-							<td>O_O</td>
-							<td>@_@</td>
+							<th scope="row"><a href="${contextRoot}/getreviewer/${id.id}"><c:out value="${id.nickName}"/></a></th>
+							<td><c:out value="${id.reviewersetting.reviewer_title}"/></td>
+							<td><c:out value="${id.reviewersetting.reviewer_subtitle}"/></td>
+							<td><c:out value="${id.city}"/></td>
+							<td id="followBtn">
+								<span id="followTarget">
+									QAQ
+									<input type="hidden" value="${id.id}" id="followValue"/>
+								</span> 
+							</td>
 						</tr>
 						</c:forEach>
 					</tbody>
@@ -633,5 +639,27 @@ html {
 		</div>
 		<!-- contents end -->
 	</div>
+<script type="Text/JavaScript">
+
+$('#followBtn').click(function(){
+	var memberId= document.getElementById("followValue").value;
+	console.log(memberId);
+
+	$.ajax({
+		url:'http://localhost:8080/oldFoodMan/relationship/unfollow/'+ memberId,
+		contentType :'application/json; charset=UTF-8',
+		method :'post',
+
+		success:function(fanSize){
+			var f=fanSize
+			if(f=2){
+				alert("QAQ");
+			}
+			location.reload();
+		}
+	})
+})
+
+</script>
 </body>
 </html>

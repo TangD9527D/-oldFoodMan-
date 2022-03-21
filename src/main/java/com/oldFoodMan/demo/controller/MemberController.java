@@ -137,25 +137,5 @@ public class MemberController {
 		return mav;
 		
 	}
-	
-	@ResponseBody
-	@PostMapping("/backStage/mbrDelete/{id}")
-	public String deleteMember(@PathVariable(name = "id") int mbrId) {
-		
-		service.delete(mbrId);
-		
-		return "success";
-	}
-	
-	@ResponseBody
-	@PostMapping("/backStage/countCity")
-	public List<String> countCity() {
-		
-		List<String> city = service.countCity();
-		System.out.println(city);
-		 
-		return city;
-		
-	}
 
 }

@@ -245,7 +245,7 @@ public class FoodVisController_32 {
 		
 
 		
-//		System.out.println("有啥: "+joinofm);
+		System.out.println("有啥: "+joinofm);
 		Integer member=ofm.getMember_id(); //取得開團者ID
 		
 		Member fmid=memberservice.findById(member);//從開團者ID拿到開團者會員資料

@@ -27,6 +27,10 @@ public class OrderDetailService {
 		return detailDao.findProductAmount();
 	}
 	
+	public Integer[] findProductIdToDoNextStep(int ori, int last) {
+		return detailDao.findProductIdToDoNextStep(ori, last);
+	}
+	
 	public List<List<String>> findqqq(int ori, int last){
 		return detailDao.findProductAmount2(ori, last);
 	}

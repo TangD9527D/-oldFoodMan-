@@ -307,8 +307,8 @@
                 </div>
             </div>
             <div id="page-info" class="header-cover--info js-page-info">
-                <p class="page-name"><c:out value="${reviewerPage.reviewer_title}"/></p>
-                <p class="page-sub-title"><c:out value="${reviewerPage.reviewer_subtitle}"/></p>
+                <p class="page-name"><c:out value="${memberPage.reviewersetting.reviewer_title}"/></p>
+                <p class="page-sub-title"><c:out value="${memberPage.reviewersetting.reviewer_subtitle}"/></p>
             </div>
             <div class="header-cover__actions">
                 <div class="reviewer-action-btns">
@@ -357,11 +357,11 @@
                         </span>
                         <span class="reviewer-status__attr">(${bdd}-<c:out value="${memberPage.city}"/>)</span>
                     </p>
-                    <p class="reviewer-status__occupation"><c:out value="${reviewerPage.reviewer_occupation}"/></p>
+                    <p class="reviewer-status__occupation"><c:out value="${memberPage.reviewersetting.reviewer_occupation}"/></p>
                 </div>
                 <div class="comment-prof">
                     <span class="comment-prof__body">
-                        <c:out value="${reviewerPage.reviewer_intro}"/>
+                        <c:out value="${memberPage.reviewersetting.reviewer_intro}"/>
                     </span>
                     <span class="comment-prof__more">
                         <a class="c-link-arrow" href="${contextRoot}/reviewerPageIntro">
@@ -386,7 +386,7 @@
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
-                                <span class="reviewer-counter__data-num">44件</span>
+                                <span class="reviewer-counter__data-num"><c:out value="${countFav}"/>件</span>
                             </p>
                         </dd>
                     </dl>
@@ -396,11 +396,11 @@
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__data-count">
-                                <span class="reviewer-counter__data-num">473枚</span>
+                                <span class="reviewer-counter__data-num">${picCounts}枚</span>
                             </p>
-                            <p class="reviewer-counter__like-count">
-                                <span class="reviewer-counter__like-count-num">1,224</span>
-                            </p>
+<!--                             <p class="reviewer-counter__like-count"> -->
+<!--                                 <span class="reviewer-counter__like-count-num">1,224</span> -->
+<!--                             </p> -->
                         </dd>
                     </dl>
                     <dl class="reviewer-counter__item">
@@ -428,7 +428,7 @@
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__like-count">
-                                <span class="reviewer-counter__like-count-num">2,786</span>
+                                <span class="reviewer-counter__like-count-num">2,7</span>
                             </p>
                         </dd>
                     </dl>
@@ -447,7 +447,7 @@
                 <li id="reviewer-navi-review" class="reviewer-navi__item reviewer-navi__item--review">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerIttaomise">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">1478</span>
+                            <span class="reviewer-navi__count"><c:out value="${countAll}"/></span>
                             <span class="reviewer-navi__menu">拜訪店家</span>
                         </span>
                     </a>
@@ -455,7 +455,7 @@
                 <li id="reviewer-navi-interest" class="reviewer-navi__item reviewer-navi__item--interest">
                     <a class="reviewer-navi__target" href="${contextRoot}/reviewerKoromi">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">156</span>
+                            <span class="reviewer-navi__count"><c:out value="${countFav}"/></span>
                             <span class="reviewer-navi__menu">喜愛店家</span>
                         </span>
                     </a>
@@ -471,7 +471,7 @@
                 <li id="reviewer-navi-follow" class="reviewer-navi__item reviewer-navi__item--follow">
                     <a class="reviewer-navi__target" href="${contextRoot}/relationships/follows">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">62</span>
+                            <span class="reviewer-navi__count"><c:out value="${user.follow_size}"/></span>
                             <span class="reviewer-navi__menu">追蹤</span>
                         </span>
                     </a>
@@ -479,7 +479,7 @@
                 <li id="reviewer-navi-follower" class="reviewer-navi__item reviewer-navi__item--follower">
                     <a class="reviewer-navi__target" href="${contextRoot}/relationships/fans">
                         <span class="reviewer-navi__menu-wrap">
-                            <span class="reviewer-navi__count">22157</span>
+                            <span class="reviewer-navi__count"><c:out value="${user.fan_size}"/></span>
                             <span class="reviewer-navi__menu">追隨者</span>
                         </span>
                     </a>

@@ -99,6 +99,23 @@ public class CollectionsController {
 	}
 	
 	
+	
+	@ResponseBody
+	@GetMapping("/chartsMemberCollections")
+	public List<String> chartsMemberCollections(ModelAndView mav){
+			
+		List<String> list=service.findMemberChart();
+		
+		System.out.println("都看看是誰來了" + list);		
+		
+		return list; 
+		
+	}
+	
+	
+	
+	
+	
 	@GetMapping("/chartBiao")
 	public ModelAndView AjaxAllCollections(ModelAndView mav) {
 		

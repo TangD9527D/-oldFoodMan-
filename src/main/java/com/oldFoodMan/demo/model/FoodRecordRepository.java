@@ -32,6 +32,11 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	@Query(value="SELECT　shopType as 類型, COUNT(*) AS 次數 FROM foodRecord　GROUP BY shopType ORDER BY COUNT(*) DESC",nativeQuery=true)
 	public List<String> typeFilter();
 	
+	@Query(value="UPDATE foodRecord SET title=:title,content=:content,shopName=:shopName,shopType=:shopType,audience=:audience,priceScope=:priceScope,city=:city,town=:town,shopAddress=:shopAddress,tel=:tel,"
+			+ "businessHours=:businessHours,tasty=:tasty,atmosphere=:atmosphere,cp=:cp,gender=:gender,gender1=:gender1,gender2=:gender2,member_id=:member_id WHERE record_id=:record_id",nativeQuery=true)
+	public List<FoodRecord> updateRecord(@Param("record_id")Integer record_id);
+	
+	
 	
 	//Lemon_START
 	@Transactional

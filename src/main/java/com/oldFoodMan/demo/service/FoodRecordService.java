@@ -26,6 +26,10 @@ public class FoodRecordService {
 		frDao.save(rf);
 	}
 	
+	public List<FoodRecord> updateRecord(Integer id) {
+		List<FoodRecord> update = frDao.updateRecord(id);
+		return update;
+	}
 	
 	//用ID查 方法一 (Optional→使用泛型)
 		public FoodRecord findById(Integer id) {  

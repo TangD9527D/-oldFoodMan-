@@ -21,6 +21,8 @@
     <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
     <style>
 
+		
+	
 		.menu7{
         	line-height:0px;
         }
@@ -262,7 +264,7 @@
             vertical-align: middle;
             line-height: normal;
             appearance: none;
-            padding: 0.6rem 1.2rem;
+/*             padding: 0.6rem 1.2rem; */
             font-size: 1.2rem;
 
         }
@@ -1080,9 +1082,11 @@
                                 <div class="simple-rvw__rst-data">
                                     <div class="simple-rvw__rst-name simple-rvw__rst-name--mypage">
                                         <h3>
-                                            <a class="simple-rvw__rst-name-target" target="_blank" href="savingTop/${frd.id}">
-                                                <c:out value="${frd.shopName}"/>        
+                                            <a class="simple-rvw__rst-name-target" target="_blank" id="followBtn">
+                                                <c:out value="${frd.shopName}"/>
                                             </a>
+                                            <input type="hidden" value="<c:out value='${frd.id}'/>" id="recordValue"/>     
+                                            
                                         </h3>
                                     </div>
                                     <p class="simple-rvw__area-catg">
@@ -1139,6 +1143,8 @@
 
 <script type="text/javascript">
 	
+
+	//搜尋
 	function formCitySubmit() {
 		var cityvalue = $("#Area").val();
 		
@@ -1161,6 +1167,27 @@
 		if( $("#highPrice").val() == null){ alert("null"); }
 		$("#searchPriceForm").submit();
 	}
+	
+	
+	//收藏
+    $('#followBtn').click(function(){
+    	var memberId= document.getElementById("recordValue").value;
+    	if( $("#recordValue").val() == null){ alert("null"); }
+    	console.log(memberId);
+    	
+    	$.ajax({
+    		url:'http://localhost:8080/oldFoodMan/ittaomise/savingTop/'+ memberId,
+    		contentType :'application/json; charset=UTF-8',
+    		method :'post',
+
+    		success:function(fanSize){
+    			var f=fanSize
+    			if(f=1){
+    				alert("O_O");
+    			}
+    		}
+    	})
+    })
 
 </script>
 
