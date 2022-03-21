@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_right.css">
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base.css">
     <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         
         .menu7{
@@ -757,8 +758,9 @@
 
     		success:function(fanSize){
     			var f=fanSize
+    			
     			if(f=1){
-    				alert("O_O");
+    				swal("O_O", "追隨成功", "success");
     			}
     		}
     	})

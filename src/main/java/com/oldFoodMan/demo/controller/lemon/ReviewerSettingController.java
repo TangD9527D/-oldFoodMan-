@@ -240,7 +240,6 @@ public class ReviewerSettingController {
 		mav.getModel().put("totalCollection", totalCollection);
 		System.out.println("這有啥:"+ totalCollection);
 		
-		
 		//標記區域
 		List<ReviewerSaveRating> rsrs = reviewerFoodRecordService.findAll();
 		mav.getModel().put("rsrs",rsrs);
@@ -329,6 +328,13 @@ public class ReviewerSettingController {
 		user.setFan_size(fans);
 		userRepository.save(user);
 		mav.getModel().put("user",user);
+		
+		//小口袋加總
+		Integer location =sbDao.findScheduleMember(memberId);
+		Integer foodRecord =collectionRepository.colleCounts(memberId);				
+		Integer totalCollection = location+foodRecord;
+		mav.getModel().put("totalCollection", totalCollection);
+		System.out.println("這有啥:"+ totalCollection);
 		
 		//starcounts
 		Integer kstar5 = reviewerFoodRecordService.countStr5(memberId);

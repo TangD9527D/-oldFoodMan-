@@ -29,6 +29,7 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 #container {
 	position: relative;
@@ -652,10 +653,12 @@ $('#followBtn').click(function(){
 
 		success:function(fanSize){
 			var f=fanSize
+			swal("QAQ", "三秒後刪除", "success");
 			if(f=2){
-				alert("QAQ");
+				setTimeout(function(){
+					location.reload();
+				},3000);
 			}
-			location.reload();
 		}
 	})
 })
