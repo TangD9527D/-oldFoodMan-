@@ -19,7 +19,16 @@
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_contents_right.css">
     <link rel="stylesheet" href="${contextRoot}/cssLemon/oldfoodPage01_base.css">
     <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
+        
+        .level1{
+        	opacity:0.2;
+        }
+        
+        .level3{
+        	opacity:0.6;
+        }
         
         .collectionBBB {
 			width:10px;
@@ -556,11 +565,21 @@
                     <h2 class="side-title">拜訪區域</h2>
                     <div id="area-map">
                         <div class="frame">
-                            <img src="${contextRoot}/imgLemon/frame02.png" width="280" height="210" alt="拜訪區域">
+                            <img src="${contextRoot}/imgLemon/frame.png" width="280" height="210" alt="拜訪區域">
                         </div>
                         <ul>
-                            <li class="level1" id="taipei">
-                                <img src="${contextRoot}/imgLemon/左上02.png">
+                            <li class="level5" id="taipei">
+                                <img src="${contextRoot}/imgLemon/taipei.png">
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="level3" id="kaohsiung">
+                                <img src="${contextRoot}/imgLemon/kaohsiung.png">
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="level1" id="hualian">
+                                <img src="${contextRoot}/imgLemon/hualian.png">
                             </li>
                         </ul>
                     </div>
@@ -793,6 +812,7 @@
     
     //test
      function ttt(o){
+    	swal("最後一眼QAQ", "會在三秒後移除", "success");
     	var memberId = $(o).attr("value")
 		console.log(memberId);
     	
@@ -803,11 +823,11 @@
 
     		success:function(fanSize){
     			var f=fanSize
-    			location.reload();
     			if(f=1){
-    				alert("QAQ");
+    				setTimeout(function(){
+    					location.reload();
+    				},3000);
     			}
-    			
     		}
     	})
     }

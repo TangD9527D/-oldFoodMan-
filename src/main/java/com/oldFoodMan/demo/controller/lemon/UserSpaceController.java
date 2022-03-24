@@ -194,7 +194,7 @@ public class UserSpaceController {
 		mav.getModel().put("frds", frds);
 
 		// 追蹤的人
-		List<Integer> list = relationshipService.listFans(memberId);
+		List<Member> list = relationshipService.listFans(memberId);
 
 		mav.getModel().put("user", user);
 		mav.getModel().put("ids", list);
@@ -236,15 +236,32 @@ public class UserSpaceController {
 	@PostMapping("/relationship/unfollow/{memberId}")
 	public int unfollowUser(@PathVariable Integer memberId, HttpSession hs) {
 		Member memberData = (Member) hs.getAttribute("member");
-		System.out.println(memberData.getId() + "~~~~~~~~~~~~~~~~~~~~~~~~~~~" + memberId);
-		Relationship rr = new Relationship();
-		rr.setFromUserId(memberData.getId());
-		rr.setToUserId(memberId);
+//		System.out.println(memberData.getId() + "~~~~~~~~~~~~~~~~~~~~~~~~~~~" + memberId);
+//		Relationship rr = new Relationship();
+//		rr.setFromUserId(memberData.getId());
+//		rr.setToUserId(memberId);
 		// 取消關注
-		relationshipService.removerRelationship(rr);
+		relationshipRepository.deleteByFromTo(memberId, memberData.getId());
+//		relationshipService.removerRelationship(rr);
 		int fanSize = 2;
 		return fanSize;
 	}
+	
+	@ResponseBody
+	@PostMapping("/relationship/unfollowing/{memberId}")
+	public int unfollowUserr(@PathVariable Integer memberId, HttpSession hs) {
+		Member memberData = (Member) hs.getAttribute("member");
+//		System.out.println(memberData.getId() + "~~~~~~~~~~~~~~~~~~~~~~~~~~~" + memberId);
+//		Relationship rr = new Relationship();
+//		rr.setFromUserId(memberData.getId());
+//		rr.setToUserId(memberId);
+		// 取消關注
+		relationshipRepository.deleteByToFrom(memberData.getId(),memberId);
+//		relationshipService.removerRelationship(rr);
+		int fanSize = 2;
+		return fanSize;
+	}
+	
 
 }
 

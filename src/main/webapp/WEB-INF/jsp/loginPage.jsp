@@ -10,7 +10,7 @@
 
 <head>
 <meta charset="UTF-8">
-<link rel="shortcut icon" type="image/png" href="css/1647002131.ico">
+<link rel="shortcut icon" type="image/png" href="${contextRoot}/css/1647002131.ico">
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Norican&family=Sriracha&display=swap" rel="stylesheet">
 <title>老食人登入</title>
@@ -335,7 +335,7 @@ body {
 						</div>
 						<br>
 							<div class="newAccount_13">
-								<label class="la2"><span id="backin7">信箱:&nbsp;</span></label> <input
+								<label class="la2"><span id="backin7">帳號:&nbsp;</span></label> <input
 									type="text" id="backendAccount" class="inPut" name="account" />
 								<p class="txtP" id="backAccount7" >&nbsp;</p>
 							</div>

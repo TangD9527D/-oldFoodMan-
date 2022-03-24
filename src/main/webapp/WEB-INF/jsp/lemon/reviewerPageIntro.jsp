@@ -416,7 +416,7 @@
                     </dl>
                     <dl class="reviewer-counter__item">
                         <dt class="reviewer-counter__subject reviewer-counter__subject--visitor">
-                            <span class="reviewer-counter__label">讚!</span>
+                            <span class="reviewer-counter__label">收藏食記</span>
                             <span class="c-icon-help c-icon-help--dark">
                                 <span class="c-icon-help__btn">?</span>
                                 <span class="c-icon-help__tooltip-frame reviewer-counter__help">
@@ -428,7 +428,7 @@
                         </dt>
                         <dd class="reviewer-counter__data">
                             <p class="reviewer-counter__like-count">
-                                <span class="reviewer-counter__like-count-num">2,7</span>
+                                <span class="reviewer-counter__like-count-num">${colleCounts}</span>
                             </p>
                         </dd>
                     </dl>

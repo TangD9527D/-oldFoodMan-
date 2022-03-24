@@ -20,7 +20,7 @@ public interface RelationshipService {
 	 * 列出所有粉絲
 	 * @return
 	 */
-	List<Integer> listFans(Integer userId);
+	List<Member> listFans(Integer userId);
 	
 	/*
 	 * 互相關注id

@@ -146,10 +146,10 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	@Query(value="SELECT COUNT(city) FROM foodRecord where city='桃園市'AND member_id=:member_id",nativeQuery=true)
 	public Integer countcity3(@Param("member_id")Integer member_id);
 	
-	@Query(value="SELECT COUNT(city) FROM foodRecord where city='台中市'AND member_id=:member_id",nativeQuery=true)
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='臺中市'AND member_id=:member_id",nativeQuery=true)
 	public Integer countcity4(@Param("member_id")Integer member_id);
 	
-	@Query(value="SELECT COUNT(city) FROM foodRecord where city='台南市'AND member_id=:member_id",nativeQuery=true)
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='臺南市'AND member_id=:member_id",nativeQuery=true)
 	public Integer countcity5(@Param("member_id")Integer member_id);
 	
 	@Query(value="SELECT COUNT(city) FROM foodRecord where city='高雄市'AND member_id=:member_id",nativeQuery=true)
@@ -182,7 +182,7 @@ public interface FoodRecordRepository extends JpaRepository<FoodRecord,Integer> 
 	@Query(value="SELECT COUNT(city) FROM foodRecord where city='花蓮縣'AND member_id=:member_id",nativeQuery=true)
 	public Integer countcity15(@Param("member_id")Integer member_id);
 	
-	@Query(value="SELECT COUNT(city) FROM foodRecord where city='台東縣'AND member_id=:member_id",nativeQuery=true)
+	@Query(value="SELECT COUNT(city) FROM foodRecord where city='臺東縣'AND member_id=:member_id",nativeQuery=true)
 	public Integer countcity16(@Param("member_id")Integer member_id);
 	
 	@Query(value="SELECT COUNT(city) FROM foodRecord where city='澎湖縣'AND member_id=:member_id",nativeQuery=true)
