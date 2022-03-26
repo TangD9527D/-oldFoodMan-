@@ -806,7 +806,7 @@ if (code == 13) { //Enter keycode
 
 $("#speedbtn").click(function(){
 	
-	$("#input").val("台灣台北市內湖區成功路四段卡拉拉涮涮鍋");
+	$("#input").val("卡拉拉涮涮鍋");
 	
 })
 
