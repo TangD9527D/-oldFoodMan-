@@ -73,9 +73,16 @@ public class RelationshipServiceImpl implements RelationshipService {
 	}
 
 	@Override
-	public List<Integer> listFans(Integer userId) {
+	public List<Member> listFans(Integer userId) {
 		List<Integer>relationshipList = relationshipRepository.findByToUserId(userId);
-		return relationshipList;
+		List<Member> memberList = new ArrayList<>();
+		Iterator<Integer> it = relationshipList.iterator();    //使用Iterator取值
+		while(it.hasNext()){
+        Member member = memberService.findById((Integer) it.next());
+        memberList.add(member);
+        }
+		
+		return memberList;
 	}
 
 }

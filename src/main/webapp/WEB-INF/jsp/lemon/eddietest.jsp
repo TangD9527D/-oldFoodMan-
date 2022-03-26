@@ -29,6 +29,15 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
+
+		.level1{
+        	opacity:0.2;
+        }
+        
+        .level3{
+        	opacity:0.6;
+        }
+
 .menu7 {
 	line-height: 0px;
 }
@@ -270,7 +279,7 @@ html {
 						<dl class="reviewer-counter__item">
 							<dt
 								class="reviewer-counter__subject reviewer-counter__subject--visitor">
-								<span class="reviewer-counter__label">讚!</span> <span
+								<span class="reviewer-counter__label">收藏食記</span> <span
 									class="c-icon-help c-icon-help--dark"> <span
 									class="c-icon-help__btn">?</span> <span
 									class="c-icon-help__tooltip-frame reviewer-counter__help">
@@ -282,7 +291,7 @@ html {
 							</dt>
 							<dd class="reviewer-counter__data">
 								<p class="reviewer-counter__like-count">
-									<span class="reviewer-counter__like-count-num">2,7</span>
+									<span class="reviewer-counter__like-count-num">${colleCounts}</span>
 								</p>
 							</dd>
 						</dl>
@@ -396,124 +405,236 @@ html {
 
 			<!-- side * start-->
 			<div id="column-side" class="layout1-side">
-				<p class="tra-banner-mypage u-mb">
-					<a href="#" class="tra-banner-mypage__target"> <img width="300"
-						height="120" alt="面對食物總是老實" src="/img/sidebanner.jpg">
-					</a>
-				</p>
+<!-- 				<p class="tra-banner-mypage u-mb"> -->
+<!-- 					<a href="#" class="tra-banner-mypage__target"> <img width="300" -->
+<!-- 						height="120" alt="面對食物總是老實" src="/img/sidebanner.jpg"> -->
+<!-- 					</a> -->
+<!-- 				</p> -->
 				<div id="column-side-inner">
-					<section class="ranking">
-						<div class="side-title ranking__title">
-							<h2>Ranking</h2>
-							<p class="ranking__setting-area">
-								<c:out value="${memberPage.city}" />
-							</p>
-							<!--                         <span class="ranking__prefecture">（台北市）</span> -->
-						</div>
+<!-- 					<section class="ranking"> -->
+<!-- 						<div class="side-title ranking__title"> -->
+<!-- 							<h2>Ranking</h2> -->
+<!-- 							<p class="ranking__setting-area"> -->
+<%-- 								<c:out value="${memberPage.city}" /> --%>
+<!-- 							</p> -->
+<!-- 							                        <span class="ranking__prefecture">（台北市）</span> -->
+<!-- 						</div> -->
 
-						<div class="u-align-right">
-							<a href="${contextRoot}/reviewerAll" class="c-link-arrow"> <span>老食人群</span>
-							</a>
-						</div>
-					</section>
+<!-- 						<div class="u-align-right"> -->
+<%-- 							<a href="${contextRoot}/reviewerAll" class="c-link-arrow"> <span>老食人群</span> --%>
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 					</section> -->
 					<section>
-						<h2 class="side-title">拜訪區域</h2>
-						<div id="area-map">
-							<div class="frame">
-								<img src="/img/0130藍色的夢.jpg" width="280" height="210" alt="拜訪區域">
-							</div>
-							<ul>
-								<li class="level15" id="tokyo"><img alt src="#"></li>
-							</ul>
-						</div>
-						<div id="area-rank" class="clearfix">
-							<ul class="rank-list1">
-								<li class="rank1"><a href="#">台北市&nbsp; <span
-										class="num"> [ <em>${taipei}</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank2"><a href="#">新北市&nbsp; <span
-										class="num"> [ <em>1117</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank3"><a href="#">桃園市&nbsp; <span
-										class="num"> [ <em>992</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank4"><a href="#">台中市&nbsp; <span
-										class="num"> [ <em>773</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank5"><a href="#">台南市&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank6"><a href="#">高雄市&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank7"><a href="#">宜蘭縣&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank8"><a href="#">新竹縣&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank9"><a href="#">苗栗縣&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank10"><a href="#">彰化縣&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-
-							</ul>
-							<ul class="rank-list2">
-								<li class="rank1"><a href="#">南投縣&nbsp; <span
-										class="num"> [ <em>${taipei}</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank2"><a href="#">雲林縣&nbsp; <span
-										class="num"> [ <em>1117</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank3"><a href="#">嘉義縣&nbsp; <span
-										class="num"> [ <em>992</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank4"><a href="#">屏東縣&nbsp; <span
-										class="num"> [ <em>773</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank5"><a href="#">花蓮縣&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank6"><a href="#">台東縣&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank7"><a href="#">澎湖縣&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank8"><a href="#">基隆市&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank9"><a href="#">新竹市&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-								<li class="rank10"><a href="#">嘉義市&nbsp; <span
-										class="num"> [ <em>337</em>件 ]
-									</span>
-								</a></li>
-							</ul>
-						</div>
-					</section>
+                    <h2 class="side-title">拜訪區域</h2>
+                    <div id="area-map">
+                        <div class="frame">
+                            <img src="${contextRoot}/imgLemon/frame.png" width="280" height="210" alt="拜訪區域">
+                        </div>
+                        <ul>
+                            <li class="level5" id="taipei">
+                                <img src="${contextRoot}/imgLemon/taipei.png">
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="level3" id="kaohsiung">
+                                <img src="${contextRoot}/imgLemon/kaohsiung.png">
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="level1" id="hualian">
+                                <img src="${contextRoot}/imgLemon/hualian.png">
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="area-rank" class="clearfix">
+                        <ul class="rank-list1">
+                            <li>
+                                <a href="#">台北市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${taipei}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">新北市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${newtaipei}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">桃園市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${taoyuan}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">台中市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${taichung}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">台南市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${tainan}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">高雄市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${kaohsiung}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">宜蘭縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${yilan}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">新竹縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${hsinchu}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">苗栗縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${miaoli}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">彰化縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${changhua}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                        <ul class="rank-list2">
+                            <li>
+                                <a href="#">南投縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${nantou}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">雲林縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${yunlin}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">嘉義縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${jiayi}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">屏東縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${pingtong}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">花蓮縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${hualian}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">台東縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${taitong}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">澎湖縣&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${penghu}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">基隆市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${keelongcity}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">新竹市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${hsinchucity}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">嘉義市&nbsp;
+                                    <span class="num">
+                                        [
+                                        <em>${jiayicity}</em>件
+                                        ]
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
 					<section></section>
 					<section></section>
 				</div>

@@ -390,7 +390,8 @@
 		
 		//一鍵輸入
 		$("#autoInsert").click(function(){
-			$('#product_name').val('藝奇');
+			$('#product_number').val('1012');
+			$('#product_name').val('誠品行旅');
 			$('#product_category').val('異國');
 			$('#product_stock').val('50');
 			$('#product_discount').val('0.8');

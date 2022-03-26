@@ -3,8 +3,10 @@ package com.oldFoodMan.demo.model.lemon;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface RelationshipRepository extends JpaRepository<Relationship, RelationshipPK> {
 	/*
@@ -45,6 +47,17 @@ public interface RelationshipRepository extends JpaRepository<Relationship, Rela
 	 * @return
 	 */
 	Integer countByToUserId(Integer toUserId);
+	
+	//dd
+	@Transactional
+	@Modifying
+	@Query(value="delete from reviewer_relationship where from_user_id=:fromUserId AND to_user_id=:toUserId",nativeQuery = true)
+	void deleteByFromTo(@Param("fromUserId")Integer fromUserId,@Param("toUserId")Integer toUserId);
+	
+	@Transactional
+	@Modifying
+	@Query(value="delete from reviewer_relationship where from_user_id=:fromUserId AND to_user_id=:toUserId",nativeQuery = true)
+	void deleteByToFrom(@Param("fromUserId")Integer fromUserId,@Param("toUserId")Integer toUserId);
 	
 	
 }

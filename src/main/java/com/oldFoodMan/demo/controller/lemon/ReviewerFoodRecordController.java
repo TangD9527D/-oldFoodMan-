@@ -164,6 +164,13 @@ public class ReviewerFoodRecordController {
 		mav.getModel().put("count", count);
 		mav.getModel().put("frds", frds);
 		
+		//小口袋加總
+				Integer location =sbDao.findScheduleMember(memberId);
+				Integer foodRecord =collectionRepository.colleCounts(memberId);				
+				Integer totalCollection = location+foodRecord;
+				mav.getModel().put("totalCollection", totalCollection);
+				System.out.println("這有啥:"+ totalCollection);
+		
 		//視圖君
 		mav.setViewName("/lemon/reviewerIttaomise");
 		

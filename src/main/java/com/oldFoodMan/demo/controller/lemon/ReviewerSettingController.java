@@ -242,7 +242,7 @@ public class ReviewerSettingController {
 		
 		
 		//標記區域
-		List<ReviewerSaveRating> rsrs = reviewerFoodRecordService.findAll();
+		List<ReviewerSaveRating> rsrs = reviewerFoodRecordService.findByMember(memberId);
 		mav.getModel().put("rsrs",rsrs);
 		
 		//拜訪區域
@@ -320,6 +320,13 @@ public class ReviewerSettingController {
 		Integer countFav = foodRecordRepository.recordFavCounts(memberId);
 		mav.getModel().put("countFav", countFav);
 		mav.getModel().put("countAll", countAll);
+		
+		//小口袋加總
+				Integer location =sbDao.findScheduleMember(memberId);
+				Integer foodRecord =collectionRepository.colleCounts(memberId);				
+				Integer totalCollection = location+foodRecord;
+				mav.getModel().put("totalCollection", totalCollection);
+				System.out.println("這有啥:"+ totalCollection);
 				
 		//追蹤 粉絲
 		User user = userService.findByMember(memberId);
@@ -548,6 +555,10 @@ public class ReviewerSettingController {
 				mav.getModel().put("reviewerPage", reviewerBean);
 				mav.getModel().put("memberPage", memberBean);
 				
+				//收藏
+				Integer colleCounts = collectionRepository.colleCounts(memberId);
+				mav.getModel().put("colleCounts",colleCounts);
+				
 				//拜訪店家 喜愛店家
 				Integer countAll = foodRecordRepository.recordCounts(memberId);
 				Integer countFav = foodRecordRepository.recordFavCounts(memberId);
@@ -578,7 +589,51 @@ public class ReviewerSettingController {
 				//拜訪區域
 				//taipei
 				Integer taipei = foodRecordRepository.countcity1(memberId);
+				Integer newtaipei = foodRecordRepository.countcity2(memberId);
+				Integer taoyuan = foodRecordRepository.countcity3(memberId);
+				Integer taichung = foodRecordRepository.countcity4(memberId);
+				Integer tainan = foodRecordRepository.countcity5(memberId);
+				Integer kaohsiung = foodRecordRepository.countcity6(memberId);
+				Integer yilan = foodRecordRepository.countcity7(memberId);
+				Integer hsinchu = foodRecordRepository.countcity8(memberId);
+				Integer miaoli = foodRecordRepository.countcity9(memberId);
+				Integer changhua = foodRecordRepository.countcity10(memberId);
+				Integer nantou = foodRecordRepository.countcity11(memberId);
+				Integer yunlin = foodRecordRepository.countcity12(memberId);
+				Integer jiayi = foodRecordRepository.countcity13(memberId);
+				Integer pingtong = foodRecordRepository.countcity14(memberId);
+				Integer hualian = foodRecordRepository.countcity15(memberId);
+				Integer taitong = foodRecordRepository.countcity16(memberId);
+				Integer penghu = foodRecordRepository.countcity17(memberId);
+				Integer keelongcity = foodRecordRepository.countcity18(memberId);
+				Integer hsinchucity = foodRecordRepository.countcity19(memberId);
+				Integer jiayicity = foodRecordRepository.countcity20(memberId);
 				mav.getModel().put("taipei", taipei);
+				mav.getModel().put("newtaipei", newtaipei);
+				mav.getModel().put("taoyuan", taoyuan);
+				mav.getModel().put("taichung", taichung);
+				mav.getModel().put("tainan", tainan);
+				mav.getModel().put("kaohsiung", kaohsiung);
+				mav.getModel().put("yilan", yilan);
+				mav.getModel().put("hsinchu", hsinchu);
+				mav.getModel().put("miaoli", miaoli);
+				mav.getModel().put("changhua", changhua);
+				mav.getModel().put("nantou", nantou);
+				mav.getModel().put("yunlin", yunlin);
+				mav.getModel().put("jiayi", jiayi);
+				mav.getModel().put("pingtong", pingtong);
+				mav.getModel().put("hualian", hualian);
+				mav.getModel().put("taitong", taitong);
+				mav.getModel().put("penghu", penghu);
+				mav.getModel().put("keelongcity", keelongcity);
+				mav.getModel().put("hsinchucity", hsinchucity);
+				mav.getModel().put("jiayicity", jiayicity);
+				
+				
+				
+				
+				
+				//視圖君
 				mav.setViewName("/lemon/eddietest");
 				
 			

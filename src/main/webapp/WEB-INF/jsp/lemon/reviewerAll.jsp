@@ -25,9 +25,21 @@
 	justify-content: space-evenly;
 }
 
+.box{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+
+
 </style>
 </head>
-<img src="${contextRoot}/imgLemon/header561_72.jpg" class="img-fluid" alt="...">
+<div class="box">
+	<div class="boxx">
+		<img src="${contextRoot}/imgLemon/薑就.jpg" class="img-fluid" alt="...">
+	</div>
+</div>
 <div id="container">
 	<c:forEach var='member' items='${members}'>
 
@@ -39,7 +51,7 @@
 				<p class="card-text">
 					<c:out value="${member.reviewersetting.reviewer_subtitle}" />
 				</p>
-				<a href="getreviewer/${member.id}" class="btn btn-primary">Read More</a>
+				<a href="getreviewer/${member.id}" class="btn btn-primary" style="background-color:rgb(238,201,0); border:0;">Read More</a>
 			</div>
 		</div>
 

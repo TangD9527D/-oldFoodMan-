@@ -28,6 +28,7 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style>
 
 .menu7{
@@ -607,7 +608,7 @@ html {
 				<div class="rvwr-heading1">
 					<h2 class="rvwr-heading1__title">
 						粉絲 <strong class="rvwr-heading1__count"> <b
-							class="rvwr-heading1__num"><c:out value="${user.follow_size}"/></b> 人
+							class="rvwr-heading1__num"><c:out value="${user.fan_size}"/></b> 人
 						</strong>
 					</h2>
 				</div>
@@ -657,6 +658,7 @@ html {
 <script type="Text/JavaScript">
 
 $('#followBtn').click(function(){
+	swal("最後一眼QAQ", "會在三秒後移除", "success");
 	var memberId= document.getElementById("followValue").value;
 	console.log(memberId);
 
@@ -668,9 +670,10 @@ $('#followBtn').click(function(){
 		success:function(fanSize){
 			var f=fanSize
 			if(f=2){
-				alert("QAQ");
+				setTimeout(function(){
+					location.reload();
+				},3000);
 			}
-			location.reload();
 		}
 	})
 })

@@ -8,7 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>重設密碼</title>
+<link rel="shortcut icon" type="image/png" href="${contextRoot}/css/1647002131.ico">
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Norican&family=Sriracha&display=swap" rel="stylesheet">
 <script src="${contextRoot}/js/jquery-3.6.0.min.js"></script>
@@ -115,7 +116,7 @@ body {
 	</div>
 	<div class="right">
 		<div class="login_title">
-			忘記密碼
+			重設密碼
 		</div>
 		<div class="login_13 container">
 			<form:form modelAttribute="member" action="${contextRoot}/resetPassword" method="POST" lass="login_table">
@@ -132,10 +133,13 @@ body {
 				<div class="pwd_13">
 					<h3 id="paswordd7">請輸入新密碼:</h3>
 					<form:input type="password" id="pwd" name="password" path="memberPwd" />
+					<br><br>
+					<h3 id="paswordd7">再次輸入新密碼:</h3>
+					<input type="password" id="pwdAg" style="font-size: xx-large;"/>
+					<p>&nbsp;<sapn id="retten" style="color: red; font-weight: 700;"></sapn></p>
 				</div>
-				<p>&nbsp;</p>
 				<div style="width: 450px;">
-				<button name="submit" type="submit" value="submit" class="btn btn-primary">送出</button>
+				<button name="submit" type="submit" id="sub777" value="submit" class="btn btn-primary" disabled="disabled">送出</button>
 				</div>
 			</form:form>
 		</div>
@@ -143,8 +147,24 @@ body {
 	</div>
 </div>
 <script>
+
 	$(document).on('click', '#paswordd7', function(){ 
 		$('#pwd').val("oldfoodMan77");
+		$('#pwdAg').val("oldfoodMan77");
+	});
+	
+	$(document).on('change','#pwdAg', function(){ 
+		
+		var first = $('#pwd').val();
+		var second = $('#pwdAg').val();
+		
+		if(first === second){
+			$('#sub777').removeAttr('disabled');
+			$('#retten').text("");
+		}else
+			$('#retten').text("密碼輸入不相同")
+			
+			
 	});
 </script>
 </body>
